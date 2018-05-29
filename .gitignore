@@ -3,6 +3,8 @@
 /out
 /.nyc_output
 /public
-**ecschema.json
+/source/*ecschema.json
+*ecschema.json
+/test/*ecschema.json
 **ecschema.md
 
