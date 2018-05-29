@@ -35,7 +35,7 @@ export class ECJsonMarkdown {
    * @param schema Schema to grab the classes from
    * @param outputFile The path of the file to write to
    */
-  private writeClasses(schema: Schema, outputFile: string) {
+  private async writeClasses(schema: Schema, outputFile: string) {
     for (const schemaClass of schema.getClasses()) {
       // Write the name of the class
       fs.appendFileSync(outputFile, "\n## " + schemaClass.name + "\n\n");
@@ -64,7 +64,7 @@ export class ECJsonMarkdown {
                                     // "| :---------- " +
                                     "|\n");
       // If the class has properties, write them using writeClassProperties()
-      if (schemaClass.properties) this.writeClassProperties(schemaClass.properties, outputFile);
+      if (schemaClass.properties) await this.writeClassProperties(schemaClass.properties, outputFile);
     }
   }
 

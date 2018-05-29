@@ -10,21 +10,47 @@
          "properties" : [
             {
                "description" : "This is the first property of ClassOne",
-               "name" : "ClassOne",
+               "name" : "PropertyOne",
                "propertyType" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
                "description" : "This is the second property of ClassOne.",
-               "name" : "ClassTwo",
+               "name" : "PropertTwo",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "string"
+            },
+            {
+               "description" : "This is the third property of ClassOne",
+               "name" : "PropertyThree",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "int"
+            }
+         ],
+         "schemaItemType" : "CustomAttributeClass"
+      },
+      "ClassTwo" : {
+         "appliesTo" : "EntityClass",
+         "modifier" : "sealed",
+         "description" : "This is the description for ClassTwo",
+         "properties" : [
+            {
+               "description" : "This is the first property of ClassTwo",
+               "name" : "PropertyOne",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "int"
+            },
+            {
+               "description" : "This is the second property of ClassTwo.",
+               "name" : "ProperyTwo",
                "propertyType" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
                "description" : "This is the third property of ClassTwo",
-               "name" : "ClassThree",
+               "name" : "PropertyThree",
                "propertyType" : "PrimitiveProperty",
-               "typeName" : "string"
+               "typeName" : "int"
             }
          ],
          "schemaItemType" : "CustomAttributeClass"
