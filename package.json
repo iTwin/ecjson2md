@@ -20,8 +20,8 @@
   "dependencies": {
     "@bentley/bentleyjs-core": "^8.3.0",
     "@bentley/ecjs": "^0.5.3",
-    "commander": "^2.15.1",
-    "chalk": "^2.4.1"
+    "chalk": "^2.4.1",
+    "commander": "^2.15.1"
   },
   "devDependencies": {
     "@bentley/bentleyjs-tools": "^4.0.0",

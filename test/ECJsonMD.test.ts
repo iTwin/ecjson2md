@@ -6,11 +6,10 @@ import * as fs from "fs";
 describe("ECJsonToMD", () => {
   let testECJsonMD: ECJsonMarkdown;
 
-  beforeEach(() => {
-    testECJsonMD = new ECJsonMarkdown(["./Assets"]);
-  });
-
   describe("Instantiate ECJsonToD", () => {
+    beforeEach(() => {
+      testECJsonMD = new ECJsonMarkdown([".test/Assets"]);
+    });
 
     it("should successfully create an instance of ECJsonMarkDown", () => {
       assert.isDefined(testECJsonMD);
@@ -31,15 +30,30 @@ describe("ECJsonToMD", () => {
         assert.equal(result.description, "This is test schema A.");
       });
     });
+  });
+
+  describe("Generate markdown", () => {
+    let testFilePath: string;
+    let testSchemaJson: object;
+    let outputPath: string;
+    let lines: string[];
+
+    beforeEach(async () => {
+      testFilePath =  "./test/Assets/schemaA.ecschema.json";
+      testSchemaJson = JSON.parse(fs.readFileSync(testFilePath, "utf-8"));
+      outputPath = "./test/Assets/schemaA.ecschema.md";
+
+      testECJsonMD = new ECJsonMarkdown(["./Assets"]);
+      await testECJsonMD.loadJsonSchema(testSchemaJson, outputPath);
+
+      lines = fs.readFileSync(outputPath).toString().split("\n");
+    });
+
+    afterEach(() => {
+      if (fs.existsSync(testFilePath)) fs.unlinkSync(outputPath);
+    });
 
     it("should write the name of the schema with as h2", async () => {
-      const testFilePath = "./test/Assets/schemaA.ecschema.json";
-      const testSchemaJson = JSON.parse(fs.readFileSync(testFilePath, "utf-8"));
-      const outputPath = "./test/Assets/schemaA.ecschema.md";
-      testECJsonMD.loadJsonSchema(testSchemaJson, outputPath);
-
-      const lines = fs.readFileSync(outputPath).toString().split("\n");
-
       // Check that the name of the schema is written as an h1 followed by exactly
       // one empty line
       assert.equal(lines[0], "# SchemaA");

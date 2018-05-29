@@ -1,0 +1,36 @@
+{
+   "$schema" : "https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",
+   "alias" : "schema A alias",
+   "description" : "This is test schema A.",
+   "items" : {
+      "ClassOne" : {
+         "appliesTo" : "EntityClass",
+         "modifier" : "sealed",
+         "description" : "This is the description for ClassOne",
+         "properties" : [
+            {
+               "description" : "This is the first property of ClassOne",
+               "name" : "ClassOne",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "string"
+            },
+            {
+               "description" : "This is the second property of ClassOne.",
+               "name" : "ClassTwo",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "string"
+            },
+            {
+               "description" : "This is the third property of ClassTwo",
+               "name" : "ClassThree",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "string"
+            }
+         ],
+         "schemaItemType" : "CustomAttributeClass"
+      }
+   },
+   "label" : "schemaA label",
+   "name" : "SchemaA",
+   "version" : "02.00.00"
+}
