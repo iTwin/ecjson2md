@@ -44,4 +44,9 @@ const searchDir = program.dirs.split(",");
 // Add the search directories to the new locator
 const mdGenerator = new ECJsonMarkdown(searchDir);
 
-mdGenerator.loadJsonSchema(JSON.parse(fs.readFileSync(program.input, "utf8")), outputFilePath);
+try {
+  mdGenerator.loadJsonSchema(program.input, outputFilePath);
+} catch (e) {
+  // tslint:disable-next-line:no-console
+  console.log(chalk.default.red(e, "\n Quitting..."));
+}

@@ -6,7 +6,7 @@ import * as fs from "fs";
 describe("ECJsonToMD", () => {
   let testECJsonMD: ECJsonMarkdown;
 
-  describe("Instantiate ECJsonToD", () => {
+  describe("Instantiate ECJsonToMD", () => {
     beforeEach(() => {
       testECJsonMD = new ECJsonMarkdown(["./test/Assets"]);
     });
@@ -34,21 +34,18 @@ describe("ECJsonToMD", () => {
 
   describe("Generate markdown", () => {
     let testFilePath = "./test/Assets/schemaA.ecschema.json";
-    let testSchemaJson: object;
     let outputPath: string;
     let lines: string[];
 
     before(() => {
-      testFilePath =  "./test/Assets/schemaA.ecschema.json";
+      testFilePath =  "./test/Assets/schemaA.ecschemaa.json";
       outputPath = "./test/Assets/schemaA.ecschema.md";
 
       // If the markdown file already exists, get rid of it and remake it
       if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
 
-      testSchemaJson = JSON.parse(fs.readFileSync(testFilePath, "utf-8"));
-
       testECJsonMD = new ECJsonMarkdown(["./test/Assets"]);
-      testECJsonMD.loadJsonSchema(testSchemaJson, outputPath);
+      testECJsonMD.loadJsonSchema(testFilePath, outputPath);
     });
 
     beforeEach(() => {
@@ -69,9 +66,41 @@ describe("ECJsonToMD", () => {
 
     it("should write the classes as a table", () => {
       // Check that the classes print into a table with the correct name, description, and type
-      assert.equal(lines[10], "|ClassOne|This is the first property of ClassOne|string|");
-      assert.equal(lines[11], "|ClassTwo|This is the second property of ClassOne.|string|");
-      assert.equal(lines[12], "|ClassThree|This is the third property of ClassTwo|string|");
+      assert.equal(lines[10], "|PropertyOne|This is the first property of ClassOne|string|");
+      assert.equal(lines[11], "|PropertyTwo|This is the second property of ClassOne.|string|");
+      assert.equal(lines[12], "|PropertyThree|This is the third property of ClassOne|int|");
+
+      // Check that the classes print into a table with the correct name, description, and type
+      assert.equal(lines[20], "|PropertyOne|This is the first property of ClassTwo|int|");
+      assert.equal(lines[21], "|PropertyTwo|This is the second property of ClassTwo.|string|");
+      assert.equal(lines[22], "|PropertyThree|This is the third property of ClassTwo|int|");
+    });
+
+    it("should write the name of the classes as h2", () => {
+      assert.equal(lines[3], "");
+      assert.equal(lines[4], "## ClassOne");
+      assert.equal(lines[5], "");
+
+      assert.equal(lines[13], "");
+      assert.equal(lines[14], "## ClassTwo");
+      assert.equal(lines[15], "");
+    });
+
+    it("should write a class without a description", () => {
+      assert.equal(lines[24], "## ClassThree");
+      assert.equal(lines[25], "");
+      assert.equal(lines[26], "| Name | Description| Type |");
+    });
+
+    it("should write a class with table without properties", () => {
+      assert.equal(lines[25], "");
+      assert.equal(lines[26], "| Name | Description| Type |");
+      assert.equal(lines[27], "| :--- | :--------- | :--- |");
+      assert.equal(lines[28], "");
+    });
+
+    it("should print a property without a description", () => {
+      assert.equal(lines[35], "|PropertyOne||int|");
     });
   });
 });
