@@ -38,24 +38,22 @@ describe("ECJsonToMD", () => {
     let outputPath: string;
     let lines: string[];
 
-    beforeEach(async () => {
+    beforeEach(() => {
       testFilePath =  "./test/Assets/schemaA.ecschema.json";
       testSchemaJson = JSON.parse(fs.readFileSync(testFilePath, "utf-8"));
       outputPath = "./test/Assets/schemaA.ecschema.md";
-
-      testECJsonMD = new ECJsonMarkdown(["./Assets"]);
-      await testECJsonMD.loadJsonSchema(testSchemaJson, outputPath);
-
-      lines = fs.readFileSync(outputPath).toString().split("\n");
+      testECJsonMD = new ECJsonMarkdown([".test/Assets"]);
     });
 
     afterEach(() => {
-      if (fs.existsSync(testFilePath)) fs.unlinkSync(outputPath);
+      if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
     });
 
-    it("should write the name of the schema with as h2", async () => {
+    it("should write the name of the schema with as h2", () => {
       // Check that the name of the schema is written as an h1 followed by exactly
       // one empty line
+      testECJsonMD.loadJsonSchema(testSchemaJson, outputPath);
+      lines = fs.readFileSync(outputPath).toString().split("\n");
       assert.equal(lines[0], "# SchemaA");
       assert.equal(lines[1], "");
       assert.notEqual(lines[2], "");
