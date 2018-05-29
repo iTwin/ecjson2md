@@ -67,11 +67,16 @@ describe("ECJsonToMD", () => {
     it("should write the classes as a table", () => {
       // Check that the classes print into a table with the correct name, description, and type
       assert.equal(lines[10], "|PropertyOne|This is the first property of ClassOne|string|");
+<<<<<<< HEAD
       assert.equal(lines[11], "|PropertyTwo|This is the second property of ClassOne.|string|");
+=======
+      assert.equal(lines[11], "|PropertTwo|This is the second property of ClassOne.|string|");
+>>>>>>> 8faadba61f9a576efe52b0f463cf0b82982f94ba
       assert.equal(lines[12], "|PropertyThree|This is the third property of ClassOne|int|");
 
       // Check that the classes print into a table with the correct name, description, and type
       assert.equal(lines[20], "|PropertyOne|This is the first property of ClassTwo|int|");
+<<<<<<< HEAD
       assert.equal(lines[21], "|PropertyTwo|This is the second property of ClassTwo.|string|");
       assert.equal(lines[22], "|PropertyThree|This is the third property of ClassTwo|int|");
     });
@@ -101,6 +106,10 @@ describe("ECJsonToMD", () => {
 
     it("should print a property without a description", () => {
       assert.equal(lines[35], "|PropertyOne||int|");
+=======
+      assert.equal(lines[21], "|ProperyTwo|This is the second property of ClassTwo.|string|");
+      assert.equal(lines[22], "|PropertyThree|This is the third property of ClassTwo|int|");
+>>>>>>> 8faadba61f9a576efe52b0f463cf0b82982f94ba
     });
   });
 });
