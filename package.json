@@ -1,0 +1,26 @@
+{
+  "name": "ec-md",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@bentley/bentleyjs-core": "^8.3.0",
+    "@bentley/ecjs": "^0.5.3",
+    "commander": "^2.15.1",
+    "chalk": "^2.4.1"
+  },
+  "devDependencies": {
+    "@bentley/bentleyjs-tools": "^4.0.0",
+    "@types/chai": "^4.1.3",
+    "@types/chalk": "^2.2.0",
+    "@types/mocha": "^5.2.0",
+    "chalk": "^2.4.1",
+    "nyc": "^11.8.0",
+    "typescript": "^2.8.3"
+  }
+}
