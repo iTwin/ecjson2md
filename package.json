@@ -4,7 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf lib .nyc_output",
+    "lint": "node ./node_modules/@bentley/bentleyjs-tools/scripts/tslint.js",
+    "prebuild": "npm run lint & npm run clean",
+    "build": "tsc",
+    "test": "betools test-tsnode --testDir=./test/ --tscPaths",
+    "test:watch": "betools test-tsnode --testDir=./test/ --watch",
+    "docs": "betools docs --onlyJson --json=./lib/docs/json/ec-js/file.json",
+    "docs:dev": "npm run docs && bmsWatch --source ./lib/docs --destination public --typeDocSource C:/dev/imodeljs/ecobjects-js/source",
+    "cover": "nyc node ./node_modules/@bentley/bentleyjs-tools/scripts/test-tsnode.js --testDir=./test/ --tscPaths",
+    "start": "npm run build && npm run test"
   },
   "author": "",
   "license": "ISC",

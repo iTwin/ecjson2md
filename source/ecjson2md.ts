@@ -15,6 +15,10 @@ export class ECJsonMarkdown {
   }
 
   /**
+   * @returns the context for testing purposes
+   */
+  public getContext() { return this.context; }
+  /**
    * Writes the name of the schema to the md file at the outputfile.
    * @param schema Schema to grab the name from
    * @param outputFile The path of the file to write to

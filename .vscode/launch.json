@@ -7,17 +7,15 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceFolder}\\source\\ec-md_cli.js",
+      "name": "Mocha",
+      "program": "${workspaceRoot}/node_modules/@bentley/bentleyjs-tools/scripts/test-tsnode.js",
       "args": [
-        "-i", "${workspaceFolder}\\source\\test.json",
-        "-o", "${workspaceFolder}\\source\\test",
-        "-r", "${workspaceFolder}\\source\\"
+        "--debug",
+        "--testDir=${workspaceRoot}/test/",
+        "--tscPaths"
      ],
-      "preLaunchTask": "tsc: build - tsconfig.json",
-      "outFiles": [
-        "${workspaceFolder}/lib/**/*.js"
-      ]
+     "port": 9229,
+     "protocol": "inspector"
     }
   ]
 }

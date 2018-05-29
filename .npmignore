@@ -1,6 +1,9 @@
 source
+test
 lib/**/test
 lib/**/maps
 out
 .nyc_output
-public
+.vscode
+**ecschema.json
+**ecschema.md
