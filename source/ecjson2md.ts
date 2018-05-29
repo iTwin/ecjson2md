@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import { SchemaContext, SchemaJsonFileLocater, Schema, primitiveTypeToString } from "@bentley/ecjs";
+import { ECJsonFileNotFound, ECJsonBadJson } from "./Exception";
 
 export class ECJsonMarkdown {
   private context: SchemaContext;
@@ -112,9 +113,18 @@ export class ECJsonMarkdown {
    * @param outputFile Path to the output file to write to
    */
   public loadJsonSchema(schemaPath: string, outputFile: string): any {
-    const schemaFile = fs.readFileSync(schemaPath, "utf8");
+    // If the file doesn't exist, throw an error
+    if (!fs.existsSync(schemaPath)) throw new ECJsonFileNotFound(schemaPath);
+    const schemaString = fs.readFileSync(schemaPath, "utf8");
 
-    const schemaJson = JSON.parse(schemaFile);
+    // If the file cannot be parsed, throw an error.
+    let schemaJson: object;
+
+    try {
+      schemaJson = JSON.parse(schemaString);
+    } catch (e) {
+      throw new ECJsonBadJson(schemaPath);
+    }
 
     const schemaPromise = Schema.fromJson(schemaJson, this.context);
 
