@@ -8,7 +8,7 @@ describe("ECJsonToMD", () => {
 
   describe("Instantiate ECJsonToD", () => {
     beforeEach(() => {
-      testECJsonMD = new ECJsonMarkdown([".test/Assets"]);
+      testECJsonMD = new ECJsonMarkdown(["./test/Assets"]);
     });
 
     it("should successfully create an instance of ECJsonMarkDown", () => {
@@ -19,12 +19,12 @@ describe("ECJsonToMD", () => {
       assert.isDefined(testECJsonMD.getContext());
     });
 
-    it("should successfully load the schema into memory", async () => {
+    it("should successfully load the schema into memory", () => {
       const testFilePath = "./test/Assets/schemaA.ecschema.json";
       const testSchemaJson = JSON.parse(fs.readFileSync(testFilePath, "utf-8"));
       const testSchemaPromise = Schema.fromJson(testSchemaJson, testECJsonMD.getContext());
 
-      await testSchemaPromise.then( (result) => {
+      testSchemaPromise.then( (result) => {
         assert.isDefined(result);
         assert.equal(result.name, "SchemaA");
         assert.equal(result.description, "This is test schema A.");
@@ -33,30 +33,45 @@ describe("ECJsonToMD", () => {
   });
 
   describe("Generate markdown", () => {
-    let testFilePath: string;
+    let testFilePath = "./test/Assets/schemaA.ecschema.json";
     let testSchemaJson: object;
     let outputPath: string;
     let lines: string[];
 
-    beforeEach(() => {
+    before(() => {
       testFilePath =  "./test/Assets/schemaA.ecschema.json";
-      testSchemaJson = JSON.parse(fs.readFileSync(testFilePath, "utf-8"));
       outputPath = "./test/Assets/schemaA.ecschema.md";
-      testECJsonMD = new ECJsonMarkdown([".test/Assets"]);
+
+      // If the markdown file already exists, get rid of it and remake it
+      if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
+
+      testSchemaJson = JSON.parse(fs.readFileSync(testFilePath, "utf-8"));
+
+      testECJsonMD = new ECJsonMarkdown(["./test/Assets"]);
+      testECJsonMD.loadJsonSchema(testSchemaJson, outputPath);
     });
 
-    afterEach(() => {
+    beforeEach(() => {
+      lines = fs.readFileSync(outputPath).toString().split("\n");
+    });
+
+    after(() => {
       if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
     });
 
-    it("should write the name of the schema with as h2", () => {
+    it("should write the name of the schema with as h1", () => {
       // Check that the name of the schema is written as an h1 followed by exactly
       // one empty line
-      testECJsonMD.loadJsonSchema(testSchemaJson, outputPath);
-      lines = fs.readFileSync(outputPath).toString().split("\n");
       assert.equal(lines[0], "# SchemaA");
       assert.equal(lines[1], "");
       assert.notEqual(lines[2], "");
+    });
+
+    it("should write the classes as a table", () => {
+      // Check that the classes print into a table with the correct name, description, and type
+      assert.equal(lines[10], "|ClassOne|This is the first property of ClassOne|string|");
+      assert.equal(lines[11], "|ClassTwo|This is the second property of ClassOne.|string|");
+      assert.equal(lines[12], "|ClassThree|This is the third property of ClassTwo|string|");
     });
   });
 });
