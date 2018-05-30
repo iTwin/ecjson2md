@@ -122,7 +122,7 @@ export class ECJsonMarkdown {
    * @param outputFilePath Path to the output file to write to
    */
   public loadJsonSchema(schemaPath: string, outputFilePath: string): any {
-    // If the file doesn't exist, throw an error
+    // If the schema file doesn't exist, throw an error
     if (!fs.existsSync(schemaPath)) throw new ECJsonFileNotFound(schemaPath);
 
     const schemaString = fs.readFileSync(schemaPath, "utf8");
@@ -145,6 +145,7 @@ export class ECJsonMarkdown {
     if (!fs.existsSync(outputDir)) throw new ECJsonBadOutputPath(outputFilePath);
 
     const schemaPromise = Schema.fromJson(schemaJson, this.context);
+    // tslint:disable-next-line:no-console
 
     schemaPromise.then((result) => {
       this.writeName(result, outputFilePath);
