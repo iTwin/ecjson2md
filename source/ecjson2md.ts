@@ -1,3 +1,6 @@
+/*---------------------------------------------------------------------------------------------
+|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+*--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
 import { SchemaContext, SchemaJsonFileLocater, Schema, primitiveTypeToString } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath } from "./Exception";
@@ -116,9 +119,9 @@ export class ECJsonMarkdown {
    * Loads a schema and its references into memory and drives the
    * markdown generation
    * @param schemaPath path to SchemaJson to load
-   * @param outputFile Path to the output file to write to
+   * @param outputFilePath Path to the output file to write to
    */
-  public loadJsonSchema(schemaPath: string, outputFile: string): any {
+  public loadJsonSchema(schemaPath: string, outputFilePath: string): any {
     // If the file doesn't exist, throw an error
     if (!fs.existsSync(schemaPath)) throw new ECJsonFileNotFound(schemaPath);
 
@@ -133,17 +136,19 @@ export class ECJsonMarkdown {
       throw new ECJsonBadJson(schemaPath);
     }
 
-    try {
-      fs.writeFileSync(outputFile, "");
-    } catch (e) {
-      throw new ECJsonBadOutputPath(outputFile);
-    }
+    // Get the path of the directory that will contain the output md file
+    let outputDir: any = outputFilePath.split("/");
+    outputDir.pop();
+    outputDir = outputDir.join("/");
+
+    // Check if the output directory exists
+    if (!fs.existsSync(outputDir)) throw new ECJsonBadOutputPath(outputFilePath);
 
     const schemaPromise = Schema.fromJson(schemaJson, this.context);
 
     schemaPromise.then((result) => {
-      this.writeName(result, outputFile);
-      this.writeClasses(result, outputFile);
+      this.writeName(result, outputFilePath);
+      this.writeClasses(result, outputFilePath);
     });
 
   }

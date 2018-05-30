@@ -1,3 +1,6 @@
+/*---------------------------------------------------------------------------------------------
+|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+*--------------------------------------------------------------------------------------------*/
 import { ECJsonMarkdown } from "../source/ecjson2md";
 import { assert } from "chai";
 import { Schema } from "@bentley/ecjs";

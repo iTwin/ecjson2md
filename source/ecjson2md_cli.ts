@@ -1,4 +1,6 @@
-
+/*---------------------------------------------------------------------------------------------
+|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+*--------------------------------------------------------------------------------------------*/
 import * as chalk from "chalk";
 import * as fs from "fs-extra";
 import { ECJsonMarkdown } from "./ecjson2md";
