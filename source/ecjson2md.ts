@@ -37,9 +37,9 @@ export class ECJsonMarkdown {
    * @param schema Schema to grab the name from
    * @param outputFile The path of the file to write to
    */
-  private writeName(schema: Schema, outputFile: string) {
-    fs.writeFileSync(outputFile, "# " + schema.name + "\n");
-    if (schema.description !== undefined) fs.appendFileSync(outputFile, "\n" + schema.description + "\n");
+  private writeName(schema: Schema, mdWriteStream: fs.WriteStream) {
+    mdWriteStream.write("# " + schema.name + "\n");
+    if (schema.description !== undefined) mdWriteStream.write("\n" + schema.description + "\n");
   }
 
   /**
@@ -47,14 +47,14 @@ export class ECJsonMarkdown {
    * @param schema Schema to grab the classes from
    * @param outputFile The path of the file to write to
    */
-  private async writeClasses(schema: Schema, outputFile: string) {
+  private async writeClasses(schema: Schema, mdWriteStream: fs.WriteStream) {
     for (const schemaClass of schema.getClasses()) {
       // Write the name of the class
-      fs.appendFileSync(outputFile, "\n## " + schemaClass.name + "\n\n");
+      mdWriteStream.write("\n## " + schemaClass.name + "\n\n");
       // Write the class description if it's given
-      if (schemaClass.description !== undefined) fs.appendFileSync(outputFile, schemaClass.description + "\n\n");
+      if (schemaClass.description !== undefined) mdWriteStream.write(schemaClass.description + "\n\n");
       // Write the column headings
-      fs.appendFileSync(outputFile, "| Name " +
+      mdWriteStream.write("| Name " +
                                     // "| Defined in" +
                                     "| Description" +
                                     "| Type " +
@@ -65,7 +65,7 @@ export class ECJsonMarkdown {
                                     // "| Is Readonly " +
                                     "|\n");
 
-      fs.appendFileSync(outputFile, "| :--- " +
+      mdWriteStream.write("| :--- " +
                                     // "| :--------- " +
                                     "| :--------- " +
                                     "| :--- " +
@@ -76,7 +76,7 @@ export class ECJsonMarkdown {
                                     // "| :---------- " +
                                     "|\n");
       // If the class has properties, write them using writeClassProperties()
-      if (schemaClass.properties) await this.writeClassProperties(schemaClass.properties, outputFile);
+      if (schemaClass.properties) await this.writeClassProperties(schemaClass.properties, mdWriteStream);
     }
   }
 
@@ -90,12 +90,12 @@ export class ECJsonMarkdown {
    * @param schemaClassProperties array of the properties
    * @param outputFile The path of the file to write to
    */
-  private writeClassProperties(schemaClassProperties: any, outputFile: string) {
+  private writeClassProperties(schemaClassProperties: any, mdWriteStream: fs.WriteStream) {
     if (!schemaClassProperties) return;
     for (const property of schemaClassProperties) {
       property.then((result: any) => {
         // Write the table row for the property
-        fs.appendFileSync(outputFile, "|"
+        mdWriteStream.write("|"
           + this.mdHelper(result._name._name) + "|"
 //          + this.mdHelper(result._definedIn)  + "|"
           + this.mdHelper(result._description) + "|");
@@ -106,7 +106,7 @@ export class ECJsonMarkdown {
         } catch (err) {
           type = "";
         }
-        fs.appendFileSync(outputFile, type + "|"
+        mdWriteStream.write(type + "|"
 //          + this.mdHelper(result._label) + "|"
 //          + this.mdHelper(result._baseClass) + "|"
 //          + this.mdHelper(result._kindOfQuantity) + "|"
@@ -146,11 +146,14 @@ export class ECJsonMarkdown {
     // Check if the output directory exists
     if (!fs.existsSync(outputDir)) throw new ECJsonBadOutputPath(outputFilePath);
 
+    const mdWriteStream = fs.createWriteStream(outputFilePath);
+
     const schemaPromise = Schema.fromJson(schemaJson, this.context);
 
-    schemaPromise.then((result) => {
-      this.writeName(result, outputFilePath);
-      this.writeClasses(result, outputFilePath);
+    schemaPromise.then(async (result) => {
+      await this.writeName(result, mdWriteStream);
+      await this.writeClasses(result, mdWriteStream);
+      mdWriteStream.end();
     });
   }
 }
