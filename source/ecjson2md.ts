@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import { SchemaContext, SchemaJsonFileLocater, Schema, primitiveTypeToString } from "@bentley/ecjs";
-import { ECJsonFileNotFound, ECJsonBadJson, BadSearchPath } from "./Exception";
+import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath } from "./Exception";
 
 export class ECJsonMarkdown {
   private context: SchemaContext;
@@ -8,7 +8,7 @@ export class ECJsonMarkdown {
   constructor(searchDirs: string[]) {
     //  Check that all the search paths exist
     for (const dir of searchDirs) {
-      if (!fs.existsSync(dir)) throw new BadSearchPath(dir);
+      if (!fs.existsSync(dir)) throw new ECJsonBadSearchPath(dir);
     }
 
     // Add the provided directories to the locator as search paths
@@ -131,6 +131,12 @@ export class ECJsonMarkdown {
       schemaJson = JSON.parse(schemaString);
     } catch (e) {
       throw new ECJsonBadJson(schemaPath);
+    }
+
+    try {
+      fs.writeFileSync(outputFile, "");
+    } catch (e) {
+      throw new ECJsonBadOutputPath(outputFile);
     }
 
     const schemaPromise = Schema.fromJson(schemaJson, this.context);

@@ -18,3 +18,10 @@ export class ECJsonBadJson extends Error {
     this.name = "ECJsonBadJson";
   }
 }
+
+export class ECJsonBadOutputPath extends Error {
+  public constructor(filePath: string) {
+    super(filePath + " is not a proper output path");
+    this.name = "ECJsonBadOutputPath";
+  }
+}

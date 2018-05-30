@@ -1,8 +1,8 @@
 import { ECJsonMarkdown } from "../source/ecjson2md";
-import { assert, expect } from "chai";
+import { assert } from "chai";
 import { Schema } from "@bentley/ecjs";
 import * as fs from "fs";
-import { ECJsonFileNotFound, ECJsonBadJson } from "Exception";
+import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath } from "Exception";
 
 describe("ECJsonToMD", () => {
   let testECJsonMD: ECJsonMarkdown;
@@ -35,25 +35,57 @@ describe("ECJsonToMD", () => {
 
   describe("Input and output", () => {
     const outputPath = "./test/Assets/BadInput.md";
+    const badPath = "./this/directory/does/not/exist";
+    let err: any;
 
     beforeEach(() => {
       testECJsonMD = new ECJsonMarkdown(["./test/Assets"]);
+      err = Error;
     });
 
     it("should throw an error for an input path that doens't exist", () => {
-      expect(() => testECJsonMD.loadJsonSchema("./test/Assets/nothing.json", outputPath).to.throw(ECJsonFileNotFound));
+      try {
+        testECJsonMD.loadJsonSchema("./test/Assets/nothing.json", outputPath);
+      } catch (e) {
+        err = e;
+      }
+
+      assert.equal(ECJsonFileNotFound.name, err.name);
     });
 
     it("should throw an error for a malformed json file", () => {
-      expect(() => testECJsonMD.loadJsonSchema("./test/Assets/malformed.json", outputPath).to.throw(ECJsonBadJson));
+      try {
+        testECJsonMD.loadJsonSchema("./test/Assets/malformed.json", outputPath);
+      } catch (e) {
+        err = e;
+      }
+
+      assert.equal(ECJsonBadJson.name, err.name);
     });
 
     // Should throw an error for a search path that does not exist
     it("should throw an error for a nonexistent search directory", () => {
-      assert.throws(() => new ECJsonMarkdown(["./test/Assets,./thisdirectorydoesntexist"]), "./thisdirectorydoesntexist is not a viable search path");
+      try {
+        new ECJsonMarkdown([badPath]);
+      } catch (e) {
+        err = e;
+      }
+
+      assert.equal(ECJsonBadSearchPath.name, err.name);
     });
 
+    // Should throw an error for an output path that does not exist
+    it("show throw an error for a nonexistent output path", () => {
+      try {
+        testECJsonMD.loadJsonSchema("./test/Assets/SchemaA.ecschema.json", badPath);
+      } catch (e) {
+        err = e;
+      }
+
+      assert.equal(ECJsonBadOutputPath.name, err.name);
+    });
   });
+
   describe("Generate markdown", () => {
     let testFilePath = "./test/Assets/schemaA.ecschema.json";
     let outputPath: string;
