@@ -37,6 +37,6 @@ try {
   const mdGenerator = new ECJsonMarkdown(searchDir);
   mdGenerator.loadJsonSchema(program.input, outputFilePath);
 } catch (e) {
-  // tslint:disable-next-line:no-console
-  console.log(chalk.default.red(e, "\nQuitting..."));
+    // tslint:disable-next-line:no-console
+    console.log(chalk.default.red(e, "\nQuitting..."));
 }
