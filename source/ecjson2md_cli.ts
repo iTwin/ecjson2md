@@ -26,27 +26,17 @@ if (!fs.existsSync(program.output)) {
   process.exit();
 }
 
-// Check that the search directories exist
-for (const dir of program.dirs.split(",")) {
-  if (!fs.existsSync(dir)) {
-    // tslint:disable-next-line:no-console
-      console.log(chalk.default.red(`Cannot find the search dir ${dir}`));
-      process.exit();
-  }
-}
-
 const inputSchemaName = program.input;
 // Form the filepath for the output markdown
 const outputFilePath = inputSchemaName.slice(0, inputSchemaName.length - 5) + ".md";
 
 const searchDir = program.dirs.split(",");
 
-// Add the search directories to the new locator
-const mdGenerator = new ECJsonMarkdown(searchDir);
-
+// Add the search directories to the new locator and load the schema
 try {
+  const mdGenerator = new ECJsonMarkdown(searchDir);
   mdGenerator.loadJsonSchema(program.input, outputFilePath);
 } catch (e) {
   // tslint:disable-next-line:no-console
-  console.log(chalk.default.red(e, "\n Quitting..."));
+  console.log(chalk.default.red(e, "\nQuitting..."));
 }
