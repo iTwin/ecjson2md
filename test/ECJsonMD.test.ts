@@ -12,7 +12,9 @@ describe("ECJsonToMD", () => {
 
   describe("Instantiate ECJsonToMD", () => {
     beforeEach(() => {
-      testECJsonMD = new ECJsonMarkdown(["./test/Assets"]);
+      const dirArray = new Array<string>();
+      dirArray.push("./test/Assets/dir/");
+      testECJsonMD = new ECJsonMarkdown(dirArray);
     });
 
     it("should successfully create an instance of ECJsonMarkDown", () => {
@@ -101,7 +103,7 @@ describe("ECJsonToMD", () => {
       // If the markdown file already exists, get rid of it and remake it
       if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
 
-      testECJsonMD = new ECJsonMarkdown(["./test/Assets"]);
+      testECJsonMD = new ECJsonMarkdown(["./test/Assets/dir"]);
       testECJsonMD.loadJsonSchema(testFilePath, outputPath);
     });
 

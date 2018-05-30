@@ -74,6 +74,12 @@
          "schemaItemType" : "CustomAttributeClass"
       }
    },
+   "references" : [
+      {
+         "name" : "SchemaB",
+         "version" : "01.01.01"
+      }
+   ],
    "label" : "schemaA label",
    "name" : "SchemaA",
    "version" : "02.00.00"
