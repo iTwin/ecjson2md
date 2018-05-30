@@ -28,3 +28,10 @@ export class ECJsonBadOutputPath extends Error {
     this.name = "ECJsonBadOutputPath";
   }
 }
+
+export class ECJsonReferenceNotFound extends Error {
+  public constructor(schema: string, refDirs: string[]) {
+    super("The references for " + schema + " we not found in " + refDirs.toString());
+    this.name = "ECJsonReferenceNotFound";
+  }
+}

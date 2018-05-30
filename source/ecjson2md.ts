@@ -7,6 +7,7 @@ import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutput
 
 export class ECJsonMarkdown {
   private context: SchemaContext;
+  public searchDirs: string[];
 
   constructor(searchDirs: string[]) {
     //  Check that all the search paths exist
@@ -18,6 +19,7 @@ export class ECJsonMarkdown {
     const locator = new SchemaJsonFileLocater();
 
     locator.addSchemaSearchPaths(searchDirs);
+    this.searchDirs = searchDirs;
 
     // Add the locator to the context
     this.context = new SchemaContext();
@@ -128,7 +130,7 @@ export class ECJsonMarkdown {
     const schemaString = fs.readFileSync(schemaPath, "utf8");
 
     // If the file cannot be parsed, throw an error.
-    let schemaJson: object;
+    let schemaJson: any;
 
     try {
       schemaJson = JSON.parse(schemaString);
@@ -145,12 +147,10 @@ export class ECJsonMarkdown {
     if (!fs.existsSync(outputDir)) throw new ECJsonBadOutputPath(outputFilePath);
 
     const schemaPromise = Schema.fromJson(schemaJson, this.context);
-    // tslint:disable-next-line:no-console
 
     schemaPromise.then((result) => {
       this.writeName(result, outputFilePath);
       this.writeClasses(result, outputFilePath);
     });
-
   }
 }

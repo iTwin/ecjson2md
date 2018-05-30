@@ -39,8 +39,9 @@ describe("ECJsonToMD", () => {
   });
 
   describe("Input and output", () => {
-    const outputPath = "./test/Assets/BadInput.md";
+    const badOutputPath = "./test/Assets/BadInput.md";
     const badPath = "./this/directory/does/not/exist";
+    const okayOutputPath = "./test/Assets/schemaA.ecschema.md";
     let err: any;
 
     beforeEach(() => {
@@ -48,9 +49,9 @@ describe("ECJsonToMD", () => {
       err = Error;
     });
 
-    it("should throw an error for an input path that doens't exist", () => {
+    it("should throw an error for an input path that doesn't exist", () => {
       try {
-        testECJsonMD.loadJsonSchema("./test/Assets/nothing.json", outputPath);
+        testECJsonMD.loadJsonSchema("./test/Assets/nothing.json", badOutputPath);
       } catch (e) {
         err = e;
       }
@@ -60,7 +61,7 @@ describe("ECJsonToMD", () => {
 
     it("should throw an error for a malformed json file", () => {
       try {
-        testECJsonMD.loadJsonSchema("./test/Assets/malformed.json", outputPath);
+        testECJsonMD.loadJsonSchema("./test/Assets/malformed.json", badOutputPath);
       } catch (e) {
         err = e;
       }
@@ -80,7 +81,7 @@ describe("ECJsonToMD", () => {
     });
 
     // Should throw an error for an output path that does not exist
-    it("show throw an error for a nonexistent output path", () => {
+    it("should throw an error for a nonexistent output path", () => {
       try {
         testECJsonMD.loadJsonSchema("./test/Assets/SchemaA.ecschema.json", badPath);
       } catch (e) {
@@ -88,6 +89,23 @@ describe("ECJsonToMD", () => {
       }
 
       assert.equal(ECJsonBadOutputPath.name, err.name);
+    });
+
+    before(() => {
+      // If the markdown file already exists, get rid of it and remake it
+      if (fs.existsSync(okayOutputPath)) fs.unlinkSync(okayOutputPath);
+
+      testECJsonMD = new ECJsonMarkdown(["./test/Assets/dir"]);
+      testECJsonMD.loadJsonSchema("./test/Assets/schemaA.ecschema.json", okayOutputPath);
+    });
+
+    after(() => {
+      if (fs.existsSync(okayOutputPath)) fs.unlinkSync(okayOutputPath);
+    });
+
+    // Ensure that a markdown file is created with good input
+    it("should create a markdown file at the correct location", () => {
+      assert.isTrue(fs.existsSync(okayOutputPath));
     });
   });
 
@@ -121,6 +139,16 @@ describe("ECJsonToMD", () => {
       assert.equal(lines[0], "# SchemaA");
       assert.equal(lines[1], "");
       assert.notEqual(lines[2], "");
+    });
+
+    it("should write the description of the schema", () => {
+      assert.equal(lines[2], "This is test schema A.");
+    });
+
+    it("should write the description of each class in the schema", () => {
+      assert.equal(lines[6], "This is the description for ClassOne");
+      assert.equal(lines[16], "This is the description for ClassTwo");
+      assert.equal(lines[31], "This is the description for ClassFour");
     });
 
     it("should write the classes as a table", () => {
