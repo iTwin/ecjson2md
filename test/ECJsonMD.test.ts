@@ -48,6 +48,11 @@ describe("ECJsonToMD", () => {
       expect(() => testECJsonMD.loadJsonSchema("./test/Assets/malformed.json", outputPath).to.throw(ECJsonBadJson));
     });
 
+    // Should throw an error for a search path that does not exist
+    it("should throw an error for a nonexistent search directory", () => {
+      assert.throws(() => new ECJsonMarkdown(["./test/Assets,./thisdirectorydoesntexist"]), "./thisdirectorydoesntexist is not a viable search path");
+    });
+
   });
   describe("Generate markdown", () => {
     let testFilePath = "./test/Assets/schemaA.ecschema.json";

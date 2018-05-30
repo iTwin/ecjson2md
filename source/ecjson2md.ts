@@ -6,12 +6,13 @@ export class ECJsonMarkdown {
   private context: SchemaContext;
 
   constructor(searchDirs: string[]) {
+    //  Check that all the search paths exist
+    for (const dir of searchDirs) {
+      if (!fs.existsSync(dir)) throw new BadSearchPath(dir);
+    }
+
     // Add the provided directories to the locator as search paths
     const locator = new SchemaJsonFileLocater();
-
-    //  Check that all the search paths exist
-    for (const dir of searchDirs)
-      if (!fs.existsSync(dir)) throw new BadSearchPath(dir);
 
     locator.addSchemaSearchPaths(searchDirs);
 
