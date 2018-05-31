@@ -1,8 +1,9 @@
 {
-  "name": "ec-md",
+  "name": "ecjson-md",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "typings": "lib/index",
   "scripts": {
     "clean": "rimraf lib .nyc_output",
     "lint": "node ./node_modules/@bentley/bentleyjs-tools/scripts/tslint.js",
@@ -18,7 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@bentley/bentleyjs-core": "^8.3.0",
+    "@bentley/bentleyjs-core": "^8.4.1",
     "@bentley/ecjs": "^0.5.3",
     "chalk": "^2.4.1",
     "commander": "^2.15.1"
@@ -30,6 +31,23 @@
     "@types/mocha": "^5.2.0",
     "chalk": "^2.4.1",
     "nyc": "^11.8.0",
-    "typescript": "^2.8.3"
+    "typescript": "^2.8.4"
+  },
+  "nyc": {
+    "include": [
+      "source/**/*.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "lcov",
+      "cobertura"
+    ],
+    "report-dir": "./lib/test/coverage"
   }
 }
