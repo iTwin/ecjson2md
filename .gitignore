@@ -3,5 +3,6 @@
 /out
 /.nyc_output
 /public
-**ecschema.md
+**.ecschema.md
 **.js
+/source/Assets/**

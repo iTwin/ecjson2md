@@ -38,8 +38,8 @@ export class ECJsonMarkdown {
    * @param outputFile The path of the file to write to
    */
   private writeName(schema: Schema, mdWriteStream: fs.WriteStream) {
-    mdWriteStream.write("# " + schema.name + "\n");
-    if (schema.description !== undefined) mdWriteStream.write("\n" + schema.description + "\n");
+    mdWriteStream.write("# " + schema.name + "\n\n");
+    if (schema.description !== undefined) mdWriteStream.write(schema.description + "\n\n");
   }
 
   /**
@@ -50,10 +50,23 @@ export class ECJsonMarkdown {
   private async writeClasses(schema: Schema, mdWriteStream: fs.WriteStream) {
     for (const schemaClass of schema.getClasses()) {
       // Write the name of the class
-      mdWriteStream.write("\n## " + schemaClass.name + "\n\n");
+      mdWriteStream.write("## " + schemaClass.name + "\n\n");
+
       // Write the class description if it's given
       if (schemaClass.description !== undefined) mdWriteStream.write(schemaClass.description + "\n\n");
-      // Write the column headings
+
+      if (schemaClass.baseClass !== undefined) {
+        // Write the base class if it's given
+        await schemaClass.baseClass.then(async (result) => {
+          await mdWriteStream.write("**Base class:** " + result.fullName + "\n\n");
+        });
+    }
+
+      // mdWriteStream.write("\n");
+
+      // If the class has no properties, end here. If it does, write the column headers and call writeClassProperties()
+      if (!schemaClass.properties) continue;
+
       mdWriteStream.write("| Name " +
                                     // "| Defined in" +
                                     "| Description" +
@@ -75,8 +88,10 @@ export class ECJsonMarkdown {
                                     // "| :----------- " +
                                     // "| :---------- " +
                                     "|\n");
-      // If the class has properties, write them using writeClassProperties()
-      if (schemaClass.properties) await this.writeClassProperties(schemaClass.properties, mdWriteStream);
+      // Write the class properties
+      await this.writeClassProperties(schemaClass.properties, mdWriteStream);
+      // Write an extra, blank row
+      mdWriteStream.write("||||\n\n");
     }
   }
 
@@ -91,7 +106,9 @@ export class ECJsonMarkdown {
    * @param outputFile The path of the file to write to
    */
   private writeClassProperties(schemaClassProperties: any, mdWriteStream: fs.WriteStream) {
+    // If the class has no properties, return
     if (!schemaClassProperties) return;
+
     for (const property of schemaClassProperties) {
       property.then((result: any) => {
         // Write the table row for the property
@@ -100,12 +117,19 @@ export class ECJsonMarkdown {
 //          + this.mdHelper(result._definedIn)  + "|"
           + this.mdHelper(result._description) + "|");
         let type: string;
-        // Try to parse the property type
+        // Try to parse the type name
         try {
           type = primitiveTypeToString(result._type);
         } catch (err) {
-          type = "";
+          try {
+            // If the type name isn't provided, use the property type
+            type = result.constructor.name;
+          } catch (e) {
+            // If the property type isnt' provided, don't display a type
+            type = "";
+          }
         }
+
         mdWriteStream.write(type + "|"
 //          + this.mdHelper(result._label) + "|"
 //          + this.mdHelper(result._baseClass) + "|"
