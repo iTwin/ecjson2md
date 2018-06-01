@@ -2,8 +2,12 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, primitiveTypeToString } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, primitiveTypeToString, ECClass } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath } from "./Exception";
+
+// TODO: Order the classes by alphabetical? order
+// TODO: Include multiplicity and source/target for relationship classes
+// TODO: Indicate that a class is an entity/relationship/or custom attribute
 
 export class ECJsonMarkdown {
   private context: SchemaContext;
@@ -32,6 +36,7 @@ export class ECJsonMarkdown {
   public getContext() {
     return this.context;
   }
+
   /**
    * Writes the name of the schema to the md file at the outputfile.
    * @param schema Schema to grab the name from
@@ -42,13 +47,24 @@ export class ECJsonMarkdown {
     if (schema.description !== undefined) mdWriteStream.write(schema.description + "\n\n");
   }
 
+/** Returns an array of ecschema classes sorted based on name
+ * @param  schema Schema that contains the classes to be sorted
+ */
+  private getSortedClasses(schema: Schema): ECClass[] {
+    return schema.getClasses().sort((c1, c2) => {
+      if (c1.name > c2.name) return 1;
+      else if (c1.name < c2.name) return -1;
+      else return 0;
+    });
+  }
+
   /**
    * Writes the classes of the schema to the md file at the outputfile.
    * @param schema Schema to grab the classes from
    * @param outputFile The path of the file to write to
    */
   private async writeClasses(schema: Schema, mdWriteStream: fs.WriteStream) {
-    for (const schemaClass of schema.getClasses()) {
+    for (const schemaClass of this.getSortedClasses(schema)) {
       // Write the name of the class
       mdWriteStream.write("## " + schemaClass.name + "\n\n");
 
