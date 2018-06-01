@@ -2,11 +2,9 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, primitiveTypeToString, ECClass } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, primitiveTypeToString, ECClass, schemaItemTypeToString, RelationshipClass } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath } from "./Exception";
 
-// TODO: Order the classes by alphabetical? order
-// TODO: Include multiplicity and source/target for relationship classes
 // TODO: Indicate that a class is an entity/relationship/or custom attribute
 
 export class ECJsonMarkdown {
@@ -58,6 +56,45 @@ export class ECJsonMarkdown {
     });
   }
 
+  private writeRelationShipClass(relClass: RelationshipClass, mdWriteStream: fs.WriteStream) {
+    const sourceCoClasses = relClass.source.constraintClasses;
+    const targetCoClasses = relClass.target.constraintClasses;
+
+    // Collect source constraint classes
+    let sourceCoClassList: string = "";
+
+    if (sourceCoClasses !== undefined) {
+      for (const constraintClass of sourceCoClasses) {
+        // If the current class is the last one, don't append a comma
+        if (constraintClass === sourceCoClasses[sourceCoClasses.length - 1])
+          sourceCoClassList += constraintClass.name;
+        else sourceCoClassList += constraintClass.name + ", ";
+      }
+    }
+
+    // Collect target constraint classes
+    let targetCoClassList: string = "";
+
+    if (targetCoClasses !== undefined) {
+      for (const constraintClass of targetCoClasses) {
+        // If the current class is the last one, don't append a comma
+        if (constraintClass === targetCoClasses[targetCoClasses.length - 1])
+          targetCoClassList += constraintClass.name;
+        else targetCoClassList += constraintClass.name + ", ";
+      }
+    }
+
+    // Write bold header
+    mdWriteStream.write("**RelationshipClass**\n");
+
+    // Write table
+    mdWriteStream.write("|   Type   |    ConstraintClasses    |            Multiplicity            |\n" +
+                        "|:---------|:------------------------|:-----------------------------------|\n" +
+                        "|**Source**|" + sourceCoClassList + "|" + relClass.source.multiplicity + "|\n" +
+                        "|**Target**|" + targetCoClassList + "|" + relClass.target.multiplicity + "|\n" +
+                        "|          |                         |                                    |\n\n");
+  }
+
   /**
    * Writes the classes of the schema to the md file at the outputfile.
    * @param schema Schema to grab the classes from
@@ -76,7 +113,11 @@ export class ECJsonMarkdown {
         await schemaClass.baseClass.then(async (result) => {
           await mdWriteStream.write("**Base class:** " + result.fullName + "\n\n");
         });
-    }
+      }
+
+      // TODO: Add tests for this
+      // If the class is a relationship class, write the relationship information
+      if (schemaItemTypeToString(schemaClass.type) === "RelationshipClass") this.writeRelationShipClass(schemaClass as RelationshipClass, mdWriteStream);
 
       // mdWriteStream.write("\n");
 
