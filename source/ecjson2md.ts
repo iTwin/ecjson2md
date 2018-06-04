@@ -116,7 +116,7 @@ export class ECJsonMarkdownGenerator {
 
       // Write the schema item type if it is given
       if (schemaClass.type !== undefined)
-        fs.appendFileSync(outputMDFile, "**Item Type:** " + schemaItemTypeToString(schemaClass.type) + "\n\n");
+        fs.appendFileSync(outputMDFile, "**Class Type:** " + schemaItemTypeToString(schemaClass.type) + "\n\n");
 
       // Write the base class if it's given
       if (schemaClass.baseClass !== undefined) {

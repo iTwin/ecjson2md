@@ -53,7 +53,15 @@
                "typeName" : "int"
             }
          ],
-         "schemaItemType" : "CustomAttributeClass"
+         "schemaItemType" : "RelationshipClass",
+         "source" : {
+            "constraintClasses" : [ "SchemaA.ClassOne" ],
+            "multiplicity" : "(0..*)"
+         },
+         "target" : {
+            "constraintClasses" : [ "SchemaA.ClassTwo" ],
+            "multiplicity" : "(0..*)"
+         }
       },
       "ClassThree" : {
          "appliesTo" : "EntityClass",

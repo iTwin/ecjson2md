@@ -4,5 +4,19 @@
    "description" : "This is a Schema B.",
    "label" : "SchemaB",
    "name" : "SchemaB",
-   "version" : "01.01.01"
+   "version" : "01.01.01",
+   "items" : {
+    "RefClass1" : {
+          "appliesTo" : "EntityClass",
+          "modifier" : "sealed",
+          "description" : "Referenced class one",
+          "schemaItemType" : "CustomAttributeClass"
+        },
+    "RefClass2" : {
+        "appliesTo" : "EntityClass",
+        "modifier" : "sealed",
+        "description" : "Referenced class two",
+        "schemaItemType" : "CustomAttributeClass"
+        }
+  }
 }

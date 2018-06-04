@@ -165,38 +165,52 @@ describe("ECJsonToMD", () => {
       assert.equal(lines[29], "|PropertyThree|This is the third property of ClassOne|PrimitiveProperty|");
 
       // Check that the classes print into a table with the correct name, description, and type
-      assert.equal(lines[46], "|PropertyOne|This is the first property of ClassTwo|PrimitiveProperty|");
-      assert.equal(lines[47], "|PropertyTwo|This is the second property of ClassTwo.|PrimitiveProperty|");
-      assert.equal(lines[48], "|PropertyThree|This is the third property of ClassTwo|PrimitiveProperty|");
+      assert.equal(lines[54], "|PropertyOne|This is the first property of ClassTwo|PrimitiveProperty|");
+      assert.equal(lines[55], "|PropertyTwo|This is the second property of ClassTwo.|PrimitiveProperty|");
+      assert.equal(lines[56], "|PropertyThree|This is the third property of ClassTwo|PrimitiveProperty|");
       });
-/*
-    it("should write the name of the classes as h2", () => {
-      assert.equal(lines[3], "");
-      assert.equal(lines[4], "## ClassOne");
-      assert.equal(lines[5], "");
 
-      assert.equal(lines[13], "");
-      assert.equal(lines[14], "## ClassTwo");
-      assert.equal(lines[15], "");
+    it("should write the name of the classes as h2", () => {
+      assert.equal(lines[4] , "## ClassFour"  );
+      assert.equal(lines[17], "## ClassOne"   );
+      assert.equal(lines[32], "## ClassThree" );
+      assert.equal(lines[36], "## ClassTwo"   );
     });
 
     it("should write a class without a description", () => {
-      assert.equal(lines[24], "## ClassThree");
-      assert.equal(lines[25], "");
-      assert.equal(lines[26], "| Name | Description| Type |");
+      assert.equal(lines[32], "## ClassThree");
+      assert.equal(lines[33], "");
+      assert.equal(lines[34], "**Class Type:** CustomAttributeClass");
     });
 
-    it("should write a class with table without properties", () => {
-      assert.equal(lines[25], "");
-      assert.equal(lines[26], "| Name | Description| Type |");
-      assert.equal(lines[27], "| :--- | :--------- | :--- |");
-      assert.equal(lines[28], "");
+    it("shouldn't write a table for a class without properties", () => {
+      assert.equal(lines[32], "## ClassThree");
+      assert.equal(lines[33], "");
+      assert.equal(lines[34], "**Class Type:** CustomAttributeClass");
+      assert.equal(lines[35], "");
+      assert.equal(lines[36], "## ClassTwo");
     });
 
     it("should print a property without a description", () => {
-      assert.equal(lines[35], "|PropertyOne||int|");
+      assert.equal(lines[14], "|PropertyOne||PrimitiveProperty|");
     });
 
-  */
+    it("should put an empty table at the end of each property table", () => {
+      assert.equal(lines[15],
+        "|                                      |                                   |            |");
+      assert.equal(lines[30],
+        "|                                      |                                   |            |");
+      assert.equal(lines[57],
+        "|                                      |                                   |            |");
+
+      // Empty row at the end of a relationship table
+      assert.equal(lines[48],
+        "|          |                         |                                    |");
+    });
+
+    it("should correctly write the relationship table", () => {
+      assert.equal(lines[46], "|**Source**|ClassOne|(0..*)|");
+      assert.equal(lines[47], "|**Target**|ClassTwo|(0..*)|");
+    });
  });
 });
