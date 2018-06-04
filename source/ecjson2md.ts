@@ -5,8 +5,6 @@ import * as fs from "fs";
 import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath } from "./Exception";
 
-// TODO: Indicate that a class is an entity/relationship/or custom attribute
-
 export class ECJsonMarkdownGenerator {
   private context: SchemaContext;
   public searchDirs: string[];
@@ -38,16 +36,16 @@ export class ECJsonMarkdownGenerator {
   /**
    * Writes the name of the schema to the md file at the outputfile.
    * @param schema Schema to grab the name from
-   * @param outputFile The path of the file to write to
+   * @param outputMDFile The path of the markdown file to write to
    */
-  private writeName(outFile: any, schema: Schema) {
-    fs.writeFileSync(outFile, "# " + schema.name + "\n\n");
-    if (schema.description !== undefined) fs.appendFileSync(outFile, schema.description + "\n\n");
+  private writeName(outputMDFile: any, schema: Schema) {
+    fs.writeFileSync(outputMDFile, "# " + schema.name + "\n\n");
+    if (schema.description !== undefined) fs.appendFileSync(outputMDFile, schema.description + "\n\n");
   }
 
 // TODO: Write test cases using a schema json that has classes that are not in order.
 /** Returns an array of ecschema classes sorted based on name
- * @param  schema Schema that contains the classes to be sorted
+ * @param schema Schema that contains the classes to be sorted
  */
   private getSortedClasses(schema: Schema): ECClass[] {
     return schema.getClasses().sort((c1, c2) => {
@@ -59,10 +57,10 @@ export class ECJsonMarkdownGenerator {
 
   /**
    * Writes the details of a relationship class as markdown.
+   * @param ouputMDFile MarkdownFile to write to
    * @param relClass Relationship class to pull information from
-   * @param mdWriteStream Stream to write with
    */
-  private writeRelationshipClass(outFile: any, relClass: RelationshipClass) {
+  private writeRelationshipClass(outputMDFile: any, relClass: RelationshipClass) {
     const sourceCoClasses = relClass.source.constraintClasses;
     const targetCoClasses = relClass.target.constraintClasses;
 
@@ -92,48 +90,49 @@ export class ECJsonMarkdownGenerator {
     }
 
     // Write bold header
-    fs.appendFileSync(outFile, "**Relationship Class:**\n\n");
+    fs.appendFileSync(outputMDFile, "**Relationship Class:**\n\n");
 
     // Write table
-    fs.appendFileSync(outFile, "|          |    ConstraintClasses    |            Multiplicity            |\n" +
-                        "|:---------|:------------------------|:-----------------------------------|\n" +
-                        "|**Source**|" + sourceCoClassList + "|" + relClass.source.multiplicity + "|\n" +
-                        "|**Target**|" + targetCoClassList + "|" + relClass.target.multiplicity + "|\n" +
-                        "|          |                         |                                    |\n\n");
+    fs.appendFileSync(outputMDFile,
+      "|          |    ConstraintClasses    |            Multiplicity            |\n" +
+      "|:---------|:------------------------|:-----------------------------------|\n" +
+      "|**Source**|" + sourceCoClassList + "|" + relClass.source.multiplicity + "|\n" +
+      "|**Target**|" + targetCoClassList + "|" + relClass.target.multiplicity + "|\n" +
+      "|          |                         |                                    |\n\n");
   }
 
   /**
    * Writes the classes of the schema to the md file at the outputfile.
+   * @param outputMDFile Markdown file to write to
    * @param schema Schema to grab the classes from
-   * @param outputFile The path of the file to write to
    */
-  private async writeClasses(outFile: any, schema: Schema) {
+  private async writeClasses(outputMDFile: any, schema: Schema) {
     for (const schemaClass of this.getSortedClasses(schema)) {
       // Write the name of the class
-      fs.appendFileSync(outFile, "## " + schemaClass.name + "\n\n");
+      fs.appendFileSync(outputMDFile, "## " + schemaClass.name + "\n\n");
 
       // Write the class description if it's given
-      if (schemaClass.description !== undefined) fs.appendFileSync(outFile, schemaClass.description + "\n\n");
+      if (schemaClass.description !== undefined) fs.appendFileSync(outputMDFile, schemaClass.description + "\n\n");
 
       // Write the schema item type if it is given
       if (schemaClass.type !== undefined)
-      fs.appendFileSync(outFile, "**Item Type:** " + schemaItemTypeToString(schemaClass.type) + "\n\n");
+        fs.appendFileSync(outputMDFile, "**Item Type:** " + schemaItemTypeToString(schemaClass.type) + "\n\n");
 
       // Write the base class if it's given
       if (schemaClass.baseClass !== undefined) {
         await schemaClass.baseClass.then(async (result) => {
-          await fs.appendFileSync(outFile, "**Base class:** " + result.fullName + "\n\n");
+          await fs.appendFileSync(outputMDFile, "**Base class:** " + result.fullName + "\n\n");
         });
       }
 
       // TODO: Add tests for this
       // If the class is a relationship class, write the relationship information
-      if (schemaItemTypeToString(schemaClass.type) === "RelationshipClass") await this.writeRelationshipClass(outFile, schemaClass as RelationshipClass);
+      if (schemaItemTypeToString(schemaClass.type) === "RelationshipClass") await this.writeRelationshipClass(outputMDFile, schemaClass as RelationshipClass);
 
       // mdWriteStream.write("\n");
 
       // If the class has no properties, end here. If it does, write the column headers and call writeClassProperties()
-      if (schemaClass.properties) await this.writeClassProperties(outFile, schemaClass);
+      if (schemaClass.properties) await this.writeClassProperties(outputMDFile, schemaClass);
 
       // Write a horizontal line
       // mdWriteStream.write("-----------------------------------------------------------\n\n");
@@ -149,8 +148,8 @@ export class ECJsonMarkdownGenerator {
 
   /**
    * Writes the properties of the class to the md file at the outputfile.
-   * @param schemaClassProperties array of the properties
-   * @param outputFile The path of the file to write to
+   * @param outputMDFile Markdown file to write to
+   * @param schemaClassProperties array of the properties=
    */
   private async writeClassProperties(outFile: any, schemaClass: ECClass) {
     const schemaClassProperties = schemaClass.properties;
@@ -160,32 +159,19 @@ export class ECJsonMarkdownGenerator {
     if (!schemaClassProperties) return;
 
     fs.appendFileSync(outFile, "**Class Properties:**\n\n");
-    fs.appendFileSync(outFile, "|                 Name                 |            Description            |    Type    |\n" +
-                        "|:-------------------------------------|:----------------------------------|:-----------|\n");
+    fs.appendFileSync(outFile,
+      "|                 Name                 |            Description            |    Type    |\n" +
+      "|:-------------------------------------|:----------------------------------|:-----------|\n");
 
     for (const property of schemaClassProperties) {
       await property.then((result: any) => {
-        // Try to parse the type name
         const type: string = result.constructor.name;
-        /*
-        try {
-          type = primitiveTypeToString(result._type);
-        } catch (err) {
-          try {
-            // If the type name isn't provided, use the property type
-            type = result.constructor.name;
-          } catch (e) {
-            // If the property type isn't provided, don't display a type
-            type = "";
-          }
-        }
-        */
-        // Write the table row for the property
         fs.appendFileSync(outFile, "|" + helper(result._name._name) + "|" + helper(result._description) + "|" + type + "|\n");
       });
     }
 
-    fs.appendFileSync(outFile, "|                                      |                                   |            |\n\n");
+    fs.appendFileSync(outFile,
+      "|                                      |                                   |            |\n\n");
   }
 
   /**
