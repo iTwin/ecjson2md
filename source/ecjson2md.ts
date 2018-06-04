@@ -7,7 +7,7 @@ import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutput
 
 // TODO: Indicate that a class is an entity/relationship/or custom attribute
 
-export class ECJsonMarkdown {
+export class ECJsonMarkdownGenerator {
   private context: SchemaContext;
   public searchDirs: string[];
 
@@ -92,10 +92,10 @@ export class ECJsonMarkdown {
     }
 
     // Write bold header
-    mdWriteStream.write("**RelationshipClass**\n");
+    mdWriteStream.write("**Relationship Class:**\n\n");
 
     // Write table
-    mdWriteStream.write("|   Type   |    ConstraintClasses    |            Multiplicity            |\n" +
+    mdWriteStream.write("|          |    ConstraintClasses    |            Multiplicity            |\n" +
                         "|:---------|:------------------------|:-----------------------------------|\n" +
                         "|**Source**|" + sourceCoClassList + "|" + relClass.source.multiplicity + "|\n" +
                         "|**Target**|" + targetCoClassList + "|" + relClass.target.multiplicity + "|\n" +
@@ -115,8 +115,12 @@ export class ECJsonMarkdown {
       // Write the class description if it's given
       if (schemaClass.description !== undefined) mdWriteStream.write(schemaClass.description + "\n\n");
 
+      // Write the schema item type if it is given
+      if (schemaClass.type !== undefined)
+        mdWriteStream.write("**Item Type:** " + schemaItemTypeToString(schemaClass.type) + "\n\n");
+
+      // Write the base class if it's given
       if (schemaClass.baseClass !== undefined) {
-        // Write the base class if it's given
         await schemaClass.baseClass.then(async (result) => {
           await mdWriteStream.write("**Base class:** " + result.fullName + "\n\n");
         });
@@ -124,21 +128,24 @@ export class ECJsonMarkdown {
 
       // TODO: Add tests for this
       // If the class is a relationship class, write the relationship information
-      if (schemaItemTypeToString(schemaClass.type) === "RelationshipClass") this.writeRelationshipClass(schemaClass as RelationshipClass, mdWriteStream);
+      if (schemaItemTypeToString(schemaClass.type) === "RelationshipClass") await this.writeRelationshipClass(schemaClass as RelationshipClass, mdWriteStream);
 
       // mdWriteStream.write("\n");
 
       // If the class has no properties, end here. If it does, write the column headers and call writeClassProperties()
-      if (!schemaClass.properties) continue;
+      if (schemaClass.properties) await this.writeClassProperties(schemaClass, mdWriteStream);
 
-      await this.writeClassProperties(schemaClass, mdWriteStream);
+      // Write a horizontal line
+      // mdWriteStream.write("-----------------------------------------------------------\n\n");
     }
   }
 
+  /*
   private  mdHelper(value: string|undefined) {
     const replacement = "";
     return value !== undefined ? value : replacement;
   }
+  */
 
   /**
    * Writes the properties of the class to the md file at the outputfile.
@@ -152,6 +159,7 @@ export class ECJsonMarkdown {
     // If the class has no properties, return
     if (!schemaClassProperties) return;
 
+    mdWriteStream.write("**Class Properties:**\n\n");
     mdWriteStream.write("|                 Name                 |            Description            |    Type    |\n" +
                         "|:-------------------------------------|:----------------------------------|:-----------|\n");
 
@@ -166,7 +174,7 @@ export class ECJsonMarkdown {
             // If the type name isn't provided, use the property type
             type = result.constructor.name;
           } catch (e) {
-            // If the property type isnt' provided, don't display a type
+            // If the property type isn't provided, don't display a type
             type = "";
           }
         }
@@ -175,7 +183,7 @@ export class ECJsonMarkdown {
       });
     }
 
-    mdWriteStream.write(    "|                                      |                                   |            |\n\n");
+    mdWriteStream.write("|                                      |                                   |            |\n\n");
   }
 
   /**
@@ -184,7 +192,7 @@ export class ECJsonMarkdown {
    * @param schemaPath path to SchemaJson to load
    * @param outputFilePath Path to the output file to write to
    */
-  public loadJsonSchema(schemaPath: string, outputFilePath: string): any {
+  public generate(schemaPath: string, outputFilePath: string): any {
     // If the schema file doesn't exist, throw an error
     if (!fs.existsSync(schemaPath)) throw new ECJsonFileNotFound(schemaPath);
 

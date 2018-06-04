@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as chalk from "chalk";
-import { ECJsonMarkdown } from "./ecjson2md";
+import { ECJsonMarkdownGenerator } from "./ecjson2md";
 import * as commander from "commander";
 
 // Get cli arguments
@@ -35,11 +35,11 @@ const searchDir = program.dirs.split(",");
 try {
   // tslint:disable-next-line:no-console
   console.log(chalk.default.gray("Adding the search directories..."));
-  const mdGenerator = new ECJsonMarkdown(searchDir);
+  const mdGenerator = new ECJsonMarkdownGenerator(searchDir);
 
   // tslint:disable-next-line:no-console
   console.log(chalk.default.gray("Generating markdown at " + outputFilePath + "..."));
-  mdGenerator.loadJsonSchema(inputSchemaPath, outputFilePath);
+  mdGenerator.generate(inputSchemaPath, outputFilePath);
 } catch (e) {
     // tslint:disable-next-line:no-console
     console.log(chalk.default.red(e, "\nQuitting..."));
