@@ -45,6 +45,7 @@ export class ECJsonMarkdown {
     if (schema.description !== undefined) mdWriteStream.write(schema.description + "\n\n");
   }
 
+// TODO: Write test cases using a schema json that has classes that are not in order.
 /** Returns an array of ecschema classes sorted based on name
  * @param  schema Schema that contains the classes to be sorted
  */
@@ -56,10 +57,16 @@ export class ECJsonMarkdown {
     });
   }
 
-  private writeRelationShipClass(relClass: RelationshipClass, mdWriteStream: fs.WriteStream) {
+  /**
+   * Writes the details of a relationship class as markdown.
+   * @param relClass Relationship class to pull information from
+   * @param mdWriteStream Stream to write with
+   */
+  private writeRelationshipClass(relClass: RelationshipClass, mdWriteStream: fs.WriteStream) {
     const sourceCoClasses = relClass.source.constraintClasses;
     const targetCoClasses = relClass.target.constraintClasses;
 
+    // TODO: Write test to make sure that it works with multiple constraint classes
     // Collect source constraint classes
     let sourceCoClassList: string = "";
 
@@ -117,42 +124,18 @@ export class ECJsonMarkdown {
 
       // TODO: Add tests for this
       // If the class is a relationship class, write the relationship information
-      if (schemaItemTypeToString(schemaClass.type) === "RelationshipClass") this.writeRelationShipClass(schemaClass as RelationshipClass, mdWriteStream);
+      if (schemaItemTypeToString(schemaClass.type) === "RelationshipClass") this.writeRelationshipClass(schemaClass as RelationshipClass, mdWriteStream);
 
       // mdWriteStream.write("\n");
 
       // If the class has no properties, end here. If it does, write the column headers and call writeClassProperties()
       if (!schemaClass.properties) continue;
 
-      mdWriteStream.write("| Name " +
-                                    // "| Defined in" +
-                                    "| Description" +
-                                    "| Type " +
-                                    // "| Display Label " +
-                                    // "| Base Property " +
-                                    // "| Kind of Quantity " +
-                                    // "| Array Bounds " +
-                                    // "| Is Readonly " +
-                                    "|\n");
-
-      mdWriteStream.write("| :--- " +
-                                    // "| :--------- " +
-                                    "| :--------- " +
-                                    "| :--- " +
-                                    // "| :------------" +
-                                    // "| :------------"  +
-                                    // "| :---------------" +
-                                    // "| :----------- " +
-                                    // "| :---------- " +
-                                    "|\n");
-      // Write the class properties
-      await this.writeClassProperties(schemaClass.properties, mdWriteStream);
-      // Write an extra, blank row
-      mdWriteStream.write("||||\n\n");
+      await this.writeClassProperties(schemaClass, mdWriteStream);
     }
   }
 
-  private mdHelper(value: string|undefined) {
+  private  mdHelper(value: string|undefined) {
     const replacement = "";
     return value !== undefined ? value : replacement;
   }
@@ -162,19 +145,20 @@ export class ECJsonMarkdown {
    * @param schemaClassProperties array of the properties
    * @param outputFile The path of the file to write to
    */
-  private writeClassProperties(schemaClassProperties: any, mdWriteStream: fs.WriteStream) {
+  private async writeClassProperties(schemaClass: ECClass, mdWriteStream: fs.WriteStream) {
+    const schemaClassProperties = schemaClass.properties;
+    const helper = (( value: any ) => value !== undefined ? value : "");
+
     // If the class has no properties, return
     if (!schemaClassProperties) return;
 
+    mdWriteStream.write("|                 Name                 |            Description            |    Type    |\n" +
+                        "|:-------------------------------------|:----------------------------------|:-----------|\n");
+
     for (const property of schemaClassProperties) {
-      property.then((result: any) => {
-        // Write the table row for the property
-        mdWriteStream.write("|"
-          + this.mdHelper(result._name._name) + "|"
-//          + this.mdHelper(result._definedIn)  + "|"
-          + this.mdHelper(result._description) + "|");
-        let type: string;
+      await property.then((result: any) => {
         // Try to parse the type name
+        let type: string;
         try {
           type = primitiveTypeToString(result._type);
         } catch (err) {
@@ -186,16 +170,12 @@ export class ECJsonMarkdown {
             type = "";
           }
         }
-
-        mdWriteStream.write(type + "|"
-//          + this.mdHelper(result._label) + "|"
-//          + this.mdHelper(result._baseClass) + "|"
-//          + this.mdHelper(result._kindOfQuantity) + "|"
-//          + this.mdHelper(result._minLength) + " - " + this.mdHelper(result._maxLength) + "|"
-//          + this.mdHelper(result._isReadOnly) + "|"
-          + "\n");
+        // Write the table row for the property
+        mdWriteStream.write("|" + helper(result._name._name) + "|" + helper(result._description) + "|" + type + "|\n");
       });
     }
+
+    mdWriteStream.write(    "|                                      |                                   |            |\n\n");
   }
 
   /**
