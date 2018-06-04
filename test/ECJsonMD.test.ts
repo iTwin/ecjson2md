@@ -108,7 +108,6 @@ describe("ECJsonToMD", () => {
       assert.isTrue(fs.existsSync(okayOutputPath));
     });
   });
-  // TODO: Rewrite markdown tests when implementation is more up to spec
 
   describe("Basic markdown generation", () => {
     let testFilePath = "./test/Assets/schemaA.ecschema.json";
@@ -213,4 +212,42 @@ describe("ECJsonToMD", () => {
       assert.equal(lines[47], "|**Target**|ClassTwo|(0..*)|");
     });
  });
+
+  describe("Advanced markdown generation tests", () => {
+    let testFilePath: string;
+    let outputPath: string;
+    let lines: string[];
+
+    before(() => {
+      // If the file already exists, delete it
+      testFilePath = "./test/Assets/Alphabet.ecschema.json";
+      outputPath = "./test/Assets/Alphabet.ecschema.md";
+      if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
+      testECJsonMD.generate(testFilePath, outputPath);
+    });
+
+    after(() => {
+      if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
+    });
+
+    it("should alphabetize the classes", () => {
+      lines = fs.readFileSync(outputPath, "utf8").split("\n");
+
+      // Assert that each class header is written in alphabetical order
+      assert.equal(lines[4] , "## A");
+      assert.equal(lines[10], "## B");
+      assert.equal(lines[16], "## C");
+      assert.equal(lines[22], "## D");
+      assert.equal(lines[28], "## E");
+      assert.equal(lines[34], "## F");
+      assert.equal(lines[40], "## G");
+      assert.equal(lines[46], "## H");
+      assert.equal(lines[52], "## I");
+    });
+
+    it("should list multiple constraint classes", () => {
+      assert.equal(lines[62], "|**Source**|A, B, C|(0..*)|");
+      assert.equal(lines[63], "|**Target**|D, E, F|(0..*)|");
+    });
+  });
 });

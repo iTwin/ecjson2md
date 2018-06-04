@@ -180,7 +180,7 @@ export class ECJsonMarkdownGenerator {
    * @param schemaPath path to SchemaJson to load
    * @param outputFilePath Path to the output file to write to
    */
-  public generate(schemaPath: string, outputFilePath: string): any {
+  public generate(schemaPath: string, outputFilePath: string) {
     // If the schema file doesn't exist, throw an error
     if (!fs.existsSync(schemaPath)) throw new ECJsonFileNotFound(schemaPath);
 

@@ -1,0 +1,54 @@
+{
+   "$schema" : "https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",
+   "alias" : "Alphabet",
+   "description" : "This schema contains the alphabet",
+   "label" : "Alphabet label",
+   "name" : "Alphabet",
+   "version" : "02.00.00",
+   "items" : {
+    "E" : {
+       "description" : " This is class E",
+       "schemaItemType" : "EntityClass"
+     },
+    "B" : {
+       "description" : " This is class B",
+       "schemaItemType" : "EntityClass"
+     },
+     "G" : {
+       "description" : " This is class G",
+       "schemaItemType" : "EntityClass"
+     },
+     "F" : {
+       "description" : " This is class F",
+       "schemaItemType" : "EntityClass"
+     },
+     "C" : {
+       "description" : " This is class C",
+       "schemaItemType" : "EntityClass"
+     },
+     "H" : {
+       "description" : " This is class H",
+       "schemaItemType" : "EntityClass"
+     },
+     "A" : {
+       "description" : " This is class A",
+       "schemaItemType" : "EntityClass"
+     },
+     "I" : {
+       "description" : " This is class I",
+       "schemaItemType" : "RelationshipClass",
+         "source" : {
+            "constraintClasses" : [ "Alphabet.A", "Alphabet.B", "Alphabet.C" ],
+            "multiplicity" : "(0..*)"
+         },
+         "target" : {
+            "constraintClasses" : [ "Alphabet.D", "Alphabet.E", "Alphabet.F" ],
+            "multiplicity" : "(0..*)"
+         }
+     },
+     "D" : {
+       "description" : " This is class D",
+       "schemaItemType" : "EntityClass"
+     }
+   }
+}
