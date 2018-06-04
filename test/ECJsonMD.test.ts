@@ -1,20 +1,20 @@
 /*---------------------------------------------------------------------------------------------
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
-import { ECJsonMarkdown } from "../source/ecjson2md";
+import { ECJsonMarkdownGenerator } from "../source/ecjson2md";
 import { assert } from "chai";
 import { Schema } from "@bentley/ecjs";
 import * as fs from "fs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath } from "Exception";
 
 describe("ECJsonToMD", () => {
-  let testECJsonMD: ECJsonMarkdown;
+  let testECJsonMD: ECJsonMarkdownGenerator;
 
   describe("Instantiate ECJsonToMD", () => {
     beforeEach(() => {
       const dirArray = new Array<string>();
       dirArray.push("./test/Assets/dir/");
-      testECJsonMD = new ECJsonMarkdown(dirArray);
+      testECJsonMD = new ECJsonMarkdownGenerator(dirArray);
     });
 
     it("should successfully create an instance of ECJsonMarkDown", () => {
@@ -45,13 +45,13 @@ describe("ECJsonToMD", () => {
     let err: any;
 
     beforeEach(() => {
-      testECJsonMD = new ECJsonMarkdown(["./test/Assets"]);
+      testECJsonMD = new ECJsonMarkdownGenerator(["./test/Assets"]);
       err = Error;
     });
 
     it("should throw an error for an input path that doesn't exist", () => {
       try {
-        testECJsonMD.loadJsonSchema("./test/Assets/nothing.json", badOutputPath);
+        testECJsonMD.generate("./test/Assets/nothing.json", badOutputPath);
       } catch (e) {
         err = e;
       }
@@ -61,7 +61,7 @@ describe("ECJsonToMD", () => {
 
     it("should throw an error for a malformed json file", () => {
       try {
-        testECJsonMD.loadJsonSchema("./test/Assets/malformed.json", badOutputPath);
+        testECJsonMD.generate("./test/Assets/malformed.json", badOutputPath);
       } catch (e) {
         err = e;
       }
@@ -72,7 +72,7 @@ describe("ECJsonToMD", () => {
     // Should throw an error for a search path that does not exist
     it("should throw an error for a nonexistent search directory", () => {
       try {
-        new ECJsonMarkdown([badPath]);
+        new ECJsonMarkdownGenerator([badPath]);
       } catch (e) {
         err = e;
       }
@@ -83,7 +83,7 @@ describe("ECJsonToMD", () => {
     // Should throw an error for an output path that does not exist
     it("should throw an error for a nonexistent output path", () => {
       try {
-        testECJsonMD.loadJsonSchema("./test/Assets/SchemaA.ecschema.json", badPath);
+        testECJsonMD.generate("./test/Assets/SchemaA.ecschema.json", badPath);
       } catch (e) {
         err = e;
       }
@@ -95,8 +95,8 @@ describe("ECJsonToMD", () => {
       // If the markdown file already exists, get rid of it and remake it
       if (fs.existsSync(okayOutputPath)) fs.unlinkSync(okayOutputPath);
 
-      testECJsonMD = new ECJsonMarkdown(["./test/Assets/dir"]);
-      testECJsonMD.loadJsonSchema("./test/Assets/schemaA.ecschema.json", okayOutputPath);
+      testECJsonMD = new ECJsonMarkdownGenerator(["./test/Assets/dir"]);
+      testECJsonMD.generate("./test/Assets/schemaA.ecschema.json", okayOutputPath);
     });
 
     after(() => {
@@ -109,8 +109,8 @@ describe("ECJsonToMD", () => {
     });
   });
   // TODO: Rewrite markdown tests when implementation is more up to spec
-/*
-  describe("Generate markdown", () => {
+
+  describe("Basic markdown generation", () => {
     let testFilePath = "./test/Assets/schemaA.ecschema.json";
     let outputPath: string;
     let lines: string[];
@@ -122,14 +122,14 @@ describe("ECJsonToMD", () => {
       // If the markdown file already exists, get rid of it and remake it
       if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
 
-      testECJsonMD = new ECJsonMarkdown(["./test/Assets/dir"]);
-      testECJsonMD.loadJsonSchema(testFilePath, outputPath);
+      testECJsonMD = new ECJsonMarkdownGenerator(["./test/Assets/dir"]);
+      testECJsonMD.generate(testFilePath, outputPath);
     });
-
+/*
     beforeEach(() => {
       lines = fs.readFileSync(outputPath).toString().split("\n");
     });
-
+*/
     after(() => {
       if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
     });
@@ -137,33 +137,39 @@ describe("ECJsonToMD", () => {
     it("should write the name of the schema with as h1", () => {
       // Check that the name of the schema is written as an h1 followed by exactly
       // one empty line
+      lines = fs.readFileSync(outputPath).toString().split("\n");
       assert.equal(lines[0], "# SchemaA");
       assert.equal(lines[1], "");
-      assert.notEqual(lines[2], "");
-    });
-
-    it("should write the description of the schema", () => {
       assert.equal(lines[2], "This is test schema A.");
     });
 
+    it("should write the description of the schema", () => {
+      assert.equal(lines[1], "");
+      assert.equal(lines[2], "This is test schema A.");
+      assert.equal(lines[3], "");
+    });
+
     it("should write the description of each class in the schema", () => {
-      assert.equal(lines[6], "This is the description for ClassOne");
-      assert.equal(lines[16], "This is the description for ClassTwo");
-      assert.equal(lines[31], "This is the description for ClassFour");
+      assert.equal(lines[6], "This is the description for ClassFour");
+      assert.equal(lines[19], "This is the description for ClassOne");
+      assert.equal(lines[38], "This is the description for ClassTwo");
     });
 
     it("should write the classes as a table", () => {
       // Check that the classes print into a table with the correct name, description, and type
-      assert.equal(lines[10], "|PropertyOne|This is the first property of ClassOne|string|");
-      assert.equal(lines[11], "|PropertyTwo|This is the second property of ClassOne.|string|");
-      assert.equal(lines[12], "|PropertyThree|This is the third property of ClassOne|int|");
+      assert.equal(lines[14], "|PropertyOne||PrimitiveProperty|");
 
       // Check that the classes print into a table with the correct name, description, and type
-      assert.equal(lines[20], "|PropertyOne|This is the first property of ClassTwo|int|");
-      assert.equal(lines[21], "|PropertyTwo|This is the second property of ClassTwo.|string|");
-      assert.equal(lines[22], "|PropertyThree|This is the third property of ClassTwo|int|");
-    });
+      assert.equal(lines[27], "|PropertyOne|This is the first property of ClassOne|PrimitiveProperty|");
+      assert.equal(lines[28], "|PropertyTwo|This is the second property of ClassOne.|PrimitiveProperty|");
+      assert.equal(lines[29], "|PropertyThree|This is the third property of ClassOne|PrimitiveProperty|");
 
+      // Check that the classes print into a table with the correct name, description, and type
+      assert.equal(lines[46], "|PropertyOne|This is the first property of ClassTwo|PrimitiveProperty|");
+      assert.equal(lines[47], "|PropertyTwo|This is the second property of ClassTwo.|PrimitiveProperty|");
+      assert.equal(lines[48], "|PropertyThree|This is the third property of ClassTwo|PrimitiveProperty|");
+      });
+/*
     it("should write the name of the classes as h2", () => {
       assert.equal(lines[3], "");
       assert.equal(lines[4], "## ClassOne");
@@ -190,6 +196,7 @@ describe("ECJsonToMD", () => {
     it("should print a property without a description", () => {
       assert.equal(lines[35], "|PropertyOne||int|");
     });
-  });
-*/
+
+  */
+ });
 });
