@@ -1,6 +1,6 @@
 {
   "name": "@bentley/ecjson2md",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Markdown generation from ECSchema JSON",
   "bin": {
     "ecjson2md": "./lib/index.js"
@@ -12,15 +12,17 @@
   },
   "scripts": {
     "clean": "rimraf lib .nyc_output",
+    "copy:assets": "cpx ./source/index.js ./lib",
     "lint": "node ./node_modules/@bentley/bentleyjs-tools/scripts/tslint.js",
-    "prebuild": "npm run lint & npm run clean",
+    "prebuild": "npm run lint & npm run clean & npm run copy:assets",
     "build": "tsc",
     "test": "betools test-tsnode --testDir=./test/ --tscPaths",
     "test:watch": "betools test-tsnode --testDir=./test/ --watch",
     "docs": "betools docs --onlyJson --json=./lib/docs/json/ec-js/file.json",
     "docs:dev": "npm run docs && bmsWatch --source ./lib/docs --destination public --typeDocSource C:/dev/imodeljs/ecobjects-js/source",
     "cover": "nyc node ./node_modules/@bentley/bentleyjs-tools/scripts/test-tsnode.js --testDir=./test/ --tscPaths",
-    "start": "npm run build && npm run test"
+    "start": "npm run build && npm run test",
+    "cli:dev": "npm run clean & npm run build & npm link"
   },
   "author": {
     "name": "Bentley Systems, Inc.",
