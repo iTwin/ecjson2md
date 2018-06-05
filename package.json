@@ -1,9 +1,13 @@
 {
-  "name": "ecjson-md",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@bentley/ecjson2md",
+  "version": "0.0.0",
+  "description": "Markdown generation from ECSchema JSON",
   "main": "lib/index.js",
   "typings": "lib/index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iTwin/ecjson2md"
+  },
   "scripts": {
     "clean": "rimraf lib .nyc_output",
     "lint": "node ./node_modules/@bentley/bentleyjs-tools/scripts/tslint.js",
@@ -16,12 +20,19 @@
     "cover": "nyc node ./node_modules/@bentley/bentleyjs-tools/scripts/test-tsnode.js --testDir=./test/ --tscPaths",
     "start": "npm run build && npm run test"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Bentley Systems, Inc.",
+    "url": "http://www.bentley.com"
+  },
+  "keywords": [
+    "Bentley",
+    "iModel",
+    "iModelJs",
+    "EC"
+  ],
   "dependencies": {
     "@bentley/bentleyjs-core": "^8.4.1",
     "@bentley/ecjs": "^0.5.3",
-    "chalk": "^2.4.1",
     "commander": "^2.15.1"
   },
   "devDependencies": {
