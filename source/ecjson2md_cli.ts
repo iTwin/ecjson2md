@@ -28,8 +28,13 @@ const inputSchemaPath = program.input;
 const outputPathParts = inputSchemaPath.split("/");
 const outputFilePath = outputDirPath + outputPathParts[outputPathParts.length - 1].slice(0, -5) + ".md";
 
+// Remove any whitespace from dirs argument
+let searchDir = program.dirs.replace(/\s/g, "");
 // Separate the search directories
-const searchDir = program.dirs.split(",");
+searchDir = searchDir.split(",");
+
+// tslint:disable-next-line:no-console
+console.log(searchDir);
 
 // Add the search directories to the new locator and load the schema
 try {

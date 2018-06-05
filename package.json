@@ -1,9 +1,11 @@
 {
   "name": "@bentley/ecjson2md",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Markdown generation from ECSchema JSON",
-  "main": "lib/index.js",
-  "typings": "lib/index",
+  "bin": {
+    "ecjson2md": "./lib/index.js"
+  },
+  "main": "./lib/main",
   "repository": {
     "type": "git",
     "url": "https://github.com/iTwin/ecjson2md"
