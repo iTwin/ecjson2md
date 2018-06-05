@@ -35,16 +35,23 @@ const searchDir = program.dirs.split(",");
 try {
   // tslint:disable-next-line:no-console
   console.log(chalk.default.gray("Adding the search directories..."));
+
+  // Try to add the search paths
   const mdGenerator = new ECJsonMarkdownGenerator(searchDir);
 
   // tslint:disable-next-line:no-console
   console.log(chalk.default.gray("Generating markdown at " + outputFilePath + "..."));
-  mdGenerator.generate(inputSchemaPath, outputFilePath);
+
+  // Try to generate the markdown
+  mdGenerator.generate(inputSchemaPath, outputFilePath).then(() => {
+    // tslint:disable-next-line:no-console
+    console.log(chalk.default.blue("Markdown successfully generated at " + outputFilePath));
+  }).catch((error) => {
+    // tslint:disable-next-line:no-console
+    console.log(chalk.default.red(error));
+    process.exit();
+  });
 } catch (e) {
     // tslint:disable-next-line:no-console
     console.log(chalk.default.red(e, "\nQuitting..."));
-    process.exit();
 }
-
-// tslint:disable-next-line:no-console
-console.log(chalk.default.blue("Markdown successfully generated at " + outputFilePath));

@@ -43,7 +43,6 @@ export class ECJsonMarkdownGenerator {
     if (schema.description !== undefined) fs.appendFileSync(outputMDFile, schema.description + "\n\n");
   }
 
-// TODO: Write test cases using a schema json that has classes that are not in order.
 /** Returns an array of ecschema classes sorted based on name
  * @param schema Schema that contains the classes to be sorted
  */
@@ -125,26 +124,13 @@ export class ECJsonMarkdownGenerator {
         });
       }
 
-      // TODO: Add tests for this
       // If the class is a relationship class, write the relationship information
       if (schemaItemTypeToString(schemaClass.type) === "RelationshipClass") await this.writeRelationshipClass(outputMDFile, schemaClass as RelationshipClass);
 
-      // mdWriteStream.write("\n");
-
       // If the class has no properties, end here. If it does, write the column headers and call writeClassProperties()
       if (schemaClass.properties) await this.writeClassProperties(outputMDFile, schemaClass);
-
-      // Write a horizontal line
-      // mdWriteStream.write("-----------------------------------------------------------\n\n");
     }
   }
-
-  /*
-  private  mdHelper(value: string|undefined) {
-    const replacement = "";
-    return value !== undefined ? value : replacement;
-  }
-  */
 
   /**
    * Writes the properties of the class to the md file at the outputfile.
@@ -180,7 +166,7 @@ export class ECJsonMarkdownGenerator {
    * @param schemaPath path to SchemaJson to load
    * @param outputFilePath Path to the output file to write to
    */
-  public generate(schemaPath: string, outputFilePath: string) {
+  public generate(schemaPath: string, outputFilePath: string): Promise<any> {
     // If the schema file doesn't exist, throw an error
     if (!fs.existsSync(schemaPath)) throw new ECJsonFileNotFound(schemaPath);
 
@@ -203,11 +189,12 @@ export class ECJsonMarkdownGenerator {
     // Check if the output directory exists
     if (!fs.existsSync(outputDir)) throw new ECJsonBadOutputPath(outputFilePath);
 
-    const schemaPromise = Schema.fromJson(schemaJson, this.context);
-
-    schemaPromise.then(async (result) => {
-      await this.writeName(outputFilePath, result);
-      await this.writeClasses(outputFilePath, result);
-    });
+    return Schema.fromJson(schemaJson, this.context).then(
+      async (result) => {
+        await this.writeName(outputFilePath, result);
+        await this.writeClasses(outputFilePath, result);
+      }).catch(() => {
+        throw Error("Could not load ECSchema JSON file");
+      });
   }
 }
