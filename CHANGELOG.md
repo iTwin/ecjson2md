@@ -6,16 +6,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.2] - 2018-06-6
+### Fixed
+- Corrected package dependencies
+
 ## [0.1.2] - 2018-06-5
-### Updated
+### Fixed
 - CLI should actually work now when the package is imported
 
 ## [0.1.1] - 2018-06-5
-### Updated
+### Fixed
 - CLI should work now when the package is imported
 
 ## [0.1.0] - 2018-06-5
-### Fixed
+### Added
 - Readme
 - Changelog
 - Tests
