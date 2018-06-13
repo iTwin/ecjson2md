@@ -33,9 +33,6 @@ let searchDir = program.dirs.replace(/\s/g, "");
 // Separate the search directories
 searchDir = searchDir.split(",");
 
-// tslint:disable-next-line:no-console
-console.log(searchDir);
-
 // Add the search directories to the new locator and load the schema
 try {
   // tslint:disable-next-line:no-console

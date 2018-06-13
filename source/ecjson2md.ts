@@ -117,10 +117,11 @@ export class ECJsonMarkdownGenerator {
       if (schemaClass.type !== undefined)
         fs.appendFileSync(outputMDFile, "**Class Type:** " + schemaItemTypeToString(schemaClass.type) + "\n\n");
 
+      // TODO: Add base class tests
       // Write the base class if it's given
       if (schemaClass.baseClass !== undefined) {
         await schemaClass.baseClass.then(async (result) => {
-          fs.appendFileSync(outputMDFile, "**Base class:** " + result.fullName + "\n\n");
+          fs.appendFileSync(outputMDFile, "**Base class:** " +  result.schema.name + ":" + result.name + "\n\n");
         });
       }
 
