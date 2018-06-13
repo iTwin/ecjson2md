@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.10] - 2018-06-13
+### Added
+- Functionality to generate front matter
+
 ## [0.1.9] - 2018-06-13
 ### Fixed
 - Overview and remarks headers are now created for all types of classes
