@@ -41,6 +41,7 @@ export class ECJsonMarkdownGenerator {
   private writeName(outputMDFile: any, schema: Schema) {
     fs.writeFileSync(outputMDFile, "# " + schema.name + "\n\n");
     if (schema.description !== undefined) fs.appendFileSync(outputMDFile, schema.description + "\n\n");
+    fs.appendFileSync(outputMDFile, "## Overview:\n\n");
   }
 
 /** Returns an array of ecschema classes sorted based on name
@@ -136,7 +137,7 @@ export class ECJsonMarkdownGenerator {
    * @param outputMDFile Markdown file to write to
    * @param schemaClassProperties array of the properties=
    */
-  private async writeClassProperties(outFile: any, schemaClass: ECClass) {
+  private async writeClassProperties(outputMDFile: any, schemaClass: ECClass) {
     const schemaClassProperties = schemaClass.properties;
     const placeHolder = "";
 
@@ -145,9 +146,9 @@ export class ECJsonMarkdownGenerator {
     // If the class has no properties, return
     if (!schemaClassProperties) return;
 
-    fs.appendFileSync(outFile, "**Class Properties:**\n\n");
-    fs.appendFileSync(outFile,     "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
-                                   "|:-----------|:------------------|:-----------|:-----------------------|\n");
+    fs.appendFileSync(outputMDFile, "**Class Properties:**\n\n");
+    fs.appendFileSync(outputMDFile,     "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
+                                        "|:-----------|:------------------|:-----------|:-----------------------|\n");
 
     for (const property of schemaClassProperties) {
       await property.then((result: any) => {
@@ -167,11 +168,12 @@ export class ECJsonMarkdownGenerator {
         const description = helper(result._description);
         const extendedTypeName = helper(result.extendedTypeName);
 
-        fs.appendFileSync(outFile, "|" + name + "|" + description + "|" + type + "|" + extendedTypeName + "|\n");
+        fs.appendFileSync(outputMDFile, "|" + name + "|" + description + "|" + type + "|" + extendedTypeName + "|\n");
       });
     }
 
-    fs.appendFileSync(outFile,     "|            |                   |            |                        |\n\n");
+    fs.appendFileSync(outputMDFile,     "|            |                   |            |                        |\n\n");
+    fs.appendFileSync(outputMDFile, "### Remarks:\n\n");
   }
 
   /**

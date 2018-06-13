@@ -149,81 +149,92 @@ describe("ECJsonToMD", () => {
     });
 
     it("should write the description of each class in the schema", () => {
-      assert.equal(lines[6], "This is the description for ClassFour");
-      assert.equal(lines[19], "This is the description for ClassOne");
-      assert.equal(lines[38], "This is the description for ClassTwo");
+      assert.equal(lines[8], "This is the description for ClassFour");
+      assert.equal(lines[23], "This is the description for ClassOne");
+      assert.equal(lines[44], "This is the description for ClassTwo");
     });
 
     it("should write the classes as a table", () => {
       // Check that the classes print into a table with the correct name, description, and type
-      assert.equal(lines[14], "|PropertyOne||int||");
+      assert.equal(lines[16], "|PropertyOne||int||");
 
       // Check that the classes print into a table with the correct name, description, and type
-      assert.equal(lines[27], "|PropertyOne|This is the first property of ClassOne|string|Json|");
-      assert.equal(lines[28], "|PropertyTwo|This is the second property of ClassOne.|string||");
-      assert.equal(lines[29], "|PropertyThree|This is the third property of ClassOne|int||");
+      assert.equal(lines[31], "|PropertyOne|This is the first property of ClassOne|string|Json|");
+      assert.equal(lines[32], "|PropertyTwo|This is the second property of ClassOne.|string||");
+      assert.equal(lines[33], "|PropertyThree|This is the third property of ClassOne|int||");
 
       // Check that the classes print into a table with the correct name, description, and type
-      assert.equal(lines[56], "|PropertyOne|This is the first property of ClassTwo|int||");
-      assert.equal(lines[57], "|PropertyTwo|This is the second property of ClassTwo.|string||");
-      assert.equal(lines[58], "|PropertyThree|This is the third property of ClassTwo|int||");
+      assert.equal(lines[62], "|PropertyOne|This is the first property of ClassTwo|int||");
+      assert.equal(lines[63], "|PropertyTwo|This is the second property of ClassTwo.|string||");
+      assert.equal(lines[64], "|PropertyThree|This is the third property of ClassTwo|int||");
       });
 
     it("should write the name of the classes as h2", () => {
-      assert.equal(lines[4] , "## ClassFour"  );
-      assert.equal(lines[17], "## ClassOne"   );
-      assert.equal(lines[32], "## ClassThree" );
-      assert.equal(lines[36], "## ClassTwo"   );
+      assert.equal(lines[6] , "## ClassFour"  );
+      assert.equal(lines[21], "## ClassOne"   );
+      assert.equal(lines[38], "## ClassThree" );
+      assert.equal(lines[42], "## ClassTwo"   );
     });
 
     it("should write a class without a description", () => {
-      assert.equal(lines[32], "## ClassThree");
-      assert.equal(lines[33], "");
-      assert.equal(lines[34], "**Class Type:** CustomAttributeClass");
+      assert.equal(lines[38], "## ClassThree");
+      assert.equal(lines[39], "");
+      assert.equal(lines[40], "**Class Type:** CustomAttributeClass");
     });
 
     it("shouldn't write a table for a class without properties", () => {
-      assert.equal(lines[32], "## ClassThree");
-      assert.equal(lines[33], "");
-      assert.equal(lines[34], "**Class Type:** CustomAttributeClass");
-      assert.equal(lines[35], "");
-      assert.equal(lines[36], "## ClassTwo");
+      assert.equal(lines[38], "## ClassThree");
+      assert.equal(lines[39], "");
+      assert.equal(lines[40], "**Class Type:** CustomAttributeClass");
+      assert.equal(lines[41], "");
+      assert.equal(lines[42], "## ClassTwo");
     });
 
     it("should write a property without a description", () => {
-      assert.equal(lines[14], "|PropertyOne||int||");
+      assert.equal(lines[16], "|PropertyOne||int||");
     });
 
     it("should put an empty table at the end of each property table", () => {
-      assert.equal(lines[15],
+      assert.equal(lines[17],
         "|            |                   |            |                        |");
-      assert.equal(lines[30],
+      assert.equal(lines[34],
         "|            |                   |            |                        |");
-      assert.equal(lines[59],
+      assert.equal(lines[65],
         "|            |                   |            |                        |");
 
       // Empty row at the end of a relationship table
-      assert.equal(lines[50],
+      assert.equal(lines[56],
         "|          |                         |                                    |");
     });
 
     it("should correctly write the relationship table", () => {
-      assert.equal(lines[48], "|**Source**|ClassOne|(0..*)|");
-      assert.equal(lines[49], "|**Target**|ClassTwo|(0..*)|");
+      assert.equal(lines[54], "|**Source**|ClassOne|(0..*)|");
+      assert.equal(lines[55], "|**Target**|ClassTwo|(0..*)|");
     });
 
     it("should write the baseclass properly", () => {
-      assert.equal(lines[42], "**Base class:** SchemaA:ClassOne");
+      assert.equal(lines[48], "**Base class:** SchemaA:ClassOne");
     });
 
     it("should list the extended typename for properties", () => {
-      assert.equal(lines[27], "|PropertyOne|This is the first property of ClassOne|string|Json|");
-      assert.equal(lines[28], "|PropertyTwo|This is the second property of ClassOne.|string||");
+      assert.equal(lines[31], "|PropertyOne|This is the first property of ClassOne|string|Json|");
+      assert.equal(lines[32], "|PropertyTwo|This is the second property of ClassOne.|string||");
     });
 
     it("should correctly write the type for a referenced property type", () => {
-      assert.equal(lines[69], "|TestTypes||CustomTestType||");
-    }) ;
+      assert.equal(lines[77], "|TestTypes||CustomTestType||");
+    });
+
+    it("should create an overview heading for human written section", () => {
+      assert.equal(lines[4], "## Overview:");
+    });
+
+    it("should create remarks headings for human written section", () => {
+      assert.equal(lines[19], "### Remarks:");
+      assert.equal(lines[36], "### Remarks:");
+      assert.equal(lines[67], "### Remarks:");
+      assert.equal(lines[80], "### Remarks:");
+    });
  });
 
   describe("Advanced markdown generation tests", () => {
@@ -247,20 +258,20 @@ describe("ECJsonToMD", () => {
       lines = fs.readFileSync(outputPath, "utf8").split("\n");
 
       // Assert that each class header is written in alphabetical order
-      assert.equal(lines[4] , "## A");
-      assert.equal(lines[10], "## B");
-      assert.equal(lines[16], "## C");
-      assert.equal(lines[22], "## D");
-      assert.equal(lines[28], "## E");
-      assert.equal(lines[34], "## F");
-      assert.equal(lines[40], "## G");
-      assert.equal(lines[46], "## H");
-      assert.equal(lines[52], "## I");
+      assert.equal(lines[6] , "## A");
+      assert.equal(lines[12], "## B");
+      assert.equal(lines[18], "## C");
+      assert.equal(lines[24], "## D");
+      assert.equal(lines[30], "## E");
+      assert.equal(lines[36], "## F");
+      assert.equal(lines[42], "## G");
+      assert.equal(lines[48], "## H");
+      assert.equal(lines[54], "## I");
     });
 
     it("should list multiple constraint classes", () => {
-      assert.equal(lines[62], "|**Source**|A, B, C|(0..*)|");
-      assert.equal(lines[63], "|**Target**|D, E, F|(0..*)|");
+      assert.equal(lines[64], "|**Source**|A, B, C|(0..*)|");
+      assert.equal(lines[65], "|**Target**|D, E, F|(0..*)|");
     });
   });
 });
