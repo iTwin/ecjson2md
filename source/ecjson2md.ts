@@ -144,20 +144,23 @@ export class ECJsonMarkdownGenerator {
     if (!schemaClassProperties) return;
 
     fs.appendFileSync(outFile, "**Class Properties:**\n\n");
-    fs.appendFileSync(outFile,
-      "|                 Name                 |            Description            |    Type    |\n" +
-      "|:-------------------------------------|:----------------------------------|:-----------|\n");
+    fs.appendFileSync(outFile,     "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
+                                   "|:-----------|:------------------|:-----------|:-----------------------|\n");
 
     for (const property of schemaClassProperties) {
       await property.then((result: any) => {
         // const type: string = result.constructor.name; // Gets the property type. Leaving it here for now in case req. changes
+
         const type = primitiveTypeToString(result._type);
-        fs.appendFileSync(outFile, "|" + helper(result._name._name) + "|" + helper(result._description) + "|" + type + "|\n");
+        const name = helper(result._name._name);
+        const description = helper(result._description);
+        const extendedTypeName = helper(result.extendedTypeName);
+
+        fs.appendFileSync(outFile, "|" + name + "|" + description + "|" + type + "|" + extendedTypeName + "|\n");
       });
     }
 
-    fs.appendFileSync(outFile,
-      "|                                      |                                   |            |\n\n");
+    fs.appendFileSync(outFile,     "|            |                   |            |                        |\n\n");
   }
 
   /**

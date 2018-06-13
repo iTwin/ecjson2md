@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Markdown for base classes now follows this format [Schema]:[Base Class name]
 - The type listed for properties is now the primitive type instead of the property type
+### Added
+- Markdown now displays the extended typename of a property when available
 
 ## [0.1.5] - 2018-06-06
 ### Added

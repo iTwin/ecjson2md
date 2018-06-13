@@ -12,7 +12,8 @@
                "description" : "This is the first property of ClassOne",
                "name" : "PropertyOne",
                "propertyType" : "PrimitiveProperty",
-               "typeName" : "string"
+               "typeName" : "string",
+               "extendedTypeName" : "Json"
             },
             {
                "description" : "This is the second property of ClassOne.",
