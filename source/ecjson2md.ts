@@ -138,7 +138,9 @@ export class ECJsonMarkdownGenerator {
    */
   private async writeClassProperties(outFile: any, schemaClass: ECClass) {
     const schemaClassProperties = schemaClass.properties;
-    const helper = (( value: any ) => value !== undefined ? value : "");
+    const placeHolder = "";
+
+    const helper = (( value: any ) => value !== undefined ? value : placeHolder);
 
     // If the class has no properties, return
     if (!schemaClassProperties) return;
@@ -151,7 +153,16 @@ export class ECJsonMarkdownGenerator {
       await property.then((result: any) => {
         // const type: string = result.constructor.name; // Gets the property type. Leaving it here for now in case req. changes
 
-        const type = primitiveTypeToString(result._type);
+        let type: string;
+
+        // Attempt to convert the type
+        // TODO: Parse the custom typename instead of using the placeholder
+        try {
+          type = primitiveTypeToString(result._type);
+        } catch (err) {
+          type = placeHolder;
+        }
+
         const name = helper(result._name._name);
         const description = helper(result._description);
         const extendedTypeName = helper(result.extendedTypeName);
