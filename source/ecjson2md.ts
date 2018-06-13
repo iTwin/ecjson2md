@@ -153,14 +153,14 @@ export class ECJsonMarkdownGenerator {
       await property.then((result: any) => {
         // const type: string = result.constructor.name; // Gets the property type. Leaving it here for now in case req. changes
 
-        let type: string;
+        let type: string | undefined;
 
         // Attempt to convert the type
         // TODO: Parse the custom typename instead of using the placeholder
         try {
           type = primitiveTypeToString(result._type);
         } catch (err) {
-          type = placeHolder;
+          type = result.enumeration._name._name;
         }
 
         const name = helper(result._name._name);
