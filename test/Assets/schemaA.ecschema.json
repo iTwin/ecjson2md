@@ -30,6 +30,7 @@
          "schemaItemType" : "CustomAttributeClass"
       },
       "ClassTwo" : {
+         "baseClass" : "SchemaA.ClassOne",
          "appliesTo" : "EntityClass",
          "modifier" : "sealed",
          "description" : "This is the description for ClassTwo",

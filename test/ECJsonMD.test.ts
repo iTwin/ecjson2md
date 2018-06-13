@@ -164,9 +164,9 @@ describe("ECJsonToMD", () => {
       assert.equal(lines[29], "|PropertyThree|This is the third property of ClassOne|PrimitiveProperty|");
 
       // Check that the classes print into a table with the correct name, description, and type
-      assert.equal(lines[54], "|PropertyOne|This is the first property of ClassTwo|PrimitiveProperty|");
-      assert.equal(lines[55], "|PropertyTwo|This is the second property of ClassTwo.|PrimitiveProperty|");
-      assert.equal(lines[56], "|PropertyThree|This is the third property of ClassTwo|PrimitiveProperty|");
+      assert.equal(lines[56], "|PropertyOne|This is the first property of ClassTwo|PrimitiveProperty|");
+      assert.equal(lines[57], "|PropertyTwo|This is the second property of ClassTwo.|PrimitiveProperty|");
+      assert.equal(lines[58], "|PropertyThree|This is the third property of ClassTwo|PrimitiveProperty|");
       });
 
     it("should write the name of the classes as h2", () => {
@@ -199,17 +199,21 @@ describe("ECJsonToMD", () => {
         "|                                      |                                   |            |");
       assert.equal(lines[30],
         "|                                      |                                   |            |");
-      assert.equal(lines[57],
+      assert.equal(lines[59],
         "|                                      |                                   |            |");
 
       // Empty row at the end of a relationship table
-      assert.equal(lines[48],
+      assert.equal(lines[50],
         "|          |                         |                                    |");
     });
 
     it("should correctly write the relationship table", () => {
-      assert.equal(lines[46], "|**Source**|ClassOne|(0..*)|");
-      assert.equal(lines[47], "|**Target**|ClassTwo|(0..*)|");
+      assert.equal(lines[48], "|**Source**|ClassOne|(0..*)|");
+      assert.equal(lines[49], "|**Target**|ClassTwo|(0..*)|");
+    });
+
+    it("should print the baseclass properly", () => {
+      assert.equal(lines[42], "**Base class:** SchemaA:ClassOne");
     });
  });
 

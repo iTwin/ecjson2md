@@ -63,7 +63,6 @@ export class ECJsonMarkdownGenerator {
     const sourceCoClasses = relClass.source.constraintClasses;
     const targetCoClasses = relClass.target.constraintClasses;
 
-    // TODO: Write test to make sure that it works with multiple constraint classes
     // Collect source constraint classes
     let sourceCoClassList: string = "";
 
@@ -117,7 +116,6 @@ export class ECJsonMarkdownGenerator {
       if (schemaClass.type !== undefined)
         fs.appendFileSync(outputMDFile, "**Class Type:** " + schemaItemTypeToString(schemaClass.type) + "\n\n");
 
-      // TODO: Add base class tests
       // Write the base class if it's given
       if (schemaClass.baseClass !== undefined) {
         await schemaClass.baseClass.then(async (result) => {
