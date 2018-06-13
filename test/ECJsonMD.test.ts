@@ -220,6 +220,10 @@ describe("ECJsonToMD", () => {
       assert.equal(lines[27], "|PropertyOne|This is the first property of ClassOne|string|Json|");
       assert.equal(lines[28], "|PropertyTwo|This is the second property of ClassOne.|string||");
     });
+
+    it("should correctly write the type for a referenced property type", () => {
+      assert.equal(lines[69], "|TestTypes||CustomTestType||");
+    }) ;
  });
 
   describe("Advanced markdown generation tests", () => {

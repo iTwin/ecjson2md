@@ -82,8 +82,30 @@
             }
          ],
          "schemaItemType" : "CustomAttributeClass"
-      }
-   },
+      },
+    "CustomHandledProperty" : {
+      "appliesTo" : "AnyProperty",
+      "properties" : [
+        {
+            "name" : "TestTypes",
+            "propertyType" : "PrimitiveProperty",
+            "typeName" : "SchemaA.CustomTestType"
+        }
+      ],
+      "schemaItemType" : "CustomAttributeClass"
+    },
+    "CustomTestType" : {
+        "backingTypeName" : "int",
+        "enumerators" : [
+          {
+              "label" : "None",
+              "value" : 0
+          }
+        ],
+        "isStrict" : true,
+        "schemaItemType" : "Enumeration"
+    }
+  },
    "references" : [
       {
          "name" : "SchemaB",
