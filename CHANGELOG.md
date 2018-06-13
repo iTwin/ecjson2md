@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.6] - 2018-06-13
+### Changed
+- Markdown for base classes now follows this format [Schema]:[Base Class name]
+
 ## [0.1.5] - 2018-06-6
 ### Added
 - Glob dependency
