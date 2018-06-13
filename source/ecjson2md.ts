@@ -59,7 +59,7 @@ export class ECJsonMarkdownGenerator {
    * @param ouputMDFile MarkdownFile to write to
    * @param relClass Relationship class to pull information from
    */
-  private writeRelationshipClass(outputMDFile: any, relClass: RelationshipClass) {
+  private async writeRelationshipClass(outputMDFile: any, relClass: RelationshipClass) {
     const sourceCoClasses = relClass.source.constraintClasses;
     const targetCoClasses = relClass.target.constraintClasses;
 
@@ -83,7 +83,7 @@ export class ECJsonMarkdownGenerator {
       for (const constraintClass of targetCoClasses) {
         // If the current class is the last one, don't append a comma
         if (constraintClass === targetCoClasses[targetCoClasses.length - 1])
-          targetCoClassList += constraintClass.name;
+          targetCoClassList +=  constraintClass.name;
         else targetCoClassList += constraintClass.name + ", ";
       }
     }
@@ -120,7 +120,7 @@ export class ECJsonMarkdownGenerator {
       // Write the base class if it's given
       if (schemaClass.baseClass !== undefined) {
         await schemaClass.baseClass.then(async (result) => {
-          await fs.appendFileSync(outputMDFile, "**Base class:** " + result.fullName + "\n\n");
+          fs.appendFileSync(outputMDFile, "**Base class:** " + result.fullName + "\n\n");
         });
       }
 
@@ -193,8 +193,9 @@ export class ECJsonMarkdownGenerator {
       async (result) => {
         await this.writeName(outputFilePath, result);
         await this.writeClasses(outputFilePath, result);
-      }).catch(() => {
-        throw Error("Could not load ECSchema JSON file");
       });
+      // .catch(() => {
+      //   throw Error("Could not load ECSchema JSON file");
+      // });
   }
 }

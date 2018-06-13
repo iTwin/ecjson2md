@@ -19,7 +19,7 @@ if (!program.input || !program.output || !program.dirs) {
   process.exit();
 }
 
-// Add a slash to the end if the user didn't provide one
+// Add a slash to the end if th~e user didn't provide one
 let outputDirPath = program.output;
 if (!(outputDirPath[outputDirPath.length - 1] === "/")) outputDirPath += "/";
 
@@ -32,6 +32,9 @@ const outputFilePath = outputDirPath + outputPathParts[outputPathParts.length - 
 let searchDir = program.dirs.replace(/\s/g, "");
 // Separate the search directories
 searchDir = searchDir.split(",");
+
+// tslint:disable-next-line:no-console
+console.log(searchDir);
 
 // Add the search directories to the new locator and load the schema
 try {
