@@ -1,12 +1,14 @@
 # ecjson2md
 
-ecjson2md is a CLI tool that takes a an ECSchema JSON and path to referenced schemas and generates a Markdown file based on it at a specified location.
+ecjson2md is a CLI tool that takes an ECSchema JSON and path to referenced schemas and generates a Markdown file based on it at a specified location.
+
+[Change Log](https://github.com/iTwin/ecjson2md/blob/master/CHANGELOG.md)
 
 ## Installation
 
 ---------------------------------------------------------------
 
-### Install globally
+### Install globally (recommended)
 
 ```sh
 npm install -g @bentley/ecjson2md
@@ -22,10 +24,10 @@ npm install @bentley/ecjson2md
 
 ---------------------------------------------------------------
 
-### Generate a markdown file from ECSchema JSON File via command line
+### Generate a markdown file from ECSchema JSON via command line
 
 ```sh
-ecjson2md -i <path to ECSchema JSON> -r <space separated search dirs> -o <directory to output markdown>
+ecjson2md -i <path to ECSchema JSON> -r <comma or space separated search dirs> -o <directory to output markdown>
 ```
 
 ### Generate a markdown file from ECSChema JSON file programmatically
@@ -58,10 +60,10 @@ npm update @bentley/ecjson2md
 
 ---------------------------------------------------------------
 
-- When using the CLI tool, providing a list of directories that are separated by comma + space such as: ```-r ./one, ./two, /three``` will only add the first directory to the locator. Use only a comma or quotes instead, e.g. ```-r ./one,./two,/three``` or ```-r './one, ./two, /three'```
+- When using the CLI tool, providing a list of directories that are separated by comma + space such as: ```-r ./one, ./two, /three``` will only add the first directory to the locator. Use only a comma or quotes instead, e.g. ```-r ./one,./two,./three``` or ```-r './one, ./two, ./three'```
 
 ## Known issues
 
 ---------------------------------------------------------------
 
-- None _currently_
+- Will fail when running on a schema that references base class of other schemas. This is a problem with ec-js and is currently being worked on
