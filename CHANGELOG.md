@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.1.7] - 2018-06-13
+## [0.1.9] - 2018-06-13
+### Fixed
+- Overview and remarks headers are now created for all types of classes
+
+## [0.1.8] - 2018-06-13
 ### Added
 - Displays property type when inherited from referenced schema
 - Creates "Overview" and "Remarks" headers for human-written sections

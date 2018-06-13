@@ -129,6 +129,8 @@ export class ECJsonMarkdownGenerator {
 
       // If the class has no properties, end here. If it does, write the column headers and call writeClassProperties()
       if (schemaClass.properties) await this.writeClassProperties(outputMDFile, schemaClass);
+
+      fs.appendFileSync(outputMDFile, "### Remarks:\n\n");
     }
   }
 
@@ -177,7 +179,6 @@ export class ECJsonMarkdownGenerator {
     }
 
     fs.appendFileSync(outputMDFile,     "|            |                   |            |                        |\n\n");
-    fs.appendFileSync(outputMDFile, "### Remarks:\n\n");
   }
 
   /**
