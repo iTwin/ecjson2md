@@ -156,17 +156,17 @@ describe("ECJsonToMD", () => {
 
     it("should write the classes as a table", () => {
       // Check that the classes print into a table with the correct name, description, and type
-      assert.equal(lines[14], "|PropertyOne||PrimitiveProperty|");
+      assert.equal(lines[14], "|PropertyOne||int|");
 
       // Check that the classes print into a table with the correct name, description, and type
-      assert.equal(lines[27], "|PropertyOne|This is the first property of ClassOne|PrimitiveProperty|");
-      assert.equal(lines[28], "|PropertyTwo|This is the second property of ClassOne.|PrimitiveProperty|");
-      assert.equal(lines[29], "|PropertyThree|This is the third property of ClassOne|PrimitiveProperty|");
+      assert.equal(lines[27], "|PropertyOne|This is the first property of ClassOne|string|");
+      assert.equal(lines[28], "|PropertyTwo|This is the second property of ClassOne.|string|");
+      assert.equal(lines[29], "|PropertyThree|This is the third property of ClassOne|int|");
 
       // Check that the classes print into a table with the correct name, description, and type
-      assert.equal(lines[56], "|PropertyOne|This is the first property of ClassTwo|PrimitiveProperty|");
-      assert.equal(lines[57], "|PropertyTwo|This is the second property of ClassTwo.|PrimitiveProperty|");
-      assert.equal(lines[58], "|PropertyThree|This is the third property of ClassTwo|PrimitiveProperty|");
+      assert.equal(lines[56], "|PropertyOne|This is the first property of ClassTwo|int|");
+      assert.equal(lines[57], "|PropertyTwo|This is the second property of ClassTwo.|string|");
+      assert.equal(lines[58], "|PropertyThree|This is the third property of ClassTwo|int|");
       });
 
     it("should write the name of the classes as h2", () => {
@@ -190,8 +190,8 @@ describe("ECJsonToMD", () => {
       assert.equal(lines[36], "## ClassTwo");
     });
 
-    it("should print a property without a description", () => {
-      assert.equal(lines[14], "|PropertyOne||PrimitiveProperty|");
+    it("should write a property without a description", () => {
+      assert.equal(lines[14], "|PropertyOne||int|");
     });
 
     it("should put an empty table at the end of each property table", () => {
@@ -212,7 +212,7 @@ describe("ECJsonToMD", () => {
       assert.equal(lines[49], "|**Target**|ClassTwo|(0..*)|");
     });
 
-    it("should print the baseclass properly", () => {
+    it("should write the baseclass properly", () => {
       assert.equal(lines[42], "**Base class:** SchemaA:ClassOne");
     });
  });

@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass, primitiveTypeToString } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath } from "./Exception";
 
 export class ECJsonMarkdownGenerator {
@@ -150,7 +150,8 @@ export class ECJsonMarkdownGenerator {
 
     for (const property of schemaClassProperties) {
       await property.then((result: any) => {
-        const type: string = result.constructor.name;
+        // const type: string = result.constructor.name; // Gets the property type. Leaving it here for now in case req. changes
+        const type = primitiveTypeToString(result._type);
         fs.appendFileSync(outFile, "|" + helper(result._name._name) + "|" + helper(result._description) + "|" + type + "|\n");
       });
     }
