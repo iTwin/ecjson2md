@@ -161,7 +161,11 @@ export class ECJsonMarkdownGenerator {
         try {
           type = primitiveTypeToString(result._type);
         } catch (err) {
-          type = result.enumeration._name._name;
+          try {
+            type = result.enumeration._name._name;
+          } catch (err) {
+            type = placeHolder;
+          }
         }
 
         const name = helper(result._name._name);
