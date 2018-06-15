@@ -1,6 +1,6 @@
 {
   "name": "@bentley/ecjson2md",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Markdown generation from ECSchema JSON",
   "bin": {
     "ecjson2md": "./lib/index.js"
