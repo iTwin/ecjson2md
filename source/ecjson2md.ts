@@ -45,8 +45,8 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputMDFile, "# " + schema.name + "\n\n");
     // Write the description of the schema as a <p>
     if (schema.description !== undefined) fs.appendFileSync(outputMDFile, schema.description + "\n\n");
-    // Create an <h2> for the overview section
-    fs.appendFileSync(outputMDFile, "## Overview:\n\n");
+    // Create an <h2> for "classes"
+    fs.appendFileSync(outputMDFile, "## Classes:\n\n");
   }
 
   private writeFrontMatter(outputMDFile: any, schema: Schema) {
@@ -117,7 +117,7 @@ export class ECJsonMarkdownGenerator {
   private async writeClasses(outputMDFile: any, schema: Schema) {
     for (const schemaClass of this.getSortedClasses(schema)) {
       // Write the name of the class
-      fs.appendFileSync(outputMDFile, "## " + schemaClass.name + "\n\n");
+      fs.appendFileSync(outputMDFile, "### " + schemaClass.name + "\n\n");
 
       // Write the class description if it's given
       if (schemaClass.description !== undefined) fs.appendFileSync(outputMDFile, schemaClass.description + "\n\n");
@@ -138,8 +138,6 @@ export class ECJsonMarkdownGenerator {
 
       // If the class has no properties, end here. If it does, write the column headers and call writeClassProperties()
       if (schemaClass.properties) await this.writeClassProperties(outputMDFile, schemaClass);
-
-      fs.appendFileSync(outputMDFile, "### Remarks:\n\n");
     }
   }
 
@@ -175,6 +173,7 @@ export class ECJsonMarkdownGenerator {
    * @param property Property to generate the row from
    */
   private writeClassPropertiesRow(outputMDFile: string, property: any): void {
+    // If the attribute is not there, return the place holder
     const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
 
     const type = this.propertyTypeToString(property);
