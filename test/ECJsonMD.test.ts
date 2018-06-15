@@ -220,7 +220,7 @@ describe("ECJsonToMD", () => {
     });
 
     it("should write the baseclass properly", () => {
-      assert.equal(lines[50], "**Base class:** SchemaA:ClassOne");
+      assert.equal(lines[50], "**Base class:** [link_to schemaa.ecschema/#classone text=\"SchemaA:ClassOne\"]");
     });
 
     it("should list the extended typename for properties", () => {

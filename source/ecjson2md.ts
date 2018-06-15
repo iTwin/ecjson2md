@@ -109,6 +109,13 @@ export class ECJsonMarkdownGenerator {
       "|          |                         |                                    |\n\n");
   }
 
+  public writeBaseClass(outputMDFile: string, baseClass: any) {
+    if (baseClass !== undefined) {
+      baseClass.then((result: any) => {
+        fs.appendFileSync(outputMDFile, "**Base class:** " + "[link_to " + result.schema.name.toLowerCase() + ".ecschema" + "/#" +  result.name.toLowerCase()  + " text=\"" + result.schema.name + ":" + result.name + "\"]\n\n");
+      });
+    }
+  }
   /**
    * Writes the classes of the schema to the md file at the outputfile.
    * @param outputMDFile Markdown file to write to
@@ -127,11 +134,7 @@ export class ECJsonMarkdownGenerator {
         fs.appendFileSync(outputMDFile, "**Class Type:** " + schemaItemTypeToString(schemaClass.type) + "\n\n");
 
       // Write the base class if it's given
-      if (schemaClass.baseClass !== undefined) {
-        await schemaClass.baseClass.then(async (result) => {
-          fs.appendFileSync(outputMDFile, "**Base class:** " +  result.schema.name + ":" + result.name + "\n\n");
-        });
-      }
+      await this.writeBaseClass(outputMDFile, schemaClass.baseClass);
 
       // If the class is a relationship class, write the relationship information
       if (schemaItemTypeToString(schemaClass.type) === "RelationshipClass") await this.writeRelationshipClass(outputMDFile, schemaClass as RelationshipClass);
