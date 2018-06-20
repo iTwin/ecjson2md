@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.2.0] - 2018-06-20
+### Fixed
+- ecjs update allows proper linking to base classes
+
 ## [0.1.12] - 2018-06-15
 ### Added
 - Functionality to link to base class pages

@@ -202,12 +202,9 @@ export class ECJsonMarkdownGenerator {
     this.writePropertiesHeader(outputMDFile);
 
     for (const property of schemaClassProperties) {
-      await property.then((result: any) => {
-        // const type: string = result.constructor.name; // Gets the property type. Leaving it here for now in case req. changes
-
-        // Write the property row markdown to the file
-        this.writeClassPropertiesRow(outputMDFile, result);
-      });
+      // const type: string = result.constructor.name; // Gets the property type. Leaving it here for now in case req. changes
+      // Write the property row markdown to the file
+      this.writeClassPropertiesRow(outputMDFile, property);
     }
 
     fs.appendFileSync(outputMDFile,     "|            |                   |            |                        |\n\n");

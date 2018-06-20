@@ -114,7 +114,7 @@ describe("ECJsonToMD", () => {
     let outputPath: string;
     let lines: string[];
 
-    before(() => {
+    before(async () => {
       testFilePath =  "./test/Assets/schemaA.ecschema.json";
       outputPath = "./test/Assets/schemaA.ecschema.md";
 
@@ -122,7 +122,7 @@ describe("ECJsonToMD", () => {
       if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
 
       testECJsonMD = new ECJsonMarkdownGenerator(["./test/Assets/dir"]);
-      testECJsonMD.generate(testFilePath, outputPath);
+      await testECJsonMD.generate(testFilePath, outputPath);
     });
 /*
     beforeEach(() => {
@@ -243,6 +243,7 @@ describe("ECJsonToMD", () => {
       // If the file already exists, delete it
       testFilePath = "./test/Assets/Alphabet.ecschema.json";
       outputPath = "./test/Assets/Alphabet.ecschema.md";
+      testECJsonMD = new ECJsonMarkdownGenerator(["./test/Assets/dir"]);
       if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
       testECJsonMD.generate(testFilePath, outputPath);
     });
