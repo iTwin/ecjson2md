@@ -181,6 +181,11 @@ describe("ECJsonToMD", () => {
       markdownText = fs.readFileSync(outputFilePath, "utf8");
     });
 
+    after(() => {
+      // Delete the generated markdown file
+      if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+    });
+
     it("should write the classes header", () => {
       // Assert that the classes header is written as h2
       lines = markdownText.split("\n");
@@ -245,6 +250,11 @@ describe("ECJsonToMD", () => {
 
       // Read the markdown
       markdownText = fs.readFileSync(outputFilePath, "utf8");
+    });
+
+    after(() => {
+      // Delete the generated markdown file
+      if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
     });
 
     it("the front matter should be written on the first lines", () => {
@@ -346,6 +356,11 @@ describe("ECJsonToMD", () => {
 
       // Read the markdown
       markdownText = fs.readFileSync(outputFilePath, "utf8");
+    });
+
+    after(() => {
+      // Delete the generated markdown file
+      if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
     });
 
     it("should create the header of the property table", () => {
