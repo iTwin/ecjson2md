@@ -1,0 +1,9 @@
+{
+  "$schema" : "https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",
+  "alias" : "basic schema alias",
+  "items" : {},
+  "references" : [],
+  "label" : "basic schema label",
+  "name" : "Basic",
+  "version" : "02.00.00"
+}
