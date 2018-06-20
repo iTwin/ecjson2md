@@ -263,16 +263,73 @@ describe("ECJsonToMD", () => {
 
     it("description of the schema should follow the title of the schema", () => {
       lines = markdownText.split("\n");
-      // Get the index of the schematitle
+      // Get the index of the schema title
       const assertIndex = lines.indexOf("# BasicClasses");
-      if (assertIndex < 0) assert.fail();
+      assert.isTrue((assertIndex >= 0), "cannot find schema name");
 
       // Assert that the description of the schema follows the title after a blank line
-      assert.equal(lines[assertIndex] + 1, "");
-      assert.equal(lines[assertIndex] + 2, "This is a very basic schema with classes.");
+      assert.equal(lines[assertIndex + 1], "");
+      assert.equal(lines[assertIndex + 2], "This is a very basic schema with classes.");
+    });
+
+    it("header for the classes should follow the schema description", () => {
+      lines = markdownText.split("\n");
+      // Get the index of the schema description
+      const assertIndex = lines.indexOf("This is a very basic schema with classes.");
+      assert.isTrue((assertIndex >= 0), "cannot find schema description");
+
+      // Assert that the header for the classes section follows the schema description after a blank line
+      assert.equal(lines[assertIndex + 1], "");
+      assert.equal(lines[assertIndex + 2], "## Classes:");
+    });
+
+    it("h3 for ClassOne should follow the classes header", () => {
+      lines = markdownText.split("\n");
+      // Get the index of the class header
+      const assertIndex = lines.indexOf("## Classes:");
+      assert.isTrue((assertIndex >= 0), "cannot find the class header");
+
+      // Assert that ClassOne is written as h3 after the class label
+      assert.equal(lines[assertIndex + 1], "");
+      assert.equal(lines[assertIndex + 2], "### ClassOne");
+    });
+
+    it("class description should follow the h3 class name", () => {
+      lines = markdownText.split("\n");
+      // Get the index of the h3 class name
+      const assertIndex = lines.indexOf("### ClassOne");
+      assert.isTrue((assertIndex >= 0), "cannot find h3 for Class One");
+
+      // Assert that the description follows the h3 class name after a blank line
+      assert.equal(lines[assertIndex + 1], "");
+      assert.equal(lines[assertIndex + 2], "This is the description for ClassOne");
+    });
+
+    it("class type should follow the class description", () => {
+      lines = markdownText.split("\n");
+      // Get the index of the class description
+      const assertIndex = lines.indexOf("This is the description for ClassOne");
+      assert.isTrue((assertIndex >= 0), "cannot find the description for Class One");
+
+      // Assert that the class type follows the class description after a blank line
+      assert.equal(lines[assertIndex + 1], "");
+      assert.equal(lines[assertIndex + 2], "**Class Type:** EntityClass");
+    });
+
+    it("base class should follow the class type", () => {
+      lines = markdownText.split("\n");
+      // Get the index of the class tyoe of ClassTwo
+      const assertIndex = lines.indexOf("**Class Type:** Mixin");
+      assert.isTrue((assertIndex >= 0), "cannot find the class type of class two");
+
+      // Assert that the base class follows the class type after a blank line
+      assert.equal(lines[assertIndex + 1], "");
+      assert.equal(lines[assertIndex + 2], "**Base class:** [link_to basicclasses.ecschema/#classone text=\"BasicClasses:ClassOne\"]");
     });
   });
 
+  // ___________________________________________________________________________________________________________ //
+  /*
   describe("Basic markdown generation old", () => {
     let testFilePath = "./test/Assets/schemaA.ecschema.json";
     let outputPath: string;
@@ -288,11 +345,11 @@ describe("ECJsonToMD", () => {
       testECJsonMD = new ECJsonMarkdownGenerator(["./test/Assets/dir"]);
       await testECJsonMD.generate(testFilePath, outputPath);
     });
-/*
-    beforeEach(() => {
-      lines = fs.readFileSync(outputPath).toString().split("\n");
-    });
-*/
+//
+//     beforeEach(() => {
+//       lines = fs.readFileSync(outputPath).toString().split("\n");
+//     });
+// 
     after(() => {
       if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
     });
@@ -436,4 +493,5 @@ describe("ECJsonToMD", () => {
       assert.equal(lines[71], "|**Target**|D, E, F|(0..*)|");
     });
   });
+*/
 });
