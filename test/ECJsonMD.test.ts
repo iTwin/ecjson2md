@@ -390,6 +390,62 @@ describe("ECJsonToMD", () => {
     });
   });
 
+  describe("class relationship table markdown generation", () => {
+    const schemaFilePath = "./test/Assets/ClassRelationship.ecschema.json";
+    const outputFilePath = "./test/Assets/ClassRelationship.ecschema.md";
+    let generator: ECJsonMarkdownGenerator;
+    const searchDirs = ["./test/Assets", "./test/Assets/dir"];
+    let markdownText: string;
+    let lines: string[];
+
+    before(async () => {
+      // If the markdown file already exists, delete it
+      if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+
+      // Generate the markdown
+      generator = new ECJsonMarkdownGenerator(searchDirs);
+      await generator.generate(schemaFilePath, outputFilePath);
+
+      // Read the markdown
+      markdownText = fs.readFileSync(outputFilePath, "utf8");
+    });
+
+    after(() => {
+      // Delete the generated markdown file
+      if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+    });
+
+    it("should create the header of the relationship table", () => {
+      lines = markdownText.split("\n");
+      assert.isTrue(lines.indexOf("|          |    ConstraintClasses    |            Multiplicity            |") > -1, "class relationship table header not written properly");
+      assert.isTrue(lines.indexOf("|:---------|:------------------------|:-----------------------------------|") > -1, "class relationship table header not written properly");
+    });
+
+    it("should create an empty table row at the end of a table", () => {
+      lines = markdownText.split("\n");
+      assert.isTrue(lines.indexOf("|          |                         |                                    |") > -1, "empty row at end of table not written properly");
+    });
+
+    it("should correctly generate the source table row with one constraint class", () => {
+      lines = markdownText.split("\n");
+      assert.isTrue(lines.indexOf("|**Source**|ClassOne|(0..*)|") > -1, "source table row not written properly");
+    });
+
+    it("should correctly generate the target table row with one constraint class", () => {
+      lines = markdownText.split("\n");
+      assert.isTrue(lines.indexOf("|**Target**|ClassTwo|(0..*)|") > -1, "target table row not written properly");
+    });
+
+    it("should correctly generate the source table row with multiple constraint classes", () => {
+      lines = markdownText.split("\n");
+      assert.isTrue(lines.indexOf("|**Source**|A, B|(0..*)|") > -1, "source table row not written properly");
+    });
+
+    it("should correctly generate the target table row with multiple constraint classes", () => {
+      lines = markdownText.split("\n");
+      assert.isTrue(lines.indexOf("|**Target**|C, D|(0..*)|") > -1, "target table row not written properly");
+    });
+  });
   // ___________________________________________________________________________________________________________ //
   /*
   describe("Basic markdown generation old", () => {
