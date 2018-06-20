@@ -223,6 +223,56 @@ describe("ECJsonToMD", () => {
     });
   });
 
+  describe("Basic schema class markdown structure", () => {
+    let schemaFilePath: string;
+    let outputFilePath: string;
+    let generator: ECJsonMarkdownGenerator;
+    let searchDirs: string[];
+    let markdownText: string;
+    let lines: string[];
+
+    schemaFilePath = "./test/Assets/basicclasses.ecschema.json";
+    outputFilePath = "./test/Assets/basicclasses.ecschema.md";
+    searchDirs = [];
+
+    before(async () => {
+      // If the markdown file already exists, delete it
+      if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+
+      // Generate the markdown
+      generator = new ECJsonMarkdownGenerator(searchDirs);
+      await generator.generate(schemaFilePath, outputFilePath);
+
+      // Read the markdown
+      markdownText = fs.readFileSync(outputFilePath, "utf8");
+    });
+
+    it("the front matter should be written on the first lines", () => {
+      // Assert that the front matter takes up the first few lines
+      lines = markdownText.split("\n");
+      assert.equal(lines[0], "---");
+      assert.equal(lines[3], "---");
+    });
+
+    it("title of the schema should come after the front matter", () => {
+      // Assert that the title of the schema is written following a blank line after the front matter
+      lines = markdownText.split("---");
+      lines = lines[2].split("\n\n");
+      assert.equal(lines[1], "# BasicClasses", "The title of the schema does not properly follow the front matter");
+    });
+
+    it("description of the schema should follow the title of the schema", () => {
+      lines = markdownText.split("\n");
+      // Get the index of the schematitle
+      const assertIndex = lines.indexOf("# BasicClasses");
+      if (assertIndex < 0) assert.fail();
+
+      // Assert that the description of the schema follows the title after a blank line
+      assert.equal(lines[assertIndex] + 1, "");
+      assert.equal(lines[assertIndex] + 2, "This is a very basic schema with classes.");
+    });
+  });
+
   describe("Basic markdown generation old", () => {
     let testFilePath = "./test/Assets/schemaA.ecschema.json";
     let outputPath: string;
