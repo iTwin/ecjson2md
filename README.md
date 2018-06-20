@@ -66,4 +66,4 @@ npm update @bentley/ecjson2md
 
 ---------------------------------------------------------------
 
-- Will fail when running on a schema that references base class of other schemas. This is a problem with ec-js and is currently being worked on
+- None _currently_

@@ -1,6 +1,6 @@
 {
   "name": "@bentley/ecjson2md",
-  "version": "0.1.12",
+  "version": "0.2.1",
   "description": "Markdown generation from ECSchema JSON",
   "bin": {
     "ecjson2md": "./lib/index.js"
@@ -36,7 +36,7 @@
   ],
   "dependencies": {
     "@bentley/bentleyjs-core": "^8.4.1",
-    "@bentley/ecjs": "^0.5.3",
+    "@bentley/ecjs": "^0.6.0",
     "@types/chalk": "^2.2.0",
     "chalk": "^2.4.1",
     "commander": "^2.15.1",
