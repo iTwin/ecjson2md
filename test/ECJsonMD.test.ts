@@ -328,7 +328,7 @@ describe("ECJsonToMD", () => {
 
     it("base class should follow the class type", () => {
       lines = markdownText.split("\n");
-      // Get the index of the class tyoe of ClassTwo
+      // Get the index of the class type of ClassTwo
       const assertIndex = lines.indexOf("**Class Type:** Mixin");
       assert.isTrue((assertIndex >= 0), "cannot find the class type of class two");
 
@@ -444,6 +444,82 @@ describe("ECJsonToMD", () => {
     it("should correctly generate the target table row with multiple constraint classes", () => {
       lines = markdownText.split("\n");
       assert.isTrue(lines.indexOf("|**Target**|C, D|(0..*)|") > -1, "target table row not written properly");
+    });
+  });
+
+  describe("class properties and relationship tables structure", () => {
+    const schemaFilePath = "./test/Assets/PropertiesRelationship.ecschema.json";
+    const outputFilePath = "./test/Assets/PropertiesRelationship.ecschema.md";
+    let generator: ECJsonMarkdownGenerator;
+    const searchDirs = ["./test/Assets", "./test/Assets/dir"];
+    let markdownText: string;
+    let lines: string[];
+
+    before(async () => {
+      // If the markdown file already exists, delete it
+      if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+
+      // Generate the markdown
+      generator = new ECJsonMarkdownGenerator(searchDirs);
+      await generator.generate(schemaFilePath, outputFilePath);
+
+      // Read the markdown
+      markdownText = fs.readFileSync(outputFilePath, "utf8");
+    });
+
+    after(() => {
+      // Delete the generated markdown file
+      if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+    });
+
+    it("Relationship class label should come after the class type", () => {
+      lines = markdownText.split("\n");
+
+      // Get the index of the class type
+      const assertIndex = lines.indexOf("**Class Type:** RelationshipClass");
+      assert.isTrue((assertIndex >= 0), "cannot find the class type");
+
+      // Assert that the label follows the class type after a blank line
+      assert.equal(lines[assertIndex + 1], "");
+      assert.equal(lines[assertIndex + 2], "**Relationship Class:**");
+    });
+
+    it("Relationship table should come after the relationship class label", () => {
+      lines = markdownText.split("\n");
+
+      // Get the index of the relationship class label
+      const assertIndex = lines.indexOf("**Relationship Class:**");
+      assert.isTrue((assertIndex >= 0), "cannot find the relationship class label");
+
+      // Assert that the table header follows the relationship class label after a blank line
+      assert.equal(lines[assertIndex + 1], "");
+      assert.equal(lines[assertIndex + 2], "|          |    ConstraintClasses    |            Multiplicity            |");
+      assert.equal(lines[assertIndex + 3], "|:---------|:------------------------|:-----------------------------------|");
+    });
+
+    it("Class properties label should come after the relationship table", () => {
+      lines = markdownText.split("\n");
+
+      // Get the index of the last row in the relationship table
+      const assertIndex = lines.indexOf("|          |                         |                                    |");
+      assert.isTrue((assertIndex >= 0), "cannot find the last row of relationship class table");
+
+      // Assert that class properties label follows the relationship table after a blank line
+      assert.equal(lines[assertIndex + 1], "");
+      assert.equal(lines[assertIndex + 2], "**Class Properties:**");
+    });
+
+    it("Properties table should come after the relationship class label", () => {
+      lines = markdownText.split("\n");
+
+      // Get the index of the class properties label
+      const assertIndex = lines.indexOf("**Class Properties:**");
+      assert.isTrue((assertIndex >= 0), "cannot find the class properties label");
+
+      // Assert that properties table follows the class properties label after a blank line
+      assert.equal(lines[assertIndex + 1], "");
+      assert.equal(lines[assertIndex + 2], "|    Name    |    Description    |    Type    |      Extended Type     |");
+      assert.equal(lines[assertIndex + 3], "|:-----------|:------------------|:-----------|:-----------------------|");
     });
   });
   // ___________________________________________________________________________________________________________ //
