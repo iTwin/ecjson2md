@@ -328,6 +328,53 @@ describe("ECJsonToMD", () => {
     });
   });
 
+  describe("class properties table markdown generation", () => {
+    const schemaFilePath = "./test/Assets/ClassProperties.ecschema.json";
+    const outputFilePath = "./test/Assets/ClassProperties.ecschema.md";
+    let generator: ECJsonMarkdownGenerator;
+    const searchDirs = new Array<string>();
+    let markdownText: string;
+    let lines: string[];
+
+    before(async () => {
+      // If the markdown file already exists, delete it
+      if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+
+      // Generate the markdown
+      generator = new ECJsonMarkdownGenerator(searchDirs);
+      await generator.generate(schemaFilePath, outputFilePath);
+
+      // Read the markdown
+      markdownText = fs.readFileSync(outputFilePath, "utf8");
+    });
+
+    it("should create the header of the property table", () => {
+      lines = markdownText.split("\n");
+      assert.isTrue(lines.indexOf("|    Name    |    Description    |    Type    |      Extended Type     |") > -1, "class properties header not written properly");
+      assert.isTrue(lines.indexOf("|:-----------|:------------------|:-----------|:-----------------------|") > -1, "class properties header not written properly");
+    });
+
+    it("should create an empty table row at the end of a table", () => {
+      lines = markdownText.split("\n");
+      assert.isTrue(lines.indexOf("|            |                   |            |                        |") > -1, "empty row at end of table not written properly");
+    });
+
+    it("should create a table row for a property with name and type", () => {
+      lines = markdownText.split("\n");
+      assert.isTrue(lines.indexOf("|Name_And_Type||string||") > -1, "property row with name and type not written properly");
+    });
+
+    it("should create a table row for a property with name, description, and type", () => {
+      lines = markdownText.split("\n");
+      assert.isTrue(lines.indexOf("|Name_Type_And_Description|This property has a name, type, and description|string||") > -1, "property row with name, description, and type not written properly");
+    });
+
+    it("should create a table row for a property with name, description, extended type, and type", () => {
+      lines = markdownText.split("\n");
+      assert.isTrue(lines.indexOf("|Name_Type_Extended_Type_And_Description|This property has a name, type, extended type, and description|string|Json|") > -1, "property row with name, description, extended type, and type not written properly");
+    });
+  });
+
   // ___________________________________________________________________________________________________________ //
   /*
   describe("Basic markdown generation old", () => {
@@ -349,7 +396,7 @@ describe("ECJsonToMD", () => {
 //     beforeEach(() => {
 //       lines = fs.readFileSync(outputPath).toString().split("\n");
 //     });
-// 
+//
     after(() => {
       if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
     });
