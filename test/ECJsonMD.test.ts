@@ -282,7 +282,7 @@ describe("ECJsonToMD", () => {
 
     it("the front matter should be written on the first lines", () => {
       lines = markdownText.split("\n");
-      
+
       // Assert that the front matter takes up the first few lines
       assert.equal(lines[0], "---");
       assert.equal(lines[3], "---");
@@ -290,7 +290,7 @@ describe("ECJsonToMD", () => {
 
     it("title of the schema should come after the front matter", () => {
       lines = markdownText.split("---");
-      
+
       // Assert that the title of the schema is written following a blank line after the front matter
       lines = lines[2].split("\n\n");
       assert.equal(lines[1], "# BasicClasses", "The title of the schema does not properly follow the front matter");
@@ -298,7 +298,7 @@ describe("ECJsonToMD", () => {
 
     it("description of the schema should follow the title of the schema", () => {
       lines = markdownText.split("\n");
-      
+
       // Get the index of the schema title
       const assertIndex = lines.indexOf("# BasicClasses");
       assert.isTrue((assertIndex >= 0), "cannot find schema name");
@@ -310,7 +310,7 @@ describe("ECJsonToMD", () => {
 
     it("header for the classes should follow the schema description", () => {
       lines = markdownText.split("\n");
-      
+
       // Get the index of the schema description
       const assertIndex = lines.indexOf("This is a very basic schema with classes.");
       assert.isTrue((assertIndex >= 0), "cannot find schema description");
@@ -322,7 +322,7 @@ describe("ECJsonToMD", () => {
 
     it("h3 for ClassOne should follow the classes header", () => {
       lines = markdownText.split("\n");
-      
+
       // Get the index of the class header
       const assertIndex = lines.indexOf("## Classes:");
       assert.isTrue((assertIndex >= 0), "cannot find the class header");
@@ -334,7 +334,7 @@ describe("ECJsonToMD", () => {
 
     it("class description should follow the h3 class name", () => {
       lines = markdownText.split("\n");
-      
+
       // Get the index of the h3 class name
       const assertIndex = lines.indexOf("### ClassOne");
       assert.isTrue((assertIndex >= 0), "cannot find h3 for Class One");
@@ -346,7 +346,7 @@ describe("ECJsonToMD", () => {
 
     it("class type should follow the class description", () => {
       lines = markdownText.split("\n");
-      
+
       // Get the index of the class description
       const assertIndex = lines.indexOf("This is the description for ClassOne");
       assert.isTrue((assertIndex >= 0), "cannot find the description for Class One");
@@ -358,7 +358,7 @@ describe("ECJsonToMD", () => {
 
     it("base class should follow the class type", () => {
       lines = markdownText.split("\n");
-      
+
       // Get the index of the class type of ClassTwo
       const assertIndex = lines.indexOf("**Class Type:** Mixin");
       assert.isTrue((assertIndex >= 0), "cannot find the class type of class two");
@@ -401,7 +401,7 @@ describe("ECJsonToMD", () => {
 
     it("should create the header of the property table", () => {
       lines = markdownText.split("\n");
-      
+
       // Assert that the table header is generated correctly
       assert.isTrue(lines.indexOf("|    Name    |    Description    |    Type    |      Extended Type     |") > -1, "class properties header not written properly");
       assert.isTrue(lines.indexOf("|:-----------|:------------------|:-----------|:-----------------------|") > -1, "class properties header not written properly");
@@ -430,7 +430,7 @@ describe("ECJsonToMD", () => {
 
     it("should create a table row for a property with name, description, extended type, and type", () => {
       lines = markdownText.split("\n");
-      
+
       // Assert that a table row is generated correctly for a property with name, type, description, and extended type.
       assert.isTrue(lines.indexOf("|Name_Type_Extended_Type_And_Description|This property has a name, type, extended type, and description|string|Json|") > -1, "property row with name, description, extended type, and type not written properly");
     });
@@ -468,7 +468,7 @@ describe("ECJsonToMD", () => {
 
     it("should create the header of the relationship table", () => {
       lines = markdownText.split("\n");
-      
+
       // Asserts that a header is correctly generated for the relationship table
       assert.isTrue(lines.indexOf("|          |    ConstraintClasses    |            Multiplicity            |") > -1, "class relationship table header not written properly");
       assert.isTrue(lines.indexOf("|:---------|:------------------------|:-----------------------------------|") > -1, "class relationship table header not written properly");
@@ -590,12 +590,6 @@ describe("ECJsonToMD", () => {
       assert.equal(lines[assertIndex + 3], "|:-----------|:------------------|:-----------|:-----------------------|");
     });
   });
-    // TODO: Refactor this test
-    /*
-    it("should correctly write the type for a referenced property type", () => {
-      assert.equal(lines[77 ], "|TestTypes||CustomTestType||");
-    });
-    */
 
   describe("Advanced markdown generation tests", () => {
     let testFilePath: string;
@@ -638,6 +632,113 @@ describe("ECJsonToMD", () => {
     it("should list multiple constraint classes", () => {
       assert.equal(lines[69], "|**Source**|A, B, C|(0..*)|");
       assert.equal(lines[70], "|**Target**|D, E, F|(0..*)|");
+    });
+  });
+
+  describe("verbatim markdown test", () => {
+    const schemaFilePath = "./test/Assets/SchemaA.ecschema.json";
+    const outputFilePath = "./test/Assets/SchemaA.ecschema.md";
+    let generator: ECJsonMarkdownGenerator;
+    const searchDirs = ["./test/Assets", "./test/Assets/dir"];
+    let markdownText: string;
+
+    before(async () => {
+      // If the markdown file already exists, delete it
+      if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+
+      // Generate the markdown
+      generator = new ECJsonMarkdownGenerator(searchDirs);
+      await generator.generate(schemaFilePath, outputFilePath);
+
+      // Read the markdown
+      markdownText = fs.readFileSync(outputFilePath, "utf8");
+    });
+
+    after(() => {
+      // Delete the generated markdown file
+      if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+    });
+
+    it("should generate the entire markdown file as expected", () => {
+      assert.equal(markdownText,
+        "---\n" +
+        "Schema: SchemaA\n" +
+        "This file was automatically generated via ecjson2md. Do not edit this file. Any edits made to this file will be overwritten the next time it is generated\n" +
+        "---\n\n" +
+
+        "# SchemaA\n\n" +
+
+        "This is test schema A.\n\n" +
+
+        "## Classes:\n\n" +
+
+        "### ClassFour\n\n" +
+
+        "This is the description for ClassFour\n\n" +
+
+        "**Class Type:** CustomAttributeClass\n\n" +
+
+        "**Class Properties:**\n\n" +
+
+        "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
+        "|:-----------|:------------------|:-----------|:-----------------------|\n" +
+        "|PropertyOne||int||\n" +
+        "|            |                   |            |                        |\n\n" +
+
+        "### ClassOne\n\n" +
+
+        "This is the description for ClassOne\n\n" +
+
+        "**Class Type:** CustomAttributeClass\n\n" +
+
+        "**Class Properties:**\n\n" +
+
+        "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
+        "|:-----------|:------------------|:-----------|:-----------------------|\n" +
+        "|PropertyOne|This is the first property of ClassOne|string|Json|\n" +
+        "|PropertyTwo|This is the second property of ClassOne.|string||\n" +
+        "|PropertyThree|This is the third property of ClassOne|int||\n" +
+        "|            |                   |            |                        |\n\n" +
+
+        "### ClassThree\n\n" +
+
+        "**Class Type:** CustomAttributeClass\n\n" +
+
+        "### ClassTwo\n\n" +
+
+        "This is the description for ClassTwo\n\n" +
+
+        "**Class Type:** RelationshipClass\n\n" +
+
+        "**Base class:** [link_to schemaa.ecschema/#classone text=\"SchemaA:ClassOne\"]\n\n" +
+
+        "**Relationship Class:**\n\n" +
+
+        "|          |    ConstraintClasses    |            Multiplicity            |\n" +
+        "|:---------|:------------------------|:-----------------------------------|\n" +
+        "|**Source**|ClassOne|(0..*)|\n" +
+        "|**Target**|ClassTwo|(0..*)|\n" +
+        "|          |                         |                                    |\n\n" +
+
+        "**Class Properties:**\n\n" +
+
+        "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
+        "|:-----------|:------------------|:-----------|:-----------------------|\n" +
+        "|PropertyOne|This is the first property of ClassTwo|int||\n" +
+        "|PropertyTwo|This is the second property of ClassTwo.|string||\n" +
+        "|PropertyThree|This is the third property of ClassTwo|int||\n" +
+        "|            |                   |            |                        |\n\n" +
+
+        "### CustomHandledProperty\n\n" +
+
+        "**Class Type:** CustomAttributeClass\n\n" +
+
+        "**Class Properties:**\n\n" +
+
+        "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
+        "|:-----------|:------------------|:-----------|:-----------------------|\n" +
+        "|TestTypes||CustomTestType||\n" +
+        "|            |                   |            |                        |\n\n");
     });
   });
 });
