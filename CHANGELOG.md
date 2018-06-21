@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+# [0.2.2] - 2018-06-21
+### Changed
+- Complete overhaul of tests to increase thoroughness and accuracy
+
+## [0.2.1] - 2018-06-20
+### Changed
+- Removed known ecjs issue from readme
+
 ## [0.2.0] - 2018-06-20
 ### Fixed
 - ecjs update allows proper linking to base classes
