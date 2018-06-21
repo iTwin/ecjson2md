@@ -27,8 +27,10 @@ npm install @bentley/ecjson2md
 ### Generate a markdown file from ECSchema JSON via command line
 
 ```sh
-ecjson2md -i <path to ECSchema JSON> -r <comma or space separated search dirs> -o <directory to output markdown>
+ecjson2md -i <path to ECSchema JSON> -r <comma, colon, or semicolon or space separated search dirs> -o <directory to output markdown>
 ```
+
+Note: When using multiple search paths, enclose them in single quotes
 
 ### Generate a markdown file from ECSChema JSON file programmatically
 

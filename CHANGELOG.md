@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+# [0.2.3] - 2018-06-21
+### Changed
+- Updated to accepts file paths using all common path separators
+- Updated to display message using OS path separator
+
 # [0.2.2] - 2018-06-21
 ### Changed
 - Complete overhaul of tests to increase thoroughness and accuracy

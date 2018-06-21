@@ -4,6 +4,7 @@
 import * as chalk from "chalk";
 import { ECJsonMarkdownGenerator } from "./ecjson2md";
 import * as commander from "commander";
+import * as path from "path";
 
 // Get cli arguments
 const program = new commander.Command("ECJson2MD");
@@ -19,19 +20,20 @@ if (!program.input || !program.output || !program.dirs) {
   process.exit();
 }
 
-// Add a slash to the end if th~e user didn't provide one
-let outputDirPath = program.output;
-if (!(outputDirPath[outputDirPath.length - 1] === "/")) outputDirPath += "/";
+// Replace common separators with os path separator and add a slash to the end if the user didn't provide one
+let outputDirPath = program.output.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep);
+if (!(outputDirPath[outputDirPath.length - 1] === path.sep)) outputDirPath += path.sep;
 
 // Form the filepath for the output markdown
 const inputSchemaPath = program.input;
-const outputPathParts = inputSchemaPath.split("/");
-const outputFilePath = outputDirPath + outputPathParts[outputPathParts.length - 1].slice(0, -5) + ".md";
+const inputSchemaPathParts = inputSchemaPath.split(/(\/){1}|(\\){2}|(\\){1}/g);
+const outputFilePath = outputDirPath + inputSchemaPathParts[inputSchemaPathParts.length - 1].slice(0, -5) + ".md";
 
 // Remove any whitespace from dirs argument
-let searchDir = program.dirs.replace(/\s/g, "");
+let searchDirs = program.dirs.replace(/\s/g, "");
+
 // Separate the search directories
-searchDir = searchDir.split(",");
+searchDirs = searchDirs.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep).split(/,|;|:/g);
 
 // Add the search directories to the new locator and load the schema
 try {
@@ -39,7 +41,7 @@ try {
   console.log(chalk.default.gray("Adding the search directories..."));
 
   // Try to add the search paths
-  const mdGenerator = new ECJsonMarkdownGenerator(searchDir);
+  const mdGenerator = new ECJsonMarkdownGenerator(searchDirs);
 
   // tslint:disable-next-line:no-console
   console.log(chalk.default.gray("Generating markdown at " + outputFilePath + "..."));

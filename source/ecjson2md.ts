@@ -4,6 +4,7 @@
 import * as fs from "fs";
 import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass, primitiveTypeToString } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath } from "./Exception";
+import * as path from "path";
 
 const PLACE_HOLDER = "";
 
@@ -236,9 +237,9 @@ export class ECJsonMarkdownGenerator {
     }
 
     // Get the path of the directory that will contain the output md file
-    let outputDir: string[] | string = outputFilePath.split("/");
+    let outputDir: string[] | string = outputFilePath.split(/(\/){1}|(\\){2}|(\\){1}/g);
     outputDir.pop();
-    outputDir = outputDir.join("/");
+    outputDir = outputDir.join(path.sep);
 
     // Check if the output directory exists
     if (!fs.existsSync(outputDir)) throw new ECJsonBadOutputPath(outputFilePath);
