@@ -96,7 +96,7 @@ export class ECJsonMarkdownGenerator {
    * @param ouputMDFile MarkdownFile to write to
    * @param relClass Relationship class to pull information from
    */
-  private async writeRelationshipClass(outputMDFile: any, relClass: RelationshipClass) {
+  private writeRelationshipClass(outputMDFile: any, relClass: RelationshipClass) {
     // Format constraint class lists
     const sourceCoClasses = this.collectConstraintClasses(relClass.source.constraintClasses);
     const targetCoClasses = this.collectConstraintClasses(relClass.target.constraintClasses);
@@ -141,10 +141,10 @@ export class ECJsonMarkdownGenerator {
       await this.writeBaseClass(outputMDFile, schemaClass.baseClass);
 
       // If the class is a relationship class, write the relationship information
-      if (schemaItemTypeToString(schemaClass.type) === "RelationshipClass") await this.writeRelationshipClass(outputMDFile, schemaClass as RelationshipClass);
+      if (schemaItemTypeToString(schemaClass.type) === "RelationshipClass") this.writeRelationshipClass(outputMDFile, schemaClass as RelationshipClass);
 
       // If the class has no properties, end here. If it does, write the column headers and call writeClassProperties()
-      if (schemaClass.properties) await this.writeClassProperties(outputMDFile, schemaClass);
+      if (schemaClass.properties) this.writeClassProperties(outputMDFile, schemaClass);
     }
   }
 
@@ -196,7 +196,7 @@ export class ECJsonMarkdownGenerator {
    * @param outputMDFile Markdown file to write to
    * @param schemaClassProperties array of the properties
    */
-  private async writeClassProperties(outputMDFile: any, schemaClass: ECClass) {
+  private writeClassProperties(outputMDFile: any, schemaClass: ECClass) {
     const schemaClassProperties = schemaClass.properties;
 
     // If the class has no properties, return
@@ -245,9 +245,9 @@ export class ECJsonMarkdownGenerator {
 
     return Schema.fromJson(schemaJson, this.context).then(
       async (result) => {
-        await fs.writeFileSync(outputFilePath, "");
-        await this.writeFrontMatter(outputFilePath, result);
-        await this.writeTitle(outputFilePath, result);
+        fs.writeFileSync(outputFilePath, "");
+        this.writeFrontMatter(outputFilePath, result);
+        this.writeTitle(outputFilePath, result);
         await this.writeClasses(outputFilePath, result);
       });
       // .catch(() => {
