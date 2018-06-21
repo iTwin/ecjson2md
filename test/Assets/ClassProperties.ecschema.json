@@ -1,0 +1,35 @@
+{
+  "$schema" : "https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",
+  "alias" : "Class Properties schema alias",
+  "label" : "Class Properties schema label",
+  "name" : "ClassProperties",
+  "description" : "This is a schema that has more detailed properties.",
+  "version" : "02.00.00",
+  "items" : {
+    "ClassOne" : {
+      "modifier" : "sealed",
+      "description" : "This is the description for ClassOne",
+      "schemaItemType" : "EntityClass",
+      "properties" : [
+        {
+          "name" : "Name_And_Type",
+          "propertyType" : "PrimitiveProperty",
+          "typeName" : "string"
+        },
+        {
+          "name" : "Name_Type_And_Description",
+          "propertyType" : "PrimitiveProperty",
+          "typeName" : "string",
+          "description" : "This property has a name, type, and description"
+        },
+        {
+          "name" : "Name_Type_Extended_Type_And_Description",
+          "propertyType" : "PrimitiveProperty",
+          "typeName" : "string",
+          "description" : "This property has a name, type, extended type, and description",
+          "extendedTypeName" : "Json"
+        }
+      ]
+    }
+  }
+}

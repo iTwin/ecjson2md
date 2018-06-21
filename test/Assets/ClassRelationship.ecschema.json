@@ -1,0 +1,46 @@
+{
+  "$schema" : "https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",
+  "alias" : "Class Relationship schema alias",
+  "label" : "Class Relationship schema label",
+  "name" : "ClassRelationship",
+  "description" : "This is a schema that has a relationship class.",
+  "version" : "02.00.00",
+  "items" : {
+    "ClassOne" : {
+      "modifier" : "sealed",
+      "description" : "This is the description for ClassOne",
+      "schemaItemType" : "RelationShipClass",
+      "source" : {
+        "constraintClasses" : [ "SchemaA.ClassOne" ],
+        "multiplicity" : "(0..*)"
+      },
+     "target" : {
+        "constraintClasses" : [ "SchemaA.ClassTwo" ],
+        "multiplicity" : "(0..*)"
+     }
+    },
+    "ClassTwo" : {
+      "modifier" : "sealed",
+      "description" : "This is the description for ClassTwo",
+      "schemaItemType" : "RelationShipClass",
+      "source" : {
+        "constraintClasses" : [ "Alphabet.A", "Alphabet.B" ],
+        "multiplicity" : "(0..*)"
+      },
+     "target" : {
+        "constraintClasses" : [ "Alphabet.C", "Alphabet.D" ],
+        "multiplicity" : "(0..*)"
+     }
+    }
+  },
+  "references" : [
+    {
+       "name" : "SchemaA",
+       "version" : "02.00.00"
+    },
+    {
+      "name" : "Alphabet",
+      "version" : "02.00.00"
+   }
+  ]
+}
