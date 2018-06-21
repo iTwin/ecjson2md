@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+# [0.2.4] - 2018-06-21
+### Changed
+- Updated ecjs dependency which should better support mixins
+
 # [0.2.3] - 2018-06-21
 ### Changed
 - Updated to accepts file paths using all common path separators
