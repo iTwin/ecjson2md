@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+# [0.2.5] - 2018-06-22
+### Fixed
+- Fixed issue with file path parsing. No longer breaks if a filepath includes ':'
+### Changed
+- CLI messages now display absolute file paths instead of relative ones
+
 # [0.2.4] - 2018-06-21
 ### Changed
 - Updated ecjs dependency which should better support mixins

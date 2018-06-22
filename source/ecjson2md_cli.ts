@@ -33,7 +33,7 @@ const outputFilePath = outputDirPath + inputSchemaPathParts[inputSchemaPathParts
 let searchDirs = program.dirs.replace(/\s/g, "");
 
 // Separate the search directories
-searchDirs = searchDirs.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep).split(/,|;|:/g);
+searchDirs = searchDirs.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep).split(/,|;/g);
 
 // Add the search directories to the new locator and load the schema
 try {
@@ -44,12 +44,12 @@ try {
   const mdGenerator = new ECJsonMarkdownGenerator(searchDirs);
 
   // tslint:disable-next-line:no-console
-  console.log(chalk.default.gray("Generating markdown at " + outputFilePath + "..."));
+  console.log(chalk.default.gray("Generating markdown at " + path.resolve(outputFilePath) + "..."));
 
   // Try to generate the markdown
   mdGenerator.generate(inputSchemaPath, outputFilePath).then(() => {
     // tslint:disable-next-line:no-console
-    console.log(chalk.default.blue("Markdown successfully generated at " + outputFilePath));
+    console.log(chalk.default.blue("Markdown successfully generated at " + path.resolve(outputFilePath)));
   }).catch((error) => {
     // tslint:disable-next-line:no-console
     console.log(chalk.default.red(error));
