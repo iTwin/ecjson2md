@@ -8,7 +8,7 @@ ARG REPO_PATH
 ARG PR_TARGET=master
 
 ## Copy whatever is in root to a directory
-COPY $REPO_PATH ./repo
+COPY ${REPO_PATH} ./repo
 WORKDIR ./repo
 # Authenticate VSTS
 RUN vsts login --token ${SAT}
