@@ -3,7 +3,5 @@
 /out
 /.nyc_output
 /public
-**.ecschema.md
 **.js
 /source/Assets
-**BisCore.ecschema.json
