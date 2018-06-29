@@ -15,7 +15,7 @@ main();
  * @param {string} inputPath  User given path to input file (used for output file name)
  * @returns {string} Proper file path
  */
-function prepOutputPath(rawOutputPath: string, inputPath: string) :string {
+export function prepOutputPath(rawOutputPath: string, inputPath: string): string {
   // Replace common separators with os path separator
   let outputDir: string = rawOutputPath.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep);
 
