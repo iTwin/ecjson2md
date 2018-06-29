@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+# [0.2.6] - 2018-06-29
+### Added
+- Documentaion for Bemetalsmith use in readme
+
 # [0.2.5] - 2018-06-22
 ### Fixed
 - Fixed issue with file path parsing. No longer breaks if a filepath includes ':'
