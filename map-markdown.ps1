@@ -19,7 +19,7 @@ Foreach($schema in $allSchemaList) {
   if($targetList.Contains((get-item $schema).Name))
   {
     # Form the path to move the markdown into
-    $tempDir = $outPath+(get-item $schema).Directory.Name
+    $tempDir = $outPath+"\"+(get-item $schema).Directory.Name
 
     # If the file doesn't exist, create it
     if(!(Test-Path -Path $tempDir)) {
