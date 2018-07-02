@@ -1,7 +1,7 @@
 param(
   [string]$cSchemaPath='MDandSchemas\temp\SchemaXml',   # File path to xml Schemas we previously collected
   [string]$schemaRootPath='bis-schemas\Domains',        # File path to root of schemas
-  [string]$mdPath='MDandSchema\temp\Markdown',          # File path to generated markdown docs
+  [string]$mdPath='MDandSchemas\temp\Markdown',          # File path to generated markdown docs
   [string]$outPath='imodeljs-core\docs\bis\domains'     # Path to map the markdown and directories into
 )
 
