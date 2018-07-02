@@ -4,7 +4,7 @@ ARG SAT
 ARG PR_TITLE
 ARG PR_SOURCE
 ARG PR_DESC=This_documentation_was_automatically_generated_by_ecjson2md
-ARG REPO_PATH=imodlejs-core
+ARG REPO_PATH=imodeljs-core
 ARG PR_TARGET=master
 ARG PR_REVIEWERS=Caleb.Shafer
 
