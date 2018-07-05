@@ -6,10 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+# [0.2.8] - 2018-07-05
+### Fixed
+- Moved some dependencies into dev dependencies where they belong
+### Added
+- Added tests for nonrelease bemetalsmith alert
+
 # [0.2.7] - 2018-07-05
 ### Added
 - Option to generate bemetalsmith alert in the case of a nonrelease schema
-
 
 # [0.2.6] - 2018-06-29
 ### Added
