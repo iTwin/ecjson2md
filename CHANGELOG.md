@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+# [0.2.7] - 2018-07-05
+### Added
+- Option to generate bemetalsmith alert in the case of a nonrelease schema
+
+
 # [0.2.6] - 2018-06-29
 ### Added
 - Documentaion for Bemetalsmith use in readme
