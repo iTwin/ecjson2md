@@ -10,7 +10,8 @@ import * as path from "path";
 const program = new commander.Command("ECJson2MD");
 program.option("-i, --input <required>", "path to ECSchemaJson file");
 program.option("-o, --output <required>", "directory to output ECSchema Markdown");
-program.option("-r  --dirs <required>", "list of comma delimited directories to search in");
+program.option("-r, --dirs <required>", "list of comma delimited directories to search in");
+program.option("-n, --nonrelease", "whether or not to include alert about being nonrelease");
 program.parse(process.argv);
 
 // Prompt to use the help flag if an input was missing
@@ -47,7 +48,7 @@ try {
   console.log(chalk.default.gray("Generating markdown at " + path.resolve(outputFilePath) + "..."));
 
   // Try to generate the markdown
-  mdGenerator.generate(inputSchemaPath, outputFilePath).then(() => {
+  mdGenerator.generate(inputSchemaPath, outputFilePath, program.nonrelease).then(() => {
     // tslint:disable-next-line:no-console
     console.log(chalk.default.blue("Markdown successfully generated at " + path.resolve(outputFilePath)));
   }).catch((error) => {
