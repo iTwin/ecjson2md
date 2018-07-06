@@ -67,6 +67,7 @@ In most cases, Bemetalsmith will do this out-of-the-box without additional confi
 
 ### Notes about use with Bemetalsmith
 
+- The "-n" option in ecjson2md will generate short code for bemetalsmith to include an alert stating that the documentation is for an unreleased schema
 - Human-written remarks must be contained in markdown files alongside the generated docs
 - Each schema must have a separate remarks file if it has any remarks
 - The name of the remarks file does not matter
