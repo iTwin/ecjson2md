@@ -9,6 +9,22 @@ import * as path from "path";
 const PLACE_HOLDER = "";
 
 /**
+ * Returns an array of directories from comma or semicolon list of directories
+ * @export
+ * @param {string} dirString String of directories to process
+ * @returns {string[]}
+ */
+export function prepSearchDirs(dirString: string): string[] {
+  // Replace common directory seperators with the system seperators
+  dirString = dirString.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep);
+
+  // Separate the search directories on ';' or ',' or ' ' or ', ' or '; '
+  const searchDirs = dirString.split(/, |; |;|,/g);
+
+  return searchDirs;
+}
+
+/**
  * Returns a proper file path
  *
  * @param rawOutputPath User given path to directory for output

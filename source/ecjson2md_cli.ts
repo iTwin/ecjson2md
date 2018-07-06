@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as chalk from "chalk";
-import { ECJsonMarkdownGenerator, prepOutputPath } from "./ecjson2md";
+import { ECJsonMarkdownGenerator, prepOutputPath, prepSearchDirs } from "./ecjson2md";
 import * as commander from "commander";
 import * as path from "path";
 
@@ -25,11 +25,8 @@ function main() {
   // Construct the output file path
   const outputFilePath = prepOutputPath(program.output, program.input);
 
-  // Remove any whitespace from dirs argument
-  let searchDirs = program.dirs.replace(/\s/g, "");
+  const searchDirs = prepSearchDirs(program.dirs);
 
-  // Separate the search directories
-  searchDirs = searchDirs.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep).split(/,|;/g);
   // Add the search directories to the new locator and load the schema
   try {
     // tslint:disable-next-line:no-console
