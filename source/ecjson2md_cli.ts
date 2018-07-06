@@ -6,8 +6,6 @@ import { ECJsonMarkdownGenerator } from "./ecjson2md";
 import * as commander from "commander";
 import * as path from "path";
 
-main();
-
 /**
  * Returns a proper file path
  *
@@ -79,3 +77,5 @@ function main() {
       console.log(chalk.default.red(e, "\nQuitting..."));
   }
 }
+
+main();
