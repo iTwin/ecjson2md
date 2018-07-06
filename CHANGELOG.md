@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+# [0.2.9] - 2018-07-06
+### Changed
+- Made the cli front-end more modular
+- Now uses absolute file path behind the scenes for input schema path, output markdown path, and search directory paths
+
 # [0.2.8] - 2018-07-05
 ### Fixed
 - Moved some dependencies into dev dependencies where they belong
