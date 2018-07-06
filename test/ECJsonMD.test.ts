@@ -509,20 +509,6 @@ describe("ECJsonToMD", () => {
       assert.isTrue(lines.indexOf("|:-----------|:------------------|:-----------|:-----------------------|") > -1, "class properties header not written properly");
     });
 
-    it("should create an empty table row at the end of a table", () => {
-      lines = markdownText.split("\n");
-
-      // Assert that an empty table row is generated at the end of the table
-      assert.isTrue(lines.indexOf("|            |                   |            |                        |") > -1, "empty row at end of table not written properly");
-    });
-
-    it("should create a table row for a property with name and type", () => {
-      lines = markdownText.split("\n");
-
-      // Assert that a table row is generated correctly for property with name and type
-      assert.isTrue(lines.indexOf("|Name_And_Type||string||") > -1, "property row with name and type not written properly");
-    });
-
     it("should create a table row for a property with name, description, and type", () => {
       lines = markdownText.split("\n");
 
@@ -574,13 +560,6 @@ describe("ECJsonToMD", () => {
       // Asserts that a header is correctly generated for the relationship table
       assert.isTrue(lines.indexOf("|          |    ConstraintClasses    |            Multiplicity            |") > -1, "class relationship table header not written properly");
       assert.isTrue(lines.indexOf("|:---------|:------------------------|:-----------------------------------|") > -1, "class relationship table header not written properly");
-    });
-
-    it("should create an empty table row at the end of a table", () => {
-      lines = markdownText.split("\n");
-
-      // Asserts that an empty table row is generated at the end of the table.
-      assert.isTrue(lines.indexOf("|          |                         |                                    |") > -1, "empty row at end of table not written properly");
     });
 
     it("should correctly generate the source table row with one constraint class", () => {
@@ -802,8 +781,7 @@ describe("ECJsonToMD", () => {
 
         "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
         "|:-----------|:------------------|:-----------|:-----------------------|\n" +
-        "|PropertyOne||int||\n" +
-        "|            |                   |            |                        |\n\n" +
+        "|PropertyOne||int||\n\n" +
 
         "### ClassOne\n\n" +
 
@@ -817,8 +795,7 @@ describe("ECJsonToMD", () => {
         "|:-----------|:------------------|:-----------|:-----------------------|\n" +
         "|PropertyOne|This is the first property of ClassOne|string|Json|\n" +
         "|PropertyTwo|This is the second property of ClassOne.|string||\n" +
-        "|PropertyThree|This is the third property of ClassOne|int||\n" +
-        "|            |                   |            |                        |\n\n" +
+        "|PropertyThree|This is the third property of ClassOne|int||\n\n" +
 
         "### ClassThree\n\n" +
 
@@ -837,8 +814,7 @@ describe("ECJsonToMD", () => {
         "|          |    ConstraintClasses    |            Multiplicity            |\n" +
         "|:---------|:------------------------|:-----------------------------------|\n" +
         "|**Source**|ClassOne|(0..*)|\n" +
-        "|**Target**|ClassTwo|(0..*)|\n" +
-        "|          |                         |                                    |\n\n" +
+        "|**Target**|ClassTwo|(0..*)|\n\n" +
 
         "**Class Properties:**\n\n" +
 
@@ -846,8 +822,7 @@ describe("ECJsonToMD", () => {
         "|:-----------|:------------------|:-----------|:-----------------------|\n" +
         "|PropertyOne|This is the first property of ClassTwo|int||\n" +
         "|PropertyTwo|This is the second property of ClassTwo.|string||\n" +
-        "|PropertyThree|This is the third property of ClassTwo|int||\n" +
-        "|            |                   |            |                        |\n\n" +
+        "|PropertyThree|This is the third property of ClassTwo|int||\n\n" +
 
         "### CustomHandledProperty\n\n" +
 
@@ -857,8 +832,7 @@ describe("ECJsonToMD", () => {
 
         "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
         "|:-----------|:------------------|:-----------|:-----------------------|\n" +
-        "|TestTypes||CustomTestType||\n" +
-        "|            |                   |            |                        |\n\n");
+        "|TestTypes||CustomTestType||\n\n");
     });
   });
 });

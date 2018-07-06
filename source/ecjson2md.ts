@@ -163,8 +163,7 @@ export class ECJsonMarkdownGenerator {
       "|          |    ConstraintClasses    |            Multiplicity            |\n" +
       "|:---------|:------------------------|:-----------------------------------|\n" +
       "|**Source**|" +  sourceCoClasses  + "|" + relClass.source.multiplicity + "|\n" +
-      "|**Target**|" +  targetCoClasses  + "|" + relClass.target.multiplicity + "|\n" +
-      "|          |                         |                                    |\n\n");
+      "|**Target**|" +  targetCoClasses  + "|" + relClass.target.multiplicity + "|\n\n");
   }
 
   public writeBaseClass(outputMDFile: string, baseClass: any) {
@@ -265,7 +264,7 @@ export class ECJsonMarkdownGenerator {
       this.writeClassPropertiesRow(outputMDFile, property);
     }
 
-    fs.appendFileSync(outputMDFile,     "|            |                   |            |                        |\n\n");
+    fs.appendFileSync(outputMDFile, "\n");
   }
 
   /**
