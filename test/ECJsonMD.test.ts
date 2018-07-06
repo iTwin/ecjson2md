@@ -207,7 +207,7 @@ describe("ECJsonToMD", () => {
       lines = markdownText.split("\n");
 
       // Assert that the classes header is written as h2
-      assert.isTrue(lines.indexOf("## Classes:") > -1, "## Classes: was not written properly");
+      assert.isTrue(lines.indexOf("## Classes") > -1, "## Classes was not written properly");
     });
 
     it("should write an h3 header for each class", () => {
@@ -310,7 +310,7 @@ describe("ECJsonToMD", () => {
 
       // Assert that the header for the classes section follows the schema description after a blank line
       assert.equal(lines[assertIndex + 1], "");
-      assert.equal(lines[assertIndex + 2], "## Classes:");
+      assert.equal(lines[assertIndex + 2], "## Classes");
     });
   });
 
@@ -384,7 +384,7 @@ describe("ECJsonToMD", () => {
 
       // Assert that the header for the classes section follows the schema description after a blank line
       assert.equal(lines[assertIndex + 1], "");
-      assert.equal(lines[assertIndex + 2], "## Classes:");
+      assert.equal(lines[assertIndex + 2], "## Classes");
     });
   });
 
@@ -426,7 +426,7 @@ describe("ECJsonToMD", () => {
       lines = markdownText.split("\n");
 
       // Get the index of the class header
-      const assertIndex = lines.indexOf("## Classes:");
+      const assertIndex = lines.indexOf("## Classes");
       assert.isTrue((assertIndex >= 0), "cannot find the class header");
 
       // Assert that ClassOne is written as h3 after the class label
@@ -636,14 +636,14 @@ describe("ECJsonToMD", () => {
 
       // Assert that the label follows the class type after a blank line
       assert.equal(lines[assertIndex + 1], "");
-      assert.equal(lines[assertIndex + 2], "**Relationship Class:**");
+      assert.equal(lines[assertIndex + 2], "**Relationship Class**");
     });
 
     it("Relationship table should come after the relationship class label", () => {
       lines = markdownText.split("\n");
 
       // Get the index of the relationship class label
-      const assertIndex = lines.indexOf("**Relationship Class:**");
+      const assertIndex = lines.indexOf("**Relationship Class**");
       assert.isTrue((assertIndex >= 0), "cannot find the relationship class label");
 
       // Assert that the table header follows the relationship class label after a blank line
@@ -661,14 +661,14 @@ describe("ECJsonToMD", () => {
 
       // Assert that class properties label follows the relationship table after a blank line
       assert.equal(lines[assertIndex + 4], "");
-      assert.equal(lines[assertIndex + 5], "**Class Properties:**");
+      assert.equal(lines[assertIndex + 5], "**Class Properties**");
     });
 
     it("Properties table should come after the relationship class label", () => {
       lines = markdownText.split("\n");
 
       // Get the index of the class properties label
-      const assertIndex = lines.indexOf("**Class Properties:**");
+      const assertIndex = lines.indexOf("**Class Properties**");
       assert.isTrue((assertIndex >= 0), "cannot find the class properties label");
 
       // Assert that properties table follows the class properties label after a blank line
@@ -780,7 +780,7 @@ describe("ECJsonToMD", () => {
 
         "This is test schema A.\n\n" +
 
-        "## Classes:\n\n" +
+        "## Classes\n\n" +
 
         "### ClassFour\n\n" +
 
@@ -788,7 +788,7 @@ describe("ECJsonToMD", () => {
 
         "**Class Type:** CustomAttributeClass\n\n" +
 
-        "**Class Properties:**\n\n" +
+        "**Class Properties**\n\n" +
 
         "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
         "|:-----------|:------------------|:-----------|:-----------------------|\n" +
@@ -800,7 +800,7 @@ describe("ECJsonToMD", () => {
 
         "**Class Type:** CustomAttributeClass\n\n" +
 
-        "**Class Properties:**\n\n" +
+        "**Class Properties**\n\n" +
 
         "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
         "|:-----------|:------------------|:-----------|:-----------------------|\n" +
@@ -820,14 +820,14 @@ describe("ECJsonToMD", () => {
 
         "**Base class:** [link_to schemaa.ecschema/#classone text=\"SchemaA:ClassOne\"]\n\n" +
 
-        "**Relationship Class:**\n\n" +
+        "**Relationship Class**\n\n" +
 
         "|          |    ConstraintClasses    |            Multiplicity            |\n" +
         "|:---------|:------------------------|:-----------------------------------|\n" +
         "|**Source**|ClassOne|(0..*)|\n" +
         "|**Target**|ClassTwo|(0..*)|\n\n" +
 
-        "**Class Properties:**\n\n" +
+        "**Class Properties**\n\n" +
 
         "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
         "|:-----------|:------------------|:-----------|:-----------------------|\n" +
@@ -839,7 +839,7 @@ describe("ECJsonToMD", () => {
 
         "**Class Type:** CustomAttributeClass\n\n" +
 
-        "**Class Properties:**\n\n" +
+        "**Class Properties**\n\n" +
 
         "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
         "|:-----------|:------------------|:-----------|:-----------------------|\n" +

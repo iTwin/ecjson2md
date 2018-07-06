@@ -94,7 +94,7 @@ export class ECJsonMarkdownGenerator {
     // Write the description of the schema as a <p>
     if (schema.description !== undefined) fs.appendFileSync(outputMDFile, schema.description + "\n\n");
     // Create an <h2> for "classes"
-    fs.appendFileSync(outputMDFile, "## Classes:\n\n");
+    fs.appendFileSync(outputMDFile, "## Classes\n\n");
   }
 
   /**
@@ -156,7 +156,7 @@ export class ECJsonMarkdownGenerator {
     const targetCoClasses = this.collectConstraintClasses(relClass.target.constraintClasses);
 
     // Write <strong> header
-    fs.appendFileSync(outputMDFile, "**Relationship Class:**\n\n");
+    fs.appendFileSync(outputMDFile, "**Relationship Class**\n\n");
 
     // Write table
     fs.appendFileSync(outputMDFile,
@@ -267,7 +267,7 @@ export class ECJsonMarkdownGenerator {
    * @param outputMDFile File to write to
    */
   private writePropertiesHeader(outputMDFile: string): void {
-    fs.appendFileSync(outputMDFile, "**Class Properties:**\n\n");
+    fs.appendFileSync(outputMDFile, "**Class Properties**\n\n");
     fs.appendFileSync(outputMDFile,     "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
                                         "|:-----------|:------------------|:-----------|:-----------------------|\n");
   }
