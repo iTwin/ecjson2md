@@ -2,30 +2,9 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as chalk from "chalk";
-import { ECJsonMarkdownGenerator } from "./ecjson2md";
+import { ECJsonMarkdownGenerator, prepOutputPath } from "./ecjson2md";
 import * as commander from "commander";
 import * as path from "path";
-
-/**
- * Returns a proper file path
- *
- * @param rawOutputPath User given path to directory for output
- * @param {string} inputPath  User given path to input file (used for output file name)
- * @returns {string} Proper file path
- */
-export function prepOutputPath(rawOutputPath: string, inputPath: string): string {
-  // Replace common separators with os path separator
-  let outputDir: string = rawOutputPath.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep);
-
-  // add a slash to the end if the user didn't provide one
-  if (!(outputDir[outputDir.length - 1] === path.sep)) outputDir += path.sep;
-
-  // Form the file name
-  const inputPathParts = inputPath.split(/(\/){1}|(\\){2}|(\\){1}/g);
-  const preppedOutputPath = outputDir + inputPathParts[inputPathParts.length - 1].slice(0, -5) + ".md";
-
-  return preppedOutputPath;
-}
 
 function main() {
   // Get cli arguments
