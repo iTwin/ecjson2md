@@ -8,6 +8,54 @@ import * as path from "path";
 
 const PLACE_HOLDER = "";
 
+/**
+ * Returns an array of paths to directories from comma or semicolon separated string of paths to directories
+ * @export
+ * @param {string} dirString String of directories to process
+ * @returns {string[]}
+ */
+export function prepSearchDirs(dirString: string): string[] {
+  // Replace common directory separators with the system seperators
+  dirString = dirString.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep);
+
+  // Separate the search directories on ';' or ',' or ' ' or ', ' or '; '
+  const searchDirs = dirString.split(/, |; |;|,/g);
+
+  const searchDirPaths = new Array<string>();
+
+  // Get the absolute file path
+  for (const searchPath of searchDirs) {
+    searchDirPaths.push(path.resolve(searchPath));
+  }
+
+  return searchDirPaths;
+}
+
+/**
+ * Returns a proper output path for a markdown file given the output directory path
+ * and input file path
+ *
+ * @param rawOutputPath User given path to directory for output
+ * @param {string} inputPath  User given path to input file (used for output file name)
+ * @returns {string} Proper output file path
+ */
+export function prepOutputPath(rawOutputPath: string, inputPath: string): string {
+  // Replace common separators with os path separator
+  let outputDir: string = path.normalize(rawOutputPath);
+
+  // add a slash to the end if the user didn't provide one
+  if (!(outputDir[outputDir.length - 1] === path.sep)) outputDir += path.sep;
+
+  // Form the file name
+  const inputPathParts = inputPath.split(/(\/){1}|(\\){2}|(\\){1}/g);
+  let preppedOutputPath = outputDir + inputPathParts[inputPathParts.length - 1].slice(0, -5) + ".md";
+
+  // Resolve the absolute file path
+  preppedOutputPath = path.resolve(preppedOutputPath);
+
+  return preppedOutputPath;
+}
+
 export class ECJsonMarkdownGenerator {
   private context: SchemaContext;
   public searchDirs: string[];
@@ -256,8 +304,5 @@ export class ECJsonMarkdownGenerator {
         this.writeTitle(outputFilePath, result);
         await this.writeClasses(outputFilePath, result);
       });
-      // .catch(() => {
-      //   throw Error("Could not load ECSchema JSON file");
-      // });
   }
 }
