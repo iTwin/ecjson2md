@@ -509,6 +509,12 @@ describe("ECJsonToMD", () => {
       assert.isTrue(lines.indexOf("|:-----------|:------------------|:-----------|:-----------------------|") > -1, "class properties header not written properly");
     });
 
+    it("should create a table row for a property with name and type", () => {
+      lines = markdownText.split("\n");
+      // Assert that a table row is generated correctly for property with name and type
+      assert.isTrue(lines.indexOf("|Name_And_Type||string||") > -1, "property row with name and type not written properly");
+    });
+
     it("should create a table row for a property with name, description, and type", () => {
       lines = markdownText.split("\n");
 
