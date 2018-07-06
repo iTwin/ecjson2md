@@ -8,6 +8,10 @@ import * as path from "path";
 
 const PLACE_HOLDER = "";
 
+// export function normalizeSeperators(badSepString: string): string {
+//   return
+// }
+
 /**
  * Returns an array of directories from comma or semicolon list of directories
  * @export
@@ -33,7 +37,7 @@ export function prepSearchDirs(dirString: string): string[] {
  */
 export function prepOutputPath(rawOutputPath: string, inputPath: string): string {
   // Replace common separators with os path separator
-  let outputDir: string = rawOutputPath.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep);
+  let outputDir: string = path.normalize(rawOutputPath);
 
   // add a slash to the end if the user didn't provide one
   if (!(outputDir[outputDir.length - 1] === path.sep)) outputDir += path.sep;
