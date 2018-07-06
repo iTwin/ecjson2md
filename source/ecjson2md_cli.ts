@@ -25,6 +25,7 @@ function main() {
   // Construct the output file path
   const outputFilePath = prepOutputPath(program.output, program.input);
 
+  // Normalize the search dirs
   const searchDirs = prepSearchDirs(program.dirs);
 
   // Add the search directories to the new locator and load the schema
