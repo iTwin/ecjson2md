@@ -696,7 +696,7 @@ describe("ECJsonToMD", () => {
     });
   });
 
-  describe("Advanced markdown generation tests", () => {
+  describe("Other markdown generation tests", () => {
     let testFilePath: string;
     let outputFilePath: string;
     let lines: string[];
@@ -737,6 +737,11 @@ describe("ECJsonToMD", () => {
     it("should list multiple constraint classes", () => {
       assert.equal(lines[69], "|**Source**|A, B, C|(0..*)|");
       assert.equal(lines[70], "|**Target**|D, E, F|(0..*)|");
+    });
+
+    it("should not generate two consecutive blank lines at the end of the file", () => {
+      assert.equal(lines[lines.length - 1], "", "Last line of file not empty");
+      assert.notEqual(lines[lines.length - 2], "", "File ends with more than one blank line");
     });
   });
 
