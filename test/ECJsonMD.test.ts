@@ -670,13 +670,13 @@ describe("ECJsonToMD", () => {
     it("Class properties label should come after the relationship table", () => {
       lines = markdownText.split("\n");
 
-      // Get the index of the last row in the relationship table
-      const assertIndex = lines.indexOf("|          |                         |                                    |");
-      assert.isTrue((assertIndex >= 0), "cannot find the last row of relationship class table");
+      // Get the index of the first row in the relationship table
+      const assertIndex = lines.indexOf("|          |    ConstraintClasses    |            Multiplicity            |");
+      assert.isTrue((assertIndex >= 0), "cannot find the first row of relationship class table");
 
       // Assert that class properties label follows the relationship table after a blank line
-      assert.equal(lines[assertIndex + 1], "");
-      assert.equal(lines[assertIndex + 2], "**Class Properties:**");
+      assert.equal(lines[assertIndex + 4], "");
+      assert.equal(lines[assertIndex + 5], "**Class Properties:**");
     });
 
     it("Properties table should come after the relationship class label", () => {
@@ -690,6 +690,24 @@ describe("ECJsonToMD", () => {
       assert.equal(lines[assertIndex + 1], "");
       assert.equal(lines[assertIndex + 2], "|    Name    |    Description    |    Type    |      Extended Type     |");
       assert.equal(lines[assertIndex + 3], "|:-----------|:------------------|:-----------|:-----------------------|");
+    });
+
+    it("should not write an empty table row for properties table", () => {
+      lines = markdownText.split("\n");
+
+      // Search for the empty row
+      const assertIndex = markdownText.search(/\n\|\s+\|\s+\|\s+\|\s+\|\n/g);
+
+      assert.equal(assertIndex, -1);
+    });
+
+    it("should not write an empty table row for relationship table", () => {
+      lines = markdownText.split("\n");
+
+      // Search for the empty row
+      const assertIndex = markdownText.search(/\n\|\s+\|\s+\|\s+\|\n/g);
+
+      assert.equal(assertIndex, -1);
     });
   });
 
