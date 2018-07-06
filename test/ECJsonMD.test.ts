@@ -843,7 +843,7 @@ describe("ECJsonToMD", () => {
 
         "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
         "|:-----------|:------------------|:-----------|:-----------------------|\n" +
-        "|TestTypes||CustomTestType||\n\n");
+        "|TestTypes||CustomTestType||\n");
     });
   });
 });
