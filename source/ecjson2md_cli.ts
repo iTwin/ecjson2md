@@ -51,7 +51,6 @@ function main() {
 
   // Separate the search directories
   searchDirs = searchDirs.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep).split(/,|;/g);
-
   // Add the search directories to the new locator and load the schema
   try {
     // tslint:disable-next-line:no-console
@@ -65,6 +64,7 @@ function main() {
 
     // Try to generate the markdown
     mdGenerator.generate(program.input, outputFilePath, program.nonrelease).then(() => {
+
       // tslint:disable-next-line:no-console
       console.log(chalk.default.blue("Markdown successfully generated at " + path.resolve(outputFilePath)));
     }).catch((error) => {
