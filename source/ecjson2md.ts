@@ -8,6 +8,11 @@ import * as path from "path";
 
 const PLACE_HOLDER = "";
 
+/**
+ * Returns the name of the type that corresponds to the property number.
+ * @param {number} propertyTypeNumber property._type
+ * @returns Sring of the name of the property type
+ */
 export function propertyTypeNumberToString(propertyTypeNumber: number) {
   switch (propertyTypeNumber) {
     case PropertyType.Struct: return "struct";
@@ -40,6 +45,15 @@ export function propertyTypeNumberToString(propertyTypeNumber: number) {
     default: throw new BadPropertyType(propertyTypeNumber);
   }
 }
+
+export function formatWarningAlert(alertText: string) {
+  return "[!alert text=\"" + alertText + "\" kind=\"warning\"]";
+}
+
+export function formatLink(linkString: string, linkText: string): string {
+  return "[link_to " + linkString + " text=\"" + linkText + "\"]";
+}
+
 /**
  * Returns an array of paths to directories from comma or semicolon separated string of paths to directories
  * @export
@@ -142,7 +156,7 @@ export class ECJsonMarkdownGenerator {
 
     // Put an alert on the page if needed
     if (nonReleaseFlag) {
-      fs.appendFileSync(outputMDFile, "[!alert text=\"This documentation represents a nonreleased version of this schema\" kind=\"warning\"]\n\n");
+      fs.appendFileSync(outputMDFile, formatWarningAlert("This documentation represents a nonreleased version of this schema") + "\n\n");
     }
   }
 
@@ -198,13 +212,17 @@ export class ECJsonMarkdownGenerator {
       "|**Target**|" +  targetCoClasses  + "|" + relClass.target.multiplicity + "|\n");
   }
 
-  public writeBaseClass(outputMDFile: string, baseClass: any) {
-    if (baseClass !== undefined) {
-      baseClass.then((result: any) => {
-        fs.appendFileSync(outputMDFile, "**Base class:** " + "[link_to " + result.schema.name.toLowerCase() + ".ecschema" + "/#" +  result.name.toLowerCase()  + " text=\"" + result.schema.name + ":" + result.name + "\"]\n");
-      });
-    }
-  }
+  // public writeBaseClass(outputMDFile: string, baseClass: any) {
+  //   if (baseClass !== undefined) {
+  //     baseClass.then((result: any) => {
+  //       const baseClassLink = result.schema.name.toLowerCase() + ".ecschema/#" + result.name.toLowerCase();
+  //       const baseClassName = result.schema.name + ":" + result.name;
+
+  //       fs.appendFileSync(outputMDFile, "**Base Class:**" + formatLink(baseClassLink, baseClassName));
+  //     });
+  //   }
+  // }
+
   /**
    * Writes the classes of the schema to the md file at the outputfile.
    * @param outputMDFile Markdown file to write to
@@ -253,10 +271,14 @@ export class ECJsonMarkdownGenerator {
       // Write the base class if it's given
       if (schemaClass.baseClass !== undefined) {
         await schemaClass.baseClass.then((result: any) => {
-          fs.appendFileSync(outputMDFile, "**Base class:** " + "[link_to " + result.schema.name.toLowerCase() + ".ecschema" + "/#" +  result.name.toLowerCase()  + " text=\"" + result.schema.name + ":" + result.name + "\"]\n");
+          const baseClassLink = result.schema.name.toLowerCase() + ".ecschema/#" + result.name.toLowerCase();
+          const baseClassName = result.schema.name + ":" + result.name;
+
+          fs.appendFileSync(outputMDFile, "**Base Class:** " + formatLink(baseClassLink, baseClassName)  + "\n");
+
           // Write an extra blank line iff this is not the last class or is a relationship class or has properties
           if (!isLastClass || isRelationshipClass || hasProperties)
-            fs.appendFileSync(outputMDFile, "\n");
+             fs.appendFileSync(outputMDFile, "\n");
         });
       }
 
@@ -317,8 +339,18 @@ export class ECJsonMarkdownGenerator {
     // If the attribute is not there, return the place holder
     const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
 
-    const type = this.propertyTypeToString(property);
+    let type = this.propertyTypeToString(property);
+    // If the property type is navigation, create a link to the class that it points to
+    if (type === "navigation") {
+      // TODO: Add tests for this
+      const targetSchema = property._relationshipClass.schemaName;
+      const targetClass = property._relationshipClass.name;
+
+      type = formatLink(targetSchema.toLowerCase() + ".ecschema/#" + targetClass.toLowerCase(), type);
+    }
+
     const name = helper(property._name._name);
+
     const description = helper(property._description);
     const extendedTypeName = helper(property.extendedTypeName);
 

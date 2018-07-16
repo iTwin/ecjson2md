@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support for Enumeration, KOQ's, and other SchemaItems
 - ~~Remove property table if there are no properties~~
 - ~~Remove ':' from all headers~~
-- Add link for navigation properties
+- ~~Add link for navigation properties~~
 - ~~Remove extra blank line at the end of the file~~
 - Verified source and target constraint classes link
 

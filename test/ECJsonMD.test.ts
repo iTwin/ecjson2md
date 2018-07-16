@@ -247,7 +247,7 @@ describe("ECJsonToMD", () => {
       lines = markdownText.split("\n");
 
       // Assert that a link is written for the base class
-      assert.isTrue(lines.indexOf("**Base class:** [link_to basicclasses.ecschema/#classone text=\"BasicClasses:ClassOne\"]") > -1, "base class link not written properly");
+      assert.isTrue(lines.indexOf("**Base Class:** [link_to basicclasses.ecschema/#classone text=\"BasicClasses:ClassOne\"]") > -1, "base class link not written properly");
     });
   });
 
@@ -467,7 +467,7 @@ describe("ECJsonToMD", () => {
 
       // Assert that the base class follows the class type after a blank line
       assert.equal(lines[assertIndex + 1], "");
-      assert.equal(lines[assertIndex + 2], "**Base class:** [link_to basicclasses.ecschema/#classone text=\"BasicClasses:ClassOne\"]");
+      assert.equal(lines[assertIndex + 2], "**Base Class:** [link_to basicclasses.ecschema/#classone text=\"BasicClasses:ClassOne\"]");
     });
   });
 
@@ -818,7 +818,7 @@ describe("ECJsonToMD", () => {
 
         "**Class Type:** RelationshipClass\n\n" +
 
-        "**Base class:** [link_to schemaa.ecschema/#classone text=\"SchemaA:ClassOne\"]\n\n" +
+        "**Base Class:** [link_to schemaa.ecschema/#classone text=\"SchemaA:ClassOne\"]\n\n" +
 
         "**Relationship Class**\n\n" +
 
