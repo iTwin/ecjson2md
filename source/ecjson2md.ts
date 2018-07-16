@@ -325,7 +325,7 @@ export class ECJsonMarkdownGenerator {
    * @param outputMDFile File to write to
    */
   private writePropertiesHeader(outputMDFile: string): void {
-    fs.appendFileSync(outputMDFile, "**Class Properties**\n\n");
+    fs.appendFileSync(outputMDFile, "**Properties**\n\n");
     fs.appendFileSync(outputMDFile,     "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
                                         "|:-----------|:------------------|:-----------|:-----------------------|\n");
   }

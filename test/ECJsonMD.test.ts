@@ -661,14 +661,14 @@ describe("ECJsonToMD", () => {
 
       // Assert that class properties label follows the relationship table after a blank line
       assert.equal(lines[assertIndex + 4], "");
-      assert.equal(lines[assertIndex + 5], "**Class Properties**");
+      assert.equal(lines[assertIndex + 5], "**Properties**");
     });
 
     it("Properties table should come after the relationship class label", () => {
       lines = markdownText.split("\n");
 
       // Get the index of the class properties label
-      const assertIndex = lines.indexOf("**Class Properties**");
+      const assertIndex = lines.indexOf("**Properties**");
       assert.isTrue((assertIndex >= 0), "cannot find the class properties label");
 
       // Assert that properties table follows the class properties label after a blank line
@@ -788,7 +788,7 @@ describe("ECJsonToMD", () => {
 
         "**Class Type:** CustomAttributeClass\n\n" +
 
-        "**Class Properties**\n\n" +
+        "**Properties**\n\n" +
 
         "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
         "|:-----------|:------------------|:-----------|:-----------------------|\n" +
@@ -800,7 +800,7 @@ describe("ECJsonToMD", () => {
 
         "**Class Type:** CustomAttributeClass\n\n" +
 
-        "**Class Properties**\n\n" +
+        "**Properties**\n\n" +
 
         "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
         "|:-----------|:------------------|:-----------|:-----------------------|\n" +
@@ -827,7 +827,7 @@ describe("ECJsonToMD", () => {
         "|**Source**|ClassOne|(0..*)|\n" +
         "|**Target**|ClassTwo|(0..*)|\n\n" +
 
-        "**Class Properties**\n\n" +
+        "**Properties**\n\n" +
 
         "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
         "|:-----------|:------------------|:-----------|:-----------------------|\n" +
@@ -839,7 +839,7 @@ describe("ECJsonToMD", () => {
 
         "**Class Type:** CustomAttributeClass\n\n" +
 
-        "**Class Properties**\n\n" +
+        "**Properties**\n\n" +
 
         "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
         "|:-----------|:------------------|:-----------|:-----------------------|\n" +
