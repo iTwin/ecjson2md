@@ -2,12 +2,44 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass, primitiveTypeToString } from "@bentley/ecjs";
-import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath } from "./Exception";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass, PropertyType, primitiveTypeToString } from "@bentley/ecjs";
+import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
 const PLACE_HOLDER = "";
 
+export function propertyTypeNumberToString(propertyTypeNumber: number) {
+  switch (propertyTypeNumber) {
+    case PropertyType.Struct: return "struct";
+    case PropertyType.String_Array: return "struct array";
+    case PropertyType.Navigation: return "navigation";
+    case PropertyType.Binary: return "binary";
+    case PropertyType.Binary_Array: return "binary array";
+    case PropertyType.Boolean: return "boolean";
+    case PropertyType.Boolean_Array: return "boolean array";
+    case PropertyType.DateTime: return "dateTime";
+    case PropertyType.DateTime_Array: return "dateTime array";
+    case PropertyType.Double: return "double";
+    case PropertyType.Double_Array: return "double array";
+    case PropertyType.Integer: return "int";
+    case PropertyType.Integer_Array: return "int array";
+    case PropertyType.Integer_Enumeration: return "int enum";
+    case PropertyType.Integer_Enumeration_Array: return "int enum array";
+    case PropertyType.Long: return "long";
+    case PropertyType.Long_Array: return "long array";
+    case PropertyType.Point2d: return "point2d";
+    case PropertyType.Point2d_Array: return "point2d array";
+    case PropertyType.Point3d: return "point3d";
+    case PropertyType.Point3d_Array: return "point3d array";
+    case PropertyType.String: return "string";
+    case PropertyType.String_Array: return "string array";
+    case PropertyType.String_Enumeration: return "string enum";
+    case PropertyType.String_Enumeration_Array: return "string enum array";
+    case PropertyType.IGeometry: return "IGeometry";
+    case PropertyType.IGeometry_Array: return "IGeometry array";
+    default: throw new BadPropertyType(propertyTypeNumber);
+  }
+}
 /**
  * Returns an array of paths to directories from comma or semicolon separated string of paths to directories
  * @export
@@ -257,7 +289,11 @@ export class ECJsonMarkdownGenerator {
       try {
         return property.enumeration._name._name;
       } catch (err) {
-        return PLACE_HOLDER;
+        try {
+          return propertyTypeNumberToString(property._type);
+        } catch (err) {
+          return PLACE_HOLDER;
+        }
       }
     }
   }
