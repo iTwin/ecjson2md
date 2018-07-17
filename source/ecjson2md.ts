@@ -69,10 +69,19 @@ export function prepSearchDirs(dirString: string): string[] {
   return searchDirPaths;
 }
 
+/**
+ * Returns a string containing the shortcode for a warning alert in Bemetalsmith
+ * @param alertText Text to display in the alert
+ */
 export function formatWarningAlert(alertText: string) {
   return "[!alert text=\"" + alertText + "\" kind=\"warning\"]";
 }
 
+/**
+ * Returns a string containing the shortode for a link in Bemetalsmith
+ * @param linkString Link to open
+ * @param linkText Text to display on link
+ */
 export function formatLink(linkString: string, linkText: string): string {
   return "[link_to " + linkString + " text=\"" + linkText + "\"]";
 }
@@ -160,6 +169,10 @@ export class ECJsonMarkdownGenerator {
     }
   }
 
+  /**
+   * Returns a list of entity classes sorted by name.
+   * @param schema The schema to pull the entity classes from
+   */
   private getSortedEntityClasses(schema: Schema): ECClass[] {
     const classes = schema.getClasses();
     const entityClasses = new Array();
@@ -177,6 +190,10 @@ export class ECJsonMarkdownGenerator {
     });
   }
 
+  /**
+   * Returns a formatted label and link for a base class. The link goes to the base class
+   * @param schemaClass ECClass to get the base class from
+   */
   private async getBaseClassLink(schemaClass: ECClass) {
     if (schemaClass.baseClass !== undefined) {
       await schemaClass.baseClass.then((result: any) => {
@@ -210,7 +227,12 @@ export class ECJsonMarkdownGenerator {
     }
   }
 
-  private writeClassPropertiesRow(outputFilePath: string, property: any): void {
+  /**
+   * Writes a markdown table row for an EC Entity Class
+   * @param outputFilePath File to write the markdown to
+   * @param property Property to pull the information from
+   */
+  private writeEntityClassPropertiesRow(outputFilePath: string, property: any): void {
     // If the attribute is not there, return the place holder
     const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
 
@@ -247,9 +269,14 @@ export class ECJsonMarkdownGenerator {
 
     // Write each table row
     for (const property of properties)
-      this.writeClassPropertiesRow(outputFilePath, property);
+      this.writeEntityClassPropertiesRow(outputFilePath, property);
   }
 
+  /**
+   * Writes the entity classes from a schema as markdown to the output file
+   * @param outputFilePath Path to the file to write the markdown into
+   * @param schema Schema to pull the entity class information from
+   */
   private async writeEntityClasses(outputFilePath: string, schema: Schema) {
     // Get a sorted list of the entity classes in the schema
     const entityClasses = this.getSortedEntityClasses(schema);
