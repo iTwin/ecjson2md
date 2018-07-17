@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass, PropertyType, primitiveTypeToString, SchemaItem, EntityClass } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass, PropertyType, primitiveTypeToString, SchemaItem, EntityClass, KindOfQuantity } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
@@ -191,20 +191,24 @@ export class ECJsonMarkdownGenerator {
   }
 
   /**
-   * Returns a formatted label and link for a base class. The link goes to the base class
-   * @param schemaClass ECClass to get the base class from
+   * Returns a list of KOQ's sorted by name.
+   * @param schema The schema to pull the kind of quanity items from
    */
-  private async getBaseClassLink(schemaClass: ECClass) {
-    if (schemaClass.baseClass !== undefined) {
-      await schemaClass.baseClass.then((result: any) => {
-        const baseClassLink = result.schema.name.toLowerCase() + ".ecschema/#" + result.name.toLowerCase();
-        const baseClassName = result.schema.name + ":" + result.name;
+  private getSortedKOQClasses(schema: Schema): KindOfQuantity[] {
+    const items = schema.getItems();
+    const koqItems = new Array();
 
-        return "**Base Class:** " + formatLink(baseClassLink, baseClassName);
-      });
+    // For each item, only include it if it's a KOQ
+    for (const item of items) {
+      if (item.constructor.name === "KindOfQuantity") koqItems.push(item);
     }
 
-    return "";
+    // Sort the list of KOQ's by name and return it
+    return koqItems.sort((c1, c2) => {
+      if (c1.name > c2.name) return 1;
+      else if (c1.name < c2.name) return -1;
+      else return 0;
+    });
   }
 
   /**
@@ -321,6 +325,42 @@ export class ECJsonMarkdownGenerator {
   }
 
   /**
+   * Write the information from kind of quantity schema items in a markdown file at the specified file path
+   * @param outputFilePath Path to write the markdown table to
+   * @param schema Schema to pull the kind of quantity items from
+   */
+  public writeKindOfQuantityClasses(outputFilePath: string, schema: Schema) {
+    // If the attribute is not there, return the place holder
+    const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
+
+    const koqItems = this.getSortedKOQClasses(schema);
+
+    // If there are no KOQ's, return
+    if (koqItems.length === 0) return;
+
+    fs.appendFileSync(outputFilePath,
+        "|  Typename  | Description | Display Label |   Persistence Unit  |    Precision    | Default Presentation Unit  | Alt Presentation Unit |\n" +
+        "|:-----------|:------------|:--------------|:--------------------|:----------------|:---------------------------|:----------------------|\n");
+
+    // tslint:disable-next-line:no-console
+    console.log(koqItems);
+
+    for (const item of koqItems) {
+      const type = helper(item.type);
+      const desc = helper(item.description);
+      const label = helper(item.label);
+      const persistUnit  = item.persistenceUnit !== undefined ? item.persistenceUnit.unit : PLACE_HOLDER;
+      const precision = helper(item.precision);
+      const presUnit = item.presentationUnits[0] !== undefined ? item.presentationUnits[0].unit : PLACE_HOLDER;
+      const altPresUnit = item.presentationUnits[1] !== undefined ? item.presentationUnits[1].unit : PLACE_HOLDER;
+
+      // Write the table row for the KOQ's
+      fs.appendFileSync(outputFilePath,
+        "|" + type + "|" + desc  + "|" +  label +  "|" + persistUnit + "|" + precision + "|" +       presUnit       + "|" +   altPresUnit   + "|\n");
+    }
+}
+
+  /**
    * Loads a schema and its references into memory and drives the
    * markdown generation
    * @param schemaPath path to SchemaJson to load
@@ -355,6 +395,7 @@ export class ECJsonMarkdownGenerator {
         this.writeFrontMatter(outputFilePath, result, nonReleaseFlag);
         this.writeTitle(outputFilePath, result);
         this.writeEntityClasses(outputFilePath, result);
+        this.writeKindOfQuantityClasses(outputFilePath, result);
       });
   }
 }
