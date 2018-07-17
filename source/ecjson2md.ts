@@ -46,14 +46,6 @@ export function propertyTypeNumberToString(propertyTypeNumber: number) {
   }
 }
 
-export function formatWarningAlert(alertText: string) {
-  return "[!alert text=\"" + alertText + "\" kind=\"warning\"]";
-}
-
-export function formatLink(linkString: string, linkText: string): string {
-  return "[link_to " + linkString + " text=\"" + linkText + "\"]";
-}
-
 /**
  * Returns an array of paths to directories from comma or semicolon separated string of paths to directories
  * @export
@@ -75,6 +67,14 @@ export function prepSearchDirs(dirString: string): string[] {
   }
 
   return searchDirPaths;
+}
+
+export function formatWarningAlert(alertText: string) {
+  return "[!alert text=\"" + alertText + "\" kind=\"warning\"]";
+}
+
+export function formatLink(linkString: string, linkText: string): string {
+  return "[link_to " + linkString + " text=\"" + linkText + "\"]";
 }
 
 /**
@@ -160,179 +160,34 @@ export class ECJsonMarkdownGenerator {
     }
   }
 
- /**
-  * @returns an array of ecschema classes sorted based on name
-  * @param schema Schema that contains the classes to be sorted
-  */
-  private getSortedClasses(schema: Schema): ECClass[] {
-    return schema.getClasses().sort((c1, c2) => {
-      if (c1.name > c2.name) return 1;
-      else if (c1.name < c2.name) return -1;
-      else return 0;
-    });
-  }
+  private getSortedEntityClasses(schema: Schema): ECClass[] {
+    const classes = schema.getClasses();
+    const entityClasses = new Array();
 
-  private getSortedItems(schema: Schema): SchemaItem[] {
-    return schema.getItems().sort((c1, c2) => {
-      if (c1.name > c2.name) return 1;
-      else if (c1.name < c2.name) return -1;
-      else return 0;
-    });
-  }
-
-  /**
-   * @returns A string that contains a comma separated list of constraint classes
-   * @param constraintClasses Target or source constraint classes
-   */
-  private collectConstraintClasses(constraintClasses: any): string {
-    if (constraintClasses === undefined) return "";
-
-    let constraintClassString: string = "";
-
-    for (const constraintClass of constraintClasses) {
-      // If the current class is the last one, don't append a comma
-      if (constraintClass === constraintClasses[constraintClasses.length - 1])
-        constraintClassString += constraintClass.name;
-      else constraintClassString += constraintClass.name + ", ";
+    // For each class, only include it if it's an EntityClass
+    for (const item of classes) {
+      if (item.constructor.name === "EntityClass") entityClasses.push(item);
     }
 
-    return constraintClassString;
+    // Sort the list of entity classes by name and return it
+    return entityClasses.sort((c1, c2) => {
+      if (c1.name > c2.name) return 1;
+      else if (c1.name < c2.name) return -1;
+      else return 0;
+    });
   }
 
-  /**
-   * Writes the details of a relationship class as markdown.
-   * @param ouputMDFile MarkdownFile to write to
-   * @param relClass Relationship class to pull information from
-   */
-  private writeRelationshipClass(outputMDFile: any, relClass: RelationshipClass) {
-    // Format constraint class lists
-    const sourceCoClasses = this.collectConstraintClasses(relClass.source.constraintClasses);
-    const targetCoClasses = this.collectConstraintClasses(relClass.target.constraintClasses);
-
-    // Write <strong> header
-    fs.appendFileSync(outputMDFile, "**Relationship Class**\n\n");
-
-    // Write table
-    fs.appendFileSync(outputMDFile,
-      "|          |    ConstraintClasses    |            Multiplicity            |\n" +
-      "|:---------|:------------------------|:-----------------------------------|\n" +
-      "|**Source**|" +  sourceCoClasses  + "|" + relClass.source.multiplicity + "|\n" +
-      "|**Target**|" +  targetCoClasses  + "|" + relClass.target.multiplicity + "|\n");
-  }
-
-  public writeBaseClass(outputMDFile: string, baseClass: any) {
-    if (baseClass !== undefined) {
-      baseClass.then((result: any) => {
+  private async getBaseClassLink(schemaClass: ECClass) {
+    if (schemaClass.baseClass !== undefined) {
+      await schemaClass.baseClass.then((result: any) => {
         const baseClassLink = result.schema.name.toLowerCase() + ".ecschema/#" + result.name.toLowerCase();
         const baseClassName = result.schema.name + ":" + result.name;
 
-        fs.appendFileSync(outputMDFile, "**Base Class:**" + formatLink(baseClassLink, baseClassName));
+        return "**Base Class:** " + formatLink(baseClassLink, baseClassName);
       });
     }
-  }
 
-  private writeSchemaItemsTable(outputFilePath: string, schema: Schema): void {
-    const items = this.getSortedItems(schema);
-
-    if (items.length === 0) return;
-
-    fs.appendFileSync(outputFilePath,
-        "|  Typename  | Description | Display Label |   Persistence Unit  |    Precision    | Default Presentation Unit  | Alt Presentation Unit |\n" +
-        "|:-----------|:------------|:--------------|:--------------------|:----------------|:---------------------------|:----------------------|");
-
-    for (const item of items) {
-      const type = item.type;
-      const desc = item.description;
-      const label = item.label;
-      // const perstistUnits = item.persistenceUnit.unit;
-      // const precision = item.precision;
-      // const presUnit = item.presentationUnits[0].unit;
-      // const altPresUnit = item.presentationUnits[1].unit;
-
-      fs.appendFileSync(outputFilePath,
-        "|" + type + "|" + desc  + "|" +  label +  "|"); // + perstistUnits + "|" + precision + "|" +       presUnit       + "|" +   altPresUnit   + "|");
-    }
-
-    fs.appendFileSync(outputFilePath,
-        "|------------|-------------|---------------|---------------------|-----------------|----------------------------|-----------------------|");
-  }
-
-  /**
-   * Writes the classes of the schema to the md file at the outputfile.
-   * @param outputMDFile Markdown file to write to
-   * @param schema Schema to grab the classes from
-   */
-  private async writeClasses(outputMDFile: any, schema: Schema) {
-
-    const classes = this.getSortedClasses(schema);
-
-    let isLastClass: boolean, isRelationshipClass: boolean, hasProperties: boolean, hasDescription: boolean, hasClassType: boolean, hasBaseClass: boolean;
-
-    for (const schemaClass of classes) {
-      isLastClass = isRelationshipClass = hasProperties = hasDescription = hasClassType = hasBaseClass = false;
-
-      isLastClass = (schemaClass === classes[classes.length - 1]);
-      isRelationshipClass = (schemaItemTypeToString(schemaClass.type) === "RelationshipClass");
-      hasProperties = schemaClass.properties !== undefined;
-      hasDescription = schemaClass.description !== undefined;
-      hasClassType = schemaClass.type !== undefined;
-      hasBaseClass = await schemaClass.baseClass !== undefined;
-
-      // Write the name of the class
-      fs.appendFileSync(outputMDFile, "### " + schemaClass.name + "\n");
-      // Write an extra blank line iff this is not the last class or this class has a description or the class has a type or this
-      // class has a baseclass or this class is a relationship class or this class has properties
-      if (!isLastClass || hasDescription || hasClassType || hasBaseClass || isRelationshipClass || hasProperties)
-        fs.appendFileSync(outputMDFile, "\n");
-
-      // Write the class description if it's given
-      if (hasDescription) {
-        fs.appendFileSync(outputMDFile, schemaClass.description + "\n");
-         // Write an extra blank line iff this is not the last class or the class has a class type or the class has a base class or
-         // the class is a releationship class or the class has properties.
-        if (!isLastClass || hasClassType || hasBaseClass || isRelationshipClass || hasProperties)
-          fs.appendFileSync(outputMDFile, "\n");
-      }
-
-      // Write the schema item type if it is given
-      if (hasClassType) {
-        fs.appendFileSync(outputMDFile, "**Class Type:** " + schemaItemTypeToString(schemaClass.type) + "\n");
-         // Write an extra blank line iff this is not the last class or is a relationship class or the class has a base
-         // class or the class has properties
-        if (!isLastClass || hasBaseClass || isRelationshipClass || hasProperties)
-          fs.appendFileSync(outputMDFile, "\n");
-      }
-
-      // Write the base class if it's given
-      if (schemaClass.baseClass !== undefined) {
-        await schemaClass.baseClass.then((result: any) => {
-          const baseClassLink = result.schema.name.toLowerCase() + ".ecschema/#" + result.name.toLowerCase();
-          const baseClassName = result.schema.name + ":" + result.name;
-
-          fs.appendFileSync(outputMDFile, "**Base Class:** " + formatLink(baseClassLink, baseClassName)  + "\n");
-
-          // Write an extra blank line iff this is not the last class or is a relationship class or has properties
-          if (!isLastClass || isRelationshipClass || hasProperties)
-             fs.appendFileSync(outputMDFile, "\n");
-        });
-      }
-
-      // If the class is a relationship class, write the relationship information
-      if (isRelationshipClass) {
-        this.writeRelationshipClass(outputMDFile, schemaClass as RelationshipClass);
-        // Write an extra blank line iff this is not the last class or has properties
-        if (!isLastClass || hasProperties)
-          fs.appendFileSync(outputMDFile, "\n");
-      }
-
-      // If the class has no properties, end here. If it does, write the column headers and call writeClassProperties()
-      if (schemaClass.properties) {
-        this.writeClassProperties(outputMDFile, schemaClass);
-        // Write an extra blank line iff this is not the last class
-        if (!isLastClass)
-          fs.appendFileSync(outputMDFile, "\n");
-      }
-    }
+    return "";
   }
 
   /**
@@ -355,26 +210,12 @@ export class ECJsonMarkdownGenerator {
     }
   }
 
-  /**
-   * Write the markdown header for a class property table to the file specified
-   * @param outputMDFile File to write to
-   */
-  private writePropertiesHeader(outputMDFile: string): void {
-    fs.appendFileSync(outputMDFile, "**Properties**\n\n");
-    fs.appendFileSync(outputMDFile,     "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
-                                        "|:-----------|:------------------|:-----------|:-----------------------|\n");
-  }
-
-  /**
-   * Writes the property attributes as a markdown row in the file specified
-   * @param outputMDFile File to write markdown to
-   * @param property Property to generate the row from
-   */
-  private writeClassPropertiesRow(outputMDFile: string, property: any): void {
+  private writeClassPropertiesRow(outputFilePath: string, property: any): void {
     // If the attribute is not there, return the place holder
     const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
 
     let type = this.propertyTypeToString(property);
+
     // If the property type is navigation, create a link to the class that it points to
     if (type === "navigation") {
       // TODO: Add tests for this
@@ -389,27 +230,66 @@ export class ECJsonMarkdownGenerator {
     const description = helper(property._description);
     const extendedTypeName = helper(property.extendedTypeName);
 
-    fs.appendFileSync(outputMDFile, "|" + name + "|" + description + "|" + type + "|" + extendedTypeName + "|\n");
+    fs.appendFileSync(outputFilePath, "|" + name + "|" + description + "|" + type + "|" + extendedTypeName + "|\n");
   }
 
-  /**
-   * Writes the properties of the class to the md file at the outputfile
-   * @param outputMDFile Markdown file to write to
-   * @param schemaClassProperties array of the properties
-   */
-  private writeClassProperties(outputMDFile: any, schemaClass: ECClass) {
-    const schemaClassProperties = schemaClass.properties;
+  private writePropertiesTable(outputFilePath: string, schemaClass: ECClass): void {
+    const properties = schemaClass.properties;
 
-    // If the class has no properties, return
-    if (!schemaClassProperties) return;
+    // If the class has no item, return
+    if (properties === undefined || properties.length === 0) return;
 
-    // Write the header
-    this.writePropertiesHeader(outputMDFile);
+    // Write the table header
+    fs.appendFileSync(outputFilePath, "**Properties**\n\n");
+    fs.appendFileSync(outputFilePath,
+      "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
+      "|:-----------|:------------------|:-----------|:-----------------------|\n");
 
-    for (const property of schemaClassProperties) {
-      // const type: string = result.constructor.name; // Gets the property type. Leaving it here for now in case req. changes
-      // Write the property row markdown to the file
-      this.writeClassPropertiesRow(outputMDFile, property);
+    // Write each table row
+    for (const property of properties)
+      this.writeClassPropertiesRow(outputFilePath, property);
+  }
+
+  private async writeEntityClasses(outputFilePath: string, schema: Schema) {
+    // Get a sorted list of the entity classes in the schema
+    const entityClasses = this.getSortedEntityClasses(schema);
+
+    for (const entityClass of entityClasses) {
+
+      // Write the name of the class
+      if (entityClass.name !== undefined)
+        fs.appendFileSync(outputFilePath, "### " + entityClass.name + "\n\n");
+
+      // Write the description of the entity class
+      if (entityClass.description !== undefined)
+        fs.appendFileSync(outputFilePath, entityClass.description + "\n\n");
+
+      // Write the class type
+      if (entityClass.type !== undefined)
+          fs.appendFileSync(outputFilePath, "**Class Type:** " + schemaItemTypeToString(entityClass.type) + "\n\n");
+
+      // Write the base class
+      if (entityClass.baseClass !== undefined) {
+        if (entityClass.baseClass !== undefined) {
+          await entityClass.baseClass.then((result: any) => {
+            const baseClassLink = result.schema.name.toLowerCase() + ".ecschema/#" + result.name.toLowerCase();
+            const baseClassName = result.schema.name + ":" + result.name;
+
+            fs.appendFileSync(outputFilePath, "**Base Class:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
+          });
+        }
+      }
+
+      // Write the label
+      if (entityClass.label !== undefined) {
+        fs.appendFileSync(outputFilePath, "**Label:** " + entityClass.label + "\n\n");
+      }
+
+      // Write the properties
+      if (entityClass.properties !== undefined) {
+        this.writePropertiesTable(outputFilePath, entityClass);
+        fs.appendFileSync(outputFilePath, "\n");
+      }
     }
   }
 
@@ -447,8 +327,7 @@ export class ECJsonMarkdownGenerator {
         fs.writeFileSync(outputFilePath, "");
         this.writeFrontMatter(outputFilePath, result, nonReleaseFlag);
         this.writeTitle(outputFilePath, result);
-        await this.writeClasses(outputFilePath, result);
-        await this.writeSchemaItemsTable(outputFilePath, result);
+        this.writeEntityClasses(outputFilePath, result);
       });
   }
 }
