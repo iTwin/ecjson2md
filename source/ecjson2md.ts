@@ -191,8 +191,8 @@ export class ECJsonMarkdownGenerator {
   }
 
   /**
-   * Returns a list of KOQ's sorted by name.
-   * @param schema The schema to pull the kind of quanity items from
+   * Returns a list of KOQ's sorted by name
+   * @param schema The schema to pull the kind of quantity items from
    */
   private getSortedKOQClasses(schema: Schema): KindOfQuantity[] {
     const items = schema.getItems();
@@ -205,6 +205,27 @@ export class ECJsonMarkdownGenerator {
 
     // Sort the list of KOQ's by name and return it
     return koqItems.sort((c1, c2) => {
+      if (c1.name > c2.name) return 1;
+      else if (c1.name < c2.name) return -1;
+      else return 0;
+    });
+  }
+
+  /**
+   * Returns a list of relationship classes from a schema sorted by name
+   * @param schema The schema to pull the relationship classes from
+   */
+  private getSortedRelationshipClasses(schema: Schema): RelationshipClass[] {
+    const schemaClasses = schema.getClasses();
+    const relationshipClasses = new Array();
+
+    // For each class, only include it if it's a relationship class
+    for (const item of schemaClasses) {
+      if (item.constructor.name === "RelationshipClass") relationshipClasses.push(item);
+    }
+
+    // Sort the list of relationship classes by name and return it
+    return relationshipClasses.sort((c1, c2) => {
       if (c1.name > c2.name) return 1;
       else if (c1.name < c2.name) return -1;
       else return 0;
@@ -286,7 +307,6 @@ export class ECJsonMarkdownGenerator {
     const entityClasses = this.getSortedEntityClasses(schema);
 
     for (const entityClass of entityClasses) {
-
       // Write the name of the class
       if (entityClass.name !== undefined)
         fs.appendFileSync(outputFilePath, "### " + entityClass.name + "\n\n");
@@ -358,7 +378,73 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputFilePath,
         "|" + type + "|" + desc  + "|" +  label +  "|" + persistUnit + "|" + precision + "|" +       presUnit       + "|" +   altPresUnit   + "|\n");
     }
-}
+  }
+
+  /**
+   * @returns A string that contains a comma separated list of constraint classes
+   * @param constraintClasses Target or source constraint classes
+   */
+  private collectConstraintClasses(constraintClasses: any): string {
+    if (constraintClasses === undefined) return "";
+
+    let constraintClassString: string = "";
+
+    for (const constraintClass of constraintClasses) {
+      // If the current class is the last one, don't append a comma
+      if (constraintClass === constraintClasses[constraintClasses.length - 1])
+        constraintClassString += constraintClass.name;
+      else constraintClassString += constraintClass.name + ", ";
+    }
+
+    return constraintClassString;
+  }
+
+  public async writeRelationshipClasses(outputFilePath: string, schema: Schema) {
+    const relationshipClasses = this.getSortedRelationshipClasses(schema);
+
+    for (const relationshipClass of relationshipClasses) {
+      // Write the name of the class
+      if (relationshipClass.name !== undefined)
+        fs.appendFileSync(outputFilePath, "### " + relationshipClass.name + "\n\n");
+
+      // Write the description of the entity class
+      if (relationshipClass.description !== undefined)
+        fs.appendFileSync(outputFilePath, relationshipClass.description + "\n\n");
+
+      // Write the class type
+      if (relationshipClass.type !== undefined)
+          fs.appendFileSync(outputFilePath, "**Class Type:** " + schemaItemTypeToString(relationshipClass.type) + "\n\n");
+
+      // Write the base class
+      if (relationshipClass.baseClass !== undefined) {
+        if (relationshipClass.baseClass !== undefined) {
+          await relationshipClass.baseClass.then((result: any) => {
+            const baseClassLink = result.schema.name.toLowerCase() + ".ecschema/#" + result.name.toLowerCase();
+            const baseClassName = result.schema.name + ":" + result.name;
+
+            fs.appendFileSync(outputFilePath, "**Base Class:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
+          });
+        }
+      }
+
+      // Write the label
+      if (relationshipClass.label !== undefined) {
+        fs.appendFileSync(outputFilePath, "**Label:** " + relationshipClass.label + "\n\n");
+      }
+
+      // Write the constraint table
+      // Format constraint class lists
+      const sourceCoClasses = this.collectConstraintClasses(relationshipClass.source.constraintClasses);
+      const targetCoClasses = this.collectConstraintClasses(relationshipClass.target.constraintClasses);
+
+      // Write table
+      fs.appendFileSync(outputFilePath,
+        "|          |    ConstraintClasses    |                Multiplicity                 |\n" +
+        "|:---------|:------------------------|:--------------------------------------------|\n" +
+        "|**Source**|" +  sourceCoClasses  + "|" + relationshipClass.source.multiplicity + "|\n" +
+        "|**Target**|" +  targetCoClasses  + "|" + relationshipClass.target.multiplicity + "|\n\n");
+    }
+  }
 
   /**
    * Loads a schema and its references into memory and drives the
@@ -393,9 +479,10 @@ export class ECJsonMarkdownGenerator {
       async (result) => {
         fs.writeFileSync(outputFilePath, "");
         this.writeFrontMatter(outputFilePath, result, nonReleaseFlag);
-        this.writeTitle(outputFilePath, result);
-        this.writeEntityClasses(outputFilePath, result);
-        this.writeKindOfQuantityClasses(outputFilePath, result);
+        await this.writeTitle(outputFilePath, result);
+        await this.writeEntityClasses(outputFilePath, result);
+        await this.writeKindOfQuantityClasses(outputFilePath, result);
+        await this.writeRelationshipClasses(outputFilePath, result);
       });
   }
 }
