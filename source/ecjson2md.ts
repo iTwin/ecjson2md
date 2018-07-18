@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass, PropertyType, primitiveTypeToString, KindOfQuantity, Enumeration, RelationshipConstraint } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass, PropertyType, primitiveTypeToString, KindOfQuantity, Enumeration, RelationshipConstraint, Mixin } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
@@ -148,8 +148,6 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputMDFile, "# " + schema.name + "\n\n");
     // Write the description of the schema as a <p>
     if (schema.description !== undefined) fs.appendFileSync(outputMDFile, schema.description + "\n\n");
-    // Create an <h2> for "classes"
-    fs.appendFileSync(outputMDFile, "## Classes\n\n");
   }
 
   /**
@@ -253,6 +251,23 @@ export class ECJsonMarkdownGenerator {
     });
   }
 
+  private getSortedMixinClasses(schema: Schema): Mixin[] {
+    const schemaClasses = schema.getClasses();
+    const mixinClasses = new Array();
+
+    // For each item, only include it if it's a mixin class
+    for (const item of schemaClasses) {
+      if (item.constructor.name === "Mixin") mixinClasses.push(item);
+    }
+
+    // Sort the list of mixin classes by name and return it
+    return mixinClasses.sort((class1, class2) => {
+      if (class1.name > class2.name) return 1;
+      else if (class1.name < class2.name) return -1;
+      else return 0;
+    });
+  }
+
   /**
    * @returns A string of the property type
    * @param property The resolved property
@@ -327,6 +342,12 @@ export class ECJsonMarkdownGenerator {
     // Get a sorted list of the entity classes in the schema
     const entityClasses = this.getSortedEntityClasses(schema);
 
+    // If the list is empty or undefined, return
+    if (!entityClasses || entityClasses.length === 0) return;
+
+    // Write the h3 for the section
+    fs.appendFileSync(outputFilePath, "## Entity Classes\n\n");
+
     for (const entityClass of entityClasses) {
       // Write the name of the class
       if (entityClass.name !== undefined)
@@ -376,8 +397,11 @@ export class ECJsonMarkdownGenerator {
 
     const koqItems = this.getSortedKOQClasses(schema);
 
-    // If there are no KOQ's, return
-    if (koqItems.length === 0) return;
+    // If the list is empty or undefined, return
+    if (!koqItems || koqItems.length === 0) return;
+
+    // Write the h3 for the section
+    fs.appendFileSync(outputFilePath, "## Kind of Quantity Items\n\n");
 
     fs.appendFileSync(outputFilePath,
         "|  Typename  | Description | Display Label |   Persistence Unit  |    Precision    | Default Presentation Unit  | Alt Presentation Unit |\n" +
@@ -420,6 +444,12 @@ export class ECJsonMarkdownGenerator {
 
   public async writeRelationshipClasses(outputFilePath: string, schema: Schema) {
     const relationshipClasses = this.getSortedRelationshipClasses(schema);
+
+    // If the class list is undefined or empty, return
+    if (!relationshipClasses || relationshipClasses.length === 0) return;
+
+    // Write the h3 for the section
+    fs.appendFileSync(outputFilePath, "## Relationship Classes\n\n");
 
     for (const relationshipClass of relationshipClasses) {
       // Write the name of the class
@@ -486,7 +516,7 @@ export class ECJsonMarkdownGenerator {
         "|:------------|:------------|\n");
 
     for (const enumerator of enumerators) {
-      const label = helper(enumerator.label);
+      const label = helper(enumerator.label).replace(/\|/g, "\\|");
       const value = helper(enumerator.value);
 
       // Write the table row
@@ -497,6 +527,12 @@ export class ECJsonMarkdownGenerator {
 
   private writeEnumerationItems(outputFilePath: string, schema: Schema) {
     const enumerationItems = this.getSortedEnumerationItems(schema);
+
+    // If the enumeration list is undefined or empty, return
+    if (!enumerationItems || enumerationItems.length === 0) return;
+
+    // Write the h3 for the section
+    fs.appendFileSync(outputFilePath, "## Enumeration Items\n\n");
 
     for (const enumeration of enumerationItems) {
       if (enumeration.name !== undefined)
@@ -522,6 +558,86 @@ export class ECJsonMarkdownGenerator {
         fs.appendFileSync(outputFilePath, "**Backing Type: string\n\n");
 
       this.writeEnumerationTable(outputFilePath, enumeration);
+    }
+  }
+
+  private async writeMixinClasses(outputFilePath: string, schema: Schema) {
+    const mixinClasses = this.getSortedMixinClasses(schema);
+
+    // If the mixin class list is undefined or empty, return
+    if (!mixinClasses || mixinClasses.length === 0) return;
+
+    // Write the h3 for the section
+    fs.appendFileSync(outputFilePath, "## Mixin Classes\n\n");
+
+    for (const mixin of mixinClasses) {
+      // Write the name of the class
+      if (mixin.name !== undefined)
+        fs.appendFileSync(outputFilePath, "### " + mixin.name + "\n\n");
+
+      // Write the description of the entity class
+      if (mixin.description !== undefined)
+        fs.appendFileSync(outputFilePath, mixin.description + "\n\n");
+
+      // Write the class type
+      if (mixin.type !== undefined)
+          fs.appendFileSync(outputFilePath, "**Class Type:** " + schemaItemTypeToString(mixin.type) + "\n\n");
+
+      // Write the base class
+      if (mixin.baseClass !== undefined) {
+        if (mixin.baseClass !== undefined) {
+          await mixin.baseClass.then((result: any) => {
+            const baseClassLink = result.schema.name.toLowerCase() + ".ecschema/#" + result.name.toLowerCase();
+            const baseClassName = result.schema.name + ":" + result.name;
+
+            fs.appendFileSync(outputFilePath, "**Base Class:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
+          });
+        }
+      }
+
+      // Write the label
+      if (mixin.label !== undefined) {
+        fs.appendFileSync(outputFilePath, "**Label:** " + mixin.label + "\n\n");
+      }
+
+      // Link to what the mixin applies to
+      if (mixin.appliesTo !== undefined) {
+        const appliesToLink = mixin.appliesTo.schemaName.toLowerCase() + ".ecschema/#" + mixin.appliesTo.name.toLowerCase();
+
+        // Write a link to what the mixin applies to
+        fs.appendFileSync(outputFilePath, "**appliesTo:** " + formatLink(appliesToLink, mixin.appliesTo.name) + "\n\n");
+      }
+
+      // Write the modifier
+      if (mixin.modifier !== undefined) {
+        fs.appendFileSync(outputFilePath, "**Modifier:** " + mixin.modifier + "\n\n");
+      }
+
+      // If the properties are undefined or empty, continue with next
+      if (!mixin.properties || mixin.properties.length === 0) continue;
+
+      // Write the properties header and table header
+      fs.appendFileSync(outputFilePath,
+          "#### Properties\n\n" +
+          "|    Name    |    Label    |    Type    |    Inherited    |    Read Only     |    Priority    |\n" +
+          "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|\n");
+
+      // If the attribute is not there, return the place holder
+      const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
+
+      for (const property of mixin.properties) {
+        const name = helper(property.name);
+        const label = helper(property.label);
+        const type = helper(property.class.name);
+        const inherited = helper(property.inherited);
+        const isReadOnly = helper(property.isReadOnly);
+        const priority = helper(property.priority);
+
+        fs.appendFileSync(outputFilePath,
+          "|" + name + "|" + label + "|" + type + "|" + inherited + "|" + isReadOnly + "|" + priority + "|\n");
+      }
+
+      fs.appendFileSync(outputFilePath, "\n");
     }
   }
 
@@ -563,6 +679,7 @@ export class ECJsonMarkdownGenerator {
         await this.writeKindOfQuantityClasses(outputFilePath, result);
         await this.writeRelationshipClasses(outputFilePath, result);
         await this.writeEnumerationItems(outputFilePath, result);
+        await this.writeMixinClasses(outputFilePath, result);
       });
   }
 }
