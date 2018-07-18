@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass, PropertyType, primitiveTypeToString, KindOfQuantity } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass, PropertyType, primitiveTypeToString, KindOfQuantity, Enumeration, RelationshipConstraint } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
@@ -233,6 +233,27 @@ export class ECJsonMarkdownGenerator {
   }
 
   /**
+   * Returns a list of enumeration items from a schema sorted by name
+   * @param schema The schema to pull the enumeration items from
+   */
+  private getSortedEnumerationItems(schema: Schema): Enumeration[] {
+    const schemaItems = schema.getItems();
+    const enumerationItems = new Array();
+
+    // For each item, only include it if it's an enumeration
+    for (const item of schemaItems) {
+      if (item.constructor.name === "Enumeration") enumerationItems.push(item);
+    }
+
+    // Sort the list of enumeration items by name and return it
+    return enumerationItems.sort((c1, c2) => {
+      if (c1.name > c2.name) return 1;
+      else if (c1.name < c2.name) return -1;
+      else return 0;
+    });
+  }
+
+  /**
    * @returns A string of the property type
    * @param property The resolved property
    */
@@ -362,9 +383,6 @@ export class ECJsonMarkdownGenerator {
         "|  Typename  | Description | Display Label |   Persistence Unit  |    Precision    | Default Presentation Unit  | Alt Presentation Unit |\n" +
         "|:-----------|:------------|:--------------|:--------------------|:----------------|:---------------------------|:----------------------|\n");
 
-    // tslint:disable-next-line:no-console
-    console.log(koqItems);
-
     for (const item of koqItems) {
       const type = helper(item.type);
       const desc = helper(item.description);
@@ -399,42 +417,59 @@ export class ECJsonMarkdownGenerator {
   //   return constraintClassString;
   // }
 
-  /**
-   * Form a link to the source of a relationship class
-   * @param relationshipClass The class to pull the source from
-   */
-  private getSourceLink(relationshipClass: RelationshipClass): string {
-    // If the source constraint class is undefined, return the place holder
-    if (!relationshipClass.source.constraintClasses) return PLACE_HOLDER;
+  // /**
+  //  * Form a link to the source of a relationship class
+  //  * @param relationshipClass The class to pull the source from
+  //  */
+  // private getSourceLink(relationshipClass: RelationshipClass): string {
+  //   // If the source constraint class is undefined, return the place holder
+  //   if (!relationshipClass.source.constraintClasses) return PLACE_HOLDER;
 
-    // Get the source class
-    const source = relationshipClass.source.constraintClasses[0];
+  //   // Get the source class
+  //   const source = relationshipClass.source.constraintClasses[0];
 
-    // Get the name of the source class and a link to the schema that it comes from
-    const sourceClassLink = source.schemaName.toLocaleLowerCase() + ".ecschema/#" + source.name.toLowerCase();
-    const sourceClassName = source.name;
+  //   // Get the name of the source class and a link to the schema that it comes from
+  //   const sourceClassLink = source.schemaName.toLocaleLowerCase() + ".ecschema/#" + source.name.toLowerCase();
+  //   const sourceClassName = source.name;
 
-    // Return the formatted link
-    return formatLink(sourceClassLink, sourceClassName);
-  }
+  //   // Return the formatted link
+  //   return formatLink(sourceClassLink, sourceClassName);
+  // }
 
-  /**
-   * Form a link to the target of a relationship class
-   * @param relationshipClass The class to pull the target from
-   */
-  private getTargetLink(relationshipClass: RelationshipClass): string {
-    // If the source constraint class is undefined, return the place holder
-    if (!relationshipClass.target.constraintClasses) return PLACE_HOLDER;
+  // /**
+  //  * Form a link to the target of a relationship class
+  //  * @param relationshipClass The class to pull the target from
+  //  */
+  // private getTargetLink(relationshipClass: RelationshipClass): string {
+  //   // If the source constraint class is undefined, return the place holder
+  //   if (!relationshipClass.target.constraintClasses) return PLACE_HOLDER;
 
-    // Get the source class
-    const target = relationshipClass.target.constraintClasses[0];
+  //   // Get the source class
+  //   const target = relationshipClass.target.constraintClasses[0];
 
-    // Get the name of the target class and a link to the schema that it comes from
-    const targetClassLink = target.schemaName.toLocaleLowerCase() + ".ecschema/#" + target.name.toLowerCase();
-    const targetClassName = target.name;
+  //   // Get the name of the target class and a link to the schema that it comes from
+  //   const targetClassLink = target.schemaName.toLocaleLowerCase() + ".ecschema/#" + target.name.toLowerCase();
+  //   const targetClassName = target.name;
 
-    // Return the formatted link
-    return formatLink(targetClassLink, targetClassName);
+  //   // Return the formatted link
+  //   return formatLink(targetClassLink, targetClassName);
+  // }
+
+  private writeRelationshipConstraintSection(outputFilePath: string, constraint: RelationshipConstraint) {
+    // Write the constraint information
+    fs.appendFileSync(outputFilePath, "**isPolymorphic:** " + constraint.polymorphic + "\n\n");
+    fs.appendFileSync(outputFilePath, "**roleLabel:** " + constraint.roleLabel + "\n\n");
+    fs.appendFileSync(outputFilePath, "**multiplicity:** " + constraint.multiplicity + "\n\n");
+    fs.appendFileSync(outputFilePath, "**Constraint Classes**\n\n");
+
+    // If the constraint classes are undefined or there are none, return
+    if (!constraint.constraintClasses || constraint.constraintClasses.length === 0) return;
+
+    // Write the constraint classes as a list
+    for (const constraintClass of constraint.constraintClasses) {
+      const constraintClassLink = constraintClass.schemaName.toLowerCase() + ".ecschema/#" + constraintClass.name.toLowerCase();
+      fs.appendFileSync(outputFilePath, "- " + formatLink(constraintClassLink, constraintClass.name) + "\n");
+    }
   }
 
   public async writeRelationshipClasses(outputFilePath: string, schema: Schema) {
@@ -469,22 +504,94 @@ export class ECJsonMarkdownGenerator {
       if (relationshipClass.label !== undefined) {
         fs.appendFileSync(outputFilePath, "**Label:** " + relationshipClass.label + "\n\n");
       }
+      // Write the strength
+      if (relationshipClass.strength !== undefined) {
+        fs.appendFileSync(outputFilePath, "**Strength:** " + relationshipClass.strength + "\n\n");
+      }
+      // Write the strength direction
+      if (relationshipClass.strengthDirection !== undefined) {
+        fs.appendFileSync(outputFilePath, "**strengthDirection:** " + relationshipClass.strengthDirection + "\n\n");
+      }
+
+      // Write the source section
+      fs.appendFileSync(outputFilePath, "#### Source\n\n");
+
+      this.writeRelationshipConstraintSection(outputFilePath, relationshipClass.source);
+
+      // Write the target section
+      fs.appendFileSync(outputFilePath, "#### Target\n\n");
+
+      this.writeRelationshipConstraintSection(outputFilePath, relationshipClass.target);
 
       // // Write the constraint table
       // // Format constraint class lists
       // const sourceCoClasses = this.collectConstraintClasses(relationshipClass.source.constraintClasses);
       // const targetCoClasses = this.collectConstraintClasses(relationshipClass.target.constraintClasses);
 
-      // Form the links for the source and target if they are available
-      const sourceLink = this.getSourceLink(relationshipClass);
-      const targetLink = this.getTargetLink(relationshipClass);
+      // // Form the links for the source and target if they are available
+      // const sourceLink = this.getSourceLink(relationshipClass);
+      // const targetLink = this.getTargetLink(relationshipClass);
 
-      // Write table
+      // // Write table
+      // fs.appendFileSync(outputFilePath,
+      //   "|          |    ConstraintClasses    |                Multiplicity                 |\n" +
+      //   "|:---------|:------------------------|:--------------------------------------------|\n" +
+      //   "|**Source**|" +    sourceLink     + "|" + relationshipClass.source.multiplicity + "|\n" +
+      //   "|**Target**|" +    targetLink     + "|" + relationshipClass.target.multiplicity + "|\n\n");
+    }
+  }
+
+  private writeEnumerationTable(outputFilePath: string, enumeration: Enumeration) {
+    const enumerators = enumeration.enumerators;
+
+    // If the enumerators are undefined or there are none, return
+    if (!enumerators || enumerators.length === 0) return;
+
+    // If the attribute is not there, return the place holder
+    const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
+
+    // Write the table header
+    fs.appendFileSync(outputFilePath,
+        "|    Label    |    Value    |\n" +
+        "|:------------|:------------|\n");
+
+    for (const enumerator of enumerators) {
+      const label = helper(enumerator.label);
+      const value = helper(enumerator.value);
+
+      // Write the table row
       fs.appendFileSync(outputFilePath,
-        "|          |    ConstraintClasses    |                Multiplicity                 |\n" +
-        "|:---------|:------------------------|:--------------------------------------------|\n" +
-        "|**Source**|" +    sourceLink     + "|" + relationshipClass.source.multiplicity + "|\n" +
-        "|**Target**|" +    targetLink     + "|" + relationshipClass.target.multiplicity + "|\n\n");
+        "|" + label + "|" + value + "|\n");
+    }
+  }
+
+  private writeEnumerationItems(outputFilePath: string, schema: Schema) {
+    const enumerationItems = this.getSortedEnumerationItems(schema);
+
+    for (const enumeration of enumerationItems) {
+      if (enumeration.name !== undefined)
+        fs.appendFileSync(outputFilePath, "### " + enumeration.name + "\n\n");
+
+      if (enumeration.description !== undefined)
+        fs.appendFileSync(outputFilePath, enumeration.description + "\n\n");
+
+      // TODO: Convert the enumeration type to be human readable
+      if (enumeration.type !== undefined)
+        fs.appendFileSync(outputFilePath, "**Type:** " + enumeration.type + "\n\n");
+
+      if (enumeration.label !== undefined)
+        fs.appendFileSync(outputFilePath, "**Label:** " + enumeration.label + "\n\n");
+
+      if (enumeration.isStrict !== undefined)
+        fs.appendFileSync(outputFilePath, "**Strict:** " + enumeration.isStrict + "\n\n");
+
+      if (enumeration.isInt())
+        fs.appendFileSync(outputFilePath, "**Backing Type:** int\n\n");
+
+      if (enumeration.isString())
+        fs.appendFileSync(outputFilePath, "**Backing Type: string\n\n");
+
+      this.writeEnumerationTable(outputFilePath, enumeration);
     }
   }
 
@@ -525,6 +632,7 @@ export class ECJsonMarkdownGenerator {
         await this.writeEntityClasses(outputFilePath, result);
         await this.writeKindOfQuantityClasses(outputFilePath, result);
         await this.writeRelationshipClasses(outputFilePath, result);
+        await this.writeEnumerationItems(outputFilePath, result);
       });
   }
 }
