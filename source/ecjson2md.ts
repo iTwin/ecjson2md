@@ -308,7 +308,7 @@ export class ECJsonMarkdownGenerator {
     if (properties === undefined || properties.length === 0) return;
 
     // Write the table header
-    fs.appendFileSync(outputFilePath, "**Properties**\n\n");
+    fs.appendFileSync(outputFilePath, "#### Properties\n\n");
     fs.appendFileSync(outputFilePath,
       "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
       "|:-----------|:------------------|:-----------|:-----------------------|\n");
@@ -398,69 +398,12 @@ export class ECJsonMarkdownGenerator {
     }
   }
 
-  // /**
-  //  * @returns A string that contains a comma separated list of constraint classes
-  //  * @param constraintClasses Target or source constraint classes
-  //  */
-  // private collectConstraintClasses(constraintClasses: any): string {
-  //   if (constraintClasses === undefined) return "";
-
-  //   let constraintClassString: string = "";
-
-  //   for (const constraintClass of constraintClasses) {
-  //     // If the current class is the last one, don't append a comma
-  //     if (constraintClass === constraintClasses[constraintClasses.length - 1])
-  //       constraintClassString += constraintClass.name;
-  //     else constraintClassString += constraintClass.name + ", ";
-  //   }
-
-  //   return constraintClassString;
-  // }
-
-  // /**
-  //  * Form a link to the source of a relationship class
-  //  * @param relationshipClass The class to pull the source from
-  //  */
-  // private getSourceLink(relationshipClass: RelationshipClass): string {
-  //   // If the source constraint class is undefined, return the place holder
-  //   if (!relationshipClass.source.constraintClasses) return PLACE_HOLDER;
-
-  //   // Get the source class
-  //   const source = relationshipClass.source.constraintClasses[0];
-
-  //   // Get the name of the source class and a link to the schema that it comes from
-  //   const sourceClassLink = source.schemaName.toLocaleLowerCase() + ".ecschema/#" + source.name.toLowerCase();
-  //   const sourceClassName = source.name;
-
-  //   // Return the formatted link
-  //   return formatLink(sourceClassLink, sourceClassName);
-  // }
-
-  // /**
-  //  * Form a link to the target of a relationship class
-  //  * @param relationshipClass The class to pull the target from
-  //  */
-  // private getTargetLink(relationshipClass: RelationshipClass): string {
-  //   // If the source constraint class is undefined, return the place holder
-  //   if (!relationshipClass.target.constraintClasses) return PLACE_HOLDER;
-
-  //   // Get the source class
-  //   const target = relationshipClass.target.constraintClasses[0];
-
-  //   // Get the name of the target class and a link to the schema that it comes from
-  //   const targetClassLink = target.schemaName.toLocaleLowerCase() + ".ecschema/#" + target.name.toLowerCase();
-  //   const targetClassName = target.name;
-
-  //   // Return the formatted link
-  //   return formatLink(targetClassLink, targetClassName);
-  // }
-
   private writeRelationshipConstraintSection(outputFilePath: string, constraint: RelationshipConstraint) {
     // Write the constraint information
     fs.appendFileSync(outputFilePath, "**isPolymorphic:** " + constraint.polymorphic + "\n\n");
     fs.appendFileSync(outputFilePath, "**roleLabel:** " + constraint.roleLabel + "\n\n");
     fs.appendFileSync(outputFilePath, "**multiplicity:** " + constraint.multiplicity + "\n\n");
-    fs.appendFileSync(outputFilePath, "**Constraint Classes**\n\n");
+    fs.appendFileSync(outputFilePath, "##### Constraint Classes\n\n");
 
     // If the constraint classes are undefined or there are none, return
     if (!constraint.constraintClasses || constraint.constraintClasses.length === 0) return;
@@ -470,6 +413,9 @@ export class ECJsonMarkdownGenerator {
       const constraintClassLink = constraintClass.schemaName.toLowerCase() + ".ecschema/#" + constraintClass.name.toLowerCase();
       fs.appendFileSync(outputFilePath, "- " + formatLink(constraintClassLink, constraintClass.name) + "\n");
     }
+
+    // Append another new line
+    fs.appendFileSync(outputFilePath, "\n");
   }
 
   public async writeRelationshipClasses(outputFilePath: string, schema: Schema) {
@@ -522,22 +468,6 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputFilePath, "#### Target\n\n");
 
       this.writeRelationshipConstraintSection(outputFilePath, relationshipClass.target);
-
-      // // Write the constraint table
-      // // Format constraint class lists
-      // const sourceCoClasses = this.collectConstraintClasses(relationshipClass.source.constraintClasses);
-      // const targetCoClasses = this.collectConstraintClasses(relationshipClass.target.constraintClasses);
-
-      // // Form the links for the source and target if they are available
-      // const sourceLink = this.getSourceLink(relationshipClass);
-      // const targetLink = this.getTargetLink(relationshipClass);
-
-      // // Write table
-      // fs.appendFileSync(outputFilePath,
-      //   "|          |    ConstraintClasses    |                Multiplicity                 |\n" +
-      //   "|:---------|:------------------------|:--------------------------------------------|\n" +
-      //   "|**Source**|" +    sourceLink     + "|" + relationshipClass.source.multiplicity + "|\n" +
-      //   "|**Target**|" +    targetLink     + "|" + relationshipClass.target.multiplicity + "|\n\n");
     }
   }
 
