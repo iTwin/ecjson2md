@@ -8,6 +8,11 @@ import * as path from "path";
 
 const PLACE_HOLDER = "";
 
+export function removeLastCharacter(outputFilePath: string) {
+  const fileBuffer = fs.readFileSync(outputFilePath).slice(0, -1);
+  fs.writeFileSync(outputFilePath, fileBuffer);
+}
+
 /**
  * Returns the name of the type that corresponds to the property number.
  * @param {number} propertyTypeNumber property._type
@@ -708,6 +713,7 @@ export class ECJsonMarkdownGenerator {
         await this.writeMixinClasses(outputFilePath, result);
         await this.writeCustomAttributeClasses(outputFilePath, result);
         await this.writeStructClasses(outputFilePath, result);
+        removeLastCharacter(outputFilePath);
       });
   }
 }
