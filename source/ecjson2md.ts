@@ -7,7 +7,7 @@ import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutput
 import * as path from "path";
 
 const PLACE_HOLDER = "";
-schemaItemTypeToString;
+
 /**
  * Returns the name of the type that corresponds to the property number.
  * @param {number} propertyTypeNumber property._type
@@ -232,7 +232,7 @@ export class ECJsonMarkdownGenerator {
     if (type === undefined) return;
 
     // TODO: Will probably have to convert the type to a string
-    fs.appendFileSync(outputFilePath, "**Type:** " + type + "\n\n");
+    fs.appendFileSync(outputFilePath, "**Type:** " + schemaItemTypeToString(type) + "\n\n");
   }
 
   private writeSchemaItemBaseClass(outputFilePath: string, baseClass: LazyLoadedSchemaItem<ECClass> | undefined) {
