@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass, PropertyType, primitiveTypeToString, KindOfQuantity, Enumeration, RelationshipConstraint, Mixin, CustomAttributeClass, StructClass, LazyLoadedSchemaItem, ECClassModifier } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, LazyLoadedSchemaItem, ECClassModifier } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
@@ -166,127 +166,9 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputMDFile, formatWarningAlert("This documentation represents a nonreleased version of this schema") + "\n\n");
     }
   }
-
-  /**
-   * Returns a list of entity classes sorted by name.
-   * @param schema The schema to pull the entity classes from
-   */
-  private getSortedEntityClasses(schema: Schema): ECClass[] {
-    const classes = schema.getClasses();
-    const entityClasses = new Array();
-
-    // For each class, only include it if it's an EntityClass
-    for (const item of classes) {
-      if (item.constructor.name === "EntityClass") entityClasses.push(item);
-    }
-
-    // Sort the list of entity classes by name and return it
-    return entityClasses.sort((c1, c2) => {
-      if (c1.name > c2.name) return 1;
-      else if (c1.name < c2.name) return -1;
-      else return 0;
-    });
-  }
-
-  /**
-   * Returns a list of KOQ's sorted by name
-   * @param schema The schema to pull the kind of quantity items from
-   */
-  private getSortedKOQClasses(schema: Schema): KindOfQuantity[] {
-    const items = schema.getItems();
-    const koqItems = new Array();
-
-    // For each item, only include it if it's a KOQ
-    for (const item of items) {
-      if (item.constructor.name === "KindOfQuantity") koqItems.push(item);
-    }
-
-    // Sort the list of KOQ's by name and return it
-    return koqItems.sort((c1, c2) => {
-      if (c1.name > c2.name) return 1;
-      else if (c1.name < c2.name) return -1;
-      else return 0;
-    });
-  }
-
-  /**
-   * Returns a list of relationship classes from a schema sorted by name
-   * @param schema The schema to pull the relationship classes from
-   */
-  private getSortedRelationshipClasses(schema: Schema): RelationshipClass[] {
-    const schemaClasses = schema.getClasses();
-    const relationshipClasses = new Array();
-
-    // For each class, only include it if it's a relationship class
-    for (const item of schemaClasses) {
-      if (item.constructor.name === "RelationshipClass") relationshipClasses.push(item);
-    }
-
-    // Sort the list of relationship classes by name and return it
-    return relationshipClasses.sort((c1, c2) => {
-      if (c1.name > c2.name) return 1;
-      else if (c1.name < c2.name) return -1;
-      else return 0;
-    });
-  }
-
-  /**
-   * Returns a list of enumeration items from a schema sorted by name
-   * @param schema The schema to pull the enumeration items from
-   */
-  private getSortedEnumerationItems(schema: Schema): Enumeration[] {
-    const schemaItems = schema.getItems();
-    const enumerationItems = new Array();
-
-    // For each item, only include it if it's an enumeration
-    for (const item of schemaItems) {
-      if (item.constructor.name === "Enumeration") enumerationItems.push(item);
-    }
-
-    // Sort the list of enumeration items by name and return it
-    return enumerationItems.sort((c1, c2) => {
-      if (c1.name > c2.name) return 1;
-      else if (c1.name < c2.name) return -1;
-      else return 0;
-    });
-  }
-
-  private getSortedMixinClasses(schema: Schema): Mixin[] {
-    const schemaClasses = schema.getClasses();
-    const mixinClasses = new Array();
-
-    // For each item, only include it if it's a mixin class
-    for (const item of schemaClasses) {
-      if (item.constructor.name === "Mixin") mixinClasses.push(item);
-    }
-
-    // Sort the list of mixin classes by name and return it
-    return mixinClasses.sort((class1, class2) => {
-      if (class1.name > class2.name) return 1;
-      else if (class1.name < class2.name) return -1;
-      else return 0;
-    });
-  }
-
-  private getSortedCustomAttributeClasses(schema: Schema): CustomAttributeClass[] {
-    const schemaClasses = schema.getClasses();
-    const customAttributeClasses = new Array();
-
-    // For each item, only include it if it's a custom attribute class
-    for (const item of schemaClasses) {
-      if (item.constructor.name === "CustomAttributeClass") customAttributeClasses.push(item);
-    }
-
-    // Sort the list of mixin classes by name and return it
-    return customAttributeClasses.sort((class1, class2) => {
-      if (class1.name > class2.name) return 1;
-      else if (class1.name < class2.name) return -1;
-      else return 0;
-    });
-  }
-
   private getSortedSchemaItems(schema: Schema, schemaItem: string ): any {
-    const allSchemaItems = schema.getClasses();
+    const allSchemaItems = schema.getItems();
+
     const selectedSchemaItems = new Array();
 
     // For each item, only include it if it's the type that we are looking for
@@ -374,7 +256,7 @@ export class ECJsonMarkdownGenerator {
    */
   private async writeEntityClasses(outputFilePath: string, schema: Schema) {
     // Get a sorted list of the entity classes in the schema
-    const entityClasses = this.getSortedEntityClasses(schema);
+    const entityClasses = this.getSortedSchemaItems(schema, "EntityClass");
 
     // If the list is empty or undefined, return
     if (!entityClasses || entityClasses.length === 0) return;
@@ -429,7 +311,7 @@ export class ECJsonMarkdownGenerator {
     // If the attribute is not there, return the place holder
     const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
 
-    const koqItems = this.getSortedKOQClasses(schema);
+    const koqItems = this.getSortedSchemaItems(schema, "KindOfQuantity");
 
     // If the list is empty or undefined, return
     if (!koqItems || koqItems.length === 0) return;
@@ -477,7 +359,7 @@ export class ECJsonMarkdownGenerator {
   }
 
   public async writeRelationshipClasses(outputFilePath: string, schema: Schema) {
-    const relationshipClasses = this.getSortedRelationshipClasses(schema);
+    const relationshipClasses = this.getSortedSchemaItems(schema, "RelationshipClass");
 
     // If the class list is undefined or empty, return
     if (!relationshipClasses || relationshipClasses.length === 0) return;
@@ -562,7 +444,7 @@ export class ECJsonMarkdownGenerator {
   }
 
   private writeEnumerationItems(outputFilePath: string, schema: Schema) {
-    const enumerationItems = this.getSortedEnumerationItems(schema);
+    const enumerationItems = this.getSortedSchemaItems(schema, "Enumeration");
 
     // If the enumeration list is undefined or empty, return
     if (!enumerationItems || enumerationItems.length === 0) return;
@@ -598,7 +480,7 @@ export class ECJsonMarkdownGenerator {
   }
 
   private async writeMixinClasses(outputFilePath: string, schema: Schema) {
-    const mixinClasses = this.getSortedMixinClasses(schema);
+    const mixinClasses = this.getSortedSchemaItems(schema, "Mixin");
 
     // If the mixin class list is undefined or empty, return
     if (!mixinClasses || mixinClasses.length === 0) return;
@@ -678,7 +560,7 @@ export class ECJsonMarkdownGenerator {
   }
 
   private async writeCustomAttributeClasses(outputFilePath: string, schema: Schema) {
-    const customAttributeClasses: CustomAttributeClass[] = this.getSortedCustomAttributeClasses(schema);
+    const customAttributeClasses: CustomAttributeClass[] = this.getSortedSchemaItems(schema, "CustomAttributeClass");
 
     // If the mixin class list is undefined or empty, return
     if (!customAttributeClasses || customAttributeClasses.length === 0) return;
