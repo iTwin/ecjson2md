@@ -8,9 +8,16 @@ import * as path from "path";
 
 const PLACE_HOLDER = "";
 
-export function removeLastCharacter(outputFilePath: string) {
-  const fileBuffer = fs.readFileSync(outputFilePath).slice(0, -1);
-  fs.writeFileSync(outputFilePath, fileBuffer);
+/**
+ * Removes the a consecutive blank line at the end of a file if there is one
+ * @param outputFilePath File to check
+ */
+export function removeExtraBlankLine(outputFilePath: string) {
+  const fileBuffer = fs.readFileSync(outputFilePath).toString();
+
+  // If there are two new lines at the end of the file, remove one
+  if (fileBuffer[fileBuffer.length - 1] === "\n" && fileBuffer[fileBuffer.length - 2] === "\n")
+    fs.writeFileSync(outputFilePath, fileBuffer.slice(0, -1));
 }
 
 /**
@@ -713,7 +720,7 @@ export class ECJsonMarkdownGenerator {
         await this.writeMixinClasses(outputFilePath, result);
         await this.writeCustomAttributeClasses(outputFilePath, result);
         await this.writeStructClasses(outputFilePath, result);
-        removeLastCharacter(outputFilePath);
+        removeExtraBlankLine(outputFilePath);
       });
   }
 }
