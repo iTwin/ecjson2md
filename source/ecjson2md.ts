@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass, PropertyType, primitiveTypeToString, KindOfQuantity, Enumeration, RelationshipConstraint, Mixin } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, RelationshipClass, PropertyType, primitiveTypeToString, KindOfQuantity, Enumeration, RelationshipConstraint, Mixin, CustomAttributeClass, StructClass, LazyLoadedSchemaItem, ECClassModifier } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
@@ -268,6 +268,40 @@ export class ECJsonMarkdownGenerator {
     });
   }
 
+  private getSortedCustomAttributeClasses(schema: Schema): CustomAttributeClass[] {
+    const schemaClasses = schema.getClasses();
+    const customAttributeClasses = new Array();
+
+    // For each item, only include it if it's a custom attribute class
+    for (const item of schemaClasses) {
+      if (item.constructor.name === "CustomAttributeClass") customAttributeClasses.push(item);
+    }
+
+    // Sort the list of mixin classes by name and return it
+    return customAttributeClasses.sort((class1, class2) => {
+      if (class1.name > class2.name) return 1;
+      else if (class1.name < class2.name) return -1;
+      else return 0;
+    });
+  }
+
+  private getSortedSchemaItems(schema: Schema, schemaItem: string ): any {
+    const allSchemaItems = schema.getClasses();
+    const selectedSchemaItems = new Array();
+
+    // For each item, only include it if it's the type that we are looking for
+    for (const item of allSchemaItems) {
+      if (item.constructor.name === schemaItem) selectedSchemaItems.push(item);
+    }
+
+    // Sort the list of schema items by name and return it
+    return selectedSchemaItems.sort((item1, item2) => {
+      if (item1.name > item2.name) return 1;
+      else if (item1.name < item2.name) return -1;
+      else return 0;
+    });
+  }
+
   /**
    * @returns A string of the property type
    * @param property The resolved property
@@ -523,6 +557,8 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputFilePath,
         "|" + label + "|" + value + "|\n");
     }
+
+    fs.appendFileSync(outputFilePath, "\n");
   }
 
   private writeEnumerationItems(outputFilePath: string, schema: Schema) {
@@ -555,7 +591,7 @@ export class ECJsonMarkdownGenerator {
         fs.appendFileSync(outputFilePath, "**Backing Type:** int\n\n");
 
       if (enumeration.isString())
-        fs.appendFileSync(outputFilePath, "**Backing Type: string\n\n");
+        fs.appendFileSync(outputFilePath, "**Backing Type:** string\n\n");
 
       this.writeEnumerationTable(outputFilePath, enumeration);
     }
@@ -619,8 +655,8 @@ export class ECJsonMarkdownGenerator {
       // Write the properties header and table header
       fs.appendFileSync(outputFilePath,
           "#### Properties\n\n" +
-          "|    Name    |    Label    |    Type    |    Inherited    |    Read Only     |    Priority    |\n" +
-          "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|\n");
+          "|    Name    |    Label    |    Class    |    Inherited    |    Read Only     |    Priority    |\n" +
+          "|:-----------|:------------|:------------|:----------------|:-----------------|:---------------|\n");
 
       // If the attribute is not there, return the place holder
       const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
@@ -639,6 +675,163 @@ export class ECJsonMarkdownGenerator {
 
       fs.appendFileSync(outputFilePath, "\n");
     }
+  }
+
+  private async writeCustomAttributeClasses(outputFilePath: string, schema: Schema) {
+    const customAttributeClasses: CustomAttributeClass[] = this.getSortedCustomAttributeClasses(schema);
+
+    // If the mixin class list is undefined or empty, return
+    if (!customAttributeClasses || customAttributeClasses.length === 0) return;
+
+    // Write the h3 for the section
+    fs.appendFileSync(outputFilePath, "## Custom Attribute Classes\n\n");
+
+    for (const customAttributeClass of customAttributeClasses) {
+      // Write the name of the class
+      if (customAttributeClass.name !== undefined)
+        fs.appendFileSync(outputFilePath, "### " + customAttributeClass.name + "\n\n");
+
+      // Write the class type
+      if (customAttributeClass.type !== undefined)
+        fs.appendFileSync(outputFilePath, "**Class Type:** " + schemaItemTypeToString(customAttributeClass.type) + "\n\n");
+
+      // Write the description of the class
+      if (customAttributeClass.description !== undefined)
+        fs.appendFileSync(outputFilePath, customAttributeClass.description + "\n\n");
+
+      // Write the base class
+      if (customAttributeClass.baseClass !== undefined) {
+        await customAttributeClass.baseClass.then((result: any) => {
+          const baseClassLink = result.schema.name.toLowerCase() + ".ecschema/#" + result.name.toLowerCase();
+          const baseClassName = result.schema.name + ":" + result.name;
+
+          fs.appendFileSync(outputFilePath, "**Base Class:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
+        });
+      }
+
+      // Write the modifier
+      if (customAttributeClass.modifier !== undefined) {
+        fs.appendFileSync(outputFilePath, "**Modifier:** " + customAttributeClass.modifier + "\n\n");
+      }
+
+      // Write the properties table
+      // If the properties are undefined or have length 0, return
+      if (!customAttributeClass.properties || customAttributeClass.properties.length === 0) continue;
+
+      // Write the properties header and table header
+      fs.appendFileSync(outputFilePath,
+        "#### Properties\n\n" +
+        "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |\n" +
+        "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|\n");
+
+      // If the attribute is not there, return the place holder
+      const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
+
+      for (const property of customAttributeClass.properties) {
+        const name = helper(property.name);
+        const label = helper(property.label);
+        const type = helper(property.class.name);
+        const inherited = helper(property.inherited);
+        const isReadOnly = helper(property.isReadOnly);
+        const priority = helper(property.priority);
+
+        fs.appendFileSync(outputFilePath,
+          "|" + name + "|" + label + "|" + type + "|" + inherited + "|" + isReadOnly + "|" + priority + "|\n");
+      }
+
+      fs.appendFileSync(outputFilePath, "\n");
+    }
+  }
+
+  private writeSchemaItemName(outputFilePath: string, name: string|undefined) {
+    if (name === undefined) return;
+
+    fs.appendFileSync(outputFilePath, "### " + name + "\n\n");
+  }
+
+  private writeSchemaItemDescription(outputFilePath: string, description: string|undefined) {
+    if (description === undefined) return;
+
+    fs.appendFileSync(outputFilePath, description + "\n\n");
+  }
+
+  private writeSchemaItemLabel(outputFilePath: string, label: string|undefined) {
+    if (label === undefined) return;
+
+    fs.appendFileSync(outputFilePath, "**Label:** " + label + "\n\n");
+  }
+
+  private writeSchemaItemType(outputFilePath: string, type: any) {
+    if (type === undefined) return;
+
+    // TODO: Will probably have to convert the type to a string
+    fs.appendFileSync(outputFilePath, "**Type:** " + type + "\n\n");
+  }
+
+  private async writeSchemaItemBaseClass(outputFilePath: string, baseClass: LazyLoadedSchemaItem<ECClass> | undefined) {
+    if (baseClass === undefined) return;
+
+    await baseClass.then((result: any) => {
+      const baseClassLink = result.schema.name.toLowerCase() + ".ecschema/#" + result.name.toLowerCase();
+      const baseClassName = result.schema.name + ":" + result.name;
+
+      fs.appendFileSync(outputFilePath, "**Base Class:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
+    });
+  }
+
+  private writeSchemaItemModifier(outputFilePath: string, modifier: ECClassModifier|undefined) {
+    if (modifier === undefined) return;
+
+    fs.appendFileSync(outputFilePath, "**Modifier:** " + modifier.toString() + "\n\n");
+  }
+
+  private async writeStructClasses(outputFilePath: string, schema: Schema) {
+    const structClasses: StructClass[] = this.getSortedSchemaItems(schema, "StructClass");
+
+    // If the struct class list is undefined or empty, return
+    if (!structClasses || structClasses.length === 0) return;
+
+    for (const structClass of structClasses) {
+      this.writeSchemaItemName(outputFilePath, structClass.name);
+
+      this.writeSchemaItemDescription(outputFilePath, structClass.description);
+
+      this.writeSchemaItemLabel(outputFilePath, structClass.label);
+
+      this.writeSchemaItemBaseClass(outputFilePath, structClass.baseClass);
+
+      this.writeSchemaItemType(outputFilePath, structClass.type);
+
+      this.writeSchemaItemModifier(outputFilePath, structClass.modifier);
+
+      // Write the properties table
+      // If the properties are undefined or have length 0, return
+      if (!structClass.properties || structClass.properties.length === 0) continue;
+
+      // Write the properties header and table header
+      fs.appendFileSync(outputFilePath,
+        "#### Properties\n\n" +
+        "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |\n" +
+        "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|\n");
+
+      // If the attribute is not there, return the place holder
+      const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
+
+      for (const property of structClass.properties) {
+        const name = helper(property.name);
+        const label = helper(property.label);
+        const type = helper(property.class.name);
+        const inherited = helper(property.inherited);
+        const isReadOnly = helper(property.isReadOnly);
+        const priority = helper(property.priority);
+
+        fs.appendFileSync(outputFilePath,
+          "|" + name + "|" + label + "|" + type + "|" + inherited + "|" + isReadOnly + "|" + priority + "|\n");
+      }
+
+      fs.appendFileSync(outputFilePath, "\n");
+    }
+
   }
 
   /**
@@ -680,6 +873,8 @@ export class ECJsonMarkdownGenerator {
         await this.writeRelationshipClasses(outputFilePath, result);
         await this.writeEnumerationItems(outputFilePath, result);
         await this.writeMixinClasses(outputFilePath, result);
+        await this.writeCustomAttributeClasses(outputFilePath, result);
+        await this.writeStructClasses(outputFilePath, result);
       });
   }
 }
