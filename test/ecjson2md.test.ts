@@ -4,7 +4,7 @@ import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
 import * as path from "path";
 import * as rimraf from "rimraf";
-import { Schema } from "../node_modules/@bentley/ecjs/lib";
+import { SchemaContext, Schema } from "@bentley/ecjs";
 
 describe("ecjson2md", () => {
   describe("ECJsonMarkdownGenerator", () => {
@@ -145,6 +145,171 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[2], "This is the description");
           assert.equal(outputLines[3], "");
           assert.equal(outputLines[4], "");
+        });
+      });
+    });
+
+    describe("Misc", () => {
+      describe("getSortedSchemaItems", () => {
+        const schemaJson = JSON.parse(
+        '{\
+          "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+          "description":"This is the description",\
+          "alias":"testSchema",\
+          "name": "testSchema",\
+          "version":"02.00.00",\
+          "items": { \
+            "EntityClassB": {\
+              "description": "this is a description", \
+              "schemaItemType":"EntityClass"\
+            },\
+            "EntityClassC":{\
+              "schemaItemType":"EntityClass"\
+            },\
+            "EntityClassA":{\
+              "schemaItemType":"EntityClass"\
+            },\
+            "CustomAttributeClassB":{\
+              "schemaItemType":"CustomAttributeClass"\
+            },\
+            "CustomAttributeClassC":{\
+              "schemaItemType":"CustomAttributeClass"\
+            },\
+            "CustomAttributeClassA":{\
+              "schemaItemType":"CustomAttributeClass"\
+            },\
+            "EnumerationB":{\
+              "backingTypeName" : "int", \
+              "schemaItemType":"Enumeration"\
+            },\
+            "EnumerationC":{\
+              "backingTypeName" : "int", \
+              "schemaItemType":"Enumeration"\
+            },\
+            "EnumerationA":{\
+              "backingTypeName" : "int",  \
+              "schemaItemType":"Enumeration"\
+            },\
+            "KindOfQuantityB":{\
+              "schemaItemType":"KindOfQuantity"\
+            },\
+            "KindOfQuantityC":{\
+              "schemaItemType":"KindOfQuantity"\
+            },\
+            "KindOfQuantityA":{\
+              "schemaItemType":"KindOfQuantity"\
+            },\
+            "RelationshipClassB":{\
+              "source" :{\
+                "constraintClasses" : [ "testSchema.KindOfQuantityA" ],\
+                "multiplicity" : "(0..1)",\
+                "polymorphic" : true,\
+                "roleLabel" : "owns"\
+              },\
+              "target" :{\
+                "constraintClasses" : [ "testSchema.KindOfQuantityB" ],\
+                "multiplicity" : "(0..*)",\
+                "polymorphic" : false,\
+                "roleLabel" : "is owned by"\
+              },\
+              "schemaItemType":"RelationshipClass"\
+            },\
+            "RelationshipClassC":{\
+              "source" :{\
+                "constraintClasses" : [ "testSchema.KindOfQuantityA" ],\
+                "multiplicity" : "(0..1)",\
+                "polymorphic" : true,\
+                "roleLabel" : "owns"\
+              },\
+              "target" :{\
+                "constraintClasses" : [ "testSchema.KindOfQuantityB" ],\
+                "multiplicity" : "(0..*)",\
+                "polymorphic" : false,\
+                "roleLabel" : "is owned by"\
+              },\
+              "schemaItemType":"RelationshipClass"\
+            },\
+            "RelationshipClassA":{\
+              "source" :{\
+                "constraintClasses" : [ "testSchema.KindOfQuantityA" ],\
+                "multiplicity" : "(0..1)",\
+                "polymorphic" : true,\
+                "roleLabel" : "owns"\
+              },\
+              "target" :{\
+                "constraintClasses" : [ "testSchema.KindOfQuantityB" ],\
+                "multiplicity" : "(0..*)",\
+                "polymorphic" : false,\
+                "roleLabel" : "is owned by"\
+              },\
+              "schemaItemType":"RelationshipClass"\
+            },\
+            "MixinB":{\
+              "schemaItemType":"Mixin"\
+            },\
+            "MixinC":{\
+              "schemaItemType":"Mixin"\
+            },\
+            "MixinA":{\
+              "schemaItemType":"Mixin"\
+            }\
+          }\
+        }');
+
+        let testSchema: Schema;
+
+        before(() => {
+          // Load up the schema
+          const context = new SchemaContext();
+          testSchema = Schema.fromJsonSync(schemaJson, context);
+        });
+
+        it("should return the sorted EntityClasses", () => {
+          const sortedEntityClasses = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "EntityClass");
+
+          assert.equal(sortedEntityClasses[0].name, "EntityClassA");
+          assert.equal(sortedEntityClasses[1].name, "EntityClassB");
+          assert.equal(sortedEntityClasses[2].name, "EntityClassC");
+        });
+
+        it("should return the sorted CustomAttributeClasses", () => {
+          const sortedEntityClasses = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "CustomAttributeClass");
+
+          assert.equal(sortedEntityClasses[0].name, "CustomAttributeClassA");
+          assert.equal(sortedEntityClasses[1].name, "CustomAttributeClassB");
+          assert.equal(sortedEntityClasses[2].name, "CustomAttributeClassC");
+        });
+
+        it("should return the sorted Enumerations", () => {
+          const sortedEntityClasses = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "Enumeration");
+
+          assert.equal(sortedEntityClasses[0].name, "EnumerationA");
+          assert.equal(sortedEntityClasses[1].name, "EnumerationB");
+          assert.equal(sortedEntityClasses[2].name, "EnumerationC");
+        });
+
+        it("should return the sorted KindOfQuantities", () => {
+          const sortedEntityClasses = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "KindOfQuantity");
+
+          assert.equal(sortedEntityClasses[0].name, "KindOfQuantityA");
+          assert.equal(sortedEntityClasses[1].name, "KindOfQuantityB");
+          assert.equal(sortedEntityClasses[2].name, "KindOfQuantityC");
+        });
+
+        it("should return the sorted RelationshipClasses", () => {
+          const sortedEntityClasses = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "RelationshipClass");
+
+          assert.equal(sortedEntityClasses[0].name, "RelationshipClassA");
+          assert.equal(sortedEntityClasses[1].name, "RelationshipClassB");
+          assert.equal(sortedEntityClasses[2].name, "RelationshipClassC");
+        });
+
+        it("should return the sorted Mixins", () => {
+          const sortedEntityClasses = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "Mixin");
+
+          assert.equal(sortedEntityClasses[0].name, "MixinA");
+          assert.equal(sortedEntityClasses[1].name, "MixinB");
+          assert.equal(sortedEntityClasses[2].name, "MixinC");
         });
       });
     });
