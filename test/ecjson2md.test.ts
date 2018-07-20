@@ -98,11 +98,11 @@ describe("ecjson2md", () => {
       });
 
       describe("writeTitle", () => {
-        const outputPath = path.join(outputDir, "titleTest.md");
+        const outputFilePath = path.join(outputDir, "titleTest.md");
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
         });
 
         it("should write the title properly for a schema with no description", () => {
@@ -116,16 +116,16 @@ describe("ecjson2md", () => {
                 "version":"02.00.00"\
               }'));
 
-          ECJsonMarkdownGenerator.writeTitle(outputPath, testSchema);
+          ECJsonMarkdownGenerator.writeTitle(outputFilePath, testSchema);
 
-          const outputLines = fs.readFileSync(outputPath).toString().split("\n");
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
 
           assert.equal(outputLines[0], "# testSchema");
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "");
         });
 
-        it("should write the title properly for a scheam with a descrption", () => {
+        it("should write the title properly for a schema with a description", () => {
           const testSchema = new Schema();
           testSchema.fromJsonSync(JSON.parse(
             '{\
@@ -136,15 +136,117 @@ describe("ecjson2md", () => {
               "version":"02.00.00"\
             }'));
 
-          ECJsonMarkdownGenerator.writeTitle(outputPath, testSchema);
+          ECJsonMarkdownGenerator.writeTitle(outputFilePath, testSchema);
 
-          const outputLines = fs.readFileSync(outputPath).toString().split("\n");
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
 
           assert.equal(outputLines[0], "# testSchema");
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "This is the description");
           assert.equal(outputLines[3], "");
           assert.equal(outputLines[4], "");
+        });
+      });
+
+      describe("write schema item name", () => {
+        const outputFilePath = path.join(outputDir, "nameTest.md");
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("shouldn't write anything for an undefined name", () => {
+          // Arrange
+          const name = undefined;
+
+          // Act
+          ECJsonMarkdownGenerator.writeSchemaItemName(outputFilePath, name);
+
+          // Assert
+          assert.isFalse(fs.existsSync(outputFilePath));
+        });
+
+        it("should properly write the name of a schema item", () => {
+          // Arrange
+          const name = "NameOfTheSchemaItem";
+
+          // Act
+          ECJsonMarkdownGenerator.writeSchemaItemName(outputFilePath, name);
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "### " + name);
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "");
+        });
+      });
+
+      describe("write schema item description", () => {
+        const outputFilePath = path.join(outputDir, "descriptionTest.md");
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("shouldn't write anything for an undefined description", () => {
+          // Arrange
+          const description = undefined;
+
+          // Act
+          ECJsonMarkdownGenerator.writeSchemaItemDescription(outputFilePath, description);
+
+          // Assert
+          assert.isFalse(fs.existsSync(outputFilePath));
+        });
+
+        it("should properly write the description of a schema item", () => {
+          // Arrange
+          const description = "This is the description";
+
+          // Act
+          ECJsonMarkdownGenerator.writeSchemaItemDescription(outputFilePath, description);
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], description);
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "");
+        });
+      });
+
+      describe("write schema item label", () => {
+        const outputFilePath = path.join(outputDir, "labelTest.md");
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("shouldn't write anything for an undefined label", () => {
+          // Arrange
+          const label = undefined;
+
+          // Act
+          ECJsonMarkdownGenerator.writeSchemaItemLabel(outputFilePath, label);
+
+          // Assert
+          assert.isFalse(fs.existsSync(outputFilePath));
+        });
+
+        it("should properly write the label of a schema item", () => {
+          // Arrange
+          const label = "TestLabel";
+
+          // Act
+          ECJsonMarkdownGenerator.writeSchemaItemLabel(outputFilePath, label);
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "**Label:** " + label);
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "");
         });
       });
     });
