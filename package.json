@@ -44,10 +44,11 @@
   "devDependencies": {
     "@bentley/bentleyjs-tools": "^4.0.0",
     "@types/chai": "^4.1.3",
-    "@types/mocha": "^5.2.0",
     "@types/chalk": "^2.2.0",
-    "typescript": "^2.9.1",
-    "nyc": "^11.8.0"
+    "@types/mocha": "^5.2.0",
+    "@types/rimraf": "^2.0.2",
+    "nyc": "^11.8.0",
+    "typescript": "^2.9.1"
   },
   "nyc": {
     "include": [
