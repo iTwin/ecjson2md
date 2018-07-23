@@ -389,11 +389,19 @@ export class ECJsonMarkdownGenerator {
 
     // Write the default presentation unit
     if (kindOfQuantity.presentationUnits[0] !== undefined && kindOfQuantity.presentationUnits[0].unit !== undefined)
-      fs.appendFileSync(outputFilePath, "**Default presentation unit**: " + kindOfQuantity.presentationUnits[0].unit + "\n\n");
+      fs.appendFileSync(outputFilePath, "**Default Presentation Unit**: " + kindOfQuantity.presentationUnits[0].unit + "\n\n");
 
-    // Write the alternate presentation unit
-    if (kindOfQuantity.presentationUnits[1] !== undefined && kindOfQuantity.presentationUnits[1].unit !== undefined)
-      fs.appendFileSync(outputFilePath, "**Alternate presentation unit**: " + kindOfQuantity.presentationUnits[1].unit + "\n\n");
+    // Write the alternate presentation units
+    if (kindOfQuantity.presentationUnits[1] !== undefined && kindOfQuantity.presentationUnits[1].unit !== undefined) {
+      const altUnits = kindOfQuantity.presentationUnits.slice(1);
+      fs.appendFileSync(outputFilePath, "**Alternate Presentation Units**\n\n");
+
+      for (const altUnit of altUnits) {
+        if (altUnit.unit !== undefined)
+          fs.appendFileSync(outputFilePath, "- " + altUnit.unit.replace(/\*/g, "\\*") + "\n");
+      }
+      fs.appendFileSync(outputFilePath, "\n");
+    }
   }
 
   /**
