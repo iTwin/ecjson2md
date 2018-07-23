@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, LazyLoadedSchemaItem, ECClassModifier, PropertyCategory, EntityClass } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, LazyLoadedSchemaItem, ECClassModifier, PropertyCategory, EntityClass, KindOfQuantity } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
@@ -362,11 +362,64 @@ export class ECJsonMarkdownGenerator {
   }
 
   /**
-   * Write the information from kind of quantity schema items in a markdown file at the specified file path
+   * Generates markdown documentation for the kind of quantity
+   * @param outputFilePath path to file to append markdown documentation to
+   * @param kindOfQuantity kind of quantity to generate markdown for
+   */
+  public static writeKindOfQuantityClass(outputFilePath: string, kindOfQuantity: KindOfQuantity) {
+    // Write name
+    this.writeSchemaItemName(outputFilePath, kindOfQuantity.name);
+
+    // Write description
+    this.writeSchemaItemDescription(outputFilePath, kindOfQuantity.description);
+
+    // Write type
+    this.writeSchemaItemType(outputFilePath, kindOfQuantity.type);
+
+    // Write label
+    this.writeSchemaItemLabel(outputFilePath, kindOfQuantity.label);
+
+    // Write the precision
+    if (kindOfQuantity.precision !== undefined)
+      fs.appendFileSync(outputFilePath, "**Precision:** " + kindOfQuantity.precision + "\n\n");
+
+    // Write the persistence unit
+    if (kindOfQuantity.persistenceUnit !== undefined && kindOfQuantity.persistenceUnit.unit !== undefined)
+      fs.appendFileSync(outputFilePath, "**Persistence Unit:** " + kindOfQuantity.persistenceUnit.unit + "\n\n");
+
+    // Write the default presentation unit
+    if (kindOfQuantity.presentationUnits[0] !== undefined && kindOfQuantity.presentationUnits[0].unit !== undefined)
+      fs.appendFileSync(outputFilePath, "**Default presentation unit**: " + kindOfQuantity.presentationUnits[0].unit + "\n\n");
+
+    // Write the alternate presentation unit
+    if (kindOfQuantity.presentationUnits[1] !== undefined && kindOfQuantity.presentationUnits[1].unit !== undefined)
+      fs.appendFileSync(outputFilePath, "**Alternate presentation unit**: " + kindOfQuantity.presentationUnits[1].unit + "\n\n");
+  }
+
+  /**
+   * Collects and generates markdown for kind of quantity schema items in a markdown file at the specified file path
    * @param outputFilePath Path to write the markdown table to
    * @param schema Schema to pull the kind of quantity items from
    */
   public static writeKindOfQuantityClasses(outputFilePath: string, schema: Schema) {
+    const koqItems = this.getSortedSchemaItems(schema, "KindOfQuantity");
+
+    // If the list is empty or undefined, return
+    if (!koqItems || koqItems.length === 0) return;
+
+    // Write the h3 for the section
+    fs.appendFileSync(outputFilePath, "## Kind of Quantity Items\n\n");
+
+    for (const item of koqItems)
+      this.writeKindOfQuantityClass(outputFilePath, item);
+  }
+
+  /**
+   * Collects and generates markdown for kind of quantity schema items in a markdown file at the specified file path as a table
+   * @param outputFilePath Path to write the markdown table to
+   * @param schema Schema to pull the kind of quantity items from
+   */
+  public static writeKindOfQuantityClassesAsTable(outputFilePath: string, schema: Schema) {
     // If the attribute is not there, return the place holder
     const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
 
