@@ -392,7 +392,6 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
-          testSchema.getItemSync("EntityClassA");
 
           // Act
           await ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
@@ -629,6 +628,135 @@ describe("ecjson2md", () => {
         });
       });
 
+      describe("writeKindfOfQuantityClass", () => {
+        const outputFilePath = path.join(outputDir, "entityClassTest.md");
+
+        // Delete the output file before each test
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("should properly write a kind of quantity without a description", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "alias":"testSchema",\
+              "name": "testSchema",\
+              "version":"02.00.00",\
+              "items": { \
+                "KindOfQuantityA": {\
+                  "schemaItemType":"KindOfQuantity", \
+                  "label":"KindOfQuantityA", \
+                  "persistenceUnit" : { \
+                    "format" : "DefaultReal", \
+                    "unit" : "A" \
+                  }, \
+                 "precision" : 0.0010, \
+                 "presentationUnits" : [ \
+                    { \
+                       "format" : "Real4U", \
+                       "unit" : "A" \
+                    }, \
+                    { \
+                       "format" : "Real4U", \
+                       "unit" : "KILOAMPERE" \
+                    } \
+                  ] \
+                }\
+              }\
+            }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+          // Act
+          await ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "### KindOfQuantityA");
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "**Type:** KindOfQuantity");
+          assert.equal(outputLines[3], "");
+          assert.equal(outputLines[4], "**Label:** KindOfQuantityA");
+          assert.equal(outputLines[5], "");
+          assert.equal(outputLines[6], "**Precision:** 0.001");
+          assert.equal(outputLines[7], "");
+          assert.equal(outputLines[8], "**Persistence Unit:** A");
+          assert.equal(outputLines[9], "");
+          assert.equal(outputLines[10], "**Default Presentation Unit**: A");
+          assert.equal(outputLines[11], "");
+          assert.equal(outputLines[12], "**Alternate Presentation Units**");
+          assert.equal(outputLines[13], "");
+          assert.equal(outputLines[14], "- KILOAMPERE");
+          assert.equal(outputLines[15], "");
+          assert.equal(outputLines[16], "");
+        });
+
+        it("should properly write a kind of quantity without an alternate presentation unit", () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "alias":"testSchema",\
+              "name": "testSchema",\
+              "version":"02.00.00",\
+              "items": { \
+                "KindOfQuantityA": {\
+                  "schemaItemType":"KindOfQuantity", \
+                  "label":"KindOfQuantityA", \
+                  "persistenceUnit" : { \
+                    "format" : "DefaultReal", \
+                    "unit" : "A" \
+                  }, \
+                  "precision" : 0.0010, \
+                  "presentationUnits" : [ \
+                    { \
+                        "format" : "Real4U", \
+                        "unit" : "A" \
+                    } \
+                  ] \
+                }\
+              }\
+            }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+          // Act
+          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "### KindOfQuantityA");
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "**Type:** KindOfQuantity");
+          assert.equal(outputLines[3], "");
+          assert.equal(outputLines[4], "**Label:** KindOfQuantityA");
+          assert.equal(outputLines[5], "");
+          assert.equal(outputLines[6], "**Precision:** 0.001");
+          assert.equal(outputLines[7], "");
+          assert.equal(outputLines[8], "**Persistence Unit:** A");
+          assert.equal(outputLines[9], "");
+          assert.equal(outputLines[10], "**Default Presentation Unit**: A");
+          assert.equal(outputLines[11], "");
+          assert.equal(outputLines[12], "");
+        });
+
+        it("should properly write a kind of quantity without a description or alternate presentation unit", () => {
+
+        });
+
+        it("should properly write a kind of quantity with multiple alternate persentation units", () => {
+
+        });
+      });
   });
     describe("Misc", () => {
       describe("getSortedSchemaItems", () => {

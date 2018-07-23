@@ -366,7 +366,9 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath path to file to append markdown documentation to
    * @param kindOfQuantity kind of quantity to generate markdown for
    */
-  public static writeKindOfQuantityClass(outputFilePath: string, kindOfQuantity: KindOfQuantity) {
+  public static writeKindOfQuantityClass(outputFilePath: string, kindOfQuantity: KindOfQuantity|undefined) {
+    if (kindOfQuantity === undefined) return;
+
     // Write name
     this.writeSchemaItemName(outputFilePath, kindOfQuantity.name);
 
