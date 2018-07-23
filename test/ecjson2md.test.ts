@@ -1,10 +1,10 @@
-import { ECJsonMarkdownGenerator } from "../source/ecjson2md";
+import { ECJsonMarkdownGenerator, formatLink } from "../source/ecjson2md";
 import { assert } from "chai";
 import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
 import * as path from "path";
 import * as rimraf from "rimraf";
-import { SchemaContext, Schema } from "@bentley/ecjs";
+import { SchemaContext, Schema} from "@bentley/ecjs";
 
 describe("ecjson2md", () => {
   describe("ECJsonMarkdownGenerator", () => {
@@ -32,7 +32,7 @@ describe("ecjson2md", () => {
       });
     });
 
-    describe("Markdown generation", () => {
+    describe("Schema markdown generation", () => {
       const outputDir = path.join(".", "test", "temp");
 
       // Make the temp dir to store the ouuput
@@ -185,6 +185,10 @@ describe("ecjson2md", () => {
       describe("write schema item description", () => {
         const outputFilePath = path.join(outputDir, "descriptionTest.md");
 
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
         // Delete the output file after each test
         afterEach(() => {
           if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
@@ -248,6 +252,10 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "");
         });
+      });
+
+      describe("write schema item priority", () => {
+        const outputFilePath = path.join(outputDir, "priorityTest.md");
 
         it("shouldn't write anything for an undefined priority", () => {
           // Arrange
@@ -274,8 +282,354 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[2], "");
         });
       });
-    });
 
+      describe("write schema item modifier", () => {
+        const outputFilePath = path.join(outputDir, "modifierTest.md");
+
+        it("shouldn't write anything for an undefined modifier", () => {
+          // Arrange
+          const modifier = undefined;
+
+          // Act
+          ECJsonMarkdownGenerator.writeSchemaItemModifier(outputFilePath, modifier);
+
+          // Assert
+          assert.isFalse(fs.existsSync(outputFilePath));
+        });
+
+        it("should properly write the modifier of a schema item", () => {
+          // Arrange
+          const modifier = 1;
+
+          // Act
+          ECJsonMarkdownGenerator.writeSchemaItemPriority(outputFilePath, modifier);
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "**Priority:** " + modifier);
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "");
+        });
+      });
+
+      describe("writeSchemaItemBaseClass", () => {
+        const outputFilePath = path.join(outputDir, "baseClassTest.md");
+
+        it("shouldn't write anything an undefined base class", () => {
+          // Arrange
+          const baseClass = undefined;
+
+          // Act
+          ECJsonMarkdownGenerator.writeSchemaItemBaseClass(outputFilePath, baseClass);
+
+          // Assert
+          assert.isFalse(fs.existsSync(outputFilePath));
+        });
+
+        it("should write the base class properly", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "description":"This is the description",\
+              "alias":"testSchema",\
+              "name": "testSchema",\
+              "version":"02.00.00",\
+              "items": { \
+                "EntityClassA": {\
+                  "description": "this is a description", \
+                  "schemaItemType":"EntityClass", \
+                  "baseClass" : "testSchema.EntityClassB" \
+                },\
+                "EntityClassB": {\
+                  "description": "this is a description", \
+                  "schemaItemType":"EntityClass" \
+                }\
+              }\
+            }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const testBaseClass = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "EntityClass")[0].baseClass;
+
+          // Act
+          await ECJsonMarkdownGenerator.writeSchemaItemBaseClass(outputFilePath, testBaseClass);
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], '**Base Class:** [link_to testschema.ecschema/#entityclassb text="testSchema:EntityClassB"]');
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "");
+        });
+      });
+
+      describe("writeEntityClass", () => {
+        const outputFilePath = path.join(outputDir, "entityClassTest.md");
+
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("should properly write an entity class that has just a name and type", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "alias":"testSchema",\
+              "name": "testSchema",\
+              "version":"02.00.00",\
+              "items": { \
+                "EntityClassA": {\
+                  "schemaItemType":"EntityClass" \
+                }\
+              }\
+            }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+          testSchema.getItemSync("EntityClassA");
+
+          // Act
+          await ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "### EntityClassA");
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "**Type:** EntityClass");
+          assert.equal(outputLines[3], "");
+          assert.equal(outputLines[4], "");
+        });
+
+        it("should properly write an entity class that has just a name, type, and description", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "description":"This is the description",\
+              "alias":"testSchema",\
+              "name": "testSchema",\
+              "version":"02.00.00",\
+              "items": { \
+                "EntityClassA": {\
+                  "description": "this is a description", \
+                  "schemaItemType":"EntityClass" \
+                }\
+              }\
+            }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+          testSchema.getItemSync("EntityClassA");
+
+          // Act
+          await ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "### EntityClassA");
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "this is a description");
+          assert.equal(outputLines[3], "");
+          assert.equal(outputLines[4], "**Type:** EntityClass");
+          assert.equal(outputLines[5], "");
+          assert.equal(outputLines[6], "");
+         });
+
+        it("should properly write an entity class that has just a name, type, and base class", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+          '{\
+            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+            "description":"This is the description",\
+            "alias":"testSchema",\
+            "name": "testSchema",\
+            "version":"02.00.00",\
+            "items": { \
+              "EntityClassA": {\
+                "schemaItemType":"EntityClass", \
+                "baseClass" : "testSchema.EntityClassB" \
+              },\
+              "EntityClassB": {\
+                "description": "this is a description", \
+                "schemaItemType":"EntityClass" \
+              }\
+            }\
+          }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+          testSchema.getItemSync("EntityClassA");
+
+          // Act
+          await ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "### EntityClassA");
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "**Type:** EntityClass");
+          assert.equal(outputLines[3], "");
+          assert.equal(outputLines[4], `**Base Class:** [link_to testschema.ecschema/#entityclassb text="testSchema:EntityClassB"]`);
+          assert.equal(outputLines[5], "");
+          assert.equal(outputLines[6], "");
+        });
+
+        it("should properly write an entity class that has just a name, type, and label", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "description":"This is the description",\
+              "alias":"testSchema",\
+              "name": "testSchema",\
+              "version":"02.00.00",\
+              "items": { \
+                "EntityClassA": {\
+                  "schemaItemType":"EntityClass", \
+                  "label" : "entityLabel" \
+                }\
+              }\
+            }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+          testSchema.getItemSync("EntityClassA");
+
+          // Act
+          await ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "### EntityClassA");
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "**Type:** EntityClass");
+          assert.equal(outputLines[3], "");
+          assert.equal(outputLines[4], "**Label:** entityLabel");
+          assert.equal(outputLines[5], "");
+          assert.equal(outputLines[6], "");
+        });
+
+        it("should properly write an entity class that has a name, type, description, base class, and label", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+          '{\
+            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+            "description":"This is the description",\
+            "alias":"testSchema",\
+            "name": "testSchema",\
+            "version":"02.00.00",\
+            "items": { \
+              "EntityClassA": {\
+                "schemaItemType":"EntityClass", \
+                "description":"this is a description", \
+                "label":"entityLabel", \
+                "baseClass" : "testSchema.EntityClassB" \
+              },\
+              "EntityClassB": {\
+                "description": "this is a description", \
+                "schemaItemType":"EntityClass" \
+              }\
+            }\
+          }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+          testSchema.getItemSync("EntityClassA");
+
+          // Act
+          await ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "### EntityClassA");
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "this is a description");
+          assert.equal(outputLines[3], "");
+          assert.equal(outputLines[4], "**Type:** EntityClass");
+          assert.equal(outputLines[5], "");
+          assert.equal(outputLines[6], '**Base Class:** [link_to testschema.ecschema/#entityclassb text="testSchema:EntityClassB"]');
+          assert.equal(outputLines[7], "");
+          assert.equal(outputLines[8], "**Label:** entityLabel");
+          assert.equal(outputLines[9], "");
+          assert.equal(outputLines[10], "");
+        });
+
+        it("should properly write an entity class that has properties", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+          '{\
+            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+            "description":"This is the description", \
+            "alias":"testSchema", \
+            "name": "testSchema", \
+            "version":"02.00.00", \
+            "items": { \
+              "EntityClassA": { \
+                "schemaItemType":"EntityClass", \
+                "properties" : \
+                [ \
+                  { \
+                    "description":"description one", \
+                    "name":"NameOne", \
+                    "propertyType":"PrimitiveProperty", \
+                    "typeName":"string" \
+                  }, \
+                  { \
+                    "extendedTypeName":"Json", \
+                    "name":"NameTwo", \
+                    "propertyType":"PrimitiveProperty", \
+                    "typeName":"string" \
+                  }, \
+                  { \
+                    "description":"description three", \
+                    "extendedTypeName":"Json", \
+                    "name":"NameThree", \
+                    "propertyType":"PrimitiveProperty", \
+                    "typeName":"string" \
+                  }, \
+                  { \
+                    "name":"NameFour", \
+                    "propertyType":"PrimitiveProperty", \
+                    "typeName":"string" \
+                  } \
+                ] \
+              }\
+            }\
+          }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+          testSchema.getItemSync("EntityClassA");
+
+          // Act
+          await ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "### EntityClassA");
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "**Type:** EntityClass");
+          assert.equal(outputLines[3], "");
+          assert.equal(outputLines[4], "#### Properties");
+          assert.equal(outputLines[5], "");
+          assert.equal(outputLines[6], "|    Name    |    Description    |    Type    |      Extended Type     |");
+          assert.equal(outputLines[7], "|:-----------|:------------------|:-----------|:-----------------------|");
+          assert.equal(outputLines[8], "|NameOne|description one|string||");
+          assert.equal(outputLines[9], "|NameTwo||string|Json|");
+          assert.equal(outputLines[10], "|NameThree|description three|string|Json|");
+          assert.equal(outputLines[11], "|NameFour||string||");
+          assert.equal(outputLines[12], "");
+          assert.equal(outputLines[13], "");
+        });
+      });
+
+  });
     describe("Misc", () => {
       describe("getSortedSchemaItems", () => {
         const schemaJson = JSON.parse(
@@ -454,6 +808,13 @@ describe("ecjson2md", () => {
           assert.equal(sortedItems[0].name, "PropertyCategoryA");
           assert.equal(sortedItems[1].name, "PropertyCategoryB");
           assert.equal(sortedItems[2].name, "PropertyCategoryC");
+        });
+      });
+
+      describe("formatLink", () => {
+        it("should correctly format a link for bemetalsmith", () => {
+          const link = formatLink("https://www.google.com", "Google");
+          assert.equal(link, '[link_to https://www.google.com text="Google"]');
         });
       });
     });

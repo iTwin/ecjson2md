@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, LazyLoadedSchemaItem, ECClassModifier, PropertyCategory } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, LazyLoadedSchemaItem, ECClassModifier, PropertyCategory, EntityClass } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
@@ -316,6 +316,31 @@ export class ECJsonMarkdownGenerator {
       this.writeEntityClassPropertiesRow(outputFilePath, property);
   }
 
+  public static async writeEntityClass(outputFilePath: string, entityClass: EntityClass|undefined) {
+    if (entityClass === undefined) return;
+
+    // Write the name of the class
+    this.writeSchemaItemName(outputFilePath, entityClass.name);
+
+    // Write the description of the entity class
+    this.writeSchemaItemDescription(outputFilePath, entityClass.description);
+
+    // Write the class type
+    ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, entityClass.type);
+
+    // Write the base class
+    await this.writeSchemaItemBaseClass(outputFilePath, entityClass.baseClass);
+
+    // Write the label
+    this.writeSchemaItemLabel(outputFilePath, entityClass.label);
+
+    // Write the properties
+    if (entityClass.properties !== undefined) {
+      this.writeEntityClassPropertiesTable(outputFilePath, entityClass);
+      fs.appendFileSync(outputFilePath, "\n");
+    }
+  }
+
   /**
    * Writes the entity classes from a schema as markdown to the output file
    * @param outputFilePath Path to the file to write the markdown into
@@ -332,26 +357,7 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, "## Entity Classes\n\n");
 
     for (const entityClass of entityClasses) {
-      // Write the name of the class
-      this.writeSchemaItemName(outputFilePath, entityClass.name);
-
-      // Write the description of the entity class
-      this.writeSchemaItemDescription(outputFilePath, entityClass.description);
-
-      // Write the class type
-      ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, entityClass.type);
-
-      // Write the base class
-      await this.writeSchemaItemBaseClass(outputFilePath, entityClass.baseClass);
-
-      // Write the label
-      this.writeSchemaItemLabel(outputFilePath, entityClass.label);
-
-      // Write the properties
-      if (entityClass.properties !== undefined) {
-        this.writeEntityClassPropertiesTable(outputFilePath, entityClass);
-        fs.appendFileSync(outputFilePath, "\n");
-      }
+      this.writeEntityClass(outputFilePath, entityClass);
     }
   }
 
@@ -584,6 +590,60 @@ export class ECJsonMarkdownGenerator {
     }
   }
 
+  /**
+   * Generate markdown documentation for a custom attribute class
+   * @param outputFilePath Path to file to append markdown to
+   * @param customAttributeClass custom attribute class to generate markdown for
+   */
+  public static async writeCustomAttributeClass(outputFilePath: string, customAttributeClass: CustomAttributeClass) {
+    // Write the name of the class
+    this.writeSchemaItemName(outputFilePath, customAttributeClass.name);
+
+    // Write the class type
+    this.writeSchemaItemType(outputFilePath, customAttributeClass.type);
+
+    // Write the description of the class
+    this.writeSchemaItemDescription(outputFilePath, customAttributeClass.description);
+
+    // Write the base class
+    await this.writeSchemaItemBaseClass(outputFilePath, customAttributeClass.baseClass);
+
+    // Write the modifier
+    this.writeSchemaItemModifier(outputFilePath, customAttributeClass.modifier);
+
+    // Write the properties table
+    // If the properties are undefined or have length 0, return
+    if (!customAttributeClass.properties || customAttributeClass.properties.length === 0) return;
+
+    // Write the properties header and table header
+    fs.appendFileSync(outputFilePath,
+      "#### Properties\n\n" +
+      "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |\n" +
+      "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|\n");
+
+    // If the attribute is not there, return the place holder
+    const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
+
+    for (const property of customAttributeClass.properties) {
+      const name = helper(property.name);
+      const label = helper(property.label);
+      const type = helper(property.class.name);
+      const inherited = helper(property.inherited);
+      const isReadOnly = helper(property.isReadOnly);
+      const priority = helper(property.priority);
+
+      fs.appendFileSync(outputFilePath,
+        "|" + name + "|" + label + "|" + type + "|" + inherited + "|" + isReadOnly + "|" + priority + "|\n");
+    }
+
+    fs.appendFileSync(outputFilePath, "\n");
+  }
+
+  /**
+   * Collect and generate markdown documentation for custom attribute classes
+   * @param outputFilePath Path to file to write the markdown to
+   * @param schema Schema to putt the custom attribute classes from
+   */
   public static async writeCustomAttributeClasses(outputFilePath: string, schema: Schema) {
     const customAttributeClasses: CustomAttributeClass[] = this.getSortedSchemaItems(schema, "CustomAttributeClass");
 
@@ -593,117 +653,108 @@ export class ECJsonMarkdownGenerator {
     // Write the h3 for the section
     fs.appendFileSync(outputFilePath, "## Custom Attribute Classes\n\n");
 
-    for (const customAttributeClass of customAttributeClasses) {
-      // Write the name of the class
-      this.writeSchemaItemName(outputFilePath, customAttributeClass.name);
-
-      // Write the class type
-      this.writeSchemaItemType(outputFilePath, customAttributeClass.type);
-
-      // Write the description of the class
-      this.writeSchemaItemDescription(outputFilePath, customAttributeClass.description);
-
-      // Write the base class
-      await this.writeSchemaItemBaseClass(outputFilePath, customAttributeClass.baseClass);
-
-      // Write the modifier
-      this.writeSchemaItemModifier(outputFilePath, customAttributeClass.modifier);
-
-      // Write the properties table
-      // If the properties are undefined or have length 0, return
-      if (!customAttributeClass.properties || customAttributeClass.properties.length === 0) continue;
-
-      // Write the properties header and table header
-      fs.appendFileSync(outputFilePath,
-        "#### Properties\n\n" +
-        "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |\n" +
-        "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|\n");
-
-      // If the attribute is not there, return the place holder
-      const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
-
-      for (const property of customAttributeClass.properties) {
-        const name = helper(property.name);
-        const label = helper(property.label);
-        const type = helper(property.class.name);
-        const inherited = helper(property.inherited);
-        const isReadOnly = helper(property.isReadOnly);
-        const priority = helper(property.priority);
-
-        fs.appendFileSync(outputFilePath,
-          "|" + name + "|" + label + "|" + type + "|" + inherited + "|" + isReadOnly + "|" + priority + "|\n");
-      }
-
-      fs.appendFileSync(outputFilePath, "\n");
-    }
+    for (const customAttributeClass of customAttributeClasses)
+      this.writeCustomAttributeClass(outputFilePath, customAttributeClass);
   }
 
+  /**
+   * Writes markdown for a struct class0
+   * @param outputFilePath Path to file to write markdown into
+   * @param structClass Struct class to generate markdown for
+   */
+  public static async writeStructClass(outputFilePath: string, structClass: StructClass) {
+    // Write the item name
+    this.writeSchemaItemName(outputFilePath, structClass.name);
+
+    // Write the description
+    this.writeSchemaItemDescription(outputFilePath, structClass.description);
+
+    // Write the label
+    this.writeSchemaItemLabel(outputFilePath, structClass.label);
+
+    // Write the base class
+    await this.writeSchemaItemBaseClass(outputFilePath, structClass.baseClass);
+
+    // Write the type
+    this.writeSchemaItemType(outputFilePath, structClass.type);
+
+    // Write the modifier
+    this.writeSchemaItemModifier(outputFilePath, structClass.modifier);
+
+    // Write the properties table
+    // If the properties are undefined or have length 0, return
+    if (!structClass.properties || structClass.properties.length === 0) return;
+
+    // Write the properties header and table header
+    fs.appendFileSync(outputFilePath,
+      "#### Properties\n\n" +
+      "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |\n" +
+      "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|\n");
+
+    // If the attribute is not there, return the place holder
+    const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
+
+    for (const property of structClass.properties) {
+      const name = helper(property.name);
+      const label = helper(property.label);
+      const type = helper(property.class.name);
+      const inherited = helper(property.inherited);
+      const isReadOnly = helper(property.isReadOnly);
+      const priority = helper(property.priority);
+
+      fs.appendFileSync(outputFilePath,
+        "|" + name + "|" + label + "|" + type + "|" + inherited + "|" + isReadOnly + "|" + priority + "|\n");
+    }
+
+    fs.appendFileSync(outputFilePath, "\n");
+  }
+
+  /**
+   * Collects and writes markdown documentation for struct classes
+   * @param outputFilePath Path to file to write the struct classes to
+   * @param schema Schema to pull the struct classes from
+   */
   public static async writeStructClasses(outputFilePath: string, schema: Schema) {
     const structClasses: StructClass[] = this.getSortedSchemaItems(schema, "StructClass");
 
     // If the struct class list is undefined or empty, return
     if (!structClasses || structClasses.length === 0) return;
 
-    for (const structClass of structClasses) {
-      this.writeSchemaItemName(outputFilePath, structClass.name);
-
-      this.writeSchemaItemDescription(outputFilePath, structClass.description);
-
-      this.writeSchemaItemLabel(outputFilePath, structClass.label);
-
-      await this.writeSchemaItemBaseClass(outputFilePath, structClass.baseClass);
-
-      this.writeSchemaItemType(outputFilePath, structClass.type);
-
-      this.writeSchemaItemModifier(outputFilePath, structClass.modifier);
-
-      // Write the properties table
-      // If the properties are undefined or have length 0, return
-      if (!structClass.properties || structClass.properties.length === 0) continue;
-
-      // Write the properties header and table header
-      fs.appendFileSync(outputFilePath,
-        "#### Properties\n\n" +
-        "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |\n" +
-        "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|\n");
-
-      // If the attribute is not there, return the place holder
-      const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
-
-      for (const property of structClass.properties) {
-        const name = helper(property.name);
-        const label = helper(property.label);
-        const type = helper(property.class.name);
-        const inherited = helper(property.inherited);
-        const isReadOnly = helper(property.isReadOnly);
-        const priority = helper(property.priority);
-
-        fs.appendFileSync(outputFilePath,
-          "|" + name + "|" + label + "|" + type + "|" + inherited + "|" + isReadOnly + "|" + priority + "|\n");
-      }
-
-      fs.appendFileSync(outputFilePath, "\n");
-    }
+    for (const structClass of structClasses)  this.writeStructClass(outputFilePath, structClass);
   }
 
-  private static writePropertyCategories(outputFilePath: string, schema: Schema) {
+  /**
+   * Writes markdown for a property category
+   * @param outputFilePath Path to file to write markdown into
+   * @param propertyCategory Property category to generate markdown for
+   */
+  public static writePropertyCategory(outputFilePath: string, propertyCategory: PropertyCategory) {
+    // Write the name
+    this.writeSchemaItemName(outputFilePath, propertyCategory.name);
+
+    // Write the description
+    this.writeSchemaItemDescription(outputFilePath, propertyCategory.description);
+
+    // Write the the label
+    this.writeSchemaItemLabel(outputFilePath, propertyCategory.label);
+
+    // Write the type
+    this.writeSchemaItemType(outputFilePath, propertyCategory.type);
+
+    // Write the priority
+    this.writeSchemaItemPriority(outputFilePath, propertyCategory.priority);
+  }
+
+  /**
+   * Collects and writes markdown documentation for property categories
+   * @param outputFilePath Path to file to write the property categories to
+   * @param schema Schema to pull the property categories from
+   */
+  public static writePropertyCategories(outputFilePath: string, schema: Schema) {
     const propertyCategories: PropertyCategory[] = this.getSortedSchemaItems(schema, "PropertyCategory");
 
     for (const propertyCategory of propertyCategories) {
-      // Write the name
-      this.writeSchemaItemName(outputFilePath, propertyCategory.name);
-
-      // Write the description
-      this.writeSchemaItemDescription(outputFilePath, propertyCategory.description);
-
-      // Write the the label
-      this.writeSchemaItemLabel(outputFilePath, propertyCategory.label);
-
-      // Write the type
-      this.writeSchemaItemType(outputFilePath, propertyCategory.type);
-
-      // Write the priority
-      this.writeSchemaItemPriority(outputFilePath, propertyCategory.priority);
+      this.writePropertyCategory(outputFilePath, propertyCategory);
     }
   }
 
