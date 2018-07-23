@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, LazyLoadedSchemaItem, ECClassModifier } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, LazyLoadedSchemaItem, ECClassModifier, PropertyCategory } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
@@ -263,6 +263,12 @@ export class ECJsonMarkdownGenerator {
     if (modifier === undefined) return;
 
     fs.appendFileSync(outputFilePath, "**Modifier:** " + modifier.toString() + "\n\n");
+  }
+
+  public static writeSchemaItemPriority(outputFilePath: string, priority: any) {
+    if (priority === undefined) return;
+
+    fs.appendFileSync(outputFilePath, "**Priority:** " + priority + "\n\n");
   }
 
   /**
@@ -680,6 +686,27 @@ export class ECJsonMarkdownGenerator {
     }
   }
 
+  private static writePropertyCategories(outputFilePath: string, schema: Schema) {
+    const propertyCategories: PropertyCategory[] = this.getSortedSchemaItems(schema, "PropertyCategory");
+
+    for (const propertyCategory of propertyCategories) {
+      // Write the name
+      this.writeSchemaItemName(outputFilePath, propertyCategory.name);
+
+      // Write the description
+      this.writeSchemaItemDescription(outputFilePath, propertyCategory.description);
+
+      // Write the the label
+      this.writeSchemaItemLabel(outputFilePath, propertyCategory.label);
+
+      // Write the type
+      this.writeSchemaItemType(outputFilePath, propertyCategory.type);
+
+      // Write the priority
+      this.writeSchemaItemPriority(outputFilePath, propertyCategory.priority);
+    }
+  }
+
   /**
    * Loads a schema and its references into memory and drives the
    * markdown generation
@@ -721,6 +748,7 @@ export class ECJsonMarkdownGenerator {
         await ECJsonMarkdownGenerator.writeMixinClasses(outputFilePath, result);
         await ECJsonMarkdownGenerator.writeCustomAttributeClasses(outputFilePath, result);
         await ECJsonMarkdownGenerator.writeStructClasses(outputFilePath, result);
+        await ECJsonMarkdownGenerator.writePropertyCategories(outputFilePath, result);
         removeExtraBlankLine(outputFilePath);
       });
   }

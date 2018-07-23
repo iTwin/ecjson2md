@@ -248,6 +248,31 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "");
         });
+
+        it("shouldn't write anything for an undefined priority", () => {
+          // Arrange
+          const priority = undefined;
+
+          // Act
+          ECJsonMarkdownGenerator.writeSchemaItemPriority(outputFilePath, priority);
+
+          // Assert
+          assert.isFalse(fs.existsSync(outputFilePath));
+        });
+
+        it("should properly write the priority of a schema item", () => {
+          // Arrange
+          const priority = 0;
+
+          // Act
+          ECJsonMarkdownGenerator.writeSchemaItemPriority(outputFilePath, priority);
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "**Priority:** " + priority);
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "");
+        });
       });
     });
 
@@ -354,6 +379,15 @@ describe("ecjson2md", () => {
             },\
             "MixinA":{\
               "schemaItemType":"Mixin"\
+            },\
+            "PropertyCategoryB":{\
+              "schemaItemType":"PropertyCategory"\
+            },\
+            "PropertyCategoryC":{\
+              "schemaItemType":"PropertyCategory"\
+            },\
+            "PropertyCategoryA":{\
+              "schemaItemType":"PropertyCategory"\
             }\
           }\
         }');
@@ -367,51 +401,59 @@ describe("ecjson2md", () => {
         });
 
         it("should return the sorted EntityClasses", () => {
-          const sortedEntityClasses = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "EntityClass");
+          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "EntityClass");
 
-          assert.equal(sortedEntityClasses[0].name, "EntityClassA");
-          assert.equal(sortedEntityClasses[1].name, "EntityClassB");
-          assert.equal(sortedEntityClasses[2].name, "EntityClassC");
+          assert.equal(sortedItems[0].name, "EntityClassA");
+          assert.equal(sortedItems[1].name, "EntityClassB");
+          assert.equal(sortedItems[2].name, "EntityClassC");
         });
 
         it("should return the sorted CustomAttributeClasses", () => {
-          const sortedEntityClasses = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "CustomAttributeClass");
+          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "CustomAttributeClass");
 
-          assert.equal(sortedEntityClasses[0].name, "CustomAttributeClassA");
-          assert.equal(sortedEntityClasses[1].name, "CustomAttributeClassB");
-          assert.equal(sortedEntityClasses[2].name, "CustomAttributeClassC");
+          assert.equal(sortedItems[0].name, "CustomAttributeClassA");
+          assert.equal(sortedItems[1].name, "CustomAttributeClassB");
+          assert.equal(sortedItems[2].name, "CustomAttributeClassC");
         });
 
         it("should return the sorted Enumerations", () => {
-          const sortedEntityClasses = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "Enumeration");
+          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "Enumeration");
 
-          assert.equal(sortedEntityClasses[0].name, "EnumerationA");
-          assert.equal(sortedEntityClasses[1].name, "EnumerationB");
-          assert.equal(sortedEntityClasses[2].name, "EnumerationC");
+          assert.equal(sortedItems[0].name, "EnumerationA");
+          assert.equal(sortedItems[1].name, "EnumerationB");
+          assert.equal(sortedItems[2].name, "EnumerationC");
         });
 
         it("should return the sorted KindOfQuantities", () => {
-          const sortedEntityClasses = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "KindOfQuantity");
+          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "KindOfQuantity");
 
-          assert.equal(sortedEntityClasses[0].name, "KindOfQuantityA");
-          assert.equal(sortedEntityClasses[1].name, "KindOfQuantityB");
-          assert.equal(sortedEntityClasses[2].name, "KindOfQuantityC");
+          assert.equal(sortedItems[0].name, "KindOfQuantityA");
+          assert.equal(sortedItems[1].name, "KindOfQuantityB");
+          assert.equal(sortedItems[2].name, "KindOfQuantityC");
         });
 
         it("should return the sorted RelationshipClasses", () => {
-          const sortedEntityClasses = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "RelationshipClass");
+          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "RelationshipClass");
 
-          assert.equal(sortedEntityClasses[0].name, "RelationshipClassA");
-          assert.equal(sortedEntityClasses[1].name, "RelationshipClassB");
-          assert.equal(sortedEntityClasses[2].name, "RelationshipClassC");
+          assert.equal(sortedItems[0].name, "RelationshipClassA");
+          assert.equal(sortedItems[1].name, "RelationshipClassB");
+          assert.equal(sortedItems[2].name, "RelationshipClassC");
         });
 
         it("should return the sorted Mixins", () => {
-          const sortedEntityClasses = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "Mixin");
+          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "Mixin");
 
-          assert.equal(sortedEntityClasses[0].name, "MixinA");
-          assert.equal(sortedEntityClasses[1].name, "MixinB");
-          assert.equal(sortedEntityClasses[2].name, "MixinC");
+          assert.equal(sortedItems[0].name, "MixinA");
+          assert.equal(sortedItems[1].name, "MixinB");
+          assert.equal(sortedItems[2].name, "MixinC");
+        });
+
+        it("should return the sorted list of property categories", () => {
+          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "PropertyCategory");
+
+          assert.equal(sortedItems[0].name, "PropertyCategoryA");
+          assert.equal(sortedItems[1].name, "PropertyCategoryB");
+          assert.equal(sortedItems[2].name, "PropertyCategoryC");
         });
       });
     });
