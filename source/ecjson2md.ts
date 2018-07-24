@@ -567,6 +567,45 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, "\n");
   }
 
+  /**
+   * Generates markdown documentation for an enumeration item
+   * @param outputFilePath File path to append markdown documentation to
+   * @param enumerationItem Enumeration to generate markdown for
+   */
+  public static writeEnumerationItem(outputFilePath: string, enumerationItem: Enumeration|undefined) {
+    if (enumerationItem === undefined) return;
+
+    if (enumerationItem.name !== undefined)
+        fs.appendFileSync(outputFilePath, "### " + enumerationItem.name + "\n\n");
+
+    if (enumerationItem.description !== undefined)
+      fs.appendFileSync(outputFilePath, enumerationItem.description + "\n\n");
+
+    // Write the type
+    this.writeSchemaItemType(outputFilePath, enumerationItem.type);
+
+    // Write the label
+    this.writeSchemaItemType(outputFilePath, enumerationItem.label);
+
+    // Write wether or not the enum is strict
+    if (enumerationItem.isStrict !== undefined)
+      fs.appendFileSync(outputFilePath, "**Strict:** " + enumerationItem.isStrict + "\n\n");
+
+    // Write wether the enum is an int or string
+    if (enumerationItem.isInt())
+      fs.appendFileSync(outputFilePath, "**Backing Type:** int\n\n");
+    if (enumerationItem.isString())
+      fs.appendFileSync(outputFilePath, "**Backing Type:** string\n\n");
+
+    // Write the enumeration table
+    this.writeEnumerationTable(outputFilePath, enumerationItem);
+  }
+
+  /**
+   * Collects and generates markdown documentation for enumeration items in a schema
+   * @param outputFilePath File path to append markdown documentation to
+   * @param schema Schema to pull enumeration items from
+   */
   public static writeEnumerationItems(outputFilePath: string, schema: Schema) {
     const enumerationItems = this.getSortedSchemaItems(schema, "Enumeration");
 
@@ -576,32 +615,8 @@ export class ECJsonMarkdownGenerator {
     // Write the h3 for the section
     fs.appendFileSync(outputFilePath, "## Enumeration Items\n\n");
 
-    for (const enumeration of enumerationItems) {
-      if (enumeration.name !== undefined)
-        fs.appendFileSync(outputFilePath, "### " + enumeration.name + "\n\n");
-
-      if (enumeration.description !== undefined)
-        fs.appendFileSync(outputFilePath, enumeration.description + "\n\n");
-
-      // Write the type
-      this.writeSchemaItemType(outputFilePath, enumeration.type);
-
-      // Write the label
-      this.writeSchemaItemType(outputFilePath, enumeration.label);
-
-      // Write wether or not the enum is strict
-      if (enumeration.isStrict !== undefined)
-        fs.appendFileSync(outputFilePath, "**Strict:** " + enumeration.isStrict + "\n\n");
-
-      // Write wether the enum is an int or string
-      if (enumeration.isInt())
-        fs.appendFileSync(outputFilePath, "**Backing Type:** int\n\n");
-      if (enumeration.isString())
-        fs.appendFileSync(outputFilePath, "**Backing Type:** string\n\n");
-
-      // Write the enumeration table
-      this.writeEnumerationTable(outputFilePath, enumeration);
-    }
+    for (const enumerationItem of enumerationItems)
+      this.writeEnumerationItem(outputFilePath, enumerationItem);
   }
 
   private static async writeMixinClasses(outputFilePath: string, schema: Schema) {
