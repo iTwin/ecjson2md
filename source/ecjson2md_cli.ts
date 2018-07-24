@@ -40,7 +40,11 @@ function main() {
     console.log(chalk.default.gray("Generating markdown at " + path.resolve(outputFilePath) + "..."));
 
     // Try to generate the markdown
-    mdGenerator.generate(program.input, outputFilePath, program.nonrelease).then(() => {
+    mdGenerator.generate(program.input, outputFilePath, program.nonrelease);
+    // tslint:disable-next-line:no-console
+    console.log(chalk.default.blue("Markdown successfully generated at " + path.resolve(outputFilePath)));
+
+    /*.then(() => {
 
       // tslint:disable-next-line:no-console
       console.log(chalk.default.blue("Markdown successfully generated at " + path.resolve(outputFilePath)));
@@ -48,11 +52,12 @@ function main() {
       // tslint:disable-next-line:no-console
       console.log(chalk.default.red(error));
       process.exit();
-    });
+    }); */
   } catch (e) {
       // tslint:disable-next-line:no-console
       console.log(chalk.default.red(e, "\nQuitting..."));
   }
+
 }
 
 main();

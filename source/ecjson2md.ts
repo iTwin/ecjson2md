@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, LazyLoadedSchemaItem, ECClassModifier, PropertyCategory, EntityClass, KindOfQuantity, RelationshipClass } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, ECClassModifier, PropertyCategory, EntityClass, KindOfQuantity, RelationshipClass, Mixin } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
@@ -248,16 +248,14 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, "**Type:** " + schemaItemTypeToString(type) + "\n\n");
   }
 
-  public static writeSchemaItemBaseClass(outputFilePath: string, baseClass: LazyLoadedSchemaItem<ECClass> | undefined) {
+  public static writeSchemaItemBaseClass(outputFilePath: string, baseClass: any) {
     if (baseClass === undefined) return;
 
-    baseClass.then((result: any) => {
-      const baseClassLink = result.schema.name.toLowerCase() + ".ecschema/#" + result.name.toLowerCase();
-      const baseClassName = result.schema.name + ":" + result.name;
+    const baseClassLink = baseClass.schemaName.toLowerCase() + ".ecschema/#" + baseClass.name.toLowerCase();
+    const baseClassName = baseClass.schemaName + ":" + baseClass.name;
 
-      fs.appendFileSync(outputFilePath, "**Base Class:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
-    });
-  }
+    fs.appendFileSync(outputFilePath, "**Base Class:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
+}
 
   public static writeSchemaItemModifier(outputFilePath: string, modifier: ECClassModifier|undefined) {
     if (modifier === undefined) return;
@@ -316,7 +314,7 @@ export class ECJsonMarkdownGenerator {
       this.writeEntityClassPropertiesRow(outputFilePath, property);
   }
 
-  public static async writeEntityClass(outputFilePath: string, entityClass: EntityClass|undefined) {
+  public static writeEntityClass(outputFilePath: string, entityClass: EntityClass | undefined) {
     if (entityClass === undefined) return;
 
     // Write the name of the class
@@ -326,10 +324,16 @@ export class ECJsonMarkdownGenerator {
     this.writeSchemaItemDescription(outputFilePath, entityClass.description);
 
     // Write the class type
-    ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, entityClass.type);
+    ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, entityClass.schemaItemType);
+    const test = entityClass.getBaseClassSync();
+    test;
+    let test2;
+    if (entityClass.baseClass)
+      test2 = entityClass.baseClass.name;
+    test2;
 
     // Write the base class
-    await this.writeSchemaItemBaseClass(outputFilePath, entityClass.baseClass);
+    this.writeSchemaItemBaseClass(outputFilePath, entityClass.baseClass);
 
     // Write the label
     this.writeSchemaItemLabel(outputFilePath, entityClass.label);
@@ -346,7 +350,7 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to the file to write the markdown into
    * @param schema Schema to pull the entity class information from
    */
-  public static async writeEntityClasses(outputFilePath: string, schema: Schema) {
+  public static writeEntityClasses(outputFilePath: string, schema: Schema) {
     // Get a sorted list of the entity classes in the schema
     const entityClasses = this.getSortedSchemaItems(schema, "EntityClass");
 
@@ -376,7 +380,7 @@ export class ECJsonMarkdownGenerator {
     this.writeSchemaItemDescription(outputFilePath, kindOfQuantity.description);
 
     // Write type
-    this.writeSchemaItemType(outputFilePath, kindOfQuantity.type);
+    this.writeSchemaItemType(outputFilePath, kindOfQuantity.schemaItemType);
 
     // Write label
     this.writeSchemaItemLabel(outputFilePath, kindOfQuantity.label);
@@ -485,7 +489,7 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to append markdown to
    * @param relationshipClass Class to generate markdown for
    */
-  public static async writeRelationshipClass(outputFilePath: string, relationshipClass: RelationshipClass|undefined) {
+  public static writeRelationshipClass(outputFilePath: string, relationshipClass: RelationshipClass|undefined) {
     if (relationshipClass === undefined) return;
 
     // Write the name of the class
@@ -495,10 +499,10 @@ export class ECJsonMarkdownGenerator {
     this.writeSchemaItemDescription(outputFilePath, relationshipClass.description);
 
     // Write the class type
-    this.writeSchemaItemType(outputFilePath, relationshipClass.type);
+    this.writeSchemaItemType(outputFilePath, relationshipClass.schemaItemType);
 
     // Write the base class
-    await this.writeSchemaItemBaseClass(outputFilePath, relationshipClass.baseClass);
+    this.writeSchemaItemBaseClass(outputFilePath, relationshipClass.baseClass);
 
     // Write the label
     this.writeSchemaItemLabel(outputFilePath, relationshipClass.label);
@@ -528,7 +532,7 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to append the markdown to
    * @param schema Schema to pull relationship classes from
    */
-  public static async writeRelationshipClasses(outputFilePath: string, schema: Schema) {
+  public static writeRelationshipClasses(outputFilePath: string, schema: Schema) {
     const relationshipClasses = this.getSortedSchemaItems(schema, "RelationshipClass");
 
     // If the class list is undefined or empty, return
@@ -582,7 +586,7 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputFilePath, enumerationItem.description + "\n\n");
 
     // Write the type
-    this.writeSchemaItemType(outputFilePath, enumerationItem.type);
+    this.writeSchemaItemType(outputFilePath, enumerationItem.schemaItemType);
 
     // Write the label
     this.writeSchemaItemType(outputFilePath, enumerationItem.label);
@@ -619,7 +623,70 @@ export class ECJsonMarkdownGenerator {
       this.writeEnumerationItem(outputFilePath, enumerationItem);
   }
 
-  private static async writeMixinClasses(outputFilePath: string, schema: Schema) {
+  /**
+   * Generates markdown documentation for a mixin class
+   * @param outputFilePath Path to file to append the markdown to
+   * @param mixin Mixin class to generate markdown for
+   */
+  public static writeMixinClass(outputFilePath: string, mixin: Mixin|undefined) {
+    if (mixin === undefined) return;
+
+    // Write the name of the mixin
+    this.writeSchemaItemName(outputFilePath, mixin.name);
+
+    // Write the description of the mixin class
+    this.writeSchemaItemDescription(outputFilePath, mixin.description);
+
+    // Write the class type
+    this.writeSchemaItemType(outputFilePath, mixin.schemaItemType);
+
+    // Write the base class
+    this.writeSchemaItemBaseClass(outputFilePath, mixin.baseClass);
+
+    // Write the label
+    this.writeSchemaItemLabel(outputFilePath, mixin.label);
+
+    // Link to what the mixin applies to
+    if (mixin.appliesTo !== undefined) {
+      const appliesToLink = mixin.appliesTo.schemaName.toLowerCase() + ".ecschema/#" + mixin.appliesTo.name.toLowerCase();
+
+      // Write a link to what the mixin applies to
+      fs.appendFileSync(outputFilePath, "**appliesTo:** " + formatLink(appliesToLink, mixin.appliesTo.name) + "\n\n");
+    }
+
+    // If the properties are undefined or empty, continue with next
+    if (!mixin.properties || mixin.properties.length === 0) return;
+
+    // Write the properties header and table header
+    fs.appendFileSync(outputFilePath,
+        "#### Properties\n\n" +
+        "|    Name    |    Label    |    Class    |    Inherited    |    Read Only     |    Priority    |\n" +
+        "|:-----------|:------------|:------------|:----------------|:-----------------|:---------------|\n");
+
+    // If the attribute is not there, return the place holder
+    const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
+
+    for (const property of mixin.properties) {
+      const name = helper(property.name);
+      const label = helper(property.label);
+      const type = helper(property.class.name);
+      // const inherited = helper(property.inherited);
+      const isReadOnly = helper(property.isReadOnly);
+      const priority = helper(property.priority);
+
+      fs.appendFileSync(outputFilePath,
+        "|" + name + "|" + label + "|" + type + "|" /*+ inherited */ + "|" + isReadOnly + "|" + priority + "|\n");
+    }
+
+    fs.appendFileSync(outputFilePath, "\n");
+  }
+
+  /**
+   * Collects and generates markdown documentation for mixin classes in a schema
+   * @param outputFilePath Path to file to append markdown to
+   * @param schema Schema to pull mixin classes from
+   */
+  private static writeMixinClasses(outputFilePath: string, schema: Schema) {
     const mixinClasses = this.getSortedSchemaItems(schema, "Mixin");
 
     // If the mixin class list is undefined or empty, return
@@ -628,59 +695,8 @@ export class ECJsonMarkdownGenerator {
     // Write the h3 for the section
     fs.appendFileSync(outputFilePath, "## Mixin Classes\n\n");
 
-    for (const mixin of mixinClasses) {
-      // Write the name of the mixin
-      this.writeSchemaItemName(outputFilePath, mixin.name);
-
-      // Write the description of the mixin class
-      this.writeSchemaItemDescription(outputFilePath, mixin.description);
-
-      // Write the class type
-      this.writeSchemaItemType(outputFilePath, mixin.type);
-
-      // Write the base class
-      await this.writeSchemaItemBaseClass(outputFilePath, mixin.baseClass);
-
-      // Write the label
-      this.writeSchemaItemLabel(outputFilePath, mixin.label);
-
-      // Link to what the mixin applies to
-      if (mixin.appliesTo !== undefined) {
-        const appliesToLink = mixin.appliesTo.schemaName.toLowerCase() + ".ecschema/#" + mixin.appliesTo.name.toLowerCase();
-
-        // Write a link to what the mixin applies to
-        fs.appendFileSync(outputFilePath, "**appliesTo:** " + formatLink(appliesToLink, mixin.appliesTo.name) + "\n\n");
-      }
-
-      // Write the modifier
-      this.writeSchemaItemModifier(outputFilePath, mixin.modifier);
-
-      // If the properties are undefined or empty, continue with next
-      if (!mixin.properties || mixin.properties.length === 0) continue;
-
-      // Write the properties header and table header
-      fs.appendFileSync(outputFilePath,
-          "#### Properties\n\n" +
-          "|    Name    |    Label    |    Class    |    Inherited    |    Read Only     |    Priority    |\n" +
-          "|:-----------|:------------|:------------|:----------------|:-----------------|:---------------|\n");
-
-      // If the attribute is not there, return the place holder
-      const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
-
-      for (const property of mixin.properties) {
-        const name = helper(property.name);
-        const label = helper(property.label);
-        const type = helper(property.class.name);
-        const inherited = helper(property.inherited);
-        const isReadOnly = helper(property.isReadOnly);
-        const priority = helper(property.priority);
-
-        fs.appendFileSync(outputFilePath,
-          "|" + name + "|" + label + "|" + type + "|" + inherited + "|" + isReadOnly + "|" + priority + "|\n");
-      }
-
-      fs.appendFileSync(outputFilePath, "\n");
-    }
+    for (const mixin of mixinClasses)
+      this.writeMixinClass(outputFilePath, mixin);
   }
 
   /**
@@ -688,18 +704,18 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to append markdown to
    * @param customAttributeClass custom attribute class to generate markdown for
    */
-  public static async writeCustomAttributeClass(outputFilePath: string, customAttributeClass: CustomAttributeClass) {
+  public static writeCustomAttributeClass(outputFilePath: string, customAttributeClass: CustomAttributeClass) {
     // Write the name of the class
     this.writeSchemaItemName(outputFilePath, customAttributeClass.name);
 
     // Write the class type
-    this.writeSchemaItemType(outputFilePath, customAttributeClass.type);
+    this.writeSchemaItemType(outputFilePath, customAttributeClass.schemaItemType);
 
     // Write the description of the class
     this.writeSchemaItemDescription(outputFilePath, customAttributeClass.description);
 
     // Write the base class
-    await this.writeSchemaItemBaseClass(outputFilePath, customAttributeClass.baseClass);
+    this.writeSchemaItemBaseClass(outputFilePath, customAttributeClass.baseClass);
 
     // Write the modifier
     this.writeSchemaItemModifier(outputFilePath, customAttributeClass.modifier);
@@ -721,12 +737,12 @@ export class ECJsonMarkdownGenerator {
       const name = helper(property.name);
       const label = helper(property.label);
       const type = helper(property.class.name);
-      const inherited = helper(property.inherited);
+      // const inherited = helper(property.inherited);
       const isReadOnly = helper(property.isReadOnly);
       const priority = helper(property.priority);
 
       fs.appendFileSync(outputFilePath,
-        "|" + name + "|" + label + "|" + type + "|" + inherited + "|" + isReadOnly + "|" + priority + "|\n");
+        "|" + name + "|" + label + "|" + type + "|" + /* inherited */ + "|" + isReadOnly + "|" + priority + "|\n");
     }
 
     fs.appendFileSync(outputFilePath, "\n");
@@ -737,7 +753,7 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to write the markdown to
    * @param schema Schema to putt the custom attribute classes from
    */
-  public static async writeCustomAttributeClasses(outputFilePath: string, schema: Schema) {
+  public static writeCustomAttributeClasses(outputFilePath: string, schema: Schema) {
     const customAttributeClasses: CustomAttributeClass[] = this.getSortedSchemaItems(schema, "CustomAttributeClass");
 
     // If the mixin class list is undefined or empty, return
@@ -755,7 +771,7 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to write markdown into
    * @param structClass Struct class to generate markdown for
    */
-  public static async writeStructClass(outputFilePath: string, structClass: StructClass) {
+  public static writeStructClass(outputFilePath: string, structClass: StructClass) {
     // Write the item name
     this.writeSchemaItemName(outputFilePath, structClass.name);
 
@@ -766,10 +782,10 @@ export class ECJsonMarkdownGenerator {
     this.writeSchemaItemLabel(outputFilePath, structClass.label);
 
     // Write the base class
-    await this.writeSchemaItemBaseClass(outputFilePath, structClass.baseClass);
+    this.writeSchemaItemBaseClass(outputFilePath, structClass.baseClass);
 
     // Write the type
-    this.writeSchemaItemType(outputFilePath, structClass.type);
+    this.writeSchemaItemType(outputFilePath, structClass.schemaItemType);
 
     // Write the modifier
     this.writeSchemaItemModifier(outputFilePath, structClass.modifier);
@@ -791,12 +807,12 @@ export class ECJsonMarkdownGenerator {
       const name = helper(property.name);
       const label = helper(property.label);
       const type = helper(property.class.name);
-      const inherited = helper(property.inherited);
+      // const inherited = helper(property.inherited);
       const isReadOnly = helper(property.isReadOnly);
       const priority = helper(property.priority);
 
       fs.appendFileSync(outputFilePath,
-        "|" + name + "|" + label + "|" + type + "|" + inherited + "|" + isReadOnly + "|" + priority + "|\n");
+        "|" + name + "|" + label + "|" + type + "|" /* + inherited */ + "|" + isReadOnly + "|" + priority + "|\n");
     }
 
     fs.appendFileSync(outputFilePath, "\n");
@@ -807,7 +823,7 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to write the struct classes to
    * @param schema Schema to pull the struct classes from
    */
-  public static async writeStructClasses(outputFilePath: string, schema: Schema) {
+  public static writeStructClasses(outputFilePath: string, schema: Schema) {
     const structClasses: StructClass[] = this.getSortedSchemaItems(schema, "StructClass");
 
     // If the struct class list is undefined or empty, return
@@ -832,7 +848,7 @@ export class ECJsonMarkdownGenerator {
     this.writeSchemaItemLabel(outputFilePath, propertyCategory.label);
 
     // Write the type
-    this.writeSchemaItemType(outputFilePath, propertyCategory.type);
+    this.writeSchemaItemType(outputFilePath, propertyCategory.schemaItemType);
 
     // Write the priority
     this.writeSchemaItemPriority(outputFilePath, propertyCategory.priority);
@@ -857,7 +873,7 @@ export class ECJsonMarkdownGenerator {
    * @param schemaPath path to SchemaJson to load
    * @param outputFilePath Path to the output file to write to
    */
-  public generate(schemaPath: string, outputFilePath: string, nonReleaseFlag = false): Promise<any> {
+  public generate(schemaPath: string, outputFilePath: string, nonReleaseFlag = false) {
     // If the schema file doesn't exist, throw an error
     if (!fs.existsSync(schemaPath)) throw new ECJsonFileNotFound(schemaPath);
 
@@ -880,20 +896,34 @@ export class ECJsonMarkdownGenerator {
     // Check if the output directory exists
     if (!fs.existsSync(outputDir)) throw new ECJsonBadOutputPath(outputFilePath);
 
-    return Schema.fromJson(schemaJson, this.context).then(
-      async (result) => {
-        fs.writeFileSync(outputFilePath, "");
-        ECJsonMarkdownGenerator.writeFrontMatter(outputFilePath, result, nonReleaseFlag);
-        await ECJsonMarkdownGenerator.writeTitle(outputFilePath, result);
-        await ECJsonMarkdownGenerator.writeEntityClasses(outputFilePath, result);
-        await ECJsonMarkdownGenerator.writeKindOfQuantityClasses(outputFilePath, result);
-        await ECJsonMarkdownGenerator.writeRelationshipClasses(outputFilePath, result);
-        await ECJsonMarkdownGenerator.writeEnumerationItems(outputFilePath, result);
-        await ECJsonMarkdownGenerator.writeMixinClasses(outputFilePath, result);
-        await ECJsonMarkdownGenerator.writeCustomAttributeClasses(outputFilePath, result);
-        await ECJsonMarkdownGenerator.writeStructClasses(outputFilePath, result);
-        await ECJsonMarkdownGenerator.writePropertyCategories(outputFilePath, result);
-        removeExtraBlankLine(outputFilePath);
-      });
+    const schema: Schema = Schema.fromJsonSync(schemaJson, this.context);
+    fs.writeFileSync(outputFilePath, "");
+    ECJsonMarkdownGenerator.writeFrontMatter(outputFilePath, schema, nonReleaseFlag);
+    ECJsonMarkdownGenerator.writeTitle(outputFilePath, schema);
+    ECJsonMarkdownGenerator.writeEntityClasses(outputFilePath, schema);
+    ECJsonMarkdownGenerator.writeKindOfQuantityClasses(outputFilePath, schema);
+    ECJsonMarkdownGenerator.writeRelationshipClasses(outputFilePath, schema);
+    ECJsonMarkdownGenerator.writeEnumerationItems(outputFilePath, schema);
+    ECJsonMarkdownGenerator.writeMixinClasses(outputFilePath, schema);
+    ECJsonMarkdownGenerator.writeCustomAttributeClasses(outputFilePath, schema);
+    ECJsonMarkdownGenerator.writeStructClasses(outputFilePath, schema);
+    ECJsonMarkdownGenerator.writePropertyCategories(outputFilePath, schema);
+    removeExtraBlankLine(outputFilePath);
+
+    // return Schema.fromJson(schemaJson, this.context).then(
+    //   async (result) => {
+    //     fs.writeFileSync(outputFilePath, "");
+    //     ECJsonMarkdownGenerator.writeFrontMatter(outputFilePath, result, nonReleaseFlag);
+    //     await ECJsonMarkdownGenerator.writeTitle(outputFilePath, result);
+    //     await ECJsonMarkdownGenerator.writeEntityClasses(outputFilePath, result);
+    //     await ECJsonMarkdownGenerator.writeKindOfQuantityClasses(outputFilePath, result);
+    //     await ECJsonMarkdownGenerator.writeRelationshipClasses(outputFilePath, result);
+    //     await ECJsonMarkdownGenerator.writeEnumerationItems(outputFilePath, result);
+    //     await ECJsonMarkdownGenerator.writeMixinClasses(outputFilePath, result);
+    //     await ECJsonMarkdownGenerator.writeCustomAttributeClasses(outputFilePath, result);
+    //     await ECJsonMarkdownGenerator.writeStructClasses(outputFilePath, result);
+    //     await ECJsonMarkdownGenerator.writePropertyCategories(outputFilePath, result);
+    //     removeExtraBlankLine(outputFilePath);
+    //   });
   }
 }
