@@ -874,7 +874,7 @@ describe("ecjson2md", () => {
       });
 
       describe("writeRelationshipClass", () => {
-        const outputFilePath = path.join(outputDir, "entityClassTest.md");
+        const outputFilePath = path.join(outputDir, "relationshipClassTest.md");
 
         // Delete the output file before each test
         beforeEach(() => {
@@ -1390,13 +1390,19 @@ describe("ecjson2md", () => {
                   "strength" : "referencing", \
                   "strengthDirection" : "forward", \
                   "source" : { \
-                    "constraintClasses": [ "testSchema.EntityClassA", "testSchema.EntityClassB", "testSchema.EntityClassC" ], \
+                    "constraintClasses": [ \
+                      "testSchema.EntityClassA", \
+                      "testSchema.EntityClassB", \
+                      "testSchema.EntityClassC" ], \
                     "multiplicity" : "(0..*)", \
                     "polymorphic" : false, \
                     "roleLabel": "relates to" \
                   }, \
                   "target" : { \
-                    "constraintClasses" : [ "testSchema.EntityClassE", "testSchema.EntityClassF", "testSchema.EntityClassG" ], \
+                    "constraintClasses" : [ \
+                      "testSchema.EntityClassE", \
+                      "testSchema.EntityClassF", \
+                      "testSchema.EntityClassG" ], \
                     "multiplicity" : "(1..1)", \
                     "polymorphic": true, \
                     "roleLabel": "is related by" \
@@ -1452,6 +1458,238 @@ describe("ecjson2md", () => {
             '- [link_to testschema.ecschema/#entityclassg text="EntityClassG"]',
             "",
             "" ];
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+      });
+
+      describe("writeEnumerationItem", () => {
+        const outputFilePath = path.join(outputDir, "relationshipClassTest.md");
+        const schemaJson = JSON.parse(
+          '{\
+            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+            "alias":"testSchema", \
+            "name": "testSchema", \
+            "version":"02.00.00", \
+            "items": { \
+              "IntBackedEnum" : { \
+                "backingTypeName" : "int", \
+                "enumerators" : [ \
+                  { \
+                    "label" : "IntThing", \
+                    "value" : 0 \
+                  } \
+                ], \
+                "isStrict" : true, \
+                "schemaItemType" : "Enumeration" \
+              }, \
+              "StringBackedEnum" : { \
+                "backingTypeName" : "string", \
+                "enumerators" : [ \
+                  { \
+                    "label" : "StringThing", \
+                    "value" : "zero" \
+                  } \
+                ], \
+                "isStrict" : true, \
+                "schemaItemType" : "Enumeration" \
+              }, \
+              "NoEnumEnum" : { \
+                "backingTypeName" : "string", \
+                "enumerators" : [ ], \
+                "isStrict" : true, \
+                "schemaItemType" : "Enumeration" \
+              }, \
+              "LotsOfEnumEnum" : { \
+                "backingTypeName" : "int", \
+                "enumerators" : [ \
+                  { \
+                    "label" : "Zero", \
+                    "value" : 0 \
+                  }, \
+                  { \
+                    "label" : "One", \
+                    "value" : 1 \
+                  }, \
+                  { \
+                    "label" : "Two", \
+                    "value" : 2 \
+                  }, \
+                  { \
+                    "label" : "Three", \
+                    "value" : 3 \
+                  }, \
+                  { \
+                    "label" : "Four", \
+                    "value" : 4 \
+                  } \
+                ], \
+                "isStrict" : true, \
+                "schemaItemType" : "Enumeration" \
+              }, \
+              "NoLabelEnumerators" : { \
+                "backingTypeName" : "int", \
+                "enumerators" : [ \
+                  { "value" : 0 }, \
+                  { "value" : 1 }, \
+                  { "value" : 2 }, \
+                  { "value" : 3 }, \
+                  { "value" : 4 } \
+                ], \
+                "isStrict" : true, \
+                "schemaItemType" : "Enumeration" \
+              } \
+            } \
+          }');
+
+        const context = new SchemaContext();
+        const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+        // Delete the output file before each test
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("should properly write an enumeration backed by int", async () => {
+          // Arrange
+          const correctLines = [
+            "### IntBackedEnum",
+            "",
+            "**Type:** Enumeration",
+            "",
+            "**Strict:** true",
+            "",
+            "**Backing Type:** int",
+            "",
+            "|    Label    |    Value    |",
+            "|:------------|:------------|",
+            "|IntThing|0|",
+            "",
+            "" ];
+
+          // Act
+          await ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("IntBackedEnum"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write an enumeration backed by a string", async () => {
+          // Arrange
+          const correctLines = [
+            "### StringBackedEnum",
+            "",
+            "**Type:** Enumeration",
+            "",
+            "**Strict:** true",
+            "",
+            "**Backing Type:** string",
+            "",
+            "|    Label    |    Value    |",
+            "|:------------|:------------|",
+            "|StringThing|zero|",
+            "",
+            "" ];
+
+          // Act
+          await ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("StringBackedEnum"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write an enumeration with no enumerators", async () => {
+          // Arrange
+          const correctLines = [
+            "### NoEnumEnum",
+            "",
+            "**Type:** Enumeration",
+            "",
+            "**Strict:** true",
+            "",
+            "**Backing Type:** string",
+            "",
+            "" ];
+
+          // Act
+          await ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("NoEnumEnum"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write an enumeration with several enumerators", async () => {
+          // Arrange
+          const correctLines = [
+            "### LotsOfEnumEnum",
+            "",
+            "**Type:** Enumeration",
+            "",
+            "**Strict:** true",
+            "",
+            "**Backing Type:** int",
+            "",
+            "|    Label    |    Value    |",
+            "|:------------|:------------|",
+            "|Zero|0|",
+            "|One|1|",
+            "|Two|2|",
+            "|Three|3|",
+            "|Four|4|",
+            "",
+            "" ];
+
+          // Act
+          await ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("LotsOfEnumEnum"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write an enumeration with no enumerator labels", async () => {
+          // Arrange
+          const correctLines = [
+            "### NoLabelEnumerators",
+            "",
+            "**Type:** Enumeration",
+            "",
+            "**Strict:** true",
+            "",
+            "**Backing Type:** int",
+            "",
+            "|    Label    |    Value    |",
+            "|:------------|:------------|",
+            "||0|",
+            "||1|",
+            "||2|",
+            "||3|",
+            "||4|",
+            "",
+            "" ];
+
+          // Act
+          await ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("NoLabelEnumerators"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
 
           // tslint:disable-next-line:prefer-for-of
           for (let i = 0; i < outputLines.length; i++)
