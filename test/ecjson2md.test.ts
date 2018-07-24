@@ -749,200 +749,902 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[12], "");
         });
 
-        it("should properly write a kind of quantity without a description or alternate presentation unit", () => {
+        it("should properly write a kind of quantity without a description or alternate presentation unit", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "alias":"testSchema",\
+              "name": "testSchema",\
+              "version":"02.00.00",\
+              "items": { \
+                "KindOfQuantityA": {\
+                  "schemaItemType":"KindOfQuantity", \
+                  "label":"KindOfQuantityA", \
+                  "persistenceUnit" : { \
+                    "format" : "DefaultReal", \
+                    "unit" : "A" \
+                  }, \
+                 "precision" : 0.0010, \
+                 "presentationUnits" : [ \
+                    { \
+                       "format" : "Real4U", \
+                       "unit" : "A" \
+                    } \
+                  ] \
+                }\
+              }\
+            }');
 
-        });
-
-        it("should properly write a kind of quantity with multiple alternate persentation units", () => {
-
-        });
-      });
-  });
-    describe("Misc", () => {
-      describe("getSortedSchemaItems", () => {
-        const schemaJson = JSON.parse(
-        '{\
-          "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
-          "description":"This is the description",\
-          "alias":"testSchema",\
-          "name": "testSchema",\
-          "version":"02.00.00",\
-          "items": { \
-            "EntityClassB": {\
-              "description": "this is a description", \
-              "schemaItemType":"EntityClass"\
-            },\
-            "EntityClassC":{\
-              "schemaItemType":"EntityClass"\
-            },\
-            "EntityClassA":{\
-              "schemaItemType":"EntityClass"\
-            },\
-            "CustomAttributeClassB":{\
-              "schemaItemType":"CustomAttributeClass"\
-            },\
-            "CustomAttributeClassC":{\
-              "schemaItemType":"CustomAttributeClass"\
-            },\
-            "CustomAttributeClassA":{\
-              "schemaItemType":"CustomAttributeClass"\
-            },\
-            "EnumerationB":{\
-              "backingTypeName" : "int", \
-              "schemaItemType":"Enumeration"\
-            },\
-            "EnumerationC":{\
-              "backingTypeName" : "int", \
-              "schemaItemType":"Enumeration"\
-            },\
-            "EnumerationA":{\
-              "backingTypeName" : "int",  \
-              "schemaItemType":"Enumeration"\
-            },\
-            "KindOfQuantityB":{\
-              "schemaItemType":"KindOfQuantity"\
-            },\
-            "KindOfQuantityC":{\
-              "schemaItemType":"KindOfQuantity"\
-            },\
-            "KindOfQuantityA":{\
-              "schemaItemType":"KindOfQuantity"\
-            },\
-            "RelationshipClassB":{\
-              "source" :{\
-                "constraintClasses" : [ "testSchema.KindOfQuantityA" ],\
-                "multiplicity" : "(0..1)",\
-                "polymorphic" : true,\
-                "roleLabel" : "owns"\
-              },\
-              "target" :{\
-                "constraintClasses" : [ "testSchema.KindOfQuantityB" ],\
-                "multiplicity" : "(0..*)",\
-                "polymorphic" : false,\
-                "roleLabel" : "is owned by"\
-              },\
-              "schemaItemType":"RelationshipClass"\
-            },\
-            "RelationshipClassC":{\
-              "source" :{\
-                "constraintClasses" : [ "testSchema.KindOfQuantityA" ],\
-                "multiplicity" : "(0..1)",\
-                "polymorphic" : true,\
-                "roleLabel" : "owns"\
-              },\
-              "target" :{\
-                "constraintClasses" : [ "testSchema.KindOfQuantityB" ],\
-                "multiplicity" : "(0..*)",\
-                "polymorphic" : false,\
-                "roleLabel" : "is owned by"\
-              },\
-              "schemaItemType":"RelationshipClass"\
-            },\
-            "RelationshipClassA":{\
-              "source" :{\
-                "constraintClasses" : [ "testSchema.KindOfQuantityA" ],\
-                "multiplicity" : "(0..1)",\
-                "polymorphic" : true,\
-                "roleLabel" : "owns"\
-              },\
-              "target" :{\
-                "constraintClasses" : [ "testSchema.KindOfQuantityB" ],\
-                "multiplicity" : "(0..*)",\
-                "polymorphic" : false,\
-                "roleLabel" : "is owned by"\
-              },\
-              "schemaItemType":"RelationshipClass"\
-            },\
-            "MixinB":{\
-              "schemaItemType":"Mixin"\
-            },\
-            "MixinC":{\
-              "schemaItemType":"Mixin"\
-            },\
-            "MixinA":{\
-              "schemaItemType":"Mixin"\
-            },\
-            "PropertyCategoryB":{\
-              "schemaItemType":"PropertyCategory"\
-            },\
-            "PropertyCategoryC":{\
-              "schemaItemType":"PropertyCategory"\
-            },\
-            "PropertyCategoryA":{\
-              "schemaItemType":"PropertyCategory"\
-            }\
-          }\
-        }');
-
-        let testSchema: Schema;
-
-        before(() => {
-          // Load up the schema
           const context = new SchemaContext();
-          testSchema = Schema.fromJsonSync(schemaJson, context);
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+          // Act
+          await ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "### KindOfQuantityA");
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "**Type:** KindOfQuantity");
+          assert.equal(outputLines[3], "");
+          assert.equal(outputLines[4], "**Label:** KindOfQuantityA");
+          assert.equal(outputLines[5], "");
+          assert.equal(outputLines[6], "**Precision:** 0.001");
+          assert.equal(outputLines[7], "");
+          assert.equal(outputLines[8], "**Persistence Unit:** A");
+          assert.equal(outputLines[9], "");
+          assert.equal(outputLines[10], "**Default Presentation Unit**: A");
+          assert.equal(outputLines[11], "");
+          assert.equal(outputLines[12], "");
         });
 
-        it("should return the sorted EntityClasses", () => {
-          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "EntityClass");
+        it("should properly write a kind of quantity with multiple alternate presentation units", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "alias":"testSchema",\
+              "name": "testSchema",\
+              "version":"02.00.00",\
+              "items": { \
+                "KindOfQuantityA": {\
+                  "schemaItemType":"KindOfQuantity", \
+                  "label":"KindOfQuantityA", \
+                  "persistenceUnit" : { \
+                    "format" : "DefaultReal", \
+                    "unit" : "A" \
+                  }, \
+                 "precision" : 0.0010, \
+                 "presentationUnits" : [ \
+                    { \
+                       "format" : "Real4U", \
+                       "unit" : "A" \
+                    }, \
+                    { \
+                       "format" : "Real4U", \
+                       "unit" : "KILOAMPERE" \
+                    }, \
+                    { \
+                      "format" : "Real4U", \
+                      "unit" : "M/SEC.SQ" \
+                    }, \
+                    { \
+                      "format" : "Real4U", \
+                      "unit" : "CM/SEC.SQ" \
+                    }, \
+                    { \
+                      "format" : "Real4U", \
+                      "unit" : "FT/SEC.SQ" \
+                    } \
+                  ] \
+                }\
+              }\
+            }');
 
-          assert.equal(sortedItems[0].name, "EntityClassA");
-          assert.equal(sortedItems[1].name, "EntityClassB");
-          assert.equal(sortedItems[2].name, "EntityClassC");
-        });
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
 
-        it("should return the sorted CustomAttributeClasses", () => {
-          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "CustomAttributeClass");
+          // Act
+          await ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
 
-          assert.equal(sortedItems[0].name, "CustomAttributeClassA");
-          assert.equal(sortedItems[1].name, "CustomAttributeClassB");
-          assert.equal(sortedItems[2].name, "CustomAttributeClassC");
-        });
-
-        it("should return the sorted Enumerations", () => {
-          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "Enumeration");
-
-          assert.equal(sortedItems[0].name, "EnumerationA");
-          assert.equal(sortedItems[1].name, "EnumerationB");
-          assert.equal(sortedItems[2].name, "EnumerationC");
-        });
-
-        it("should return the sorted KindOfQuantities", () => {
-          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "KindOfQuantity");
-
-          assert.equal(sortedItems[0].name, "KindOfQuantityA");
-          assert.equal(sortedItems[1].name, "KindOfQuantityB");
-          assert.equal(sortedItems[2].name, "KindOfQuantityC");
-        });
-
-        it("should return the sorted RelationshipClasses", () => {
-          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "RelationshipClass");
-
-          assert.equal(sortedItems[0].name, "RelationshipClassA");
-          assert.equal(sortedItems[1].name, "RelationshipClassB");
-          assert.equal(sortedItems[2].name, "RelationshipClassC");
-        });
-
-        it("should return the sorted Mixins", () => {
-          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "Mixin");
-
-          assert.equal(sortedItems[0].name, "MixinA");
-          assert.equal(sortedItems[1].name, "MixinB");
-          assert.equal(sortedItems[2].name, "MixinC");
-        });
-
-        it("should return the sorted list of property categories", () => {
-          const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "PropertyCategory");
-
-          assert.equal(sortedItems[0].name, "PropertyCategoryA");
-          assert.equal(sortedItems[1].name, "PropertyCategoryB");
-          assert.equal(sortedItems[2].name, "PropertyCategoryC");
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines[0], "### KindOfQuantityA");
+          assert.equal(outputLines[1], "");
+          assert.equal(outputLines[2], "**Type:** KindOfQuantity");
+          assert.equal(outputLines[3], "");
+          assert.equal(outputLines[4], "**Label:** KindOfQuantityA");
+          assert.equal(outputLines[5], "");
+          assert.equal(outputLines[6], "**Precision:** 0.001");
+          assert.equal(outputLines[7], "");
+          assert.equal(outputLines[8], "**Persistence Unit:** A");
+          assert.equal(outputLines[9], "");
+          assert.equal(outputLines[10], "**Default Presentation Unit**: A");
+          assert.equal(outputLines[11], "");
+          assert.equal(outputLines[12], "**Alternate Presentation Units**");
+          assert.equal(outputLines[13], "");
+          assert.equal(outputLines[14], "- KILOAMPERE");
+          assert.equal(outputLines[15], "- M/SEC.SQ");
+          assert.equal(outputLines[16], "- CM/SEC.SQ");
+          assert.equal(outputLines[17], "- FT/SEC.SQ");
+          assert.equal(outputLines[18], "");
+          assert.equal(outputLines[19], "");
         });
       });
 
-      describe("formatLink", () => {
-        it("should correctly format a link for bemetalsmith", () => {
-          const link = formatLink("https://www.google.com", "Google");
-          assert.equal(link, '[link_to https://www.google.com text="Google"]');
+      describe("writeRelationshipClass", () => {
+        const outputFilePath = path.join(outputDir, "entityClassTest.md");
+
+        // Delete the output file before each test
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("should properly write a class without a description, base class, or label", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+              "alias":"testSchema", \
+              "name": "testSchema", \
+              "version":"02.00.00", \
+              "items": { \
+                "EntityClassA": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassB": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassC": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassD": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "RelationshipClassA": { \
+                  "modifier": "none", \
+                  "schemaItemType":"RelationshipClass", \
+                  "strength" : "referencing", \
+                  "strengthDirection" : "forward", \
+                  "source" : { \
+                    "constraintClasses": [ "testSchema.EntityClassA" ], \
+                    "multiplicity" : "(0..*)", \
+                    "polymorphic" : false, \
+                    "roleLabel": "relates to" \
+                  }, \
+                  "target" : { \
+                    "constraintClasses" : [ "testSchema.EntityClassB" ], \
+                    "multiplicity" : "(1..1)", \
+                    "polymorphic": true, \
+                    "roleLabel": "is related by" \
+                  } \
+                } \
+              } \
+            }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+          // Act
+          await ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          outputLines;
+
+          const correctLines = [
+            "### RelationshipClassA",
+            "",
+            "**Type:** RelationshipClass",
+            "",
+            "**Strength:** 0",
+            "",
+            "**strengthDirection:** 1",
+            "",
+            "#### Source",
+            "",
+            "**isPolymorphic:** false",
+            "",
+            "**roleLabel:** relates to",
+            "",
+            "**multiplicity:** (0..*)",
+            "",
+            "##### Constraint Classes",
+            "",
+            '- [link_to testschema.ecschema/#entityclassa text="EntityClassA"]',
+            "",
+            "#### Target",
+            "",
+            "**isPolymorphic:** true",
+            "",
+            "**roleLabel:** is related by",
+            "",
+            "**multiplicity:** (1..1)",
+            "",
+            "##### Constraint Classes",
+            "",
+            '- [link_to testschema.ecschema/#entityclassb text="EntityClassB"]',
+            "",
+            "" ];
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a class with a description", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+              "alias":"testSchema", \
+              "name": "testSchema", \
+              "version":"02.00.00", \
+              "items": { \
+                "EntityClassA": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassB": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassC": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassD": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "RelationshipClassA": { \
+                  "description" : "this is a description", \
+                  "modifier": "none", \
+                  "schemaItemType":"RelationshipClass", \
+                  "strength" : "referencing", \
+                  "strengthDirection" : "forward", \
+                  "source" : { \
+                    "constraintClasses": [ "testSchema.EntityClassA" ], \
+                    "multiplicity" : "(0..*)", \
+                    "polymorphic" : false, \
+                    "roleLabel": "relates to" \
+                  }, \
+                  "target" : { \
+                    "constraintClasses" : [ "testSchema.EntityClassB" ], \
+                    "multiplicity" : "(1..1)", \
+                    "polymorphic": true, \
+                    "roleLabel": "is related by" \
+                  } \
+                } \
+              } \
+            }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+          // Act
+          await ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          const correctLines = [
+            "### RelationshipClassA",
+            "",
+            "this is a description",
+            "",
+            "**Type:** RelationshipClass",
+            "",
+            "**Strength:** 0",
+            "",
+            "**strengthDirection:** 1",
+            "",
+            "#### Source",
+            "",
+            "**isPolymorphic:** false",
+            "",
+            "**roleLabel:** relates to",
+            "",
+            "**multiplicity:** (0..*)",
+            "",
+            "##### Constraint Classes",
+            "",
+            '- [link_to testschema.ecschema/#entityclassa text="EntityClassA"]',
+            "",
+            "#### Target",
+            "",
+            "**isPolymorphic:** true",
+            "",
+            "**roleLabel:** is related by",
+            "",
+            "**multiplicity:** (1..1)",
+            "",
+            "##### Constraint Classes",
+            "",
+            '- [link_to testschema.ecschema/#entityclassb text="EntityClassB"]',
+            "",
+            "" ];
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a class with a base class", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+              "alias":"testSchema", \
+              "name": "testSchema", \
+              "version":"02.00.00", \
+              "items": { \
+                "EntityClassA": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassB": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassC": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassD": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "RelationshipClassA": { \
+                  "baseClass" : "testSchema.EntityClassD", \
+                  "modifier": "none", \
+                  "schemaItemType":"RelationshipClass", \
+                  "strength" : "referencing", \
+                  "strengthDirection" : "forward", \
+                  "source" : { \
+                    "constraintClasses": [ "testSchema.EntityClassA" ], \
+                    "multiplicity" : "(0..*)", \
+                    "polymorphic" : false, \
+                    "roleLabel": "relates to" \
+                  }, \
+                  "target" : { \
+                    "constraintClasses" : [ "testSchema.EntityClassB" ], \
+                    "multiplicity" : "(1..1)", \
+                    "polymorphic": true, \
+                    "roleLabel": "is related by" \
+                  } \
+                } \
+              } \
+            }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+          // Act
+          await ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          const correctLines = [
+            "### RelationshipClassA",
+            "",
+            "**Type:** RelationshipClass",
+            "",
+            '**Base Class:** [link_to testschema.ecschema/#entityclassd text="testSchema:EntityClassD"]',
+            "",
+            "**Strength:** 0",
+            "",
+            "**strengthDirection:** 1",
+            "",
+            "#### Source",
+            "",
+            "**isPolymorphic:** false",
+            "",
+            "**roleLabel:** relates to",
+            "",
+            "**multiplicity:** (0..*)",
+            "",
+            "##### Constraint Classes",
+            "",
+            '- [link_to testschema.ecschema/#entityclassa text="EntityClassA"]',
+            "",
+            "#### Target",
+            "",
+            "**isPolymorphic:** true",
+            "",
+            "**roleLabel:** is related by",
+            "",
+            "**multiplicity:** (1..1)",
+            "",
+            "##### Constraint Classes",
+            "",
+            '- [link_to testschema.ecschema/#entityclassb text="EntityClassB"]',
+            "",
+            "" ];
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a class with a label", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+              "alias":"testSchema", \
+              "name": "testSchema", \
+              "version":"02.00.00", \
+              "items": { \
+                "EntityClassA": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassB": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassC": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassD": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "RelationshipClassA": { \
+                  "baseClass" : "testSchema.EntityClassD", \
+                  "modifier": "none", \
+                  "schemaItemType":"RelationshipClass", \
+                  "strength" : "referencing", \
+                  "strengthDirection" : "forward", \
+                  "source" : { \
+                    "constraintClasses": [ "testSchema.EntityClassA" ], \
+                    "multiplicity" : "(0..*)", \
+                    "polymorphic" : false, \
+                    "roleLabel": "relates to" \
+                  }, \
+                  "target" : { \
+                    "constraintClasses" : [ "testSchema.EntityClassB" ], \
+                    "multiplicity" : "(1..1)", \
+                    "polymorphic": true, \
+                    "roleLabel": "is related by" \
+                  } \
+                } \
+              } \
+            }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+          // Act
+          await ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          const correctLines = [
+            "### RelationshipClassA",
+            "",
+            "**Type:** RelationshipClass",
+            "",
+            '**Base Class:** [link_to testschema.ecschema/#entityclassd text="testSchema:EntityClassD"]',
+            "",
+            "**Strength:** 0",
+            "",
+            "**strengthDirection:** 1",
+            "",
+            "#### Source",
+            "",
+            "**isPolymorphic:** false",
+            "",
+            "**roleLabel:** relates to",
+            "",
+            "**multiplicity:** (0..*)",
+            "",
+            "##### Constraint Classes",
+            "",
+            '- [link_to testschema.ecschema/#entityclassa text="EntityClassA"]',
+            "",
+            "#### Target",
+            "",
+            "**isPolymorphic:** true",
+            "",
+            "**roleLabel:** is related by",
+            "",
+            "**multiplicity:** (1..1)",
+            "",
+            "##### Constraint Classes",
+            "",
+            '- [link_to testschema.ecschema/#entityclassb text="EntityClassB"]',
+            "",
+            "" ];
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a base class with description, base class, and label", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+              "alias":"testSchema", \
+              "name": "testSchema", \
+              "version":"02.00.00", \
+              "items": { \
+                "EntityClassA": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassB": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassC": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassD": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "RelationshipClassA": { \
+                  "label" : "relationshipClassALabel", \
+                  "modifier": "none", \
+                  "schemaItemType":"RelationshipClass", \
+                  "strength" : "referencing", \
+                  "strengthDirection" : "forward", \
+                  "source" : { \
+                    "constraintClasses": [ "testSchema.EntityClassA" ], \
+                    "multiplicity" : "(0..*)", \
+                    "polymorphic" : false, \
+                    "roleLabel": "relates to" \
+                  }, \
+                  "target" : { \
+                    "constraintClasses" : [ "testSchema.EntityClassB" ], \
+                    "multiplicity" : "(1..1)", \
+                    "polymorphic": true, \
+                    "roleLabel": "is related by" \
+                  } \
+                } \
+              } \
+            }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+          // Act
+          await ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          const correctLines = [
+            "### RelationshipClassA",
+            "",
+            "**Type:** RelationshipClass",
+            "",
+            "**Label:** relationshipClassALabel",
+            "",
+            "**Strength:** 0",
+            "",
+            "**strengthDirection:** 1",
+            "",
+            "#### Source",
+            "",
+            "**isPolymorphic:** false",
+            "",
+            "**roleLabel:** relates to",
+            "",
+            "**multiplicity:** (0..*)",
+            "",
+            "##### Constraint Classes",
+            "",
+            '- [link_to testschema.ecschema/#entityclassa text="EntityClassA"]',
+            "",
+            "#### Target",
+            "",
+            "**isPolymorphic:** true",
+            "",
+            "**roleLabel:** is related by",
+            "",
+            "**multiplicity:** (1..1)",
+            "",
+            "##### Constraint Classes",
+            "",
+            '- [link_to testschema.ecschema/#entityclassb text="EntityClassB"]',
+            "",
+            "" ];
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a class that has multiple constraint classes in target and source", async () => {
+          // Arrange
+          const schemaJson = JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+              "alias":"testSchema", \
+              "name": "testSchema", \
+              "version":"02.00.00", \
+              "items": { \
+                "EntityClassA": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassB": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassC": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassD": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassE": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassF": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "EntityClassG": { \
+                  "schemaItemType":"EntityClass" \
+                }, \
+                "RelationshipClassA": { \
+                  "modifier": "none", \
+                  "schemaItemType":"RelationshipClass", \
+                  "strength" : "referencing", \
+                  "strengthDirection" : "forward", \
+                  "source" : { \
+                    "constraintClasses": [ "testSchema.EntityClassA", "testSchema.EntityClassB", "testSchema.EntityClassC" ], \
+                    "multiplicity" : "(0..*)", \
+                    "polymorphic" : false, \
+                    "roleLabel": "relates to" \
+                  }, \
+                  "target" : { \
+                    "constraintClasses" : [ "testSchema.EntityClassE", "testSchema.EntityClassF", "testSchema.EntityClassG" ], \
+                    "multiplicity" : "(1..1)", \
+                    "polymorphic": true, \
+                    "roleLabel": "is related by" \
+                  } \
+                } \
+              } \
+            }');
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+          // Act
+          await ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          const correctLines = [
+            "### RelationshipClassA",
+            "",
+            "**Type:** RelationshipClass",
+            "",
+            "**Strength:** 0",
+            "",
+            "**strengthDirection:** 1",
+            "",
+            "#### Source",
+            "",
+            "**isPolymorphic:** false",
+            "",
+            "**roleLabel:** relates to",
+            "",
+            "**multiplicity:** (0..*)",
+            "",
+            "##### Constraint Classes",
+            "",
+            '- [link_to testschema.ecschema/#entityclassa text="EntityClassA"]',
+            '- [link_to testschema.ecschema/#entityclassb text="EntityClassB"]',
+            '- [link_to testschema.ecschema/#entityclassc text="EntityClassC"]',
+            "",
+            "#### Target",
+            "",
+            "**isPolymorphic:** true",
+            "",
+            "**roleLabel:** is related by",
+            "",
+            "**multiplicity:** (1..1)",
+            "",
+            "##### Constraint Classes",
+            "",
+            '- [link_to testschema.ecschema/#entityclasse text="EntityClassE"]',
+            '- [link_to testschema.ecschema/#entityclassf text="EntityClassF"]',
+            '- [link_to testschema.ecschema/#entityclassg text="EntityClassG"]',
+            "",
+            "" ];
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+      });
+
+      describe("Misc", () => {
+        describe("getSortedSchemaItems", () => {
+          const schemaJson = JSON.parse(
+          '{\
+            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+            "description":"This is the description",\
+            "alias":"testSchema",\
+            "name": "testSchema",\
+            "version":"02.00.00",\
+            "items": { \
+              "EntityClassB": {\
+                "description": "this is a description", \
+                "schemaItemType":"EntityClass"\
+              },\
+              "EntityClassC":{\
+                "schemaItemType":"EntityClass"\
+              },\
+              "EntityClassA":{\
+                "schemaItemType":"EntityClass"\
+              },\
+              "CustomAttributeClassB":{\
+                "schemaItemType":"CustomAttributeClass"\
+              },\
+              "CustomAttributeClassC":{\
+                "schemaItemType":"CustomAttributeClass"\
+              },\
+              "CustomAttributeClassA":{\
+                "schemaItemType":"CustomAttributeClass"\
+              },\
+              "EnumerationB":{\
+                "backingTypeName" : "int", \
+                "schemaItemType":"Enumeration"\
+              },\
+              "EnumerationC":{\
+                "backingTypeName" : "int", \
+                "schemaItemType":"Enumeration"\
+              },\
+              "EnumerationA":{\
+                "backingTypeName" : "int",  \
+                "schemaItemType":"Enumeration"\
+              },\
+              "KindOfQuantityB":{\
+                "schemaItemType":"KindOfQuantity"\
+              },\
+              "KindOfQuantityC":{\
+                "schemaItemType":"KindOfQuantity"\
+              },\
+              "KindOfQuantityA":{\
+                "schemaItemType":"KindOfQuantity"\
+              },\
+              "RelationshipClassB":{\
+                "source" :{\
+                  "constraintClasses" : [ "testSchema.KindOfQuantityA" ],\
+                  "multiplicity" : "(0..1)",\
+                  "polymorphic" : true,\
+                  "roleLabel" : "owns"\
+                },\
+                "target" :{\
+                  "constraintClasses" : [ "testSchema.KindOfQuantityB" ],\
+                  "multiplicity" : "(0..*)",\
+                  "polymorphic" : false,\
+                  "roleLabel" : "is owned by"\
+                },\
+                "schemaItemType":"RelationshipClass"\
+              },\
+              "RelationshipClassC":{\
+                "source" :{\
+                  "constraintClasses" : [ "testSchema.KindOfQuantityA" ],\
+                  "multiplicity" : "(0..1)",\
+                  "polymorphic" : true,\
+                  "roleLabel" : "owns"\
+                },\
+                "target" :{\
+                  "constraintClasses" : [ "testSchema.KindOfQuantityB" ],\
+                  "multiplicity" : "(0..*)",\
+                  "polymorphic" : false,\
+                  "roleLabel" : "is owned by"\
+                },\
+                "schemaItemType":"RelationshipClass"\
+              },\
+              "RelationshipClassA":{\
+                "source" :{\
+                  "constraintClasses" : [ "testSchema.KindOfQuantityA" ],\
+                  "multiplicity" : "(0..1)",\
+                  "polymorphic" : true,\
+                  "roleLabel" : "owns"\
+                },\
+                "target" :{\
+                  "constraintClasses" : [ "testSchema.KindOfQuantityB" ],\
+                  "multiplicity" : "(0..*)",\
+                  "polymorphic" : false,\
+                  "roleLabel" : "is owned by"\
+                },\
+                "schemaItemType":"RelationshipClass"\
+              },\
+              "MixinB":{\
+                "schemaItemType":"Mixin"\
+              },\
+              "MixinC":{\
+                "schemaItemType":"Mixin"\
+              },\
+              "MixinA":{\
+                "schemaItemType":"Mixin"\
+              },\
+              "PropertyCategoryB":{\
+                "schemaItemType":"PropertyCategory"\
+              },\
+              "PropertyCategoryC":{\
+                "schemaItemType":"PropertyCategory"\
+              },\
+              "PropertyCategoryA":{\
+                "schemaItemType":"PropertyCategory"\
+              }\
+            }\
+          }');
+
+          let testSchema: Schema;
+
+          before(() => {
+            // Load up the schema
+            const context = new SchemaContext();
+            testSchema = Schema.fromJsonSync(schemaJson, context);
+          });
+
+          it("should return the sorted EntityClasses", () => {
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "EntityClass");
+
+            assert.equal(sortedItems[0].name, "EntityClassA");
+            assert.equal(sortedItems[1].name, "EntityClassB");
+            assert.equal(sortedItems[2].name, "EntityClassC");
+          });
+
+          it("should return the sorted CustomAttributeClasses", () => {
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "CustomAttributeClass");
+
+            assert.equal(sortedItems[0].name, "CustomAttributeClassA");
+            assert.equal(sortedItems[1].name, "CustomAttributeClassB");
+            assert.equal(sortedItems[2].name, "CustomAttributeClassC");
+          });
+
+          it("should return the sorted Enumerations", () => {
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "Enumeration");
+
+            assert.equal(sortedItems[0].name, "EnumerationA");
+            assert.equal(sortedItems[1].name, "EnumerationB");
+            assert.equal(sortedItems[2].name, "EnumerationC");
+          });
+
+          it("should return the sorted KindOfQuantities", () => {
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "KindOfQuantity");
+
+            assert.equal(sortedItems[0].name, "KindOfQuantityA");
+            assert.equal(sortedItems[1].name, "KindOfQuantityB");
+            assert.equal(sortedItems[2].name, "KindOfQuantityC");
+          });
+
+          it("should return the sorted RelationshipClasses", () => {
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "RelationshipClass");
+
+            assert.equal(sortedItems[0].name, "RelationshipClassA");
+            assert.equal(sortedItems[1].name, "RelationshipClassB");
+            assert.equal(sortedItems[2].name, "RelationshipClassC");
+          });
+
+          it("should return the sorted Mixins", () => {
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "Mixin");
+
+            assert.equal(sortedItems[0].name, "MixinA");
+            assert.equal(sortedItems[1].name, "MixinB");
+            assert.equal(sortedItems[2].name, "MixinC");
+          });
+
+          it("should return the sorted list of property categories", () => {
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "PropertyCategory");
+
+            assert.equal(sortedItems[0].name, "PropertyCategoryA");
+            assert.equal(sortedItems[1].name, "PropertyCategoryB");
+            assert.equal(sortedItems[2].name, "PropertyCategoryC");
+          });
+        });
+
+        describe("formatLink", () => {
+          it("should correctly format a link for bemetalsmith", () => {
+            const link = formatLink("https://www.google.com", "Google");
+            assert.equal(link, '[link_to https://www.google.com text="Google"]');
+          });
         });
       });
     });

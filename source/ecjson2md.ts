@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, LazyLoadedSchemaItem, ECClassModifier, PropertyCategory, EntityClass, KindOfQuantity } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, LazyLoadedSchemaItem, ECClassModifier, PropertyCategory, EntityClass, KindOfQuantity, RelationshipClass } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
@@ -480,6 +480,54 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, "\n");
   }
 
+  /**
+   * Generates markdown documentation for relationship class
+   * @param outputFilePath Path to file to append markdown to
+   * @param relationshipClass Class to generate markdown for
+   */
+  public static async writeRelationshipClass(outputFilePath: string, relationshipClass: RelationshipClass|undefined) {
+    if (relationshipClass === undefined) return;
+
+    // Write the name of the class
+    this.writeSchemaItemName(outputFilePath, relationshipClass.name);
+
+    // Write the description of the entity class
+    this.writeSchemaItemDescription(outputFilePath, relationshipClass.description);
+
+    // Write the class type
+    this.writeSchemaItemType(outputFilePath, relationshipClass.type);
+
+    // Write the base class
+    await this.writeSchemaItemBaseClass(outputFilePath, relationshipClass.baseClass);
+
+    // Write the label
+    this.writeSchemaItemLabel(outputFilePath, relationshipClass.label);
+
+    // Write the strength
+    if (relationshipClass.strength !== undefined) {
+      fs.appendFileSync(outputFilePath, "**Strength:** " + relationshipClass.strength + "\n\n");
+    }
+    // Write the strength direction
+    if (relationshipClass.strengthDirection !== undefined) {
+      fs.appendFileSync(outputFilePath, "**strengthDirection:** " + relationshipClass.strengthDirection + "\n\n");
+    }
+
+    // Write the source section
+    fs.appendFileSync(outputFilePath, "#### Source\n\n");
+    // Write the relationship constraints info for the source section
+    this.writeRelationshipConstraintSection(outputFilePath, relationshipClass.source);
+
+    // Write the target section
+    fs.appendFileSync(outputFilePath, "#### Target\n\n");
+    // Write the relationship constraints info for the target section
+    this.writeRelationshipConstraintSection(outputFilePath, relationshipClass.target);
+  }
+
+  /**
+   * Collects and generates markdown documentation for relationship classes
+   * @param outputFilePath Path to file to append the markdown to
+   * @param schema Schema to pull relationship classes from
+   */
   public static async writeRelationshipClasses(outputFilePath: string, schema: Schema) {
     const relationshipClasses = this.getSortedSchemaItems(schema, "RelationshipClass");
 
@@ -489,41 +537,8 @@ export class ECJsonMarkdownGenerator {
     // Write the h3 for the section
     fs.appendFileSync(outputFilePath, "## Relationship Classes\n\n");
 
-    for (const relationshipClass of relationshipClasses) {
-      // Write the name of the class
-      this.writeSchemaItemName(outputFilePath, relationshipClass.name);
-
-      // Write the description of the entity class
-      this.writeSchemaItemDescription(outputFilePath, relationshipClass.description);
-
-      // Write the class type
-      this.writeSchemaItemType(outputFilePath, relationshipClass.type);
-
-      // Write the base class
-      await this.writeSchemaItemBaseClass(outputFilePath, relationshipClass.baseClass);
-
-      // Write the label
-      this.writeSchemaItemLabel(outputFilePath, relationshipClass.label);
-
-      // Write the strength
-      if (relationshipClass.strength !== undefined) {
-        fs.appendFileSync(outputFilePath, "**Strength:** " + relationshipClass.strength + "\n\n");
-      }
-      // Write the strength direction
-      if (relationshipClass.strengthDirection !== undefined) {
-        fs.appendFileSync(outputFilePath, "**strengthDirection:** " + relationshipClass.strengthDirection + "\n\n");
-      }
-
-      // Write the source section
-      fs.appendFileSync(outputFilePath, "#### Source\n\n");
-      // Write the relationship constraints info for the source section
-      this.writeRelationshipConstraintSection(outputFilePath, relationshipClass.source);
-
-      // Write the target section
-      fs.appendFileSync(outputFilePath, "#### Target\n\n");
-      // Write the relationship constraints info for the target section
-      this.writeRelationshipConstraintSection(outputFilePath, relationshipClass.target);
-    }
+    for (const relationshipClass of relationshipClasses)
+      this.writeRelationshipClass(outputFilePath, relationshipClass);
   }
 
   public static writeEnumerationTable(outputFilePath: string, enumeration: Enumeration) {
