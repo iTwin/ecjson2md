@@ -326,7 +326,7 @@ describe("ecjson2md", () => {
           assert.isFalse(fs.existsSync(outputFilePath));
         });
 
-        it("should write the base class properly", async () => {
+        it("should write the base class properly", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
@@ -353,7 +353,7 @@ describe("ecjson2md", () => {
           const testBaseClass = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "EntityClass")[0].baseClass;
 
           // Act
-          await ECJsonMarkdownGenerator.writeSchemaItemBaseClass(outputFilePath, testBaseClass);
+          ECJsonMarkdownGenerator.writeSchemaItemBaseClass(outputFilePath, testBaseClass);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -375,7 +375,7 @@ describe("ecjson2md", () => {
           if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
         });
 
-        it("should properly write an entity class that has just a name and type", async () => {
+        it("should properly write an entity class that has just a name and type", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
@@ -394,7 +394,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          await ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -405,7 +405,7 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[4], "");
         });
 
-        it("should properly write an entity class that has just a name, type, and description", async () => {
+        it("should properly write an entity class that has just a name, type, and description", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
@@ -427,7 +427,7 @@ describe("ecjson2md", () => {
           testSchema.getItemSync("EntityClassA");
 
           // Act
-          await ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -440,7 +440,7 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[6], "");
          });
 
-        it("should properly write an entity class that has just a name, type, and base class", async () => {
+        it("should properly write an entity class that has just a name, type, and base class", () => {
           // Arrange
           const schemaJson = JSON.parse(
           '{\
@@ -466,7 +466,7 @@ describe("ecjson2md", () => {
           testSchema.getItemSync("EntityClassA");
 
           // Act
-          await ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -479,7 +479,7 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[6], "");
         });
 
-        it("should properly write an entity class that has just a name, type, and label", async () => {
+        it("should properly write an entity class that has just a name, type, and label", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
@@ -501,7 +501,7 @@ describe("ecjson2md", () => {
           testSchema.getItemSync("EntityClassA");
 
           // Act
-          await ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -514,7 +514,7 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[6], "");
         });
 
-        it("should properly write an entity class that has a name, type, description, base class, and label", async () => {
+        it("should properly write an entity class that has a name, type, description, base class, and label", () => {
           // Arrange
           const schemaJson = JSON.parse(
           '{\
@@ -542,7 +542,7 @@ describe("ecjson2md", () => {
           testSchema.getItemSync("EntityClassA");
 
           // Act
-          await ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -559,7 +559,7 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[10], "");
         });
 
-        it("should properly write an entity class that has properties", async () => {
+        it("should properly write an entity class that has properties", () => {
           // Arrange
           const schemaJson = JSON.parse(
           '{\
@@ -607,7 +607,7 @@ describe("ecjson2md", () => {
           testSchema.getItemSync("EntityClassA");
 
           // Act
-          await ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -641,7 +641,7 @@ describe("ecjson2md", () => {
           if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
         });
 
-        it("should properly write a kind of quantity without a description", async () => {
+        it("should properly write a kind of quantity without a description", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
@@ -676,7 +676,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          await ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
+          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -749,7 +749,7 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[12], "");
         });
 
-        it("should properly write a kind of quantity without a description or alternate presentation unit", async () => {
+        it("should properly write a kind of quantity without a description or alternate presentation unit", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
@@ -780,7 +780,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          await ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
+          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -799,7 +799,7 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[12], "");
         });
 
-        it("should properly write a kind of quantity with multiple alternate presentation units", async () => {
+        it("should properly write a kind of quantity with multiple alternate presentation units", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
@@ -846,7 +846,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          await ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
+          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -886,7 +886,7 @@ describe("ecjson2md", () => {
           if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
         });
 
-        it("should properly write a class without a description, base class, or label", async () => {
+        it("should properly write a class without a description, base class, or label", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
@@ -932,7 +932,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          await ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -978,7 +978,7 @@ describe("ecjson2md", () => {
             assert.equal(outputLines[i], correctLines[i]);
         });
 
-        it("should properly write a class with a description", async () => {
+        it("should properly write a class with a description", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
@@ -1025,7 +1025,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          await ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -1072,7 +1072,7 @@ describe("ecjson2md", () => {
             assert.equal(outputLines[i], correctLines[i]);
         });
 
-        it("should properly write a class with a base class", async () => {
+        it("should properly write a class with a base class", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
@@ -1119,7 +1119,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          await ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -1166,7 +1166,7 @@ describe("ecjson2md", () => {
             assert.equal(outputLines[i], correctLines[i]);
         });
 
-        it("should properly write a class with a label", async () => {
+        it("should properly write a class with a label", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
@@ -1213,7 +1213,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          await ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -1260,7 +1260,7 @@ describe("ecjson2md", () => {
             assert.equal(outputLines[i], correctLines[i]);
         });
 
-        it("should properly write a base class with description, base class, and label", async () => {
+        it("should properly write a base class with description, base class, and label", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
@@ -1307,7 +1307,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          await ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -1354,7 +1354,7 @@ describe("ecjson2md", () => {
             assert.equal(outputLines[i], correctLines[i]);
         });
 
-        it("should properly write a class that has multiple constraint classes in target and source", async () => {
+        it("should properly write a class that has multiple constraint classes in target and source", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
@@ -1415,7 +1415,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          await ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -1557,7 +1557,7 @@ describe("ecjson2md", () => {
           if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
         });
 
-        it("should properly write an enumeration backed by int", async () => {
+        it("should properly write an enumeration backed by int", () => {
           // Arrange
           const correctLines = [
             "### IntBackedEnum",
@@ -1575,7 +1575,7 @@ describe("ecjson2md", () => {
             "" ];
 
           // Act
-          await ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("IntBackedEnum"));
+          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("IntBackedEnum"));
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
 
@@ -1584,7 +1584,7 @@ describe("ecjson2md", () => {
             assert.equal(outputLines[i], correctLines[i]);
         });
 
-        it("should properly write an enumeration backed by a string", async () => {
+        it("should properly write an enumeration backed by a string", () => {
           // Arrange
           const correctLines = [
             "### StringBackedEnum",
@@ -1602,7 +1602,7 @@ describe("ecjson2md", () => {
             "" ];
 
           // Act
-          await ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("StringBackedEnum"));
+          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("StringBackedEnum"));
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
 
@@ -1611,7 +1611,7 @@ describe("ecjson2md", () => {
             assert.equal(outputLines[i], correctLines[i]);
         });
 
-        it("should properly write an enumeration with no enumerators", async () => {
+        it("should properly write an enumeration with no enumerators", () => {
           // Arrange
           const correctLines = [
             "### NoEnumEnum",
@@ -1625,7 +1625,7 @@ describe("ecjson2md", () => {
             "" ];
 
           // Act
-          await ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("NoEnumEnum"));
+          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("NoEnumEnum"));
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
 
@@ -1634,7 +1634,7 @@ describe("ecjson2md", () => {
             assert.equal(outputLines[i], correctLines[i]);
         });
 
-        it("should properly write an enumeration with several enumerators", async () => {
+        it("should properly write an enumeration with several enumerators", () => {
           // Arrange
           const correctLines = [
             "### LotsOfEnumEnum",
@@ -1656,7 +1656,7 @@ describe("ecjson2md", () => {
             "" ];
 
           // Act
-          await ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("LotsOfEnumEnum"));
+          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("LotsOfEnumEnum"));
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
 
@@ -1665,7 +1665,7 @@ describe("ecjson2md", () => {
             assert.equal(outputLines[i], correctLines[i]);
         });
 
-        it("should properly write an enumeration with no enumerator labels", async () => {
+        it("should properly write an enumeration with no enumerator labels", () => {
           // Arrange
           const correctLines = [
             "### NoLabelEnumerators",
@@ -1687,7 +1687,260 @@ describe("ecjson2md", () => {
             "" ];
 
           // Act
-          await ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("NoLabelEnumerators"));
+          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("NoLabelEnumerators"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+      });
+
+      describe("writeMixinClass", () => {
+        const outputFilePath = path.join(outputDir, "mixinClassTest.md");
+        const schemaJson = JSON.parse(
+          '{ \
+            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+            "alias":"testSchema", \
+            "name": "testSchema", \
+            "version":"02.00.00", \
+            "items": { \
+              "KOQA": {\
+                "schemaItemType":"KindOfQuantity", \
+                "persistenceUnit" : { \
+                  "format" : "DefaultReal", \
+                  "unit" : "A" \
+                }, \
+               "precision" : 0.0010, \
+               "presentationUnits" : [ \
+                  { \
+                     "format" : "Real4U", \
+                     "unit" : "A" \
+                  } \
+                ] \
+              },\
+              "KOQB": {\
+                "schemaItemType":"KindOfQuantity", \
+                "persistenceUnit" : { \
+                  "format" : "DefaultReal", \
+                  "unit" : "A" \
+                }, \
+               "precision" : 0.0010, \
+               "presentationUnits" : [ \
+                  { \
+                     "format" : "Real4U", \
+                     "unit" : "A" \
+                  } \
+                ] \
+              },\
+              "KOQC": {\
+                "schemaItemType":"KindOfQuantity", \
+                "persistenceUnit" : { \
+                  "format" : "DefaultReal", \
+                  "unit" : "A" \
+                }, \
+               "precision" : 0.0010, \
+               "presentationUnits" : [ \
+                  { \
+                     "format" : "Real4U", \
+                     "unit" : "A" \
+                  } \
+                ] \
+              }, \
+              "EntityA" : { \
+                "schemaItemType" : "EntityClass" \
+               }, \
+               "EntityB" : { \
+                "schemaItemType" : "EntityClass" \
+               }, \
+              "PlainMixin" : { \
+                "appliesTo" : "testSchema.EntityA", \
+                "schemaItemType" : "Mixin" \
+              }, \
+              "MixinWithDescription" : { \
+                "appliesTo" : "testSchema.EntityA", \
+                "description" : "this is a description", \
+                "schemaItemType" : "Mixin" \
+              }, \
+              "MixinWithBaseclass" : { \
+                "appliesTo" : "testSchema.EntityA", \
+                "baseClass" : "testSchema.EntityB", \
+                "schemaItemType" : "Mixin" \
+              }, \
+              "MixinWithLabel" : { \
+                "appliesTo" : "testSchema.EntityA", \
+                "schemaItemType" : "Mixin", \
+                "label" : "MixinLabel" \
+              }, \
+              "MixinWithDBL" : { \
+                "appliesTo" : "testSchema.EntityA", \
+                "schemaItemType" : "Mixin", \
+                "description" : "this is a description", \
+                "baseClass" : "testSchema.EntityB", \
+                "label" : "MixinLabel" \
+              }, \
+              "MixinWithProperties" : { \
+                "appliesTo" : "testSchema.EntityA", \
+                "schemaItemType" : "Mixin", \
+                "properties" : [ \
+                  { \
+                    "kindOfQuantity" : "testSchema.KOQA", \
+                    "name" : "propertyA", \
+                    "propertyType" : "PrimitiveProperty", \
+                    "typeName" : "double" \
+                  }, \
+                  { \
+                    "kindOfQuantity" : "testSchema.KOQB", \
+                    "label" : "propertyBLabel", \
+                    "name" : "propertyB", \
+                    "propertyType" : "PrimitiveProperty", \
+                    "typeName" : "double" \
+                  }, \
+                  { \
+                    "kindOfQuantity" : "testSchema.KOQC", \
+                    "label" : "propertyCLabel", \
+                    "name" : "propertyC", \
+                    "propertyType" : "PrimitiveProperty", \
+                    "typeName" : "double", \
+                    "isReadOnly" : true \
+                  }, \
+                  { \
+                    "kindOfQuantity" : "testSchema.KOQD", \
+                    "label" : "propertyCLabel", \
+                    "name" : "propertyD", \
+                    "propertyType" : "PrimitiveProperty", \
+                    "typeName" : "double", \
+                    "isReadOnly" : true, \
+                    "priority" : 1 \
+                  }, \
+                ] \
+              } \
+            } \
+          }');
+
+        const context = new SchemaContext();
+        const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+        // Delete the output file before each test
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("it should properly write a mixin that has no description, base class, label, or properties", () => {
+          // Arrange
+          const correctLines = [
+            "### PlainMixin",
+            "",
+            "**Type:** Mixin",
+            "",
+            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("PlainMixin"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("it should properly write a mixin that has a description", () => {
+          // Arrange
+          const correctLines = [
+            "### MixinWithDescription",
+            "",
+            "this is a description",
+            "",
+            "**Type:** Mixin",
+            "",
+            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithDescription"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("it should properly write a mixin that has a base class", () => {
+          // Arrange
+          const correctLines = [
+            "### MixinWithBaseclass",
+            "",
+            "**Type:** Mixin",
+            "",
+            '**Base Class:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
+            "",
+            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithBaseclass"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("it should properly write a mixin that has a label", () => {
+          // Arrange
+          const correctLines = [
+            "### MixinWithLabel",
+            "",
+            "**Type:** Mixin",
+            "",
+            "**Label:** MixinLabel",
+            "",
+            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithLabel"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("it should properly write a mixin that has a base class, label, and description", () => {
+          // Arrange
+          const correctLines = [
+            "### MixinWithDBL",
+            "",
+            "this is a description",
+            "",
+            "**Type:** Mixin",
+            "",
+            '**Base Class:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
+            "",
+            "**Label:** MixinLabel",
+            "",
+            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithDBL"));
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
 
@@ -1718,13 +1971,16 @@ describe("ecjson2md", () => {
                 "schemaItemType":"EntityClass"\
               },\
               "CustomAttributeClassB":{\
-                "schemaItemType":"CustomAttributeClass"\
+                "schemaItemType":"CustomAttributeClass", \
+                "appliesTo" : "AnyProperty" \
               },\
               "CustomAttributeClassC":{\
-                "schemaItemType":"CustomAttributeClass"\
+                "schemaItemType":"CustomAttributeClass", \
+                "appliesTo" : "AnyProperty" \
               },\
               "CustomAttributeClassA":{\
-                "schemaItemType":"CustomAttributeClass"\
+                "schemaItemType":"CustomAttributeClass", \
+                "appliesTo" : "AnyProperty" \
               },\
               "EnumerationB":{\
                 "backingTypeName" : "int", \
@@ -1793,13 +2049,16 @@ describe("ecjson2md", () => {
                 "schemaItemType":"RelationshipClass"\
               },\
               "MixinB":{\
-                "schemaItemType":"Mixin"\
+                "schemaItemType":"Mixin", \
+                "appliesTo" : "testSchema.EntityClassB" \
               },\
               "MixinC":{\
-                "schemaItemType":"Mixin"\
+                "schemaItemType":"Mixin", \
+                "appliesTo" : "testSchema.EntityClassC" \
               },\
               "MixinA":{\
-                "schemaItemType":"Mixin"\
+                "schemaItemType":"Mixin", \
+                "appliesTo" : "testSchema.EntityClassA" \
               },\
               "PropertyCategoryB":{\
                 "schemaItemType":"PropertyCategory"\
