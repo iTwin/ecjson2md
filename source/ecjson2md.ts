@@ -9,7 +9,7 @@ import * as path from "path";
 const PLACE_HOLDER = "";
 
 /**
- * Removes the consecutive blank line at the end of a file if there is one
+ * Removes a consecutive blank line at the end of a file if there is one
  * @param inputFilePath File that may have consecutive lines
  * @param outputFilePath File to create without consecutive lines
  */
@@ -127,6 +127,9 @@ export function prepOutputPath(rawOutputPath: string, inputPath: string): string
   return preppedOutputPath;
 }
 
+/**
+ * Class used to generate markdown for a whole schema or for specific schema items (using static methods)
+ */
 export class ECJsonMarkdownGenerator {
   private context: SchemaContext;
 

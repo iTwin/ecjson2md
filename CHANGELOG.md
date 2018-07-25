@@ -5,15 +5,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+# [0.3.0] - 2018-07-25
 ### Changed
-- ~~Remove empty line of property table~~
-- ~~Revised ordering of schema items~~
-- ~~Support for Enumeration, KOQ's, and other SchemaItems~~
-- ~~Remove property table if there are no properties~~
-- ~~Remove ':' from all headers~~
-- ~~Add link for navigation properties~~
-- ~~Remove extra blank line at the end of the file~~
-- ~~Verified source and target constraint classes link~~
+- Revised ordering of schema items - schema items are now listed alphabetically in groups
+
+### Fixed
+- Empty lines at the end of property tables have been removed
+- Extra empty line at the end of the markdown file has been removed
+
+### Added
+- Support for all schema item types - ie mixin, property category, enumeration, etc.
+- Links for navigation properties
+- Tests for new functionality
+
+### Removed
+- ':' from all headers
 
 # [0.2.9] - 2018-07-06
 ### Changed

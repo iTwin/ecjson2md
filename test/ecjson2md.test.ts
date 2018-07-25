@@ -125,7 +125,7 @@ describe("ecjson2md", () => {
                 "name": "testSchema",\
                 "version":"02.00.00"\
               }'));
-          
+
           // Act
           ECJsonMarkdownGenerator.writeTitle(outputFilePath, testSchema);
 
