@@ -1748,6 +1748,20 @@ describe("ecjson2md", () => {
                   } \
                 ] \
               }, \
+              "KOQD": {\
+                "schemaItemType":"KindOfQuantity", \
+                "persistenceUnit" : { \
+                  "format" : "DefaultReal", \
+                  "unit" : "A" \
+                }, \
+               "precision" : 0.0010, \
+               "presentationUnits" : [ \
+                  { \
+                     "format" : "Real4U", \
+                     "unit" : "A" \
+                  } \
+                ] \
+              }, \
               "EntityA" : { \
                 "schemaItemType" : "EntityClass" \
                }, \
@@ -1807,13 +1821,31 @@ describe("ecjson2md", () => {
                   }, \
                   { \
                     "kindOfQuantity" : "testSchema.KOQD", \
-                    "label" : "propertyCLabel", \
+                    "label" : "propertyDLabel", \
                     "name" : "propertyD", \
                     "propertyType" : "PrimitiveProperty", \
                     "typeName" : "double", \
-                    "isReadOnly" : true, \
+                    "readOnly" : true, \
                     "priority" : 1 \
-                  }, \
+                  } \
+                ] \
+              }, \
+              "MixinWithAll" : { \
+                "description" : "this is a description", \
+                "baseClass" : "testSchema.EntityB", \
+                "label" : "MixinLabel", \
+                "appliesTo" : "testSchema.EntityA", \
+                "schemaItemType" : "Mixin", \
+                "properties" : [ \
+                  { \
+                    "kindOfQuantity" : "testSchema.KOQD", \
+                    "label" : "propertyDLabel", \
+                    "name" : "propertyD", \
+                    "propertyType" : "PrimitiveProperty", \
+                    "typeName" : "double", \
+                    "readOnly" : true, \
+                    "priority" : 1 \
+                   } \
                 ] \
               } \
             } \
@@ -1941,6 +1973,69 @@ describe("ecjson2md", () => {
 
           // Act
           ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithDBL"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("it should properly write a mixin that has several properties", () => {
+          // Arrange
+          const correctLines = [
+            "### MixinWithProperties",
+            "",
+            "**Type:** Mixin",
+            "",
+            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            "",
+            "#### Properties",
+            "",
+            "|    Name    |    Label    |    Class    |    Inherited    |    Read Only     |    Priority    |",
+            "|:-----------|:------------|:------------|:----------------|:-----------------|:---------------|",
+            "|propertyA||MixinWithProperties||false|0|",
+            "|propertyB|propertyBLabel|MixinWithProperties||false|0|",
+            "|propertyC|propertyCLabel|MixinWithProperties||false|0|",
+            "|propertyD|propertyDLabel|MixinWithProperties||true|1|",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithProperties"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("it should properly write a mixin that has all attributes", () => {
+          // Arrange
+          const correctLines = [
+            "### MixinWithAll",
+            "",
+            "this is a description",
+            "",
+            "**Type:** Mixin",
+            "",
+            '**Base Class:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
+            "",
+            "**Label:** MixinLabel",
+            "",
+            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            "",
+            "#### Properties",
+            "",
+            "|    Name    |    Label    |    Class    |    Inherited    |    Read Only     |    Priority    |",
+            "|:-----------|:------------|:------------|:----------------|:-----------------|:---------------|",
+            "|propertyD|propertyDLabel|MixinWithAll||true|1|",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithAll"));
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
 
