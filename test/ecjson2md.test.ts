@@ -2047,7 +2047,7 @@ describe("ecjson2md", () => {
 
       describe("writeCustomAttributeClass", () => {
 
-        const outputFilePath = path.join(outputDir, "mixinClassTest.md");
+        const outputFilePath = path.join(outputDir, "customAttributeClassTest.md");
         const schemaJson = JSON.parse(
           '{ \
             "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
@@ -2252,6 +2252,359 @@ describe("ecjson2md", () => {
 
           // Act
           ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("CACWithMultipleProperties"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+      });
+
+      describe("writeStructClass", () => {
+        const outputFilePath = path.join(outputDir, "structClassTest.md");
+        const schemaJson = JSON.parse(
+          '{ \
+            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+            "alias":"testSchema", \
+            "name": "testSchema", \
+            "version":"02.00.00", \
+            "items": { \
+              "EntityA" : { \
+                "schemaItemType" : "EntityClass" \
+              }, \
+              "PlainStruct" : { \
+                "modifier" : "sealed", \
+                "schemaItemType" : "StructClass" \
+              }, \
+              "StructD" : { \
+                "modifier" : "sealed", \
+                "description" : "this is a description", \
+                "schemaItemType" : "StructClass" \
+              }, \
+              "StructDL" : { \
+                "modifier" : "sealed", \
+                "description" : "this is a description", \
+                "label" : "StructDLLabel", \
+                "schemaItemType" : "StructClass" \
+              }, \
+              "StructDLB" : { \
+                "modifier" : "sealed", \
+                "description"  : "this is a description", \
+                "label" : "StructDLBLabel", \
+                "baseClass" : "testSchema.EntityA", \
+                "schemaItemType" : "StructClass" \
+              }, \
+              "StructDLBP" : { \
+                "modifier" : "sealed", \
+                "description" : "this is a description", \
+                "label" : "StructDLBPLabel", \
+                "baseClass" : "testSchema.EntityA", \
+                "schemaItemType" : "StructClass", \
+                "properties" : [ \
+                  { \
+                    "name" : "propertyA", \
+                    "propertyType" : "PrimitiveProperty", \
+                    "typeName" : "string" \
+                  } \
+                ] \
+              }, \
+              "StructProperties" : { \
+                "modifier" : "sealed", \
+                "schemaItemType" : "StructClass", \
+                "properties" : [ \
+                  { \
+                    "name" : "propertyA", \
+                    "propertyType" : "PrimitiveProperty", \
+                    "typeName" : "string" \
+                  }, \
+                  { \
+                    "name" : "propertyB", \
+                    "propertyType" : "PrimitiveProperty", \
+                    "typeName" : "string", \
+                    "readOnly" : true \
+                  }, \
+                  { \
+                    "name" : "propertyV", \
+                    "propertyType" : "PrimitiveProperty", \
+                    "typeName" : "string", \
+                    "priority" : 1 \
+                  } \
+                ] \
+              } \
+            } \
+          }');
+
+        const context = new SchemaContext();
+        const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+        // Delete the output file before each test
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("should properly write a class without a description, label, base class, or properties", () => {
+          // Arrange
+          const correctLines = [
+            "### PlainStruct",
+            "",
+            "**Type:** StructClass",
+            "",
+            "**Modifier:** 2",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("PlainStruct"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a class that has a description", () => {
+          // Arrange
+          const correctLines = [
+            "### StructD",
+            "",
+            "this is a description",
+            "",
+            "**Type:** StructClass",
+            "",
+            "**Modifier:** 2",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructD"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a class that has a description and label", () => {
+          // Arrange
+          const correctLines = [
+            "### StructDL",
+            "",
+            "this is a description",
+            "",
+            "**Label:** StructDLLabel",
+            "",
+            "**Type:** StructClass",
+            "",
+            "**Modifier:** 2",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructDL"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a class that has a description, label, and base class", () => {
+          // Arrange
+          const correctLines = [
+            "### StructDLB",
+            "",
+            "this is a description",
+            "",
+            "**Label:** StructDLBLabel",
+            "",
+            '**Base Class:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
+            "",
+            "**Type:** StructClass",
+            "",
+            "**Modifier:** 2",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructDLB"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a class that a description, label, base class, and properties", () => {
+          // Arrange
+          const correctLines = [
+            "### StructDLBP",
+            "",
+            "this is a description",
+            "",
+            "**Label:** StructDLBPLabel",
+            "",
+            '**Base Class:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
+            "",
+            "**Type:** StructClass",
+            "",
+            "**Modifier:** 2",
+            "",
+            "#### Properties",
+            "",
+            "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |",
+            "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|",
+            "|propertyA||StructDLBP||false|0|",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructDLBP"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a class that has several properties", () => {
+          // Arrange
+          const correctLines = [
+            "### StructProperties",
+            "",
+            "**Type:** StructClass",
+            "",
+            "**Modifier:** 2",
+            "",
+            "#### Properties",
+            "",
+            "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |",
+            "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|",
+            "|propertyA||StructProperties||false|0|",
+            "|propertyB||StructProperties||true|0|",
+            "|propertyV||StructProperties||false|1|",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructProperties"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+      });
+
+      describe("writePropertyCategory", () => {
+        const outputFilePath = path.join(outputDir, "structClassTest.md");
+        const schemaJson = JSON.parse(
+          '{ \
+            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+            "alias":"testSchema", \
+            "name": "testSchema", \
+            "version":"02.00.00", \
+            "items": { \
+              "PlainPropCategory" : { \
+                "schemaItemType" : "PropertyCategory" \
+              }, \
+              "PropCategoryD" : { \
+                "schemaItemType" : "PropertyCategory", \
+                "description" : "this is a description" \
+              }, \
+              "PropCategoryDL" : { \
+                "schemaItemType" : "PropertyCategory", \
+                "description" : "this is a description", \
+                "label" : "PropCategoryDLLabel" \
+              } \
+            } \
+          }');
+
+        const context = new SchemaContext();
+        const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+        // Delete the output file before each test
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("should properly write property category with no description or label", () => {
+          // Arrange
+          const correctLines = [
+            "### PlainPropCategory",
+            "",
+            "**Type:** PropertyCategory",
+            "",
+            "**Priority:** 0",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writePropertyCategory(outputFilePath, testSchema.getItemSync("PlainPropCategory"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write property category with a description", () => {
+          // Arrange
+          const correctLines = [
+            "### PropCategoryD",
+            "",
+            "this is a description",
+            "",
+            "**Type:** PropertyCategory",
+            "",
+            "**Priority:** 0",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writePropertyCategory(outputFilePath, testSchema.getItemSync("PropCategoryD"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write property category with a description and label", () => {
+          // Arrange
+          const correctLines = [
+            "### PropCategoryDL",
+            "",
+            "this is a description",
+            "",
+            "**Label:** PropCategoryDLLabel",
+            "",
+            "**Type:** PropertyCategory",
+            "",
+            "**Priority:** 0",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writePropertyCategory(outputFilePath, testSchema.getItemSync("PropCategoryDL"));
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
 
