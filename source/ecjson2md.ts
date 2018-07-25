@@ -704,7 +704,9 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to append markdown to
    * @param customAttributeClass custom attribute class to generate markdown for
    */
-  public static writeCustomAttributeClass(outputFilePath: string, customAttributeClass: CustomAttributeClass) {
+  public static writeCustomAttributeClass(outputFilePath: string, customAttributeClass: CustomAttributeClass|undefined) {
+    if (customAttributeClass === undefined) return;
+
     // Write the name of the class
     this.writeSchemaItemName(outputFilePath, customAttributeClass.name);
 
