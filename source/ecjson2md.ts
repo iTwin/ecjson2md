@@ -28,7 +28,7 @@ export function removeExtraBlankLine(outputFilePath: string) {
 export function propertyTypeNumberToString(propertyTypeNumber: number): string {
   switch (propertyTypeNumber) {
     case PropertyType.Struct: return "struct";
-    case PropertyType.String_Array: return "struct array";
+    case PropertyType.Struct_Array: return "struct array";
     case PropertyType.Navigation: return "navigation";
     case PropertyType.Binary: return "binary";
     case PropertyType.Binary_Array: return "binary array";
@@ -660,8 +660,8 @@ export class ECJsonMarkdownGenerator {
     // Write the properties header and table header
     fs.appendFileSync(outputFilePath,
         "#### Properties\n\n" +
-        "|    Name    |    Label    |    Class    |    Inherited    |    Read Only     |    Priority    |\n" +
-        "|:-----------|:------------|:------------|:----------------|:-----------------|:---------------|\n");
+        "|    Name    |    Label    |    Class    |    Read Only     |    Priority    |\n" +
+        "|:-----------|:------------|:------------|:-----------------|:---------------|\n");
 
     // If the attribute is not there, return the place holder
     const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
@@ -670,12 +670,11 @@ export class ECJsonMarkdownGenerator {
       const name = helper(property.name);
       const label = helper(property.label);
       const type = helper(property.class.name);
-      // const inherited = helper(property.inherited);
       const isReadOnly = helper(property.isReadOnly);
       const priority = helper(property.priority);
 
       fs.appendFileSync(outputFilePath,
-        "|" + name + "|" + label + "|" + type + "|" /*+ inherited */ + "|" + isReadOnly + "|" + priority + "|\n");
+        "|" + name + "|" + label + "|" + type + "|" + isReadOnly + "|" + priority + "|\n");
     }
 
     fs.appendFileSync(outputFilePath, "\n");
@@ -729,8 +728,8 @@ export class ECJsonMarkdownGenerator {
     // Write the properties header and table header
     fs.appendFileSync(outputFilePath,
       "#### Properties\n\n" +
-      "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |\n" +
-      "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|\n");
+      "|    Name    |    Label    |    Class   |    Read Only     |    Priority    |\n" +
+      "|:-----------|:------------|:-----------|:-----------------|:---------------|\n");
 
     // If the attribute is not there, return the place holder
     const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
@@ -739,12 +738,11 @@ export class ECJsonMarkdownGenerator {
       const name = helper(property.name);
       const label = helper(property.label);
       const type = helper(property.class.name);
-      // const inherited = helper(property.inherited);
       const isReadOnly = helper(property.isReadOnly);
       const priority = helper(property.priority);
 
       fs.appendFileSync(outputFilePath,
-        "|" + name + "|" + label + "|" + type + "|" /* + inherited */ + "|" + isReadOnly + "|" + priority + "|\n");
+        "|" + name + "|" + label + "|" + type + "|" + isReadOnly + "|" + priority + "|\n");
     }
 
     fs.appendFileSync(outputFilePath, "\n");
@@ -801,8 +799,8 @@ export class ECJsonMarkdownGenerator {
     // Write the properties header and table header
     fs.appendFileSync(outputFilePath,
       "#### Properties\n\n" +
-      "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |\n" +
-      "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|\n");
+      "|    Name    |    Label    |    Class   |    Read Only     |    Priority    |\n" +
+      "|:-----------|:------------|:-----------|:-----------------|:---------------|\n");
 
     // If the attribute is not there, return the place holder
     const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
@@ -811,12 +809,11 @@ export class ECJsonMarkdownGenerator {
       const name = helper(property.name);
       const label = helper(property.label);
       const type = helper(property.class.name);
-      // const inherited = helper(property.inherited);
       const isReadOnly = helper(property.isReadOnly);
       const priority = helper(property.priority);
 
       fs.appendFileSync(outputFilePath,
-        "|" + name + "|" + label + "|" + type + "|" /* + inherited */ + "|" + isReadOnly + "|" + priority + "|\n");
+        "|" + name + "|" + label + "|" + type + "|" + isReadOnly + "|" + priority + "|\n");
     }
 
     fs.appendFileSync(outputFilePath, "\n");

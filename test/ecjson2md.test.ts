@@ -1,10 +1,10 @@
-import { ECJsonMarkdownGenerator, formatLink } from "../source/ecjson2md";
+import { ECJsonMarkdownGenerator, formatLink, formatWarningAlert, propertyTypeNumberToString } from "../source/ecjson2md";
 import { assert } from "chai";
 import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
 import * as path from "path";
 import * as rimraf from "rimraf";
-import { SchemaContext, Schema} from "@bentley/ecjs";
+import { SchemaContext, Schema, PropertyType} from "@bentley/ecjs";
 
 describe("ecjson2md", () => {
   describe("ECJsonMarkdownGenerator", () => {
@@ -148,7 +148,7 @@ describe("ecjson2md", () => {
         });
       });
 
-      describe("write schema item name", () => {
+      describe("writeSchemaItemName", () => {
         const outputFilePath = path.join(outputDir, "nameTest.md");
 
         // Delete the output file after each test
@@ -182,7 +182,7 @@ describe("ecjson2md", () => {
         });
       });
 
-      describe("write schema item description", () => {
+      describe("writeSchemaItemDescription", () => {
         const outputFilePath = path.join(outputDir, "descriptionTest.md");
 
         beforeEach(() => {
@@ -220,7 +220,7 @@ describe("ecjson2md", () => {
         });
       });
 
-      describe("write schema item label", () => {
+      describe("writeSchemaItemLabel", () => {
         const outputFilePath = path.join(outputDir, "labelTest.md");
 
         // Delete the output file after each test
@@ -254,7 +254,7 @@ describe("ecjson2md", () => {
         });
       });
 
-      describe("write schema item priority", () => {
+      describe("writeSchemaItemPriority", () => {
         const outputFilePath = path.join(outputDir, "priorityTest.md");
 
         it("shouldn't write anything for an undefined priority", () => {
@@ -283,7 +283,7 @@ describe("ecjson2md", () => {
         });
       });
 
-      describe("write schema item modifier", () => {
+      describe("writeSchemaItemModifier", () => {
         const outputFilePath = path.join(outputDir, "modifierTest.md");
 
         it("shouldn't write anything for an undefined modifier", () => {
@@ -1992,12 +1992,12 @@ describe("ecjson2md", () => {
             "",
             "#### Properties",
             "",
-            "|    Name    |    Label    |    Class    |    Inherited    |    Read Only     |    Priority    |",
-            "|:-----------|:------------|:------------|:----------------|:-----------------|:---------------|",
-            "|propertyA||MixinWithProperties||false|0|",
-            "|propertyB|propertyBLabel|MixinWithProperties||false|0|",
-            "|propertyC|propertyCLabel|MixinWithProperties||false|0|",
-            "|propertyD|propertyDLabel|MixinWithProperties||true|1|",
+            "|    Name    |    Label    |    Class    |    Read Only     |    Priority    |",
+            "|:-----------|:------------|:------------|:-----------------|:---------------|",
+            "|propertyA||MixinWithProperties|false|0|",
+            "|propertyB|propertyBLabel|MixinWithProperties|false|0|",
+            "|propertyC|propertyCLabel|MixinWithProperties|false|0|",
+            "|propertyD|propertyDLabel|MixinWithProperties|true|1|",
             "",
             "" ];
 
@@ -2028,9 +2028,9 @@ describe("ecjson2md", () => {
             "",
             "#### Properties",
             "",
-            "|    Name    |    Label    |    Class    |    Inherited    |    Read Only     |    Priority    |",
-            "|:-----------|:------------|:------------|:----------------|:-----------------|:---------------|",
-            "|propertyD|propertyDLabel|MixinWithAll||true|1|",
+            "|    Name    |    Label    |    Class    |    Read Only     |    Priority    |",
+            "|:-----------|:------------|:------------|:-----------------|:---------------|",
+            "|propertyD|propertyDLabel|MixinWithAll|true|1|",
             "",
             "" ];
 
@@ -2215,9 +2215,9 @@ describe("ecjson2md", () => {
             "",
             "#### Properties",
             "",
-            "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |",
-            "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|",
-            "|PropertyA|PropertyALabel|CACWithProperties||false|0|",
+            "|    Name    |    Label    |    Class   |    Read Only     |    Priority    |",
+            "|:-----------|:------------|:-----------|:-----------------|:---------------|",
+            "|PropertyA|PropertyALabel|CACWithProperties|false|0|",
             "",
             "" ];
 
@@ -2242,11 +2242,11 @@ describe("ecjson2md", () => {
             "",
             "#### Properties",
             "",
-            "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |",
-            "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|",
-            "|PropertyA||CACWithMultipleProperties||false|0|",
-            "|PropertyB|PropertyBLabel|CACWithMultipleProperties||true|0|",
-            "|PropertyC|PropertyCLabel|CACWithMultipleProperties||true|1|",
+            "|    Name    |    Label    |    Class   |    Read Only     |    Priority    |",
+            "|:-----------|:------------|:-----------|:-----------------|:---------------|",
+            "|PropertyA||CACWithMultipleProperties|false|0|",
+            "|PropertyB|PropertyBLabel|CACWithMultipleProperties|true|0|",
+            "|PropertyC|PropertyCLabel|CACWithMultipleProperties|true|1|",
             "",
             "" ];
 
@@ -2461,9 +2461,9 @@ describe("ecjson2md", () => {
             "",
             "#### Properties",
             "",
-            "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |",
-            "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|",
-            "|propertyA||StructDLBP||false|0|",
+            "|    Name    |    Label    |    Class   |    Read Only     |    Priority    |",
+            "|:-----------|:------------|:-----------|:-----------------|:---------------|",
+            "|propertyA||StructDLBP|false|0|",
             "",
             "" ];
 
@@ -2488,11 +2488,11 @@ describe("ecjson2md", () => {
             "",
             "#### Properties",
             "",
-            "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |",
-            "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|",
-            "|propertyA||StructProperties||false|0|",
-            "|propertyB||StructProperties||true|0|",
-            "|propertyV||StructProperties||false|1|",
+            "|    Name    |    Label    |    Class   |    Read Only     |    Priority    |",
+            "|:-----------|:------------|:-----------|:-----------------|:---------------|",
+            "|propertyA||StructProperties|false|0|",
+            "|propertyB||StructProperties|true|0|",
+            "|propertyV||StructProperties|false|1|",
             "",
             "" ];
 
@@ -2805,6 +2805,45 @@ describe("ecjson2md", () => {
           it("should correctly format a link for bemetalsmith", () => {
             const link = formatLink("https://www.google.com", "Google");
             assert.equal(link, '[link_to https://www.google.com text="Google"]');
+          });
+        });
+
+        describe("formatWarningAlert", () => {
+          it("should properly format a warning alert for bemetalsmith", () => {
+            const warning = formatWarningAlert("This is a warning");
+            assert.equal(warning, '[!alert text="This is a warning" kind="warning"]');
+          });
+        });
+
+        describe("propertyTypeNumberToString", () => {
+          it("should return the correct type for each number", () => {
+            assert.equal(propertyTypeNumberToString(PropertyType.Struct), "struct");
+            assert.equal(propertyTypeNumberToString(PropertyType.Struct_Array), "struct array");
+            assert.equal(propertyTypeNumberToString(PropertyType.Navigation), "navigation");
+            assert.equal(propertyTypeNumberToString(PropertyType.Binary), "binary");
+            assert.equal(propertyTypeNumberToString(PropertyType.Binary_Array), "binary array");
+            assert.equal(propertyTypeNumberToString(PropertyType.Boolean), "boolean");
+            assert.equal(propertyTypeNumberToString(PropertyType.Boolean_Array), "boolean array");
+            assert.equal(propertyTypeNumberToString(PropertyType.DateTime), "dateTime");
+            assert.equal(propertyTypeNumberToString(PropertyType.DateTime_Array), "dateTime array");
+            assert.equal(propertyTypeNumberToString(PropertyType.Double), "double");
+            assert.equal(propertyTypeNumberToString(PropertyType.Double_Array), "double array");
+            assert.equal(propertyTypeNumberToString(PropertyType.Integer), "int");
+            assert.equal(propertyTypeNumberToString(PropertyType.Integer_Array), "int array");
+            assert.equal(propertyTypeNumberToString(PropertyType.Integer_Enumeration), "int enum");
+            assert.equal(propertyTypeNumberToString(PropertyType.Integer_Enumeration_Array), "int enum array");
+            assert.equal(propertyTypeNumberToString(PropertyType.Long), "long");
+            assert.equal(propertyTypeNumberToString(PropertyType.Long_Array), "long array");
+            assert.equal(propertyTypeNumberToString(PropertyType.Point2d), "point2d");
+            assert.equal(propertyTypeNumberToString(PropertyType.Point2d_Array), "point2d array");
+            assert.equal(propertyTypeNumberToString(PropertyType.Point3d), "point3d");
+            assert.equal(propertyTypeNumberToString(PropertyType.Point3d_Array), "point3d array");
+            assert.equal(propertyTypeNumberToString(PropertyType.String), "string");
+            assert.equal(propertyTypeNumberToString(PropertyType.String_Array), "string array");
+            assert.equal(propertyTypeNumberToString(PropertyType.String_Enumeration), "string enum");
+            assert.equal(propertyTypeNumberToString(PropertyType.String_Enumeration_Array), "string enum array");
+            assert.equal(propertyTypeNumberToString(PropertyType.IGeometry), "IGeometry");
+            assert.equal(propertyTypeNumberToString(PropertyType.IGeometry_Array), "IGeometry array");
           });
         });
       });
