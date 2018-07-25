@@ -44,15 +44,6 @@ function main() {
     // tslint:disable-next-line:no-console
     console.log(chalk.default.blue("Markdown successfully generated at " + path.resolve(outputFilePath)));
 
-    /*.then(() => {
-
-      // tslint:disable-next-line:no-console
-      console.log(chalk.default.blue("Markdown successfully generated at " + path.resolve(outputFilePath)));
-    }).catch((error) => {
-      // tslint:disable-next-line:no-console
-      console.log(chalk.default.red(error));
-      process.exit();
-    }); */
   } catch (e) {
       // tslint:disable-next-line:no-console
       console.log(chalk.default.red(e, "\nQuitting..."));

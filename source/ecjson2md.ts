@@ -9,7 +9,7 @@ import * as path from "path";
 const PLACE_HOLDER = "";
 
 /**
- * Removes the a consecutive blank line at the end of a file if there is one
+ * Removes the consecutive blank line at the end of a file if there is one
  * @param inputFilePath File that may have consecutive lines
  * @param outputFilePath File to create without consecutive lines
  */
@@ -69,7 +69,7 @@ export function propertyTypeNumberToString(propertyTypeNumber: number): string {
  * @returns {string[]}
  */
 export function prepSearchDirs(dirString: string): string[] {
-  // Replace common directory separators with the system seperators
+  // Replace common directory separators with the system separators
   dirString = dirString.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep);
 
   // Separate the search directories on ';' or ',' or ' ' or ', ' or '; '
@@ -227,31 +227,55 @@ export class ECJsonMarkdownGenerator {
     }
   }
 
+  /**
+   * Appends markdown for the name of a schema item to the specified file path
+   * @param outputFilePath Path of file to append markdown to
+   * @param name Name to write markdown for
+   */
   public static writeSchemaItemName(outputFilePath: string, name: string|undefined) {
     if (name === undefined) return;
 
     fs.appendFileSync(outputFilePath, "### " + name + "\n\n");
   }
 
+  /**
+   * Appends markdown for the description of a schema item to the specified file path
+   * @param outputFilePath Path of file to append markdown to
+   * @param description Description to write markdown for
+   */
   public static writeSchemaItemDescription(outputFilePath: string, description: string|undefined) {
     if (description === undefined) return;
 
     fs.appendFileSync(outputFilePath, description + "\n\n");
   }
 
+  /**
+   * Appends markdown for the label of a schema item to the specified file path
+   * @param outputFilePath Path of file to append markdown to
+   * @param label Label to write markdown for
+   */
   public static writeSchemaItemLabel(outputFilePath: string, label: string|undefined) {
     if (label === undefined) return;
 
     fs.appendFileSync(outputFilePath, "**Label:** " + label + "\n\n");
   }
 
+  /**
+   * Appends markdown for the type of a schema item to the specified file path
+   * @param outputFilePath Path of file to append markdown to
+   * @param type Type to write markdown for
+   */
   public static writeSchemaItemType(outputFilePath: string, type: any) {
     if (type === undefined) return;
 
-    // TODO: Will probably have to convert the type to a string
     fs.appendFileSync(outputFilePath, "**Type:** " + schemaItemTypeToString(type) + "\n\n");
   }
 
+  /**
+   * Appends bemetalsmith link for the baseclass of a schema item to the specified file path
+   * @param outputFilePath Path of file to append link to
+   * @param baseClass Baseclass to write markdown for
+   */
   public static writeSchemaItemBaseClass(outputFilePath: string, baseClass: any) {
     if (baseClass === undefined) return;
 
@@ -261,12 +285,22 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, "**Base Class:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
 }
 
+/**
+ * Appends markdown for the modifier of a schema item to the specified file path
+ * @param outputFilePath Path of file to append markdown for modifier to
+ * @param modifier Modifier to write markdown for
+ */
   public static writeSchemaItemModifier(outputFilePath: string, modifier: ECClassModifier|undefined) {
     if (modifier === undefined) return;
 
     fs.appendFileSync(outputFilePath, "**Modifier:** " + modifier.toString() + "\n\n");
   }
 
+  /**
+   * Appends markdown for priority of a schema item to the specified file path
+   * @param outputFilePath Path to append markdown for priority to
+   * @param priority Priority to write markdown for
+   */
   public static writeSchemaItemPriority(outputFilePath: string, priority: any) {
     if (priority === undefined) return;
 
@@ -286,7 +320,6 @@ export class ECJsonMarkdownGenerator {
 
     // If the property type is navigation, create a link to the class that it points to
     if (type === "navigation") {
-      // TODO: Add tests for this
       const targetSchema = property._relationshipClass.schemaName;
       const targetClass = property._relationshipClass.name;
 
@@ -318,6 +351,11 @@ export class ECJsonMarkdownGenerator {
       this.writeEntityClassPropertiesRow(outputFilePath, property);
   }
 
+  /**
+   * Writes markdown documentation for an entity class
+   * @param outputFilePath Path to file to append markdown to
+   * @param entityClass Entity class to generate markdown for
+   */
   public static writeEntityClass(outputFilePath: string, entityClass: EntityClass | undefined) {
     if (entityClass === undefined) return;
 
@@ -329,12 +367,6 @@ export class ECJsonMarkdownGenerator {
 
     // Write the class type
     ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, entityClass.schemaItemType);
-    const test = entityClass.getBaseClassSync();
-    test;
-    let test2;
-    if (entityClass.baseClass)
-      test2 = entityClass.baseClass.name;
-    test2;
 
     // Write the base class
     this.writeSchemaItemBaseClass(outputFilePath, entityClass.baseClass);
@@ -904,7 +936,11 @@ export class ECJsonMarkdownGenerator {
     if (!fs.existsSync(outputDir)) throw new ECJsonBadOutputPath(outputFilePath);
 
     const schema: Schema = Schema.fromJsonSync(schemaJson, this.context);
+
+    // Create the output file
     fs.writeFileSync(outputFilePath, "");
+
+    // Generate all the markdown for each type of schema item
     ECJsonMarkdownGenerator.writeFrontMatter(outputFilePath, schema, nonReleaseFlag);
     ECJsonMarkdownGenerator.writeTitle(outputFilePath, schema);
     ECJsonMarkdownGenerator.writeEntityClasses(outputFilePath, schema);
@@ -915,6 +951,8 @@ export class ECJsonMarkdownGenerator {
     ECJsonMarkdownGenerator.writeCustomAttributeClasses(outputFilePath, schema);
     ECJsonMarkdownGenerator.writeStructClasses(outputFilePath, schema);
     ECJsonMarkdownGenerator.writePropertyCategories(outputFilePath, schema);
+
+    // Remove the extra blank line
     removeExtraBlankLine(outputFilePath, outputFilePath);
   }
 }
