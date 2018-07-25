@@ -1,4 +1,4 @@
-import { ECJsonMarkdownGenerator, formatLink, formatWarningAlert, propertyTypeNumberToString } from "../source/ecjson2md";
+import { ECJsonMarkdownGenerator, formatLink, formatWarningAlert, propertyTypeNumberToString, removeExtraBlankLine } from "../source/ecjson2md";
 import { assert } from "chai";
 import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
@@ -2938,6 +2938,59 @@ describe("ecjson2md", () => {
             for (let i = 0; i < outputLines.length; i++)
               assert.equal(outputLines[i], correctLines[i]);
           });
+        });
+      });
+    });
+
+    describe("others", () => {
+      describe("removeExtraBlankLine", () => {
+        const outputFilePath = path.join(".", "test", "_temp_remove_line_.txt");
+
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("should remove extra blank line at the end of file", () => {
+          // Assert
+          const inputFilePath = path.join(".", "test", "Assets", "file_with_blank_lines.txt");
+
+          // Act
+          removeExtraBlankLine(inputFilePath, outputFilePath);
+
+          // Assert
+          const outputBuffer = fs.readFileSync(outputFilePath).toString();
+          const correctBuffer = "test\n";
+          assert.equal(outputBuffer, correctBuffer);
+        });
+
+        it("shouldn't remove an extra blank line if there isn't one there", () => {
+          // Assert
+          const inputFilePath = path.join(".", "test", "Assets", "file_with_blank_line.txt");
+
+          // Act
+          removeExtraBlankLine(inputFilePath, outputFilePath);
+
+          // Assert
+          const outputBuffer = fs.readFileSync(outputFilePath).toString();
+          const correctBuffer = "test\n";
+          assert.equal(outputBuffer, correctBuffer);
+        });
+
+        it("shouldn't do anything to a file with no blank lines", () => {
+          // Assert
+          const inputFilePath = path.join(".", "test", "Assets", "file_with_no_blank_line.txt");
+
+          // Act
+          removeExtraBlankLine(inputFilePath, outputFilePath);
+
+          // Assert
+          const outputBuffer = fs.readFileSync(outputFilePath).toString();
+          const correctBuffer = "test";
+          assert.equal(outputBuffer, correctBuffer);
         });
       });
     });

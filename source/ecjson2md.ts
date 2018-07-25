@@ -10,14 +10,18 @@ const PLACE_HOLDER = "";
 
 /**
  * Removes the a consecutive blank line at the end of a file if there is one
- * @param outputFilePath File to check
+ * @param inputFilePath File that may have consecutive lines
+ * @param outputFilePath File to create without consecutive lines
  */
-export function removeExtraBlankLine(outputFilePath: string) {
-  const fileBuffer = fs.readFileSync(outputFilePath).toString();
+export function removeExtraBlankLine(inputFilePath: string, outputFilePath: string) {
+  const fileBuffer = fs.readFileSync(inputFilePath).toString();
 
   // If there are two new lines at the end of the file, remove one
   if (fileBuffer[fileBuffer.length - 1] === "\n" && fileBuffer[fileBuffer.length - 2] === "\n")
     fs.writeFileSync(outputFilePath, fileBuffer.slice(0, -1));
+  // If there are no blank lines to remove and the input file is not the same as the output file, write the new file
+  else if (inputFilePath !== outputFilePath)
+    fs.writeFileSync(outputFilePath, fileBuffer);
 }
 
 /**
@@ -911,6 +915,6 @@ export class ECJsonMarkdownGenerator {
     ECJsonMarkdownGenerator.writeCustomAttributeClasses(outputFilePath, schema);
     ECJsonMarkdownGenerator.writeStructClasses(outputFilePath, schema);
     ECJsonMarkdownGenerator.writePropertyCategories(outputFilePath, schema);
-    removeExtraBlankLine(outputFilePath);
+    removeExtraBlankLine(outputFilePath, outputFilePath);
   }
 }
