@@ -42,6 +42,8 @@ mdGenerator = new ECJsonMarkdownGenerator(<array of search directories>);
 mdGenerator.generate(<path to ECSchema JSON>, <output markdown file path>);
 ```
 
+_Note: Additional static methods are also available for more specific use_
+
 ## Updating
 
 ---------------------------------------------------------------
@@ -132,4 +134,4 @@ In most cases, Bemetalsmith will do this out-of-the-box without additional confi
 
 ---------------------------------------------------------------
 
-- None _currently_ (as of 6/29/2018)
+- None _currently_ (as of 7/25/2018)

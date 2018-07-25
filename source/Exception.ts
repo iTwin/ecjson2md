@@ -35,3 +35,9 @@ export class ECJsonReferenceNotFound extends Error {
     this.name = "ECJsonReferenceNotFound";
   }
 }
+
+export class BadPropertyType extends Error {
+  public constructor(propertyType: number) {
+    super(propertyType + " is not a recognized property type.");
+  }
+}

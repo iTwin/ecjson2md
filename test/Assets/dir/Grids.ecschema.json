@@ -1,0 +1,748 @@
+{
+   "$schema" : "https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",
+   "alias" : "grids",
+   "items" : {
+      "CircularAxis" : {
+         "baseClass" : "Grids.GridAxis",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "an element which groups all PlanCircumferentialGridSurface in a RadialGrid together",
+         "schemaItemType" : "EntityClass"
+      },
+      "ElevationGrid" : {
+         "baseClass" : "Grids.Grid",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "An ElevationGrid contains planar surfaces that are parallel to the local XY plane",
+         "properties" : [
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "DefaultElevationIncrement",
+               "name" : "DefaultElevationIncrement",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "label" : "DefaultSurface2d",
+               "name" : "DefaultSurface2d",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "Bentley.Geometry.Common.IGeometry"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      },
+      "ElevationGridSurface" : {
+         "baseClass" : "Grids.GridPlanarSurface",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "A PlanarGridSurface that is parallel with its Grid’s x-y plane (always contained in an ElevationGrid).",
+         "properties" : [
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "Elevation",
+               "name" : "Elevation",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "label" : "Surface2d",
+               "name" : "Surface2d",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "Bentley.Geometry.Common.IGeometry"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      },
+      "FreeGrid" : {
+         "baseClass" : "Grids.Grid",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "An FreeGrid contains surfaces that do not need to follow any rules",
+         "schemaItemType" : "EntityClass"
+      },
+      "FreeGridSurface" : {
+         "baseClass" : "Grids.GridSurface",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "a grid surface of any geometry.",
+         "schemaItemType" : "EntityClass"
+      },
+      "GeneralGridAxis" : {
+         "baseClass" : "Grids.GridAxis",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "an element which groups GridSurfaces together in other grids",
+         "schemaItemType" : "EntityClass"
+      },
+      "GeneralGridCurve" : {
+         "baseClass" : "Grids.GridCurve",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "a gridcurve that is a result of 2 non-planar surfaces",
+         "schemaItemType" : "EntityClass"
+      },
+      "Grid" : {
+         "baseClass" : "BisCore.SpatialLocationPortion",
+         "description" : "A grid is a collection of gridsurfaces.",
+         "modifier" : "abstract",
+         "schemaItemType" : "EntityClass"
+      },
+      "GridArc" : {
+         "baseClass" : "Grids.GridCurve",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "a gridcurve that is a result of a planar and arc surface",
+         "schemaItemType" : "EntityClass"
+      },
+      "GridArcSurface" : {
+         "baseClass" : "Grids.GridSurface",
+         "description" : "A grid surface that is parallel to extruded arc.",
+         "modifier" : "abstract",
+         "schemaItemType" : "EntityClass"
+      },
+      "GridAxis" : {
+         "baseClass" : "BisCore.GroupInformationElement",
+         "description" : "an element which groups (typically parallel) GridSurfaces",
+         "modifier" : "abstract",
+         "properties" : [
+            {
+               "label" : "Name",
+               "name" : "Name",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "string"
+            },
+            {
+               "description" : "Grid this axis belong to",
+               "direction" : "backward",
+               "name" : "Grid",
+               "propertyType" : "NavigationProperty",
+               "relationshipName" : "Grids.GridHasAxes"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      },
+      "GridAxisContainsGridSurfaces" : {
+         "description" : "maps axis to grouped surfaces",
+         "modifier" : "none",
+         "schemaItemType" : "RelationshipClass",
+         "source" : {
+            "constraintClasses" : [ "Grids.GridAxis" ],
+            "multiplicity" : "(1..1)",
+            "polymorphic" : true,
+            "roleLabel" : "contains"
+         },
+         "strength" : "embedding",
+         "strengthDirection" : "forward",
+         "target" : {
+            "constraintClasses" : [ "Grids.GridSurface" ],
+            "multiplicity" : "(0..*)",
+            "polymorphic" : true,
+            "roleLabel" : "is contained in"
+         }
+      },
+      "GridCurve" : {
+         "baseClass" : "BisCore.SpatialLocationElement",
+         "description" : "an element representing a gridcurve - typically intersection of 2 surfaces",
+         "modifier" : "abstract",
+         "schemaItemType" : "EntityClass"
+      },
+      "GridCurveBundle" : {
+         "baseClass" : "BisCore.DriverBundleElement",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "label" : "GridCurve bundle",
+         "properties" : [
+            {
+               "description" : "Created GridCurves will be put into this GridCurvesPortion",
+               "direction" : "forward",
+               "name" : "CurvesPortion",
+               "propertyType" : "NavigationProperty",
+               "relationshipName" : "Grids.GridCurveBundleRefersToGridCurvesPortion"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      },
+      "GridCurveBundleCreatesGridCurve" : {
+         "baseClass" : "BisCore.ElementDrivesElement",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "a driving relationship which tells that gridcurve was created by the mapped GridCurveBundle",
+         "modifier" : "none",
+         "schemaItemType" : "RelationshipClass",
+         "source" : {
+            "constraintClasses" : [ "Grids.GridCurveBundle" ],
+            "multiplicity" : "(1..1)",
+            "polymorphic" : true,
+            "roleLabel" : "creates"
+         },
+         "strength" : "referencing",
+         "strengthDirection" : "forward",
+         "target" : {
+            "constraintClasses" : [ "Grids.GridCurve" ],
+            "multiplicity" : "(0..1)",
+            "polymorphic" : true,
+            "roleLabel" : "is created by"
+         }
+      },
+      "GridCurveBundleRefersToGridCurvesPortion" : {
+         "description" : "Maps GridCurveBundle to a GridCurvesPortion",
+         "modifier" : "none",
+         "schemaItemType" : "RelationshipClass",
+         "source" : {
+            "constraintClasses" : [ "Grids.GridCurveBundle" ],
+            "multiplicity" : "(1..1)",
+            "polymorphic" : true,
+            "roleLabel" : "puts GridCurves into"
+         },
+         "strength" : "embedding",
+         "strengthDirection" : "backward",
+         "target" : {
+            "constraintClasses" : [ "Grids.GridCurvesPortion" ],
+            "multiplicity" : "(1..1)",
+            "polymorphic" : true,
+            "roleLabel" : "contains GridCurves created by"
+         }
+      },
+      "GridCurvesPortion" : {
+         "baseClass" : "BisCore.SpatialLocationPortion",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "a portion which holds GridCurves",
+         "schemaItemType" : "EntityClass"
+      },
+      "GridDrivesGridSurface" : {
+         "baseClass" : "BisCore.ElementDrivesElement",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "a driving relationship which tells that a grid is driving a gridsurface.",
+         "modifier" : "none",
+         "schemaItemType" : "RelationshipClass",
+         "source" : {
+            "constraintClasses" : [ "Grids.Grid" ],
+            "multiplicity" : "(1..1)",
+            "polymorphic" : true,
+            "roleLabel" : "drives"
+         },
+         "strength" : "referencing",
+         "strengthDirection" : "forward",
+         "target" : {
+            "constraintClasses" : [ "Grids.GridSurface" ],
+            "multiplicity" : "(0..*)",
+            "polymorphic" : true,
+            "roleLabel" : "is driven by"
+         }
+      },
+      "GridHasAxes" : {
+         "description" : "maps grid to its axes",
+         "modifier" : "none",
+         "schemaItemType" : "RelationshipClass",
+         "source" : {
+            "constraintClasses" : [ "Grids.Grid" ],
+            "multiplicity" : "(1..1)",
+            "polymorphic" : true,
+            "roleLabel" : "Has Axis"
+         },
+         "strength" : "embedding",
+         "strengthDirection" : "forward",
+         "target" : {
+            "constraintClasses" : [ "Grids.GridAxis" ],
+            "multiplicity" : "(0..*)",
+            "polymorphic" : true,
+            "roleLabel" : "is axis of"
+         }
+      },
+      "GridLine" : {
+         "baseClass" : "Grids.GridCurve",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "a gridcurve that is a result of 2 planar surfaces",
+         "schemaItemType" : "EntityClass"
+      },
+      "GridPlanarSurface" : {
+         "baseClass" : "Grids.GridSurface",
+         "description" : "A planar grid surface element.",
+         "modifier" : "abstract",
+         "schemaItemType" : "EntityClass"
+      },
+      "GridSpline" : {
+         "baseClass" : "Grids.GridCurve",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "a gridcurve that is a result of a planar and a spline surface",
+         "schemaItemType" : "EntityClass"
+      },
+      "GridSplineSurface" : {
+         "baseClass" : "Grids.GridSurface",
+         "description" : "A grid surface that is parallel to an extruded spline.",
+         "modifier" : "abstract",
+         "schemaItemType" : "EntityClass"
+      },
+      "GridSurface" : {
+         "baseClass" : "BisCore.SpatialLocationElement",
+         "description" : "A grid surface element.",
+         "modifier" : "abstract",
+         "properties" : [
+            {
+               "description" : "Axis this gridSurface belong to",
+               "direction" : "backward",
+               "name" : "Axis",
+               "propertyType" : "NavigationProperty",
+               "relationshipName" : "Grids.GridAxisContainsGridSurfaces"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      },
+      "GridSurfaceDrivesGridCurveBundle" : {
+         "baseClass" : "BisCore.ElementDrivesElement",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "a driving relationship which tells that gridsurface influences the creation of GridCurve",
+         "modifier" : "none",
+         "schemaItemType" : "RelationshipClass",
+         "source" : {
+            "constraintClasses" : [ "Grids.GridSurface" ],
+            "multiplicity" : "(0..*)",
+            "polymorphic" : true,
+            "roleLabel" : "influences"
+         },
+         "strength" : "referencing",
+         "strengthDirection" : "forward",
+         "target" : {
+            "constraintClasses" : [ "Grids.GridCurveBundle" ],
+            "multiplicity" : "(0..*)",
+            "polymorphic" : true,
+            "roleLabel" : "is influenced by"
+         }
+      },
+      "IPlanGridSurface" : {
+         "appliesTo" : "Grids.GridSurface",
+         "description" : "An interface that indicates that this Surface is suitable to be placed in a PlanGrid",
+         "label" : "PlanGrid Surface",
+         "properties" : [
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "StartElevation",
+               "name" : "StartElevation",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "EndElevation",
+               "name" : "EndElevation",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            }
+         ],
+         "schemaItemType" : "Mixin"
+      },
+      "OrthogonalAxisX" : {
+         "baseClass" : "Grids.GridAxis",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "an element which groups all PlanCartesianGridSurface in the X direction",
+         "schemaItemType" : "EntityClass"
+      },
+      "OrthogonalAxisY" : {
+         "baseClass" : "Grids.GridAxis",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "an element which groups all PlanCartesianGridSurface in the Y direction",
+         "schemaItemType" : "EntityClass"
+      },
+      "OrthogonalGrid" : {
+         "baseClass" : "Grids.PlanGrid",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "And OrthogonalGrid has all of its' surfaces orthogonal in either X or Y direction",
+         "properties" : [
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "DefaultCoordinateIncrementX",
+               "name" : "DefaultCoordinateIncrementX",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "DefaultCoordinateIncrementY",
+               "name" : "DefaultCoordinateIncrementY",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "DefaultStartExtentX",
+               "name" : "DefaultStartExtentX",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "DefaultEndExtentX",
+               "name" : "DefaultEndExtentX",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "DefaultStartExtentY",
+               "name" : "DefaultStartExtentY",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "DefaultEndExtentY",
+               "name" : "DefaultEndExtentY",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      },
+      "PlanCartesianGridSurface" : {
+         "baseClass" : "Grids.PlanGridPlanarSurface",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "A planar plan grid surface that is perpendicular to the grid’s x-axis or y-axis.",
+         "properties" : [
+            {
+               "description" : "Origin of the surface",
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "Coordinate",
+               "name" : "Coordinate",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "StartExtent",
+               "name" : "StartExtent",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "EndExtent",
+               "name" : "EndExtent",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      },
+      "PlanCircumferentialGridSurface" : {
+         "baseClass" : "Grids.PlanGridArcSurface",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "An PlanGridArcSurface that is centered on the Grid’s origin.",
+         "properties" : [
+            {
+               "description" : "Origin of the surface",
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "Radius",
+               "name" : "Radius",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.ANGLE",
+               "label" : "StartAngle",
+               "name" : "StartAngle",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.ANGLE",
+               "label" : "EndAngle",
+               "name" : "EndAngle",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      },
+      "PlanGrid" : {
+         "baseClass" : "Grids.Grid",
+         "description" : "a grid whose surfaces are curves parallel to the local x-y plane extruded along the local z-axis",
+         "modifier" : "abstract",
+         "properties" : [
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "DefaultStartElevation",
+               "name" : "DefaultStartElevation",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "DefaultEndElevation",
+               "name" : "DefaultEndElevation",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      },
+      "PlanGridArcSurface" : {
+         "baseClass" : "Grids.GridArcSurface",
+         "description" : "An arc plangrid surface element.",
+         "mixins" : [ "Grids.IPlanGridSurface" ],
+         "modifier" : "abstract",
+         "schemaItemType" : "EntityClass"
+      },
+      "PlanGridPlanarSurface" : {
+         "baseClass" : "Grids.GridPlanarSurface",
+         "description" : "A planar plangrid surface element.",
+         "mixins" : [ "Grids.IPlanGridSurface" ],
+         "modifier" : "abstract",
+         "schemaItemType" : "EntityClass"
+      },
+      "PlanGridSplineSurface" : {
+         "baseClass" : "Grids.GridSplineSurface",
+         "description" : "A spline plangrid surface element.",
+         "mixins" : [ "Grids.IPlanGridSurface" ],
+         "modifier" : "abstract",
+         "schemaItemType" : "EntityClass"
+      },
+      "PlanRadialGridSurface" : {
+         "baseClass" : "Grids.PlanGridPlanarSurface",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "A PlanGridPlanarSurface whose infinite plane contains the PlanGrid’s origin.",
+         "properties" : [
+            {
+               "description" : "Origin of the surface",
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "Angle",
+               "name" : "Angle",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "StartRadius",
+               "name" : "StartRadius",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "EndRadius",
+               "name" : "EndRadius",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      },
+      "RadialAxis" : {
+         "baseClass" : "Grids.GridAxis",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "an element which groups all PlanRadialGridSurface in a RadialGrid together",
+         "schemaItemType" : "EntityClass"
+      },
+      "RadialGrid" : {
+         "baseClass" : "Grids.PlanGrid",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "A RadialGrid consists either of arcsurfaces in radial axis or planarsurfaces in circular axis",
+         "properties" : [
+            {
+               "kindOfQuantity" : "AecUnits.ANGLE",
+               "label" : "DefaultAngleIncrement",
+               "name" : "DefaultAngleIncrement",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.ANGLE",
+               "label" : "DefaultRadiusIncrement",
+               "name" : "DefaultRadiusIncrement",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.ANGLE",
+               "label" : "DefaultStartAngle",
+               "name" : "DefaultStartAngle",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.ANGLE",
+               "label" : "DefaultEndAngle",
+               "name" : "DefaultEndAngle",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "DefaultStartRadius",
+               "name" : "DefaultStartRadius",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            },
+            {
+               "kindOfQuantity" : "AecUnits.LENGTH",
+               "label" : "DefaultEndRadius",
+               "name" : "DefaultEndRadius",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "double"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      },
+      "SketchArcGridSurface" : {
+         "baseClass" : "Grids.PlanGridArcSurface",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "An extruded arc gridsurface element.",
+         "properties" : [
+            {
+               "label" : "Arc2d",
+               "name" : "Arc2d",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "Bentley.Geometry.Common.IGeometry"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      },
+      "SketchGrid" : {
+         "baseClass" : "Grids.PlanGrid",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "A SketchGrid contains surfaces whose positions are not constrained (other than being swept to the grid normal)",
+         "schemaItemType" : "EntityClass"
+      },
+      "SketchLineGridSurface" : {
+         "baseClass" : "Grids.PlanGridPlanarSurface",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "An extruded line gridsurface element.",
+         "properties" : [
+            {
+               "label" : "Line2d",
+               "name" : "Line2d",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "Bentley.Geometry.Common.IGeometry"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      },
+      "SketchSplineGridSurface" : {
+         "baseClass" : "Grids.PlanGridSplineSurface",
+         "customAttributes" : [
+            {
+               "className" : "BisCore.ClassHasHandler"
+            }
+         ],
+         "description" : "An extruded spline gridsurface element.",
+         "properties" : [
+            {
+               "label" : "Spline2d",
+               "name" : "Spline2d",
+               "propertyType" : "PrimitiveProperty",
+               "typeName" : "Bentley.Geometry.Common.IGeometry"
+            }
+         ],
+         "schemaItemType" : "EntityClass"
+      }
+   },
+   "name" : "Grids",
+   "references" : [
+      {
+         "name" : "AecUnits",
+         "version" : "01.00.01"
+      },
+      {
+         "name" : "BisCore",
+         "version" : "01.00.01"
+      },
+      {
+         "name" : "CoreCustomAttributes",
+         "version" : "01.00.00"
+      }
+   ],
+   "version" : "01.00.00"
+}

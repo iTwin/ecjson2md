@@ -7,7 +7,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Mocha",
+      "name": "ecjson2md-Mocha",
       "program": "${workspaceRoot}/node_modules/@bentley/bentleyjs-tools/scripts/test-tsnode.js",
       "args": [
         "--debug",
