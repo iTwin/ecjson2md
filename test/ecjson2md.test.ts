@@ -35,7 +35,7 @@ describe("ecjson2md", () => {
     describe("Schema markdown generation", () => {
       const outputDir = path.join(".", "test", "temp");
 
-      // Make the temp dir to store the ouuput
+      // Make the temp dir to store the output
       before(() => {
         if (!fs.existsSync(outputDir))
           fs.mkdirSync(outputDir);
@@ -2844,6 +2844,99 @@ describe("ecjson2md", () => {
             assert.equal(propertyTypeNumberToString(PropertyType.String_Enumeration_Array), "string enum array");
             assert.equal(propertyTypeNumberToString(PropertyType.IGeometry), "IGeometry");
             assert.equal(propertyTypeNumberToString(PropertyType.IGeometry_Array), "IGeometry array");
+          });
+        });
+
+        describe("integration tests", () => {
+          const inputFileDir = path.join(".", "test", "Assets", "dir");
+          let testMDGenerator: ECJsonMarkdownGenerator;
+          let outputFilePath: string;
+
+          // Delete the output file before each test
+          beforeEach(() => {
+            if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+            testMDGenerator = new ECJsonMarkdownGenerator([inputFileDir]);
+          });
+
+          // Delete the output file after each test
+          afterEach(() => {
+            if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          });
+
+          it("should properly generate markdown for biscore", () => {
+            // Assert
+            const inputFileName = "BisCore.ecschema";
+            const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
+            const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
+            outputFilePath = path.join(outputDir, inputFileName + ".md");
+
+            // Act
+            testMDGenerator.generate(inputFilePath, outputFilePath);
+
+            // Assert
+            const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split("\n");
+
+            // tslint:disable-next-line:prefer-for-of
+            for (let i = 0; i < outputLines.length; i++)
+              assert.equal(outputLines[i], correctLines[i]);
+          });
+
+          it("should properly generate markdown for AecUnits", () => {
+            // Assert
+            const inputFileName = "AecUnits.ecschema";
+            const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
+            const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
+            outputFilePath = path.join(outputDir, inputFileName + ".md");
+
+            // Act
+            testMDGenerator.generate(inputFilePath, outputFilePath);
+
+            // Assert
+            const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split("\n");
+
+            // tslint:disable-next-line:prefer-for-of
+            for (let i = 0; i < outputLines.length; i++)
+              assert.equal(outputLines[i], correctLines[i]);
+          });
+
+          it("should properly generate markdown for CoreCustomAttributes", () => {
+            // Assert
+            const inputFileName = "CoreCustomAttributes.ecschema";
+            const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
+            const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
+            outputFilePath = path.join(outputDir, inputFileName + ".md");
+
+            // Act
+            testMDGenerator.generate(inputFilePath, outputFilePath);
+
+            // Assert
+            const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split("\n");
+
+            // tslint:disable-next-line:prefer-for-of
+            for (let i = 0; i < outputLines.length; i++)
+              assert.equal(outputLines[i], correctLines[i]);
+          });
+
+          it("should properly generate markdown for Grids", () => {
+            // Assert
+            const inputFileName = "Grids.ecschema";
+            const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
+            const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
+            outputFilePath = path.join(outputDir, inputFileName + ".md");
+
+            // Act
+            testMDGenerator.generate(inputFilePath, outputFilePath);
+
+            // Assert
+            const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split("\n");
+
+            // tslint:disable-next-line:prefer-for-of
+            for (let i = 0; i < outputLines.length; i++)
+              assert.equal(outputLines[i], correctLines[i]);
           });
         });
       });
