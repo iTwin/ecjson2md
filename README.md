@@ -122,7 +122,7 @@ In most cases, Bemetalsmith will do this out-of-the-box without additional confi
 
 | target.md || remarks.md |
 | --------- |----| ---------- |
-|.<br>.<br>.<br><br>\#\#\# Texture<br>.<br>.<br>.<br>More information at docs.example<br><br>\#\#\# TypeDefinitionElement<br>.<br>.<br>.<br><br>\#\#\# TypeDefinitionHasElement<br>\*ready for release\* || ---<br>remarksTarget: target.md<br>---<br><br>\#\#\# Texture<br> More information at docs.example<br><br>\#\#\# TypeDefinitionElement<br>\*ready for release\*|
+|.<br>.<br>.<br><br>\#\#\# Texture<br>.<br>.<br>.<br>More information at docs.example<br><br>\#\#\# TypeDefinitionElement<br>\*ready for release\*<br>.<br>.<br>.<br>\#\#\# TypeDefinitionHasElement<br> || ---<br>remarksTarget: target.md<br>---<br><br>\#\#\# Texture<br> More information at docs.example<br><br>\#\#\# TypeDefinitionElement<br>\*ready for release\*|
 
 ## Notes
 
