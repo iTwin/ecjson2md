@@ -2045,6 +2045,222 @@ describe("ecjson2md", () => {
         });
       });
 
+      describe("writeCustomAttributeClass", () => {
+
+        const outputFilePath = path.join(outputDir, "mixinClassTest.md");
+        const schemaJson = JSON.parse(
+          '{ \
+            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+            "alias":"testSchema", \
+            "name": "testSchema", \
+            "version":"02.00.00", \
+            "items": { \
+              "EntityA" : { "schemaItemType" : "EntityClass" }, \
+              "PlainCAC" : { \
+                "appliesTo" : "AnyProperty", \
+                "modifier" : "sealed", \
+                "schemaItemType" : "CustomAttributeClass" \
+              }, \
+              "CACWithDescription" : { \
+                "appliesTo" : "AnyProperty", \
+                "description" : "this is a description", \
+                "modifier" : "sealed", \
+                "schemaItemType" : "CustomAttributeClass" \
+              }, \
+              "CACWithBaseClass" : { \
+                "appliesTo" : "AnyProperty", \
+                "description" : "this is a description", \
+                "baseClass" : "testSchema.EntityA", \
+                "modifier" : "sealed", \
+                "schemaItemType" : "CustomAttributeClass" \
+              }, \
+              "CACWithProperties" : { \
+                "appliesTo" : "AnyProperty", \
+                "description" : "this is a description", \
+                "baseClass" : "testSchema.EntityA", \
+                "modifier" : "sealed", \
+                "schemaItemType" : "CustomAttributeClass", \
+                "properties" : [ \
+                  { \
+                    "name" : "PropertyA", \
+                    "label" : "PropertyALabel", \
+                    "propertyType" : "PrimitiveProperty", \
+                    "typeName" : "boolean" \
+                  } \
+                ] \
+              }, \
+              "CACWithMultipleProperties" : { \
+                "appliesTo" : "AnyProperty", \
+                "schemaItemType" : "CustomAttributeClass", \
+                "properties" : [ \
+                  { \
+                    "name" : "PropertyA", \
+                    "propertyType" : "PrimitiveProperty", \
+                    "typeName" : "boolean" \
+                  }, \
+                  { \
+                    "name" : "PropertyB", \
+                    "label" : "PropertyBLabel", \
+                    "propertyType" : "PrimitiveProperty", \
+                    "typeName" : "boolean", \
+                    "readOnly" : true \
+                  }, \
+                  { \
+                    "name" : "PropertyC", \
+                    "label" : "PropertyCLabel", \
+                    "propertyType" : "PrimitiveProperty", \
+                    "typeName" : "boolean", \
+                    "readOnly" : true, \
+                    "priority" : 1 \
+                  } \
+                ] \
+              } \
+            } \
+          }');
+
+        const context = new SchemaContext();
+        const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+        // Delete the output file before each test
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("should write a class without description, base class, or properties", () => {
+          // Arrange
+          const correctLines = [
+            "### PlainCAC",
+            "",
+            "**Type:** CustomAttributeClass",
+            "",
+            "**Modifier:** 2",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("PlainCAC"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a class that has a description", () => {
+          // Arrange
+          const correctLines = [
+            "### CACWithDescription",
+            "",
+            "**Type:** CustomAttributeClass",
+            "",
+            "this is a description",
+            "",
+            "**Modifier:** 2",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("CACWithDescription"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a class with a description and a base class", () => {
+          // Arrange
+          const correctLines = [
+            "### CACWithBaseClass",
+            "",
+            "**Type:** CustomAttributeClass",
+            "",
+            "this is a description",
+            "",
+            '**Base Class:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
+            "",
+            "**Modifier:** 2",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("CACWithBaseClass"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a class that has a description, base class, and properties", () => {
+          // Arrange
+          const correctLines = [
+            "### CACWithProperties",
+            "",
+            "**Type:** CustomAttributeClass",
+            "",
+            "this is a description",
+            "",
+            '**Base Class:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
+            "",
+            "**Modifier:** 2",
+            "",
+            "#### Properties",
+            "",
+            "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |",
+            "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|",
+            "|PropertyA|PropertyALabel|CACWithProperties||false|0|",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("CACWithProperties"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should properly write a class that has several properties", () => {
+          // Arrange
+          const correctLines = [
+            "### CACWithMultipleProperties",
+            "",
+            "**Type:** CustomAttributeClass",
+            "",
+            "**Modifier:** 0",
+            "",
+            "#### Properties",
+            "",
+            "|    Name    |    Label    |    Class   |    Inherited    |    Read Only     |    Priority    |",
+            "|:-----------|:------------|:-----------|:----------------|:-----------------|:---------------|",
+            "|PropertyA||CACWithMultipleProperties||false|0|",
+            "|PropertyB|PropertyBLabel|CACWithMultipleProperties||true|0|",
+            "|PropertyC|PropertyCLabel|CACWithMultipleProperties||true|1|",
+            "",
+            "" ];
+
+          // Act
+          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("CACWithMultipleProperties"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+      });
+
       describe("Misc", () => {
         describe("getSortedSchemaItems", () => {
           const schemaJson = JSON.parse(

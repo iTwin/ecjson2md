@@ -744,7 +744,7 @@ export class ECJsonMarkdownGenerator {
       const priority = helper(property.priority);
 
       fs.appendFileSync(outputFilePath,
-        "|" + name + "|" + label + "|" + type + "|" + /* inherited */ + "|" + isReadOnly + "|" + priority + "|\n");
+        "|" + name + "|" + label + "|" + type + "|" /* + inherited */ + "|" + isReadOnly + "|" + priority + "|\n");
     }
 
     fs.appendFileSync(outputFilePath, "\n");
