@@ -205,7 +205,7 @@ describe("ecjson2md", () => {
             "",
             "This is the description",
             "",
-            "**label:** testSchemaLabel",
+            "**displayLabel:** testSchemaLabel",
             "",
             "" ];
 
@@ -323,7 +323,7 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-          assert.equal(outputLines[0], "**label:** " + label);
+          assert.equal(outputLines[0], "**displayLabel:** " + label);
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "");
         });
@@ -361,7 +361,7 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-          assert.equal(outputLines[0], "**Priority:** " + priority);
+          assert.equal(outputLines[0], "**priority:** " + priority);
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "");
         });
@@ -399,7 +399,7 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-          assert.equal(outputLines[0], "**Priority:** " + modifier);
+          assert.equal(outputLines[0], "**priority:** " + modifier);
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "");
         });
@@ -459,7 +459,7 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-          assert.equal(outputLines[0], '**Base Class:** [link_to testschema.ecschema/#entityclassb text="testSchema:EntityClassB"]');
+          assert.equal(outputLines[0], '**baseClass:** [link_to testschema.ecschema/#entityclassb text="testSchema:EntityClassB"]');
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "");
         });
@@ -512,9 +512,9 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### EntityClassA",
             "",
-            "**Type:** EntityClass",
+            "**typeName:** EntityClass",
             "",
-            "**Modifier:** None",
+            "**modifier:** None",
             "",
             "" ];
 
@@ -553,11 +553,11 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### EntityClassA",
             "",
+            "**typeName:** EntityClass",
+            "",
             "this is a description",
             "",
-            "**Type:** EntityClass",
-            "",
-            "**Modifier:** None",
+            "**modifier:** None",
             "",
             "" ];
 
@@ -599,11 +599,11 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### EntityClassA",
             "",
-            "**Type:** EntityClass",
+            "**typeName:** EntityClass",
             "",
-            '**Base Class:** [link_to testschema.ecschema/#entityclassb text="testSchema:EntityClassB"]',
+            "**modifier:** None",
             "",
-            "**Modifier:** None",
+            '**baseClass:** [link_to testschema.ecschema/#entityclassb text="testSchema:EntityClassB"]',
             "",
             "" ];
 
@@ -641,11 +641,11 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### EntityClassA",
             "",
-            "**Type:** EntityClass",
+            "**typeName:** EntityClass",
             "",
-            "**Modifier:** None",
+            "**displayLabel:** entityLabel",
             "",
-            "**label:** entityLabel",
+            "**modifier:** None",
             "",
             "" ];
 
@@ -689,15 +689,15 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### EntityClassA",
             "",
+            "**typeName:** EntityClass",
+            "",
             "this is a description",
             "",
-            "**Type:** EntityClass",
+            "**displayLabel:** entityLabel",
             "",
-            '**Base Class:** [link_to testschema.ecschema/#entityclassb text="testSchema:EntityClassB"]',
+            "**modifier:** None",
             "",
-            "**Modifier:** None",
-            "",
-            "**label:** entityLabel",
+            '**baseClass:** [link_to testschema.ecschema/#entityclassb text="testSchema:EntityClassB"]',
             "",
             "" ];
 
@@ -761,9 +761,9 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### EntityClassA",
             "",
-            "**Type:** EntityClass",
+            "**typeName:** EntityClass",
             "",
-            "**Modifier:** None",
+            "**modifier:** None",
             "",
             "#### Properties",
             "",
@@ -836,9 +836,9 @@ describe("ecjson2md", () => {
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines[0], "### KindOfQuantityA");
           assert.equal(outputLines[1], "");
-          assert.equal(outputLines[2], "**Type:** KindOfQuantity");
+          assert.equal(outputLines[2], "**typeName:** KindOfQuantity");
           assert.equal(outputLines[3], "");
-          assert.equal(outputLines[4], "**label:** KindOfQuantityA");
+          assert.equal(outputLines[4], "**displayLabel:** KindOfQuantityA");
           assert.equal(outputLines[5], "");
           assert.equal(outputLines[6], "**Precision:** 0.001");
           assert.equal(outputLines[7], "");
@@ -890,9 +890,9 @@ describe("ecjson2md", () => {
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines[0], "### KindOfQuantityA");
           assert.equal(outputLines[1], "");
-          assert.equal(outputLines[2], "**Type:** KindOfQuantity");
+          assert.equal(outputLines[2], "**typeName:** KindOfQuantity");
           assert.equal(outputLines[3], "");
-          assert.equal(outputLines[4], "**label:** KindOfQuantityA");
+          assert.equal(outputLines[4], "**displayLabel:** KindOfQuantityA");
           assert.equal(outputLines[5], "");
           assert.equal(outputLines[6], "**Precision:** 0.001");
           assert.equal(outputLines[7], "");
@@ -940,9 +940,9 @@ describe("ecjson2md", () => {
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines[0], "### KindOfQuantityA");
           assert.equal(outputLines[1], "");
-          assert.equal(outputLines[2], "**Type:** KindOfQuantity");
+          assert.equal(outputLines[2], "**typeName:** KindOfQuantity");
           assert.equal(outputLines[3], "");
-          assert.equal(outputLines[4], "**label:** KindOfQuantityA");
+          assert.equal(outputLines[4], "**displayLabel:** KindOfQuantityA");
           assert.equal(outputLines[5], "");
           assert.equal(outputLines[6], "**Precision:** 0.001");
           assert.equal(outputLines[7], "");
@@ -1006,9 +1006,9 @@ describe("ecjson2md", () => {
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines[0], "### KindOfQuantityA");
           assert.equal(outputLines[1], "");
-          assert.equal(outputLines[2], "**Type:** KindOfQuantity");
+          assert.equal(outputLines[2], "**typeName:** KindOfQuantity");
           assert.equal(outputLines[3], "");
-          assert.equal(outputLines[4], "**label:** KindOfQuantityA");
+          assert.equal(outputLines[4], "**displayLabel:** KindOfQuantityA");
           assert.equal(outputLines[5], "");
           assert.equal(outputLines[6], "**Precision:** 0.001");
           assert.equal(outputLines[7], "");
@@ -1095,9 +1095,9 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### RelationshipClassA",
             "",
-            "**Type:** RelationshipClass",
+            "**typeName:** RelationshipClass",
             "",
-            "**Modifier:** None",
+            "**modifier:** None",
             "",
             "**Strength:** Referencing",
             "",
@@ -1191,9 +1191,9 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**Type:** RelationshipClass",
+            "**typeName:** RelationshipClass",
             "",
-            "**Modifier:** None",
+            "**modifier:** None",
             "",
             "**Strength:** Referencing",
             "",
@@ -1285,11 +1285,11 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### RelationshipClassA",
             "",
-            "**Type:** RelationshipClass",
+            "**typeName:** RelationshipClass",
             "",
-            '**Base Class:** [link_to testschema.ecschema/#entityclassd text="testSchema:EntityClassD"]',
+            '**baseClass:** [link_to testschema.ecschema/#entityclassd text="testSchema:EntityClassD"]',
             "",
-            "**Modifier:** None",
+            "**modifier:** None",
             "",
             "**Strength:** Referencing",
             "",
@@ -1381,11 +1381,11 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### RelationshipClassA",
             "",
-            "**Type:** RelationshipClass",
+            "**typeName:** RelationshipClass",
             "",
-            '**Base Class:** [link_to testschema.ecschema/#entityclassd text="testSchema:EntityClassD"]',
+            '**baseClass:** [link_to testschema.ecschema/#entityclassd text="testSchema:EntityClassD"]',
             "",
-            "**Modifier:** None",
+            "**modifier:** None",
             "",
             "**Strength:** Referencing",
             "",
@@ -1477,11 +1477,11 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### RelationshipClassA",
             "",
-            "**Type:** RelationshipClass",
+            "**typeName:** RelationshipClass",
             "",
-            "**Modifier:** None",
+            "**modifier:** None",
             "",
-            "**label:** relationshipClassALabel",
+            "**displayLabel:** relationshipClassALabel",
             "",
             "**Strength:** Referencing",
             "",
@@ -1587,9 +1587,9 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### RelationshipClassA",
             "",
-            "**Type:** RelationshipClass",
+            "**typeName:** RelationshipClass",
             "",
-            "**Modifier:** None",
+            "**modifier:** None",
             "",
             "**Strength:** Referencing",
             "",
@@ -1728,7 +1728,7 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### IntBackedEnum",
             "",
-            "**Type:** Enumeration",
+            "**typeName:** Enumeration",
             "",
             "**Strict:** true",
             "",
@@ -1755,7 +1755,7 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### StringBackedEnum",
             "",
-            "**Type:** Enumeration",
+            "**typeName:** Enumeration",
             "",
             "**Strict:** true",
             "",
@@ -1782,7 +1782,7 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### NoEnumEnum",
             "",
-            "**Type:** Enumeration",
+            "**typeName:** Enumeration",
             "",
             "**Strict:** true",
             "",
@@ -1805,7 +1805,7 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### LotsOfEnumEnum",
             "",
-            "**Type:** Enumeration",
+            "**typeName:** Enumeration",
             "",
             "**Strict:** true",
             "",
@@ -1836,7 +1836,7 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### NoLabelEnumerators",
             "",
-            "**Type:** Enumeration",
+            "**typeName:** Enumeration",
             "",
             "**Strict:** true",
             "",
@@ -2035,7 +2035,7 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### PlainMixin",
             "",
-            "**Type:** Mixin",
+            "**typeName:** Mixin",
             "",
             '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
             "",
@@ -2058,7 +2058,7 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**Type:** Mixin",
+            "**typeName:** Mixin",
             "",
             '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
             "",
@@ -2079,9 +2079,9 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### MixinWithBaseclass",
             "",
-            "**Type:** Mixin",
+            "**typeName:** Mixin",
             "",
-            '**Base Class:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
+            '**baseClass:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
             "",
             '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
             "",
@@ -2102,9 +2102,9 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### MixinWithLabel",
             "",
-            "**Type:** Mixin",
+            "**typeName:** Mixin",
             "",
-            "**label:** MixinLabel",
+            "**displayLabel:** MixinLabel",
             "",
             '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
             "",
@@ -2127,11 +2127,11 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**Type:** Mixin",
+            "**typeName:** Mixin",
             "",
-            '**Base Class:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
+            '**baseClass:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
             "",
-            "**label:** MixinLabel",
+            "**displayLabel:** MixinLabel",
             "",
             '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
             "",
@@ -2152,7 +2152,7 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### MixinWithProperties",
             "",
-            "**Type:** Mixin",
+            "**typeName:** Mixin",
             "",
             '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
             "",
@@ -2184,11 +2184,11 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**Type:** Mixin",
+            "**typeName:** Mixin",
             "",
-            '**Base Class:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
+            '**baseClass:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
             "",
-            "**label:** MixinLabel",
+            "**displayLabel:** MixinLabel",
             "",
             '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
             "",
@@ -2302,9 +2302,9 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### PlainCAC",
             "",
-            "**Type:** CustomAttributeClass",
+            "**typeName:** CustomAttributeClass",
             "",
-            "**Modifier:** Sealed",
+            "**modifier:** Sealed",
             "",
             "**Applies to:** AnyProperty",
             "",
@@ -2325,11 +2325,11 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### CACWithDescription",
             "",
-            "**Type:** CustomAttributeClass",
+            "**typeName:** CustomAttributeClass",
             "",
             "this is a description",
             "",
-            "**Modifier:** Sealed",
+            "**modifier:** Sealed",
             "",
             "**Applies to:** AnyProperty",
             "",
@@ -2350,13 +2350,13 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### CACWithBaseClass",
             "",
-            "**Type:** CustomAttributeClass",
+            "**typeName:** CustomAttributeClass",
             "",
             "this is a description",
             "",
-            '**Base Class:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
+            '**baseClass:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
             "",
-            "**Modifier:** Sealed",
+            "**modifier:** Sealed",
             "",
             "**Applies to:** AnyProperty",
             "",
@@ -2377,13 +2377,13 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### CACWithProperties",
             "",
-            "**Type:** CustomAttributeClass",
+            "**typeName:** CustomAttributeClass",
             "",
             "this is a description",
             "",
-            '**Base Class:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
+            '**baseClass:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
             "",
-            "**Modifier:** Sealed",
+            "**modifier:** Sealed",
             "",
             "**Applies to:** AnyProperty",
             "",
@@ -2410,9 +2410,9 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### CACWithMultipleProperties",
             "",
-            "**Type:** CustomAttributeClass",
+            "**typeName:** CustomAttributeClass",
             "",
-            "**Modifier:** None",
+            "**modifier:** None",
             "",
             "**Applies to:** AnyProperty",
             "",
@@ -2529,9 +2529,9 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### PlainStruct",
             "",
-            "**Type:** StructClass",
+            "**typeName:** StructClass",
             "",
-            "**Modifier:** Sealed",
+            "**modifier:** Sealed",
             "",
             "" ];
 
@@ -2552,9 +2552,9 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**Type:** StructClass",
+            "**typeName:** StructClass",
             "",
-            "**Modifier:** Sealed",
+            "**modifier:** Sealed",
             "",
             "" ];
 
@@ -2575,11 +2575,11 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**label:** StructDLLabel",
+            "**displayLabel:** StructDLLabel",
             "",
-            "**Type:** StructClass",
+            "**typeName:** StructClass",
             "",
-            "**Modifier:** Sealed",
+            "**modifier:** Sealed",
             "",
             "" ];
 
@@ -2600,13 +2600,13 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**label:** StructDLBLabel",
+            "**displayLabel:** StructDLBLabel",
             "",
-            '**Base Class:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
+            '**baseClass:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
             "",
-            "**Type:** StructClass",
+            "**typeName:** StructClass",
             "",
-            "**Modifier:** Sealed",
+            "**modifier:** Sealed",
             "",
             "" ];
 
@@ -2627,13 +2627,13 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**label:** StructDLBPLabel",
+            "**displayLabel:** StructDLBPLabel",
             "",
-            '**Base Class:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
+            '**baseClass:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
             "",
-            "**Type:** StructClass",
+            "**typeName:** StructClass",
             "",
-            "**Modifier:** Sealed",
+            "**modifier:** Sealed",
             "",
             "#### Properties",
             "",
@@ -2658,9 +2658,9 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### StructProperties",
             "",
-            "**Type:** StructClass",
+            "**typeName:** StructClass",
             "",
-            "**Modifier:** Sealed",
+            "**modifier:** Sealed",
             "",
             "#### Properties",
             "",
@@ -2725,9 +2725,9 @@ describe("ecjson2md", () => {
           const correctLines = [
             "### PlainPropCategory",
             "",
-            "**Type:** PropertyCategory",
+            "**typeName:** PropertyCategory",
             "",
-            "**Priority:** 0",
+            "**priority:** 0",
             "",
             "" ];
 
@@ -2748,9 +2748,9 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**Type:** PropertyCategory",
+            "**typeName:** PropertyCategory",
             "",
-            "**Priority:** 0",
+            "**priority:** 0",
             "",
             "" ];
 
@@ -2771,11 +2771,11 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**label:** PropCategoryDLLabel",
+            "**displayLabel:** PropCategoryDLLabel",
             "",
-            "**Type:** PropertyCategory",
+            "**typeName:** PropertyCategory",
             "",
-            "**Priority:** 0",
+            "**priority:** 0",
             "",
             "" ];
 

@@ -272,7 +272,7 @@ export class ECJsonMarkdownGenerator {
   public static writeSchemaItemLabel(outputFilePath: string, label: string|undefined) {
     if (label === undefined) return;
 
-    fs.appendFileSync(outputFilePath, "**label:** " + label + "\n\n");
+    fs.appendFileSync(outputFilePath, "**displayLabel:** " + label + "\n\n");
   }
 
   /**
@@ -283,7 +283,7 @@ export class ECJsonMarkdownGenerator {
   public static writeSchemaItemType(outputFilePath: string, type: any) {
     if (type === undefined) return;
 
-    fs.appendFileSync(outputFilePath, "**Type:** " + schemaItemTypeToString(type) + "\n\n");
+    fs.appendFileSync(outputFilePath, "**typeName:** " + schemaItemTypeToString(type) + "\n\n");
   }
 
   /**
@@ -297,7 +297,7 @@ export class ECJsonMarkdownGenerator {
     const baseClassLink = baseClass.schemaName.toLowerCase() + ".ecschema/#" + baseClass.name.toLowerCase();
     const baseClassName = baseClass.schemaName + ":" + baseClass.name;
 
-    fs.appendFileSync(outputFilePath, "**Base Class:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
+    fs.appendFileSync(outputFilePath, "**baseClass:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
 }
 
 /**
@@ -308,7 +308,7 @@ export class ECJsonMarkdownGenerator {
   public static writeSchemaItemModifier(outputFilePath: string, modifier: ECClassModifier|undefined) {
     if (modifier === undefined) return;
 
-    fs.appendFileSync(outputFilePath, "**Modifier:** " + classModifierToString(modifier) + "\n\n");
+    fs.appendFileSync(outputFilePath, "**modifier:** " + classModifierToString(modifier) + "\n\n");
   }
 
   /**
@@ -319,7 +319,7 @@ export class ECJsonMarkdownGenerator {
   public static writeSchemaItemPriority(outputFilePath: string, priority: any) {
     if (priority === undefined) return;
 
-    fs.appendFileSync(outputFilePath, "**Priority:** " + priority + "\n\n");
+    fs.appendFileSync(outputFilePath, "**priority:** " + priority + "\n\n");
   }
 
   /**
@@ -377,20 +377,20 @@ export class ECJsonMarkdownGenerator {
     // Write the name of the class
     this.writeSchemaItemName(outputFilePath, entityClass.name);
 
-    // Write the description of the entity class
-    this.writeSchemaItemDescription(outputFilePath, entityClass.description);
-
     // Write the class type
     ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, entityClass.schemaItemType);
 
-    // Write the base class
-    this.writeSchemaItemBaseClass(outputFilePath, entityClass.baseClass);
+    // Write the description of the entity class
+    this.writeSchemaItemDescription(outputFilePath, entityClass.description);
+
+    // Write the label
+    this.writeSchemaItemLabel(outputFilePath, entityClass.label);
 
     // Write the modifier
     this.writeSchemaItemModifier(outputFilePath, entityClass.modifier);
 
-    // Write the label
-    this.writeSchemaItemLabel(outputFilePath, entityClass.label);
+    // Write the base class
+    this.writeSchemaItemBaseClass(outputFilePath, entityClass.baseClass);
 
     // Write the properties
     if (entityClass.properties !== undefined) {
