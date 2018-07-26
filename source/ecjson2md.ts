@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, ECClassModifier, PropertyCategory, EntityClass, KindOfQuantity, RelationshipClass, Mixin } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, ECClassModifier, PropertyCategory, EntityClass, KindOfQuantity, RelationshipClass, Mixin, strengthToString, strengthDirectionToString, classModifierToString } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
@@ -296,7 +296,7 @@ export class ECJsonMarkdownGenerator {
   public static writeSchemaItemModifier(outputFilePath: string, modifier: ECClassModifier|undefined) {
     if (modifier === undefined) return;
 
-    fs.appendFileSync(outputFilePath, "**Modifier:** " + modifier.toString() + "\n\n");
+    fs.appendFileSync(outputFilePath, "**Modifier:** " + classModifierToString(modifier) + "\n\n");
   }
 
   /**
@@ -373,6 +373,9 @@ export class ECJsonMarkdownGenerator {
 
     // Write the base class
     this.writeSchemaItemBaseClass(outputFilePath, entityClass.baseClass);
+
+    // Write the modifier
+    this.writeSchemaItemModifier(outputFilePath, entityClass.modifier);
 
     // Write the label
     this.writeSchemaItemLabel(outputFilePath, entityClass.label);
@@ -543,16 +546,19 @@ export class ECJsonMarkdownGenerator {
     // Write the base class
     this.writeSchemaItemBaseClass(outputFilePath, relationshipClass.baseClass);
 
+    // Write the modifier
+    this.writeSchemaItemModifier(outputFilePath, relationshipClass.modifier);
+
     // Write the label
     this.writeSchemaItemLabel(outputFilePath, relationshipClass.label);
 
     // Write the strength
     if (relationshipClass.strength !== undefined) {
-      fs.appendFileSync(outputFilePath, "**Strength:** " + relationshipClass.strength + "\n\n");
+      fs.appendFileSync(outputFilePath, "**Strength:** " + strengthToString(relationshipClass.strength) + "\n\n");
     }
     // Write the strength direction
     if (relationshipClass.strengthDirection !== undefined) {
-      fs.appendFileSync(outputFilePath, "**strengthDirection:** " + relationshipClass.strengthDirection + "\n\n");
+      fs.appendFileSync(outputFilePath, "**strengthDirection:** " + strengthDirectionToString(relationshipClass.strengthDirection) + "\n\n");
     }
 
     // Write the source section
@@ -656,7 +662,7 @@ export class ECJsonMarkdownGenerator {
     if (!enumerationItems || enumerationItems.length === 0) return;
 
     // Write the h3 for the section
-    fs.appendFileSync(outputFilePath, "## Enumeration Items\n\n");
+    fs.appendFileSync(outputFilePath, "## Enumerations\n\n");
 
     for (const enumerationItem of enumerationItems)
       this.writeEnumerationItem(outputFilePath, enumerationItem);
