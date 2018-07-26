@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+$ [0.4.0] - 2018-07-26
+### Changed
+- Modified markdown generation for all schema item types to more closely mirror online EC documentation
+
+### Added
+- CLI now accepts the absence of search directories in the case that none are needed
+
+### Fixed
+- Modified tests to accommodate new functionality
+
 # [0.3.2] - 2018-07-26
 ### Fixed
 - strength and strengthDirection now display human readable values
