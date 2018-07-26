@@ -73,7 +73,7 @@ export function prepSearchDirs(dirString: string|undefined): string[] {
     return [];
 
   // Replace common directory separators with the system separators
-  dirString = dirString.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep);
+  dirString.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep);
 
   // Separate the search directories on ';' or ',' or ' ' or ', ' or '; '
   const searchDirs = dirString.split(/, |; |;|,/g);
