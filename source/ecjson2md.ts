@@ -163,11 +163,23 @@ export class ECJsonMarkdownGenerator {
    * @param schema Schema to grab the name from
    * @param outputMDFile The path of the markdown file to write to
    */
-  public static writeTitle(outputMDFile: any, schema: Schema) {
+  public static writeSchema(outputMDFile: any, schema: Schema) {
     // Write the name of the schema as an <h1>
     fs.appendFileSync(outputMDFile, "# " + schema.name + "\n\n");
+
+    // Write the alias of the schema
+    if (schema.alias !== undefined)
+      fs.appendFileSync(outputMDFile, "**alias:** " + schema.alias + "\n\n");
+
+    // Write the version of the schema
+    if (schema.readVersion !== undefined && schema.writeVersion !== undefined && schema.minorVersion !== undefined)
+      fs.appendFileSync(outputMDFile, "**version:** " + schema.readVersion + "." + schema.writeVersion + "." + schema.minorVersion + "\n\n");
+
     // Write the description of the schema as a <p>
     if (schema.description !== undefined) fs.appendFileSync(outputMDFile, schema.description + "\n\n");
+
+    // Write the label
+    this.writeSchemaItemLabel(outputMDFile, schema.label);
   }
 
   /**
@@ -260,7 +272,7 @@ export class ECJsonMarkdownGenerator {
   public static writeSchemaItemLabel(outputFilePath: string, label: string|undefined) {
     if (label === undefined) return;
 
-    fs.appendFileSync(outputFilePath, "**Label:** " + label + "\n\n");
+    fs.appendFileSync(outputFilePath, "**label:** " + label + "\n\n");
   }
 
   /**
@@ -955,7 +967,7 @@ export class ECJsonMarkdownGenerator {
 
     // Generate all the markdown for each type of schema item
     ECJsonMarkdownGenerator.writeFrontMatter(outputFilePath, schema, nonReleaseFlag);
-    ECJsonMarkdownGenerator.writeTitle(outputFilePath, schema);
+    ECJsonMarkdownGenerator.writeSchema(outputFilePath, schema);
     ECJsonMarkdownGenerator.writeEntityClasses(outputFilePath, schema);
     ECJsonMarkdownGenerator.writeKindOfQuantityClasses(outputFilePath, schema);
     ECJsonMarkdownGenerator.writeRelationshipClasses(outputFilePath, schema);

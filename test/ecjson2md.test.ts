@@ -103,7 +103,7 @@ describe("ecjson2md", () => {
         });
       });
 
-      describe("writeTitle", () => {
+      describe("writeSchema", () => {
         const outputFilePath = path.join(outputDir, "titleTest.md");
 
         beforeEach(() => {
@@ -115,7 +115,7 @@ describe("ecjson2md", () => {
           if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
         });
 
-        it("should write the title properly for a schema with no description", () => {
+        it("should write the markdown properly for a schema with no description or label", () => {
           // Arrange
           const testSchema = new Schema();
           testSchema.fromJsonSync(JSON.parse(
@@ -127,16 +127,25 @@ describe("ecjson2md", () => {
               }'));
 
           // Act
-          ECJsonMarkdownGenerator.writeTitle(outputFilePath, testSchema);
+          ECJsonMarkdownGenerator.writeSchema(outputFilePath, testSchema);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-          assert.equal(outputLines[0], "# testSchema");
-          assert.equal(outputLines[1], "");
-          assert.equal(outputLines[2], "");
+          const correctLines = [
+            "# testSchema",
+            "",
+            "**alias:** testSchema",
+            "",
+            "**version:** 2.0.0",
+            "",
+            "" ];
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
         });
 
-        it("should write the title properly for a schema with a description", () => {
+        it("should write the markdown properly for a schema with a description", () => {
           // Arrange
           const testSchema = new Schema();
           testSchema.fromJsonSync(JSON.parse(
@@ -149,15 +158,60 @@ describe("ecjson2md", () => {
             }'));
 
           // Act
-          ECJsonMarkdownGenerator.writeTitle(outputFilePath, testSchema);
+          ECJsonMarkdownGenerator.writeSchema(outputFilePath, testSchema);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-          assert.equal(outputLines[0], "# testSchema");
-          assert.equal(outputLines[1], "");
-          assert.equal(outputLines[2], "This is the description");
-          assert.equal(outputLines[3], "");
-          assert.equal(outputLines[4], "");
+          const correctLines = [
+            "# testSchema",
+            "",
+            "**alias:** testSchema",
+            "",
+            "**version:** 2.0.0",
+            "",
+            "This is the description",
+            "",
+            "" ];
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
+        });
+
+        it("should write the markdown properly for a schema with a description and label", () => {
+          // Arrange
+          const testSchema = new Schema();
+          testSchema.fromJsonSync(JSON.parse(
+            '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "description":"This is the description",\
+              "alias":"testSchema",\
+              "name": "testSchema",\
+              "label": "testSchemaLabel", \
+              "version":"02.00.00"\
+            }'));
+
+          // Act
+          ECJsonMarkdownGenerator.writeSchema(outputFilePath, testSchema);
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = [
+            "# testSchema",
+            "",
+            "**alias:** testSchema",
+            "",
+            "**version:** 2.0.0",
+            "",
+            "This is the description",
+            "",
+            "**label:** testSchemaLabel",
+            "",
+            "" ];
+
+          // tslint:disable-next-line:prefer-for-of
+          for (let i = 0; i < outputLines.length; i++)
+            assert.equal(outputLines[i], correctLines[i]);
         });
       });
 
@@ -269,7 +323,7 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-          assert.equal(outputLines[0], "**Label:** " + label);
+          assert.equal(outputLines[0], "**label:** " + label);
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "");
         });
@@ -591,7 +645,7 @@ describe("ecjson2md", () => {
             "",
             "**Modifier:** None",
             "",
-            "**Label:** entityLabel",
+            "**label:** entityLabel",
             "",
             "" ];
 
@@ -643,7 +697,7 @@ describe("ecjson2md", () => {
             "",
             "**Modifier:** None",
             "",
-            "**Label:** entityLabel",
+            "**label:** entityLabel",
             "",
             "" ];
 
@@ -784,7 +838,7 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "**Type:** KindOfQuantity");
           assert.equal(outputLines[3], "");
-          assert.equal(outputLines[4], "**Label:** KindOfQuantityA");
+          assert.equal(outputLines[4], "**label:** KindOfQuantityA");
           assert.equal(outputLines[5], "");
           assert.equal(outputLines[6], "**Precision:** 0.001");
           assert.equal(outputLines[7], "");
@@ -838,7 +892,7 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "**Type:** KindOfQuantity");
           assert.equal(outputLines[3], "");
-          assert.equal(outputLines[4], "**Label:** KindOfQuantityA");
+          assert.equal(outputLines[4], "**label:** KindOfQuantityA");
           assert.equal(outputLines[5], "");
           assert.equal(outputLines[6], "**Precision:** 0.001");
           assert.equal(outputLines[7], "");
@@ -888,7 +942,7 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "**Type:** KindOfQuantity");
           assert.equal(outputLines[3], "");
-          assert.equal(outputLines[4], "**Label:** KindOfQuantityA");
+          assert.equal(outputLines[4], "**label:** KindOfQuantityA");
           assert.equal(outputLines[5], "");
           assert.equal(outputLines[6], "**Precision:** 0.001");
           assert.equal(outputLines[7], "");
@@ -954,7 +1008,7 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "**Type:** KindOfQuantity");
           assert.equal(outputLines[3], "");
-          assert.equal(outputLines[4], "**Label:** KindOfQuantityA");
+          assert.equal(outputLines[4], "**label:** KindOfQuantityA");
           assert.equal(outputLines[5], "");
           assert.equal(outputLines[6], "**Precision:** 0.001");
           assert.equal(outputLines[7], "");
@@ -1427,7 +1481,7 @@ describe("ecjson2md", () => {
             "",
             "**Modifier:** None",
             "",
-            "**Label:** relationshipClassALabel",
+            "**label:** relationshipClassALabel",
             "",
             "**Strength:** Referencing",
             "",
@@ -2050,7 +2104,7 @@ describe("ecjson2md", () => {
             "",
             "**Type:** Mixin",
             "",
-            "**Label:** MixinLabel",
+            "**label:** MixinLabel",
             "",
             '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
             "",
@@ -2077,7 +2131,7 @@ describe("ecjson2md", () => {
             "",
             '**Base Class:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
             "",
-            "**Label:** MixinLabel",
+            "**label:** MixinLabel",
             "",
             '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
             "",
@@ -2134,7 +2188,7 @@ describe("ecjson2md", () => {
             "",
             '**Base Class:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
             "",
-            "**Label:** MixinLabel",
+            "**label:** MixinLabel",
             "",
             '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
             "",
@@ -2521,7 +2575,7 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**Label:** StructDLLabel",
+            "**label:** StructDLLabel",
             "",
             "**Type:** StructClass",
             "",
@@ -2546,7 +2600,7 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**Label:** StructDLBLabel",
+            "**label:** StructDLBLabel",
             "",
             '**Base Class:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
             "",
@@ -2573,7 +2627,7 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**Label:** StructDLBPLabel",
+            "**label:** StructDLBPLabel",
             "",
             '**Base Class:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
             "",
@@ -2717,7 +2771,7 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**Label:** PropCategoryDLLabel",
+            "**label:** PropCategoryDLLabel",
             "",
             "**Type:** PropertyCategory",
             "",
