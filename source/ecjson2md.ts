@@ -636,27 +636,27 @@ export class ECJsonMarkdownGenerator {
   public static writeEnumerationItem(outputFilePath: string, enumerationItem: Enumeration|undefined) {
     if (enumerationItem === undefined) return;
 
-    if (enumerationItem.name !== undefined)
-        fs.appendFileSync(outputFilePath, "### " + enumerationItem.name + "\n\n");
+    // Write the name of the class
+    this.writeSchemaItemName(outputFilePath, enumerationItem.name);
 
-    if (enumerationItem.description !== undefined)
-      fs.appendFileSync(outputFilePath, enumerationItem.description + "\n\n");
-
-    // Write the type
-    this.writeSchemaItemType(outputFilePath, enumerationItem.schemaItemType);
-
-    // Write the label
-    this.writeSchemaItemType(outputFilePath, enumerationItem.label);
-
-    // Write wether or not the enum is strict
-    if (enumerationItem.isStrict !== undefined)
-      fs.appendFileSync(outputFilePath, "**Strict:** " + enumerationItem.isStrict + "\n\n");
+    // Write the class type
+    ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, enumerationItem.schemaItemType);
 
     // Write wether the enum is an int or string
     if (enumerationItem.isInt())
       fs.appendFileSync(outputFilePath, "**Backing Type:** int\n\n");
     if (enumerationItem.isString())
       fs.appendFileSync(outputFilePath, "**Backing Type:** string\n\n");
+
+    // Write the description of the entity class
+    this.writeSchemaItemDescription(outputFilePath, enumerationItem.description);
+
+    // Write the label
+    this.writeSchemaItemLabel(outputFilePath, enumerationItem.label);
+
+    // Write wether or not the enum is strict
+    if (enumerationItem.isStrict !== undefined)
+      fs.appendFileSync(outputFilePath, "**Strict:** " + enumerationItem.isStrict + "\n\n");
 
     // Write the enumeration table
     this.writeEnumerationTable(outputFilePath, enumerationItem);
