@@ -427,16 +427,16 @@ export class ECJsonMarkdownGenerator {
   public static writeKindOfQuantityClass(outputFilePath: string, kindOfQuantity: KindOfQuantity|undefined) {
     if (kindOfQuantity === undefined) return;
 
-    // Write name
+    // Write the name of the class
     this.writeSchemaItemName(outputFilePath, kindOfQuantity.name);
 
-    // Write description
+    // Write the class type
+    ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, kindOfQuantity.schemaItemType);
+
+    // Write the description of the entity class
     this.writeSchemaItemDescription(outputFilePath, kindOfQuantity.description);
 
-    // Write type
-    this.writeSchemaItemType(outputFilePath, kindOfQuantity.schemaItemType);
-
-    // Write label
+    // Write the label
     this.writeSchemaItemLabel(outputFilePath, kindOfQuantity.label);
 
     // Write the precision
@@ -549,20 +549,20 @@ export class ECJsonMarkdownGenerator {
     // Write the name of the class
     this.writeSchemaItemName(outputFilePath, relationshipClass.name);
 
+    // Write the class type
+    ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, relationshipClass.schemaItemType);
+
     // Write the description of the entity class
     this.writeSchemaItemDescription(outputFilePath, relationshipClass.description);
 
-    // Write the class type
-    this.writeSchemaItemType(outputFilePath, relationshipClass.schemaItemType);
-
-    // Write the base class
-    this.writeSchemaItemBaseClass(outputFilePath, relationshipClass.baseClass);
+    // Write the label
+    this.writeSchemaItemLabel(outputFilePath, relationshipClass.label);
 
     // Write the modifier
     this.writeSchemaItemModifier(outputFilePath, relationshipClass.modifier);
 
-    // Write the label
-    this.writeSchemaItemLabel(outputFilePath, relationshipClass.label);
+    // Write the base class
+    this.writeSchemaItemBaseClass(outputFilePath, relationshipClass.baseClass);
 
     // Write the strength
     if (relationshipClass.strength !== undefined) {
