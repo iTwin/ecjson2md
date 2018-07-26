@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, ECClassModifier, PropertyCategory, EntityClass, KindOfQuantity, RelationshipClass, Mixin, strengthToString, strengthDirectionToString, classModifierToString } from "@bentley/ecjs";
+import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, ECClassModifier, PropertyCategory, EntityClass, KindOfQuantity, RelationshipClass, Mixin, strengthToString, strengthDirectionToString, classModifierToString, containerTypeToString } from "@bentley/ecjs";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
@@ -765,6 +765,10 @@ export class ECJsonMarkdownGenerator {
 
     // Write the modifier
     this.writeSchemaItemModifier(outputFilePath, customAttributeClass.modifier);
+
+    // Write what it appliesTo
+    if (containerTypeToString !== undefined)
+      fs.appendFileSync(outputFilePath, "**Applies to:** " + containerTypeToString(customAttributeClass.containerType) + "\n\n");
 
     // Write the properties table
     // If the properties are undefined or have length 0, return

@@ -3286,6 +3286,8 @@ Applied to an element's property to indicate that select, update, and insert of 
 
 **Modifier:** None
 
+**Applies to:** AnyProperty
+
 #### Properties
 
 |    Name    |    Label    |    Class   |    Read Only     |    Priority    |
@@ -3300,6 +3302,8 @@ Applied to an ECClass to indicate that a subclass of DgnDomain::Handler will be 
 
 **Modifier:** None
 
+**Applies to:** Any
+
 #### Properties
 
 |    Name    |    Label    |    Class   |    Read Only     |    Priority    |
@@ -3313,6 +3317,8 @@ Applied to an ECClass to indicate that a subclass of DgnDomain::Handler will be 
 Applied to an element's property to indicate that the property's value is handled specially by a C++ class.
 
 **Modifier:** None
+
+**Applies to:** AnyProperty
 
 #### Properties
 

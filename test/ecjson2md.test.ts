@@ -2252,6 +2252,8 @@ describe("ecjson2md", () => {
             "",
             "**Modifier:** Sealed",
             "",
+            "**Applies to:** AnyProperty",
+            "",
             "" ];
 
           // Act
@@ -2274,6 +2276,8 @@ describe("ecjson2md", () => {
             "this is a description",
             "",
             "**Modifier:** Sealed",
+            "",
+            "**Applies to:** AnyProperty",
             "",
             "" ];
 
@@ -2300,6 +2304,8 @@ describe("ecjson2md", () => {
             "",
             "**Modifier:** Sealed",
             "",
+            "**Applies to:** AnyProperty",
+            "",
             "" ];
 
           // Act
@@ -2324,6 +2330,8 @@ describe("ecjson2md", () => {
             '**Base Class:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
             "",
             "**Modifier:** Sealed",
+            "",
+            "**Applies to:** AnyProperty",
             "",
             "#### Properties",
             "",
@@ -2351,6 +2359,8 @@ describe("ecjson2md", () => {
             "**Type:** CustomAttributeClass",
             "",
             "**Modifier:** None",
+            "",
+            "**Applies to:** AnyProperty",
             "",
             "#### Properties",
             "",
