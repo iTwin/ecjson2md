@@ -720,8 +720,8 @@ export class ECJsonMarkdownGenerator {
     // Write the properties header and table header
     fs.appendFileSync(outputFilePath,
         "#### Properties\n\n" +
-        "|    Name    |    Label    |   Category  |    Read Only     |    Priority    |\n" +
-        "|:-----------|:------------|:------------|:-----------------|:---------------|\n");
+        "|    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |\n" +
+        "|:-----------|:------------|:------------|:-----------|:-----------------|:---------------|\n");
 
     // If the attribute is not there, return the place holder
     const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
@@ -732,9 +732,10 @@ export class ECJsonMarkdownGenerator {
       const category = helper(property.category);
       const isReadOnly = helper(property.isReadOnly);
       const priority = helper(property.priority);
+      const description = helper(property.description);
 
       fs.appendFileSync(outputFilePath,
-        "|" + name + "|" + label + "|" + category + "|" + isReadOnly + "|" + priority + "|\n");
+        "|" + name + "|" + description + "|" + label + "|" + category + "|" + isReadOnly + "|" + priority + "|\n");
     }
 
     fs.appendFileSync(outputFilePath, "\n");
@@ -766,20 +767,23 @@ export class ECJsonMarkdownGenerator {
   public static writeCustomAttributeClass(outputFilePath: string, customAttributeClass: CustomAttributeClass|undefined) {
     if (customAttributeClass === undefined) return;
 
-    // Write the name of the class
+    // Write the name
     this.writeSchemaItemName(outputFilePath, customAttributeClass.name);
 
     // Write the class type
     this.writeSchemaItemType(outputFilePath, customAttributeClass.schemaItemType);
 
-    // Write the description of the class
+    // Write the description
     this.writeSchemaItemDescription(outputFilePath, customAttributeClass.description);
 
-    // Write the base class
-    this.writeSchemaItemBaseClass(outputFilePath, customAttributeClass.baseClass);
+    // Write the displayLabel
+    this.writeSchemaItemLabel(outputFilePath, customAttributeClass.label);
 
     // Write the modifier
     this.writeSchemaItemModifier(outputFilePath, customAttributeClass.modifier);
+
+    // Write the base class
+    this.writeSchemaItemBaseClass(outputFilePath, customAttributeClass.baseClass);
 
     // Write what it appliesTo
     if (containerTypeToString !== undefined)
@@ -792,8 +796,8 @@ export class ECJsonMarkdownGenerator {
     // Write the properties header and table header
     fs.appendFileSync(outputFilePath,
       "#### Properties\n\n" +
-      "|    Name    |    Label    |    Class   |    Read Only     |    Priority    |\n" +
-      "|:-----------|:------------|:-----------|:-----------------|:---------------|\n");
+      "|    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |\n" +
+      "|:-----------|:------------|:------------|:-----------|:-----------------|:---------------|\n");
 
     // If the attribute is not there, return the place holder
     const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
@@ -801,12 +805,12 @@ export class ECJsonMarkdownGenerator {
     for (const property of customAttributeClass.properties) {
       const name = helper(property.name);
       const label = helper(property.label);
-      const type = helper(property.class.name);
+      const category = helper(property.category);
       const isReadOnly = helper(property.isReadOnly);
       const priority = helper(property.priority);
-
+      const description = helper(property.description);
       fs.appendFileSync(outputFilePath,
-        "|" + name + "|" + label + "|" + type + "|" + isReadOnly + "|" + priority + "|\n");
+        "|" + name + "|" + description + "|" + label + "|" + category + "|" + isReadOnly + "|" + priority + "|\n");
     }
 
     fs.appendFileSync(outputFilePath, "\n");
@@ -838,23 +842,23 @@ export class ECJsonMarkdownGenerator {
   public static writeStructClass(outputFilePath: string, structClass: StructClass|undefined) {
     if (structClass === undefined) return;
 
-    // Write the item name
+    // Write the name
     this.writeSchemaItemName(outputFilePath, structClass.name);
+
+    // Write the class type
+    this.writeSchemaItemType(outputFilePath, structClass.schemaItemType);
 
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, structClass.description);
 
-    // Write the label
+    // Write the displayLabel
     this.writeSchemaItemLabel(outputFilePath, structClass.label);
-
-    // Write the base class
-    this.writeSchemaItemBaseClass(outputFilePath, structClass.baseClass);
-
-    // Write the type
-    this.writeSchemaItemType(outputFilePath, structClass.schemaItemType);
 
     // Write the modifier
     this.writeSchemaItemModifier(outputFilePath, structClass.modifier);
+
+    // Write the base class
+    this.writeSchemaItemBaseClass(outputFilePath, structClass.baseClass);
 
     // Write the properties table
     // If the properties are undefined or have length 0, return
@@ -863,8 +867,8 @@ export class ECJsonMarkdownGenerator {
     // Write the properties header and table header
     fs.appendFileSync(outputFilePath,
       "#### Properties\n\n" +
-      "|    Name    |    Label    |    Class   |    Read Only     |    Priority    |\n" +
-      "|:-----------|:------------|:-----------|:-----------------|:---------------|\n");
+      "|    Name    |  Description  |    Label    |  Category  |    Read Only     |    Priority    |\n" +
+      "|:-----------|:--------------|:------------|:-----------|:-----------------|:---------------|\n");
 
     // If the attribute is not there, return the place holder
     const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
@@ -872,12 +876,13 @@ export class ECJsonMarkdownGenerator {
     for (const property of structClass.properties) {
       const name = helper(property.name);
       const label = helper(property.label);
-      const type = helper(property.class.name);
+      const category = helper(property.category);
       const isReadOnly = helper(property.isReadOnly);
       const priority = helper(property.priority);
+      const description = helper(property.description);
 
       fs.appendFileSync(outputFilePath,
-        "|" + name + "|" + label + "|" + type + "|" + isReadOnly + "|" + priority + "|\n");
+        "|" + name + "|" + description + "|" + label + "|" + category + "|" + isReadOnly + "|" + priority + "|\n");
     }
 
     fs.appendFileSync(outputFilePath, "\n");
