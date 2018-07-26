@@ -11,12 +11,12 @@ function main() {
   const program = new commander.Command("ECJson2MD");
   program.option("-i, --input <required>", "path to ECSchemaJson file");
   program.option("-o, --output <required>", "directory to output ECSchema Markdown");
-  program.option("-r, --dirs <required>", "list of comma delimited directories to search in");
-  program.option("-n, --nonrelease", "whether or not to include alert about being nonrelease");
+  program.option("-r, --dirs", "list of comma delimited directories to search in");
+  program.option("-n, --nonrelease", "include alert about being nonrelease");
   program.parse(process.argv);
 
   // Prompt to use the help flag if an input was missing
-  if (!program.input || !program.output || !program.dirs) {
+  if (!program.input || !program.output) {
     // tslint:disable-next-line:no-console
     console.log(chalk.default.red("Invalid input. For help use '-h'"));
     process.exit();

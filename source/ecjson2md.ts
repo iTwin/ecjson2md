@@ -68,7 +68,10 @@ export function propertyTypeNumberToString(propertyTypeNumber: number): string {
  * @param {string} dirString String of directories to process
  * @returns {string[]}
  */
-export function prepSearchDirs(dirString: string): string[] {
+export function prepSearchDirs(dirString: string|undefined): string[] {
+  if (dirString === undefined || dirString.length === 0)
+    return [];
+
   // Replace common directory separators with the system separators
   dirString = dirString.replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep);
 
@@ -913,14 +916,14 @@ export class ECJsonMarkdownGenerator {
     // Write the name
     this.writeSchemaItemName(outputFilePath, propertyCategory.name);
 
+    // Write the class type
+    this.writeSchemaItemType(outputFilePath, propertyCategory.schemaItemType);
+
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, propertyCategory.description);
 
-    // Write the the label
+    // Write the displayLabel
     this.writeSchemaItemLabel(outputFilePath, propertyCategory.label);
-
-    // Write the type
-    this.writeSchemaItemType(outputFilePath, propertyCategory.schemaItemType);
 
     // Write the priority
     this.writeSchemaItemPriority(outputFilePath, propertyCategory.priority);
