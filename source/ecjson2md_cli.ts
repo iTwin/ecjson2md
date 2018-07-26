@@ -26,7 +26,10 @@ function main() {
   const outputFilePath = prepOutputPath(program.output, program.input);
 
   // Normalize the search dirs
-  const searchDirs = prepSearchDirs(program.dirs);
+  let searchDirs: string[] = [];
+
+  if (program.dirs !== undefined)
+    searchDirs = prepSearchDirs(program.dirs);
 
   // Add the search directories to the new locator and load the schema
   try {

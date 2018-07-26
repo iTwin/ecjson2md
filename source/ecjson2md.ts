@@ -68,8 +68,8 @@ export function propertyTypeNumberToString(propertyTypeNumber: number): string {
  * @param {string} dirString String of directories to process
  * @returns {string[]}
  */
-export function prepSearchDirs(dirString: string|undefined): string[] {
-  if (dirString === undefined || dirString.length === 0)
+export function prepSearchDirs(dirString: string): string[] {
+  if (dirString.length === 0)
     return [];
 
   // Replace common directory separators with the system separators
