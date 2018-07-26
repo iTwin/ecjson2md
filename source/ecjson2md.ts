@@ -691,17 +691,20 @@ export class ECJsonMarkdownGenerator {
     // Write the name of the mixin
     this.writeSchemaItemName(outputFilePath, mixin.name);
 
-    // Write the description of the mixin class
-    this.writeSchemaItemDescription(outputFilePath, mixin.description);
-
     // Write the class type
     this.writeSchemaItemType(outputFilePath, mixin.schemaItemType);
 
+    // Write the description of the mixin class
+    this.writeSchemaItemDescription(outputFilePath, mixin.description);
+
+    // Write the displayLabel
+    this.writeSchemaItemLabel(outputFilePath, mixin.label);
+
+    // Write the modifier
+    this.writeSchemaItemModifier(outputFilePath, mixin.modifier);
+
     // Write the base class
     this.writeSchemaItemBaseClass(outputFilePath, mixin.baseClass);
-
-    // Write the label
-    this.writeSchemaItemLabel(outputFilePath, mixin.label);
 
     // Link to what the mixin applies to
     if (mixin.appliesTo !== undefined) {
@@ -717,7 +720,7 @@ export class ECJsonMarkdownGenerator {
     // Write the properties header and table header
     fs.appendFileSync(outputFilePath,
         "#### Properties\n\n" +
-        "|    Name    |    Label    |    Class    |    Read Only     |    Priority    |\n" +
+        "|    Name    |    Label    |   Category  |    Read Only     |    Priority    |\n" +
         "|:-----------|:------------|:------------|:-----------------|:---------------|\n");
 
     // If the attribute is not there, return the place holder
@@ -726,12 +729,12 @@ export class ECJsonMarkdownGenerator {
     for (const property of mixin.properties) {
       const name = helper(property.name);
       const label = helper(property.label);
-      const type = helper(property.class.name);
+      const category = helper(property.category);
       const isReadOnly = helper(property.isReadOnly);
       const priority = helper(property.priority);
 
       fs.appendFileSync(outputFilePath,
-        "|" + name + "|" + label + "|" + type + "|" + isReadOnly + "|" + priority + "|\n");
+        "|" + name + "|" + label + "|" + category + "|" + isReadOnly + "|" + priority + "|\n");
     }
 
     fs.appendFileSync(outputFilePath, "\n");
