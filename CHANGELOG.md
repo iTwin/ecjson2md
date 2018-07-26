@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+# [0.3.2] - 2018-07-26
+### Fixed
+- strength and strengthDirection now display human readable values
+
+### Changed
+- Changed "Enumeration Items" header to just "Enumerations"
+
+### Added
+- Added modifier sections where applicable and appropriate
+- Added tests for new/changed functionality
+
 # [0.3.1] - 2018-07-25
 ### Fixed
 - Re added index
