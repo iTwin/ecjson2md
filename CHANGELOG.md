@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-$ [0.4.0] - 2018-07-26
+# [0.4.3] - 2018-07-27
+### Fixed
+- Error with search dirs
+
+# [0.4.0] - 2018-07-26
 ### Changed
 - Modified markdown generation for all schema item types to more closely mirror online EC documentation
 

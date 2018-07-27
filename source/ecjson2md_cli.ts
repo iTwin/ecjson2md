@@ -11,7 +11,7 @@ function main() {
   const program = new commander.Command("ECJson2MD");
   program.option("-i, --input <required>", "path to ECSchemaJson file");
   program.option("-o, --output <required>", "directory to output ECSchema Markdown");
-  program.option("-r, --dirs", "list of comma delimited directories to search in");
+  program.option("-r, --dirs [values]", "list of comma delimited directories to search in", String);
   program.option("-n, --nonrelease", "include alert about being nonrelease");
   program.parse(process.argv);
 
