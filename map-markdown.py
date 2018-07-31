@@ -7,7 +7,7 @@ schemaJsonDir = os.path.join('..','MDandSchemas','temp','SchemaJson')
 schemaXmlDir = os.path.join('..','MDandSchemas','temp','SchemaXml')
 schemaMDDir = os.path.join('..','MDandSchemas','temp','Markdown')
 schemaRootPath = os.path.join('..','bis-schemas','Domains')
-targetDir = os.path.join('..','imodeljs-core','docs','core')
+targetDir = os.path.join('..','imodeljs-core','docs','core','bis','domains')
 
 # Get list the schemas that we deserialized
 targetList = os.listdir(schemaXmlDir)
