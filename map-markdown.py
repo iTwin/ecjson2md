@@ -7,9 +7,9 @@ schemaJsonDir = os.path.join('..','MDandSchemas','temp','SchemaJson')
 schemaXmlDir = os.path.join('..','MDandSchemas','temp','SchemaXml')
 schemaMDDir = os.path.join('..','MDandSchemas','temp','Markdown')
 schemaRootPath = os.path.join('..','bis-schemas','Domains')
-targetDir = os.path.join('..','imodeljs-core','docs','bis','domains')
+targetDir = os.path.join('..','imodeljs-core','docs','core')
 
-# Get list the schenas that we deserialized
+# Get list the schemas that we deserialized
 targetList = os.listdir(schemaXmlDir)
 
 print("Schemas to map markdown for:")
@@ -47,8 +47,10 @@ for schemaPath in allSchemaPathList:
     # Form the target path of the markdown file
     currentSchemaTargetPath = os.path.join(targetDir, parentDir)
 
-    print("\t" + currentSchemaMD + "\t---->\t" + currentSchemaTargetPath)
+    # Add the the target path to the mapping for the current path
     schemaMapping[currentSchemaMDPath] = currentSchemaTargetPath
+
+    print("\t" + currentSchemaMD + "\t---->\t" + currentSchemaTargetPath)
 
 print("Copying files...")
 
