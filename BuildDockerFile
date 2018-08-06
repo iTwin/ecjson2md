@@ -1,0 +1,71 @@
+# Name of the npm package to publish
+ARG PACKAGE_NAME=ecjson2md
+
+## Path to the package dir within the context
+# ARG PACKAGE_PATH
+
+FROM debian:latest
+
+ENV DEBIAN_FRONTEND noninteractive
+
+# Update package manager and install packages
+RUN apt-get update && apt-get install gnupg curl -y
+
+## Packages needed for bdf generation
+# RUN apt-get install nuget mono-complete git python -y
+
+# Install Nodejs and NPM
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && apt-get install nodejs -y
+
+# Update NPM and install needed packages
+RUN npm install npm@latest -g && npm install -g typescript
+
+## Configure git and npm
+# RUN git config --global user.email "" && git config --global user.name ""
+
+# Configure npm
+RUN echo 'npm.bentley.com/npm/cache/:always-auth = true\nnpm.bentley.com/npm/cache/:email = ""\nnpm.bentley.com/npm/npm/:always-auth = false\nnpm.bentley.com/npm/npm/:email = ""\nnpm.bentley.com/npm/prg/:always-auth = false\nnpm.bentley.com/npm/prg/:email = ""\n@bentley:registry = "https://registry.npmjs.org/"\nalways-auth = false\nprogress = false\nregistry = "https://npm.bentley.com/npm/cache/"\nprefix = "C:/Users//AppData/Roaming/npm"\n' >> .npmrc
+
+# Add repo from context
+ADD . /npm_package/
+
+# Install the package
+WORKDIR npm_package
+RUN npm install
+
+# Run tests
+RUN node node_modules/@bentley/bentleyjs-tools/scripts/test-tsnode.js --testDir ./test/ --tscPaths; exit 0
+
+# Build
+RUN tsc
+
+# Cover
+RUN npm run cover; exit 0
+
+# Pack
+RUN npm pack
+
+## Update nuget
+# RUN nuget update -self
+
+# WORKDIR /
+
+## Install BdfGenerator
+# RUN nuget install -NonInteractive Bentley.BDF.Generator -Source 
+
+
+## Get the local and server version, create the BDF, publish (if appropriate) the package,
+# RUN export locVersion=$(python -c \
+#   "import glob, os; print(glob.glob('/ecjson2md/bentley-ecjson2md-*.tgz')[0].split('-')[-1].split('.tgz')[0]);") \
+#   export serVesion=$(npm view "@bentley/"${PACKAGE_NAME} version); \
+#   export latestCommit=$(cat /npm_package/.git/refs/heads/master); \
+#   mono /Bentley.BDF.Generator.*/tools/Bentley.BDF.Generator.exe --source /ecjson2md/ --name @bentley/${PACKAGE_NAME} --version $locVersion.0 --productid 123 --branch master --sourceurl Platform%20Technology/_git/${PACKAGE_NAME} --changeset $latestCommit --usePackageJson --buildtype npm --bdfout /${PACKAGE_NAME}.bdf; \
+#   python /compareAndPublish.py $locVersion $serVesion ${PACKAGE_NAME};
+
+## Publish the bdf
+# RUN bdfStuff=$(cat *.bdf); \
+# curl \
+#   --request POST \
+#   --header "Content-Type: text/json" \
+#   --header "From: " \
+#   --data @${PACKAGE_NAME}.bdf ;
