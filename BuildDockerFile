@@ -9,10 +9,7 @@ FROM debian:latest
 ENV DEBIAN_FRONTEND noninteractive
 
 # Update package manager and install packages
-RUN apt-get update && apt-get install gnupg curl -y
-
-## Packages needed for bdf generation
-# RUN apt-get install nuget mono-complete git python -y
+RUN apt-get update && apt-get install gnupg curl nuget mono-complete python -y
 
 # Install Nodejs and NPM
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && apt-get install nodejs -y
@@ -46,22 +43,20 @@ RUN npm run cover; exit 0
 # Pack
 RUN npm pack
 
-## Update nuget
-# RUN nuget update -self
+# Update nuget
+RUN nuget update -self
 
-# WORKDIR /
+WORKDIR /
 
-## Install BdfGenerator
-# RUN nuget install -NonInteractive  -Source 
+# Install BdfGenerator
+RUN nuget install -NonInteractive  -Source 
 
 
-## Get the local and server version, create the BDF, publish (if appropriate) the package,
-# RUN export locVersion=$(python -c \
-#   "import glob, os; print(glob.glob('/ecjson2md/bentley-ecjson2md-*.tgz')[0].split('-')[-1].split('.tgz')[0]);") \
-#   export serVesion=$(npm view "@bentley/"${PACKAGE_NAME} version); \
-#   export latestCommit=$(cat /npm_package/.git/refs/heads/master); \
-#   mono /.*/tools/.exe --source /ecjson2md/ --name @bentley/${PACKAGE_NAME} --version $locVersion.0 --productid 123 --branch master --sourceurl Platform%20Technology/_git/${PACKAGE_NAME} --changeset $latestCommit --usePackageJson --buildtype npm --bdfout /${PACKAGE_NAME}.bdf; \
-#   python /compareAndPublish.py $locVersion $serVesion ${PACKAGE_NAME};
+# Get the local and server version, create the BDF, publish (if appropriate) the package,
+RUN export locVersion=`echo $(find /npm_package/bentley-ecjson2md-*.tgz) | cut -d "-" -f3 | cut -c 1-5` \
+   export serVesion=$(npm view "@bentley/"${PACKAGE_NAME} version); \
+   export latestCommit=$(cat /npm_package/.git/refs/heads/master); \
+   mono /.*/tools/.exe --source /npm_package/ --name @bentley/${PACKAGE_NAME} --version $locVersion.0 --productid 123 --branch master --sourceurl Platform%20Technology/_git/${PACKAGE_NAME} --changeset $latestCommit --usePackageJson --buildtype npm --bdfout /npm_package/@bentley-ecjson2md.bdf;
 
 ## Publish the bdf
 # RUN bdfStuff=$(cat *.bdf); \
