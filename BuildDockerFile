@@ -20,11 +20,12 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && apt-get install no
 # Update NPM and install needed packages
 RUN npm install npm@latest -g && npm install -g typescript
 
-## Configure git and npm
+## Configure git
 # RUN git config --global user.email "" && git config --global user.name ""
 
 # Configure npm
-RUN echo 'npm.bentley.com/npm/cache/:always-auth = true\nnpm.bentley.com/npm/cache/:email = ""\nnpm.bentley.com/npm/npm/:always-auth = false\nnpm.bentley.com/npm/npm/:email = ""\nnpm.bentley.com/npm/prg/:always-auth = false\nnpm.bentley.com/npm/prg/:email = ""\n@bentley:registry = "https://registry.npmjs.org/"\nalways-auth = false\nprogress = false\nregistry = "https://npm.bentley.com/npm/cache/"\nprefix = "C:/Users//AppData/Roaming/npm"\n' >> .npmrc
+RUN npm config set @bentley:registry https://registry.npmjs.org/
+#RUN echo 'npm.bentley.com/npm/cache/:always-auth = false\nnpm.bentley.com/npm/npm/:always-auth = false\nnpm.bentley.com/npm/prg/:always-auth = false\n@bentley:registry = "https://registry.npmjs.org/"\nalways-auth = false\nprogress = false\nregistry = "https://npm.bentley.com/npm/cache/' >> .npmrc
 
 # Add repo from context
 ADD . /npm_package/
