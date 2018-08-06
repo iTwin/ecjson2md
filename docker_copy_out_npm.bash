@@ -7,7 +7,7 @@ CONTAINER_ID=$(echo $(docker ps --no-trunc -aqf "ancestor=$IMAGE_NAME") | awk '{
 
 # Echo path for debugging
 echo "Container ID:"
-echo "$CONTAINER_ID:$REPO_SOURCE_PATH"
+echo "$CONTAINER_ID:/npm_package/"
 
 # Copy repo out of docker container
 docker cp "$CONTAINER_ID:/npm_package/" $TARGET_PATH
