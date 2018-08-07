@@ -54,10 +54,10 @@ RUN nuget install -NonInteractive Bentley.BDF.Generator -Source
 
 # Get the local and server version, create the BDF, publish (if appropriate) the package,
 RUN export locVersion=$(find /npm_package/bentley-ecjson2md-*.tgz | cut -d "-" -f3 | cut -c 1-5); \
-  echo $locVersion \
+  echo $locVersion; \
   #export serVesion=$(npm view "@bentley/"${PACKAGE_NAME} version); \
   export latestCommit=$(cat /npm_package/.git/refs/heads/master); \
-  echo $latestCommit \
+  echo $latestCommit; \
   mono /Bentley.BDF.Generator.*/tools/Bentley.BDF.Generator.exe --source /npm_package/ --name @bentley/${PACKAGE_NAME} --version $locVersion.0 --productid 123 --branch master --sourceurl Platform%20Technology/_git/${PACKAGE_NAME} --changeset $latestCommit --usePackageJson --buildtype npm --bdfout /npm_package/@bentley-ecjson2md.bdf;
 
 ## Publish the bdf
