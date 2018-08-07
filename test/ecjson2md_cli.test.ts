@@ -13,37 +13,12 @@ describe("ecjson2md_cli", () => {
         const preppedPath = prepOutputPath("dir1/dir2/", "file.ecschema.json");
         assert.equal(preppedPath, path.resolve(path.join("dir1", "dir2", "file.ecschema.md")));
       });
-
-      it("should correctly format a path using \\\\'s", () => {
-        const preppedPath = prepOutputPath("dir1\\\\dir2\\", "file.ecschema.json");
-        assert.equal(preppedPath, path.resolve(path.join("dir1", "dir2", "file.ecschema.md")));
-      });
-
-      it("should correctly format a path using \\'s", () => {
-        const preppedPath = prepOutputPath("dir1\\dir2\\", "file.ecschema.json");
-        assert.equal(preppedPath, path.resolve(path.join("dir1", "dir2", "file.ecschema.md")));
-      });
     });
 
     describe("Search dir path formatting", () => {
-      it("should replace all \\'s with OS path sep", () => {
-        const preppedDirs = prepSearchDirs("dir1\\dir2");
+      it("should correctly format search dir", () => {
+        const preppedDirs = prepSearchDirs("dir1/dir2");
         assert.equal(preppedDirs[0], path.resolve(path.join("dir1", "dir2")));
-      });
-
-      it("should replace all \\\\'s with OS path sep", () => {
-        const preppedDirs = prepSearchDirs("dir1\\\\dir2");
-        assert.equal(preppedDirs[0], path.resolve(path.join("dir1", "dir2")));
-       });
-
-      it("should replace all /'s with OS path sep", () => {
-      const preppedDirs = prepSearchDirs("dir1/dir2");
-      assert.equal(preppedDirs[0], path.resolve(path.join("dir1", "dir2")));
-      });
-
-      it("should replace combination of the previous with OS path sep", () => {
-        const preppedDirs = prepSearchDirs("dir1/dir2\\dir3\\\\dir4");
-        assert.equal(preppedDirs[0], path.resolve(path.join("dir1", "dir2", "dir3", "dir4")));
       });
 
       it("should recognize ';' as dir separators", () => {

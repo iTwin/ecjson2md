@@ -72,17 +72,14 @@ export function prepSearchDirs(dirString: string): string[] {
   if (dirString.length === 0)
     return [];
 
-  // Replace common directory separators with the system separators
-  dirString = dirString.toString().replace(/(\/){1}|(\\){2}|(\\){1}/g, path.sep);
-
   // Separate the search directories on ';' or ',' or ' ' or ', ' or '; '
   const searchDirs = dirString.split(/, |; |;|,/g);
 
   const searchDirPaths = new Array<string>();
 
-  // Get the absolute file path
+  // Get the absolute file path, also replaces common separators with the OS specific ones
   for (const searchPath of searchDirs) {
-    searchDirPaths.push(path.resolve(searchPath));
+    searchDirPaths.push(path.resolve(path.normalize(searchPath)));
   }
 
   return searchDirPaths;

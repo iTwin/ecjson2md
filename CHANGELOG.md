@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+# [0.4.4] - 2018-08-07
+### Fixed
+- Made path processessing less overbearing in order to work on linux
+
 # [0.4.3] - 2018-07-27
 ### Fixed
 - Error with search dirs

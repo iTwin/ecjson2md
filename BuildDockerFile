@@ -1,9 +1,6 @@
 # Name of the npm package to publish
 ARG PACKAGE_NAME=ecjson2md
 
-## Path to the package dir within the context
-# ARG PACKAGE_PATH
-
 FROM debian:latest
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -20,9 +17,8 @@ RUN npm install npm@latest -g && npm install -g typescript
 ## Configure git
 # RUN git config --global user.email "" && git config --global user.name ""
 
-# Configure npm
+# Configure npm (using anonymous access)
 RUN npm config set @bentley:registry https://registry.npmjs.org/
-#RUN echo 'npm.bentley.com/npm/cache/:always-auth = false\nnpm.bentley.com/npm/npm/:always-auth = false\nnpm.bentley.com/npm/prg/:always-auth = false\n@bentley:registry = "https://registry.npmjs.org/"\nalways-auth = false\nprogress = false\nregistry = "https://npm.bentley.com/npm/cache/' >> .npmrc
 
 # Add repo from context
 ADD . /npm_package/
@@ -32,13 +28,13 @@ WORKDIR npm_package
 RUN npm install
 
 # Run tests
-RUN node node_modules/@bentley/bentleyjs-tools/scripts/test-tsnode.js --testDir ./test/ --tscPaths; exit 0
+RUN node node_modules/@bentley/bentleyjs-tools/scripts/test-tsnode.js --testDir ./test/ --tscPaths
 
 # Build
 RUN tsc
 
 # Cover
-RUN npm run cover; exit 0
+RUN npm run cover
 
 # Pack
 RUN npm pack
@@ -55,10 +51,7 @@ WORKDIR /npm_package/
 
 # Get the local and server version, create the BDF, publish (if appropriate) the package,
 RUN export locVersion=$(find bentley-ecjson2md-*.tgz | cut -d "-" -f3 | cut -c 1-5); \
-  echo $locVersion; \
-  #export serVesion=$(npm view "@bentley/"${PACKAGE_NAME} version); \
   export latestCommit=$(git rev-parse HEAD); \
-  echo $latestCommit; \
   mono /Bentley.BDF.Generator.*/tools/Bentley.BDF.Generator.exe --source /npm_package/ --name @bentley/${PACKAGE_NAME} --version $locVersion.0 --productid 123 --branch master --sourceurl Platform%20Technology/_git/${PACKAGE_NAME} --changeset $latestCommit --usePackageJson --buildtype npm --bdfout /npm_package/@bentley-ecjson2md.bdf;
 
 ## Publish the bdf
