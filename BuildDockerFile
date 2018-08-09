@@ -52,10 +52,11 @@ WORKDIR /npm_package/
 # Get the local and server version, create the BDF, publish (if appropriate) the package,
 RUN export locVersion=$(find bentley-ecjson2md-*.tgz | cut -d "-" -f3 | cut -c 1-5); \
   export latestCommit=$(git rev-parse HEAD); \
-  export serVesion=$(npm view "@bentley/"${PACKAGE_NAME} version); \
-  echo "##vso[task.setvariable variable=localVersion]$locVersion"; \
-  echo "##vso[task.setvariable variable=serverVersion]$serVersion"; \
   mono /.*/tools/.exe --source /npm_package/ --name @bentley/${PACKAGE_NAME} --version $locVersion.0 --productid 123 --branch master --sourceurl Platform%20Technology/_git/${PACKAGE_NAME} --changeset $latestCommit --usePackageJson --buildtype npm --bdfout /npm_package/@bentley-ecjson2md.bdf;
+
+# Set the local and server version variables in VSTS
+RUN echo "##vso[task.setvariable variable=localVersion]$(find bentley-ecjson2md-*.tgz | cut -d - -f3 | cut -c 1-5)"
+RUN echo "##vso[task.setvariable variable=serverVersion]$(npm view @bentley/${PACKAGE_NAME} version)"
 
 ## Publish the bdf
 # RUN bdfStuff=$(cat *.bdf); \
