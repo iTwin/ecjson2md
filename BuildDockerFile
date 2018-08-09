@@ -5,20 +5,14 @@ FROM debian:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Update package manager and install packages
-RUN apt-get update && apt-get install gnupg curl nuget mono-complete python git -y
+# Update package manager, upgrade system, install packages, and install nodejs/npm
+RUN apt-get update && apt-get upgrade -y && apt-get install gnupg curl nuget mono-complete git -y && curl -sL https://deb.nodesource.com/setup_9.x | bash - && apt-get install nodejs -y
 
-# Install Nodejs and NPM
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && apt-get install nodejs -y
-
-# Update NPM and install needed packages
-RUN npm install npm@latest -g && npm install -g typescript
+# Update NPM, install needed packages, and configure for anonymous package access
+RUN npm install npm@latest -g && npm install -g typescript && npm config set @bentley:registry https://registry.npmjs.org/
 
 ## Configure git
 # RUN git config --global user.email "" && git config --global user.name ""
-
-# Configure npm (using anonymous access)
-RUN npm config set @bentley:registry https://registry.npmjs.org/
 
 # Add repo from context
 ADD . /npm_package/
@@ -27,36 +21,23 @@ ADD . /npm_package/
 WORKDIR npm_package
 RUN npm install
 
-# Run tests
-RUN node node_modules/@bentley/bentleyjs-tools/scripts/test-tsnode.js --testDir ./test/ --tscPaths
-
-# Build
-RUN tsc
-
-# Cover
-RUN npm run cover
-
-# Pack
-RUN npm pack
-
-# Update nuget
-RUN nuget update -self
+# Run tests, build, cover, and Pack
+RUN node node_modules/@bentley/bentleyjs-tools/scripts/test-tsnode.js --testDir ./test/ --tscPaths && tsc && npm run cover && npm pack
 
 WORKDIR /
 
-# Install BdfGenerator
-RUN nuget install -NonInteractive  -Source 
+# Update nuget and install BdfGenerator
+RUN nuget update -self && nuget install -NonInteractive  -Source 
 
 WORKDIR /npm_package/
 
 # Get the local and server version, create the BDF, publish (if appropriate) the package,
 RUN export locVersion=$(find bentley-ecjson2md-*.tgz | cut -d "-" -f3 | cut -c 1-5); \
-  export latestCommit=$(git rev-parse HEAD); \
-  mono /.*/tools/.exe --source /npm_package/ --name @bentley/${PACKAGE_NAME} --version $locVersion.0 --productid 123 --branch master --sourceurl Platform%20Technology/_git/${PACKAGE_NAME} --changeset $latestCommit --usePackageJson --buildtype npm --bdfout /npm_package/@bentley-ecjson2md.bdf;
+    export latestCommit=$(git rev-parse HEAD); \
+    mono /.*/tools/.exe --source /npm_package/ --name @bentley/${PACKAGE_NAME} --version $locVersion.0 --productid 123 --branch master --sourceurl Platform%20Technology/_git/${PACKAGE_NAME} --changeset $latestCommit --usePackageJson --buildtype npm --bdfout /npm_package/@bentley-ecjson2md.bdf;
 
 # Set the local and server version variables in VSTS
-RUN echo "##vso[task.setvariable variable=localVersion]$(find bentley-ecjson2md-*.tgz | cut -d - -f3 | cut -c 1-5)"
-RUN echo "##vso[task.setvariable variable=serverVersion]$(npm view @bentley/${PACKAGE_NAME} version)"
+RUN echo "##vso[task.setvariable variable=localVersion]$(find bentley-ecjson2md-*.tgz | cut -d - -f3 | cut -c 1-5)" && echo "##vso[task.setvariable variable=serverVersion]$(npm view @bentley/${PACKAGE_NAME} version)"
 
 ## Publish the bdf
 # RUN bdfStuff=$(cat *.bdf); \
