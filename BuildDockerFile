@@ -1,7 +1,7 @@
+FROM debian:latest
+
 # Name of the npm package to publish
 ARG PACKAGE_NAME=ecjson2md
-
-FROM debian:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -32,12 +32,12 @@ RUN nuget update -self && nuget install -NonInteractive  -Source
 WORKDIR /npm_package/
 
 # Get the local and server version, create the BDF, publish (if appropriate) the package,
-RUN export locVersion=$(find bentley-ecjson2md-*.tgz | cut -d "-" -f3 | cut -c 1-5); \
+RUN export locVersion=$(find bentley-${PACKAGE_NAME}-*.tgz | cut -d "-" -f3 | cut -c 1-5); \
     export latestCommit=$(git rev-parse HEAD); \
-    mono /.*/tools/.exe --source /npm_package/ --name @bentley/${PACKAGE_NAME} --version $locVersion.0 --productid 123 --branch master --sourceurl Platform%20Technology/_git/${PACKAGE_NAME} --changeset $latestCommit --usePackageJson --buildtype npm --bdfout /npm_package/@bentley-ecjson2md.bdf;
+    mono /.*/tools/.exe --source /npm_package/ --name @bentley/${PACKAGE_NAME} --version $locVersion.0 --productid 123 --branch master --sourceurl Platform%20Technology/_git/${PACKAGE_NAME} --changeset $latestCommit --usePackageJson --buildtype npm --bdfout /npm_package/@bentley-${PACKAGE_NAME}.bdf;
 
 # Set the local and server version variables in VSTS
-RUN echo "##vso[task.setvariable variable=localVersion]$(find bentley-ecjson2md-*.tgz | cut -d - -f3 | cut -c 1-5)" && echo "##vso[task.setvariable variable=serverVersion]$(npm view @bentley/${PACKAGE_NAME} version)"
+RUN echo "##vso[task.setvariable variable=localVersion]$(find bentley-${PACKAGE_NAME}-*.tgz | cut -d - -f3 | cut -c 1-5)" && echo "##vso[task.setvariable variable=serverVersion]$(npm view @bentley/${PACKAGE_NAME} version)"
 
 ## Publish the bdf
 # RUN bdfStuff=$(cat *.bdf); \
