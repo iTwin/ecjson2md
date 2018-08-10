@@ -31,7 +31,7 @@ RUN nuget update -self && nuget install -NonInteractive Bentley.BDF.Generator -S
 
 WORKDIR /npm_package/
 
-# Get the local and server version, create the BDF, publish (if appropriate) the package,
+# Get the local version + latest commit and generate the bdf
 RUN export locVersion=$(find bentley-${PACKAGE_NAME}-*.tgz | cut -d "-" -f3 | cut -c 1-5); \
     export latestCommit=$(git rev-parse HEAD); \
     mono /Bentley.BDF.Generator.*/tools/Bentley.BDF.Generator.exe --source /npm_package/ --name @bentley/${PACKAGE_NAME} --version $locVersion.0 --productid 123 --branch master --sourceurl Platform%20Technology/_git/${PACKAGE_NAME} --changeset $latestCommit --usePackageJson --buildtype npm --bdfout /npm_package/@bentley-${PACKAGE_NAME}.bdf;
