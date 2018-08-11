@@ -236,3 +236,42 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Changelog
 - Tests
 - CLI tool to convert ECSchema JSON to markdown
+
+[Unreleased]: https://github.com/iTwin/ecjson2md/branches?_a=commits&baseVersion=GT0.4.5&targetVersion=GBmaster
+[0.4.5]: https://github.com/iTwin/ecjson2md/tree/0.4.5
+[0.4.4]: https://github.com/iTwin/ecjson2md/tree/0.4.4
+[0.4.3]: https://github.com/iTwin/ecjson2md/tree/0.4.3
+[0.4.2]: https://github.com/iTwin/ecjson2md/tree/0.4.2
+[0.4.1]: https://github.com/iTwin/ecjson2md/tree/0.4.1
+[0.4.0]: https://github.com/iTwin/ecjson2md/tree/0.4.0
+[0.3.2]: https://github.com/iTwin/ecjson2md/tree/0.3.2
+[0.3.1]: https://github.com/iTwin/ecjson2md/tree/0.3.1
+[0.3.0]: https://github.com/iTwin/ecjson2md/tree/0.3.0
+[0.2.9]: https://github.com/iTwin/ecjson2md/tree/0.2.9
+[0.2.8]: https://github.com/iTwin/ecjson2md/tree/0.2.8
+[0.2.7]: https://github.com/iTwin/ecjson2md/tree/0.2.7
+[0.2.6]: https://github.com/iTwin/ecjson2md/tree/0.2.6
+[0.2.5]: https://github.com/iTwin/ecjson2md/tree/0.2.5
+[0.2.4]: https://github.com/iTwin/ecjson2md/tree/0.2.4
+[0.2.3]: https://github.com/iTwin/ecjson2md/tree/0.2.3
+[0.2.2]: https://github.com/iTwin/ecjson2md/tree/0.2.2
+[0.2.1]: https://github.com/iTwin/ecjson2md/tree/0.2.1
+[0.2.0]: https://github.com/iTwin/ecjson2md/tree/0.2.0
+[0.1.12]: https://github.com/iTwin/ecjson2md/tree/0.1.12
+[0.1.11]: https://github.com/iTwin/ecjson2md/tree/0.1.11
+[0.1.9]: https://github.com/iTwin/ecjson2md/tree/0.1.9
+[0.1.8]: https://github.com/iTwin/ecjson2md/tree/0.1.8
+[0.1.7]: https://github.com/iTwin/ecjson2md/tree/0.1.7
+[0.1.6]: https://github.com/iTwin/ecjson2md/tree/0.1.6
+[0.1.5]: https://github.com/iTwin/ecjson2md/tree/0.1.5
+[0.1.4]: https://github.com/iTwin/ecjson2md/tree/0.1.4
+[0.1.3]: https://github.com/iTwin/ecjson2md/tree/0.1.3
+[0.1.2]: https://github.com/iTwin/ecjson2md/tree/0.1.2
+[0.1.1]: https://github.com/iTwin/ecjson2md/tree/0.1.1
+[0.1.0]: https://github.com/iTwin/ecjson2md/tree/0.1.0
+
+<!-- This is a slightly better formatting in the VSCode markdown preview: -->
+<style>
+  h2 > a { font-weight: 600; }
+  h2::after { content:''; display: block; border-bottom: 1px solid currentColor; opacity: .25 }
+</style>
