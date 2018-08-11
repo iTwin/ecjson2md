@@ -2,6 +2,7 @@
   "name": "@bentley/ecjson2md",
   "version": "0.4.5",
   "description": "Markdown generation from ECSchema JSON",
+  "license": "MIT",
   "bin": {
     "ecjson2md": "./lib/index.js"
   },
@@ -13,13 +14,11 @@
   "scripts": {
     "clean": "rimraf lib .nyc_output",
     "copy:assets": "cpx ./source/index.js ./lib",
-    "lint": "node ./node_modules/@bentley/bentleyjs-tools/scripts/tslint.js",
+    "lint": "tslint --project . 1>&2",
     "prebuild": "npm run lint & npm run clean & npm run copy:assets",
     "build": "tsc",
     "test": "betools test-tsnode --testDir=./test/ --tscPaths",
     "test:watch": "betools test-tsnode --testDir=./test/ --watch",
-    "docs": "betools docs --onlyJson --json=./lib/docs/json/ec-js/file.json",
-    "docs:dev": "npm run docs && bmsWatch --source ./lib/docs --destination public --typeDocSource C:/dev/imodeljs/ecobjects-js/source",
     "cover": "nyc node ./node_modules/@bentley/bentleyjs-tools/scripts/test-tsnode.js --testDir=./test/ --tscPaths",
     "start": "npm run build && npm run test",
     "cli:dev": "npm run clean & npm run build & npm link"
@@ -35,21 +34,20 @@
     "EC"
   ],
   "dependencies": {
-    "@bentley/bentleyjs-core": "^8.4.1",
-    "@bentley/ecjs": "^0.8.0",
+    "@bentley/bentleyjs-core": "^0.112.0",
+    "@bentley/ecschema-metadata": "^0.9.0",
     "chalk": "^2.4.1",
-    "commander": "^2.15.1",
-    "glob": "^7.1.2",
-    "npm": "^6.2.0"
+    "commander": "^2.17.1",
+    "glob": "^7.1.2"
   },
   "devDependencies": {
-    "@bentley/bentleyjs-tools": "^4.0.0",
-    "@types/chai": "^4.1.3",
-    "@types/chalk": "^2.2.0",
-    "@types/mocha": "^5.2.0",
+    "@bentley/bentleyjs-tools": "^0.113.0",
+    "@types/chai": "^4.1.4",
+    "@types/glob": "^5.0.35",
+    "@types/mocha": "^5.2.5",
     "@types/rimraf": "^2.0.2",
-    "nyc": "^11.8.0",
-    "typescript": "^2.9.2"
+    "nyc": "^12.0.2",
+    "typescript": "^3.0.1"
   },
   "nyc": {
     "include": [
