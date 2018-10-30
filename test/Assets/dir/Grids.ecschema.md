@@ -19,7 +19,7 @@ an element which groups all PlanCircumferentialGridSurface in a RadialGrid toget
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#gridaxis text="Grids:GridAxis"]
+**baseClass:** [Grids:GridAxis](#gridaxis)
 
 ### ElevationGrid
 
@@ -29,7 +29,7 @@ An ElevationGrid contains planar surfaces that are parallel to the local XY plan
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#grid text="Grids:Grid"]
+**baseClass:** [Grids:Grid](#grid)
 
 #### Properties
 
@@ -46,7 +46,7 @@ A PlanarGridSurface that is parallel with its Grid’s x-y plane (always contain
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#gridplanarsurface text="Grids:GridPlanarSurface"]
+**baseClass:** [Grids:GridPlanarSurface](#gridplanarsurface)
 
 #### Properties
 
@@ -63,7 +63,7 @@ An FreeGrid contains surfaces that do not need to follow any rules
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#grid text="Grids:Grid"]
+**baseClass:** [Grids:Grid](#grid)
 
 ### FreeGridSurface
 
@@ -73,7 +73,7 @@ a grid surface of any geometry.
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#gridsurface text="Grids:GridSurface"]
+**baseClass:** [Grids:GridSurface](#gridsurface)
 
 ### GeneralGridAxis
 
@@ -83,7 +83,7 @@ an element which groups GridSurfaces together in other grids
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#gridaxis text="Grids:GridAxis"]
+**baseClass:** [Grids:GridAxis](#gridaxis)
 
 ### GeneralGridCurve
 
@@ -93,7 +93,7 @@ a gridcurve that is a result of 2 non-planar surfaces
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#gridcurve text="Grids:GridCurve"]
+**baseClass:** [Grids:GridCurve](#gridcurve)
 
 ### Grid
 
@@ -103,7 +103,7 @@ A grid is a collection of gridsurfaces.
 
 **modifier:** Abstract
 
-**baseClass:** [link_to biscore.ecschema/#spatiallocationportion text="BisCore:SpatialLocationPortion"]
+**baseClass:** [BisCore:SpatialLocationPortion](biscore.ecschema.md#spatiallocationportion)
 
 ### GridArc
 
@@ -113,7 +113,7 @@ a gridcurve that is a result of a planar and arc surface
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#gridcurve text="Grids:GridCurve"]
+**baseClass:** [Grids:GridCurve](#gridcurve)
 
 ### GridArcSurface
 
@@ -123,7 +123,7 @@ A grid surface that is parallel to extruded arc.
 
 **modifier:** Abstract
 
-**baseClass:** [link_to grids.ecschema/#gridsurface text="Grids:GridSurface"]
+**baseClass:** [Grids:GridSurface](#gridsurface)
 
 ### GridAxis
 
@@ -133,14 +133,14 @@ an element which groups (typically parallel) GridSurfaces
 
 **modifier:** Abstract
 
-**baseClass:** [link_to biscore.ecschema/#groupinformationelement text="BisCore:GroupInformationElement"]
+**baseClass:** [BisCore:GroupInformationElement](biscore.ecschema.md#groupinformationelement)
 
 #### Properties
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
 |Name||string||
-|Grid|Grid this axis belong to|[link_to grids.ecschema/#gridhasaxes text="navigation"]||
+|Grid|Grid this axis belong to|[navigation](grids.ecschema.md#gridhasaxes)||
 
 ### GridCurve
 
@@ -150,7 +150,7 @@ an element representing a gridcurve - typically intersection of 2 surfaces
 
 **modifier:** Abstract
 
-**baseClass:** [link_to biscore.ecschema/#spatiallocationelement text="BisCore:SpatialLocationElement"]
+**baseClass:** [BisCore:SpatialLocationElement](biscore.ecschema.md#spatiallocationelement)
 
 ### GridCurveBundle
 
@@ -160,13 +160,13 @@ an element representing a gridcurve - typically intersection of 2 surfaces
 
 **modifier:** None
 
-**baseClass:** [link_to biscore.ecschema/#driverbundleelement text="BisCore:DriverBundleElement"]
+**baseClass:** [BisCore:DriverBundleElement](biscore.ecschema.md#driverbundleelement)
 
 #### Properties
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|CurvesPortion|Created GridCurves will be put into this GridCurvesPortion|[link_to grids.ecschema/#gridcurvebundlereferstogridcurvesportion text="navigation"]||
+|CurvesPortion|Created GridCurves will be put into this GridCurvesPortion|[navigation](grids.ecschema.md#gridcurvebundlereferstogridcurvesportion)||
 
 ### GridCurvesPortion
 
@@ -176,7 +176,7 @@ a portion which holds GridCurves
 
 **modifier:** None
 
-**baseClass:** [link_to biscore.ecschema/#spatiallocationportion text="BisCore:SpatialLocationPortion"]
+**baseClass:** [BisCore:SpatialLocationPortion](biscore.ecschema.md#spatiallocationportion)
 
 ### GridLine
 
@@ -186,7 +186,7 @@ a gridcurve that is a result of 2 planar surfaces
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#gridcurve text="Grids:GridCurve"]
+**baseClass:** [Grids:GridCurve](#gridcurve)
 
 ### GridPlanarSurface
 
@@ -196,7 +196,7 @@ A planar grid surface element.
 
 **modifier:** Abstract
 
-**baseClass:** [link_to grids.ecschema/#gridsurface text="Grids:GridSurface"]
+**baseClass:** [Grids:GridSurface](#gridsurface)
 
 ### GridSpline
 
@@ -206,7 +206,7 @@ a gridcurve that is a result of a planar and a spline surface
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#gridcurve text="Grids:GridCurve"]
+**baseClass:** [Grids:GridCurve](#gridcurve)
 
 ### GridSplineSurface
 
@@ -216,7 +216,7 @@ A grid surface that is parallel to an extruded spline.
 
 **modifier:** Abstract
 
-**baseClass:** [link_to grids.ecschema/#gridsurface text="Grids:GridSurface"]
+**baseClass:** [Grids:GridSurface](#gridsurface)
 
 ### GridSurface
 
@@ -226,13 +226,13 @@ A grid surface element.
 
 **modifier:** Abstract
 
-**baseClass:** [link_to biscore.ecschema/#spatiallocationelement text="BisCore:SpatialLocationElement"]
+**baseClass:** [BisCore:SpatialLocationElement](biscore.ecschema.md#spatiallocationelement)
 
 #### Properties
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|Axis|Axis this gridSurface belong to|[link_to grids.ecschema/#gridaxiscontainsgridsurfaces text="navigation"]||
+|Axis|Axis this gridSurface belong to|[navigation](grids.ecschema.md#gridaxiscontainsgridsurfaces)||
 
 ### OrthogonalAxisX
 
@@ -242,7 +242,7 @@ an element which groups all PlanCartesianGridSurface in the X direction
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#gridaxis text="Grids:GridAxis"]
+**baseClass:** [Grids:GridAxis](#gridaxis)
 
 ### OrthogonalAxisY
 
@@ -252,7 +252,7 @@ an element which groups all PlanCartesianGridSurface in the Y direction
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#gridaxis text="Grids:GridAxis"]
+**baseClass:** [Grids:GridAxis](#gridaxis)
 
 ### OrthogonalGrid
 
@@ -262,7 +262,7 @@ And OrthogonalGrid has all of its' surfaces orthogonal in either X or Y directio
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#plangrid text="Grids:PlanGrid"]
+**baseClass:** [Grids:PlanGrid](#plangrid)
 
 #### Properties
 
@@ -283,7 +283,7 @@ A planar plan grid surface that is perpendicular to the grid’s x-axis or y-axi
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#plangridplanarsurface text="Grids:PlanGridPlanarSurface"]
+**baseClass:** [Grids:PlanGridPlanarSurface](#plangridplanarsurface)
 
 #### Properties
 
@@ -301,7 +301,7 @@ An PlanGridArcSurface that is centered on the Grid’s origin.
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#plangridarcsurface text="Grids:PlanGridArcSurface"]
+**baseClass:** [Grids:PlanGridArcSurface](#plangridarcsurface)
 
 #### Properties
 
@@ -319,7 +319,7 @@ a grid whose surfaces are curves parallel to the local x-y plane extruded along 
 
 **modifier:** Abstract
 
-**baseClass:** [link_to grids.ecschema/#grid text="Grids:Grid"]
+**baseClass:** [Grids:Grid](#grid)
 
 #### Properties
 
@@ -336,7 +336,7 @@ An arc plangrid surface element.
 
 **modifier:** Abstract
 
-**baseClass:** [link_to grids.ecschema/#gridarcsurface text="Grids:GridArcSurface"]
+**baseClass:** [Grids:GridArcSurface](#gridarcsurface)
 
 ### PlanGridPlanarSurface
 
@@ -346,7 +346,7 @@ A planar plangrid surface element.
 
 **modifier:** Abstract
 
-**baseClass:** [link_to grids.ecschema/#gridplanarsurface text="Grids:GridPlanarSurface"]
+**baseClass:** [Grids:GridPlanarSurface](#gridplanarsurface)
 
 ### PlanGridSplineSurface
 
@@ -356,7 +356,7 @@ A spline plangrid surface element.
 
 **modifier:** Abstract
 
-**baseClass:** [link_to grids.ecschema/#gridsplinesurface text="Grids:GridSplineSurface"]
+**baseClass:** [Grids:GridSplineSurface](#gridsplinesurface)
 
 ### PlanRadialGridSurface
 
@@ -366,7 +366,7 @@ A PlanGridPlanarSurface whose infinite plane contains the PlanGrid’s origin.
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#plangridplanarsurface text="Grids:PlanGridPlanarSurface"]
+**baseClass:** [Grids:PlanGridPlanarSurface](#plangridplanarsurface)
 
 #### Properties
 
@@ -384,7 +384,7 @@ an element which groups all PlanRadialGridSurface in a RadialGrid together
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#gridaxis text="Grids:GridAxis"]
+**baseClass:** [Grids:GridAxis](#gridaxis)
 
 ### RadialGrid
 
@@ -394,7 +394,7 @@ A RadialGrid consists either of arcsurfaces in radial axis or planarsurfaces in 
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#plangrid text="Grids:PlanGrid"]
+**baseClass:** [Grids:PlanGrid](#plangrid)
 
 #### Properties
 
@@ -415,7 +415,7 @@ An extruded arc gridsurface element.
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#plangridarcsurface text="Grids:PlanGridArcSurface"]
+**baseClass:** [Grids:PlanGridArcSurface](#plangridarcsurface)
 
 #### Properties
 
@@ -431,7 +431,7 @@ A SketchGrid contains surfaces whose positions are not constrained (other than b
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#plangrid text="Grids:PlanGrid"]
+**baseClass:** [Grids:PlanGrid](#plangrid)
 
 ### SketchLineGridSurface
 
@@ -441,7 +441,7 @@ An extruded line gridsurface element.
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#plangridplanarsurface text="Grids:PlanGridPlanarSurface"]
+**baseClass:** [Grids:PlanGridPlanarSurface](#plangridplanarsurface)
 
 #### Properties
 
@@ -457,7 +457,7 @@ An extruded spline gridsurface element.
 
 **modifier:** None
 
-**baseClass:** [link_to grids.ecschema/#plangridsplinesurface text="Grids:PlanGridSplineSurface"]
+**baseClass:** [Grids:PlanGridSplineSurface](#plangridsplinesurface)
 
 #### Properties
 
@@ -489,7 +489,7 @@ maps axis to grouped surfaces
 
 ##### Constraint Classes
 
-- [link_to grids.ecschema/#gridaxis text="GridAxis"]
+- [GridAxis](grids.ecschema.md#gridaxis)
 
 #### Target
 
@@ -501,7 +501,7 @@ maps axis to grouped surfaces
 
 ##### Constraint Classes
 
-- [link_to grids.ecschema/#gridsurface text="GridSurface"]
+- [GridSurface](grids.ecschema.md#gridsurface)
 
 ### GridCurveBundleCreatesGridCurve
 
@@ -511,7 +511,7 @@ a driving relationship which tells that gridcurve was created by the mapped Grid
 
 **modifier:** None
 
-**baseClass:** [link_to biscore.ecschema/#elementdriveselement text="BisCore:ElementDrivesElement"]
+**baseClass:** [BisCore:ElementDrivesElement](biscore.ecschema.md#elementdriveselement)
 
 **Strength:** Referencing
 
@@ -527,7 +527,7 @@ a driving relationship which tells that gridcurve was created by the mapped Grid
 
 ##### Constraint Classes
 
-- [link_to grids.ecschema/#gridcurvebundle text="GridCurveBundle"]
+- [GridCurveBundle](grids.ecschema.md#gridcurvebundle)
 
 #### Target
 
@@ -539,7 +539,7 @@ a driving relationship which tells that gridcurve was created by the mapped Grid
 
 ##### Constraint Classes
 
-- [link_to grids.ecschema/#gridcurve text="GridCurve"]
+- [GridCurve](grids.ecschema.md#gridcurve)
 
 ### GridCurveBundleRefersToGridCurvesPortion
 
@@ -563,7 +563,7 @@ Maps GridCurveBundle to a GridCurvesPortion
 
 ##### Constraint Classes
 
-- [link_to grids.ecschema/#gridcurvebundle text="GridCurveBundle"]
+- [GridCurveBundle](grids.ecschema.md#gridcurvebundle)
 
 #### Target
 
@@ -575,7 +575,7 @@ Maps GridCurveBundle to a GridCurvesPortion
 
 ##### Constraint Classes
 
-- [link_to grids.ecschema/#gridcurvesportion text="GridCurvesPortion"]
+- [GridCurvesPortion](grids.ecschema.md#gridcurvesportion)
 
 ### GridDrivesGridSurface
 
@@ -585,7 +585,7 @@ a driving relationship which tells that a grid is driving a gridsurface.
 
 **modifier:** None
 
-**baseClass:** [link_to biscore.ecschema/#elementdriveselement text="BisCore:ElementDrivesElement"]
+**baseClass:** [BisCore:ElementDrivesElement](biscore.ecschema.md#elementdriveselement)
 
 **Strength:** Referencing
 
@@ -601,7 +601,7 @@ a driving relationship which tells that a grid is driving a gridsurface.
 
 ##### Constraint Classes
 
-- [link_to grids.ecschema/#grid text="Grid"]
+- [Grid](grids.ecschema.md#grid)
 
 #### Target
 
@@ -613,7 +613,7 @@ a driving relationship which tells that a grid is driving a gridsurface.
 
 ##### Constraint Classes
 
-- [link_to grids.ecschema/#gridsurface text="GridSurface"]
+- [GridSurface](grids.ecschema.md#gridsurface)
 
 ### GridHasAxes
 
@@ -637,7 +637,7 @@ maps grid to its axes
 
 ##### Constraint Classes
 
-- [link_to grids.ecschema/#grid text="Grid"]
+- [Grid](grids.ecschema.md#grid)
 
 #### Target
 
@@ -649,7 +649,7 @@ maps grid to its axes
 
 ##### Constraint Classes
 
-- [link_to grids.ecschema/#gridaxis text="GridAxis"]
+- [GridAxis](grids.ecschema.md#gridaxis)
 
 ### GridSurfaceDrivesGridCurveBundle
 
@@ -659,7 +659,7 @@ a driving relationship which tells that gridsurface influences the creation of G
 
 **modifier:** None
 
-**baseClass:** [link_to biscore.ecschema/#elementdriveselement text="BisCore:ElementDrivesElement"]
+**baseClass:** [BisCore:ElementDrivesElement](biscore.ecschema.md#elementdriveselement)
 
 **Strength:** Referencing
 
@@ -675,7 +675,7 @@ a driving relationship which tells that gridsurface influences the creation of G
 
 ##### Constraint Classes
 
-- [link_to grids.ecschema/#gridsurface text="GridSurface"]
+- [GridSurface](grids.ecschema.md#gridsurface)
 
 #### Target
 
@@ -687,7 +687,7 @@ a driving relationship which tells that gridsurface influences the creation of G
 
 ##### Constraint Classes
 
-- [link_to grids.ecschema/#gridcurvebundle text="GridCurveBundle"]
+- [GridCurveBundle](grids.ecschema.md#gridcurvebundle)
 
 ## Mixin Classes
 
@@ -701,7 +701,7 @@ An interface that indicates that this Surface is suitable to be placed in a Plan
 
 **modifier:** Abstract
 
-**appliesTo:** [link_to grids.ecschema/#gridsurface text="GridSurface"]
+**appliesTo:** [GridSurface](grids.ecschema.md#gridsurface)
 
 #### Properties
 

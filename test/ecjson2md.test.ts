@@ -4,7 +4,7 @@ import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
 import * as path from "path";
 import * as rimraf from "rimraf";
-import { SchemaContext, Schema, PropertyType} from "@bentley/ecschema-metadata";
+import { SchemaContext, Schema, PropertyType } from "@bentley/ecschema-metadata";
 
 describe("ecjson2md", () => {
   describe("ECJsonMarkdownGenerator", () => {
@@ -459,7 +459,7 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-          assert.equal(outputLines[0], '**baseClass:** [link_to testschema.ecschema/#entityclassb text="testSchema:EntityClassB"]');
+            assert.equal(outputLines[0], '**baseClass:** [testSchema:EntityClassB](testschema.ecschema.md#entityclassb)');
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "");
         });
@@ -603,7 +603,7 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** None",
             "",
-            '**baseClass:** [link_to testschema.ecschema/#entityclassb text="testSchema:EntityClassB"]',
+            '**baseClass:** [testSchema:EntityClassB](testschema.ecschema.md#entityclassb)',
             "",
             "" ];
 
@@ -697,7 +697,7 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** None",
             "",
-            '**baseClass:** [link_to testschema.ecschema/#entityclassb text="testSchema:EntityClassB"]',
+            '**baseClass:** [testSchema:EntityClassB](testschema.ecschema.md#entityclassb)',
             "",
             "" ];
 
@@ -1113,7 +1113,7 @@ describe("ecjson2md", () => {
             "",
             "##### Constraint Classes",
             "",
-            '- [link_to testschema.ecschema/#entityclassa text="EntityClassA"]',
+            '- [EntityClassA](testschema.ecschema.md#entityclassa)',
             "",
             "#### Target",
             "",
@@ -1125,7 +1125,7 @@ describe("ecjson2md", () => {
             "",
             "##### Constraint Classes",
             "",
-            '- [link_to testschema.ecschema/#entityclassb text="EntityClassB"]',
+            '- [EntityClassB](testschema.ecschema.md#entityclassb)',
             "",
             "" ];
 
@@ -1209,7 +1209,7 @@ describe("ecjson2md", () => {
             "",
             "##### Constraint Classes",
             "",
-            '- [link_to testschema.ecschema/#entityclassa text="EntityClassA"]',
+            '- [EntityClassA](testschema.ecschema.md#entityclassa)',
             "",
             "#### Target",
             "",
@@ -1221,7 +1221,7 @@ describe("ecjson2md", () => {
             "",
             "##### Constraint Classes",
             "",
-            '- [link_to testschema.ecschema/#entityclassb text="EntityClassB"]',
+            '- [EntityClassB](testschema.ecschema.md#entityclassb)',
             "",
             "" ];
 
@@ -1289,7 +1289,7 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** None",
             "",
-            '**baseClass:** [link_to testschema.ecschema/#entityclassd text="testSchema:EntityClassD"]',
+            '**baseClass:** [testSchema:EntityClassD](testschema.ecschema.md#entityclassd)',
             "",
             "**Strength:** Referencing",
             "",
@@ -1305,7 +1305,7 @@ describe("ecjson2md", () => {
             "",
             "##### Constraint Classes",
             "",
-            '- [link_to testschema.ecschema/#entityclassa text="EntityClassA"]',
+            '- [EntityClassA](testschema.ecschema.md#entityclassa)',
             "",
             "#### Target",
             "",
@@ -1317,7 +1317,7 @@ describe("ecjson2md", () => {
             "",
             "##### Constraint Classes",
             "",
-            '- [link_to testschema.ecschema/#entityclassb text="EntityClassB"]',
+            '- [EntityClassB](testschema.ecschema.md#entityclassb)',
             "",
             "" ];
 
@@ -1385,7 +1385,7 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** None",
             "",
-            '**baseClass:** [link_to testschema.ecschema/#entityclassd text="testSchema:EntityClassD"]',
+            '**baseClass:** [testSchema:EntityClassD](testschema.ecschema.md#entityclassd)',
             "",
             "**Strength:** Referencing",
             "",
@@ -1401,7 +1401,7 @@ describe("ecjson2md", () => {
             "",
             "##### Constraint Classes",
             "",
-            '- [link_to testschema.ecschema/#entityclassa text="EntityClassA"]',
+            '- [EntityClassA](testschema.ecschema.md#entityclassa)',
             "",
             "#### Target",
             "",
@@ -1413,7 +1413,7 @@ describe("ecjson2md", () => {
             "",
             "##### Constraint Classes",
             "",
-            '- [link_to testschema.ecschema/#entityclassb text="EntityClassB"]',
+            '- [EntityClassB](testschema.ecschema.md#entityclassb)',
             "",
             "" ];
 
@@ -1497,7 +1497,7 @@ describe("ecjson2md", () => {
             "",
             "##### Constraint Classes",
             "",
-            '- [link_to testschema.ecschema/#entityclassa text="EntityClassA"]',
+            '- [EntityClassA](testschema.ecschema.md#entityclassa)',
             "",
             "#### Target",
             "",
@@ -1509,7 +1509,7 @@ describe("ecjson2md", () => {
             "",
             "##### Constraint Classes",
             "",
-            '- [link_to testschema.ecschema/#entityclassb text="EntityClassB"]',
+            '- [EntityClassB](testschema.ecschema.md#entityclassb)',
             "",
             "" ];
 
@@ -1605,9 +1605,9 @@ describe("ecjson2md", () => {
             "",
             "##### Constraint Classes",
             "",
-            '- [link_to testschema.ecschema/#entityclassa text="EntityClassA"]',
-            '- [link_to testschema.ecschema/#entityclassb text="EntityClassB"]',
-            '- [link_to testschema.ecschema/#entityclassc text="EntityClassC"]',
+            '- [EntityClassA](testschema.ecschema.md#entityclassa)',
+            '- [EntityClassB](testschema.ecschema.md#entityclassb)',
+            '- [EntityClassC](testschema.ecschema.md#entityclassc)',
             "",
             "#### Target",
             "",
@@ -1619,9 +1619,9 @@ describe("ecjson2md", () => {
             "",
             "##### Constraint Classes",
             "",
-            '- [link_to testschema.ecschema/#entityclasse text="EntityClassE"]',
-            '- [link_to testschema.ecschema/#entityclassf text="EntityClassF"]',
-            '- [link_to testschema.ecschema/#entityclassg text="EntityClassG"]',
+            '- [EntityClassE](testschema.ecschema.md#entityclasse)',
+            '- [EntityClassF](testschema.ecschema.md#entityclassf)',
+            '- [EntityClassG](testschema.ecschema.md#entityclassg)',
             "",
             "" ];
 
@@ -2039,7 +2039,7 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** Abstract",
             "",
-            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            '**appliesTo:** [EntityA](testschema.ecschema.md#entitya)',
             "",
             "" ];
 
@@ -2064,7 +2064,7 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** Abstract",
             "",
-            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            '**appliesTo:** [EntityA](testschema.ecschema.md#entitya)',
             "",
             "" ];
 
@@ -2087,9 +2087,9 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** Abstract",
             "",
-            '**baseClass:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
+            '**baseClass:** [testSchema:EntityB](testschema.ecschema.md#entityb)',
             "",
-            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            '**appliesTo:** [EntityA](testschema.ecschema.md#entitya)',
             "",
             "" ];
 
@@ -2114,7 +2114,7 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** Abstract",
             "",
-            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            '**appliesTo:** [EntityA](testschema.ecschema.md#entitya)',
             "",
             "" ];
 
@@ -2141,9 +2141,9 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** Abstract",
             "",
-            '**baseClass:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
+            '**baseClass:** [testSchema:EntityB](testschema.ecschema.md#entityb)',
             "",
-            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            '**appliesTo:** [EntityA](testschema.ecschema.md#entitya)',
             "",
             "" ];
 
@@ -2166,7 +2166,7 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** Abstract",
             "",
-            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            '**appliesTo:** [EntityA](testschema.ecschema.md#entitya)',
             "",
             "#### Properties",
             "",
@@ -2202,9 +2202,9 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** Abstract",
             "",
-            '**baseClass:** [link_to testschema.ecschema/#entityb text="testSchema:EntityB"]',
+            '**baseClass:** [testSchema:EntityB](testschema.ecschema.md#entityb)',
             "",
-            '**appliesTo:** [link_to testschema.ecschema/#entitya text="EntityA"]',
+            '**appliesTo:** [EntityA](testschema.ecschema.md#entitya)',
             "",
             "#### Properties",
             "",
@@ -2370,7 +2370,7 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** Sealed",
             "",
-            '**baseClass:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
+            '**baseClass:** [testSchema:EntityA](testschema.ecschema.md#entitya)',
             "",
             "**Applies to:** AnyProperty",
             "",
@@ -2397,7 +2397,7 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** Sealed",
             "",
-            '**baseClass:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
+            '**baseClass:** [testSchema:EntityA](testschema.ecschema.md#entitya)',
             "",
             "**Applies to:** AnyProperty",
             "",
@@ -2620,7 +2620,7 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** Sealed",
             "",
-            '**baseClass:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
+            '**baseClass:** [testSchema:EntityA](testschema.ecschema.md#entitya)',
             "",
             "" ];
 
@@ -2647,7 +2647,7 @@ describe("ecjson2md", () => {
             "",
             "**modifier:** Sealed",
             "",
-            '**baseClass:** [link_to testschema.ecschema/#entitya text="testSchema:EntityA"]',
+            '**baseClass:** [testSchema:EntityA](testschema.ecschema.md#entitya)',
             "",
             "#### Properties",
             "",
@@ -2994,7 +2994,7 @@ describe("ecjson2md", () => {
         describe("formatLink", () => {
           it("should correctly format a link for bemetalsmith", () => {
             const link = formatLink("https://www.google.com", "Google");
-            assert.equal(link, '[link_to https://www.google.com text="Google"]');
+              assert.equal(link, '[Google](https://www.google.com)');
           });
         });
 
