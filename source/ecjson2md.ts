@@ -99,7 +99,7 @@ export function formatWarningAlert(alertText: string): string {
  * @param linkText Text to display on link
  */
 export function formatLink(linkString: string, linkText: string): string {
-  return "[link_to " + linkString + " text=\"" + linkText + "\"]";
+    return "[" + linkText + "](" + linkString + ")";
 }
 
 /**
@@ -294,7 +294,10 @@ export class ECJsonMarkdownGenerator {
   public static writeSchemaItemBaseClass(outputFilePath: string, baseClass: any) {
     if (baseClass === undefined) return;
 
-    const baseClassLink = baseClass.schemaName.toLowerCase() + ".ecschema/#" + baseClass.name.toLowerCase();
+    var baseClassLink = "#" + baseClass.name.toLowerCase();
+    if (!outputFilePath.toLowerCase().includes(baseClass.schemaName.toLowerCase())) {
+        baseClassLink = baseClass.schemaName.toLowerCase() + ".ecschema.md" + baseClassLink;
+    }
     const baseClassName = baseClass.schemaName + ":" + baseClass.name;
 
     fs.appendFileSync(outputFilePath, "**baseClass:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
@@ -338,7 +341,7 @@ export class ECJsonMarkdownGenerator {
       const targetSchema = property._relationshipClass.schemaName;
       const targetClass = property._relationshipClass.name;
 
-      type = formatLink(targetSchema.toLowerCase() + ".ecschema/#" + targetClass.toLowerCase(), type);
+      type = formatLink(targetSchema.toLowerCase() + ".ecschema.md#" + targetClass.toLowerCase(), type);
     }
 
     const name = helper(property._name._name);
@@ -530,7 +533,7 @@ export class ECJsonMarkdownGenerator {
 
     // Write the constraint classes as a list
     for (const constraintClass of constraint.constraintClasses) {
-      const constraintClassLink = constraintClass.schemaName.toLowerCase() + ".ecschema/#" + constraintClass.name.toLowerCase();
+      const constraintClassLink = constraintClass.schemaName.toLowerCase() + ".ecschema.md#" + constraintClass.name.toLowerCase();
       fs.appendFileSync(outputFilePath, "- " + formatLink(constraintClassLink, constraintClass.name) + "\n");
     }
 
@@ -708,7 +711,7 @@ export class ECJsonMarkdownGenerator {
 
     // Link to what the mixin applies to
     if (mixin.appliesTo !== undefined) {
-      const appliesToLink = mixin.appliesTo.schemaName.toLowerCase() + ".ecschema/#" + mixin.appliesTo.name.toLowerCase();
+      const appliesToLink = mixin.appliesTo.schemaName.toLowerCase() + ".ecschema.md#" + mixin.appliesTo.name.toLowerCase();
 
       // Write a link to what the mixin applies to
       fs.appendFileSync(outputFilePath, "**appliesTo:** " + formatLink(appliesToLink, mixin.appliesTo.name) + "\n\n");
@@ -964,7 +967,7 @@ export class ECJsonMarkdownGenerator {
     let outputDir: string[] | string = outputFilePath.split(/(\/){1}|(\\){2}|(\\){1}/g);
     outputDir.pop();
     outputDir = outputDir.join(path.sep);
-
+    
     // Check if the output directory exists
     if (!fs.existsSync(outputDir)) throw new ECJsonBadOutputPath(outputFilePath);
 
