@@ -66,7 +66,7 @@ Optional additional meta data for ECProperties of type DateTime.
 
 **modifier:** Sealed
 
-**Applies to:** PrimitiveProperty,ArrayProperty
+**Applies to:** PrimitiveProperty, ArrayProperty
 
 #### Properties
 

@@ -1,5 +1,5 @@
 {
-   "$schema" : "https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",
+   "$schema" : "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
    "alias" : "grids",
    "items" : {
       "CircularAxis" : {
@@ -25,13 +25,13 @@
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "DefaultElevationIncrement",
                "name" : "DefaultElevationIncrement",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "label" : "DefaultSurface2d",
                "name" : "DefaultSurface2d",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "Bentley.Geometry.Common.IGeometry"
             }
          ],
@@ -50,13 +50,13 @@
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "Elevation",
                "name" : "Elevation",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "label" : "Surface2d",
                "name" : "Surface2d",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "Bentley.Geometry.Common.IGeometry"
             }
          ],
@@ -132,14 +132,14 @@
             {
                "label" : "Name",
                "name" : "Name",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
                "description" : "Grid this axis belong to",
                "direction" : "backward",
                "name" : "Grid",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "Grids.GridHasAxes"
             }
          ],
@@ -183,7 +183,7 @@
                "description" : "Created GridCurves will be put into this GridCurvesPortion",
                "direction" : "forward",
                "name" : "CurvesPortion",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "Grids.GridCurveBundleRefersToGridCurvesPortion"
             }
          ],
@@ -328,7 +328,7 @@
                "description" : "Axis this gridSurface belong to",
                "direction" : "backward",
                "name" : "Axis",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "Grids.GridAxisContainsGridSurfaces"
             }
          ],
@@ -368,14 +368,14 @@
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "StartElevation",
                "name" : "StartElevation",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "EndElevation",
                "name" : "EndElevation",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             }
          ],
@@ -414,42 +414,42 @@
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "DefaultCoordinateIncrementX",
                "name" : "DefaultCoordinateIncrementX",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "DefaultCoordinateIncrementY",
                "name" : "DefaultCoordinateIncrementY",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "DefaultStartExtentX",
                "name" : "DefaultStartExtentX",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "DefaultEndExtentX",
                "name" : "DefaultEndExtentX",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "DefaultStartExtentY",
                "name" : "DefaultStartExtentY",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "DefaultEndExtentY",
                "name" : "DefaultEndExtentY",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             }
          ],
@@ -469,21 +469,21 @@
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "Coordinate",
                "name" : "Coordinate",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "StartExtent",
                "name" : "StartExtent",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "EndExtent",
                "name" : "EndExtent",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             }
          ],
@@ -503,21 +503,21 @@
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "Radius",
                "name" : "Radius",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.ANGLE",
                "label" : "StartAngle",
                "name" : "StartAngle",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.ANGLE",
                "label" : "EndAngle",
                "name" : "EndAngle",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             }
          ],
@@ -532,14 +532,14 @@
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "DefaultStartElevation",
                "name" : "DefaultStartElevation",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "DefaultEndElevation",
                "name" : "DefaultEndElevation",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             }
          ],
@@ -580,21 +580,21 @@
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "Angle",
                "name" : "Angle",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "StartRadius",
                "name" : "StartRadius",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "EndRadius",
                "name" : "EndRadius",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             }
          ],
@@ -623,42 +623,42 @@
                "kindOfQuantity" : "AecUnits.ANGLE",
                "label" : "DefaultAngleIncrement",
                "name" : "DefaultAngleIncrement",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.ANGLE",
                "label" : "DefaultRadiusIncrement",
                "name" : "DefaultRadiusIncrement",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.ANGLE",
                "label" : "DefaultStartAngle",
                "name" : "DefaultStartAngle",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.ANGLE",
                "label" : "DefaultEndAngle",
                "name" : "DefaultEndAngle",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "DefaultStartRadius",
                "name" : "DefaultStartRadius",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
                "label" : "DefaultEndRadius",
                "name" : "DefaultEndRadius",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             }
          ],
@@ -676,7 +676,7 @@
             {
                "label" : "Arc2d",
                "name" : "Arc2d",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "Bentley.Geometry.Common.IGeometry"
             }
          ],
@@ -704,7 +704,7 @@
             {
                "label" : "Line2d",
                "name" : "Line2d",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "Bentley.Geometry.Common.IGeometry"
             }
          ],
@@ -722,7 +722,7 @@
             {
                "label" : "Spline2d",
                "name" : "Spline2d",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "Bentley.Geometry.Common.IGeometry"
             }
          ],
