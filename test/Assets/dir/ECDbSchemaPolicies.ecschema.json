@@ -1,5 +1,5 @@
 {
-   "$schema" : "https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",
+   "$schema" : "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
    "alias" : "ecdbpol",
    "description" : "Schema policies which impose schema authoring rules.",
    "items" : {
@@ -12,7 +12,7 @@
                "description" : "Navigation properties that are allowed violate against the policy. Format: {schema name}:{class name}.{property name}",
                "minOccurs" : 0,
                "name" : "Exceptions",
-               "propertyType" : "PrimitiveArrayProperty",
+               "type" : "PrimitiveArrayProperty",
                "typeName" : "string"
             }
          ],
@@ -27,7 +27,7 @@
                "description" : "Relationship classes that that are allowed to violate against the policy. Format: {schema name}:{relationship class name}",
                "minOccurs" : 0,
                "name" : "Exceptions",
-               "propertyType" : "PrimitiveArrayProperty",
+               "type" : "PrimitiveArrayProperty",
                "typeName" : "string"
             }
          ],
@@ -42,7 +42,7 @@
                "description" : "Entity classes that that are allowed to violate against the policy.  Format: {schema name}:{class name}",
                "minOccurs" : 0,
                "name" : "Exceptions",
-               "propertyType" : "PrimitiveArrayProperty",
+               "type" : "PrimitiveArrayProperty",
                "typeName" : "string"
             }
          ],

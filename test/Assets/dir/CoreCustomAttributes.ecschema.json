@@ -1,5 +1,5 @@
 {
-   "$schema" : "https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",
+   "$schema" : "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
    "alias" : "CoreCA",
    "description" : "Custom attributes to indicate core EC concepts, may include struct classes intended for use in core custom attributes.",
    "items" : {
@@ -9,19 +9,21 @@
          "properties" : [
             {
                "name" : "PropertyName",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
          "schemaItemType" : "CustomAttributeClass"
       },
       "DateTimeComponent" : {
-         "backingTypeName" : "string",
+         "type" : "string",
          "enumerators" : [
             {
+               "name"  : "DateTime",
                "value" : "DateTime"
             },
             {
+               "name"  : "Date",
                "value" : "Date"
             }
          ],
@@ -36,28 +38,31 @@
             {
                "description" : "Either Utc, Local or Unspecified. Default: Unspecified. When specifying a DateTimeKind, it is usually not necessary to specify a DateTimeComponent because a DateTimeKind implies the DateTimeComponent 'DateTime'.",
                "name" : "DateTimeKind",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "CoreCustomAttributes.DateTimeKind"
             },
             {
                "description" : "Either DateTime or Date. Default: DateTime. Specifying 'Date' usually implies that a DateTimeKind is irrelevant, because dates (without time) don't need any timezone information.",
                "name" : "DateTimeComponent",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "CoreCustomAttributes.DateTimeComponent"
             }
          ],
          "schemaItemType" : "CustomAttributeClass"
       },
       "DateTimeKind" : {
-         "backingTypeName" : "string",
+         "type" : "string",
          "enumerators" : [
             {
+               "name"  : "Unspecified",
                "value" : "Unspecified"
             },
             {
+               "name"  : "Utc",
                "value" : "Utc"
             },
             {
+               "name"  : "Local",
                "value" : "Local"
             }
          ],
@@ -79,7 +84,7 @@
             {
                "description" : "If set to true show the hidden class.  Defaults to False.  Allows a derived class to be shown even though it's base class is hidden",
                "name" : "Show",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "boolean"
             }
          ],
@@ -93,7 +98,7 @@
             {
                "description" : "If set to true show the hidden property. Defaults to False.  Allows a property override to show a hidden property in a derived class",
                "name" : "Show",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "boolean"
             }
          ],
@@ -107,7 +112,7 @@
             {
                "description" : "If true classe in the schema will be shown.  Default is False.  If set to true individual classes may be hidden using the HiddenClass custom attribute",
                "name" : "ShowClasses",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "boolean"
             }
          ],
@@ -122,7 +127,7 @@
             {
                "description" : "This mixin may only be applied to entity classes which derive from this class.  Class Name should be fully specified as 'alias:ClassName'",
                "name" : "AppliesToEntityClass",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -144,7 +149,7 @@
                "description" : "Optionally allows specific classes in other schemas to subclass this class.  Use format '[SchemaName]:[ClassName]', e.g. 'Fruit:Banana'",
                "minOccurs" : 0,
                "name" : "Exceptions",
-               "propertyType" : "PrimitiveArrayProperty",
+               "type" : "PrimitiveArrayProperty",
                "typeName" : "string"
             }
          ],
@@ -164,13 +169,13 @@
             {
                "description" : "Full name of the supplemental schema",
                "name" : "SchemaName",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
                "description" : "Purpose of the supplemental schema",
                "name" : "Purpose",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -185,27 +190,27 @@
                "description" : "Name of schema, excluding version",
                "label" : "Schema Name",
                "name" : "SchemaName",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
                "description" : "[This].[Write].[Minor]",
                "label" : "Major Version",
                "name" : "MajorVersion",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "int"
             },
             {
                "description" : "[Major].[Write].[This]",
                "label" : "Minor Version",
                "name" : "MinorVersion",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "int"
             },
             {
                "description" : "[Major].[This].[Minor]",
                "name" : "WriteVersion",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "int"
             }
          ],
@@ -218,7 +223,7 @@
             {
                "minOccurs" : 0,
                "name" : "SupplementalSchemaNamesAndPurposes",
-               "propertyType" : "StructArrayProperty",
+               "type" : "StructArrayProperty",
                "typeName" : "CoreCustomAttributes.SchemaNameAndPurpose"
             }
          ],
@@ -234,19 +239,19 @@
                "description" : "References the primary schema this supplemental should be applied to",
                "label" : "Primary Schema Reference",
                "name" : "PrimarySchemaReference",
-               "propertyType" : "StructProperty",
+               "type" : "StructProperty",
                "typeName" : "CoreCustomAttributes.SchemaReference"
             },
             {
                "description" : "Positive integer defining the precedence of this supplemental schema. Higher precedences override lower precences.  The primary schema is considered to have a precedence between 199 and 200.",
                "name" : "Precedence",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "int"
             },
             {
                "description" : "A string representing the function of this supplemental schema.  Standard name formatting for a supplemental schema is <PrimarySchemaName>_Supplemental_<Purpose>",
                "name" : "Purpose",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],

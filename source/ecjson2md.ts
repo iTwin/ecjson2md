@@ -442,30 +442,31 @@ export class ECJsonMarkdownGenerator {
     // Write the label
     this.writeSchemaItemLabel(outputFilePath, kindOfQuantity.label);
 
-    // Write the precision
-    if (kindOfQuantity.precision !== undefined)
-      fs.appendFileSync(outputFilePath, "**Precision:** " + kindOfQuantity.precision + "\n\n");
+      // Write the relative error
+      if (kindOfQuantity.relativeError !== undefined)
+          fs.appendFileSync(outputFilePath, "**Relative Error:** " + kindOfQuantity.relativeError + "\n\n");
 
-    // Write the persistence unit
-    if (kindOfQuantity.persistenceUnit !== undefined && kindOfQuantity.persistenceUnit.unit !== undefined)
-      fs.appendFileSync(outputFilePath, "**Persistence Unit:** " + kindOfQuantity.persistenceUnit.unit + "\n\n");
+      // Write the persistence unit
+      if (kindOfQuantity.persistenceUnit !== undefined)
+          fs.appendFileSync(outputFilePath, "**Persistence Unit:** " + kindOfQuantity.persistenceUnit.name + "\n\n");
 
-    // Write the default presentation unit
-    if (kindOfQuantity.presentationUnits[0] !== undefined && kindOfQuantity.presentationUnits[0].unit !== undefined)
-      fs.appendFileSync(outputFilePath, "**Default Presentation Unit**: " + kindOfQuantity.presentationUnits[0].unit + "\n\n");
+      if (kindOfQuantity.presentationUnits !== undefined) {
+          // Write the precision
+          if (kindOfQuantity.presentationUnits[0] !== undefined && kindOfQuantity.presentationUnits[0].precision !== undefined)
+              fs.appendFileSync(outputFilePath, "**Precision:** " + kindOfQuantity.presentationUnits[0].precision + "\n\n");
 
-    // Write the alternate presentation units
-    if (kindOfQuantity.presentationUnits[1] !== undefined && kindOfQuantity.presentationUnits[1].unit !== undefined) {
-      const altUnits = kindOfQuantity.presentationUnits.slice(1);
-      fs.appendFileSync(outputFilePath, "**Alternate Presentation Units**\n\n");
-
-      for (const altUnit of altUnits) {
-        if (altUnit.unit !== undefined)
-          fs.appendFileSync(outputFilePath, "- " + altUnit.unit.replace(/\*/g, "\\*") + "\n");
+          // Write the presentation units
+          if (kindOfQuantity.presentationUnits.length !== 0) {
+              fs.appendFileSync(outputFilePath, "**Presentation Units**\n\n");
+              for (const pUnit of kindOfQuantity.presentationUnits) {
+                  const namestrings: string[] = pUnit.name.split(/[\[\]\.]+/);
+                  const pName = namestrings[1] + " [ " + namestrings[3] + " ]";
+                  fs.appendFileSync(outputFilePath, "- " + pName + "\n");
+              }
+          }
       }
       fs.appendFileSync(outputFilePath, "\n");
     }
-  }
 
   /**
    * Collects and generates markdown for kind of quantity schema items in a markdown file at the specified file path
@@ -646,9 +647,9 @@ export class ECJsonMarkdownGenerator {
     ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, enumerationItem.schemaItemType);
 
     // Write wether the enum is an int or string
-    if (enumerationItem.isInt())
+    if (enumerationItem.isInt)
       fs.appendFileSync(outputFilePath, "**Backing Type:** int\n\n");
-    if (enumerationItem.isString())
+    if (enumerationItem.isString)
       fs.appendFileSync(outputFilePath, "**Backing Type:** string\n\n");
 
     // Write the description of the entity class

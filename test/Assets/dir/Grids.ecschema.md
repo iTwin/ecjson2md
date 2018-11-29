@@ -475,7 +475,7 @@ maps axis to grouped surfaces
 
 **modifier:** None
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 
@@ -549,9 +549,9 @@ Maps GridCurveBundle to a GridCurvesPortion
 
 **modifier:** None
 
-**Strength:** Referencing
+**Strength:** Embedding
 
-**strengthDirection:** Forward
+**strengthDirection:** Backward
 
 #### Source
 
@@ -623,7 +623,7 @@ maps grid to its axes
 
 **modifier:** None
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 

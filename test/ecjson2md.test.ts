@@ -51,11 +51,11 @@ describe("ecjson2md", () => {
         let testSchema: Schema;
 
         before(() => {
-          testSchema = new Schema();
-          testSchema.fromJsonSync
-          (JSON.parse(
-            '{\
-                "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+          //testSchema = new Schema();
+           testSchema = Schema.fromJsonSync
+                (JSON.parse(
+                    '{\
+                "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
                 "alias":"testSchema",\
                 "name": "testSchema",\
                 "version":"02.00.00"\
@@ -117,10 +117,10 @@ describe("ecjson2md", () => {
 
         it("should write the markdown properly for a schema with no description or label", () => {
           // Arrange
-          const testSchema = new Schema();
-          testSchema.fromJsonSync(JSON.parse(
+          // testSchema = new Schema();
+          const testSchema = Schema.fromJsonSync(JSON.parse(
             '{\
-                "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+                "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
                 "alias":"testSchema",\
                 "name": "testSchema",\
                 "version":"02.00.00"\
@@ -147,10 +147,10 @@ describe("ecjson2md", () => {
 
         it("should write the markdown properly for a schema with a description", () => {
           // Arrange
-          const testSchema = new Schema();
-          testSchema.fromJsonSync(JSON.parse(
+          //const testSchema = new Schema();
+            const testSchema = Schema.fromJsonSync(JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
               "description":"This is the description",\
               "alias":"testSchema",\
               "name": "testSchema",\
@@ -180,10 +180,10 @@ describe("ecjson2md", () => {
 
         it("should write the markdown properly for a schema with a description and label", () => {
           // Arrange
-          const testSchema = new Schema();
-          testSchema.fromJsonSync(JSON.parse(
+          //const testSchema = new Schema();
+            const testSchema = Schema.fromJsonSync(JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
               "description":"This is the description",\
               "alias":"testSchema",\
               "name": "testSchema",\
@@ -432,7 +432,7 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
               "description":"This is the description",\
               "alias":"testSchema",\
               "name": "testSchema",\
@@ -490,7 +490,7 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
               "alias":"testSchema",\
               "name": "testSchema",\
               "version":"02.00.00",\
@@ -528,7 +528,7 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
               "description":"This is the description",\
               "alias":"testSchema",\
               "name": "testSchema",\
@@ -570,7 +570,7 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
           '{\
-            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+            "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
             "description":"This is the description",\
             "alias":"testSchema",\
             "name": "testSchema",\
@@ -616,7 +616,7 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
               "description":"This is the description",\
               "alias":"testSchema",\
               "name": "testSchema",\
@@ -658,7 +658,7 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
           '{\
-            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+            "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
             "description":"This is the description",\
             "alias":"testSchema",\
             "name": "testSchema",\
@@ -710,7 +710,7 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
           '{\
-            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+            "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema", \
             "description":"This is the description", \
             "alias":"testSchema", \
             "name": "testSchema", \
@@ -723,25 +723,25 @@ describe("ecjson2md", () => {
                   { \
                     "description":"description one", \
                     "name":"NameOne", \
-                    "propertyType":"PrimitiveProperty", \
+                    "type":"PrimitiveProperty", \
                     "typeName":"string" \
                   }, \
                   { \
                     "extendedTypeName":"Json", \
                     "name":"NameTwo", \
-                    "propertyType":"PrimitiveProperty", \
+                    "type":"PrimitiveProperty", \
                     "typeName":"string" \
                   }, \
                   { \
                     "description":"description three", \
                     "extendedTypeName":"Json", \
                     "name":"NameThree", \
-                    "propertyType":"PrimitiveProperty", \
+                    "type":"PrimitiveProperty", \
                     "typeName":"string" \
                   }, \
                   { \
                     "name":"NameFour", \
-                    "propertyType":"PrimitiveProperty", \
+                    "type":"PrimitiveProperty", \
                     "typeName":"string" \
                   } \
                 ] \
@@ -799,29 +799,38 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
               "alias":"testSchema",\
               "name": "testSchema",\
               "version":"02.00.00",\
               "items": { \
+                "A" : {\
+                    "definition" : "A",\
+                    "phenomenon" : "testSchema.CURRENT",\
+                    "schemaItemType" : "Unit",\
+                    "unitSystem" : "testSchema.SI"\
+                },\
+                "CURRENT" : {\
+                    "definition" : "CURRENT",\
+                    "label" : "Current",\
+                    "schemaItemType" : "Phenomenon"\
+                },\
+                "SI" : {\
+                    "schemaItemType" : "UnitSystem"\
+                 },\
+                "DefaultReal" : {\
+                    "formatTraits" : [ "keepSingleZero", "keepDecimalPoint" ],\
+                    "label" : "real",\
+                    "precision" : 6,\
+                    "schemaItemType" : "Format",\
+                    "type" : "Decimal"\
+                },\
                 "KindOfQuantityA": {\
                   "schemaItemType":"KindOfQuantity", \
                   "label":"KindOfQuantityA", \
-                  "persistenceUnit" : { \
-                    "format" : "DefaultReal", \
-                    "unit" : "A" \
-                  }, \
-                 "precision" : 0.0010, \
-                 "presentationUnits" : [ \
-                    { \
-                       "format" : "Real4U", \
-                       "unit" : "A" \
-                    }, \
-                    { \
-                       "format" : "Real4U", \
-                       "unit" : "KILOAMPERE" \
-                    } \
-                  ] \
+                  "relativeError":0.0, \
+                  "persistenceUnit" : "testSchema.A", \
+                 "presentationUnits" : [ "testSchema.DefaultReal[testSchema.A]" ] \
                 }\
               }\
             }');
@@ -840,42 +849,55 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[3], "");
           assert.equal(outputLines[4], "**displayLabel:** KindOfQuantityA");
           assert.equal(outputLines[5], "");
-          assert.equal(outputLines[6], "**Precision:** 0.001");
+          assert.equal(outputLines[6], "**Relative Error:** 0");
           assert.equal(outputLines[7], "");
           assert.equal(outputLines[8], "**Persistence Unit:** A");
           assert.equal(outputLines[9], "");
-          assert.equal(outputLines[10], "**Default Presentation Unit**: A");
+          assert.equal(outputLines[10], "**Precision:** 6");
           assert.equal(outputLines[11], "");
-          assert.equal(outputLines[12], "**Alternate Presentation Units**");
+          assert.equal(outputLines[12], "**Presentation Units**");
           assert.equal(outputLines[13], "");
-          assert.equal(outputLines[14], "- KILOAMPERE");
+          assert.equal(outputLines[14], "- DefaultReal [ A ]");
           assert.equal(outputLines[15], "");
           assert.equal(outputLines[16], "");
         });
 
-        it("should properly write a kind of quantity without an alternate presentation unit", () => {
+        it("should properly write a kind of quantity without presentation units", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
               "alias":"testSchema",\
               "name": "testSchema",\
               "version":"02.00.00",\
               "items": { \
+                "A" : {\
+                    "definition" : "A",\
+                    "phenomenon" : "testSchema.CURRENT",\
+                    "schemaItemType" : "Unit",\
+                    "unitSystem" : "testSchema.SI"\
+                },\
+                "CURRENT" : {\
+                    "definition" : "CURRENT",\
+                    "label" : "Current",\
+                    "schemaItemType" : "Phenomenon"\
+                },\
+                "SI" : {\
+                    "schemaItemType" : "UnitSystem"\
+                 },\
+                "DefaultReal" : {\
+                    "formatTraits" : [ "keepSingleZero", "keepDecimalPoint" ],\
+                    "label" : "real",\
+                    "precision" : 6,\
+                    "schemaItemType" : "Format",\
+                    "type" : "Decimal"\
+                },\
                 "KindOfQuantityA": {\
                   "schemaItemType":"KindOfQuantity", \
+                  "description":"A Kind of Quantity", \
                   "label":"KindOfQuantityA", \
-                  "persistenceUnit" : { \
-                    "format" : "DefaultReal", \
-                    "unit" : "A" \
-                  }, \
-                  "precision" : 0.0010, \
-                  "presentationUnits" : [ \
-                    { \
-                        "format" : "Real4U", \
-                        "unit" : "A" \
-                    } \
-                  ] \
+                  "relativeError": 0.0, \
+                  "persistenceUnit" : "testSchema.A" \
                 }\
               }\
             }');
@@ -892,40 +914,52 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "**typeName:** KindOfQuantity");
           assert.equal(outputLines[3], "");
-          assert.equal(outputLines[4], "**displayLabel:** KindOfQuantityA");
+          assert.equal(outputLines[4], "A Kind of Quantity");
           assert.equal(outputLines[5], "");
-          assert.equal(outputLines[6], "**Precision:** 0.001");
+          assert.equal(outputLines[6], "**displayLabel:** KindOfQuantityA");
           assert.equal(outputLines[7], "");
-          assert.equal(outputLines[8], "**Persistence Unit:** A");
+          assert.equal(outputLines[8], "**Relative Error:** 0");
           assert.equal(outputLines[9], "");
-          assert.equal(outputLines[10], "**Default Presentation Unit**: A");
+          assert.equal(outputLines[10], "**Persistence Unit:** A");
           assert.equal(outputLines[11], "");
           assert.equal(outputLines[12], "");
         });
 
-        it("should properly write a kind of quantity without a description or alternate presentation unit", () => {
+        it("should properly write a kind of quantity without a description or presentation units", () => {
           // Arrange
           const schemaJson = JSON.parse(
-            '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              '{\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
               "alias":"testSchema",\
               "name": "testSchema",\
               "version":"02.00.00",\
               "items": { \
+                "A" : {\
+                    "definition" : "A",\
+                    "phenomenon" : "testSchema.CURRENT",\
+                    "schemaItemType" : "Unit",\
+                    "unitSystem" : "testSchema.SI"\
+                },\
+                "CURRENT" : {\
+                    "definition" : "CURRENT",\
+                    "label" : "Current",\
+                    "schemaItemType" : "Phenomenon"\
+                },\
+                "SI" : {\
+                    "schemaItemType" : "UnitSystem"\
+                 },\
+                "DefaultReal" : {\
+                    "formatTraits" : [ "keepSingleZero", "keepDecimalPoint" ],\
+                    "label" : "real",\
+                    "precision" : 6,\
+                    "schemaItemType" : "Format",\
+                    "type" : "Decimal"\
+                },\
                 "KindOfQuantityA": {\
                   "schemaItemType":"KindOfQuantity", \
                   "label":"KindOfQuantityA", \
-                  "persistenceUnit" : { \
-                    "format" : "DefaultReal", \
-                    "unit" : "A" \
-                  }, \
-                 "precision" : 0.0010, \
-                 "presentationUnits" : [ \
-                    { \
-                       "format" : "Real4U", \
-                       "unit" : "A" \
-                    } \
-                  ] \
+                  "relativeError": 0.0, \
+                  "persistenceUnit" : "testSchema.A" \
                 }\
               }\
             }');
@@ -944,53 +978,94 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[3], "");
           assert.equal(outputLines[4], "**displayLabel:** KindOfQuantityA");
           assert.equal(outputLines[5], "");
-          assert.equal(outputLines[6], "**Precision:** 0.001");
+          assert.equal(outputLines[6], "**Relative Error:** 0");
           assert.equal(outputLines[7], "");
           assert.equal(outputLines[8], "**Persistence Unit:** A");
           assert.equal(outputLines[9], "");
-          assert.equal(outputLines[10], "**Default Presentation Unit**: A");
-          assert.equal(outputLines[11], "");
-          assert.equal(outputLines[12], "");
+          assert.equal(outputLines[10], "");
         });
 
-        it("should properly write a kind of quantity with multiple alternate presentation units", () => {
+        it("should properly write a kind of quantity with multiple presentation units", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
               "alias":"testSchema",\
               "name": "testSchema",\
               "version":"02.00.00",\
               "items": { \
+                "A" : {\
+                    "definition" : "A",\
+                    "phenomenon" : "testSchema.CURRENT",\
+                    "schemaItemType" : "Unit",\
+                    "unitSystem" : "testSchema.SI"\
+                },\
+                "CURRENT" : {\
+                    "definition" : "CURRENT",\
+                    "label" : "Current",\
+                    "schemaItemType" : "Phenomenon"\
+                },\
+                "SI" : {\
+                    "schemaItemType" : "UnitSystem"\
+                 },\
+                "KILOAMPERE" : {\
+                    "definition" : "[KILO]*A",\
+                    "label" : "KA",\
+                    "phenomenon" : "testSchema.CURRENT",\
+                    "schemaItemType" : "Unit",\
+                    "unitSystem" : "testSchema.METRIC"\
+                },\
+                "ACCELERATION" : { \
+                    "definition" : "LENGTH*TIME(-2)", \
+                    "label" : "Acceleration", \
+                    "schemaItemType" : "Phenomenon" \
+                }, \
+                "CM_PER_SEC_SQ" : { \
+                    "definition" : "CM*S(-2)", \
+                    "label" : "cm/sec²", \
+                    "phenomenon" : "testSchema.ACCELERATION", \
+                    "schemaItemType" : "Unit", \
+                    "unitSystem" : "testSchema.METRIC" \
+                }, \
+                "METRIC" : {\
+                    "schemaItemType" : "UnitSystem"\
+                 },\
+                "FT_PER_SEC_SQ" : { \
+                    "definition" : "FT*S(-2)", \
+                    "label" : "ft/sec²", \
+                    "phenomenon" : "testSchema.ACCELERATION", \
+                    "schemaItemType" : "Unit", \
+                    "unitSystem" : "testSchema.USCUSTOM" \
+                }, \
+                "USCUSTOM" : { \
+                    "schemaItemType" : "UnitSystem" \
+                }, \
+                "M_PER_SEC_SQ" : { \
+                    "definition" : "M*S(-2)", \
+                    "label" : "m/sec²", \
+                    "phenomenon" : "testSchema.ACCELERATION", \
+                    "schemaItemType" : "Unit", \
+                    "unitSystem" : "testSchema.SI" \
+                }, \
+                "DefaultReal" : {\
+                    "formatTraits" : [ "keepSingleZero", "keepDecimalPoint" ],\
+                    "label" : "real",\
+                    "precision" : 6,\
+                    "schemaItemType" : "Format",\
+                    "type" : "Decimal"\
+                },\
                 "KindOfQuantityA": {\
                   "schemaItemType":"KindOfQuantity", \
+                  "description":"A Kind of Quantity", \
                   "label":"KindOfQuantityA", \
-                  "persistenceUnit" : { \
-                    "format" : "DefaultReal", \
-                    "unit" : "A" \
-                  }, \
-                 "precision" : 0.0010, \
+                  "relativeError": 0.0, \
+                  "persistenceUnit" : "testSchema.A", \
                  "presentationUnits" : [ \
-                    { \
-                       "format" : "Real4U", \
-                       "unit" : "A" \
-                    }, \
-                    { \
-                       "format" : "Real4U", \
-                       "unit" : "KILOAMPERE" \
-                    }, \
-                    { \
-                      "format" : "Real4U", \
-                      "unit" : "M/SEC.SQ" \
-                    }, \
-                    { \
-                      "format" : "Real4U", \
-                      "unit" : "CM/SEC.SQ" \
-                    }, \
-                    { \
-                      "format" : "Real4U", \
-                      "unit" : "FT/SEC.SQ" \
-                    } \
+                    "testSchema.DefaultReal[testSchema.A]", \
+                    "testSchema.DefaultReal[testSchema.KILOAMPERE]", \
+                    "testSchema.DefaultReal[testSchema.M_PER_SEC_SQ]", \
+                    "testSchema.DefaultReal[testSchema.CM_PER_SEC_SQ]", \
+                    "testSchema.DefaultReal[testSchema.FT_PER_SEC_SQ]" \
                   ] \
                 }\
               }\
@@ -1008,22 +1083,25 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[1], "");
           assert.equal(outputLines[2], "**typeName:** KindOfQuantity");
           assert.equal(outputLines[3], "");
-          assert.equal(outputLines[4], "**displayLabel:** KindOfQuantityA");
+          assert.equal(outputLines[4], "A Kind of Quantity");
           assert.equal(outputLines[5], "");
-          assert.equal(outputLines[6], "**Precision:** 0.001");
+          assert.equal(outputLines[6], "**displayLabel:** KindOfQuantityA");
           assert.equal(outputLines[7], "");
-          assert.equal(outputLines[8], "**Persistence Unit:** A");
+          assert.equal(outputLines[8], "**Relative Error:** 0");
           assert.equal(outputLines[9], "");
-          assert.equal(outputLines[10], "**Default Presentation Unit**: A");
+          assert.equal(outputLines[10], "**Persistence Unit:** A");
           assert.equal(outputLines[11], "");
-          assert.equal(outputLines[12], "**Alternate Presentation Units**");
+          assert.equal(outputLines[12], "**Precision:** 6");
           assert.equal(outputLines[13], "");
-          assert.equal(outputLines[14], "- KILOAMPERE");
-          assert.equal(outputLines[15], "- M/SEC.SQ");
-          assert.equal(outputLines[16], "- CM/SEC.SQ");
-          assert.equal(outputLines[17], "- FT/SEC.SQ");
-          assert.equal(outputLines[18], "");
-          assert.equal(outputLines[19], "");
+          assert.equal(outputLines[14], "**Presentation Units**");
+          assert.equal(outputLines[15], "");
+          assert.equal(outputLines[16], "- DefaultReal [ A ]");
+          assert.equal(outputLines[17], "- DefaultReal [ KILOAMPERE ]");
+          assert.equal(outputLines[18], "- DefaultReal [ M_PER_SEC_SQ ]");
+          assert.equal(outputLines[19], "- DefaultReal [ CM_PER_SEC_SQ ]");
+          assert.equal(outputLines[20], "- DefaultReal [ FT_PER_SEC_SQ ]");
+          assert.equal(outputLines[21], "");
+          assert.equal(outputLines[22], "");
         });
       });
 
@@ -1044,7 +1122,7 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema", \
               "alias":"testSchema", \
               "name": "testSchema", \
               "version":"02.00.00", \
@@ -1138,7 +1216,7 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema", \
               "alias":"testSchema", \
               "name": "testSchema", \
               "version":"02.00.00", \
@@ -1234,7 +1312,7 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema", \
               "alias":"testSchema", \
               "name": "testSchema", \
               "version":"02.00.00", \
@@ -1330,7 +1408,7 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema", \
               "alias":"testSchema", \
               "name": "testSchema", \
               "version":"02.00.00", \
@@ -1426,7 +1504,7 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema", \
               "alias":"testSchema", \
               "name": "testSchema", \
               "version":"02.00.00", \
@@ -1522,7 +1600,7 @@ describe("ecjson2md", () => {
           // Arrange
           const schemaJson = JSON.parse(
             '{\
-              "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+              "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema", \
               "alias":"testSchema", \
               "name": "testSchema", \
               "version":"02.00.00", \
@@ -1635,15 +1713,16 @@ describe("ecjson2md", () => {
         const outputFilePath = path.join(outputDir, "relationshipClassTest.md");
         const schemaJson = JSON.parse(
           '{\
-            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+            "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema", \
             "alias":"testSchema", \
             "name": "testSchema", \
             "version":"02.00.00", \
             "items": { \
               "IntBackedEnum" : { \
-                "backingTypeName" : "int", \
+                "type" : "int", \
                 "enumerators" : [ \
                   { \
+                    "name" : "IntThing", \
                     "label" : "IntThing", \
                     "value" : 0 \
                   } \
@@ -1652,9 +1731,10 @@ describe("ecjson2md", () => {
                 "schemaItemType" : "Enumeration" \
               }, \
               "StringBackedEnum" : { \
-                "backingTypeName" : "string", \
+                "type" : "string", \
                 "enumerators" : [ \
                   { \
+                    "name" : "StringThing", \
                     "label" : "StringThing", \
                     "value" : "zero" \
                   } \
@@ -1663,31 +1743,36 @@ describe("ecjson2md", () => {
                 "schemaItemType" : "Enumeration" \
               }, \
               "NoEnumEnum" : { \
-                "backingTypeName" : "string", \
+                "type" : "string", \
                 "enumerators" : [ ], \
                 "isStrict" : true, \
                 "schemaItemType" : "Enumeration" \
               }, \
               "LotsOfEnumEnum" : { \
-                "backingTypeName" : "int", \
+                "type" : "int", \
                 "enumerators" : [ \
                   { \
+                    "name" : "Zero", \
                     "label" : "Zero", \
                     "value" : 0 \
                   }, \
                   { \
+                    "name" : "One", \
                     "label" : "One", \
                     "value" : 1 \
                   }, \
                   { \
+                    "name" : "Two", \
                     "label" : "Two", \
                     "value" : 2 \
                   }, \
                   { \
+                    "name" : "Three", \
                     "label" : "Three", \
                     "value" : 3 \
                   }, \
                   { \
+                    "name" : "Four", \
                     "label" : "Four", \
                     "value" : 4 \
                   } \
@@ -1696,13 +1781,28 @@ describe("ecjson2md", () => {
                 "schemaItemType" : "Enumeration" \
               }, \
               "NoLabelEnumerators" : { \
-                "backingTypeName" : "int", \
+                "type" : "int", \
                 "enumerators" : [ \
-                  { "value" : 0 }, \
-                  { "value" : 1 }, \
-                  { "value" : 2 }, \
-                  { "value" : 3 }, \
-                  { "value" : 4 } \
+                  { \
+                    "name" : "Zero", \
+                    "value" : 0 \
+                  }, \
+                  { \
+                    "name" : "One", \
+                    "value" : 1 \
+                  }, \
+                  { \
+                    "name" : "Two", \
+                    "value" : 2 \
+                  }, \
+                  { \
+                    "name" : "Three", \
+                    "value" : 3 \
+                  }, \
+                  { \
+                    "name" : "Four", \
+                    "value" : 4 \
+                  } \
                 ], \
                 "isStrict" : true, \
                 "schemaItemType" : "Enumeration" \
@@ -1867,66 +1967,64 @@ describe("ecjson2md", () => {
         const outputFilePath = path.join(outputDir, "mixinClassTest.md");
         const schemaJson = JSON.parse(
           '{ \
-            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+            "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema", \
             "alias":"testSchema", \
             "name": "testSchema", \
             "version":"02.00.00", \
             "items": { \
+              "UnitA": { \
+                "schemaItemType":"Unit", \
+                "name":"A", \
+                "phenomenon": "testSchema.Phenomenon", \
+                "unitSystem":"testSchema.UnitSys", \
+                "definition":"" \
+              }, \
+              "Phenomenon": { \
+                "schemaItemType":"Phenomenon", \
+                "name":"Phenom", \
+                "label":"Phenomenon", \
+                "definition":"" \
+              }, \
+              "UnitSys": { \
+                "schemaItemType":"UnitSystem", \
+                "name":"UnitSys", \
+                "label":"Test Unit System", \
+                "description":"Test Unit System" \
+              }, \
+              "DefaultReal" : { \
+                "formatTraits" : [ "keepSingleZero", "keepDecimalPoint" ], \
+                "label" : "real", \
+                "precision" : 6, \
+                "schemaItemType" : "Format", \
+                "type" : "Decimal" \
+              }, \
               "KOQA": {\
                 "schemaItemType":"KindOfQuantity", \
-                "persistenceUnit" : { \
-                  "format" : "DefaultReal", \
-                  "unit" : "A" \
-                }, \
+                "relativeError" : 0.0, \
+                "persistenceUnit" : "testSchema.UnitA", \
                "precision" : 0.0010, \
-               "presentationUnits" : [ \
-                  { \
-                     "format" : "Real4U", \
-                     "unit" : "A" \
-                  } \
-                ] \
+               "presentationUnits" : [ "testSchema.DefaultReal[testSchema.UnitA]" ] \
               },\
               "KOQB": {\
                 "schemaItemType":"KindOfQuantity", \
-                "persistenceUnit" : { \
-                  "format" : "DefaultReal", \
-                  "unit" : "A" \
-                }, \
+                "relativeError" : 0.0, \
+                "persistenceUnit" : "testSchema.UnitA", \
                "precision" : 0.0010, \
-               "presentationUnits" : [ \
-                  { \
-                     "format" : "Real4U", \
-                     "unit" : "A" \
-                  } \
-                ] \
+               "presentationUnits" : [ "testSchema.DefaultReal[testSchema.UnitA]" ] \
               },\
               "KOQC": {\
                 "schemaItemType":"KindOfQuantity", \
-                "persistenceUnit" : { \
-                  "format" : "DefaultReal", \
-                  "unit" : "A" \
-                }, \
+                "relativeError" : 0.0, \
+                "persistenceUnit" : "testSchema.UnitA", \
                "precision" : 0.0010, \
-               "presentationUnits" : [ \
-                  { \
-                     "format" : "Real4U", \
-                     "unit" : "A" \
-                  } \
-                ] \
+               "presentationUnits" : [ "testSchema.DefaultReal[testSchema.UnitA]" ] \
               }, \
               "KOQD": {\
                 "schemaItemType":"KindOfQuantity", \
-                "persistenceUnit" : { \
-                  "format" : "DefaultReal", \
-                  "unit" : "A" \
-                }, \
+                "relativeError" : 0.0, \
+                "persistenceUnit" : "testSchema.UnitA", \
                "precision" : 0.0010, \
-               "presentationUnits" : [ \
-                  { \
-                     "format" : "Real4U", \
-                     "unit" : "A" \
-                  } \
-                ] \
+               "presentationUnits" : [ "testSchema.DefaultReal[testSchema.UnitA]" ] \
               }, \
               "EntityA" : { \
                 "schemaItemType" : "EntityClass" \
@@ -1967,31 +2065,31 @@ describe("ecjson2md", () => {
                   { \
                     "kindOfQuantity" : "testSchema.KOQA", \
                     "name" : "propertyA", \
-                    "propertyType" : "PrimitiveProperty", \
+                    "type" : "PrimitiveProperty", \
                     "typeName" : "double" \
                   }, \
                   { \
                     "kindOfQuantity" : "testSchema.KOQB", \
                     "label" : "propertyBLabel", \
                     "name" : "propertyB", \
-                    "propertyType" : "PrimitiveProperty", \
+                    "type" : "PrimitiveProperty", \
                     "typeName" : "double" \
                   }, \
                   { \
                     "kindOfQuantity" : "testSchema.KOQC", \
                     "label" : "propertyCLabel", \
                     "name" : "propertyC", \
-                    "propertyType" : "PrimitiveProperty", \
+                    "type" : "PrimitiveProperty", \
                     "typeName" : "double", \
-                    "isReadOnly" : true \
+                    "isReadOnly" : false \
                   }, \
                   { \
                     "kindOfQuantity" : "testSchema.KOQD", \
                     "label" : "propertyDLabel", \
                     "name" : "propertyD", \
-                    "propertyType" : "PrimitiveProperty", \
+                    "type" : "PrimitiveProperty", \
                     "typeName" : "double", \
-                    "readOnly" : true, \
+                    "isReadOnly" : true, \
                     "priority" : 1 \
                   } \
                 ] \
@@ -2007,9 +2105,9 @@ describe("ecjson2md", () => {
                     "kindOfQuantity" : "testSchema.KOQD", \
                     "label" : "propertyDLabel", \
                     "name" : "propertyD", \
-                    "propertyType" : "PrimitiveProperty", \
+                    "type" : "PrimitiveProperty", \
                     "typeName" : "double", \
-                    "readOnly" : true, \
+                    "isReadOnly" : true, \
                     "priority" : 1 \
                    } \
                 ] \
@@ -2230,7 +2328,7 @@ describe("ecjson2md", () => {
         const outputFilePath = path.join(outputDir, "customAttributeClassTest.md");
         const schemaJson = JSON.parse(
           '{ \
-            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+            "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema", \
             "alias":"testSchema", \
             "name": "testSchema", \
             "version":"02.00.00", \
@@ -2264,7 +2362,7 @@ describe("ecjson2md", () => {
                   { \
                     "name" : "PropertyA", \
                     "label" : "PropertyALabel", \
-                    "propertyType" : "PrimitiveProperty", \
+                    "type" : "PrimitiveProperty", \
                     "typeName" : "boolean" \
                   } \
                 ] \
@@ -2275,22 +2373,22 @@ describe("ecjson2md", () => {
                 "properties" : [ \
                   { \
                     "name" : "PropertyA", \
-                    "propertyType" : "PrimitiveProperty", \
+                    "type" : "PrimitiveProperty", \
                     "typeName" : "boolean" \
                   }, \
                   { \
                     "name" : "PropertyB", \
                     "label" : "PropertyBLabel", \
-                    "propertyType" : "PrimitiveProperty", \
+                    "type" : "PrimitiveProperty", \
                     "typeName" : "boolean", \
-                    "readOnly" : true \
+                    "isReadOnly" : true \
                   }, \
                   { \
                     "name" : "PropertyC", \
                     "label" : "PropertyCLabel", \
-                    "propertyType" : "PrimitiveProperty", \
+                    "type" : "PrimitiveProperty", \
                     "typeName" : "boolean", \
-                    "readOnly" : true, \
+                    "isReadOnly" : true, \
                     "priority" : 1 \
                   } \
                 ] \
@@ -2455,7 +2553,7 @@ describe("ecjson2md", () => {
         const outputFilePath = path.join(outputDir, "structClassTest.md");
         const schemaJson = JSON.parse(
           '{ \
-            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+            "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema", \
             "alias":"testSchema", \
             "name": "testSchema", \
             "version":"02.00.00", \
@@ -2494,7 +2592,7 @@ describe("ecjson2md", () => {
                 "properties" : [ \
                   { \
                     "name" : "propertyA", \
-                    "propertyType" : "PrimitiveProperty", \
+                    "type" : "PrimitiveProperty", \
                     "typeName" : "string" \
                   } \
                 ] \
@@ -2505,18 +2603,18 @@ describe("ecjson2md", () => {
                 "properties" : [ \
                   { \
                     "name" : "propertyA", \
-                    "propertyType" : "PrimitiveProperty", \
+                    "type" : "PrimitiveProperty", \
                     "typeName" : "string" \
                   }, \
                   { \
                     "name" : "propertyB", \
-                    "propertyType" : "PrimitiveProperty", \
+                    "type" : "PrimitiveProperty", \
                     "typeName" : "string", \
-                    "readOnly" : true \
+                    "isReadOnly" : true \
                   }, \
                   { \
                     "name" : "propertyV", \
-                    "propertyType" : "PrimitiveProperty", \
+                    "type" : "PrimitiveProperty", \
                     "typeName" : "string", \
                     "priority" : 1 \
                   } \
@@ -2701,7 +2799,7 @@ describe("ecjson2md", () => {
         const outputFilePath = path.join(outputDir, "structClassTest.md");
         const schemaJson = JSON.parse(
           '{ \
-            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema", \
+            "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema", \
             "alias":"testSchema", \
             "name": "testSchema", \
             "version":"02.00.00", \
@@ -2741,8 +2839,8 @@ describe("ecjson2md", () => {
             "",
             "**typeName:** PropertyCategory",
             "",
-            "**priority:** 0",
-            "",
+            //"**priority:** 0",
+            //"",
             "" ];
 
           // Act
@@ -2764,8 +2862,8 @@ describe("ecjson2md", () => {
             "",
             "this is a description",
             "",
-            "**priority:** 0",
-            "",
+            //"**priority:** 0",
+            //"",
             "" ];
 
           // Act
@@ -2789,8 +2887,8 @@ describe("ecjson2md", () => {
             "",
             "**displayLabel:** PropCategoryDLLabel",
             "",
-            "**priority:** 0",
-            "",
+            //"**priority:** 0",
+            //"",
             "" ];
 
           // Act
@@ -2808,12 +2906,31 @@ describe("ecjson2md", () => {
         describe("getSortedSchemaItems", () => {
           const schemaJson = JSON.parse(
           '{\
-            "$schema":"https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",\
+            "$schema":"https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",\
             "description":"This is the description",\
             "alias":"testSchema",\
             "name": "testSchema",\
             "version":"02.00.00",\
             "items": { \
+              "UnitA": { \
+                "schemaItemType":"Unit", \
+                "name":"A", \
+                "phenomenon": "testSchema.Phenomenon", \
+                "unitSystem":"testSchema.UnitSys", \
+                "definition":"" \
+              }, \
+              "Phenomenon": { \
+                "schemaItemType":"Phenomenon", \
+                "name":"Phenom", \
+                "label":"Phenomenon", \
+                "definition":"" \
+              }, \
+              "UnitSys": { \
+                "schemaItemType":"UnitSystem", \
+                "name":"UnitSys", \
+                "label":"Test Unit System", \
+                "description":"Test Unit System" \
+              }, \
               "EntityClassB": {\
                 "description": "this is a description", \
                 "schemaItemType":"EntityClass"\
@@ -2837,27 +2954,41 @@ describe("ecjson2md", () => {
                 "appliesTo" : "AnyProperty" \
               },\
               "EnumerationB":{\
-                "backingTypeName" : "int", \
-                "schemaItemType":"Enumeration"\
+                "type" : "int", \
+                "schemaItemType":"Enumeration", \
+                "isStrict" : true, \
+                "enumerators" : [] \
               },\
               "EnumerationC":{\
-                "backingTypeName" : "int", \
-                "schemaItemType":"Enumeration"\
+                "type" : "int", \
+                "schemaItemType":"Enumeration", \
+                "isStrict" : true, \
+                "enumerators" : [] \
               },\
               "EnumerationA":{\
-                "backingTypeName" : "int",  \
-                "schemaItemType":"Enumeration"\
+                "type" : "int",  \
+                "schemaItemType":"Enumeration", \
+                "isStrict" : true, \
+                "enumerators" : [] \
               },\
               "KindOfQuantityB":{\
-                "schemaItemType":"KindOfQuantity"\
+                "schemaItemType":"KindOfQuantity", \
+                "relativeError" : 0.0, \
+                "persistenceUnit" : "testSchema.UnitA" \
               },\
               "KindOfQuantityC":{\
-                "schemaItemType":"KindOfQuantity"\
+                "schemaItemType":"KindOfQuantity", \
+                "relativeError" : 0.0, \
+                "persistenceUnit" : "testSchema.UnitA" \
               },\
               "KindOfQuantityA":{\
-                "schemaItemType":"KindOfQuantity"\
+                "schemaItemType":"KindOfQuantity", \
+                "relativeError" : 0.0, \
+                "persistenceUnit" : "testSchema.UnitA" \
               },\
               "RelationshipClassB":{\
+                "strength" : "embedding", \
+                "strengthDirection" : "forward", \
                 "source" :{\
                   "constraintClasses" : [ "testSchema.KindOfQuantityA" ],\
                   "multiplicity" : "(0..1)",\
@@ -2873,6 +3004,8 @@ describe("ecjson2md", () => {
                 "schemaItemType":"RelationshipClass"\
               },\
               "RelationshipClassC":{\
+                "strength" : "embedding", \
+                "strengthDirection" : "forward", \
                 "source" :{\
                   "constraintClasses" : [ "testSchema.KindOfQuantityA" ],\
                   "multiplicity" : "(0..1)",\
@@ -2888,6 +3021,8 @@ describe("ecjson2md", () => {
                 "schemaItemType":"RelationshipClass"\
               },\
               "RelationshipClassA":{\
+                "strength" : "embedding", \
+                "strengthDirection" : "forward", \
                 "source" :{\
                   "constraintClasses" : [ "testSchema.KindOfQuantityA" ],\
                   "multiplicity" : "(0..1)",\

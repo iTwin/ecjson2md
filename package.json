@@ -19,7 +19,7 @@
     "build": "tsc",
     "test": "betools test-tsnode --testDir=./test/ --tscPaths",
     "test:watch": "betools test-tsnode --testDir=./test/ --watch",
-    "cover": "nyc node ./node_modules/@bentley/bentleyjs-tools/scripts/test-tsnode.js --testDir=./test/ --tscPaths",
+    "cover": "nyc node ./node_modules/@bentley/build-tools/scripts/test-tsnode.js --testDir=./test/ --tscPaths",
     "start": "npm run build && npm run test",
     "cli:dev": "npm run clean & npm run build & npm link"
   },
@@ -34,20 +34,20 @@
     "EC"
   ],
   "dependencies": {
-    "@bentley/bentleyjs-core": "^0.112.0",
-    "@bentley/ecschema-metadata": "^0.9.0",
+    "@bentley/bentleyjs-core": "^0.170.0",
+    "@bentley/ecschema-metadata": "^0.170.0",
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
     "glob": "^7.1.3"
   },
   "devDependencies": {
-    "@bentley/bentleyjs-tools": "^0.113.0",
+    "@bentley/build-tools": "^0.161.0",
     "@types/chai": "^4.1.7",
     "@types/glob": "^5.0.36",
     "@types/mocha": "^5.2.5",
     "@types/rimraf": "^2.0.2",
     "nyc": "^12.0.2",
-    "typescript": "^3.1.4"
+    "typescript": "^3.1.6"
   },
   "nyc": {
     "include": [
