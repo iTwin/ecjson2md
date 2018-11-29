@@ -1,5 +1,5 @@
 {
-   "$schema" : "https://dev.bentley.com/json_schemas/ec/31/draft-01/ecschema",
+   "$schema" : "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
    "alias" : "bis",
    "customAttributes" : [
       {
@@ -44,7 +44,7 @@
                ],
                "description" : "Description of the style",
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
@@ -58,7 +58,7 @@
                ],
                "description" : "Encoded style properties",
                "name" : "Data",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "binary"
             }
          ],
@@ -82,7 +82,7 @@
                ],
                "description" : "Description of the style",
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
@@ -96,7 +96,7 @@
                ],
                "description" : "Encoded style properties",
                "name" : "Data",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "binary"
             }
          ],
@@ -120,7 +120,7 @@
                ],
                "description" : "Description of the style",
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
@@ -134,7 +134,7 @@
                ],
                "description" : "Encoded style properties",
                "name" : "Data",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "binary"
             }
          ],
@@ -146,20 +146,22 @@
          "properties" : [
             {
                "name" : "StatementTypes",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "BisCore.AutoHandledPropertyStatementType"
             }
          ],
          "schemaItemType" : "CustomAttributeClass"
       },
       "AutoHandledPropertyStatementType" : {
-         "backingTypeName" : "int",
+         "type" : "int",
          "enumerators" : [
             {
+               "name"  : "ReadOnly",
                "label" : "ReadOnly = Select|Insert",
                "value" : 3
             },
             {
+               "name"  : "All",
                "label" : "All = Select | Insert | Update",
                "value" : 7
             }
@@ -179,12 +181,12 @@
          "properties" : [
             {
                "name" : "Type",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "int"
             },
             {
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -202,12 +204,12 @@
          "properties" : [
             {
                "name" : "Origin",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point2d"
             },
             {
                "name" : "Angle",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             }
          ],
@@ -225,22 +227,22 @@
          "properties" : [
             {
                "name" : "Origin",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point3d"
             },
             {
                "name" : "Yaw",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "name" : "Pitch",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "name" : "Roll",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             }
          ],
@@ -299,7 +301,7 @@
                ],
                "label" : "Description",
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
@@ -312,7 +314,7 @@
                   }
                ],
                "name" : "Rank",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "int"
             }
          ],
@@ -374,7 +376,7 @@
                "description" : "List of actions which are not permitted when the associated handler is not available",
                "minOccurs" : 0,
                "name" : "Restrictions",
-               "propertyType" : "PrimitiveArrayProperty",
+               "type" : "PrimitiveArrayProperty",
                "typeName" : "string"
             }
          ],
@@ -401,14 +403,14 @@
                ],
                "description" : "The unique name of Code Specification. A best practice is to incorporate the domain name into the Code Specification name to ensure uniqueness.",
                "name" : "Name",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
                "description" : "JSON string containing scope and fragment specifications to generate and validate code values",
                "extendedTypeName" : "Json",
                "name" : "JsonProperties",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -444,7 +446,7 @@
          "properties" : [
             {
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -456,40 +458,47 @@
          "properties" : [
             {
                "name" : "StatementTypes",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "BisCore.CustomHandledPropertyStatementType"
             }
          ],
          "schemaItemType" : "CustomAttributeClass"
       },
       "CustomHandledPropertyStatementType" : {
-         "backingTypeName" : "int",
+         "type" : "int",
          "enumerators" : [
             {
+               "name"  : "None",
                "label" : "None",
                "value" : 0
             },
             {
+               "name"  : "Select",
                "label" : "Select",
                "value" : 1
             },
             {
+               "name"  : "Insert",
                "label" : "Insert",
                "value" : 2
             },
             {
+               "name"  : "ReadOnly",
                "label" : "ReadOnly = Select|Insert",
                "value" : 3
             },
             {
+               "name"  : "Update",
                "label" : "Update",
                "value" : 4
             },
             {
+               "name"  : "InsertUpdate",
                "label" : "InsertUpdate = Insert | Update",
                "value" : 6
             },
             {
+               "name"  : "All",
                "label" : "All = Select | Insert | Update",
                "value" : 7
             }
@@ -522,7 +531,7 @@
                "description" : "If true, this definition should not be displayed in the GUI.",
                "label" : "Is Private",
                "name" : "IsPrivate",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "boolean"
             }
          ],
@@ -814,7 +823,7 @@
                "description" : "The Model that contains this element.",
                "direction" : "backward",
                "name" : "Model",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "readOnly" : true,
                "relationshipName" : "BisCore.ModelContainsElements"
             },
@@ -835,7 +844,7 @@
                "description" : "The last modified time of the element. This is maintained by the core framework and should not be set directly by applications.",
                "label" : "Last Modified",
                "name" : "LastMod",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "readOnly" : true,
                "typeName" : "dateTime"
             },
@@ -857,7 +866,7 @@
                "direction" : "backward",
                "label" : "Code Specification",
                "name" : "CodeSpec",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.CodeSpecSpecifiesCode"
             },
             {
@@ -878,7 +887,7 @@
                "direction" : "backward",
                "label" : "Code Scope",
                "name" : "CodeScope",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.ElementScopesCode"
             },
             {
@@ -896,7 +905,7 @@
                "description" : "Code is the formal name (business key) for an element. The combination of Code Specification, Code Scope, and the Code value must be unique.",
                "label" : "Code",
                "name" : "CodeValue",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
@@ -915,7 +924,7 @@
                "description" : "An optional name given by the user (as opposed to the formal name stored in the Code value).",
                "label" : "User Label",
                "name" : "UserLabel",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
@@ -935,7 +944,7 @@
                "description" : "The parent element that owns this element.",
                "direction" : "backward",
                "name" : "Parent",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.ElementOwnsChildElements"
             },
             {
@@ -957,7 +966,7 @@
                "extendedTypeName" : "BeGuid",
                "label" : "Federation GUID",
                "name" : "FederationGuid",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "binary"
             },
             {
@@ -974,7 +983,7 @@
                "extendedTypeName" : "Json",
                "label" : "JSON Properties",
                "name" : "JsonProperties",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -1019,13 +1028,13 @@
             {
                "description" : "Bits that indicate the status of the dependency. Satisfied=0, Failed=1, Deferred=128. Deferred and Failed bits can be OR'd together.",
                "name" : "Status",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "int"
             },
             {
                "description" : "The priority of this dependency, relative to other EntityDrivesEntity instances. Note that EntityHasChildEntities dependencies always take priority over EntityDrivesEntity dependencies.",
                "name" : "Priority",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "int"
             }
          ],
@@ -1072,7 +1081,7 @@
             {
                "label" : "Member Priority",
                "name" : "MemberPriority",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "int"
             }
          ],
@@ -1141,7 +1150,7 @@
                "description" : "The owning Element",
                "direction" : "backward",
                "name" : "Element",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.ElementOwnsMultiAspects"
             }
          ],
@@ -1282,7 +1291,7 @@
                "description" : "The owning Element",
                "direction" : "backward",
                "name" : "Element",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.ElementOwnsUniqueAspect"
             }
          ],
@@ -1315,7 +1324,7 @@
                   }
                ],
                "name" : "Name",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
@@ -1325,7 +1334,7 @@
                   }
                ],
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -1375,7 +1384,7 @@
                "description" : "The Drawing Category used to categorize the 2D Geometric Element",
                "direction" : "forward",
                "name" : "Category",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.GeometricElement2dIsInCategory"
             },
             {
@@ -1386,7 +1395,7 @@
                ],
                "description" : "The placement origin of the Element.",
                "name" : "Origin",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point2d"
             },
             {
@@ -1397,7 +1406,7 @@
                ],
                "description" : "The placement rotation (in degrees) of the Element.",
                "name" : "Rotation",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
@@ -1409,7 +1418,7 @@
                "description" : "The 'low' point of the element-aligned bounding box of the Element.",
                "label" : "Bounding Box Low",
                "name" : "BBoxLow",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point2d"
             },
             {
@@ -1421,7 +1430,7 @@
                "description" : "The 'high' point of the element-aligned bounding box of the Element.",
                "label" : "Bounding Box High",
                "name" : "BBoxHigh",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point2d"
             },
             {
@@ -1437,7 +1446,7 @@
                "extendedTypeName" : "GeometryStream",
                "label" : "Geometry Stream",
                "name" : "GeometryStream",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "binary"
             },
             {
@@ -1455,7 +1464,7 @@
                "direction" : "forward",
                "label" : "Type Definition",
                "name" : "TypeDefinition",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.GeometricElement2dHasTypeDefinition"
             }
          ],
@@ -1527,7 +1536,7 @@
                "description" : "The Spatial Category used to categorize the 3D Geometric Element",
                "direction" : "forward",
                "name" : "Category",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.GeometricElement3dIsInCategory"
             },
             {
@@ -1542,7 +1551,7 @@
                "description" : "If true, this element will have an entry in the Spatial Index.",
                "label" : "In Spatial Index",
                "name" : "InSpatialIndex",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "boolean"
             },
             {
@@ -1556,7 +1565,7 @@
                ],
                "description" : "The placement origin of the Element.",
                "name" : "Origin",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point3d"
             },
             {
@@ -1570,7 +1579,7 @@
                ],
                "description" : "The Yaw angle (in degrees) of the orientation of the Element.",
                "name" : "Yaw",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
@@ -1584,7 +1593,7 @@
                ],
                "description" : "The Pitch angle (in degrees) of the orientation of the Element.",
                "name" : "Pitch",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
@@ -1598,7 +1607,7 @@
                ],
                "description" : "The Roll angle (in degrees) of the orientation of the Element.",
                "name" : "Roll",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
@@ -1613,7 +1622,7 @@
                "description" : "The 'low' point of the element-aligned bounding box of the Element.",
                "label" : "Bounding Box Low",
                "name" : "BBoxLow",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point3d"
             },
             {
@@ -1628,7 +1637,7 @@
                "description" : "The 'high' point of the element-aligned bounding box of the Element.",
                "label" : "Bounding Box High",
                "name" : "BBoxHigh",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point3d"
             },
             {
@@ -1644,7 +1653,7 @@
                "extendedTypeName" : "GeometryStream",
                "label" : "Geometry Stream",
                "name" : "GeometryStream",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "binary"
             },
             {
@@ -1662,7 +1671,7 @@
                "direction" : "forward",
                "label" : "Type Definition",
                "name" : "TypeDefinition",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.GeometricElement3dHasTypeDefinition"
             }
          ],
@@ -1732,7 +1741,7 @@
                "description" : "The actual coordinates of (0,0) in Model coordinates. An offest applied to all Model coordinates.",
                "label" : "Global Origin",
                "name" : "GlobalOrigin",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point2d"
             }
          ],
@@ -1767,7 +1776,7 @@
                "extendedTypeName" : "GeometryStream",
                "label" : "Geometry Stream",
                "name" : "GeometryStream",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "binary"
             },
             {
@@ -1778,7 +1787,7 @@
                ],
                "label" : "Bounding Box Low",
                "name" : "BBoxLow",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point3d"
             },
             {
@@ -1789,7 +1798,7 @@
                ],
                "label" : "Bounding Box High",
                "name" : "BBoxHigh",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point3d"
             }
          ],
@@ -2006,7 +2015,7 @@
          "properties" : [
             {
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -2080,7 +2089,7 @@
             {
                "label" : "Is light turned on",
                "name" : "Enabled",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "boolean"
             }
          ],
@@ -2099,14 +2108,14 @@
             {
                "description" : "Description of the style",
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
                "description" : "Encoded style properties",
                "extendedTypeName" : "Json",
                "name" : "Data",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -2178,7 +2187,7 @@
                "direction" : "backward",
                "label" : "Parent Model",
                "name" : "ParentModel",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "readOnly" : true,
                "relationshipName" : "BisCore.ModelOwnsSubModel"
             },
@@ -2193,7 +2202,7 @@
                "direction" : "forward",
                "label" : "Modeled Element",
                "name" : "ModeledElement",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "readOnly" : true,
                "relationshipName" : "BisCore.ModelModelsElement"
             },
@@ -2206,7 +2215,7 @@
                "description" : "If IsPrivate is true then this model should not appear in lists shown to the user.",
                "label" : "Is Private",
                "name" : "IsPrivate",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "boolean"
             },
             {
@@ -2218,7 +2227,7 @@
                "description" : "IsTemplate will be true if this Model is used as a template for creating new instances.",
                "label" : "Is Template",
                "name" : "IsTemplate",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "boolean"
             },
             {
@@ -2231,7 +2240,7 @@
                "extendedTypeName" : "Json",
                "label" : "JSON Properties",
                "name" : "JsonProperties",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -2521,12 +2530,12 @@
          "properties" : [
             {
                "name" : "PaletteName",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -2575,7 +2584,7 @@
                "extendedTypeName" : "BeGuid",
                "label" : "Repository GUID",
                "name" : "RepositoryGuid",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "binary"
             }
          ],
@@ -2655,24 +2664,24 @@
          "properties" : [
             {
                "name" : "Scale",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "name" : "Height",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "name" : "Width",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "direction" : "forward",
                "label" : "Sheet Template",
                "name" : "SheetTemplate",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.SheetHasSheetTemplate"
             }
          ],
@@ -2691,7 +2700,7 @@
                "direction" : "forward",
                "label" : "Border Template",
                "name" : "BorderTemplate",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.SheetBorderHasSheetBorderTemplate"
             }
          ],
@@ -2726,12 +2735,12 @@
          "properties" : [
             {
                "name" : "Height",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "name" : "Width",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             }
          ],
@@ -2796,18 +2805,18 @@
          "properties" : [
             {
                "name" : "Height",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "name" : "Width",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
                "direction" : "forward",
                "name" : "Border",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.SheetTemplateHasSheetBorder"
             }
          ],
@@ -2876,7 +2885,7 @@
                "description" : "Minimum X value of the axis-aligned range box that encloses the spatial element",
                "label" : "Min X",
                "name" : "MinX",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "readOnly" : true,
                "typeName" : "double"
             },
@@ -2884,7 +2893,7 @@
                "description" : "Maximum X value of the axis-aligned range box that encloses the spatial element",
                "label" : "Max X",
                "name" : "MaxX",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "readOnly" : true,
                "typeName" : "double"
             },
@@ -2892,7 +2901,7 @@
                "description" : "Minimum Y value of the axis-aligned range box that encloses the spatial element",
                "label" : "Min Y",
                "name" : "MinY",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "readOnly" : true,
                "typeName" : "double"
             },
@@ -2900,7 +2909,7 @@
                "description" : "Maximum Y value of the axis-aligned range box that encloses the spatial element",
                "label" : "Max Y",
                "name" : "MaxY",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "readOnly" : true,
                "typeName" : "double"
             },
@@ -2908,7 +2917,7 @@
                "description" : "Minimum Z value of the axis-aligned range box that encloses the spatial element",
                "label" : "Min Z",
                "name" : "MinZ",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "readOnly" : true,
                "typeName" : "double"
             },
@@ -2916,7 +2925,7 @@
                "description" : "Maximum Z value of the axis-aligned range box that encloses the spatial element",
                "label" : "Max Z",
                "name" : "MaxZ",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "readOnly" : true,
                "typeName" : "double"
             }
@@ -3028,7 +3037,7 @@
                "direction" : "forward",
                "label" : "Model Selector",
                "name" : "ModelSelector",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.SpatialViewDefinitionUsesModelSelector"
             }
          ],
@@ -3069,7 +3078,7 @@
                   }
                ],
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
@@ -3080,7 +3089,7 @@
                ],
                "extendedTypeName" : "Json",
                "name" : "Properties",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -3099,7 +3108,7 @@
          "properties" : [
             {
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -3266,7 +3275,7 @@
                ],
                "label" : "Text Annotation",
                "name" : "TextAnnotation",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "binary"
             }
          ],
@@ -3290,7 +3299,7 @@
                ],
                "description" : "Description of the style",
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
@@ -3304,7 +3313,7 @@
                ],
                "description" : "Encoded style properties",
                "name" : "Data",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "binary"
             }
          ],
@@ -3326,7 +3335,7 @@
                   }
                ],
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
@@ -3340,7 +3349,7 @@
                ],
                "description" : "Encoded texture data",
                "name" : "Data",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "binary"
             },
             {
@@ -3351,7 +3360,7 @@
                ],
                "description" : "Format of the encoded texture data",
                "name" : "Format",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "int"
             },
             {
@@ -3362,7 +3371,7 @@
                ],
                "label" : "Width",
                "name" : "Width",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "int"
             },
             {
@@ -3373,7 +3382,7 @@
                ],
                "label" : "Height",
                "name" : "Height",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "int"
             },
             {
@@ -3383,7 +3392,7 @@
                   }
                ],
                "name" : "Flags",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "int"
             }
          ],
@@ -3398,7 +3407,7 @@
             {
                "direction" : "forward",
                "name" : "Recipe",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.TypeDefinitionHasRecipe"
             }
          ],
@@ -3450,7 +3459,7 @@
                ],
                "label" : "URL",
                "name" : "Url",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
@@ -3460,7 +3469,7 @@
                   }
                ],
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             }
          ],
@@ -3479,7 +3488,7 @@
                "description" : "The view that is to be attached",
                "direction" : "backward",
                "name" : "View",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.ViewIsAttached"
             }
          ],
@@ -3500,7 +3509,7 @@
          "properties" : [
             {
                "name" : "Description",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "string"
             },
             {
@@ -3512,7 +3521,7 @@
                "direction" : "forward",
                "label" : "Category Selector",
                "name" : "CategorySelector",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.ViewDefinitionUsesCategorySelector"
             },
             {
@@ -3524,7 +3533,7 @@
                "direction" : "forward",
                "label" : "Display Style",
                "name" : "DisplayStyle",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.ViewDefinitionUsesDisplayStyle"
             }
          ],
@@ -3550,7 +3559,7 @@
                "direction" : "backward",
                "label" : "Base Model",
                "name" : "BaseModel",
-               "propertyType" : "NavigationProperty",
+               "type" : "NavigationProperty",
                "relationshipName" : "BisCore.BaseModelForView2d"
             },
             {
@@ -3561,7 +3570,7 @@
                ],
                "description" : "Lower left corner of the viewed area.",
                "name" : "Origin",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point2d"
             },
             {
@@ -3572,7 +3581,7 @@
                ],
                "description" : "Size of the view diagonal",
                "name" : "Extents",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point2d"
             },
             {
@@ -3584,7 +3593,7 @@
                "description" : "Rotation angle in degrees of the viewed area.",
                "label" : "Rotation Angle",
                "name" : "RotationAngle",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             }
          ],
@@ -3608,7 +3617,7 @@
                ],
                "description" : "Origin of the viewed volume on the lower, back, rear",
                "name" : "Origin",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point3d"
             },
             {
@@ -3619,7 +3628,7 @@
                ],
                "description" : "Size of the view diagonal",
                "name" : "Extents",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point3d"
             },
             {
@@ -3630,7 +3639,7 @@
                ],
                "description" : "Yaw component of the view direction in degrees",
                "name" : "Yaw",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
@@ -3641,7 +3650,7 @@
                ],
                "description" : "Pitch component of the view direction in degrees",
                "name" : "Pitch",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
@@ -3652,7 +3661,7 @@
                ],
                "description" : "Roll component of the view direction in degrees",
                "name" : "Roll",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
@@ -3664,7 +3673,7 @@
                "description" : "Is the camera actually turned on?",
                "label" : "Is Camera On",
                "name" : "IsCameraOn",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "boolean"
             },
             {
@@ -3676,7 +3685,7 @@
                "description" : "Camera eye point",
                "label" : "Eye Point",
                "name" : "EyePoint",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "point3d"
             },
             {
@@ -3688,7 +3697,7 @@
                "description" : "Camera lens angle in degrees",
                "label" : "Lens Angle",
                "name" : "LensAngle",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             },
             {
@@ -3700,7 +3709,7 @@
                "description" : "Camera focus distance",
                "label" : "Focus Distance",
                "name" : "FocusDistance",
-               "propertyType" : "PrimitiveProperty",
+               "type" : "PrimitiveProperty",
                "typeName" : "double"
             }
          ],

@@ -1639,7 +1639,7 @@ A Volume Element is a Spatial Location Element that is restricted to defining a 
 
 **baseClass:** [BisCore:ElementOwnsChildElements](#elementownschildelements)
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 
@@ -1783,9 +1783,9 @@ Relates a 2D DrawingGraphic to the Element that it represents.
 
 **baseClass:** [BisCore:ModelModelsElement](#modelmodelselement)
 
-**Strength:** Referencing
+**Strength:** Embedding
 
-**strengthDirection:** Forward
+**strengthDirection:** Backward
 
 #### Source
 
@@ -1855,7 +1855,7 @@ A relationship that indicates that child Elements are meant to be hidden.
 
 **baseClass:** [BisCore:ElementOwnsChildElements](#elementownschildelements)
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 
@@ -1965,7 +1965,7 @@ Relates an Element to child Elements which represent parts of the Entity modeled
 
 **modifier:** None
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 
@@ -1999,7 +1999,7 @@ Relates an Element to child Elements which represent parts of the Entity modeled
 
 **modifier:** None
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 
@@ -2033,7 +2033,7 @@ Relates an Element to child Elements which represent parts of the Entity modeled
 
 **modifier:** None
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 
@@ -2173,7 +2173,7 @@ Element is in Category
 
 **Strength:** Referencing
 
-**strengthDirection:** Forward
+**strengthDirection:** Backward
 
 #### Source
 
@@ -2243,7 +2243,7 @@ Element is in Category
 
 **Strength:** Referencing
 
-**strengthDirection:** Forward
+**strengthDirection:** Backward
 
 #### Source
 
@@ -2387,7 +2387,7 @@ The relationship that enforces that each Element belongs to exactly one Model.
 
 **modifier:** Sealed
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 
@@ -2423,9 +2423,9 @@ Relates a Model to the Element which it describes or breaks down into more detai
 
 **modifier:** None
 
-**Strength:** Referencing
+**Strength:** Embedding
 
-**strengthDirection:** Forward
+**strengthDirection:** Backward
 
 #### Source
 
@@ -2459,7 +2459,7 @@ The relationship that is used to build a model hierarchy index. This is done for
 
 **modifier:** Sealed
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 
@@ -2567,7 +2567,7 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 **baseClass:** [BisCore:ElementOwnsChildElements](#elementownschildelements)
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 
@@ -2639,9 +2639,9 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 **baseClass:** [BisCore:ModelModelsElement](#modelmodelselement)
 
-**Strength:** Referencing
+**Strength:** Embedding
 
-**strengthDirection:** Forward
+**strengthDirection:** Backward
 
 #### Source
 
@@ -2711,7 +2711,7 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 **baseClass:** [BisCore:ElementOwnsChildElements](#elementownschildelements)
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 
@@ -2815,9 +2815,9 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 **baseClass:** [BisCore:ModelModelsElement](#modelmodelselement)
 
-**Strength:** Referencing
+**Strength:** Embedding
 
-**strengthDirection:** Forward
+**strengthDirection:** Backward
 
 #### Source
 
@@ -2955,7 +2955,7 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 **baseClass:** [BisCore:ElementOwnsChildElements](#elementownschildelements)
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 
@@ -2991,7 +2991,7 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 **baseClass:** [BisCore:ElementOwnsChildElements](#elementownschildelements)
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 
@@ -3027,7 +3027,7 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 **baseClass:** [BisCore:ElementOwnsUniqueAspect](#elementownsuniqueaspect)
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 
@@ -3063,7 +3063,7 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 **baseClass:** [BisCore:ElementOwnsUniqueAspect](#elementownsuniqueaspect)
 
-**Strength:** Referencing
+**Strength:** Embedding
 
 **strengthDirection:** Forward
 

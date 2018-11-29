@@ -21,16 +21,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Acceleration
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** M/SEC.SQ
+**Persistence Unit:** M_PER_SEC_SQ
 
-**Default Presentation Unit**: M/SEC.SQ
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- CM/SEC.SQ
-- FT/SEC.SQ
+- DefaultRealU(4) [ M_PER_SEC_SQ ]
+- DefaultRealU(4) [ CM_PER_SEC_SQ ]
+- DefaultRealU(4) [ FT_PER_SEC_SQ ]
 
 ### ANGLE
 
@@ -38,15 +39,16 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Angle
 
-**Precision:** 0.0001
+**Relative Error:** 0.0001
 
 **Persistence Unit:** RAD
 
-**Default Presentation Unit**: ARC_DEG
+**Precision:** 2
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- ARC_DEG
+- DefaultRealU(2) [ ARC_DEG ]
+- undefined [ undefined ]
 
 ### ANGULAR_VELOCITY
 
@@ -54,16 +56,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Angular Velocity
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** RAD/SEC
+**Persistence Unit:** RAD_PER_SEC
 
-**Default Presentation Unit**: RAD/SEC
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- DEG/SEC
-- RPM
+- DefaultRealU(4) [ RAD_PER_SEC ]
+- DefaultRealU(4) [ DEG_PER_SEC ]
+- DefaultRealU(4) [ RPM ]
 
 ### AREA
 
@@ -71,15 +74,16 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Area
 
-**Precision:** 0.0001
+**Relative Error:** 0.0001
 
-**Persistence Unit:** SQ.M
+**Persistence Unit:** SQ_M
 
-**Default Presentation Unit**: SQ.M
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- SQ.FT
+- DefaultRealU(4) [ SQ_M ]
+- DefaultRealU(4) [ SQ_FT ]
 
 ### AREA_LARGE
 
@@ -87,15 +91,16 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Large Area
 
-**Precision:** 0.01
+**Relative Error:** 0.01
 
-**Persistence Unit:** SQ.M
+**Persistence Unit:** SQ_M
 
-**Default Presentation Unit**: SQ.KM
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- SQ.MILE
+- DefaultRealU(4) [ SQ_KM ]
+- DefaultRealU(4) [ SQ_MILE ]
 
 ### AREA_SMALL
 
@@ -103,15 +108,16 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Small Area
 
-**Precision:** 0.0001
+**Relative Error:** 0.0001
 
-**Persistence Unit:** SQ.M
+**Persistence Unit:** SQ_M
 
-**Default Presentation Unit**: SQ.MM
+**Precision:** 2
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- SQ.IN
+- DefaultRealU(2) [ SQ_MM ]
+- DefaultRealU(4) [ SQ_IN ]
 
 ### CURRENT
 
@@ -119,15 +125,16 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Current
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
 **Persistence Unit:** A
 
-**Default Presentation Unit**: A
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- KILOAMPERE
+- DefaultRealU(4) [ A ]
+- DefaultRealU(4) [ KILOAMPERE ]
 
 ### DENSITY
 
@@ -135,18 +142,19 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Density
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** KG/CUB.M
+**Persistence Unit:** KG_PER_CUB_M
 
-**Default Presentation Unit**: KG/CUB.M
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- LBM/CUB.FT
-- G/CUB.CM
-- LBM/CUB.IN
-- KIP/CUB.FT
+- DefaultRealU(4) [ KG_PER_CUB_M ]
+- DefaultRealU(4) [ LBM_PER_CUB_FT ]
+- DefaultRealU(4) [ G_PER_CUB_CM ]
+- DefaultRealU(4) [ LBM_PER_CUB_IN ]
+- DefaultRealU(4) [ KIP_PER_CUB_FT ]
 
 ### DYNAMIC_VISCOSITY
 
@@ -154,17 +162,18 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Dynamic Viscosity
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** PA-S
+**Persistence Unit:** PA_S
 
-**Default Presentation Unit**: PA-S
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- POISE
-- CENTIPOISE
-- LBM/(FT\*S)
+- DefaultRealU(4) [ PA_S ]
+- DefaultRealU(4) [ POISE ]
+- DefaultRealU(4) [ CENTIPOISE ]
+- DefaultRealU(4) [ LBM_PER_FT_S ]
 
 ### ELECTRIC_POTENTIAL
 
@@ -172,16 +181,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Electric Potential
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
 **Persistence Unit:** VOLT
 
-**Default Presentation Unit**: VOLT
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- KILOVOLT
-- MEGAVOLT
+- DefaultRealU(4) [ VOLT ]
+- DefaultRealU(4) [ KILOVOLT ]
+- DefaultRealU(4) [ MEGAVOLT ]
 
 ### ENERGY
 
@@ -189,17 +199,18 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Energy
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
 **Persistence Unit:** J
 
-**Default Presentation Unit**: J
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- KJ
-- BTU
-- KWH
+- DefaultRealU(4) [ J ]
+- DefaultRealU(4) [ KJ ]
+- DefaultRealU(4) [ BTU ]
+- DefaultRealU(4) [ KWH ]
 
 ### FLOW
 
@@ -207,16 +218,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Flow Rate
 
-**Precision:** 0.00001
+**Relative Error:** 0.00001
 
-**Persistence Unit:** CUB.M/SEC
+**Persistence Unit:** CUB_M_PER_SEC
 
-**Default Presentation Unit**: LITRE/MIN
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- CUB.FT/MIN
-- GALLON/MIN
+- DefaultRealU(4) [ LITRE_PER_MIN ]
+- DefaultRealU(4) [ CUB_FT_PER_MIN ]
+- DefaultRealU(4) [ GALLON_PER_MIN ]
 
 ### FORCE
 
@@ -224,17 +236,18 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Force
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
 **Persistence Unit:** N
 
-**Default Presentation Unit**: N
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- KN
-- LBF
-- KPF
+- DefaultRealU(4) [ N ]
+- DefaultRealU(4) [ KN ]
+- DefaultRealU(4) [ LBF ]
+- DefaultRealU(4) [ KPF ]
 
 ### FORCE_DENSITY
 
@@ -242,17 +255,18 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Force Density
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** N/CUB.M
+**Persistence Unit:** N_PER_CUB_M
 
-**Default Presentation Unit**: N/CUB.M
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- KN/CUB.M
-- N/CUB.FT
-- KN/CUB.FT
+- DefaultRealU(4) [ N_PER_CUB_M ]
+- DefaultRealU(4) [ KN_PER_CUB_M ]
+- DefaultRealU(4) [ N_PER_CUB_FT ]
+- DefaultRealU(4) [ KN_PER_CUB_FT ]
 
 ### FREQUENCY
 
@@ -260,16 +274,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Frequency
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
 **Persistence Unit:** HZ
 
-**Default Presentation Unit**: HZ
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- KHZ
-- MHZ
+- DefaultRealU(4) [ HZ ]
+- DefaultRealU(4) [ KHZ ]
+- DefaultRealU(4) [ MHZ ]
 
 ### HEAT_TRANSFER
 
@@ -277,16 +292,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Heat Transfer
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** W/(SQ.M*K)
+**Persistence Unit:** W_PER_SQ_M_K
 
-**Default Presentation Unit**: W/(SQ.M*K)
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- W/(SQ.M\*CELSIUS)
-- BTU/(SQ.FT\*HR\*FAHRENHEIT)
+- DefaultRealU(4) [ W_PER_SQ_M_K ]
+- DefaultRealU(4) [ W_PER_SQ_M_CELSIUS ]
+- DefaultRealU(4) [ BTU_PER_SQ_FT_HR_FAHRENHEIT ]
 
 ### ILLUMINANCE
 
@@ -294,15 +310,16 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Illuminance
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
 **Persistence Unit:** LUX
 
-**Default Presentation Unit**: LUX
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- LUMEN/SQ.FT
+- DefaultRealU(4) [ LUX ]
+- DefaultRealU(4) [ LUMEN_PER_SQ_FT ]
 
 ### LENGTH
 
@@ -310,18 +327,19 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Length
 
-**Precision:** 0.00001
+**Relative Error:** 0.00001
 
 **Persistence Unit:** M
 
-**Default Presentation Unit**: M
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- MM
-- FT
-- FT
-- FT
+- DefaultRealU(4) [ M ]
+- DefaultRealU(4) [ MM ]
+- undefined [ undefined ]
+- AmerFI(16) [ undefined ]
+- DefaultRealU(4) [ FT ]
 
 ### LENGTH_LONG
 
@@ -329,18 +347,19 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Long Length
 
-**Precision:** 0.0001
+**Relative Error:** 0.0001
 
 **Persistence Unit:** M
 
-**Default Presentation Unit**: KM
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- M
-- FT
-- FT
-- FT
+- DefaultRealU(4) [ KM ]
+- DefaultRealU(4) [ M ]
+- undefined [ undefined ]
+- AmerFI(16) [ undefined ]
+- DefaultRealU(4) [ FT ]
 
 ### LENGTH_SHORT
 
@@ -348,19 +367,20 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Short Length
 
-**Precision:** 0.01
+**Relative Error:** 0.01
 
 **Persistence Unit:** M
 
-**Default Presentation Unit**: MM
+**Precision:** 2
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- CM
-- FT
-- IN
-- IN
-- IN
+- DefaultRealU(2) [ MM ]
+- DefaultRealU(4) [ CM ]
+- undefined [ undefined ]
+- undefined [ undefined ]
+- AmerFI(16) [ undefined ]
+- DefaultRealU(4) [ IN ]
 
 ### LINEAR_DENSITY
 
@@ -368,16 +388,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Linear Density
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** KG/M
+**Persistence Unit:** KG_PER_M
 
-**Default Presentation Unit**: KG/M
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- KG/MM
-- LBM/FT
+- DefaultRealU(4) [ KG_PER_M ]
+- DefaultRealU(4) [ KG_PER_MM ]
+- DefaultRealU(4) [ LBM_PER_FT ]
 
 ### LINEAR_FORCE
 
@@ -385,16 +406,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Linear Force
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** N/M
+**Persistence Unit:** N_PER_M
 
-**Default Presentation Unit**: N/M
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- N/MM
-- LBF/IN
+- DefaultRealU(4) [ N_PER_M ]
+- DefaultRealU(4) [ N_PER_MM ]
+- DefaultRealU(4) [ LBF_PER_IN ]
 
 ### LINEAR_ROTATIONAL_SPRING_CONSTANT
 
@@ -402,11 +424,15 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Linear Rotational Spring Constant
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** N/RAD
+**Persistence Unit:** N_PER_RAD
 
-**Default Presentation Unit**: N/RAD
+**Precision:** 4
+
+**Presentation Units**
+
+- DefaultRealU(4) [ N_PER_RAD ]
 
 ### LIQUID_VOLUME
 
@@ -414,15 +440,16 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Liquid Volume
 
-**Precision:** 0.0001
+**Relative Error:** 0.0001
 
-**Persistence Unit:** CUB.M
+**Persistence Unit:** CUB_M
 
-**Default Presentation Unit**: LITRE
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- GALLON
+- DefaultRealU(4) [ LITRE ]
+- DefaultRealU(4) [ GALLON ]
 
 ### LIQUID_VOLUME_LARGE
 
@@ -430,15 +457,16 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Liquid Large Volume
 
-**Precision:** 0.01
+**Relative Error:** 0.01
 
-**Persistence Unit:** CUB.M
+**Persistence Unit:** CUB_M
 
-**Default Presentation Unit**: THOUSAND_LITRE
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- THOUSAND_GALLON
+- DefaultRealU(4) [ THOUSAND_LITRE ]
+- DefaultRealU(4) [ THOUSAND_GALLON ]
 
 ### LIQUID_VOLUME_SMALL
 
@@ -446,15 +474,16 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Liquid Small Volume
 
-**Precision:** 0.0001
+**Relative Error:** 0.0001
 
-**Persistence Unit:** CUB.M
+**Persistence Unit:** CUB_M
 
-**Default Presentation Unit**: LITRE
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- GALLON
+- DefaultRealU(4) [ LITRE ]
+- DefaultRealU(4) [ GALLON ]
 
 ### LUMINOUS_FLUX
 
@@ -462,11 +491,15 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Luminous Flux
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
 **Persistence Unit:** LUMEN
 
-**Default Presentation Unit**: LUMEN
+**Precision:** 4
+
+**Presentation Units**
+
+- DefaultRealU(4) [ LUMEN ]
 
 ### LUMINOUS_INTENSITY
 
@@ -474,11 +507,15 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Luminous Intensity
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
 **Persistence Unit:** CD
 
-**Default Presentation Unit**: CD
+**Precision:** 4
+
+**Presentation Units**
+
+- DefaultRealU(4) [ CD ]
 
 ### MOMENT_OF_INERTIA
 
@@ -486,18 +523,19 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Moment Of Inertia
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** M^4
+**Persistence Unit:** M_TO_THE_FOURTH
 
-**Default Presentation Unit**: M^4
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- MM^4
-- CM^4
-- IN^4
-- FT^4
+- DefaultRealU(4) [ M_TO_THE_FOURTH ]
+- DefaultRealU(4) [ MM_TO_THE_FOURTH ]
+- DefaultRealU(4) [ CM_TO_THE_FOURTH ]
+- DefaultRealU(4) [ IN_TO_THE_FOURTH ]
+- DefaultRealU(4) [ FT_TO_THE_FOURTH ]
 
 ### POWER
 
@@ -505,19 +543,20 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Power
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
 **Persistence Unit:** W
 
-**Default Presentation Unit**: W
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- KW
-- MEGAW
-- BTU/HR
-- KILOBTU/HR
-- HP
+- DefaultRealU(4) [ W ]
+- DefaultRealU(4) [ KW ]
+- DefaultRealU(4) [ MEGAW ]
+- DefaultRealU(4) [ BTU_PER_HR ]
+- DefaultRealU(4) [ KILOBTU_PER_HR ]
+- DefaultRealU(4) [ HP ]
 
 ### PRESSURE
 
@@ -525,16 +564,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Pressure
 
-**Precision:** 0.0001
+**Relative Error:** 0.0001
 
 **Persistence Unit:** PA
 
-**Default Presentation Unit**: PA
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- PSIG
-- PSI
+- DefaultRealU(4) [ PA ]
+- DefaultRealU(4) [ PSIG ]
+- DefaultRealU(4) [ PSI ]
 
 ### PRESSURE_GRADIENT
 
@@ -542,15 +582,16 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Pressure Gradient
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** PA/M
+**Persistence Unit:** PA_PER_M
 
-**Default Presentation Unit**: PA/M
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- BAR/KM
+- DefaultRealU(4) [ PA_PER_M ]
+- DefaultRealU(4) [ BAR_PER_KM ]
 
 ### PROCESS_PIPING_FLOW
 
@@ -558,16 +599,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Process Piping Flow Rate
 
-**Precision:** 0.00001
+**Relative Error:** 0.00001
 
-**Persistence Unit:** CUB.M/SEC
+**Persistence Unit:** CUB_M_PER_SEC
 
-**Default Presentation Unit**: LITRE/MIN
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- CUB.FT/MIN
-- GALLON/MIN
+- DefaultRealU(4) [ LITRE_PER_MIN ]
+- DefaultRealU(4) [ CUB_FT_PER_MIN ]
+- DefaultRealU(4) [ GALLON_PER_MIN ]
 
 ### PROCESS_PIPING_PRESSURE
 
@@ -575,16 +617,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Process Piping Pressure
 
-**Precision:** 0.0001
+**Relative Error:** 0.0001
 
 **Persistence Unit:** PA
 
-**Default Presentation Unit**: PA
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- PSIG
-- PSI
+- DefaultRealU(4) [ PA ]
+- DefaultRealU(4) [ PSIG ]
+- DefaultRealU(4) [ PSI ]
 
 ### PROCESS_PIPING_TEMPERATURE
 
@@ -592,16 +635,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Process Piping Temperature
 
-**Precision:** 0.01
+**Relative Error:** 0.01
 
 **Persistence Unit:** K
 
-**Default Presentation Unit**: CELSIUS
+**Precision:** 2
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- FAHRENHEIT
-- K
+- DefaultRealU(2) [ CELSIUS ]
+- DefaultRealU(2) [ FAHRENHEIT ]
+- DefaultRealU(4) [ K ]
 
 ### SPECIFIC_HEAT_CAPACITY
 
@@ -609,15 +653,16 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Specific Heat Capacity
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** J/(KG*K)
+**Persistence Unit:** J_PER_KG_K
 
-**Default Presentation Unit**: J/(KG*K)
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- BTU/(LBM\*RANKINE)
+- DefaultRealU(4) [ J_PER_KG_K ]
+- DefaultRealU(4) [ BTU_PER_LBM_RANKINE ]
 
 ### SPECIFIC_HEAT_OF_VAPORIZATION
 
@@ -625,16 +670,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Specific Heat Of Vaporization
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** J/KG
+**Persistence Unit:** J_PER_KG
 
-**Default Presentation Unit**: J/KG
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- KJ/KG
-- BTU/LBM
+- DefaultRealU(4) [ J_PER_KG ]
+- DefaultRealU(4) [ KJ_PER_KG ]
+- DefaultRealU(4) [ BTU_PER_LBM ]
 
 ### TEMPERATURE
 
@@ -642,16 +688,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Temperature
 
-**Precision:** 0.01
+**Relative Error:** 0.01
 
 **Persistence Unit:** K
 
-**Default Presentation Unit**: CELSIUS
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- FAHRENHEIT
-- K
+- DefaultRealU(4) [ CELSIUS ]
+- DefaultRealU(4) [ FAHRENHEIT ]
+- DefaultRealU(4) [ K ]
 
 ### THERMAL_CONDUCTIVITY
 
@@ -659,16 +706,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Thermal Conductivity
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** W/(M*K)
+**Persistence Unit:** W_PER_M_K
 
-**Default Presentation Unit**: W/(M*K)
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- W/(M\*C)
-- (BTU\*IN)/(SQ.FT\*HR\*FAHRENHEIT)
+- DefaultRealU(4) [ W_PER_M_K ]
+- DefaultRealU(4) [ W_PER_M_C ]
+- DefaultRealU(4) [ BTU_IN_PER_SQ_FT_HR_FAHRENHEIT ]
 
 ### THERMAL_EXPANSION_COEFFICIENT
 
@@ -676,16 +724,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Thermal Expansion Coefficient
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** STRAIN/KELVIN
+**Persistence Unit:** STRAIN_PER_KELVIN
 
-**Default Presentation Unit**: STRAIN/KELVIN
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- STRAIN/CELSIUS
-- STRAIN/FAHRENHEIT
+- DefaultRealU(4) [ STRAIN_PER_KELVIN ]
+- DefaultRealU(4) [ STRAIN_PER_CELSIUS ]
+- DefaultRealU(4) [ STRAIN_PER_FAHRENHEIT ]
 
 ### THERMAL_RESISTANCE
 
@@ -693,16 +742,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Thermal Resistance
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** (SQ.M*KELVIN)/WATT
+**Persistence Unit:** SQ_M_KELVIN_PER_WATT
 
-**Default Presentation Unit**: (SQ.M*KELVIN)/WATT
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- (SQ.M\*CELSIUS)/WATT
-- (SQ.FT\*HR\*FAHRENHEIT)/BTU
+- DefaultRealU(4) [ SQ_M_KELVIN_PER_WATT ]
+- DefaultRealU(4) [ SQ_M_CELSIUS_PER_WATT ]
+- DefaultRealU(4) [ SQ_FT_HR_FAHRENHEIT_PER_BTU ]
 
 ### TIME
 
@@ -710,18 +760,19 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Time
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
 **Persistence Unit:** S
 
-**Default Presentation Unit**: S
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- MIN
-- HR
-- DAY
-- MS
+- DefaultRealU(4) [ S ]
+- DefaultRealU(4) [ MIN ]
+- DefaultRealU(4) [ HR ]
+- DefaultRealU(4) [ DAY ]
+- DefaultRealU(4) [ MS ]
 
 ### VELOCITY
 
@@ -729,17 +780,18 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Velocity
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** M/SEC
+**Persistence Unit:** M_PER_SEC
 
-**Default Presentation Unit**: M/SEC
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- FT/SEC
-- MPH
-- KM/HR
+- DefaultRealU(4) [ M_PER_SEC ]
+- DefaultRealU(4) [ FT_PER_SEC ]
+- DefaultRealU(4) [ MPH ]
+- DefaultRealU(4) [ KM_PER_HR ]
 
 ### VOLUME
 
@@ -747,16 +799,17 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Volume
 
-**Precision:** 0.0001
+**Relative Error:** 0.0001
 
-**Persistence Unit:** CUB.M
+**Persistence Unit:** CUB_M
 
-**Default Presentation Unit**: CUB.M
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- CUB.FT
-- CUB.YRD
+- DefaultRealU(4) [ CUB_M ]
+- DefaultRealU(4) [ CUB_FT ]
+- DefaultRealU(4) [ CUB_YRD ]
 
 ### VOLUME_LARGE
 
@@ -764,17 +817,18 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Large Volume
 
-**Precision:** 0.01
+**Relative Error:** 0.01
 
-**Persistence Unit:** CUB.M
+**Persistence Unit:** CUB_M
 
-**Default Presentation Unit**: CUB.KM
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- CUB.M
-- CUB.YRD
-- CUB.FT
+- DefaultRealU(4) [ CUB_KM ]
+- DefaultRealU(4) [ CUB_M ]
+- DefaultRealU(4) [ CUB_YRD ]
+- DefaultRealU(4) [ CUB_FT ]
 
 ### VOLUME_SMALL
 
@@ -782,17 +836,18 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Small Volume
 
-**Precision:** 0.0001
+**Relative Error:** 0.0001
 
-**Persistence Unit:** CUB.M
+**Persistence Unit:** CUB_M
 
-**Default Presentation Unit**: CUB.MM
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- CUB.CM
-- CUB.IN
-- CUB.FT
+- DefaultRealU(4) [ CUB_MM ]
+- DefaultRealU(4) [ CUB_CM ]
+- DefaultRealU(4) [ CUB_IN ]
+- DefaultRealU(4) [ CUB_FT ]
 
 ### WARPING_CONSTANT
 
@@ -800,15 +855,16 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Warping Constant
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
-**Persistence Unit:** M^6
+**Persistence Unit:** M_TO_THE_SIXTH
 
-**Default Presentation Unit**: M^6
+**Precision:** 4
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- FT^6
+- DefaultRealU(4) [ M_TO_THE_SIXTH ]
+- DefaultRealU(4) [ FT_TO_THE_SIXTH ]
 
 ### WEIGHT
 
@@ -816,12 +872,13 @@ This contains the unit definitions that are use across AE Schemas
 
 **displayLabel:** Weight
 
-**Precision:** 0.001
+**Relative Error:** 0.001
 
 **Persistence Unit:** KG
 
-**Default Presentation Unit**: KG
+**Precision:** 2
 
-**Alternate Presentation Units**
+**Presentation Units**
 
-- LBM
+- DefaultRealU(2) [ KG ]
+- DefaultRealU(2) [ LBM ]
