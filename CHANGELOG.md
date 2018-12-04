@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.4.6] - 2018-12-03
+
+### Fixed
+
+- Fixed links to follow standard markdown link format
+- Fixed index.js not appearing in package
+
+### Changed
+
+- Updated package dependencies for bentley-generated packages
+- Updated test suite to support updated EC version
+
 ## [0.4.5] - 2018-08-09
 
 ### Fixed
