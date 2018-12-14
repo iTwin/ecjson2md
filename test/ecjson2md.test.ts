@@ -857,7 +857,7 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[11], "");
           assert.equal(outputLines[12], "**Presentation Units**");
           assert.equal(outputLines[13], "");
-          assert.equal(outputLines[14], "- DefaultReal [ A ]");
+            assert.equal(outputLines[14], "- [DefaultReal](testschema.ecschema.md#defaultreal) [ [A](testschema.ecschema.md#a) ]");
           assert.equal(outputLines[15], "");
           assert.equal(outputLines[16], "");
         });
@@ -1095,11 +1095,11 @@ describe("ecjson2md", () => {
           assert.equal(outputLines[13], "");
           assert.equal(outputLines[14], "**Presentation Units**");
           assert.equal(outputLines[15], "");
-          assert.equal(outputLines[16], "- DefaultReal [ A ]");
-          assert.equal(outputLines[17], "- DefaultReal [ KILOAMPERE ]");
-          assert.equal(outputLines[18], "- DefaultReal [ M_PER_SEC_SQ ]");
-          assert.equal(outputLines[19], "- DefaultReal [ CM_PER_SEC_SQ ]");
-          assert.equal(outputLines[20], "- DefaultReal [ FT_PER_SEC_SQ ]");
+            assert.equal(outputLines[16], "- [DefaultReal](testschema.ecschema.md#defaultreal) [ [A](testschema.ecschema.md#a) ]");
+            assert.equal(outputLines[17], "- [DefaultReal](testschema.ecschema.md#defaultreal) [ [KILOAMPERE](testschema.ecschema.md#kiloampere) ]");
+            assert.equal(outputLines[18], "- [DefaultReal](testschema.ecschema.md#defaultreal) [ [M_PER_SEC_SQ](testschema.ecschema.md#m_per_sec_sq) ]");
+            assert.equal(outputLines[19], "- [DefaultReal](testschema.ecschema.md#defaultreal) [ [CM_PER_SEC_SQ](testschema.ecschema.md#cm_per_sec_sq) ]");
+            assert.equal(outputLines[20], "- [DefaultReal](testschema.ecschema.md#defaultreal) [ [FT_PER_SEC_SQ](testschema.ecschema.md#ft_per_sec_sq) ]");
           assert.equal(outputLines[21], "");
           assert.equal(outputLines[22], "");
         });
