@@ -2,7 +2,10 @@
 |  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
-import { SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, ECClassModifier, PropertyCategory, EntityClass, KindOfQuantity, RelationshipClass, Mixin, strengthToString, strengthDirectionToString, classModifierToString, containerTypeToString } from "@bentley/ecschema-metadata";
+import {
+    SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, ECClassModifier, PropertyCategory, EntityClass, KindOfQuantity,
+    RelationshipClass, Mixin, strengthToString, strengthDirectionToString, classModifierToString, containerTypeToString, Format, formatTypeToString, FormatType, scientificTypeToString, formatTraitsToArray, Unit, OverrideFormat
+} from "@bentley/ecschema-metadata";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
 
@@ -294,8 +297,8 @@ export class ECJsonMarkdownGenerator {
   public static writeSchemaItemBaseClass(outputFilePath: string, baseClass: any) {
     if (baseClass === undefined) return;
 
-    var baseClassLink = "#" + baseClass.name.toLowerCase();
-    if (!outputFilePath.toLowerCase().includes(baseClass.schemaName.toLowerCase())) {
+    let baseClassLink = "#" + baseClass.name.toLowerCase();
+    if (!outputFilePath.toLowerCase().includes("\\" + baseClass.schemaName.toLowerCase() + ".ecschema.md")) {
         baseClassLink = baseClass.schemaName.toLowerCase() + ".ecschema.md" + baseClassLink;
     }
     const baseClassName = baseClass.schemaName + ":" + baseClass.name;
@@ -460,12 +463,40 @@ export class ECJsonMarkdownGenerator {
               fs.appendFileSync(outputFilePath, "**Presentation Units**\n\n");
               for (const pUnit of kindOfQuantity.presentationUnits) {
                   const namestrings: string[] = pUnit.name.split(/[\[\]\.]+/);
-                  const pName = namestrings[1] + " [ " + namestrings[3] + " ]";
-                  fs.appendFileSync(outputFilePath, "- " + pName + "\n");
+                  if (namestrings.length === 5) {
+                      let formatAdditional = '';
+                      let formatClassLink = '#' + namestrings[1].toLowerCase();
+                      let formatClassName = namestrings[1];
+                      if (formatClassName.includes('(')) {
+                          formatAdditional = '(' + formatClassName.split('(')[1];
+                          formatClassLink = formatClassLink.split('(')[0];
+                          formatClassName = formatClassName.split('(')[0];
+                      }
+                      if (!outputFilePath.toLowerCase().includes("\\" + namestrings[0].toLowerCase() + ".ecschema.md"))
+                          formatClassLink = namestrings[0].toLowerCase() + ".ecschema.md" + formatClassLink;
+
+                      let unitClassLink = '#' + namestrings[3].toLowerCase();
+                      if (!outputFilePath.toLowerCase().includes("\\" + namestrings[2].toLowerCase() + ".ecschema.md"))
+                          unitClassLink = namestrings[2].toLowerCase() + ".ecschema.md" + unitClassLink;
+                      const unitClassName = namestrings[3];
+
+                      fs.appendFileSync(outputFilePath, "- " + formatLink(formatClassLink, formatClassName) + formatAdditional + " [ " + formatLink(unitClassLink, unitClassName) + " ]\n");
+                  }
+                  else if (namestrings.length === 1 ) {
+                      let schemaName = "";
+                      if (pUnit instanceof OverrideFormat)
+                          schemaName = pUnit.parent.schema.name;
+                      else if (pUnit instanceof Format)
+                          schemaName = pUnit.schema.name;
+                      let formatClassLink = '#' + pUnit.name.toLowerCase();
+                      if (!outputFilePath.toLowerCase().includes("\\" + schemaName.toLowerCase() + ".ecschema.md"))
+                          formatClassLink = schemaName.toLowerCase() + ".ecschema.md" + formatClassLink;
+                      fs.appendFileSync(outputFilePath, "- " + formatLink(formatClassLink, pUnit.name) + "\n");
+                  }
               }
           }
+          fs.appendFileSync(outputFilePath, "\n");
       }
-      fs.appendFileSync(outputFilePath, "\n");
     }
 
   /**
@@ -941,7 +972,124 @@ export class ECJsonMarkdownGenerator {
     for (const propertyCategory of propertyCategories) {
       this.writePropertyCategory(outputFilePath, propertyCategory);
     }
-  }
+    }
+
+    /**
+   * Collects and writes markdown documentation for format classes
+   * @param outputFilePath Path to file to write the format classes to
+   * @param schema Schema to pull the format classes from
+   */
+    private static writeFormatClasses(outputFilePath: string, schema: Schema) {
+        const formatClasses: Format[] = this.getSortedSchemaItems(schema, "Format");
+
+        // If the list is empty or undefined, return
+        if (!formatClasses || formatClasses.length === 0) return;
+
+        // Write the h3 for the section
+        fs.appendFileSync(outputFilePath, "## Formats\n\n");
+
+        for (const formatClass of formatClasses) {
+            this.writeFormatClass(outputFilePath, formatClass);
+        }
+    }
+
+    /**
+   * Writes markdown for a format class
+   * @param outputFilePath Path to file to write markdown into
+   * @param formatClass Format class to generate markdown for
+   */
+    public static writeFormatClass(outputFilePath: string, formatClass: Format | undefined) {
+        if (formatClass === undefined) return;
+
+        // Write the name
+        this.writeSchemaItemName(outputFilePath, formatClass.name);
+
+        // Write the class type
+        this.writeSchemaItemType(outputFilePath, formatClass.schemaItemType);
+
+        // Write the description
+        this.writeSchemaItemDescription(outputFilePath, formatClass.description);
+
+        // Write the displayLabel
+        this.writeSchemaItemLabel(outputFilePath, formatClass.label);
+
+        // Write the format type
+        fs.appendFileSync(outputFilePath, "**type:** " + formatTypeToString(formatClass.type) + "\n\n");
+
+        if (formatClass.type === FormatType.Scientific && formatClass.scientificType !== undefined)
+            fs.appendFileSync(outputFilePath, "**Scientific Type:** " + scientificTypeToString(formatClass.scientificType) + "\n\n");
+
+        if (formatClass.type === FormatType.Station && formatClass.stationOffsetSize !== undefined)
+            fs.appendFileSync(outputFilePath, "**Station Offset Size:** " + formatClass.stationOffsetSize + "\n\n");
+
+        // Write the precision
+        if (formatClass.precision !== undefined)
+            fs.appendFileSync(outputFilePath, "**Precision:** " + formatClass.precision + "\n\n");
+
+        // Write format traits
+        if (formatClass.formatTraits !== undefined) {
+            fs.appendFileSync(outputFilePath, "**Format Traits**\n\n");
+            for (const trait of formatTraitsToArray(formatClass.formatTraits))
+                fs.appendFileSync(outputFilePath, "- " + trait + "\n");
+            fs.appendFileSync(outputFilePath, "\n");
+        }
+
+        // Write uomSeparator
+        // UGLY FORMATTING. FIX.
+        if (formatClass.uomSeparator !== undefined)
+            fs.appendFileSync(outputFilePath, "**uomSeparator:** `\"" + formatClass.uomSeparator + "\"`\n\n");
+    }
+
+    /**
+   * Collects and writes markdown documentation for unit classes
+   * @param outputFilePath Path to file to write the unit classes to
+   * @param schema Schema to pull the unit classes from
+   */
+    private static writeUnitClasses(outputFilePath: string, schema: Schema) {
+        const unitClasses: Unit[] = this.getSortedSchemaItems(schema, "Unit");
+
+        // If the list is empty or undefined, return
+        if (!unitClasses || unitClasses.length === 0) return;
+
+        // Write the h3 for the section
+        fs.appendFileSync(outputFilePath, "## Units\n\n");
+
+        for (const unitClass of unitClasses) {
+            this.writeUnitClass(outputFilePath, unitClass);
+        }
+    }
+
+    /**
+   * Writes markdown for a unit class
+   * @param outputFilePath Path to file to write markdown into
+   * @param unitClass Unit class to generate markdown for
+   */
+    public static writeUnitClass(outputFilePath: string, unitClass: Unit | undefined) {
+        if (unitClass === undefined) return;
+
+        // Write the name
+        this.writeSchemaItemName(outputFilePath, unitClass.name);
+
+        // Write the class type
+        this.writeSchemaItemType(outputFilePath, unitClass.schemaItemType);
+
+        // Write the description
+        this.writeSchemaItemDescription(outputFilePath, unitClass.description);
+
+        // Write the displayLabel
+        this.writeSchemaItemLabel(outputFilePath, unitClass.label);
+
+        // Write the definition
+        fs.appendFileSync(outputFilePath, "**Definition:** " + unitClass.definition + "\n\n");
+
+        // Write the phenomenon name
+        if (unitClass.phenomenon !== undefined)
+            fs.appendFileSync(outputFilePath, "**Phenomenon**: " + unitClass.phenomenon.name + "\n\n");
+
+        // Write the unit system
+        if (unitClass.unitSystem !== undefined)
+            fs.appendFileSync(outputFilePath, "**Unit System**: " + unitClass.unitSystem.name + "\n\n");
+    }
 
   /**
    * Loads a schema and its references into memory and drives the
@@ -988,6 +1136,8 @@ export class ECJsonMarkdownGenerator {
     ECJsonMarkdownGenerator.writeCustomAttributeClasses(outputFilePath, schema);
     ECJsonMarkdownGenerator.writeStructClasses(outputFilePath, schema);
     ECJsonMarkdownGenerator.writePropertyCategories(outputFilePath, schema);
+    ECJsonMarkdownGenerator.writeFormatClasses(outputFilePath, schema);
+    ECJsonMarkdownGenerator.writeUnitClasses(outputFilePath, schema);
 
     // Remove the extra blank line
     removeExtraBlankLine(outputFilePath, outputFilePath);
