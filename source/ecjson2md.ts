@@ -4,7 +4,7 @@
 import * as fs from "fs";
 import {
     SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, ECClassModifier, PropertyCategory, EntityClass, KindOfQuantity,
-    RelationshipClass, Mixin, strengthToString, strengthDirectionToString, classModifierToString, containerTypeToString, Format, formatTypeToString, FormatType, scientificTypeToString, formatTraitsToArray, Unit, OverrideFormat
+    RelationshipClass, Mixin, strengthToString, strengthDirectionToString, classModifierToString, containerTypeToString, Format, formatTypeToString, FormatType, scientificTypeToString, formatTraitsToArray, Unit, OverrideFormat,
 } from "@bentley/ecschema-metadata";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
@@ -134,7 +134,7 @@ export function prepOutputPath(rawOutputPath: string, inputPath: string): string
  * Class used to generate markdown for a whole schema or for specific schema items (using static methods)
  */
 export class ECJsonMarkdownGenerator {
-  private context: SchemaContext;
+  private _context: SchemaContext;
 
   public searchDirs: string[];
 
@@ -150,15 +150,15 @@ export class ECJsonMarkdownGenerator {
     this.searchDirs = searchDirs;
 
     // Add the locator to the context
-    this.context = new SchemaContext();
-    this.context.addLocater(locator);
+    this._context = new SchemaContext();
+    this._context.addLocater(locator);
   }
 
   /**
    * @returns the context for testing purposes
    */
   public getContext() {
-    return this.context;
+    return this._context;
   }
 
   /**
@@ -304,13 +304,13 @@ export class ECJsonMarkdownGenerator {
     const baseClassName = baseClass.schemaName + ":" + baseClass.name;
 
     fs.appendFileSync(outputFilePath, "**baseClass:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
-}
+  }
 
-/**
- * Appends markdown for the modifier of a schema item to the specified file path
- * @param outputFilePath Path of file to append markdown for modifier to
- * @param modifier Modifier to write markdown for
- */
+  /**
+   * Appends markdown for the modifier of a schema item to the specified file path
+   * @param outputFilePath Path of file to append markdown for modifier to
+   * @param modifier Modifier to write markdown for
+   */
   public static writeSchemaItemModifier(outputFilePath: string, modifier: ECClassModifier|undefined) {
     if (modifier === undefined) return;
 
@@ -445,59 +445,60 @@ export class ECJsonMarkdownGenerator {
     // Write the label
     this.writeSchemaItemLabel(outputFilePath, kindOfQuantity.label);
 
-      // Write the relative error
-      if (kindOfQuantity.relativeError !== undefined)
-          fs.appendFileSync(outputFilePath, "**Relative Error:** " + kindOfQuantity.relativeError + "\n\n");
+    // Write the relative error
+    if (kindOfQuantity.relativeError !== undefined)
+      fs.appendFileSync(outputFilePath, "**Relative Error:** " + kindOfQuantity.relativeError + "\n\n");
 
       // Write the persistence unit
-      if (kindOfQuantity.persistenceUnit !== undefined)
-          fs.appendFileSync(outputFilePath, "**Persistence Unit:** " + kindOfQuantity.persistenceUnit.name + "\n\n");
+    if (kindOfQuantity.persistenceUnit !== undefined)
+      fs.appendFileSync(outputFilePath, "**Persistence Unit:** " + kindOfQuantity.persistenceUnit.name + "\n\n");
 
-      if (kindOfQuantity.presentationUnits !== undefined) {
-          // Write the precision
-          if (kindOfQuantity.presentationUnits[0] !== undefined && kindOfQuantity.presentationUnits[0].precision !== undefined)
-              fs.appendFileSync(outputFilePath, "**Precision:** " + kindOfQuantity.presentationUnits[0].precision + "\n\n");
+    if (kindOfQuantity.presentationUnits !== undefined) {
+      // Write the precision
+      if (kindOfQuantity.presentationUnits[0] !== undefined && kindOfQuantity.presentationUnits[0].precision !== undefined)
+        fs.appendFileSync(outputFilePath, "**Precision:** " + kindOfQuantity.presentationUnits[0].precision + "\n\n");
 
-          // Write the presentation units
-          if (kindOfQuantity.presentationUnits.length !== 0) {
-              fs.appendFileSync(outputFilePath, "**Presentation Units**\n\n");
-              for (const pUnit of kindOfQuantity.presentationUnits) {
-                  const namestrings: string[] = pUnit.name.split(/[\[\]\.]+/);
-                  if (namestrings.length === 5) {
-                      let formatAdditional = '';
-                      let formatClassLink = '#' + namestrings[1].toLowerCase();
-                      let formatClassName = namestrings[1];
-                      if (formatClassName.includes('(')) {
-                          formatAdditional = '(' + formatClassName.split('(')[1];
-                          formatClassLink = formatClassLink.split('(')[0];
-                          formatClassName = formatClassName.split('(')[0];
-                      }
-                      if (!outputFilePath.toLowerCase().includes("\\" + namestrings[0].toLowerCase() + ".ecschema.md"))
-                          formatClassLink = namestrings[0].toLowerCase() + ".ecschema.md" + formatClassLink;
+      // Write the presentation units
+      if (kindOfQuantity.presentationUnits.length !== 0) {
+        fs.appendFileSync(outputFilePath, "**Presentation Units**\n\n");
+        for (const pUnit of kindOfQuantity.presentationUnits) {
+          const namestrings: string[] = pUnit.name.split(/[\[\]\.]+/);
+          if (namestrings.length === 5) {
+            let formatAdditional = "";
+            let formatClassLink = "#" + namestrings[1].toLowerCase();
+            let formatClassName = namestrings[1];
+            if (formatClassName.includes("(")) {
+                formatAdditional = "(" + formatClassName.split("(")[1];
+                formatClassLink = formatClassLink.split("(")[0];
+                formatClassName = formatClassName.split("(")[0];
+            }
+            if (!outputFilePath.toLowerCase().includes("\\" + namestrings[0].toLowerCase() + ".ecschema.md"))
+                formatClassLink = namestrings[0].toLowerCase() + ".ecschema.md" + formatClassLink;
 
-                      let unitClassLink = '#' + namestrings[3].toLowerCase();
-                      if (!outputFilePath.toLowerCase().includes("\\" + namestrings[2].toLowerCase() + ".ecschema.md"))
-                          unitClassLink = namestrings[2].toLowerCase() + ".ecschema.md" + unitClassLink;
-                      const unitClassName = namestrings[3];
+            let unitClassLink = "#" + namestrings[3].toLowerCase();
+            if (!outputFilePath.toLowerCase().includes("\\" + namestrings[2].toLowerCase() + ".ecschema.md"))
+              unitClassLink = namestrings[2].toLowerCase() + ".ecschema.md" + unitClassLink;
 
-                      fs.appendFileSync(outputFilePath, "- " + formatLink(formatClassLink, formatClassName) + formatAdditional + " [ " + formatLink(unitClassLink, unitClassName) + " ]\n");
-                  }
-                  else if (namestrings.length === 1 ) {
-                      let schemaName = "";
-                      if (pUnit instanceof OverrideFormat)
-                          schemaName = pUnit.parent.schema.name;
-                      else if (pUnit instanceof Format)
-                          schemaName = pUnit.schema.name;
-                      let formatClassLink = '#' + pUnit.name.toLowerCase();
-                      if (!outputFilePath.toLowerCase().includes("\\" + schemaName.toLowerCase() + ".ecschema.md"))
-                          formatClassLink = schemaName.toLowerCase() + ".ecschema.md" + formatClassLink;
-                      fs.appendFileSync(outputFilePath, "- " + formatLink(formatClassLink, pUnit.name) + "\n");
-                  }
-              }
+            const unitClassName = namestrings[3];
+
+            fs.appendFileSync(outputFilePath, "- " + formatLink(formatClassLink, formatClassName) + formatAdditional + " [ " + formatLink(unitClassLink, unitClassName) + " ]\n");
+          } else if (namestrings.length === 1 ) {
+            let schemaName = "";
+            if (pUnit instanceof OverrideFormat)
+                schemaName = pUnit.parent.schema.name;
+            else if (pUnit instanceof Format)
+                schemaName = pUnit.schema.name;
+            let formatClassLink = "#" + pUnit.name.toLowerCase();
+            if (!outputFilePath.toLowerCase().includes("\\" + schemaName.toLowerCase() + ".ecschema.md"))
+                formatClassLink = schemaName.toLowerCase() + ".ecschema.md" + formatClassLink;
+            fs.appendFileSync(outputFilePath, "- " + formatLink(formatClassLink, pUnit.name) + "\n");
           }
-          fs.appendFileSync(outputFilePath, "\n");
+        }
       }
+
+      fs.appendFileSync(outputFilePath, "\n");
     }
+  }
 
   /**
    * Collects and generates markdown for kind of quantity schema items in a markdown file at the specified file path
@@ -969,12 +970,11 @@ export class ECJsonMarkdownGenerator {
   private static writePropertyCategories(outputFilePath: string, schema: Schema) {
     const propertyCategories: PropertyCategory[] = this.getSortedSchemaItems(schema, "PropertyCategory");
 
-    for (const propertyCategory of propertyCategories) {
+    for (const propertyCategory of propertyCategories)
       this.writePropertyCategory(outputFilePath, propertyCategory);
-    }
-    }
+  }
 
-    /**
+  /**
    * Collects and writes markdown documentation for format classes
    * @param outputFilePath Path to file to write the format classes to
    * @param schema Schema to pull the format classes from
@@ -993,103 +993,102 @@ export class ECJsonMarkdownGenerator {
         }
     }
 
-    /**
+  /**
    * Writes markdown for a format class
    * @param outputFilePath Path to file to write markdown into
    * @param formatClass Format class to generate markdown for
    */
-    public static writeFormatClass(outputFilePath: string, formatClass: Format | undefined) {
-        if (formatClass === undefined) return;
+  public static writeFormatClass(outputFilePath: string, formatClass: Format | undefined) {
+    if (formatClass === undefined) return;
 
-        // Write the name
-        this.writeSchemaItemName(outputFilePath, formatClass.name);
+    // Write the name
+    this.writeSchemaItemName(outputFilePath, formatClass.name);
 
-        // Write the class type
-        this.writeSchemaItemType(outputFilePath, formatClass.schemaItemType);
+    // Write the class type
+    this.writeSchemaItemType(outputFilePath, formatClass.schemaItemType);
 
-        // Write the description
-        this.writeSchemaItemDescription(outputFilePath, formatClass.description);
+    // Write the description
+    this.writeSchemaItemDescription(outputFilePath, formatClass.description);
 
-        // Write the displayLabel
-        this.writeSchemaItemLabel(outputFilePath, formatClass.label);
+    // Write the displayLabel
+    this.writeSchemaItemLabel(outputFilePath, formatClass.label);
 
-        // Write the format type
-        fs.appendFileSync(outputFilePath, "**type:** " + formatTypeToString(formatClass.type) + "\n\n");
+    // Write the format type
+    fs.appendFileSync(outputFilePath, "**type:** " + formatTypeToString(formatClass.type) + "\n\n");
 
-        if (formatClass.type === FormatType.Scientific && formatClass.scientificType !== undefined)
-            fs.appendFileSync(outputFilePath, "**Scientific Type:** " + scientificTypeToString(formatClass.scientificType) + "\n\n");
+    if (formatClass.type === FormatType.Scientific && formatClass.scientificType !== undefined)
+        fs.appendFileSync(outputFilePath, "**Scientific Type:** " + scientificTypeToString(formatClass.scientificType) + "\n\n");
 
-        if (formatClass.type === FormatType.Station && formatClass.stationOffsetSize !== undefined)
-            fs.appendFileSync(outputFilePath, "**Station Offset Size:** " + formatClass.stationOffsetSize + "\n\n");
+    if (formatClass.type === FormatType.Station && formatClass.stationOffsetSize !== undefined)
+        fs.appendFileSync(outputFilePath, "**Station Offset Size:** " + formatClass.stationOffsetSize + "\n\n");
 
-        // Write the precision
-        if (formatClass.precision !== undefined)
-            fs.appendFileSync(outputFilePath, "**Precision:** " + formatClass.precision + "\n\n");
+    // Write the precision
+    if (formatClass.precision !== undefined)
+        fs.appendFileSync(outputFilePath, "**Precision:** " + formatClass.precision + "\n\n");
 
-        // Write format traits
-        if (formatClass.formatTraits !== undefined) {
-            fs.appendFileSync(outputFilePath, "**Format Traits**\n\n");
-            for (const trait of formatTraitsToArray(formatClass.formatTraits))
-                fs.appendFileSync(outputFilePath, "- " + trait + "\n");
-            fs.appendFileSync(outputFilePath, "\n");
-        }
-
-        // Write uomSeparator
-        // UGLY FORMATTING. FIX.
-        if (formatClass.uomSeparator !== undefined)
-            fs.appendFileSync(outputFilePath, "**uomSeparator:** `\"" + formatClass.uomSeparator + "\"`\n\n");
+    // Write format traits
+    if (formatClass.formatTraits !== undefined) {
+        fs.appendFileSync(outputFilePath, "**Format Traits**\n\n");
+        for (const trait of formatTraitsToArray(formatClass.formatTraits))
+            fs.appendFileSync(outputFilePath, "- " + trait + "\n");
+        fs.appendFileSync(outputFilePath, "\n");
     }
 
-    /**
+    // Write uomSeparator
+    // UGLY FORMATTING. FIX.
+    if (formatClass.uomSeparator !== undefined)
+        fs.appendFileSync(outputFilePath, "**uomSeparator:** `\"" + formatClass.uomSeparator + "\"`\n\n");
+  }
+
+  /**
    * Collects and writes markdown documentation for unit classes
    * @param outputFilePath Path to file to write the unit classes to
    * @param schema Schema to pull the unit classes from
    */
-    private static writeUnitClasses(outputFilePath: string, schema: Schema) {
-        const unitClasses: Unit[] = this.getSortedSchemaItems(schema, "Unit");
+  private static writeUnitClasses(outputFilePath: string, schema: Schema) {
+    const unitClasses: Unit[] = this.getSortedSchemaItems(schema, "Unit");
 
-        // If the list is empty or undefined, return
-        if (!unitClasses || unitClasses.length === 0) return;
+    // If the list is empty or undefined, return
+    if (!unitClasses || unitClasses.length === 0) return;
 
-        // Write the h3 for the section
-        fs.appendFileSync(outputFilePath, "## Units\n\n");
+    // Write the h3 for the section
+    fs.appendFileSync(outputFilePath, "## Units\n\n");
 
-        for (const unitClass of unitClasses) {
-            this.writeUnitClass(outputFilePath, unitClass);
-        }
-    }
+    for (const unitClass of unitClasses)
+      this.writeUnitClass(outputFilePath, unitClass);
+  }
 
-    /**
+  /**
    * Writes markdown for a unit class
    * @param outputFilePath Path to file to write markdown into
    * @param unitClass Unit class to generate markdown for
    */
-    public static writeUnitClass(outputFilePath: string, unitClass: Unit | undefined) {
-        if (unitClass === undefined) return;
+  public static writeUnitClass(outputFilePath: string, unitClass: Unit | undefined) {
+    if (unitClass === undefined) return;
 
-        // Write the name
-        this.writeSchemaItemName(outputFilePath, unitClass.name);
+    // Write the name
+    this.writeSchemaItemName(outputFilePath, unitClass.name);
 
-        // Write the class type
-        this.writeSchemaItemType(outputFilePath, unitClass.schemaItemType);
+    // Write the class type
+    this.writeSchemaItemType(outputFilePath, unitClass.schemaItemType);
 
-        // Write the description
-        this.writeSchemaItemDescription(outputFilePath, unitClass.description);
+    // Write the description
+    this.writeSchemaItemDescription(outputFilePath, unitClass.description);
 
-        // Write the displayLabel
-        this.writeSchemaItemLabel(outputFilePath, unitClass.label);
+    // Write the displayLabel
+    this.writeSchemaItemLabel(outputFilePath, unitClass.label);
 
-        // Write the definition
-        fs.appendFileSync(outputFilePath, "**Definition:** " + unitClass.definition + "\n\n");
+    // Write the definition
+    fs.appendFileSync(outputFilePath, "**Definition:** " + unitClass.definition + "\n\n");
 
-        // Write the phenomenon name
-        if (unitClass.phenomenon !== undefined)
-            fs.appendFileSync(outputFilePath, "**Phenomenon**: " + unitClass.phenomenon.name + "\n\n");
+    // Write the phenomenon name
+    if (unitClass.phenomenon !== undefined)
+      fs.appendFileSync(outputFilePath, "**Phenomenon**: " + unitClass.phenomenon.name + "\n\n");
 
-        // Write the unit system
-        if (unitClass.unitSystem !== undefined)
-            fs.appendFileSync(outputFilePath, "**Unit System**: " + unitClass.unitSystem.name + "\n\n");
-    }
+    // Write the unit system
+    if (unitClass.unitSystem !== undefined)
+      fs.appendFileSync(outputFilePath, "**Unit System**: " + unitClass.unitSystem.name + "\n\n");
+  }
 
   /**
    * Loads a schema and its references into memory and drives the
@@ -1116,11 +1115,11 @@ export class ECJsonMarkdownGenerator {
     let outputDir: string[] | string = outputFilePath.split(/(\/){1}|(\\){2}|(\\){1}/g);
     outputDir.pop();
     outputDir = outputDir.join(path.sep);
-    
+
     // Check if the output directory exists
     if (!fs.existsSync(outputDir)) throw new ECJsonBadOutputPath(outputFilePath);
 
-    const schema: Schema = Schema.fromJsonSync(schemaJson, this.context);
+    const schema: Schema = Schema.fromJsonSync(schemaJson, this._context);
 
     // Create the output file
     fs.writeFileSync(outputFilePath, "");
