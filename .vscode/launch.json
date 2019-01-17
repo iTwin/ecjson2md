@@ -8,11 +8,10 @@
       "type": "node",
       "request": "launch",
       "name": "ecjson2md-Mocha",
-      "program": "${workspaceRoot}/node_modules/@bentley/bentleyjs-tools/scripts/test-tsnode.js",
+      "program": "${workspaceRoot}/node_modules/@bentley/build-tools/scripts/test-tsnode.js",
       "args": [
         "--debug",
-        "--testDir=${workspaceRoot}/test/",
-        "--tscPaths"
+        "--testDir=${workspaceRoot}/test/"
      ],
      "port": 9229,
      "protocol": "inspector"

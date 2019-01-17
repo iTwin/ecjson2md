@@ -1024,7 +1024,7 @@ describe("ecjson2md", () => {
                 }, \
                 "CM_PER_SEC_SQ" : { \
                     "definition" : "CM*S(-2)", \
-                    "label" : "cm/sec²", \
+                    "label" : "cm/secï¿½", \
                     "phenomenon" : "testSchema.ACCELERATION", \
                     "schemaItemType" : "Unit", \
                     "unitSystem" : "testSchema.METRIC" \
@@ -1034,7 +1034,7 @@ describe("ecjson2md", () => {
                  },\
                 "FT_PER_SEC_SQ" : { \
                     "definition" : "FT*S(-2)", \
-                    "label" : "ft/sec²", \
+                    "label" : "ft/secï¿½", \
                     "phenomenon" : "testSchema.ACCELERATION", \
                     "schemaItemType" : "Unit", \
                     "unitSystem" : "testSchema.USCUSTOM" \
@@ -1044,7 +1044,7 @@ describe("ecjson2md", () => {
                 }, \
                 "M_PER_SEC_SQ" : { \
                     "definition" : "M*S(-2)", \
-                    "label" : "m/sec²", \
+                    "label" : "m/secï¿½", \
                     "phenomenon" : "testSchema.ACCELERATION", \
                     "schemaItemType" : "Unit", \
                     "unitSystem" : "testSchema.SI" \

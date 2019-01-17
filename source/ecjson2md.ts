@@ -1112,6 +1112,12 @@ export class ECJsonMarkdownGenerator {
       throw new ECJsonBadJson(schemaPath);
     }
 
+    // HACK: The ecschema-metadata package has a bug that doesn't accept the new schema uri.
+    // Remove once the ecschema-metadata package is updated.
+    if (schemaJson.$schema !== undefined) {
+       schemaJson.$schema = "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema";
+    }
+
     // Get the path of the directory that will contain the output md file
     let outputDir: string[] | string = outputFilePath.split(/(\/){1}|(\\){2}|(\\){1}/g);
     outputDir.pop();
