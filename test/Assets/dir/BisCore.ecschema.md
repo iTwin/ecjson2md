@@ -16,25 +16,19 @@ The BIS core classes that all other domain schemas extend.
 
 ## Entity Classes
 
-### AnnotationElement2d
+### **AnnotationElement2d** (2D Annotation Element)
 
 **typeName:** EntityClass
 
-2D element used to annotate drawings and sheets.
-
-**displayLabel:** 2D Annotation Element
-
-**modifier:** None
+**description:** 2D element used to annotate drawings and sheets.
 
 **baseClass:** [BisCore:GraphicalElement2d](#graphicalelement2d)
 
-### AnnotationFrameStyle
+### **AnnotationFrameStyle** (Annotation Frame Style) *Sealed*
 
 **typeName:** EntityClass
 
-**displayLabel:** Annotation Frame Style
-
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -45,13 +39,11 @@ The BIS core classes that all other domain schemas extend.
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
-### AnnotationLeaderStyle
+### **AnnotationLeaderStyle** (Annotation Leader Style) *Sealed*
 
 **typeName:** EntityClass
 
-**displayLabel:** Annotation Leader Style
-
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -62,13 +54,11 @@ The BIS core classes that all other domain schemas extend.
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
-### AnnotationTextStyle
+### **AnnotationTextStyle** (Annotation Text Style) *Sealed*
 
 **typeName:** EntityClass
 
-**displayLabel:** Annotation Text Style
-
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -79,13 +69,11 @@ The BIS core classes that all other domain schemas extend.
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
-### AuxCoordSystem
+### **AuxCoordSystem** (Auxiliary Coordinate System) *Abstract*
 
 **typeName:** EntityClass
 
-**displayLabel:** Auxiliary Coordinate System
-
-**modifier:** Abstract
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -96,15 +84,11 @@ The BIS core classes that all other domain schemas extend.
 |Type||int||
 |Description||string||
 
-### AuxCoordSystem2d
+### **AuxCoordSystem2d** (2D Auxiliary Coordinate System)
 
 **typeName:** EntityClass
 
-A 2D coordinate system.
-
-**displayLabel:** 2D Auxiliary Coordinate System
-
-**modifier:** None
+**description:** A 2D coordinate system.
 
 **baseClass:** [BisCore:AuxCoordSystem](#auxcoordsystem)
 
@@ -115,15 +99,11 @@ A 2D coordinate system.
 |Origin||point2d||
 |Angle||double||
 
-### AuxCoordSystem3d
+### **AuxCoordSystem3d** (3D Auxiliary Coordinate System)
 
 **typeName:** EntityClass
 
-A 3D coordinate system.
-
-**displayLabel:** 3D Auxiliary Coordinate System
-
-**modifier:** None
+**description:** A 3D coordinate system.
 
 **baseClass:** [BisCore:AuxCoordSystem](#auxcoordsystem)
 
@@ -136,23 +116,19 @@ A 3D coordinate system.
 |Pitch||double||
 |Roll||double||
 
-### AuxCoordSystemSpatial
+### **AuxCoordSystemSpatial** (Spatial Auxiliary Coordinate System)
 
 **typeName:** EntityClass
 
-A spatial coordinate system.
-
-**displayLabel:** Spatial Auxiliary Coordinate System
-
-**modifier:** None
+**description:** A spatial coordinate system.
 
 **baseClass:** [BisCore:AuxCoordSystem3d](#auxcoordsystem3d)
 
-### Category
+### **Category** *Abstract*
 
 **typeName:** EntityClass
 
-**modifier:** Abstract
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -163,25 +139,19 @@ A spatial coordinate system.
 |Description||string||
 |Rank||int||
 
-### CategorySelector
+### **CategorySelector** (Category Selector)
 
 **typeName:** EntityClass
 
-**displayLabel:** Category Selector
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
-### CodeSpec
+### **CodeSpec** (Code Specification) *Sealed*
 
 **typeName:** EntityClass
 
-A Code Specification captures the rules for encoding and decoding significant business information into and from a Code (string). This specification is used to generate and validate Codes.
-
-**displayLabel:** Code Specification
-
-**modifier:** Sealed
+**description:** A Code Specification captures the rules for encoding and decoding significant business information into and from a Code (string). This specification is used to generate and validate Codes.
 
 #### Properties
 
@@ -190,13 +160,11 @@ A Code Specification captures the rules for encoding and decoding significant bu
 |Name|The unique name of Code Specification. A best practice is to incorporate the domain name into the Code Specification name to ensure uniqueness.|string||
 |JsonProperties|JSON string containing scope and fragment specifications to generate and validate code values|string|Json|
 
-### ColorBook
+### **ColorBook** (Color Book) *Sealed*
 
 **typeName:** EntityClass
 
-**displayLabel:** Color Book
-
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -206,15 +174,11 @@ A Code Specification captures the rules for encoding and decoding significant bu
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description||string||
 
-### DefinitionElement
+### **DefinitionElement** (Definition Element) *Abstract*
 
 **typeName:** EntityClass
 
-A Definition Element holds configuration-related information that is meant to be referenced/shared.
-
-**displayLabel:** Definition Element
-
-**modifier:** Abstract
+**description:** A Definition Element holds configuration-related information that is meant to be referenced/shared.
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
@@ -224,187 +188,139 @@ A Definition Element holds configuration-related information that is meant to be
 |:-----------|:------------------|:-----------|:-----------------------|
 |IsPrivate|If true, this definition should not be displayed in the GUI.|boolean||
 
-### DefinitionModel
+### **DefinitionModel** (Definition Model)
 
 **typeName:** EntityClass
 
-A container for persisting definition elements.
-
-**displayLabel:** Definition Model
-
-**modifier:** None
+**description:** A container for persisting definition elements.
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
-### DefinitionPartition
+### **DefinitionPartition** (Definition Partition) *Sealed*
 
 **typeName:** EntityClass
 
-A Definition Partition element indicates that there is a definition-related modeling perspective within the overall DgnDb information hierarchy. A Definition Partition is always parented to a Subject and broken down by a Definition Model.
-
-**displayLabel:** Definition Partition
-
-**modifier:** Sealed
+**description:** A Definition Partition element indicates that there is a definition-related modeling perspective within the overall DgnDb information hierarchy. A Definition Partition is always parented to a Subject and broken down by a Definition Model.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### DictionaryModel
+### **DictionaryModel** (Dictionary Model) *Sealed*
 
 **typeName:** EntityClass
 
-The singleton container for repository-specific definition elements.
-
-**displayLabel:** Dictionary Model
-
-**modifier:** Sealed
+**description:** The singleton container for repository-specific definition elements.
 
 **baseClass:** [BisCore:DefinitionModel](#definitionmodel)
 
-### DisplayStyle
+### **DisplayStyle** (Display Style) *Abstract*
 
 **typeName:** EntityClass
 
-**displayLabel:** Display Style
-
-**modifier:** Abstract
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
-### DisplayStyle2d
+### **DisplayStyle2d** (2D Display Style)
 
 **typeName:** EntityClass
 
-**displayLabel:** 2D Display Style
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DisplayStyle](#displaystyle)
 
-### DisplayStyle3d
+### **DisplayStyle3d** (3D Display Style)
 
 **typeName:** EntityClass
 
-**displayLabel:** 3D Display Style
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DisplayStyle](#displaystyle)
 
-### Document
+### **Document** *Abstract*
 
 **typeName:** EntityClass
 
-**modifier:** Abstract
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
-### DocumentCarrier
+### **DocumentCarrier** (Document Carrier) *Abstract*
 
 **typeName:** EntityClass
 
-A Document Carrier is an Information Carrier that carries a Document. An electronic file is a good example.
-
-**displayLabel:** Document Carrier
-
-**modifier:** Abstract
+**description:** A Document Carrier is an Information Carrier that carries a Document. An electronic file is a good example.
 
 **baseClass:** [BisCore:InformationCarrierElement](#informationcarrierelement)
 
-### DocumentListModel
+### **DocumentListModel** (Document List)
 
 **typeName:** EntityClass
 
-Contains a list of document elements.
-
-**displayLabel:** Document List
-
-**modifier:** None
+**description:** Contains a list of document elements.
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
-### DocumentPartition
+### **DocumentPartition** (Document Partition) *Sealed*
 
 **typeName:** EntityClass
 
-A Document Partition element indicates that there is a document-related modeling perspective within the overall DgnDb information hierarchy. A Document Partition is always parented to a Subject and broken down by a Document List Model.
-
-**displayLabel:** Document Partition
-
-**modifier:** Sealed
+**description:** A Document Partition element indicates that there is a document-related modeling perspective within the overall DgnDb information hierarchy. A Document Partition is always parented to a Subject and broken down by a Document List Model.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### Drawing
+### **Drawing**
 
 **typeName:** EntityClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:Document](#document)
 
-### DrawingCategory
+### **DrawingCategory** (Drawing Category) *Sealed*
 
 **typeName:** EntityClass
 
-**displayLabel:** Drawing Category
-
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:Category](#category)
 
-### DrawingGraphic
+### **DrawingGraphic** (Drawing Graphic)
 
 **typeName:** EntityClass
 
-2D element used to persist graphics for use in drawings.
-
-**displayLabel:** Drawing Graphic
-
-**modifier:** None
+**description:** 2D element used to persist graphics for use in drawings.
 
 **baseClass:** [BisCore:GraphicalElement2d](#graphicalelement2d)
 
-### DrawingModel
+### **DrawingModel** (Drawing Model)
 
 **typeName:** EntityClass
 
-A container for persisting drawing graphics.
-
-**displayLabel:** Drawing Model
-
-**modifier:** None
+**description:** A container for persisting drawing graphics.
 
 **baseClass:** [BisCore:GraphicalModel2d](#graphicalmodel2d)
 
-### DrawingViewDefinition
+### **DrawingViewDefinition** (Drawing View Definition)
 
 **typeName:** EntityClass
 
-**displayLabel:** Drawing View Definition
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ViewDefinition2d](#viewdefinition2d)
 
-### DriverBundleElement
+### **DriverBundleElement** (Driver Bundle Element) *Abstract*
 
 **typeName:** EntityClass
 
-Element used in conjunction with bis:ElementDrivesElement relationships to bundle multiple inputs before driving the output element.
-
-**displayLabel:** Driver Bundle Element
-
-**modifier:** Abstract
+**description:** Element used in conjunction with bis:ElementDrivesElement relationships to bundle multiple inputs before driving the output element.
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
-### Element
+### **Element** *Abstract*
 
 **typeName:** EntityClass
 
-Elements are the smallest individually identifiable building blocks for modeling the real world. Each element represents an entity in the real world. Sets of Elements (contained in Models) are used to model other Elements that represent larger scale real world entities. Using this recursive modeling strategy, Elements can represent entities at any scale. Elements can represent physical things or abstract concepts or simply be information records.
-
-**modifier:** Abstract
+**description:** Elements are the smallest individually identifiable building blocks for modeling the real world. Each element represents an entity in the real world. Sets of Elements (contained in Models) are used to model other Elements that represent larger scale real world entities. Using this recursive modeling strategy, Elements can represent entities at any scale. Elements can represent physical things or abstract concepts or simply be information records.
 
 #### Properties
 
@@ -420,25 +336,17 @@ Elements are the smallest individually identifiable building blocks for modeling
 |FederationGuid|The GUID used to federate this element across repositories.|binary|BeGuid|
 |JsonProperties|A string property that users and/or applications can use to persist JSON values.|string|Json|
 
-### ElementAspect
+### **ElementAspect** (Element Aspect) *Abstract*
 
 **typeName:** EntityClass
 
-An Element Aspect is a class that defines a set of properties that are related to (and owned by) a single element. Semantically, an Element Aspect can be considered part of the Element. Thus, an Element Aspect is deleted if its owning Element is deleted.
+**description:** An Element Aspect is a class that defines a set of properties that are related to (and owned by) a single element. Semantically, an Element Aspect can be considered part of the Element. Thus, an Element Aspect is deleted if its owning Element is deleted.
 
-**displayLabel:** Element Aspect
-
-**modifier:** Abstract
-
-### ElementMultiAspect
+### **ElementMultiAspect** (Element Multi-Aspect) *Abstract*
 
 **typeName:** EntityClass
 
-An Element Multi-Aspect is an Element Aspect where there can be N instances of the Element Aspect class per Element.
-
-**displayLabel:** Element Multi-Aspect
-
-**modifier:** Abstract
+**description:** An Element Multi-Aspect is an Element Aspect where there can be N instances of the Element Aspect class per Element.
 
 **baseClass:** [BisCore:ElementAspect](#elementaspect)
 
@@ -448,15 +356,11 @@ An Element Multi-Aspect is an Element Aspect where there can be N instances of t
 |:-----------|:------------------|:-----------|:-----------------------|
 |Element|The owning Element|[navigation](biscore.ecschema.md#elementownsmultiaspects)||
 
-### ElementUniqueAspect
+### **ElementUniqueAspect** (Element Unique Aspect) *Abstract*
 
 **typeName:** EntityClass
 
-An Element Unique Aspect is an Element Aspect where there can be only zero or one instance of the Element Aspect class per Element.
-
-**displayLabel:** Element Unique Aspect
-
-**modifier:** Abstract
+**description:** An Element Unique Aspect is an Element Aspect where there can be only zero or one instance of the Element Aspect class per Element.
 
 **baseClass:** [BisCore:ElementAspect](#elementaspect)
 
@@ -466,15 +370,11 @@ An Element Unique Aspect is an Element Aspect where there can be only zero or on
 |:-----------|:------------------|:-----------|:-----------------------|
 |Element|The owning Element|[navigation](biscore.ecschema.md#elementownsuniqueaspect)||
 
-### EmbeddedFileLink
+### **EmbeddedFileLink** (Embedded File Link)
 
 **typeName:** EntityClass
 
-An information element that links to an embedded file.
-
-**displayLabel:** Embedded File Link
-
-**modifier:** None
+**description:** An information element that links to an embedded file.
 
 **baseClass:** [BisCore:LinkElement](#linkelement)
 
@@ -485,27 +385,19 @@ An information element that links to an embedded file.
 |Name||string||
 |Description||string||
 
-### GeometricElement
+### **GeometricElement** (Geometric Element) *Abstract*
 
 **typeName:** EntityClass
 
-Geometric Element is an abstract base class used to model real world entities that intrinsically have geometry.
-
-**displayLabel:** Geometric Element
-
-**modifier:** Abstract
+**description:** Geometric Element is an abstract base class used to model real world entities that intrinsically have geometry.
 
 **baseClass:** [BisCore:Element](#element)
 
-### GeometricElement2d
+### **GeometricElement2d** (2D Geometric Element) *Abstract*
 
 **typeName:** EntityClass
 
-2D Geometric Element is an abstract base class used to model information entities that intrinsicly have 2D geometry.
-
-**displayLabel:** 2D Geometric Element
-
-**modifier:** Abstract
+**description:** 2D Geometric Element is an abstract base class used to model information entities that intrinsicly have 2D geometry.
 
 **baseClass:** [BisCore:GeometricElement](#geometricelement)
 
@@ -521,15 +413,11 @@ Geometric Element is an abstract base class used to model real world entities th
 |GeometryStream|Binary stream used to persist the geometry of this Element.|binary|GeometryStream|
 |TypeDefinition||[navigation](biscore.ecschema.md#geometricelement2dhastypedefinition)||
 
-### GeometricElement3d
+### **GeometricElement3d** (3D Geometric Element) *Abstract*
 
 **typeName:** EntityClass
 
-3D Geometric Element is an abstract base class used to model real world entities that intrinsically have 3D geometry.
-
-**displayLabel:** 3D Geometric Element
-
-**modifier:** Abstract
+**description:** 3D Geometric Element is an abstract base class used to model real world entities that intrinsically have 3D geometry.
 
 **baseClass:** [BisCore:GeometricElement](#geometricelement)
 
@@ -548,27 +436,19 @@ Geometric Element is an abstract base class used to model real world entities th
 |GeometryStream|Binary stream used to persist the geometry of this Element.|binary|GeometryStream|
 |TypeDefinition||[navigation](biscore.ecschema.md#geometricelement3dhastypedefinition)||
 
-### GeometricModel
+### **GeometricModel** (Geometric Model) *Abstract*
 
 **typeName:** EntityClass
 
-A container for persisting geometric elements.
-
-**displayLabel:** Geometric Model
-
-**modifier:** Abstract
+**description:** A container for persisting geometric elements.
 
 **baseClass:** [BisCore:Model](#model)
 
-### GeometricModel2d
+### **GeometricModel2d** (2D Geometric Model) *Abstract*
 
 **typeName:** EntityClass
 
-A container for persisting 2D geometric elements.
-
-**displayLabel:** 2D Geometric Model
-
-**modifier:** Abstract
+**description:** A container for persisting 2D geometric elements.
 
 **baseClass:** [BisCore:GeometricModel](#geometricmodel)
 
@@ -578,27 +458,19 @@ A container for persisting 2D geometric elements.
 |:-----------|:------------------|:-----------|:-----------------------|
 |GlobalOrigin|The actual coordinates of (0,0) in Model coordinates. An offest applied to all Model coordinates.|point2d||
 
-### GeometricModel3d
+### **GeometricModel3d** (3D Geometric Model) *Abstract*
 
 **typeName:** EntityClass
 
-A container for persisting 3D geometric elements.
-
-**displayLabel:** 3D Geometric Model
-
-**modifier:** Abstract
+**description:** A container for persisting 3D geometric elements.
 
 **baseClass:** [BisCore:GeometricModel](#geometricmodel)
 
-### GeometryPart
+### **GeometryPart** (Geometry Part)
 
 **typeName:** EntityClass
 
-A Definition Element that specifies a collection of geometry that is meant to be reused across Geometric Element instances. Leveraging Geometry Parts can help reduce file size and improve display performance.
-
-**displayLabel:** Geometry Part
-
-**modifier:** None
+**description:** A Definition Element that specifies a collection of geometry that is meant to be reused across Geometric Element instances. Leveraging Geometry Parts can help reduce file size and improve display performance.
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -610,133 +482,91 @@ A Definition Element that specifies a collection of geometry that is meant to be
 |BBoxLow||point3d||
 |BBoxHigh||point3d||
 
-### GraphicalElement2d
+### **GraphicalElement2d** (2D Graphical Element) *Abstract*
 
 **typeName:** EntityClass
 
-Abstract base class for 2D Geometric Elements that are used to convey information within graphical presentations (like drawings).
-
-**displayLabel:** 2D Graphical Element
-
-**modifier:** Abstract
+**description:** Abstract base class for 2D Geometric Elements that are used to convey information within graphical presentations (like drawings).
 
 **baseClass:** [BisCore:GeometricElement2d](#geometricelement2d)
 
-### GraphicalElement3d
+### **GraphicalElement3d** (3D Graphical Element) *Abstract*
 
 **typeName:** EntityClass
 
-**displayLabel:** 3D Graphical Element
-
-**modifier:** Abstract
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:GeometricElement3d](#geometricelement3d)
 
-### GraphicalModel2d
+### **GraphicalModel2d** (2D Graphical Model) *Abstract*
 
 **typeName:** EntityClass
 
-A container for persisting 2D graphical elements.
-
-**displayLabel:** 2D Graphical Model
-
-**modifier:** Abstract
+**description:** A container for persisting 2D graphical elements.
 
 **baseClass:** [BisCore:GeometricModel2d](#geometricmodel2d)
 
-### GraphicalType2d
+### **GraphicalType2d** (2D Graphical Type) *Abstract*
 
 **typeName:** EntityClass
 
-Defines a set of properties (the 'type') that can be associated with a 2D Graphical Element.
-
-**displayLabel:** 2D Graphical Type
-
-**modifier:** Abstract
+**description:** Defines a set of properties (the 'type') that can be associated with a 2D Graphical Element.
 
 **baseClass:** [BisCore:TypeDefinitionElement](#typedefinitionelement)
 
-### GroupInformationElement
+### **GroupInformationElement** (Group Information) *Abstract*
 
 **typeName:** EntityClass
 
-Group Information is an abstract base class for modeling entities whose main purpose is to reference a group of related elements.
-
-**displayLabel:** Group Information
-
-**modifier:** Abstract
+**description:** Group Information is an abstract base class for modeling entities whose main purpose is to reference a group of related elements.
 
 **baseClass:** [BisCore:InformationReferenceElement](#informationreferenceelement)
 
-### GroupInformationModel
+### **GroupInformationModel** (Group Information Model) *Abstract*
 
 **typeName:** EntityClass
 
-A container for persisting group information elements.
-
-**displayLabel:** Group Information Model
-
-**modifier:** Abstract
+**description:** A container for persisting group information elements.
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
-### GroupInformationPartition
+### **GroupInformationPartition** (Group Information Partition) *Sealed*
 
 **typeName:** EntityClass
 
-A Group Information Partition element indicates that there is a group-information-related modeling perspective within the overall DgnDb information hierarchy. A Group Information Partition is always parented to a Subject and broken down by a Group Information Model.
-
-**displayLabel:** Group Information Partition
-
-**modifier:** Sealed
+**description:** A Group Information Partition element indicates that there is a group-information-related modeling perspective within the overall DgnDb information hierarchy. A Group Information Partition is always parented to a Subject and broken down by a Group Information Model.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### InformationCarrierElement
+### **InformationCarrierElement** (Information Carrier) *Abstract*
 
 **typeName:** EntityClass
 
-An Information Carrier carries information, but is not the information itself. For example, the arrangement of ink on paper or the sequence of electronic bits are information carriers.
-
-**displayLabel:** Information Carrier
-
-**modifier:** Abstract
+**description:** An Information Carrier carries information, but is not the information itself. For example, the arrangement of ink on paper or the sequence of electronic bits are information carriers.
 
 **baseClass:** [BisCore:Element](#element)
 
-### InformationContentElement
+### **InformationContentElement** (Information Content Element) *Abstract*
 
 **typeName:** EntityClass
 
-Information Content Element is an abstract base class for modeling pure information entities. Only the core framework should directly subclass from Information Content Element. Domain and application developers should start with the most appropriate subclass of Information Content Element.
-
-**displayLabel:** Information Content Element
-
-**modifier:** Abstract
+**description:** Information Content Element is an abstract base class for modeling pure information entities. Only the core framework should directly subclass from Information Content Element. Domain and application developers should start with the most appropriate subclass of Information Content Element.
 
 **baseClass:** [BisCore:Element](#element)
 
-### InformationModel
+### **InformationModel** (Information Model) *Abstract*
 
 **typeName:** EntityClass
 
-A container for persisting information elements.
-
-**displayLabel:** Information Model
-
-**modifier:** Abstract
+**description:** A container for persisting information elements.
 
 **baseClass:** [BisCore:Model](#model)
 
-### InformationPartitionElement
+### **InformationPartitionElement** (Information Partition) *Abstract*
 
 **typeName:** EntityClass
 
-Information Partition is an abstract base class for elements that indicate that there is a new modeling perspective within the overall DgnDb information hierarchy. An Information Partition is always parented to a Subject and broken down by a Model.
-
-**displayLabel:** Information Partition
-
-**modifier:** Abstract
+**description:** Information Partition is an abstract base class for elements that indicate that there is a new modeling perspective within the overall DgnDb information hierarchy. An Information Partition is always parented to a Subject and broken down by a Model.
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
@@ -746,63 +576,43 @@ Information Partition is an abstract base class for elements that indicate that 
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description||string||
 
-### InformationRecordElement
+### **InformationRecordElement** (Information Record Element) *Abstract*
 
 **typeName:** EntityClass
 
-Information Record Element is an abstract base class for modeling information records. Information Record Element is the default choice if no other subclass of Information Content Element makes sense.
-
-**displayLabel:** Information Record Element
-
-**modifier:** Abstract
+**description:** Information Record Element is an abstract base class for modeling information records. Information Record Element is the default choice if no other subclass of Information Content Element makes sense.
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
-### InformationRecordModel
+### **InformationRecordModel** (Information Record Model)
 
 **typeName:** EntityClass
 
-A container for persisting Information Record Elements
-
-**displayLabel:** Information Record Model
-
-**modifier:** None
+**description:** A container for persisting Information Record Elements
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
-### InformationRecordPartition
+### **InformationRecordPartition** (Information Record Partition) *Sealed*
 
 **typeName:** EntityClass
 
-A Information Record Partition element indicates that there is an information-record-related modeling perspective within the overall DgnDb information hierarchy. An Information Record Partition is always parented to a Subject and broken down by an Information Record Model.
-
-**displayLabel:** Information Record Partition
-
-**modifier:** Sealed
+**description:** A Information Record Partition element indicates that there is an information-record-related modeling perspective within the overall DgnDb information hierarchy. An Information Record Partition is always parented to a Subject and broken down by an Information Record Model.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### InformationReferenceElement
+### **InformationReferenceElement** (Information Reference) *Abstract*
 
 **typeName:** EntityClass
 
-Information Reference is an abstract base class for modeling entities whose main purpose is to reference something else.
-
-**displayLabel:** Information Reference
-
-**modifier:** Abstract
+**description:** Information Reference is an abstract base class for modeling entities whose main purpose is to reference something else.
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
-### LightLocation
+### **LightLocation** (Light Location) *Sealed*
 
 **typeName:** EntityClass
 
-The spatial location of a light source
-
-**displayLabel:** Light Location
-
-**modifier:** Sealed
+**description:** The spatial location of a light source
 
 **baseClass:** [BisCore:SpatialLocationElement](#spatiallocationelement)
 
@@ -812,13 +622,11 @@ The spatial location of a light source
 |:-----------|:------------------|:-----------|:-----------------------|
 |Enabled||boolean||
 
-### LineStyle
+### **LineStyle** (Line Style) *Sealed*
 
 **typeName:** EntityClass
 
-**displayLabel:** Line Style
-
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -829,49 +637,35 @@ The spatial location of a light source
 |Description|Description of the style|string||
 |Data|Encoded style properties|string|Json|
 
-### LinkElement
+### **LinkElement** (Link) *Abstract*
 
 **typeName:** EntityClass
 
-An information element that specifies a link.
-
-**displayLabel:** Link
-
-**modifier:** Abstract
+**description:** An information element that specifies a link.
 
 **baseClass:** [BisCore:InformationReferenceElement](#informationreferenceelement)
 
-### LinkModel
+### **LinkModel** (Link Model)
 
 **typeName:** EntityClass
 
-A container for persisting link elements.
-
-**displayLabel:** Link Model
-
-**modifier:** None
+**description:** A container for persisting link elements.
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
-### LinkPartition
+### **LinkPartition** (Link Partition) *Sealed*
 
 **typeName:** EntityClass
 
-A Link Partition element indicates that there is a link-related modeling perspective within the overall DgnDb information hierarchy. A Link Partition is always parented to a Subject and broken down by a Link Model.
-
-**displayLabel:** Link Partition
-
-**modifier:** Sealed
+**description:** A Link Partition element indicates that there is a link-related modeling perspective within the overall DgnDb information hierarchy. A Link Partition is always parented to a Subject and broken down by a Link Model.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### Model
+### **Model** *Abstract*
 
 **typeName:** EntityClass
 
-A Model is a container for persisting a collection of related elements.
-
-**modifier:** Abstract
+**description:** A Model is a container for persisting a collection of related elements.
 
 #### Properties
 
@@ -883,117 +677,83 @@ A Model is a container for persisting a collection of related elements.
 |IsTemplate|IsTemplate will be true if this Model is used as a template for creating new instances.|boolean||
 |JsonProperties|A string property that users and/or applications can use to persist JSON values.|string|Json|
 
-### ModelSelector
+### **ModelSelector** (Model Selector)
 
 **typeName:** EntityClass
 
-**displayLabel:** Model Selector
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
-### OrthographicViewDefinition
+### **OrthographicViewDefinition** (Orthographic Spatial View)
 
 **typeName:** EntityClass
 
-A spatial view that always show an parallel projection.
-
-**displayLabel:** Orthographic Spatial View
-
-**modifier:** None
+**description:** A spatial view that always show an parallel projection.
 
 **baseClass:** [BisCore:SpatialViewDefinition](#spatialviewdefinition)
 
-### PhysicalElement
+### **PhysicalElement** (Physical Element) *Abstract*
 
 **typeName:** EntityClass
 
-A Physical Element is spatially located, has mass, and can be 'touched'.
-
-**displayLabel:** Physical Element
-
-**modifier:** Abstract
+**description:** A Physical Element is spatially located, has mass, and can be 'touched'.
 
 **baseClass:** [BisCore:SpatialElement](#spatialelement)
 
-### PhysicalMaterial
+### **PhysicalMaterial** (Physical Material) *Abstract*
 
 **typeName:** EntityClass
 
-**displayLabel:** Physical Material
-
-**modifier:** Abstract
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
-### PhysicalModel
+### **PhysicalModel** (Physical Model)
 
 **typeName:** EntityClass
 
-A container for persisting physical elements that model physical space.
-
-**displayLabel:** Physical Model
-
-**modifier:** None
+**description:** A container for persisting physical elements that model physical space.
 
 **baseClass:** [BisCore:SpatialModel](#spatialmodel)
 
-### PhysicalPartition
+### **PhysicalPartition** (Physical Partition) *Sealed*
 
 **typeName:** EntityClass
 
-A Physical Partition element indicates that there is a physical modeling perspective within the overall DgnDb information hierarchy. A Physical Partition is always parented to a Subject and broken down by a Physical Model.
-
-**displayLabel:** Physical Partition
-
-**modifier:** Sealed
+**description:** A Physical Partition element indicates that there is a physical modeling perspective within the overall DgnDb information hierarchy. A Physical Partition is always parented to a Subject and broken down by a Physical Model.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### PhysicalPortion
+### **PhysicalPortion** (Physical Portion) *Abstract*
 
 **typeName:** EntityClass
 
-A Physical Portion represents an arbitrary portion of a larger Physical Element that will be broken down in more detail in a separate (sub) Physical Model.
-
-**displayLabel:** Physical Portion
-
-**modifier:** Abstract
+**description:** A Physical Portion represents an arbitrary portion of a larger Physical Element that will be broken down in more detail in a separate (sub) Physical Model.
 
 **baseClass:** [BisCore:PhysicalElement](#physicalelement)
 
-### PhysicalType
+### **PhysicalType** (Physical Type) *Abstract*
 
 **typeName:** EntityClass
 
-Defines a set of properties (the 'type') that can be associated with a Physical Element. A Physical Type has a strong correlation with something that can be ordered from a catalog since all instances share a common set of properties.
-
-**displayLabel:** Physical Type
-
-**modifier:** Abstract
+**description:** Defines a set of properties (the 'type') that can be associated with a Physical Element. A Physical Type has a strong correlation with something that can be ordered from a catalog since all instances share a common set of properties.
 
 **baseClass:** [BisCore:TypeDefinitionElement](#typedefinitionelement)
 
-### RecipeDefinitionElement
+### **RecipeDefinitionElement** (Recipe Definition) *Abstract*
 
 **typeName:** EntityClass
 
-Defines a recipe for generating a type.
-
-**displayLabel:** Recipe Definition
-
-**modifier:** Abstract
+**description:** Defines a recipe for generating a type.
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
-### RenderMaterial
+### **RenderMaterial** (Render Material) *Sealed*
 
 **typeName:** EntityClass
 
-**displayLabel:** Render Material
-
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -1004,15 +764,11 @@ Defines a recipe for generating a type.
 |PaletteName||string||
 |Description||string||
 
-### RepositoryLink
+### **RepositoryLink** (Repository Link) *Sealed*
 
 **typeName:** EntityClass
 
-An information element that links to a repository.
-
-**displayLabel:** Repository Link
-
-**modifier:** Sealed
+**description:** An information element that links to a repository.
 
 **baseClass:** [BisCore:UrlLink](#urllink)
 
@@ -1022,69 +778,51 @@ An information element that links to a repository.
 |:-----------|:------------------|:-----------|:-----------------------|
 |RepositoryGuid||binary|BeGuid|
 
-### RepositoryModel
+### **RepositoryModel** (Repository Model) *Sealed*
 
 **typeName:** EntityClass
 
-The singleton container of repository-related information elements.
-
-**displayLabel:** Repository Model
-
-**modifier:** Sealed
+**description:** The singleton container of repository-related information elements.
 
 **baseClass:** [BisCore:DefinitionModel](#definitionmodel)
 
-### RoleElement
+### **RoleElement** (Role Element) *Abstract*
 
 **typeName:** EntityClass
 
-A real world entity is modeled as a Role Element when a set of external circumstances define an important role (one that is worth tracking) that is not intrinsic to the entity playing the role. For example, a person can play the role of a teacher or a rock can play the role of a boundary marker.
-
-**displayLabel:** Role Element
-
-**modifier:** Abstract
+**description:** A real world entity is modeled as a Role Element when a set of external circumstances define an important role (one that is worth tracking) that is not intrinsic to the entity playing the role. For example, a person can play the role of a teacher or a rock can play the role of a boundary marker.
 
 **baseClass:** [BisCore:Element](#element)
 
-### RoleModel
+### **RoleModel** (Role Model)
 
 **typeName:** EntityClass
 
-A container for persisting role elements.
-
-**displayLabel:** Role Model
-
-**modifier:** None
+**description:** A container for persisting role elements.
 
 **baseClass:** [BisCore:Model](#model)
 
-### SectionDrawing
+### **SectionDrawing** (Section Drawing)
 
 **typeName:** EntityClass
 
-**displayLabel:** Section Drawing
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:Drawing](#drawing)
 
-### SectionDrawingModel
+### **SectionDrawingModel** (Section Drawing Model)
 
 **typeName:** EntityClass
 
-A container for persisting section drawing graphics.
-
-**displayLabel:** Section Drawing Model
-
-**modifier:** None
+**description:** A container for persisting section drawing graphics.
 
 **baseClass:** [BisCore:DrawingModel](#drawingmodel)
 
-### Sheet
+### **Sheet**
 
 **typeName:** EntityClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:Document](#document)
 
@@ -1097,13 +835,11 @@ A container for persisting section drawing graphics.
 |Width||double||
 |SheetTemplate||[navigation](biscore.ecschema.md#sheethassheettemplate)||
 
-### SheetBorder
+### **SheetBorder** (Sheet Border)
 
 **typeName:** EntityClass
 
-**displayLabel:** Sheet Border
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DrawingGraphic](#drawinggraphic)
 
@@ -1113,13 +849,11 @@ A container for persisting section drawing graphics.
 |:-----------|:------------------|:-----------|:-----------------------|
 |BorderTemplate||[navigation](biscore.ecschema.md#sheetborderhassheetbordertemplate)||
 
-### SheetBorderTemplate
+### **SheetBorderTemplate** (Sheet Border Template)
 
 **typeName:** EntityClass
 
-**displayLabel:** Sheet Border Template
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:Document](#document)
 
@@ -1130,25 +864,19 @@ A container for persisting section drawing graphics.
 |Height||double||
 |Width||double||
 
-### SheetModel
+### **SheetModel** (Sheet Model)
 
 **typeName:** EntityClass
 
-A container for persisting sheet views and graphics.
-
-**displayLabel:** Sheet Model
-
-**modifier:** None
+**description:** A container for persisting sheet views and graphics.
 
 **baseClass:** [BisCore:GraphicalModel2d](#graphicalmodel2d)
 
-### SheetTemplate
+### **SheetTemplate** (Sheet Template)
 
 **typeName:** EntityClass
 
-**displayLabel:** Sheet Template
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:Document](#document)
 
@@ -1160,47 +888,35 @@ A container for persisting sheet views and graphics.
 |Width||double||
 |Border||[navigation](biscore.ecschema.md#sheettemplatehassheetborder)||
 
-### SheetViewDefinition
+### **SheetViewDefinition** (Sheet View Definition)
 
 **typeName:** EntityClass
 
-**displayLabel:** Sheet View Definition
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ViewDefinition2d](#viewdefinition2d)
 
-### SpatialCategory
+### **SpatialCategory** (Spatial Category) *Sealed*
 
 **typeName:** EntityClass
 
-**displayLabel:** Spatial Category
-
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:Category](#category)
 
-### SpatialElement
+### **SpatialElement** (Spatial Element) *Abstract*
 
 **typeName:** EntityClass
 
-A Spatial Element occupies real world space.
-
-**displayLabel:** Spatial Element
-
-**modifier:** Abstract
+**description:** A Spatial Element occupies real world space.
 
 **baseClass:** [BisCore:GeometricElement3d](#geometricelement3d)
 
-### SpatialIndex
+### **SpatialIndex** (Spatial Index) *Sealed*
 
 **typeName:** EntityClass
 
-The Spatial Index contains information used to optimize spatial queries. Like other database indices, it is automatically maintained by the system.
-
-**displayLabel:** Spatial Index
-
-**modifier:** Sealed
+**description:** The Spatial Index contains information used to optimize spatial queries. Like other database indices, it is automatically maintained by the system.
 
 #### Properties
 
@@ -1213,87 +929,59 @@ The Spatial Index contains information used to optimize spatial queries. Like ot
 |MinZ|Minimum Z value of the axis-aligned range box that encloses the spatial element|double||
 |MaxZ|Maximum Z value of the axis-aligned range box that encloses the spatial element|double||
 
-### SpatialLocationElement
+### **SpatialLocationElement** (Spatial Location Element) *Abstract*
 
 **typeName:** EntityClass
 
-A Spatial Location Element identifies a 'tracked' real world location but has no mass and cannot be 'touched'.
-
-**displayLabel:** Spatial Location Element
-
-**modifier:** Abstract
+**description:** A Spatial Location Element identifies a 'tracked' real world location but has no mass and cannot be 'touched'.
 
 **baseClass:** [BisCore:SpatialElement](#spatialelement)
 
-### SpatialLocationModel
+### **SpatialLocationModel** (Spatial Location Model)
 
 **typeName:** EntityClass
 
-A container for persisting spatial location elements.
-
-**displayLabel:** Spatial Location Model
-
-**modifier:** None
+**description:** A container for persisting spatial location elements.
 
 **baseClass:** [BisCore:SpatialModel](#spatialmodel)
 
-### SpatialLocationPartition
+### **SpatialLocationPartition** (Spatial Location Partition) *Sealed*
 
 **typeName:** EntityClass
 
-A Spatial Location Partition element indicates that there is a spatial-location-related modeling perspective within the overall DgnDb information hierarchy. A Spatial Location Partition is always parented to a Subject and broken down by a Spatial Location Model.
-
-**displayLabel:** Spatial Location Partition
-
-**modifier:** Sealed
+**description:** A Spatial Location Partition element indicates that there is a spatial-location-related modeling perspective within the overall DgnDb information hierarchy. A Spatial Location Partition is always parented to a Subject and broken down by a Spatial Location Model.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### SpatialLocationPortion
+### **SpatialLocationPortion** (Spatial Location Portion) *Abstract*
 
 **typeName:** EntityClass
 
-A Spatial Location Portion represents an arbitrary portion of a larger Spatial Location Element that will be broken down in more detail in a separate (sub) Spatial Location Model.
-
-**displayLabel:** Spatial Location Portion
-
-**modifier:** Abstract
+**description:** A Spatial Location Portion represents an arbitrary portion of a larger Spatial Location Element that will be broken down in more detail in a separate (sub) Spatial Location Model.
 
 **baseClass:** [BisCore:SpatialLocationElement](#spatiallocationelement)
 
-### SpatialLocationType
+### **SpatialLocationType** (Spatial Location Type) *Abstract*
 
 **typeName:** EntityClass
 
-Defines a set of properties (the 'type') that can be associated with a Spatial Location.
-
-**displayLabel:** Spatial Location Type
-
-**modifier:** Abstract
+**description:** Defines a set of properties (the 'type') that can be associated with a Spatial Location.
 
 **baseClass:** [BisCore:TypeDefinitionElement](#typedefinitionelement)
 
-### SpatialModel
+### **SpatialModel** (Spatial Model) *Abstract*
 
 **typeName:** EntityClass
 
-A container for persisting 3D geometric elements that are spatially located.
-
-**displayLabel:** Spatial Model
-
-**modifier:** Abstract
+**description:** A container for persisting 3D geometric elements that are spatially located.
 
 **baseClass:** [BisCore:GeometricModel3d](#geometricmodel3d)
 
-### SpatialViewDefinition
+### **SpatialViewDefinition** (Spatial View Definition)
 
 **typeName:** EntityClass
 
-A view of a spatially located volume.
-
-**displayLabel:** Spatial View Definition
-
-**modifier:** None
+**description:** A view of a spatially located volume.
 
 **baseClass:** [BisCore:ViewDefinition3d](#viewdefinition3d)
 
@@ -1303,13 +991,11 @@ A view of a spatially located volume.
 |:-----------|:------------------|:-----------|:-----------------------|
 |ModelSelector||[navigation](biscore.ecschema.md#spatialviewdefinitionusesmodelselector)||
 
-### SubCategory
+### **SubCategory** (Sub-Category) *Sealed*
 
 **typeName:** EntityClass
 
-**displayLabel:** Sub-Category
-
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -1320,13 +1006,11 @@ A view of a spatially located volume.
 |Description||string||
 |Properties||string|Json|
 
-### Subject
+### **Subject** *Sealed*
 
 **typeName:** EntityClass
 
-A Subject is an information element that describes what this repository (or part thereof) is about.
-
-**modifier:** Sealed
+**description:** A Subject is an information element that describes what this repository (or part thereof) is about.
 
 **baseClass:** [BisCore:InformationReferenceElement](#informationreferenceelement)
 
@@ -1336,83 +1020,59 @@ A Subject is an information element that describes what this repository (or part
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description||string||
 
-### TemplateRecipe2d
+### **TemplateRecipe2d** (2D Template Recipe)
 
 **typeName:** EntityClass
 
-A recipe that uses a 2D template for creating new instances.
-
-**displayLabel:** 2D Template Recipe
-
-**modifier:** None
+**description:** A recipe that uses a 2D template for creating new instances.
 
 **baseClass:** [BisCore:RecipeDefinitionElement](#recipedefinitionelement)
 
-### TemplateRecipe3d
+### **TemplateRecipe3d** (3D Template Recipe)
 
 **typeName:** EntityClass
 
-A recipe that uses a 3D template for creating new instances.
-
-**displayLabel:** 3D Template Recipe
-
-**modifier:** None
+**description:** A recipe that uses a 3D template for creating new instances.
 
 **baseClass:** [BisCore:RecipeDefinitionElement](#recipedefinitionelement)
 
-### TemplateViewDefinition2d
+### **TemplateViewDefinition2d** (2D Template View Definition)
 
 **typeName:** EntityClass
 
-A View Definition used to display a 2D template model.
-
-**displayLabel:** 2D Template View Definition
-
-**modifier:** None
+**description:** A View Definition used to display a 2D template model.
 
 **baseClass:** [BisCore:ViewDefinition2d](#viewdefinition2d)
 
-### TemplateViewDefinition3d
+### **TemplateViewDefinition3d** (3D Template View Definition)
 
 **typeName:** EntityClass
 
-A View Definition used to display a 3D template model.
-
-**displayLabel:** 3D Template View Definition
-
-**modifier:** None
+**description:** A View Definition used to display a 3D template model.
 
 **baseClass:** [BisCore:ViewDefinition3d](#viewdefinition3d)
 
-### TextAnnotation2d
+### **TextAnnotation2d** (2D Text Annotation)
 
 **typeName:** EntityClass
 
-**displayLabel:** 2D Text Annotation
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:AnnotationElement2d](#annotationelement2d)
 
-### TextAnnotation3d
+### **TextAnnotation3d** (3D Text Annotation)
 
 **typeName:** EntityClass
 
-**displayLabel:** 3D Text Annotation
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:GraphicalElement3d](#graphicalelement3d)
 
-### TextAnnotationData
+### **TextAnnotationData** (Text Annotation Data) *Sealed*
 
 **typeName:** EntityClass
 
-The aspect used to store text annotation data for 2D and 3D text annotation elements.
-
-**displayLabel:** Text Annotation Data
-
-**modifier:** Sealed
+**description:** The aspect used to store text annotation data for 2D and 3D text annotation elements.
 
 **baseClass:** [BisCore:ElementUniqueAspect](#elementuniqueaspect)
 
@@ -1422,13 +1082,11 @@ The aspect used to store text annotation data for 2D and 3D text annotation elem
 |:-----------|:------------------|:-----------|:-----------------------|
 |TextAnnotation||binary||
 
-### TextAnnotationSeed
+### **TextAnnotationSeed** (Text Annotation Seed) *Sealed*
 
 **typeName:** EntityClass
 
-**displayLabel:** Text Annotation Seed
-
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -1439,11 +1097,11 @@ The aspect used to store text annotation data for 2D and 3D text annotation elem
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
-### Texture
+### **Texture** *Sealed*
 
 **typeName:** EntityClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -1458,15 +1116,11 @@ The aspect used to store text annotation data for 2D and 3D text annotation elem
 |Height||int||
 |Flags||int||
 
-### TypeDefinitionElement
+### **TypeDefinitionElement** (Type Definition) *Abstract*
 
 **typeName:** EntityClass
 
-Defines a set of properties (the 'type') that can be associated with an element.
-
-**displayLabel:** Type Definition
-
-**modifier:** Abstract
+**description:** Defines a set of properties (the 'type') that can be associated with an element.
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -1476,15 +1130,11 @@ Defines a set of properties (the 'type') that can be associated with an element.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Recipe||[navigation](biscore.ecschema.md#typedefinitionhasrecipe)||
 
-### UrlLink
+### **UrlLink** (URL Link)
 
 **typeName:** EntityClass
 
-An information element that specifies a URL link.
-
-**displayLabel:** URL Link
-
-**modifier:** None
+**description:** An information element that specifies a URL link.
 
 **baseClass:** [BisCore:LinkElement](#linkelement)
 
@@ -1495,13 +1145,11 @@ An information element that specifies a URL link.
 |Url||string||
 |Description||string||
 
-### ViewAttachment
+### **ViewAttachment** (View Attachment)
 
 **typeName:** EntityClass
 
-**displayLabel:** View Attachment
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:GraphicalElement2d](#graphicalelement2d)
 
@@ -1511,13 +1159,11 @@ An information element that specifies a URL link.
 |:-----------|:------------------|:-----------|:-----------------------|
 |View|The view that is to be attached|[navigation](biscore.ecschema.md#viewisattached)||
 
-### ViewDefinition
+### **ViewDefinition** (View Definition) *Abstract*
 
 **typeName:** EntityClass
 
-**displayLabel:** View Definition
-
-**modifier:** Abstract
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
@@ -1529,15 +1175,11 @@ An information element that specifies a URL link.
 |CategorySelector||[navigation](biscore.ecschema.md#viewdefinitionusescategoryselector)||
 |DisplayStyle||[navigation](biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
 
-### ViewDefinition2d
+### **ViewDefinition2d** (2D View Definition) *Abstract*
 
 **typeName:** EntityClass
 
-A view of a 2D model that has its own local coordinate system.
-
-**displayLabel:** 2D View Definition
-
-**modifier:** Abstract
+**description:** A view of a 2D model that has its own local coordinate system.
 
 **baseClass:** [BisCore:ViewDefinition](#viewdefinition)
 
@@ -1550,13 +1192,11 @@ A view of a 2D model that has its own local coordinate system.
 |Extents|Size of the view diagonal|point2d||
 |RotationAngle|Rotation angle in degrees of the viewed area.|double||
 
-### ViewDefinition3d
+### **ViewDefinition3d** (3D View Definition) *Abstract*
 
 **typeName:** EntityClass
 
-**displayLabel:** 3D View Definition
-
-**modifier:** Abstract
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ViewDefinition](#viewdefinition)
 
@@ -1574,35 +1214,29 @@ A view of a 2D model that has its own local coordinate system.
 |LensAngle|Camera lens angle in degrees|double||
 |FocusDistance|Camera focus distance|double||
 
-### VolumeElement
+### **VolumeElement** (Volume Element)
 
 **typeName:** EntityClass
 
-A Volume Element is a Spatial Location Element that is restricted to defining a volume.
-
-**displayLabel:** Volume Element
-
-**modifier:** None
+**description:** A Volume Element is a Spatial Location Element that is restricted to defining a volume.
 
 **baseClass:** [BisCore:SpatialLocationElement](#spatiallocationelement)
 
-### WebMercatorModel
+### **WebMercatorModel** (Web Mercator Model)
 
 **typeName:** EntityClass
 
-**displayLabel:** Web Mercator Model
-
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:SpatialModel](#spatialmodel)
 
 ## Relationship Classes
 
-### BaseModelForView2d
+### **BaseModelForView2d** *Sealed*
 
 **typeName:** RelationshipClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -1632,11 +1266,11 @@ A Volume Element is a Spatial Location Element that is restricted to defining a 
 
 - [ViewDefinition2d](biscore.ecschema.md#viewdefinition2d)
 
-### CategoryOwnsSubCategories
+### **CategoryOwnsSubCategories**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ElementOwnsChildElements](#elementownschildelements)
 
@@ -1668,11 +1302,11 @@ A Volume Element is a Spatial Location Element that is restricted to defining a 
 
 - [SubCategory](biscore.ecschema.md#subcategory)
 
-### CategorySelectorRefersToCategories
+### **CategorySelectorRefersToCategories** *Sealed*
 
 **typeName:** RelationshipClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ElementRefersToElements](#elementreferstoelements)
 
@@ -1704,11 +1338,11 @@ A Volume Element is a Spatial Location Element that is restricted to defining a 
 
 - [Category](biscore.ecschema.md#category)
 
-### CodeSpecSpecifiesCode
+### **CodeSpecSpecifiesCode** *Sealed*
 
 **typeName:** RelationshipClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -1738,13 +1372,11 @@ A Volume Element is a Spatial Location Element that is restricted to defining a 
 
 - [Element](biscore.ecschema.md#element)
 
-### DrawingGraphicRepresentsElement
+### **DrawingGraphicRepresentsElement**
 
 **typeName:** RelationshipClass
 
-Relates a 2D DrawingGraphic to the Element that it represents.
-
-**modifier:** None
+**description:** Relates a 2D DrawingGraphic to the Element that it represents.
 
 **baseClass:** [BisCore:ElementRefersToElements](#elementreferstoelements)
 
@@ -1776,11 +1408,11 @@ Relates a 2D DrawingGraphic to the Element that it represents.
 
 - [Element](biscore.ecschema.md#element)
 
-### DrawingModelBreaksDownDrawing
+### **DrawingModelBreaksDownDrawing**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ModelModelsElement](#modelmodelselement)
 
@@ -1812,11 +1444,11 @@ Relates a 2D DrawingGraphic to the Element that it represents.
 
 - [Drawing](biscore.ecschema.md#drawing)
 
-### ElementDrivesElement
+### **ElementDrivesElement**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -1846,13 +1478,11 @@ Relates a 2D DrawingGraphic to the Element that it represents.
 
 - [Element](biscore.ecschema.md#element)
 
-### ElementEncapsulatesElements
+### **ElementEncapsulatesElements**
 
 **typeName:** RelationshipClass
 
-A relationship that indicates that child Elements are meant to be hidden.
-
-**modifier:** None
+**description:** A relationship that indicates that child Elements are meant to be hidden.
 
 **baseClass:** [BisCore:ElementOwnsChildElements](#elementownschildelements)
 
@@ -1884,11 +1514,11 @@ A relationship that indicates that child Elements are meant to be hidden.
 
 - [Element](biscore.ecschema.md#element)
 
-### ElementGroupsMembers
+### **ElementGroupsMembers**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ElementRefersToElements](#elementreferstoelements)
 
@@ -1920,13 +1550,11 @@ A relationship that indicates that child Elements are meant to be hidden.
 
 - [Element](biscore.ecschema.md#element)
 
-### ElementHasLinks
+### **ElementHasLinks**
 
 **typeName:** RelationshipClass
 
-Associates links to an element.
-
-**modifier:** None
+**description:** Associates links to an element.
 
 **baseClass:** [BisCore:ElementRefersToElements](#elementreferstoelements)
 
@@ -1958,13 +1586,11 @@ Associates links to an element.
 
 - [LinkElement](biscore.ecschema.md#linkelement)
 
-### ElementOwnsChildElements
+### **ElementOwnsChildElements**
 
 **typeName:** RelationshipClass
 
-Relates an Element to child Elements which represent parts of the Entity modeled by the parent Element.
-
-**modifier:** None
+**description:** Relates an Element to child Elements which represent parts of the Entity modeled by the parent Element.
 
 **Strength:** Embedding
 
@@ -1994,11 +1620,11 @@ Relates an Element to child Elements which represent parts of the Entity modeled
 
 - [Element](biscore.ecschema.md#element)
 
-### ElementOwnsMultiAspects
+### **ElementOwnsMultiAspects**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **Strength:** Embedding
 
@@ -2028,11 +1654,11 @@ Relates an Element to child Elements which represent parts of the Entity modeled
 
 - [ElementMultiAspect](biscore.ecschema.md#elementmultiaspect)
 
-### ElementOwnsUniqueAspect
+### **ElementOwnsUniqueAspect**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **Strength:** Embedding
 
@@ -2062,11 +1688,11 @@ Relates an Element to child Elements which represent parts of the Entity modeled
 
 - [ElementUniqueAspect](biscore.ecschema.md#elementuniqueaspect)
 
-### ElementRefersToElements
+### **ElementRefersToElements** *Abstract*
 
 **typeName:** RelationshipClass
 
-**modifier:** Abstract
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -2096,11 +1722,11 @@ Relates an Element to child Elements which represent parts of the Entity modeled
 
 - [Element](biscore.ecschema.md#element)
 
-### ElementScopesCode
+### **ElementScopesCode** *Sealed*
 
 **typeName:** RelationshipClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -2130,11 +1756,11 @@ Relates an Element to child Elements which represent parts of the Entity modeled
 
 - [Element](biscore.ecschema.md#element)
 
-### GeometricElement2dHasTypeDefinition
+### **GeometricElement2dHasTypeDefinition** *Abstract*
 
 **typeName:** RelationshipClass
 
-**modifier:** Abstract
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -2164,13 +1790,11 @@ Relates an Element to child Elements which represent parts of the Entity modeled
 
 - [TypeDefinitionElement](biscore.ecschema.md#typedefinitionelement)
 
-### GeometricElement2dIsInCategory
+### **GeometricElement2dIsInCategory** *Sealed*
 
 **typeName:** RelationshipClass
 
-Element is in Category
-
-**modifier:** Sealed
+**description:** Element is in Category
 
 **Strength:** Referencing
 
@@ -2200,11 +1824,11 @@ Element is in Category
 
 - [DrawingCategory](biscore.ecschema.md#drawingcategory)
 
-### GeometricElement3dHasTypeDefinition
+### **GeometricElement3dHasTypeDefinition** *Abstract*
 
 **typeName:** RelationshipClass
 
-**modifier:** Abstract
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -2234,13 +1858,11 @@ Element is in Category
 
 - [TypeDefinitionElement](biscore.ecschema.md#typedefinitionelement)
 
-### GeometricElement3dIsInCategory
+### **GeometricElement3dIsInCategory** *Sealed*
 
 **typeName:** RelationshipClass
 
-Element is in Category
-
-**modifier:** Sealed
+**description:** Element is in Category
 
 **Strength:** Referencing
 
@@ -2270,11 +1892,11 @@ Element is in Category
 
 - [SpatialCategory](biscore.ecschema.md#spatialcategory)
 
-### GraphicalElement2dIsOfType
+### **GraphicalElement2dIsOfType**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:GeometricElement2dHasTypeDefinition](#geometricelement2dhastypedefinition)
 
@@ -2306,13 +1928,11 @@ Element is in Category
 
 - [GraphicalType2d](biscore.ecschema.md#graphicaltype2d)
 
-### GraphicalElement3dRepresentsElement
+### **GraphicalElement3dRepresentsElement**
 
 **typeName:** RelationshipClass
 
-Relates a 3D graphical annotation to the Element that it represents.
-
-**modifier:** None
+**description:** Relates a 3D graphical annotation to the Element that it represents.
 
 **baseClass:** [BisCore:ElementRefersToElements](#elementreferstoelements)
 
@@ -2344,11 +1964,11 @@ Relates a 3D graphical annotation to the Element that it represents.
 
 - [Element](biscore.ecschema.md#element)
 
-### GraphicalType2dHasTemplateRecipe
+### **GraphicalType2dHasTemplateRecipe**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:TypeDefinitionHasRecipe](#typedefinitionhasrecipe)
 
@@ -2380,13 +2000,11 @@ Relates a 3D graphical annotation to the Element that it represents.
 
 - [TemplateRecipe2d](biscore.ecschema.md#templaterecipe2d)
 
-### ModelContainsElements
+### **ModelContainsElements** *Sealed*
 
 **typeName:** RelationshipClass
 
-The relationship that enforces that each Element belongs to exactly one Model.
-
-**modifier:** Sealed
+**description:** The relationship that enforces that each Element belongs to exactly one Model.
 
 **Strength:** Embedding
 
@@ -2416,13 +2034,11 @@ The relationship that enforces that each Element belongs to exactly one Model.
 
 - [Element](biscore.ecschema.md#element)
 
-### ModelModelsElement
+### **ModelModelsElement**
 
 **typeName:** RelationshipClass
 
-Relates a Model to the Element which it describes or breaks down into more detail.
-
-**modifier:** None
+**description:** Relates a Model to the Element which it describes or breaks down into more detail.
 
 **Strength:** Embedding
 
@@ -2452,13 +2068,11 @@ Relates a Model to the Element which it describes or breaks down into more detai
 
 - [ISubModeledElement](biscore.ecschema.md#isubmodeledelement)
 
-### ModelOwnsSubModel
+### **ModelOwnsSubModel** *Sealed*
 
 **typeName:** RelationshipClass
 
-The relationship that is used to build a model hierarchy index. This is done for performance reasons, rather than data modeling reasons.
-
-**modifier:** Sealed
+**description:** The relationship that is used to build a model hierarchy index. This is done for performance reasons, rather than data modeling reasons.
 
 **Strength:** Embedding
 
@@ -2488,11 +2102,11 @@ The relationship that is used to build a model hierarchy index. This is done for
 
 - [Model](biscore.ecschema.md#model)
 
-### ModelSelectorRefersToModels
+### **ModelSelectorRefersToModels** *Sealed*
 
 **typeName:** RelationshipClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -2522,11 +2136,11 @@ The relationship that is used to build a model hierarchy index. This is done for
 
 - [Model](biscore.ecschema.md#model)
 
-### PartitionOriginatesFromRepository
+### **PartitionOriginatesFromRepository** *Sealed*
 
 **typeName:** RelationshipClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ElementRefersToElements](#elementreferstoelements)
 
@@ -2558,13 +2172,11 @@ The relationship that is used to build a model hierarchy index. This is done for
 
 - [RepositoryLink](biscore.ecschema.md#repositorylink)
 
-### PhysicalElementAssemblesElements
+### **PhysicalElementAssemblesElements**
 
 **typeName:** RelationshipClass
 
-A relationship that indicates a physical assembly of child PhysicalElements.
-
-**modifier:** None
+**description:** A relationship that indicates a physical assembly of child PhysicalElements.
 
 **baseClass:** [BisCore:ElementOwnsChildElements](#elementownschildelements)
 
@@ -2596,11 +2208,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [PhysicalElement](biscore.ecschema.md#physicalelement)
 
-### PhysicalElementIsOfType
+### **PhysicalElementIsOfType**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:GeometricElement3dHasTypeDefinition](#geometricelement3dhastypedefinition)
 
@@ -2632,11 +2244,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [PhysicalType](biscore.ecschema.md#physicaltype)
 
-### PhysicalModelBreaksDownPhysicalPortion
+### **PhysicalModelBreaksDownPhysicalPortion**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ModelModelsElement](#modelmodelselement)
 
@@ -2668,11 +2280,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [PhysicalPortion](biscore.ecschema.md#physicalportion)
 
-### PhysicalTypeHasTemplateRecipe
+### **PhysicalTypeHasTemplateRecipe**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:TypeDefinitionHasRecipe](#typedefinitionhasrecipe)
 
@@ -2704,11 +2316,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [TemplateRecipe3d](biscore.ecschema.md#templaterecipe3d)
 
-### RenderMaterialOwnsRenderMaterials
+### **RenderMaterialOwnsRenderMaterials**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ElementOwnsChildElements](#elementownschildelements)
 
@@ -2740,11 +2352,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [RenderMaterial](biscore.ecschema.md#rendermaterial)
 
-### SheetBorderHasSheetBorderTemplate
+### **SheetBorderHasSheetBorderTemplate** *Sealed*
 
 **typeName:** RelationshipClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -2774,11 +2386,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [SheetBorderTemplate](biscore.ecschema.md#sheetbordertemplate)
 
-### SheetHasSheetTemplate
+### **SheetHasSheetTemplate** *Sealed*
 
 **typeName:** RelationshipClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -2808,11 +2420,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [SheetTemplate](biscore.ecschema.md#sheettemplate)
 
-### SheetModelBreaksDownSheet
+### **SheetModelBreaksDownSheet**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ModelModelsElement](#modelmodelselement)
 
@@ -2844,11 +2456,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [Sheet](biscore.ecschema.md#sheet)
 
-### SheetTemplateHasSheetBorder
+### **SheetTemplateHasSheetBorder** *Sealed*
 
 **typeName:** RelationshipClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -2878,11 +2490,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [SheetBorder](biscore.ecschema.md#sheetborder)
 
-### SpatialLocationIsOfType
+### **SpatialLocationIsOfType**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:GeometricElement3dHasTypeDefinition](#geometricelement3dhastypedefinition)
 
@@ -2914,11 +2526,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [SpatialLocationType](biscore.ecschema.md#spatiallocationtype)
 
-### SpatialViewDefinitionUsesModelSelector
+### **SpatialViewDefinitionUsesModelSelector** *Sealed*
 
 **typeName:** RelationshipClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -2948,11 +2560,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [ModelSelector](biscore.ecschema.md#modelselector)
 
-### SubjectOwnsPartitionElements
+### **SubjectOwnsPartitionElements**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ElementOwnsChildElements](#elementownschildelements)
 
@@ -2984,11 +2596,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [InformationPartitionElement](biscore.ecschema.md#informationpartitionelement)
 
-### SubjectOwnsSubjects
+### **SubjectOwnsSubjects**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ElementOwnsChildElements](#elementownschildelements)
 
@@ -3020,11 +2632,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [Subject](biscore.ecschema.md#subject)
 
-### TextAnnotation2dOwnsTextAnnotationData
+### **TextAnnotation2dOwnsTextAnnotationData**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ElementOwnsUniqueAspect](#elementownsuniqueaspect)
 
@@ -3056,11 +2668,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [TextAnnotationData](biscore.ecschema.md#textannotationdata)
 
-### TextAnnotation3dOwnsTextAnnotationData
+### **TextAnnotation3dOwnsTextAnnotationData**
 
 **typeName:** RelationshipClass
 
-**modifier:** None
+**description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ElementOwnsUniqueAspect](#elementownsuniqueaspect)
 
@@ -3092,11 +2704,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [TextAnnotationData](biscore.ecschema.md#textannotationdata)
 
-### TypeDefinitionHasRecipe
+### **TypeDefinitionHasRecipe** *Abstract*
 
 **typeName:** RelationshipClass
 
-**modifier:** Abstract
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -3126,11 +2738,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [RecipeDefinitionElement](biscore.ecschema.md#recipedefinitionelement)
 
-### ViewDefinitionUsesCategorySelector
+### **ViewDefinitionUsesCategorySelector** *Sealed*
 
 **typeName:** RelationshipClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -3160,11 +2772,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [CategorySelector](biscore.ecschema.md#categoryselector)
 
-### ViewDefinitionUsesDisplayStyle
+### **ViewDefinitionUsesDisplayStyle** *Sealed*
 
 **typeName:** RelationshipClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -3194,11 +2806,11 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 - [DisplayStyle](biscore.ecschema.md#displaystyle)
 
-### ViewIsAttached
+### **ViewIsAttached** *Sealed*
 
 **typeName:** RelationshipClass
 
-**modifier:** Sealed
+**description:** &lt;No description&gt;
 
 **Strength:** Referencing
 
@@ -3230,11 +2842,13 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 ## Enumerations
 
-### AutoHandledPropertyStatementType
+### **AutoHandledPropertyStatementType**
 
 **typeName:** Enumeration
 
 **Backing Type:** int
+
+**description:** &lt;No description&gt;
 
 **Strict:** true
 
@@ -3243,11 +2857,13 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 |ReadOnly = Select\|Insert|3|
 |All = Select \| Insert \| Update|7|
 
-### CustomHandledPropertyStatementType
+### **CustomHandledPropertyStatementType**
 
 **typeName:** Enumeration
 
 **Backing Type:** int
+
+**description:** &lt;No description&gt;
 
 **Strict:** true
 
@@ -3263,39 +2879,29 @@ A relationship that indicates a physical assembly of child PhysicalElements.
 
 ## Mixin Classes
 
-### IParentElement
+### **IParentElement** (Parent Element) *Abstract*
 
 **typeName:** Mixin
 
-An interface that indicates that this Element is capable of being a parent (owning child Elements). This interface is mutually exclusive with ISubModeledElement.
-
-**displayLabel:** Parent Element
-
-**modifier:** Abstract
+**description:** An interface that indicates that this Element is capable of being a parent (owning child Elements). This interface is mutually exclusive with ISubModeledElement.
 
 **appliesTo:** [Element](biscore.ecschema.md#element)
 
-### ISubModeledElement
+### **ISubModeledElement** (Modellable Element) *Abstract*
 
 **typeName:** Mixin
 
-An interface which indicates that an Element can be broken down or described by a (sub) Model.  This interface is mutually exclusive with IParentElement.
-
-**displayLabel:** Modellable Element
-
-**modifier:** Abstract
+**description:** An interface which indicates that an Element can be broken down or described by a (sub) Model.  This interface is mutually exclusive with IParentElement.
 
 **appliesTo:** [Element](biscore.ecschema.md#element)
 
 ## Custom Attribute Classes
 
-### AutoHandledProperty
+### **AutoHandledProperty**
 
 **typeName:** CustomAttributeClass
 
-Applied to an element's property to indicate that select, update, and insert of the property's value are handled automatically by the platform.
-
-**modifier:** None
+**description:** Applied to an element's property to indicate that select, update, and insert of the property's value are handled automatically by the platform.
 
 **Applies to:** AnyProperty
 
@@ -3305,13 +2911,11 @@ Applied to an element's property to indicate that select, update, and insert of 
 |:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
 |StatementTypes||||false|0|
 
-### ClassHasHandler
+### **ClassHasHandler**
 
 **typeName:** CustomAttributeClass
 
-Applied to an ECClass to indicate that a subclass of DgnDomain::Handler will be supplied for it at run-time.
-
-**modifier:** None
+**description:** Applied to an ECClass to indicate that a subclass of DgnDomain::Handler will be supplied for it at run-time.
 
 **Applies to:** Any
 
@@ -3321,13 +2925,11 @@ Applied to an ECClass to indicate that a subclass of DgnDomain::Handler will be 
 |:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
 |Restrictions|List of actions which are not permitted when the associated handler is not available|||false|0|
 
-### CustomHandledProperty
+### **CustomHandledProperty**
 
 **typeName:** CustomAttributeClass
 
-Applied to an element's property to indicate that the property's value is handled specially by a C++ class.
-
-**modifier:** None
+**description:** Applied to an element's property to indicate that the property's value is handled specially by a C++ class.
 
 **Applies to:** AnyProperty
 
