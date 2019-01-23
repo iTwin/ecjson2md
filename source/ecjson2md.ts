@@ -405,12 +405,6 @@ export class ECJsonMarkdownGenerator {
     // Write the description of the entity class
     this.writeSchemaItemDescription(outputFilePath, entityClass.description);
 
-    // Write the label (see writeSchemaItemName) (see writeSchemaItemName)
-    // this.writeSchemaItemLabel(outputFilePath, entityClass.label);
-
-    // Write the modifier (see writeSchemaItemName)
-    // this.writeSchemaItemModifier(outputFilePath, entityClass.modifier);
-
     // Write the base class
     this.writeSchemaItemBaseClass(outputFilePath, entityClass.baseClass);
 
@@ -457,9 +451,6 @@ export class ECJsonMarkdownGenerator {
 
     // Write the description of the entity class
     this.writeSchemaItemDescription(outputFilePath, kindOfQuantity.description);
-
-    // Write the label (see writeSchemaItemName)
-    // this.writeSchemaItemLabel(outputFilePath, kindOfQuantity.label);
 
     // Write the relative error
     if (kindOfQuantity.relativeError !== undefined)
@@ -606,12 +597,6 @@ export class ECJsonMarkdownGenerator {
     // Write the description of the entity class
     this.writeSchemaItemDescription(outputFilePath, relationshipClass.description);
 
-    // Write the label (see writeSchemaItemName)
-    // this.writeSchemaItemLabel(outputFilePath, relationshipClass.label);
-
-    // Write the modifier (see writeSchemaItemName)
-    // this.writeSchemaItemModifier(outputFilePath, relationshipClass.modifier);
-
     // Write the base class
     this.writeSchemaItemBaseClass(outputFilePath, relationshipClass.baseClass);
 
@@ -702,9 +687,6 @@ export class ECJsonMarkdownGenerator {
     // Write the description of the entity class
     this.writeSchemaItemDescription(outputFilePath, enumerationItem.description);
 
-    // Write the label (see writeSchemaItemName)
-    // this.writeSchemaItemLabel(outputFilePath, enumerationItem.label);
-
     // Write wether or not the enum is strict
     if (enumerationItem.isStrict !== undefined)
       fs.appendFileSync(outputFilePath, "**Strict:** " + enumerationItem.isStrict + "\n\n");
@@ -747,12 +729,6 @@ export class ECJsonMarkdownGenerator {
 
     // Write the description of the mixin class
     this.writeSchemaItemDescription(outputFilePath, mixin.description);
-
-    // Write the displayLabel (see writeSchemaItemName)
-    // this.writeSchemaItemLabel(outputFilePath, mixin.label);
-
-    // Write the modifier (see writeSchemaItemName)
-    // this.writeSchemaItemModifier(outputFilePath, mixin.modifier);
 
     // Write the base class
     this.writeSchemaItemBaseClass(outputFilePath, mixin.baseClass);
@@ -827,12 +803,6 @@ export class ECJsonMarkdownGenerator {
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, customAttributeClass.description);
 
-    // Write the displayLabel (see writeSchemaItemName)
-    // this.writeSchemaItemLabel(outputFilePath, customAttributeClass.label);
-
-    // Write the modifier (see writeSchemaItemName)
-    // this.writeSchemaItemModifier(outputFilePath, customAttributeClass.modifier);
-
     // Write the base class
     this.writeSchemaItemBaseClass(outputFilePath, customAttributeClass.baseClass);
 
@@ -902,12 +872,6 @@ export class ECJsonMarkdownGenerator {
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, structClass.description);
 
-    // Write the displayLabel (see writeSchemaItemName)
-    // this.writeSchemaItemLabel(outputFilePath, structClass.label);
-
-    // Write the modifier (see writeSchemaItemName)
-    // this.writeSchemaItemModifier(outputFilePath, structClass.modifier);
-
     // Write the base class
     this.writeSchemaItemBaseClass(outputFilePath, structClass.baseClass);
 
@@ -970,9 +934,6 @@ export class ECJsonMarkdownGenerator {
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, propertyCategory.description);
 
-    // Write the displayLabel (see writeSchemaItemName)
-    // this.writeSchemaItemLabel(outputFilePath, propertyCategory.label);
-
     // Write the priority
     this.writeSchemaItemPriority(outputFilePath, propertyCategory.priority);
   }
@@ -1024,9 +985,6 @@ export class ECJsonMarkdownGenerator {
 
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, formatClass.description);
-
-    // Write the displayLabel (see writeSchemaItemName)
-    // this.writeSchemaItemLabel(outputFilePath, formatClass.label);
 
     // Write the format type
     fs.appendFileSync(outputFilePath, "**type:** " + formatTypeToString(formatClass.type) + "\n\n");
@@ -1089,9 +1047,6 @@ export class ECJsonMarkdownGenerator {
 
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, unitClass.description);
-
-    // Write the displayLabel (see writeSchemaItemName)
-    // this.writeSchemaItemLabel(outputFilePath, unitClass.label);
 
     // Write the definition
     fs.appendFileSync(outputFilePath, "**Definition:** " + unitClass.definition + "\n\n");
