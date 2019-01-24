@@ -62,7 +62,6 @@ describe("ecjson2md", () => {
         let testSchema: Schema;
 
         before(() => {
-          // testSchema = new Schema();
           testSchema = Schema.fromJsonSync({
               $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
               alias: "testSchema",
@@ -142,7 +141,6 @@ describe("ecjson2md", () => {
 
         it("should write the markdown properly for a schema with no description or label", () => {
           // Arrange
-          // testSchema = new Schema();
           const testSchema = Schema.fromJsonSync({
                 $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
                 alias: "testSchema",
