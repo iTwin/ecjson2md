@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.4.7] - 2019-02-06
+
+### Added
+
+- Support for `Format` and `Unit` classes
+- Added developer setup and maintenance instructions
+
+### Fixed
+
+- Fixed issue that blocked consumption of latest schemas
+
+### Changed
+
+- Automatically add `noEditThisPage` tag to generated frontmatter
+- Updated formatting for `KindofQuantity` classes
+- Updated styling for SchemaItems in markdown generation
+- Refactored tests for better performance and easier updates
+
 ## [0.4.6] - 2018-12-03
 
 ### Fixed
@@ -249,7 +267,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Tests
 - CLI tool to convert ECSchema JSON to markdown
 
-[Unreleased]: https://github.com/iTwin/ecjson2md/branches?_a=commits&baseVersion=GT0.4.5&targetVersion=GBmaster
+
+[Unreleased]: https://github.com/iTwin/ecjson2md/branches?_a=commits&baseVersion=GT0.4.6&targetVersion=GBmaster
+[0.4.6]: https://github.com/iTwin/ecjson2md/tree/0.4.6
 [0.4.5]: https://github.com/iTwin/ecjson2md/tree/0.4.5
 [0.4.4]: https://github.com/iTwin/ecjson2md/tree/0.4.4
 [0.4.3]: https://github.com/iTwin/ecjson2md/tree/0.4.3
