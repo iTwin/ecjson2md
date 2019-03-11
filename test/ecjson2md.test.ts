@@ -63,11 +63,11 @@ describe("ecjson2md", () => {
 
         before(() => {
           testSchema = Schema.fromJsonSync({
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               alias: "testSchema",
               name: "testSchema",
               version: "02.00.00",
-            });
+            }, new SchemaContext());
         });
 
         beforeEach(() => {
@@ -142,11 +142,11 @@ describe("ecjson2md", () => {
         it("should write the markdown properly for a schema with no description or label", () => {
           // Arrange
           const testSchema = Schema.fromJsonSync({
-                $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+                $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
                 alias: "testSchema",
                 name: "testSchema",
                 version: "02.00.00",
-              });
+              }, new SchemaContext());
 
           // Act
           ECJsonMarkdownGenerator.writeSchema(outputFilePath, testSchema);
@@ -172,12 +172,12 @@ describe("ecjson2md", () => {
         it("should write the markdown properly for a schema with a description", () => {
           // Arrange
             const testSchema = Schema.fromJsonSync({
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               description: "This is the description",
               alias: "testSchema",
               name: "testSchema",
               version: "02.00.00",
-            });
+            }, new SchemaContext());
 
           // Act
             ECJsonMarkdownGenerator.writeSchema(outputFilePath, testSchema);
@@ -206,13 +206,13 @@ describe("ecjson2md", () => {
         it("should write the markdown properly for a schema with a description and label", () => {
           // Arrange
             const testSchema = Schema.fromJsonSync({
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               description: "This is the description",
               alias: "testSchema",
               name: "testSchema",
               label: "testSchemaLabel",
               version: "02.00.00",
-            });
+            }, new SchemaContext());
 
             // Act
             ECJsonMarkdownGenerator.writeSchema(outputFilePath, testSchema);
@@ -504,7 +504,7 @@ describe("ecjson2md", () => {
         it("should write the base class properly", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               description: "This is the description",
               alias: "testSchema",
               name: "testSchema",
@@ -568,7 +568,7 @@ describe("ecjson2md", () => {
         it("should properly write an entity class that has just a name and type", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               alias: "testSchema",
               name: "testSchema",
               version: "02.00.00",
@@ -606,7 +606,7 @@ describe("ecjson2md", () => {
         it("should properly write an entity class that has just a name, type, and description", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               description: "This is the description",
               alias: "testSchema",
               name: "testSchema",
@@ -647,7 +647,7 @@ describe("ecjson2md", () => {
         it("should properly write an entity class that has just a name, type, and base class", () => {
           // Arrange
           const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
             description: "This is the description",
             alias: "testSchema",
             name: "testSchema",
@@ -694,7 +694,7 @@ describe("ecjson2md", () => {
         it("should properly write an entity class that has just a name, type, and label", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               description: "This is the description",
               alias: "testSchema",
               name: "testSchema",
@@ -735,7 +735,7 @@ describe("ecjson2md", () => {
         it("should properly write an entity class that has a name, type, description, base class, and label", () => {
           // Arrange
           const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
             description: "This is the description",
             alias: "testSchema",
             name: "testSchema",
@@ -783,7 +783,7 @@ describe("ecjson2md", () => {
         it("should properly write an entity class that has properties", () => {
           // Arrange
           const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
             description: "This is the description",
             alias: "testSchema",
             name: "testSchema",
@@ -873,7 +873,7 @@ describe("ecjson2md", () => {
         it("should properly write a kind of quantity without a description", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               alias: "testSchema",
               name: "testSchema",
               version: "02.00.00",
@@ -946,7 +946,7 @@ describe("ecjson2md", () => {
         it("should properly write a kind of quantity without presentation units", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               alias: "testSchema",
               name: "testSchema",
               version: "02.00.00",
@@ -1013,7 +1013,7 @@ describe("ecjson2md", () => {
         it("should properly write a kind of quantity without a description or presentation units", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               alias: "testSchema",
               name: "testSchema",
               version: "02.00.00",
@@ -1079,7 +1079,7 @@ describe("ecjson2md", () => {
         it("should properly write a kind of quantity with multiple presentation units", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               alias: "testSchema",
               name: "testSchema",
               version: "02.00.00",
@@ -1216,7 +1216,7 @@ describe("ecjson2md", () => {
         it("should properly write a class without a description, base class, or label", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               alias: "testSchema",
               name: "testSchema",
               version: "02.00.00",
@@ -1309,7 +1309,7 @@ describe("ecjson2md", () => {
         it("should properly write a class with a description", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               alias: "testSchema",
               name: "testSchema",
               version: "02.00.00",
@@ -1403,7 +1403,7 @@ describe("ecjson2md", () => {
         it("should properly write a class with a base class", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               alias: "testSchema",
               name: "testSchema",
               version: "02.00.00",
@@ -1499,7 +1499,7 @@ describe("ecjson2md", () => {
         it("should properly write a class with a label", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               alias: "testSchema",
               name: "testSchema",
               version: "02.00.00",
@@ -1595,7 +1595,7 @@ describe("ecjson2md", () => {
         it("should properly write a base class with description, base class, and label", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               alias: "testSchema",
               name: "testSchema",
               version: "02.00.00",
@@ -1689,7 +1689,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has multiple constraint classes in target and source", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
               alias: "testSchema",
               name: "testSchema",
               version: "02.00.00",
@@ -1802,7 +1802,7 @@ describe("ecjson2md", () => {
       describe("writeEnumerationItem", () => {
         const outputFilePath = path.join(outputDir, "relationshipClassTest.md");
         const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
             alias: "testSchema",
             name: "testSchema",
             version: "02.00.00",
@@ -2067,7 +2067,7 @@ describe("ecjson2md", () => {
       describe("writeMixinClass", () => {
         const outputFilePath = path.join(outputDir, "mixinClassTest.md");
         const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
             alias: "testSchema",
             name: "testSchema",
             version: "02.00.00",
@@ -2415,7 +2415,7 @@ describe("ecjson2md", () => {
 
         const outputFilePath = path.join(outputDir, "customAttributeClassTest.md");
         const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
             alias: "testSchema",
             name: "testSchema",
             version: "02.00.00",
@@ -2633,7 +2633,7 @@ describe("ecjson2md", () => {
       describe("writeStructClass", () => {
         const outputFilePath = path.join(outputDir, "structClassTest.md");
         const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
             alias: "testSchema",
             name: "testSchema",
             version: "02.00.00",
@@ -2864,7 +2864,7 @@ describe("ecjson2md", () => {
       describe("writePropertyCategory", () => {
         const outputFilePath = path.join(outputDir, "structClassTest.md");
         const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
             alias: "testSchema",
             name: "testSchema",
             version: "02.00.00",
@@ -2964,7 +2964,7 @@ describe("ecjson2md", () => {
       describe("Misc", () => {
         describe("getSortedSchemaItems", () => {
           const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/draft-01/ecschema",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
             description: "This is the description",
             alias: "testSchema",
             name: "testSchema",
