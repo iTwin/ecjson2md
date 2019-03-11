@@ -1,6 +1,6 @@
 {
   "name": "@bentley/ecjson2md",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "Markdown generation from ECSchema JSON",
   "license": "MIT",
   "bin": {
