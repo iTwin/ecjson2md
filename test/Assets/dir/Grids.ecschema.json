@@ -103,9 +103,10 @@
          "schemaItemType" : "EntityClass"
       },
       "Grid" : {
-         "baseClass" : "BisCore.SpatialLocationPortion",
+         "baseClass" : "BisCore.SpatialLocationElement",
          "description" : "A grid is a collection of gridsurfaces.",
-         "modifier" : "abstract",
+         "mixins" : [ "BisCore.ISubModeledElement" ],
+         "modifier" : "Abstract",
          "schemaItemType" : "EntityClass"
       },
       "GridArc" : {
@@ -121,13 +122,13 @@
       "GridArcSurface" : {
          "baseClass" : "Grids.GridSurface",
          "description" : "A grid surface that is parallel to extruded arc.",
-         "modifier" : "abstract",
+         "modifier" : "Abstract",
          "schemaItemType" : "EntityClass"
       },
       "GridAxis" : {
          "baseClass" : "BisCore.GroupInformationElement",
          "description" : "an element which groups (typically parallel) GridSurfaces",
-         "modifier" : "abstract",
+         "modifier" : "Abstract",
          "properties" : [
             {
                "label" : "Name",
@@ -137,17 +138,17 @@
             },
             {
                "description" : "Grid this axis belong to",
-               "direction" : "backward",
+               "direction" : "Backward",
                "name" : "Grid",
-               "type" : "NavigationProperty",
-               "relationshipName" : "Grids.GridHasAxes"
+               "relationshipName" : "Grids.GridHasAxes",
+               "type" : "NavigationProperty"
             }
          ],
          "schemaItemType" : "EntityClass"
       },
       "GridAxisContainsGridSurfaces" : {
          "description" : "maps axis to grouped surfaces",
-         "modifier" : "none",
+         "modifier" : "None",
          "schemaItemType" : "RelationshipClass",
          "source" : {
             "constraintClasses" : [ "Grids.GridAxis" ],
@@ -155,8 +156,8 @@
             "polymorphic" : true,
             "roleLabel" : "contains"
          },
-         "strength" : "embedding",
-         "strengthDirection" : "forward",
+         "strength" : "Embedding",
+         "strengthDirection" : "Forward",
          "target" : {
             "constraintClasses" : [ "Grids.GridSurface" ],
             "multiplicity" : "(0..*)",
@@ -167,7 +168,7 @@
       "GridCurve" : {
          "baseClass" : "BisCore.SpatialLocationElement",
          "description" : "an element representing a gridcurve - typically intersection of 2 surfaces",
-         "modifier" : "abstract",
+         "modifier" : "Abstract",
          "schemaItemType" : "EntityClass"
       },
       "GridCurveBundle" : {
@@ -180,11 +181,11 @@
          "label" : "GridCurve bundle",
          "properties" : [
             {
-               "description" : "Created GridCurves will be put into this GridCurvesPortion",
-               "direction" : "forward",
-               "name" : "CurvesPortion",
-               "type" : "NavigationProperty",
-               "relationshipName" : "Grids.GridCurveBundleRefersToGridCurvesPortion"
+               "description" : "Created GridCurves will be put into this GridCurvesSet",
+               "direction" : "Forward",
+               "name" : "CurvesSet",
+               "relationshipName" : "Grids.GridCurveBundleRefersToGridCurvesSet",
+               "type" : "NavigationProperty"
             }
          ],
          "schemaItemType" : "EntityClass"
@@ -197,7 +198,7 @@
             }
          ],
          "description" : "a driving relationship which tells that gridcurve was created by the mapped GridCurveBundle",
-         "modifier" : "none",
+         "modifier" : "None",
          "schemaItemType" : "RelationshipClass",
          "source" : {
             "constraintClasses" : [ "Grids.GridCurveBundle" ],
@@ -205,8 +206,8 @@
             "polymorphic" : true,
             "roleLabel" : "creates"
          },
-         "strength" : "referencing",
-         "strengthDirection" : "forward",
+         "strength" : "Referencing",
+         "strengthDirection" : "Forward",
          "target" : {
             "constraintClasses" : [ "Grids.GridCurve" ],
             "multiplicity" : "(0..1)",
@@ -214,9 +215,9 @@
             "roleLabel" : "is created by"
          }
       },
-      "GridCurveBundleRefersToGridCurvesPortion" : {
-         "description" : "Maps GridCurveBundle to a GridCurvesPortion",
-         "modifier" : "none",
+      "GridCurveBundleRefersToGridCurvesSet" : {
+         "description" : "Maps GridCurveBundle to a GridCurvesSet",
+         "modifier" : "None",
          "schemaItemType" : "RelationshipClass",
          "source" : {
             "constraintClasses" : [ "Grids.GridCurveBundle" ],
@@ -224,23 +225,24 @@
             "polymorphic" : true,
             "roleLabel" : "puts GridCurves into"
          },
-         "strength" : "embedding",
-         "strengthDirection" : "backward",
+         "strength" : "Embedding",
+         "strengthDirection" : "Backward",
          "target" : {
-            "constraintClasses" : [ "Grids.GridCurvesPortion" ],
+            "constraintClasses" : [ "Grids.GridCurvesSet" ],
             "multiplicity" : "(1..1)",
             "polymorphic" : true,
             "roleLabel" : "contains GridCurves created by"
          }
       },
-      "GridCurvesPortion" : {
-         "baseClass" : "BisCore.SpatialLocationPortion",
+      "GridCurvesSet" : {
+         "baseClass" : "BisCore.SpatialLocationElement",
          "customAttributes" : [
             {
                "className" : "BisCore.ClassHasHandler"
             }
          ],
-         "description" : "a portion which holds GridCurves",
+         "description" : "a set which holds GridCurves",
+         "mixins" : [ "BisCore.ISubModeledElement" ],
          "schemaItemType" : "EntityClass"
       },
       "GridDrivesGridSurface" : {
@@ -251,7 +253,7 @@
             }
          ],
          "description" : "a driving relationship which tells that a grid is driving a gridsurface.",
-         "modifier" : "none",
+         "modifier" : "None",
          "schemaItemType" : "RelationshipClass",
          "source" : {
             "constraintClasses" : [ "Grids.Grid" ],
@@ -259,8 +261,8 @@
             "polymorphic" : true,
             "roleLabel" : "drives"
          },
-         "strength" : "referencing",
-         "strengthDirection" : "forward",
+         "strength" : "Referencing",
+         "strengthDirection" : "Forward",
          "target" : {
             "constraintClasses" : [ "Grids.GridSurface" ],
             "multiplicity" : "(0..*)",
@@ -270,7 +272,7 @@
       },
       "GridHasAxes" : {
          "description" : "maps grid to its axes",
-         "modifier" : "none",
+         "modifier" : "None",
          "schemaItemType" : "RelationshipClass",
          "source" : {
             "constraintClasses" : [ "Grids.Grid" ],
@@ -278,8 +280,8 @@
             "polymorphic" : true,
             "roleLabel" : "Has Axis"
          },
-         "strength" : "embedding",
-         "strengthDirection" : "forward",
+         "strength" : "Embedding",
+         "strengthDirection" : "Forward",
          "target" : {
             "constraintClasses" : [ "Grids.GridAxis" ],
             "multiplicity" : "(0..*)",
@@ -300,7 +302,7 @@
       "GridPlanarSurface" : {
          "baseClass" : "Grids.GridSurface",
          "description" : "A planar grid surface element.",
-         "modifier" : "abstract",
+         "modifier" : "Abstract",
          "schemaItemType" : "EntityClass"
       },
       "GridSpline" : {
@@ -316,20 +318,20 @@
       "GridSplineSurface" : {
          "baseClass" : "Grids.GridSurface",
          "description" : "A grid surface that is parallel to an extruded spline.",
-         "modifier" : "abstract",
+         "modifier" : "Abstract",
          "schemaItemType" : "EntityClass"
       },
       "GridSurface" : {
          "baseClass" : "BisCore.SpatialLocationElement",
          "description" : "A grid surface element.",
-         "modifier" : "abstract",
+         "modifier" : "Abstract",
          "properties" : [
             {
                "description" : "Axis this gridSurface belong to",
-               "direction" : "backward",
+               "direction" : "Backward",
                "name" : "Axis",
-               "type" : "NavigationProperty",
-               "relationshipName" : "Grids.GridAxisContainsGridSurfaces"
+               "relationshipName" : "Grids.GridAxisContainsGridSurfaces",
+               "type" : "NavigationProperty"
             }
          ],
          "schemaItemType" : "EntityClass"
@@ -342,7 +344,7 @@
             }
          ],
          "description" : "a driving relationship which tells that gridsurface influences the creation of GridCurve",
-         "modifier" : "none",
+         "modifier" : "None",
          "schemaItemType" : "RelationshipClass",
          "source" : {
             "constraintClasses" : [ "Grids.GridSurface" ],
@@ -350,8 +352,8 @@
             "polymorphic" : true,
             "roleLabel" : "influences"
          },
-         "strength" : "referencing",
-         "strengthDirection" : "forward",
+         "strength" : "Referencing",
+         "strengthDirection" : "Forward",
          "target" : {
             "constraintClasses" : [ "Grids.GridCurveBundle" ],
             "multiplicity" : "(0..*)",
@@ -526,7 +528,7 @@
       "PlanGrid" : {
          "baseClass" : "Grids.Grid",
          "description" : "a grid whose surfaces are curves parallel to the local x-y plane extruded along the local z-axis",
-         "modifier" : "abstract",
+         "modifier" : "Abstract",
          "properties" : [
             {
                "kindOfQuantity" : "AecUnits.LENGTH",
@@ -549,21 +551,21 @@
          "baseClass" : "Grids.GridArcSurface",
          "description" : "An arc plangrid surface element.",
          "mixins" : [ "Grids.IPlanGridSurface" ],
-         "modifier" : "abstract",
+         "modifier" : "Abstract",
          "schemaItemType" : "EntityClass"
       },
       "PlanGridPlanarSurface" : {
          "baseClass" : "Grids.GridPlanarSurface",
          "description" : "A planar plangrid surface element.",
          "mixins" : [ "Grids.IPlanGridSurface" ],
-         "modifier" : "abstract",
+         "modifier" : "Abstract",
          "schemaItemType" : "EntityClass"
       },
       "PlanGridSplineSurface" : {
          "baseClass" : "Grids.GridSplineSurface",
          "description" : "A spline plangrid surface element.",
          "mixins" : [ "Grids.IPlanGridSurface" ],
-         "modifier" : "abstract",
+         "modifier" : "Abstract",
          "schemaItemType" : "EntityClass"
       },
       "PlanRadialGridSurface" : {
@@ -737,11 +739,11 @@
       },
       {
          "name" : "BisCore",
-         "version" : "01.00.01"
+         "version" : "01.00.04"
       },
       {
          "name" : "CoreCustomAttributes",
-         "version" : "01.00.00"
+         "version" : "01.00.01"
       }
    ],
    "version" : "01.00.00"
