@@ -5,7 +5,7 @@
    "items" : {
       "ClassMap" : {
          "appliesTo" : "EntityClass, RelationshipClass",
-         "modifier" : "sealed",
+         "modifier" : "Sealed",
          "properties" : [
             {
                "description" : "Defines how the ECClass is mapped to table(s). Values: OwnTable (default), TablePerHierarchy, ExistingTable, NotMapped",
@@ -30,7 +30,7 @@
       },
       "DbIndex" : {
          "description" : "Specify a database index for an ECClass.",
-         "modifier" : "sealed",
+         "modifier" : "Sealed",
          "properties" : [
             {
                "description" : "Name of the index. Must follow EC identifier rules. It needs to be globally unique in the database.",
@@ -62,7 +62,7 @@
       },
       "DbIndexList" : {
          "appliesTo" : "EntityClass, RelationshipClass",
-         "modifier" : "sealed",
+         "modifier" : "Sealed",
          "properties" : [
             {
                "description" : "List of indexes on properties of this class. It can be use to improve query performance or to add unique constraint.",
@@ -77,7 +77,7 @@
       "ForeignKeyConstraint" : {
          "appliesTo" : "NavigationProperty",
          "description" : "Creates a foreign key for this navigation property.",
-         "modifier" : "sealed",
+         "modifier" : "Sealed",
          "properties" : [
             {
                "description" : "Possible values: NoAction (default), Cascade (which deletes child rows when parent row is deleted), SetNull(foreign key property in child is set to NULL), Restrict (cannot delete parent if it still has children).",
@@ -97,12 +97,12 @@
       "JoinedTablePerDirectSubclass" : {
          "appliesTo" : "EntityClass",
          "description" : "Maps subclasses and their children to a joined table. Can only be applied to classes in a hierarchy using MapStrategy TablePerHierarchy.",
-         "modifier" : "sealed",
+         "modifier" : "Sealed",
          "schemaItemType" : "CustomAttributeClass"
       },
       "LinkTableRelationshipMap" : {
          "appliesTo" : "RelationshipClass",
-         "modifier" : "sealed",
+         "modifier" : "Sealed",
          "properties" : [
             {
                "description" : "Optional. If not set, a default column name will be used",
@@ -133,7 +133,7 @@
       },
       "PropertyMap" : {
          "appliesTo" : "PrimitiveProperty",
-         "modifier" : "sealed",
+         "modifier" : "Sealed",
          "properties" : [
             {
                "description" : "If not specified, the ECProperty name is used. It must follow EC Identifier specification.",
@@ -164,7 +164,7 @@
       },
       "SchemaMap" : {
          "appliesTo" : "Schema",
-         "modifier" : "sealed",
+         "modifier" : "Sealed",
          "properties" : [
             {
                "description" : "Specifies a prefix for generated tables. If not specified, the alias of the ECSchema is used",
@@ -178,7 +178,7 @@
       "ShareColumns" : {
          "appliesTo" : "EntityClass, RelationshipClass",
          "description" : "Allows to share columns amongst ECProperties. Can only be applied to MapStrategy TablePerHierarchy",
-         "modifier" : "sealed",
+         "modifier" : "Sealed",
          "properties" : [
             {
                "description" : "False (Default):Columns are shared for the properties of the ECClass to which this CA is applied and all its subclasses. True: Columns are not shared for this ECClass but for all of its subclasses.",

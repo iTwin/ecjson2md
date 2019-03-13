@@ -1,10 +1,10 @@
-import { ECJsonMarkdownGenerator, formatLink, formatWarningAlert, propertyTypeNumberToString, removeExtraBlankLine } from "../source/ecjson2md";
+import { ECJsonMarkdownGenerator, formatLink, formatWarningAlert, propertyTypeNumberToString, removeExtraBlankLine, prepSearchDirs } from "../source/ecjson2md";
 import { assert } from "chai";
 import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
 import * as path from "path";
 import * as rimraf from "rimraf";
-import { SchemaContext, Schema, PropertyType, classModifierToString } from "@bentley/ecschema-metadata";
+import { SchemaContext, Schema, PropertyType, classModifierToString, SchemaJsonFileLocater } from "@bentley/ecschema-metadata";
 
 describe("ecjson2md", () => {
   describe("ECJsonMarkdownGenerator", () => {
@@ -95,7 +95,6 @@ describe("ecjson2md", () => {
           `);
 
           assert.equal(outputLines.length, correctLines.length);
-
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
@@ -107,7 +106,6 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputPath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ---
           noEditThisPage: true
@@ -120,7 +118,6 @@ describe("ecjson2md", () => {
           `);
 
           assert.equal(outputLines.length, correctLines.length);
-
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
@@ -163,7 +160,6 @@ describe("ecjson2md", () => {
           `);
 
           assert.equal(outputLines.length, correctLines.length);
-
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
@@ -184,7 +180,6 @@ describe("ecjson2md", () => {
 
             // Assert
             const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
             const correctLines = outputLiteralToArray(`
             # testSchema
 
@@ -197,7 +192,6 @@ describe("ecjson2md", () => {
             `);
 
             assert.equal(outputLines.length, correctLines.length);
-
             correctLines.map((line, i) => {
               assert.equal(outputLines[i], line);
             });
@@ -219,7 +213,6 @@ describe("ecjson2md", () => {
 
             // Assert
             const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
             const correctLines = outputLiteralToArray(`
             # testSchema
 
@@ -234,14 +227,13 @@ describe("ecjson2md", () => {
             `);
 
             assert.equal(outputLines.length, correctLines.length);
-
             correctLines.map((line, i) => {
               assert.equal(outputLines[i], line);
             });
         });
       });
 
-      describe("writeSchemaItemName", () => {
+      describe("writeSchemaItemHeader", () => {
         const outputFilePath = path.join(outputDir, "nameTest.md");
 
         beforeEach(() => {
@@ -258,7 +250,7 @@ describe("ecjson2md", () => {
           const name = undefined;
 
           // Act
-          ECJsonMarkdownGenerator.writeSchemaItemName(outputFilePath, name, undefined, undefined);
+          ECJsonMarkdownGenerator.writeSchemaItemHeader(outputFilePath, name);
 
           // Assert
           assert.isFalse(fs.existsSync(outputFilePath));
@@ -269,7 +261,7 @@ describe("ecjson2md", () => {
           const name = "NameOfTheSchemaItem";
 
           // Act
-          ECJsonMarkdownGenerator.writeSchemaItemName(outputFilePath, name, undefined, undefined);
+          ECJsonMarkdownGenerator.writeSchemaItemHeader(outputFilePath, name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -279,7 +271,6 @@ describe("ecjson2md", () => {
             `);
 
           assert.equal(outputLines.length, correctLines.length);
-
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
@@ -307,14 +298,12 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
             **description:** ${description}
 
             `);
 
           assert.equal(outputLines.length, correctLines.length);
-
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
@@ -329,14 +318,12 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           **description:** ${description}
 
           `);
 
           assert.equal(outputLines.length, correctLines.length);
-
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
@@ -379,8 +366,8 @@ describe("ecjson2md", () => {
           **displayLabel:** ${label}
 
           `);
-          assert.equal(outputLines.length, correctLines.length);
 
+          assert.equal(outputLines.length, correctLines.length);
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
@@ -419,14 +406,12 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           **priority:** ${priority}
 
           `);
 
           assert.equal(outputLines.length, correctLines.length);
-
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
@@ -465,13 +450,12 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           **modifier:** ${classModifierToString(modifier)}
 
           `);
-          assert.equal(outputLines.length, correctLines.length);
 
+          assert.equal(outputLines.length, correctLines.length);
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
@@ -535,8 +519,8 @@ describe("ecjson2md", () => {
           **baseClass:** [testSchema:EntityClassB](testschema.ecschema.md#entityclassb)
 
           `);
-          assert.equal(outputLines.length, correctLines.length);
 
+          assert.equal(outputLines.length, correctLines.length);
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
@@ -597,7 +581,6 @@ describe("ecjson2md", () => {
           `);
 
           assert.equal(outputLines.length, correctLines.length);
-
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
@@ -621,7 +604,6 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
-          testSchema.getItemSync("EntityClassA");
 
           // Act
           ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
@@ -638,7 +620,6 @@ describe("ecjson2md", () => {
           `);
 
           assert.equal(outputLines.length, correctLines.length);
-
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
@@ -666,14 +647,12 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
-          testSchema.getItemSync("EntityClassA");
 
           // Act
           ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **EntityClassA**
 
@@ -709,14 +688,12 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
-          testSchema.getItemSync("EntityClassA");
 
           // Act
           ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **EntityClassA** (entityLabel)
 
@@ -756,14 +733,12 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
-          testSchema.getItemSync("EntityClassA");
 
           // Act
           ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **EntityClassA** (entityLabel)
 
@@ -774,6 +749,7 @@ describe("ecjson2md", () => {
           **baseClass:** [testSchema:EntityClassB](testschema.ecschema.md#entityclassb)
 
           `);
+
           assert.equal(outputLines.length, correctLines.length);
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
@@ -824,14 +800,12 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
-          testSchema.getItemSync("EntityClassA");
 
           // Act
           ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **EntityClassA**
 
@@ -847,6 +821,57 @@ describe("ecjson2md", () => {
           |NameTwo||string|Json|
           |NameThree|description three|string|Json|
           |NameFour||string||
+
+          `);
+
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+
+        it("should properly write a deprecated entity class", () => {
+          // Arrange
+          const schemaJson = {
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            description: "This is the description",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              EntityClassA: {
+                schemaItemType: "EntityClass",
+                customAttributes: [
+                  {
+                     Description: "EntityClassA has been deprecated in favor of EntityClassB.",
+                     className: "CoreCustomAttributes.Deprecated",
+                  },
+                ],
+              },
+            },
+          };
+
+          // To locate the 'Deprecated' CustomAttribute
+          const searchDirs = prepSearchDirs("./test/Assets/dir/");
+          const locator = new SchemaJsonFileLocater();
+          locator.addSchemaSearchPaths(searchDirs);
+          const context = new SchemaContext();
+          context.addLocater(locator);
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+          // Act
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **EntityClassA** [!badge text="Deprecated" kind="warning"]
+
+          [!alert text="EntityClassA has been deprecated in favor of EntityClassB." kind="warning"]
+
+          **typeName:** EntityClass
+
+          **description:** &lt;No description&gt;
 
           `);
 
@@ -917,7 +942,6 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **KindOfQuantityA** (KindOfQuantityA)
 
@@ -990,7 +1014,6 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **KindOfQuantityA** (KindOfQuantityA)
 
@@ -1056,7 +1079,6 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **KindOfQuantityA** (KindOfQuantityA)
 
@@ -1169,7 +1191,6 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **KindOfQuantityA** (KindOfQuantityA)
 
@@ -1262,7 +1283,6 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **RelationshipClassA**
 
@@ -1356,7 +1376,6 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **RelationshipClassA**
 
@@ -1450,7 +1469,6 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **RelationshipClassA**
 
@@ -1546,7 +1564,6 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **RelationshipClassA**
 
@@ -1642,7 +1659,6 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **RelationshipClassA** (relationshipClassALabel)
 
@@ -1750,7 +1766,6 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           const correctLines = outputLiteralToArray(`
           ### **RelationshipClassA**
 
@@ -1935,7 +1950,6 @@ describe("ecjson2md", () => {
           ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("IntBackedEnum"));
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-
           assert.equal(outputLines.length, correctLines.length);
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
@@ -3248,6 +3262,7 @@ describe("ecjson2md", () => {
           const inputFileDir = path.join(".", "test", "Assets", "dir");
           let testMDGenerator: ECJsonMarkdownGenerator;
           let outputFilePath: string;
+          const newlineRegex = /(?:\r\n|\r|\n)/g; // remove carriage returns as well to prevent tests failing
 
           // Delete the output file before each test
           beforeEach(() => {
@@ -3260,8 +3275,8 @@ describe("ecjson2md", () => {
             if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
           });
 
-          it("should properly generate markdown for biscore", () => {
-            // Assert
+          it("should properly generate markdown for BisCore", () => {
+            // Arrange
             const inputFileName = "BisCore.ecschema";
             const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
             const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
@@ -3272,7 +3287,7 @@ describe("ecjson2md", () => {
 
             // Assert
             const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-            const correctLines = fs.readFileSync(correctFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split(newlineRegex);
             assert.equal(outputLines.length, correctLines.length);
             correctLines.map((line, i) => {
               assert.equal(outputLines[i], line);
@@ -3280,7 +3295,7 @@ describe("ecjson2md", () => {
           });
 
           it("should properly generate markdown for AecUnits", () => {
-            // Assert
+            // Arrange
             const inputFileName = "AecUnits.ecschema";
             const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
             const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
@@ -3291,7 +3306,7 @@ describe("ecjson2md", () => {
 
             // Assert
             const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-            const correctLines = fs.readFileSync(correctFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split(newlineRegex);
             assert.equal(outputLines.length, correctLines.length);
             correctLines.map((line, i) => {
               assert.equal(outputLines[i], line);
@@ -3299,7 +3314,7 @@ describe("ecjson2md", () => {
           });
 
           it("should properly generate markdown for CoreCustomAttributes", () => {
-            // Assert
+            // Arrange
             const inputFileName = "CoreCustomAttributes.ecschema";
             const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
             const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
@@ -3310,7 +3325,7 @@ describe("ecjson2md", () => {
 
             // Assert
             const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-            const correctLines = fs.readFileSync(correctFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split(newlineRegex);
             assert.equal(outputLines.length, correctLines.length);
             correctLines.map((line, i) => {
               assert.equal(outputLines[i], line);
@@ -3318,7 +3333,7 @@ describe("ecjson2md", () => {
           });
 
           it("should properly generate markdown for Grids", () => {
-            // Assert
+            // Arrange
             const inputFileName = "Grids.ecschema";
             const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
             const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
@@ -3329,7 +3344,7 @@ describe("ecjson2md", () => {
 
             // Assert
             const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-            const correctLines = fs.readFileSync(correctFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split(newlineRegex);
             assert.equal(outputLines.length, correctLines.length);
             correctLines.map((line, i) => {
               assert.equal(outputLines[i], line);
@@ -3352,7 +3367,7 @@ describe("ecjson2md", () => {
         });
 
         it("should remove extra blank line at the end of file", () => {
-          // Assert
+          // Arrange
           const inputFilePath = path.join(".", "test", "Assets", "file_with_blank_lines.txt");
 
           // Act
@@ -3365,7 +3380,7 @@ describe("ecjson2md", () => {
         });
 
         it("shouldn't remove an extra blank line if there isn't one there", () => {
-          // Assert
+          // Arrange
           const inputFilePath = path.join(".", "test", "Assets", "file_with_blank_line.txt");
 
           // Act
@@ -3378,7 +3393,7 @@ describe("ecjson2md", () => {
         });
 
         it("shouldn't do anything to a file with no blank lines", () => {
-          // Assert
+          // Arrange
           const inputFilePath = path.join(".", "test", "Assets", "file_with_no_blank_line.txt");
 
           // Act

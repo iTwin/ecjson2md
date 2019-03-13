@@ -100,7 +100,6 @@
       "HMS" : {
          "composite" : {
             "includeZero" : true,
-            "spacer" : " ",
             "units" : [
                {
                   "label" : "hour(s)",
