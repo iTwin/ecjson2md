@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Added badges for deprecated schema items
+
+### Fixed
+
+- Fixed improper format in front matter generation
+
+## [0.4.9] - 2019-03-11
+
+### Fixed
+
+- Fixed schema uri to reflect ECJs update
+
 ## [0.4.8] - 2019-02-06
 
 ### Added
@@ -275,7 +289,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Tests
 - CLI tool to convert ECSchema JSON to markdown
 
-[Unreleased]: https://github.com/iTwin/ecjson2md/branches?_a=commits&baseVersion=GT0.4.8&targetVersion=GBmaster
+[Unreleased]: https://github.com/iTwin/ecjson2md/tree/master/
+[0.4.9]: https://github.com/iTwin/ecjson2md/tree/0.4.9
 [0.4.8]: https://github.com/iTwin/ecjson2md/tree/0.4.8
 [0.4.7]: https://github.com/iTwin/ecjson2md/tree/0.4.7
 [0.4.6]: https://github.com/iTwin/ecjson2md/tree/0.4.6
