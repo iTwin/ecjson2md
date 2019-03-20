@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.5.0] - 2019-03-19
+
 ### Added
 
 - Added badges for deprecated schema items
@@ -290,6 +292,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - CLI tool to convert ECSchema JSON to markdown
 
 [Unreleased]: https://github.com/iTwin/ecjson2md/tree/master/
+
 [0.4.9]: https://github.com/iTwin/ecjson2md/tree/0.4.9
 [0.4.8]: https://github.com/iTwin/ecjson2md/tree/0.4.8
 [0.4.7]: https://github.com/iTwin/ecjson2md/tree/0.4.7
