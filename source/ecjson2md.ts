@@ -3,8 +3,11 @@
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
 import {
-    SchemaContext, SchemaJsonFileLocater, Schema, ECClass, schemaItemTypeToString, PropertyType, primitiveTypeToString, Enumeration, RelationshipConstraint, CustomAttributeClass, StructClass, ECClassModifier, PropertyCategory, EntityClass, KindOfQuantity,
-    RelationshipClass, Mixin, strengthToString, strengthDirectionToString, classModifierToString, containerTypeToString, Format, formatTypeToString, FormatType, scientificTypeToString, formatTraitsToArray, Unit, OverrideFormat,
+  classModifierToString, containerTypeToString, CustomAttributeClass, ECClass, ECClassModifier,
+  EntityClass, Enumeration, KindOfQuantity, formatTraitsToArray, Format, formatTypeToString, FormatType,
+  Mixin, OverrideFormat, primitiveTypeToString, PropertyCategory, PropertyType, RelationshipClass,
+  RelationshipConstraint, Schema, SchemaContext, schemaItemTypeToString, SchemaJsonFileLocater,
+  scientificTypeToString, strengthDirectionToString, strengthToString, StructClass, Unit,
 } from "@bentley/ecschema-metadata";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import * as path from "path";
@@ -112,7 +115,16 @@ export function formatBadge(badgeText: string, badgeKind?: string): string {
  * @param linkText Text to display on link
  */
 export function formatLink(linkString: string, linkText: string): string {
-    return "[" + linkText + "](" + linkString + ")";
+  return "[" + linkText + "](" + linkString + ")";
+}
+
+/**
+ * Returns a string containing the
+ * @param schemaName
+ */
+function createSchemaLink(schemaName: string): string {
+  // This is assuming that all ecschemas are right next to each other.
+  return "./" + schemaName.toLowerCase() + ".ecschema.md";
 }
 
 /**
@@ -221,11 +233,12 @@ export class ECJsonMarkdownGenerator {
   public static getSortedSchemaItems(schema: Schema, schemaItem: string ): any {
     const allSchemaItems = schema.getItems();
 
-    const selectedSchemaItems = new Array();
+    const selectedSchemaItems = [];
 
     // For each item, only include it if it's the type that we are looking for
     for (const item of allSchemaItems) {
-      if (item.constructor.name === schemaItem) selectedSchemaItems.push(item);
+      if (item.constructor.name === schemaItem)
+        selectedSchemaItems.push(item);
     }
 
     // Sort the list of schema items by name and return it
@@ -279,12 +292,12 @@ export class ECJsonMarkdownGenerator {
     }
 
     if (customAttributes !== undefined) {
-        const customAttribute = customAttributes.get("CoreCustomAttributes.Deprecated");
-        if (customAttribute !== undefined) {
-          fs.appendFileSync(outputFilePath, ` ${formatBadge("Deprecated", "warning")}`);
-          if (customAttribute.Description)
+      const customAttribute = customAttributes.get("CoreCustomAttributes.Deprecated");
+      if (customAttribute !== undefined) {
+        fs.appendFileSync(outputFilePath, ` ${formatBadge("Deprecated", "warning")}`);
+        if (customAttribute.Description)
           fs.appendFileSync(outputFilePath, `\n\n${formatWarningAlert(customAttribute.Description)}`);
-        }
+      }
     }
 
     fs.appendFileSync(outputFilePath, "\n\n");
@@ -335,9 +348,8 @@ export class ECJsonMarkdownGenerator {
     if (baseClass === undefined) return;
 
     let baseClassLink = "#" + baseClass.name.toLowerCase();
-    if (!outputFilePath.toLowerCase().includes("\\" + baseClass.schemaName.toLowerCase() + ".ecschema.md")) {
-        baseClassLink = baseClass.schemaName.toLowerCase() + ".ecschema.md" + baseClassLink;
-    }
+    if (!outputFilePath.toLowerCase().includes("\\" + baseClass.schemaName.toLowerCase() + ".ecschema.md"))
+      baseClassLink = createSchemaLink(baseClass.schemaName) + baseClassLink;
     const baseClassName = baseClass.schemaName + ":" + baseClass.name;
 
     fs.appendFileSync(outputFilePath, "**baseClass:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
@@ -381,7 +393,7 @@ export class ECJsonMarkdownGenerator {
       const targetSchema = property._relationshipClass.schemaName;
       const targetClass = property._relationshipClass.name;
 
-      type = formatLink(targetSchema.toLowerCase() + ".ecschema.md#" + targetClass.toLowerCase(), type);
+      type = formatLink(createSchemaLink(targetSchema) + "#" + targetClass.toLowerCase(), type);
     }
 
     const name = helper(property._name._name);
@@ -451,9 +463,8 @@ export class ECJsonMarkdownGenerator {
     // Write the h3 for the section
     fs.appendFileSync(outputFilePath, "## Entity Classes\n\n");
 
-    for (const entityClass of entityClasses) {
+    for (const entityClass of entityClasses)
       this.writeEntityClass(outputFilePath, entityClass);
-    }
   }
 
   /**
@@ -496,16 +507,16 @@ export class ECJsonMarkdownGenerator {
             let formatClassLink = "#" + namestrings[1].toLowerCase();
             let formatClassName = namestrings[1];
             if (formatClassName.includes("(")) {
-                formatAdditional = "(" + formatClassName.split("(")[1];
-                formatClassLink = formatClassLink.split("(")[0];
-                formatClassName = formatClassName.split("(")[0];
+              formatAdditional = "(" + formatClassName.split("(")[1];
+              formatClassLink = formatClassLink.split("(")[0];
+              formatClassName = formatClassName.split("(")[0];
             }
             if (!outputFilePath.toLowerCase().includes("\\" + namestrings[0].toLowerCase() + ".ecschema.md"))
-                formatClassLink = namestrings[0].toLowerCase() + ".ecschema.md" + formatClassLink;
+              formatClassLink = createSchemaLink(namestrings[0].toLowerCase()) + formatClassLink;
 
             let unitClassLink = "#" + namestrings[3].toLowerCase();
             if (!outputFilePath.toLowerCase().includes("\\" + namestrings[2].toLowerCase() + ".ecschema.md"))
-              unitClassLink = namestrings[2].toLowerCase() + ".ecschema.md" + unitClassLink;
+              unitClassLink = createSchemaLink(namestrings[2].toLowerCase()) + unitClassLink;
 
             const unitClassName = namestrings[3];
 
@@ -513,12 +524,12 @@ export class ECJsonMarkdownGenerator {
           } else if (namestrings.length === 1 ) {
             let schemaName = "";
             if (pUnit instanceof OverrideFormat)
-                schemaName = pUnit.parent.schema.name;
+              schemaName = pUnit.parent.schema.name;
             else if (pUnit instanceof Format)
-                schemaName = pUnit.schema.name;
+              schemaName = pUnit.schema.name;
             let formatClassLink = "#" + pUnit.name.toLowerCase();
             if (!outputFilePath.toLowerCase().includes("\\" + schemaName.toLowerCase() + ".ecschema.md"))
-                formatClassLink = schemaName.toLowerCase() + ".ecschema.md" + formatClassLink;
+                formatClassLink = createSchemaLink(schemaName) + formatClassLink;
             fs.appendFileSync(outputFilePath, "- " + formatLink(formatClassLink, pUnit.name) + "\n");
           }
         }
@@ -593,7 +604,7 @@ export class ECJsonMarkdownGenerator {
 
     // Write the constraint classes as a list
     for (const constraintClass of constraint.constraintClasses) {
-      const constraintClassLink = constraintClass.schemaName.toLowerCase() + ".ecschema.md#" + constraintClass.name.toLowerCase();
+      const constraintClassLink = createSchemaLink(constraintClass.schemaName) + "#" + constraintClass.name.toLowerCase();
       fs.appendFileSync(outputFilePath, "- " + formatLink(constraintClassLink, constraintClass.name) + "\n");
     }
 
@@ -622,13 +633,12 @@ export class ECJsonMarkdownGenerator {
     this.writeSchemaItemBaseClass(outputFilePath, relationshipClass.baseClass);
 
     // Write the strength
-    if (relationshipClass.strength !== undefined) {
+    if (relationshipClass.strength !== undefined)
       fs.appendFileSync(outputFilePath, "**Strength:** " + strengthToString(relationshipClass.strength) + "\n\n");
-    }
+
     // Write the strength direction
-    if (relationshipClass.strengthDirection !== undefined) {
+    if (relationshipClass.strengthDirection !== undefined)
       fs.appendFileSync(outputFilePath, "**strengthDirection:** " + strengthDirectionToString(relationshipClass.strengthDirection) + "\n\n");
-    }
 
     // Write the source section
     fs.appendFileSync(outputFilePath, "#### Source\n\n");
@@ -756,7 +766,7 @@ export class ECJsonMarkdownGenerator {
 
     // Link to what the mixin applies to
     if (mixin.appliesTo !== undefined) {
-      const appliesToLink = mixin.appliesTo.schemaName.toLowerCase() + ".ecschema.md#" + mixin.appliesTo.name.toLowerCase();
+      const appliesToLink = createSchemaLink(mixin.appliesTo.schemaName) + "#" + mixin.appliesTo.name.toLowerCase();
 
       // Write a link to what the mixin applies to
       fs.appendFileSync(outputFilePath, "**appliesTo:** " + formatLink(appliesToLink, mixin.appliesTo.name) + "\n\n");
@@ -882,7 +892,7 @@ export class ECJsonMarkdownGenerator {
    * @param structClass Struct class to generate markdown for
    */
   public static writeStructClass(outputFilePath: string, structClass: StructClass|undefined) {
-    if (structClass === undefined) return;
+    if (undefined === structClass) return;
 
     // Write the name
     this.writeSchemaItemHeader(outputFilePath, structClass.name, structClass.label, structClass.modifier, structClass.customAttributes);

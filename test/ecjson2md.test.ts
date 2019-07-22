@@ -516,7 +516,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          **baseClass:** [testSchema:EntityClassB](testschema.ecschema.md#entityclassb)
+          **baseClass:** [testSchema:EntityClassB](./testschema.ecschema.md#entityclassb)
 
           `);
 
@@ -524,7 +524,6 @@ describe("ecjson2md", () => {
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
-          // assert.equal(outputLines[0], "**baseClass:** [testSchema:EntityClassB](testschema.ecschema.md#entityclassb)");
         });
       });
 
@@ -660,7 +659,7 @@ describe("ecjson2md", () => {
 
           **description:** &lt;No description&gt;
 
-          **baseClass:** [testSchema:EntityClassB](testschema.ecschema.md#entityclassb)
+          **baseClass:** [testSchema:EntityClassB](./testschema.ecschema.md#entityclassb)
 
           `);
 
@@ -746,7 +745,7 @@ describe("ecjson2md", () => {
 
           **description:** this is a description
 
-          **baseClass:** [testSchema:EntityClassB](testschema.ecschema.md#entityclassb)
+          **baseClass:** [testSchema:EntityClassB](./testschema.ecschema.md#entityclassb)
 
           `);
 
@@ -957,7 +956,7 @@ describe("ecjson2md", () => {
 
           **Presentation Units**
 
-          - [DefaultReal](testschema.ecschema.md#defaultreal) [ [A](testschema.ecschema.md#a) ]
+          - [DefaultReal](./testschema.ecschema.md#defaultreal) [ [A](./testschema.ecschema.md#a) ]
 
           `);
 
@@ -1206,11 +1205,11 @@ describe("ecjson2md", () => {
 
           **Presentation Units**
 
-          - [DefaultReal](testschema.ecschema.md#defaultreal) [ [A](testschema.ecschema.md#a) ]
-          - [DefaultReal](testschema.ecschema.md#defaultreal) [ [KILOAMPERE](testschema.ecschema.md#kiloampere) ]
-          - [DefaultReal](testschema.ecschema.md#defaultreal) [ [M_PER_SEC_SQ](testschema.ecschema.md#m_per_sec_sq) ]
-          - [DefaultReal](testschema.ecschema.md#defaultreal) [ [CM_PER_SEC_SQ](testschema.ecschema.md#cm_per_sec_sq) ]
-          - [DefaultReal](testschema.ecschema.md#defaultreal) [ [FT_PER_SEC_SQ](testschema.ecschema.md#ft_per_sec_sq) ]
+          - [DefaultReal](./testschema.ecschema.md#defaultreal) [ [A](./testschema.ecschema.md#a) ]
+          - [DefaultReal](./testschema.ecschema.md#defaultreal) [ [KILOAMPERE](./testschema.ecschema.md#kiloampere) ]
+          - [DefaultReal](./testschema.ecschema.md#defaultreal) [ [M_PER_SEC_SQ](./testschema.ecschema.md#m_per_sec_sq) ]
+          - [DefaultReal](./testschema.ecschema.md#defaultreal) [ [CM_PER_SEC_SQ](./testschema.ecschema.md#cm_per_sec_sq) ]
+          - [DefaultReal](./testschema.ecschema.md#defaultreal) [ [FT_PER_SEC_SQ](./testschema.ecschema.md#ft_per_sec_sq) ]
 
           `);
 
@@ -1304,7 +1303,7 @@ describe("ecjson2md", () => {
 
           ##### Constraint Classes
 
-          - [EntityClassA](testschema.ecschema.md#entityclassa)
+          - [EntityClassA](./testschema.ecschema.md#entityclassa)
 
           #### Target
 
@@ -1316,7 +1315,7 @@ describe("ecjson2md", () => {
 
           ##### Constraint Classes
 
-          - [EntityClassB](testschema.ecschema.md#entityclassb)
+          - [EntityClassB](./testschema.ecschema.md#entityclassb)
 
           `);
 
@@ -1397,7 +1396,7 @@ describe("ecjson2md", () => {
 
           ##### Constraint Classes
 
-          - [EntityClassA](testschema.ecschema.md#entityclassa)
+          - [EntityClassA](./testschema.ecschema.md#entityclassa)
 
           #### Target
 
@@ -1409,7 +1408,7 @@ describe("ecjson2md", () => {
 
           ##### Constraint Classes
 
-          - [EntityClassB](testschema.ecschema.md#entityclassb)
+          - [EntityClassB](./testschema.ecschema.md#entityclassb)
 
           `);
 
@@ -1476,7 +1475,7 @@ describe("ecjson2md", () => {
 
           **description:** &lt;No description&gt;
 
-          **baseClass:** [testSchema:EntityClassD](testschema.ecschema.md#entityclassd)
+          **baseClass:** [testSchema:EntityClassD](./testschema.ecschema.md#entityclassd)
 
           **Strength:** Referencing
 
@@ -1492,7 +1491,7 @@ describe("ecjson2md", () => {
 
           ##### Constraint Classes
 
-          - [EntityClassA](testschema.ecschema.md#entityclassa)
+          - [EntityClassA](./testschema.ecschema.md#entityclassa)
 
           #### Target
 
@@ -1504,7 +1503,7 @@ describe("ecjson2md", () => {
 
           ##### Constraint Classes
 
-          - [EntityClassB](testschema.ecschema.md#entityclassb)
+          - [EntityClassB](./testschema.ecschema.md#entityclassb)
 
           `);
 
@@ -1571,7 +1570,7 @@ describe("ecjson2md", () => {
 
           **description:** &lt;No description&gt;
 
-          **baseClass:** [testSchema:EntityClassD](testschema.ecschema.md#entityclassd)
+          **baseClass:** [testSchema:EntityClassD](./testschema.ecschema.md#entityclassd)
 
           **Strength:** Referencing
 
@@ -1587,7 +1586,7 @@ describe("ecjson2md", () => {
 
           ##### Constraint Classes
 
-          - [EntityClassA](testschema.ecschema.md#entityclassa)
+          - [EntityClassA](./testschema.ecschema.md#entityclassa)
 
           #### Target
 
@@ -1599,7 +1598,7 @@ describe("ecjson2md", () => {
 
           ##### Constraint Classes
 
-          - [EntityClassB](testschema.ecschema.md#entityclassb)
+          - [EntityClassB](./testschema.ecschema.md#entityclassb)
 
           `);
 
@@ -1680,7 +1679,7 @@ describe("ecjson2md", () => {
 
           ##### Constraint Classes
 
-          - [EntityClassA](testschema.ecschema.md#entityclassa)
+          - [EntityClassA](./testschema.ecschema.md#entityclassa)
 
           #### Target
 
@@ -1692,7 +1691,7 @@ describe("ecjson2md", () => {
 
           ##### Constraint Classes
 
-          - [EntityClassB](testschema.ecschema.md#entityclassb)
+          - [EntityClassB](./testschema.ecschema.md#entityclassb)
 
           `);
 
@@ -1787,9 +1786,9 @@ describe("ecjson2md", () => {
 
           ##### Constraint Classes
 
-          - [EntityClassA](testschema.ecschema.md#entityclassa)
-          - [EntityClassB](testschema.ecschema.md#entityclassb)
-          - [EntityClassC](testschema.ecschema.md#entityclassc)
+          - [EntityClassA](./testschema.ecschema.md#entityclassa)
+          - [EntityClassB](./testschema.ecschema.md#entityclassb)
+          - [EntityClassC](./testschema.ecschema.md#entityclassc)
 
           #### Target
 
@@ -1801,9 +1800,9 @@ describe("ecjson2md", () => {
 
           ##### Constraint Classes
 
-          - [EntityClassE](testschema.ecschema.md#entityclasse)
-          - [EntityClassF](testschema.ecschema.md#entityclassf)
-          - [EntityClassG](testschema.ecschema.md#entityclassg)
+          - [EntityClassE](./testschema.ecschema.md#entityclasse)
+          - [EntityClassF](./testschema.ecschema.md#entityclassf)
+          - [EntityClassG](./testschema.ecschema.md#entityclassg)
 
           `);
 
@@ -2251,7 +2250,7 @@ describe("ecjson2md", () => {
 
           **description:** &lt;No description&gt;
 
-          **appliesTo:** [EntityA](testschema.ecschema.md#entitya)
+          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
 
           `);
 
@@ -2274,7 +2273,7 @@ describe("ecjson2md", () => {
 
           **description:** this is a description
 
-          **appliesTo:** [EntityA](testschema.ecschema.md#entitya)
+          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
 
           `);
 
@@ -2297,9 +2296,9 @@ describe("ecjson2md", () => {
 
           **description:** &lt;No description&gt;
 
-          **baseClass:** [testSchema:EntityB](testschema.ecschema.md#entityb)
+          **baseClass:** [testSchema:EntityB](./testschema.ecschema.md#entityb)
 
-          **appliesTo:** [EntityA](testschema.ecschema.md#entitya)
+          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
 
           `);
 
@@ -2322,7 +2321,7 @@ describe("ecjson2md", () => {
 
           **description:** &lt;No description&gt;
 
-          **appliesTo:** [EntityA](testschema.ecschema.md#entitya)
+          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
 
           `);
 
@@ -2345,9 +2344,9 @@ describe("ecjson2md", () => {
 
           **description:** this is a description
 
-          **baseClass:** [testSchema:EntityB](testschema.ecschema.md#entityb)
+          **baseClass:** [testSchema:EntityB](./testschema.ecschema.md#entityb)
 
-          **appliesTo:** [EntityA](testschema.ecschema.md#entitya)
+          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
 
           `);
 
@@ -2370,7 +2369,7 @@ describe("ecjson2md", () => {
 
           **description:** &lt;No description&gt;
 
-          **appliesTo:** [EntityA](testschema.ecschema.md#entitya)
+          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
 
           #### Properties
 
@@ -2402,9 +2401,9 @@ describe("ecjson2md", () => {
 
           **description:** this is a description
 
-          **baseClass:** [testSchema:EntityB](testschema.ecschema.md#entityb)
+          **baseClass:** [testSchema:EntityB](./testschema.ecschema.md#entityb)
 
-          **appliesTo:** [EntityA](testschema.ecschema.md#entitya)
+          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
 
           #### Properties
 
@@ -2565,7 +2564,7 @@ describe("ecjson2md", () => {
 
           **description:** this is a description
 
-          **baseClass:** [testSchema:EntityA](testschema.ecschema.md#entitya)
+          **baseClass:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
 
           **Applies to:** AnyProperty
 
@@ -2590,7 +2589,7 @@ describe("ecjson2md", () => {
 
           **description:** this is a description
 
-          **baseClass:** [testSchema:EntityA](testschema.ecschema.md#entitya)
+          **baseClass:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
 
           **Applies to:** AnyProperty
 
@@ -2802,7 +2801,7 @@ describe("ecjson2md", () => {
 
           **description:** this is a description
 
-          **baseClass:** [testSchema:EntityA](testschema.ecschema.md#entitya)
+          **baseClass:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
 
           `);
 
@@ -2825,7 +2824,7 @@ describe("ecjson2md", () => {
 
           **description:** this is a description
 
-          **baseClass:** [testSchema:EntityA](testschema.ecschema.md#entitya)
+          **baseClass:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
 
           #### Properties
 
