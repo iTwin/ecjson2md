@@ -1,5 +1,5 @@
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+|  $Copyright: (c) 2019 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as chalk from "chalk";
 import { ECJsonMarkdownGenerator, prepOutputPath, prepSearchDirs } from "./ecjson2md";
@@ -31,11 +31,11 @@ function main() {
   if (program.dirs !== undefined)
     searchDirs = prepSearchDirs(program.dirs);
 
+  // tslint:disable-next-line:no-console
+  console.log(chalk.default.gray("Adding the search directories..."));
+
   // Add the search directories to the new locator and load the schema
   try {
-    // tslint:disable-next-line:no-console
-    console.log(chalk.default.gray("Adding the search directories..."));
-
     // Try to add the search paths
     const mdGenerator = new ECJsonMarkdownGenerator(searchDirs);
 
@@ -44,13 +44,14 @@ function main() {
 
     // Try to generate the markdown
     mdGenerator.generate(program.input, outputFilePath, program.nonrelease);
-    // tslint:disable-next-line:no-console
-    console.log(chalk.default.blue("Markdown successfully generated at " + path.resolve(path.normalize(outputFilePath))));
 
   } catch (e) {
-      // tslint:disable-next-line:no-console
-      console.log(chalk.default.red(e, "\nQuitting..."));
+    // tslint:disable-next-line:no-console
+    console.log(chalk.default.red(e, "\nQuitting..."));
   }
+
+  // tslint:disable-next-line:no-console
+  console.log(chalk.default.blue("Markdown successfully generated at " + path.resolve(path.normalize(outputFilePath))));
 
 }
 

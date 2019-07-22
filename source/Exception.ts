@@ -1,5 +1,5 @@
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2018 Bentley Systems, Incorporated. All rights reserved. $
+|  $Copyright: (c) 2019 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 export class ECJsonFileNotFound extends Error {
   public constructor(filePath?: string) {
