@@ -328,13 +328,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|Model|The bis:Model that contains this bis:Element.|[navigation](biscore.ecschema.md#modelcontainselements)||
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
 |LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
-|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](biscore.ecschema.md#codespecspecifiescode)||
-|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](biscore.ecschema.md#elementscopescode)||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
 |CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
 |UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
-|Parent|The parent bis:Element that owns this bis:Element.|[navigation](biscore.ecschema.md#elementownschildelements)||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
 |FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
 |JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
 
@@ -356,7 +356,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|Element|The bis:Element that owns this bis:ElementMultiAspect.|[navigation](biscore.ecschema.md#elementownsmultiaspects)||
+|Element|The bis:Element that owns this bis:ElementMultiAspect.|[navigation](./biscore.ecschema.md#elementownsmultiaspects)||
 
 ### **ElementUniqueAspect** (Element Unique Aspect) *Abstract*
 
@@ -370,7 +370,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|Element|The bis:Element that owns this bis:ElementUniqueAspect|[navigation](biscore.ecschema.md#elementownsuniqueaspect)||
+|Element|The bis:Element that owns this bis:ElementUniqueAspect|[navigation](./biscore.ecschema.md#elementownsuniqueaspect)||
 
 ### **EmbeddedFileLink** (Embedded File Link)
 
@@ -399,7 +399,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|Scope|The context in which the combination of (Kind, Identifier) identifies the object uniquely within the source repository. Scope is the Id of a bis:Element in the iModel (not the source) that corresponds to the scope or container in the source that owns, contains, or qualifies the identity of the source object.|[navigation](biscore.ecschema.md#elementscopesexternalsourceidentifier)||
+|Scope|The context in which the combination of (Kind, Identifier) identifies the object uniquely within the source repository. Scope is the Id of a bis:Element in the iModel (not the source) that corresponds to the scope or container in the source that owns, contains, or qualifies the identity of the source object.|[navigation](./biscore.ecschema.md#elementscopesexternalsourceidentifier)||
 |Identifier|The identifier of the object in the source repository|string||
 |Kind|The kind of object within the source repository|string||
 |Version|An optional value that is typically a version number or a psuedo version number like last modified time. It will be used by the synchronization process to detect that a source object is unchanged so that computing a cryptographic hash can be avoided. If present, this value must be guaranteed to change when any of the source object's content changes.|string||
@@ -426,13 +426,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|Category|The bis:DrawingCategory used to categorize this bis:GeometricElement2d instance.|[navigation](biscore.ecschema.md#geometricelement2disincategory)||
+|Category|The bis:DrawingCategory used to categorize this bis:GeometricElement2d instance.|[navigation](./biscore.ecschema.md#geometricelement2disincategory)||
 |Origin|The placement origin of this bis:Element.|point2d||
 |Rotation|The placement rotation (in degrees) of this bis:Element.|double||
 |BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point2d||
 |BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point2d||
 |GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
-|TypeDefinition||[navigation](biscore.ecschema.md#geometricelement2dhastypedefinition)||
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement2dhastypedefinition)||
 
 ### **GeometricElement3d** (3D Geometric Element) *Abstract*
 
@@ -446,7 +446,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](biscore.ecschema.md#geometricelement3disincategory)||
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
 |InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
 |Origin|The placement origin of this bis:Element.|point3d||
 |Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
@@ -455,7 +455,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
 |BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
 |GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
-|TypeDefinition||[navigation](biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
 
 ### **GeometricModel** (Geometric Model) *Abstract*
 
@@ -694,8 +694,8 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](biscore.ecschema.md#modelownssubmodel)||
-|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](biscore.ecschema.md#modelmodelselement)||
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
 |IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
 |IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
 |JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
@@ -858,7 +858,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Scale||double||
 |Height||double||
 |Width||double||
-|SheetTemplate||[navigation](biscore.ecschema.md#sheethassheettemplate)||
+|SheetTemplate||[navigation](./biscore.ecschema.md#sheethassheettemplate)||
 
 ### **SheetBorder** (Sheet Border)
 
@@ -872,7 +872,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|BorderTemplate||[navigation](biscore.ecschema.md#sheetborderhassheetbordertemplate)||
+|BorderTemplate||[navigation](./biscore.ecschema.md#sheetborderhassheetbordertemplate)||
 
 ### **SheetBorderTemplate** (Sheet Border Template)
 
@@ -911,7 +911,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Height||double||
 |Width||double||
-|Border||[navigation](biscore.ecschema.md#sheettemplatehassheetborder)||
+|Border||[navigation](./biscore.ecschema.md#sheettemplatehassheetborder)||
 
 ### **SheetViewDefinition** (Sheet View Definition)
 
@@ -1016,7 +1016,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|ModelSelector||[navigation](biscore.ecschema.md#spatialviewdefinitionusesmodelselector)||
+|ModelSelector||[navigation](./biscore.ecschema.md#spatialviewdefinitionusesmodelselector)||
 
 ### **SubCategory** (Sub-Category) *Sealed*
 
@@ -1155,7 +1155,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|Recipe||[navigation](biscore.ecschema.md#typedefinitionhasrecipe)||
+|Recipe||[navigation](./biscore.ecschema.md#typedefinitionhasrecipe)||
 
 ### **UrlLink** (URL Link)
 
@@ -1184,7 +1184,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|View|The view that is to be attached|[navigation](biscore.ecschema.md#viewisattached)||
+|View|The view that is to be attached|[navigation](./biscore.ecschema.md#viewisattached)||
 
 ### **ViewDefinition** (View Definition) *Abstract*
 
@@ -1199,8 +1199,8 @@ The BIS core schema contains classes that all other domain schemas extend.
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description||string||
-|CategorySelector||[navigation](biscore.ecschema.md#viewdefinitionusescategoryselector)||
-|DisplayStyle||[navigation](biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
+|CategorySelector||[navigation](./biscore.ecschema.md#viewdefinitionusescategoryselector)||
+|DisplayStyle||[navigation](./biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
 
 ### **ViewDefinition2d** (2D View Definition) *Abstract*
 
@@ -1214,7 +1214,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|BaseModel||[navigation](biscore.ecschema.md#basemodelforview2d)||
+|BaseModel||[navigation](./biscore.ecschema.md#basemodelforview2d)||
 |Origin|Lower left corner of the viewed area.|point2d||
 |Extents|Size of the view diagonal|point2d||
 |RotationAngle|Rotation angle in degrees of the viewed area.|double||
@@ -1279,7 +1279,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [GeometricModel2d](biscore.ecschema.md#geometricmodel2d)
+- [GeometricModel2d](./biscore.ecschema.md#geometricmodel2d)
 
 #### Target
 
@@ -1291,7 +1291,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [ViewDefinition2d](biscore.ecschema.md#viewdefinition2d)
+- [ViewDefinition2d](./biscore.ecschema.md#viewdefinition2d)
 
 ### **CategoryOwnsSubCategories**
 
@@ -1315,7 +1315,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Category](biscore.ecschema.md#category)
+- [Category](./biscore.ecschema.md#category)
 
 #### Target
 
@@ -1327,7 +1327,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [SubCategory](biscore.ecschema.md#subcategory)
+- [SubCategory](./biscore.ecschema.md#subcategory)
 
 ### **CategorySelectorRefersToCategories** *Sealed*
 
@@ -1351,7 +1351,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [CategorySelector](biscore.ecschema.md#categoryselector)
+- [CategorySelector](./biscore.ecschema.md#categoryselector)
 
 #### Target
 
@@ -1363,7 +1363,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Category](biscore.ecschema.md#category)
+- [Category](./biscore.ecschema.md#category)
 
 ### **CodeSpecSpecifiesCode** *Sealed*
 
@@ -1385,7 +1385,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [CodeSpec](biscore.ecschema.md#codespec)
+- [CodeSpec](./biscore.ecschema.md#codespec)
 
 #### Target
 
@@ -1397,7 +1397,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 ### **DrawingGraphicRepresentsElement**
 
@@ -1421,7 +1421,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [DrawingGraphic](biscore.ecschema.md#drawinggraphic)
+- [DrawingGraphic](./biscore.ecschema.md#drawinggraphic)
 
 #### Target
 
@@ -1433,7 +1433,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 ### **DrawingModelBreaksDownDrawing**
 
@@ -1457,7 +1457,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [DrawingModel](biscore.ecschema.md#drawingmodel)
+- [DrawingModel](./biscore.ecschema.md#drawingmodel)
 
 #### Target
 
@@ -1469,7 +1469,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Drawing](biscore.ecschema.md#drawing)
+- [Drawing](./biscore.ecschema.md#drawing)
 
 ### **ElementDrivesElement**
 
@@ -1491,7 +1491,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 #### Target
 
@@ -1503,7 +1503,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 ### **ElementEncapsulatesElements**
 
@@ -1527,7 +1527,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 #### Target
 
@@ -1539,7 +1539,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 ### **ElementGroupsMembers**
 
@@ -1563,7 +1563,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 #### Target
 
@@ -1575,7 +1575,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 ### **ElementHasLinks**
 
@@ -1599,7 +1599,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 #### Target
 
@@ -1611,7 +1611,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [LinkElement](biscore.ecschema.md#linkelement)
+- [LinkElement](./biscore.ecschema.md#linkelement)
 
 ### **ElementOwnsChildElements**
 
@@ -1633,7 +1633,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 #### Target
 
@@ -1645,7 +1645,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 ### **ElementOwnsExternalSourceAspects**
 
@@ -1669,7 +1669,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 #### Target
 
@@ -1681,7 +1681,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [ExternalSourceAspect](biscore.ecschema.md#externalsourceaspect)
+- [ExternalSourceAspect](./biscore.ecschema.md#externalsourceaspect)
 
 ### **ElementOwnsMultiAspects**
 
@@ -1703,7 +1703,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 #### Target
 
@@ -1715,7 +1715,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [ElementMultiAspect](biscore.ecschema.md#elementmultiaspect)
+- [ElementMultiAspect](./biscore.ecschema.md#elementmultiaspect)
 
 ### **ElementOwnsUniqueAspect**
 
@@ -1737,7 +1737,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 #### Target
 
@@ -1749,7 +1749,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [ElementUniqueAspect](biscore.ecschema.md#elementuniqueaspect)
+- [ElementUniqueAspect](./biscore.ecschema.md#elementuniqueaspect)
 
 ### **ElementRefersToDocuments**
 
@@ -1773,7 +1773,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 #### Target
 
@@ -1785,7 +1785,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Document](biscore.ecschema.md#document)
+- [Document](./biscore.ecschema.md#document)
 
 ### **ElementRefersToElements** *Abstract*
 
@@ -1807,7 +1807,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 #### Target
 
@@ -1819,7 +1819,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 ### **ElementScopesCode** *Sealed*
 
@@ -1841,7 +1841,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 #### Target
 
@@ -1853,7 +1853,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 ### **ElementScopesExternalSourceIdentifier** *Sealed*
 
@@ -1875,7 +1875,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 #### Target
 
@@ -1887,7 +1887,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [ExternalSourceAspect](biscore.ecschema.md#externalsourceaspect)
+- [ExternalSourceAspect](./biscore.ecschema.md#externalsourceaspect)
 
 ### **GeometricElement2dHasTypeDefinition** *Abstract*
 
@@ -1909,7 +1909,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [GeometricElement2d](biscore.ecschema.md#geometricelement2d)
+- [GeometricElement2d](./biscore.ecschema.md#geometricelement2d)
 
 #### Target
 
@@ -1921,7 +1921,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [TypeDefinitionElement](biscore.ecschema.md#typedefinitionelement)
+- [TypeDefinitionElement](./biscore.ecschema.md#typedefinitionelement)
 
 ### **GeometricElement2dIsInCategory** *Sealed*
 
@@ -1943,7 +1943,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [GeometricElement2d](biscore.ecschema.md#geometricelement2d)
+- [GeometricElement2d](./biscore.ecschema.md#geometricelement2d)
 
 #### Target
 
@@ -1955,7 +1955,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [DrawingCategory](biscore.ecschema.md#drawingcategory)
+- [DrawingCategory](./biscore.ecschema.md#drawingcategory)
 
 ### **GeometricElement3dHasTypeDefinition** *Abstract*
 
@@ -1977,7 +1977,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [GeometricElement3d](biscore.ecschema.md#geometricelement3d)
+- [GeometricElement3d](./biscore.ecschema.md#geometricelement3d)
 
 #### Target
 
@@ -1989,7 +1989,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [TypeDefinitionElement](biscore.ecschema.md#typedefinitionelement)
+- [TypeDefinitionElement](./biscore.ecschema.md#typedefinitionelement)
 
 ### **GeometricElement3dIsInCategory** *Sealed*
 
@@ -2011,7 +2011,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [GeometricElement3d](biscore.ecschema.md#geometricelement3d)
+- [GeometricElement3d](./biscore.ecschema.md#geometricelement3d)
 
 #### Target
 
@@ -2023,7 +2023,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [SpatialCategory](biscore.ecschema.md#spatialcategory)
+- [SpatialCategory](./biscore.ecschema.md#spatialcategory)
 
 ### **GraphicalElement2dIsOfType**
 
@@ -2047,7 +2047,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [GraphicalElement2d](biscore.ecschema.md#graphicalelement2d)
+- [GraphicalElement2d](./biscore.ecschema.md#graphicalelement2d)
 
 #### Target
 
@@ -2059,7 +2059,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [GraphicalType2d](biscore.ecschema.md#graphicaltype2d)
+- [GraphicalType2d](./biscore.ecschema.md#graphicaltype2d)
 
 ### **GraphicalElement3dRepresentsElement**
 
@@ -2083,7 +2083,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [GraphicalElement3d](biscore.ecschema.md#graphicalelement3d)
+- [GraphicalElement3d](./biscore.ecschema.md#graphicalelement3d)
 
 #### Target
 
@@ -2095,7 +2095,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 ### **GraphicalType2dHasTemplateRecipe**
 
@@ -2119,7 +2119,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [GraphicalType2d](biscore.ecschema.md#graphicaltype2d)
+- [GraphicalType2d](./biscore.ecschema.md#graphicaltype2d)
 
 #### Target
 
@@ -2131,7 +2131,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [TemplateRecipe2d](biscore.ecschema.md#templaterecipe2d)
+- [TemplateRecipe2d](./biscore.ecschema.md#templaterecipe2d)
 
 ### **ModelContainsElements** *Sealed*
 
@@ -2153,7 +2153,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Model](biscore.ecschema.md#model)
+- [Model](./biscore.ecschema.md#model)
 
 #### Target
 
@@ -2165,7 +2165,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Element](biscore.ecschema.md#element)
+- [Element](./biscore.ecschema.md#element)
 
 ### **ModelModelsElement**
 
@@ -2187,7 +2187,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Model](biscore.ecschema.md#model)
+- [Model](./biscore.ecschema.md#model)
 
 #### Target
 
@@ -2199,7 +2199,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [ISubModeledElement](biscore.ecschema.md#isubmodeledelement)
+- [ISubModeledElement](./biscore.ecschema.md#isubmodeledelement)
 
 ### **ModelOwnsSubModel** *Sealed*
 
@@ -2221,7 +2221,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Model](biscore.ecschema.md#model)
+- [Model](./biscore.ecschema.md#model)
 
 #### Target
 
@@ -2233,7 +2233,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Model](biscore.ecschema.md#model)
+- [Model](./biscore.ecschema.md#model)
 
 ### **ModelSelectorRefersToModels** *Sealed*
 
@@ -2255,7 +2255,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [ModelSelector](biscore.ecschema.md#modelselector)
+- [ModelSelector](./biscore.ecschema.md#modelselector)
 
 #### Target
 
@@ -2267,7 +2267,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Model](biscore.ecschema.md#model)
+- [Model](./biscore.ecschema.md#model)
 
 ### **PartitionOriginatesFromRepository** *Sealed*
 
@@ -2291,7 +2291,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [InformationPartitionElement](biscore.ecschema.md#informationpartitionelement)
+- [InformationPartitionElement](./biscore.ecschema.md#informationpartitionelement)
 
 #### Target
 
@@ -2303,7 +2303,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [RepositoryLink](biscore.ecschema.md#repositorylink)
+- [RepositoryLink](./biscore.ecschema.md#repositorylink)
 
 ### **PhysicalElementAssemblesElements**
 
@@ -2327,7 +2327,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [PhysicalElement](biscore.ecschema.md#physicalelement)
+- [PhysicalElement](./biscore.ecschema.md#physicalelement)
 
 #### Target
 
@@ -2339,7 +2339,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [PhysicalElement](biscore.ecschema.md#physicalelement)
+- [PhysicalElement](./biscore.ecschema.md#physicalelement)
 
 ### **PhysicalElementIsOfType**
 
@@ -2363,7 +2363,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [PhysicalElement](biscore.ecschema.md#physicalelement)
+- [PhysicalElement](./biscore.ecschema.md#physicalelement)
 
 #### Target
 
@@ -2375,7 +2375,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [PhysicalType](biscore.ecschema.md#physicaltype)
+- [PhysicalType](./biscore.ecschema.md#physicaltype)
 
 ### **PhysicalModelBreaksDownPhysicalPortion** [!badge text="Deprecated" kind="warning"]
 
@@ -2401,7 +2401,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [PhysicalModel](biscore.ecschema.md#physicalmodel)
+- [PhysicalModel](./biscore.ecschema.md#physicalmodel)
 
 #### Target
 
@@ -2413,7 +2413,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [PhysicalPortion](biscore.ecschema.md#physicalportion)
+- [PhysicalPortion](./biscore.ecschema.md#physicalportion)
 
 ### **PhysicalTypeHasTemplateRecipe**
 
@@ -2437,7 +2437,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [PhysicalType](biscore.ecschema.md#physicaltype)
+- [PhysicalType](./biscore.ecschema.md#physicaltype)
 
 #### Target
 
@@ -2449,7 +2449,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [TemplateRecipe3d](biscore.ecschema.md#templaterecipe3d)
+- [TemplateRecipe3d](./biscore.ecschema.md#templaterecipe3d)
 
 ### **RenderMaterialOwnsRenderMaterials**
 
@@ -2473,7 +2473,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [RenderMaterial](biscore.ecschema.md#rendermaterial)
+- [RenderMaterial](./biscore.ecschema.md#rendermaterial)
 
 #### Target
 
@@ -2485,7 +2485,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [RenderMaterial](biscore.ecschema.md#rendermaterial)
+- [RenderMaterial](./biscore.ecschema.md#rendermaterial)
 
 ### **SheetBorderHasSheetBorderTemplate** *Sealed*
 
@@ -2507,7 +2507,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [SheetBorder](biscore.ecschema.md#sheetborder)
+- [SheetBorder](./biscore.ecschema.md#sheetborder)
 
 #### Target
 
@@ -2519,7 +2519,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [SheetBorderTemplate](biscore.ecschema.md#sheetbordertemplate)
+- [SheetBorderTemplate](./biscore.ecschema.md#sheetbordertemplate)
 
 ### **SheetHasSheetTemplate** *Sealed*
 
@@ -2541,7 +2541,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Sheet](biscore.ecschema.md#sheet)
+- [Sheet](./biscore.ecschema.md#sheet)
 
 #### Target
 
@@ -2553,7 +2553,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [SheetTemplate](biscore.ecschema.md#sheettemplate)
+- [SheetTemplate](./biscore.ecschema.md#sheettemplate)
 
 ### **SheetModelBreaksDownSheet**
 
@@ -2577,7 +2577,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [SheetModel](biscore.ecschema.md#sheetmodel)
+- [SheetModel](./biscore.ecschema.md#sheetmodel)
 
 #### Target
 
@@ -2589,7 +2589,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Sheet](biscore.ecschema.md#sheet)
+- [Sheet](./biscore.ecschema.md#sheet)
 
 ### **SheetTemplateHasSheetBorder** *Sealed*
 
@@ -2611,7 +2611,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [SheetTemplate](biscore.ecschema.md#sheettemplate)
+- [SheetTemplate](./biscore.ecschema.md#sheettemplate)
 
 #### Target
 
@@ -2623,7 +2623,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [SheetBorder](biscore.ecschema.md#sheetborder)
+- [SheetBorder](./biscore.ecschema.md#sheetborder)
 
 ### **SpatialLocationIsOfType**
 
@@ -2647,7 +2647,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [SpatialLocationElement](biscore.ecschema.md#spatiallocationelement)
+- [SpatialLocationElement](./biscore.ecschema.md#spatiallocationelement)
 
 #### Target
 
@@ -2659,7 +2659,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [SpatialLocationType](biscore.ecschema.md#spatiallocationtype)
+- [SpatialLocationType](./biscore.ecschema.md#spatiallocationtype)
 
 ### **SpatialViewDefinitionUsesModelSelector** *Sealed*
 
@@ -2681,7 +2681,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [SpatialViewDefinition](biscore.ecschema.md#spatialviewdefinition)
+- [SpatialViewDefinition](./biscore.ecschema.md#spatialviewdefinition)
 
 #### Target
 
@@ -2693,7 +2693,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [ModelSelector](biscore.ecschema.md#modelselector)
+- [ModelSelector](./biscore.ecschema.md#modelselector)
 
 ### **SubjectOwnsPartitionElements**
 
@@ -2717,7 +2717,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Subject](biscore.ecschema.md#subject)
+- [Subject](./biscore.ecschema.md#subject)
 
 #### Target
 
@@ -2729,7 +2729,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [InformationPartitionElement](biscore.ecschema.md#informationpartitionelement)
+- [InformationPartitionElement](./biscore.ecschema.md#informationpartitionelement)
 
 ### **SubjectOwnsSubjects**
 
@@ -2753,7 +2753,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Subject](biscore.ecschema.md#subject)
+- [Subject](./biscore.ecschema.md#subject)
 
 #### Target
 
@@ -2765,7 +2765,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [Subject](biscore.ecschema.md#subject)
+- [Subject](./biscore.ecschema.md#subject)
 
 ### **TextAnnotation2dOwnsTextAnnotationData**
 
@@ -2789,7 +2789,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [TextAnnotation2d](biscore.ecschema.md#textannotation2d)
+- [TextAnnotation2d](./biscore.ecschema.md#textannotation2d)
 
 #### Target
 
@@ -2801,7 +2801,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [TextAnnotationData](biscore.ecschema.md#textannotationdata)
+- [TextAnnotationData](./biscore.ecschema.md#textannotationdata)
 
 ### **TextAnnotation3dOwnsTextAnnotationData**
 
@@ -2825,7 +2825,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [TextAnnotation3d](biscore.ecschema.md#textannotation3d)
+- [TextAnnotation3d](./biscore.ecschema.md#textannotation3d)
 
 #### Target
 
@@ -2837,7 +2837,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [TextAnnotationData](biscore.ecschema.md#textannotationdata)
+- [TextAnnotationData](./biscore.ecschema.md#textannotationdata)
 
 ### **TypeDefinitionHasRecipe** *Abstract*
 
@@ -2859,7 +2859,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [TypeDefinitionElement](biscore.ecschema.md#typedefinitionelement)
+- [TypeDefinitionElement](./biscore.ecschema.md#typedefinitionelement)
 
 #### Target
 
@@ -2871,7 +2871,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [RecipeDefinitionElement](biscore.ecschema.md#recipedefinitionelement)
+- [RecipeDefinitionElement](./biscore.ecschema.md#recipedefinitionelement)
 
 ### **ViewDefinitionUsesCategorySelector** *Sealed*
 
@@ -2893,7 +2893,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [ViewDefinition](biscore.ecschema.md#viewdefinition)
+- [ViewDefinition](./biscore.ecschema.md#viewdefinition)
 
 #### Target
 
@@ -2905,7 +2905,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [CategorySelector](biscore.ecschema.md#categoryselector)
+- [CategorySelector](./biscore.ecschema.md#categoryselector)
 
 ### **ViewDefinitionUsesDisplayStyle** *Sealed*
 
@@ -2927,7 +2927,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [ViewDefinition](biscore.ecschema.md#viewdefinition)
+- [ViewDefinition](./biscore.ecschema.md#viewdefinition)
 
 #### Target
 
@@ -2939,7 +2939,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [DisplayStyle](biscore.ecschema.md#displaystyle)
+- [DisplayStyle](./biscore.ecschema.md#displaystyle)
 
 ### **ViewIsAttached** *Sealed*
 
@@ -2961,7 +2961,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [ViewDefinition](biscore.ecschema.md#viewdefinition)
+- [ViewDefinition](./biscore.ecschema.md#viewdefinition)
 
 #### Target
 
@@ -2973,7 +2973,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ##### Constraint Classes
 
-- [ViewAttachment](biscore.ecschema.md#viewattachment)
+- [ViewAttachment](./biscore.ecschema.md#viewattachment)
 
 ## Enumerations
 
@@ -3020,7 +3020,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **description:** An interface that indicates that this class of bis:Element is capable of being a parent (owning child Elements). This interface is mutually exclusive with bis:ISubModeledElement.
 
-**appliesTo:** [Element](biscore.ecschema.md#element)
+**appliesTo:** [Element](./biscore.ecschema.md#element)
 
 ### **ISubModeledElement** (Sub-Modeled Element) *Abstract*
 
@@ -3028,7 +3028,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **description:** An interface that indicates that a bis:Element can be broken down or described by a (sub) bis:Model. This interface is mutually exclusive with bis:IParentElement.
 
-**appliesTo:** [Element](biscore.ecschema.md#element)
+**appliesTo:** [Element](./biscore.ecschema.md#element)
 
 ## Custom Attribute Classes
 
