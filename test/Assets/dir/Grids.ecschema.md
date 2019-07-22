@@ -88,7 +88,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 **description:** A grid is a collection of gridsurfaces.
 
-**baseClass:** [BisCore:SpatialLocationElement](biscore.ecschema.md#spatiallocationelement)
+**baseClass:** [BisCore:SpatialLocationElement](./biscore.ecschema.md#spatiallocationelement)
 
 ### **GridArc**
 
@@ -112,14 +112,14 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 **description:** an element which groups (typically parallel) GridSurfaces
 
-**baseClass:** [BisCore:GroupInformationElement](biscore.ecschema.md#groupinformationelement)
+**baseClass:** [BisCore:GroupInformationElement](./biscore.ecschema.md#groupinformationelement)
 
 #### Properties
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
 |Name||string||
-|Grid|Grid this axis belong to|[navigation](grids.ecschema.md#gridhasaxes)||
+|Grid|Grid this axis belong to|[navigation](./grids.ecschema.md#gridhasaxes)||
 
 ### **GridCurve** *Abstract*
 
@@ -127,7 +127,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 **description:** an element representing a gridcurve - typically intersection of 2 surfaces
 
-**baseClass:** [BisCore:SpatialLocationElement](biscore.ecschema.md#spatiallocationelement)
+**baseClass:** [BisCore:SpatialLocationElement](./biscore.ecschema.md#spatiallocationelement)
 
 ### **GridCurveBundle** (GridCurve bundle)
 
@@ -135,13 +135,13 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 **description:** &lt;No description&gt;
 
-**baseClass:** [BisCore:DriverBundleElement](biscore.ecschema.md#driverbundleelement)
+**baseClass:** [BisCore:DriverBundleElement](./biscore.ecschema.md#driverbundleelement)
 
 #### Properties
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|CurvesSet|Created GridCurves will be put into this GridCurvesSet|[navigation](grids.ecschema.md#gridcurvebundlereferstogridcurvesset)||
+|CurvesSet|Created GridCurves will be put into this GridCurvesSet|[navigation](./grids.ecschema.md#gridcurvebundlereferstogridcurvesset)||
 
 ### **GridCurvesSet**
 
@@ -149,7 +149,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 **description:** a set which holds GridCurves
 
-**baseClass:** [BisCore:SpatialLocationElement](biscore.ecschema.md#spatiallocationelement)
+**baseClass:** [BisCore:SpatialLocationElement](./biscore.ecschema.md#spatiallocationelement)
 
 ### **GridLine**
 
@@ -189,13 +189,13 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 **description:** A grid surface element.
 
-**baseClass:** [BisCore:SpatialLocationElement](biscore.ecschema.md#spatiallocationelement)
+**baseClass:** [BisCore:SpatialLocationElement](./biscore.ecschema.md#spatiallocationelement)
 
 #### Properties
 
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
-|Axis|Axis this gridSurface belong to|[navigation](grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
 
 ### **OrthogonalAxisX**
 
@@ -418,7 +418,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ##### Constraint Classes
 
-- [GridAxis](grids.ecschema.md#gridaxis)
+- [GridAxis](./grids.ecschema.md#gridaxis)
 
 #### Target
 
@@ -430,7 +430,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ##### Constraint Classes
 
-- [GridSurface](grids.ecschema.md#gridsurface)
+- [GridSurface](./grids.ecschema.md#gridsurface)
 
 ### **GridCurveBundleCreatesGridCurve**
 
@@ -438,7 +438,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 **description:** a driving relationship which tells that gridcurve was created by the mapped GridCurveBundle
 
-**baseClass:** [BisCore:ElementDrivesElement](biscore.ecschema.md#elementdriveselement)
+**baseClass:** [BisCore:ElementDrivesElement](./biscore.ecschema.md#elementdriveselement)
 
 **Strength:** Referencing
 
@@ -454,7 +454,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ##### Constraint Classes
 
-- [GridCurveBundle](grids.ecschema.md#gridcurvebundle)
+- [GridCurveBundle](./grids.ecschema.md#gridcurvebundle)
 
 #### Target
 
@@ -466,7 +466,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ##### Constraint Classes
 
-- [GridCurve](grids.ecschema.md#gridcurve)
+- [GridCurve](./grids.ecschema.md#gridcurve)
 
 ### **GridCurveBundleRefersToGridCurvesSet**
 
@@ -488,7 +488,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ##### Constraint Classes
 
-- [GridCurveBundle](grids.ecschema.md#gridcurvebundle)
+- [GridCurveBundle](./grids.ecschema.md#gridcurvebundle)
 
 #### Target
 
@@ -500,7 +500,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ##### Constraint Classes
 
-- [GridCurvesSet](grids.ecschema.md#gridcurvesset)
+- [GridCurvesSet](./grids.ecschema.md#gridcurvesset)
 
 ### **GridDrivesGridSurface**
 
@@ -508,7 +508,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 **description:** a driving relationship which tells that a grid is driving a gridsurface.
 
-**baseClass:** [BisCore:ElementDrivesElement](biscore.ecschema.md#elementdriveselement)
+**baseClass:** [BisCore:ElementDrivesElement](./biscore.ecschema.md#elementdriveselement)
 
 **Strength:** Referencing
 
@@ -524,7 +524,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ##### Constraint Classes
 
-- [Grid](grids.ecschema.md#grid)
+- [Grid](./grids.ecschema.md#grid)
 
 #### Target
 
@@ -536,7 +536,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ##### Constraint Classes
 
-- [GridSurface](grids.ecschema.md#gridsurface)
+- [GridSurface](./grids.ecschema.md#gridsurface)
 
 ### **GridHasAxes**
 
@@ -558,7 +558,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ##### Constraint Classes
 
-- [Grid](grids.ecschema.md#grid)
+- [Grid](./grids.ecschema.md#grid)
 
 #### Target
 
@@ -570,7 +570,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ##### Constraint Classes
 
-- [GridAxis](grids.ecschema.md#gridaxis)
+- [GridAxis](./grids.ecschema.md#gridaxis)
 
 ### **GridSurfaceDrivesGridCurveBundle**
 
@@ -578,7 +578,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 **description:** a driving relationship which tells that gridsurface influences the creation of GridCurve
 
-**baseClass:** [BisCore:ElementDrivesElement](biscore.ecschema.md#elementdriveselement)
+**baseClass:** [BisCore:ElementDrivesElement](./biscore.ecschema.md#elementdriveselement)
 
 **Strength:** Referencing
 
@@ -594,7 +594,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ##### Constraint Classes
 
-- [GridSurface](grids.ecschema.md#gridsurface)
+- [GridSurface](./grids.ecschema.md#gridsurface)
 
 #### Target
 
@@ -606,7 +606,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ##### Constraint Classes
 
-- [GridCurveBundle](grids.ecschema.md#gridcurvebundle)
+- [GridCurveBundle](./grids.ecschema.md#gridcurvebundle)
 
 ## Mixin Classes
 
@@ -616,7 +616,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 **description:** An interface that indicates that this Surface is suitable to be placed in a PlanGrid
 
-**appliesTo:** [GridSurface](grids.ecschema.md#gridsurface)
+**appliesTo:** [GridSurface](./grids.ecschema.md#gridsurface)
 
 #### Properties
 
