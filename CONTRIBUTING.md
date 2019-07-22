@@ -8,7 +8,7 @@ To set up a development environment, you need the following installed:
 
 - [Typescript](http://www.typescriptlang.org/)
 
-- Git, easy install using this script: \\\\winxx\DevProg\Git\git_install_dev.bat
+- Git, easy install using this script: `\\winxx\DevProg\Git\git_install_dev.bat`
 
 - An IDE, [Visual Studio Code](https://code.visualstudio.com/) recommended
 
@@ -54,7 +54,7 @@ Only build these when all unit tests are passing after local changes.
 
 1. Execute `npm run cli:dev` to locally install ecjson2md from the development build
 
-2. Navigate to ./test/Assets/dir/
+2. Navigate to `./test/Assets/dir/`
 
 3. Execute `ecjson2md -i ./example.json -r ./ -o ./` example.json being each json schema that has an associated markdown file.
 
@@ -64,10 +64,10 @@ Note that these command line steps can be done in a few mouse clicks with [Githu
 
 1. Stage files for commit using the normal workflow
 
-2. Create a new local branch for the changes using  ```git checkout -b <branch>```
+2. Create a new local branch for the changes using  `git checkout -b <branch>`
 
 3. Commit the changes to this new branch
 
-4. Publish the branch using ```git push -u origin <branch>```
+4. Publish the branch using `git push -u origin <branch>`
 
 5. Browse to the [GitHub repo](https://github.com/iTwin/ecjson2md/pullrequests?_a=mine) and create a new pull request, using your newly created branch as the source as `master` as the destination
