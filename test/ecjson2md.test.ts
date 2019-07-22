@@ -1,5 +1,9 @@
+/*---------------------------------------------------------------------------------------------
+|  $Copyright: (c) 2019 Bentley Systems, Incorporated. All rights reserved. $
+*--------------------------------------------------------------------------------------------*/
+
 import { ECJsonMarkdownGenerator, formatLink, formatWarningAlert, propertyTypeNumberToString, removeExtraBlankLine, prepSearchDirs } from "../source/ecjson2md";
-import { assert } from "chai";
+import { assert, expect } from "chai";
 import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
 import * as path from "path";
@@ -3279,6 +3283,7 @@ describe("ecjson2md", () => {
             const inputFileName = "BisCore.ecschema";
             const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
             const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
+
             outputFilePath = path.join(outputDir, inputFileName + ".md");
 
             // Act
@@ -3298,6 +3303,7 @@ describe("ecjson2md", () => {
             const inputFileName = "AecUnits.ecschema";
             const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
             const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
+
             outputFilePath = path.join(outputDir, inputFileName + ".md");
 
             // Act
@@ -3308,7 +3314,7 @@ describe("ecjson2md", () => {
             const correctLines = fs.readFileSync(correctFilePath).toString().split(newlineRegex);
             assert.equal(outputLines.length, correctLines.length);
             correctLines.map((line, i) => {
-              assert.equal(outputLines[i], line);
+              expect(outputLines[i]).eq(line);
             });
           });
 
@@ -3317,6 +3323,7 @@ describe("ecjson2md", () => {
             const inputFileName = "CoreCustomAttributes.ecschema";
             const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
             const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
+
             outputFilePath = path.join(outputDir, inputFileName + ".md");
 
             // Act
@@ -3336,6 +3343,7 @@ describe("ecjson2md", () => {
             const inputFileName = "Grids.ecschema";
             const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
             const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
+
             outputFilePath = path.join(outputDir, inputFileName + ".md");
 
             // Act

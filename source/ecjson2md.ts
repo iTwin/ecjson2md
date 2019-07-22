@@ -2,6 +2,8 @@
 |  $Copyright: (c) 2019 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 import * as fs from "fs";
+import * as path from "path";
+
 import {
   classModifierToString, containerTypeToString, CustomAttributeClass, ECClass, ECClassModifier,
   EntityClass, Enumeration, KindOfQuantity, formatTraitsToArray, Format, formatTypeToString, FormatType,
@@ -10,7 +12,6 @@ import {
   scientificTypeToString, strengthDirectionToString, strengthToString, StructClass, Unit,
 } from "@bentley/ecschema-metadata";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
-import * as path from "path";
 import { CustomAttributeSet } from "@bentley/ecschema-metadata/lib/Metadata/CustomAttribute";
 
 const PLACE_HOLDER = "";
@@ -1105,7 +1106,6 @@ export class ECJsonMarkdownGenerator {
 
     // If the file cannot be parsed, throw an error.
     let schemaJson: any;
-
     try {
       schemaJson = JSON.parse(schemaString);
     } catch (e) {
@@ -1120,7 +1120,7 @@ export class ECJsonMarkdownGenerator {
     // Check if the output directory exists
     if (!fs.existsSync(outputDir)) throw new ECJsonBadOutputPath(outputFilePath);
 
-    const schema: Schema = Schema.fromJsonSync(schemaJson, this._context);
+    const schema = Schema.fromJsonSync(schemaJson, this._context);
 
     // Create the output file
     fs.writeFileSync(outputFilePath, "");
