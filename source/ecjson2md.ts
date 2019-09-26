@@ -464,7 +464,7 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath path to file to append markdown documentation to
    * @param kindOfQuantity kind of quantity to generate markdown for
    */
-  public static writeKindOfQuantityClass(outputFilePath: string, kindOfQuantity: KindOfQuantity|undefined) {
+  public static writeKindOfQuantityClass(outputFilePath: string, kindOfQuantity: KindOfQuantity|undefined, schema: Schema) {
     if (kindOfQuantity === undefined) return;
 
     // Write the name of the class
@@ -481,45 +481,30 @@ export class ECJsonMarkdownGenerator {
     if (kindOfQuantity.persistenceUnit !== undefined)
       fs.appendFileSync(outputFilePath, "**Persistence Unit:** " + kindOfQuantity.persistenceUnit.name + "\n\n");
 
-    if (kindOfQuantity.presentationUnits !== undefined) {
-      // Write the precision
-      if (kindOfQuantity.presentationUnits[0] !== undefined && kindOfQuantity.presentationUnits[0].precision !== undefined)
-        fs.appendFileSync(outputFilePath, "**Precision:** " + kindOfQuantity.presentationUnits[0].precision + "\n\n");
-
+    if (kindOfQuantity.presentationFormats !== undefined) {
       // Write the presentation units
-      if (kindOfQuantity.presentationUnits.length !== 0) {
-        fs.appendFileSync(outputFilePath, "**Presentation Units**\n\n");
-        for (const pUnit of kindOfQuantity.presentationUnits) {
-          const namestrings: string[] = pUnit.name.split(/[\[\]\.]+/);
-          if (namestrings.length === 5) {
-            let formatAdditional = "";
-            let formatClassLink = "#" + namestrings[1].toLowerCase();
-            let formatClassName = namestrings[1];
-            if (formatClassName.includes("(")) {
-              formatAdditional = "(" + formatClassName.split("(")[1];
-              formatClassLink = formatClassLink.split("(")[0];
-              formatClassName = formatClassName.split("(")[0];
-            }
-            if (!outputFilePath.toLowerCase().includes("\\" + namestrings[0].toLowerCase() + ".ecschema.md"))
-              formatClassLink = createSchemaLink(namestrings[0].toLowerCase()) + formatClassLink;
+      if (kindOfQuantity.presentationFormats.length !== 0) {
+        fs.appendFileSync(outputFilePath, "**Presentation Formats**\n\n");
+        for (const pFormat of kindOfQuantity.presentationFormats) {
+          let schemaName = "";
+          if (pFormat instanceof OverrideFormat) {
+            schemaName = pFormat.parent.schema.name;
+            const formatAdditional = pFormat.precision !== pFormat.parent.precision ? `(${pFormat.precision})` : "";
+            const formatClassLink = (schemaName !== schema.name ? createSchemaLink(schemaName.toLowerCase()) : "") + "#" + pFormat.parent.name.toLowerCase();
+            const formatClassName = pFormat.parent.name;
 
-            let unitClassLink = "#" + namestrings[3].toLowerCase();
-            if (!outputFilePath.toLowerCase().includes("\\" + namestrings[2].toLowerCase() + ".ecschema.md"))
-              unitClassLink = createSchemaLink(namestrings[2].toLowerCase()) + unitClassLink;
+            let unitOverrides = " ";
+            if (pFormat.units !== pFormat.parent.units && undefined !== pFormat.units)
+              for (const pfUnit of pFormat.units) {
+                const unitLink = formatLink((pfUnit[0].schema.name !== schema.name ? createSchemaLink(pfUnit[0].schema.name) : "") + "#" + pfUnit[0].name.toLowerCase(), pfUnit[0].name);
+                unitOverrides += `[ ${unitLink + (undefined === pfUnit[1] ? "" : "|" + pfUnit[1])} ]`;
+              }
 
-            const unitClassName = namestrings[3];
-
-            fs.appendFileSync(outputFilePath, "- " + formatLink(formatClassLink, formatClassName) + formatAdditional + " [ " + formatLink(unitClassLink, unitClassName) + " ]\n");
-          } else if (namestrings.length === 1 ) {
-            let schemaName = "";
-            if (pUnit instanceof OverrideFormat)
-              schemaName = pUnit.parent.schema.name;
-            else if (pUnit instanceof Format)
-              schemaName = pUnit.schema.name;
-            let formatClassLink = "#" + pUnit.name.toLowerCase();
-            if (!outputFilePath.toLowerCase().includes("\\" + schemaName.toLowerCase() + ".ecschema.md"))
-                formatClassLink = createSchemaLink(schemaName) + formatClassLink;
-            fs.appendFileSync(outputFilePath, "- " + formatLink(formatClassLink, pUnit.name) + "\n");
+            fs.appendFileSync(outputFilePath, "- " + formatLink(formatClassLink, formatClassName) + formatAdditional + unitOverrides + "\n");
+          } else {
+            schemaName = pFormat.schema.name;
+            const formatClassLink = (schemaName !== schema.name ? createSchemaLink(schemaName.toLowerCase()) : "") + "#" + pFormat.name.toLowerCase();
+            fs.appendFileSync(outputFilePath, "- " + formatLink(formatClassLink, pFormat.name) + "\n");
           }
         }
         fs.appendFileSync(outputFilePath, "\n");
@@ -542,7 +527,7 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, "## Kind of Quantity Items\n\n");
 
     for (const item of koqItems)
-      this.writeKindOfQuantityClass(outputFilePath, item);
+      this.writeKindOfQuantityClass(outputFilePath, item, schema);
   }
 
   /**
