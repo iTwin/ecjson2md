@@ -8,7 +8,7 @@ import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
 import * as path from "path";
 import * as rimraf from "rimraf";
-import { SchemaContext, Schema, PropertyType, classModifierToString, SchemaJsonFileLocater } from "@bentley/ecschema-metadata";
+import { SchemaContext, Schema, PropertyType, classModifierToString, SchemaJsonFileLocater, SchemaItemType } from "@bentley/ecschema-metadata";
 
 describe("ecjson2md", () => {
   describe("ECJsonMarkdownGenerator", () => {
@@ -239,7 +239,7 @@ describe("ecjson2md", () => {
 
       describe("writeSchemaItemHeader", () => {
         const outputFilePath = path.join(outputDir, "nameTest.md");
-
+        
         beforeEach(() => {
           if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
         });
@@ -252,9 +252,10 @@ describe("ecjson2md", () => {
         it("shouldn't write anything for an undefined name", () => {
           // Arrange
           const name = undefined;
+          const type = SchemaItemType.EntityClass;
 
           // Act
-          ECJsonMarkdownGenerator.writeSchemaItemHeader(outputFilePath, name);
+          ECJsonMarkdownGenerator.writeSchemaItemHeader(outputFilePath, name, type);
 
           // Assert
           assert.isFalse(fs.existsSync(outputFilePath));
@@ -263,14 +264,15 @@ describe("ecjson2md", () => {
         it("should properly write the name of a schema item", () => {
           // Arrange
           const name = "NameOfTheSchemaItem";
+          const type = SchemaItemType.EntityClass;
 
           // Act
-          ECJsonMarkdownGenerator.writeSchemaItemHeader(outputFilePath, name);
+          ECJsonMarkdownGenerator.writeSchemaItemHeader(outputFilePath, name, type);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-            ### **${name}**
+            ### **${name}** [!badge text="EntityClass" kind="info"]
 
             `);
 
@@ -575,9 +577,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA**
-
-          **typeName:** EntityClass
+          ### **EntityClassA** [!badge text="EntityClass" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -614,9 +614,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA**
-
-          **typeName:** EntityClass
+          ### **EntityClassA** [!badge text="EntityClass" kind="info"]
 
           **description:** this is a description
 
@@ -657,9 +655,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA**
-
-          **typeName:** EntityClass
+          ### **EntityClassA** [!badge text="EntityClass" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -698,9 +694,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA** (entityLabel)
-
-          **typeName:** EntityClass
+          ### **EntityClassA** (entityLabel) [!badge text="EntityClass" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -743,9 +737,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA** (entityLabel)
-
-          **typeName:** EntityClass
+          ### **EntityClassA** (entityLabel) [!badge text="EntityClass" kind="info"]
 
           **description:** this is a description
 
@@ -810,9 +802,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA**
-
-          **typeName:** EntityClass
+          ### **EntityClassA** [!badge text="EntityClass" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -868,11 +858,9 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA** [!badge text="Deprecated" kind="warning"]
+          ### **EntityClassA** [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
 
           [!alert text="EntityClassA has been deprecated in favor of EntityClassB." kind="warning"]
-
-          **typeName:** EntityClass
 
           **description:** &lt;No description&gt;
 
@@ -946,9 +934,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **KindOfQuantityA** (KindOfQuantityA)
-
-          **typeName:** KindOfQuantity
+          ### **KindOfQuantityA** (KindOfQuantityA) [!badge text="KindOfQuantity" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -1018,9 +1004,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **KindOfQuantityA** (KindOfQuantityA)
-
-          **typeName:** KindOfQuantity
+          ### **KindOfQuantityA** (KindOfQuantityA) [!badge text="KindOfQuantity" kind="info"]
 
           **description:** A Kind of Quantity
 
@@ -1083,9 +1067,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **KindOfQuantityA** (KindOfQuantityA)
-
-          **typeName:** KindOfQuantity
+          ### **KindOfQuantityA** (KindOfQuantityA) [!badge text="KindOfQuantity" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -1195,9 +1177,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **KindOfQuantityA** (KindOfQuantityA)
-
-          **typeName:** KindOfQuantity
+          ### **KindOfQuantityA** (KindOfQuantityA) [!badge text="KindOfQuantity" kind="info"]
 
           **description:** A Kind of Quantity
 
@@ -1287,9 +1267,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **RelationshipClassA**
-
-          **typeName:** RelationshipClass
+          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -1380,9 +1358,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **RelationshipClassA**
-
-          **typeName:** RelationshipClass
+          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"]
 
           **description:** this is a description
 
@@ -1473,9 +1449,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **RelationshipClassA**
-
-          **typeName:** RelationshipClass
+          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -1568,9 +1542,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **RelationshipClassA**
-
-          **typeName:** RelationshipClass
+          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -1663,9 +1635,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **RelationshipClassA** (relationshipClassALabel)
-
-          **typeName:** RelationshipClass
+          ### **RelationshipClassA** (relationshipClassALabel) [!badge text="RelationshipClass" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -1770,9 +1740,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **RelationshipClassA**
-
-          **typeName:** RelationshipClass
+          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -1933,9 +1901,7 @@ describe("ecjson2md", () => {
         it("should properly write an enumeration backed by int", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **IntBackedEnum**
-
-          **typeName:** Enumeration
+          ### **IntBackedEnum** [!badge text="Enumeration" kind="info"]
 
           **Backing Type:** int
 
@@ -1962,9 +1928,7 @@ describe("ecjson2md", () => {
         it("should properly write an enumeration backed by a string", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **StringBackedEnum**
-
-          **typeName:** Enumeration
+          ### **StringBackedEnum** [!badge text="Enumeration" kind="info"]
 
           **Backing Type:** string
 
@@ -1991,9 +1955,7 @@ describe("ecjson2md", () => {
         it("should properly write an enumeration with no enumerators", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **NoEnumEnum**
-
-          **typeName:** Enumeration
+          ### **NoEnumEnum** [!badge text="Enumeration" kind="info"]
 
           **Backing Type:** string
 
@@ -2017,9 +1979,7 @@ describe("ecjson2md", () => {
           // Arrange
 
           const correctLines = outputLiteralToArray(`
-          ### **LotsOfEnumEnum**
-
-          **typeName:** Enumeration
+          ### **LotsOfEnumEnum** [!badge text="Enumeration" kind="info"]
 
           **Backing Type:** int
 
@@ -2050,9 +2010,7 @@ describe("ecjson2md", () => {
         it("should properly write an enumeration with no enumerator labels", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **NoLabelEnumerators**
-
-          **typeName:** Enumeration
+          ### **NoLabelEnumerators** [!badge text="Enumeration" kind="info"]
 
           **Backing Type:** int
 
@@ -2248,9 +2206,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has no description, base class, label, or properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **PlainMixin** *Abstract*
-
-          **typeName:** Mixin
+          ### **PlainMixin** *Abstract* [!badge text="Mixin" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -2271,9 +2227,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has a description", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **MixinWithDescription** *Abstract*
-
-          **typeName:** Mixin
+          ### **MixinWithDescription** *Abstract* [!badge text="Mixin" kind="info"]
 
           **description:** this is a description
 
@@ -2294,9 +2248,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has a base class", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **MixinWithBaseclass** *Abstract*
-
-          **typeName:** Mixin
+          ### **MixinWithBaseclass** *Abstract* [!badge text="Mixin" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -2319,9 +2271,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has a label", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **MixinWithLabel** (MixinLabel) *Abstract*
-
-          **typeName:** Mixin
+          ### **MixinWithLabel** (MixinLabel) *Abstract* [!badge text="Mixin" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -2342,9 +2292,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has a base class, label, and description", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **MixinWithDBL** (MixinLabel) *Abstract*
-
-          **typeName:** Mixin
+          ### **MixinWithDBL** (MixinLabel) *Abstract* [!badge text="Mixin" kind="info"]
 
           **description:** this is a description
 
@@ -2367,9 +2315,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has several properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **MixinWithProperties** *Abstract*
-
-          **typeName:** Mixin
+          ### **MixinWithProperties** *Abstract* [!badge text="Mixin" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -2399,9 +2345,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has all attributes", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **MixinWithAll** (MixinLabel) *Abstract*
-
-          **typeName:** Mixin
+          ### **MixinWithAll** (MixinLabel) *Abstract* [!badge text="Mixin" kind="info"]
 
           **description:** this is a description
 
@@ -2516,9 +2460,7 @@ describe("ecjson2md", () => {
         it("should write a class without description, base class, or properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **PlainCAC** *Sealed*
-
-          **typeName:** CustomAttributeClass
+          ### **PlainCAC** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -2539,9 +2481,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has a description", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **CACWithDescription** *Sealed*
-
-          **typeName:** CustomAttributeClass
+          ### **CACWithDescription** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
 
           **description:** this is a description
 
@@ -2562,9 +2502,7 @@ describe("ecjson2md", () => {
         it("should properly write a class with a description and a base class", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **CACWithBaseClass** *Sealed*
-
-          **typeName:** CustomAttributeClass
+          ### **CACWithBaseClass** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
 
           **description:** this is a description
 
@@ -2587,9 +2525,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has a description, base class, and properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **CACWithProperties** *Sealed*
-
-          **typeName:** CustomAttributeClass
+          ### **CACWithProperties** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
 
           **description:** this is a description
 
@@ -2618,9 +2554,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has several properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **CACWithMultipleProperties**
-
-          **typeName:** CustomAttributeClass
+          ### **CACWithMultipleProperties** [!badge text="CustomAttributeClass" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -2736,9 +2670,7 @@ describe("ecjson2md", () => {
         it("should properly write a class without a description, label, base class, or properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **PlainStruct** *Sealed*
-
-          **typeName:** StructClass
+          ### **PlainStruct** *Sealed* [!badge text="StructClass" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -2757,9 +2689,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has a description", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **StructD** *Sealed*
-
-          **typeName:** StructClass
+          ### **StructD** *Sealed* [!badge text="StructClass" kind="info"]
 
           **description:** this is a description
 
@@ -2778,9 +2708,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has a description and label", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **StructDL** (StructDLLabel) *Sealed*
-
-          **typeName:** StructClass
+          ### **StructDL** (StructDLLabel) *Sealed* [!badge text="StructClass" kind="info"]
 
           **description:** this is a description
 
@@ -2799,9 +2727,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has a description, label, and base class", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **StructDLB** (StructDLBLabel) *Sealed*
-
-          **typeName:** StructClass
+          ### **StructDLB** (StructDLBLabel) *Sealed* [!badge text="StructClass" kind="info"]
 
           **description:** this is a description
 
@@ -2822,9 +2748,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that a description, label, base class, and properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **StructDLBP** (StructDLBPLabel) *Sealed*
-
-          **typeName:** StructClass
+          ### **StructDLBP** (StructDLBPLabel) *Sealed* [!badge text="StructClass" kind="info"]
 
           **description:** this is a description
 
@@ -2851,9 +2775,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has several properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **StructProperties** *Sealed*
-
-          **typeName:** StructClass
+          ### **StructProperties** *Sealed* [!badge text="StructClass" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -2917,9 +2839,7 @@ describe("ecjson2md", () => {
         it("should properly write property category with no description or label", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **PlainPropCategory**
-
-          **typeName:** PropertyCategory
+          ### **PlainPropCategory** [!badge text="PropertyCategory" kind="info"]
 
           **description:** &lt;No description&gt;
 
@@ -2938,9 +2858,7 @@ describe("ecjson2md", () => {
         it("should properly write property category with a description", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **PropCategoryD**
-
-          **typeName:** PropertyCategory
+          ### **PropCategoryD** [!badge text="PropertyCategory" kind="info"]
 
           **description:** this is a description
 
@@ -2959,9 +2877,7 @@ describe("ecjson2md", () => {
         it("should properly write property category with a description and label", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **PropCategoryDL** (PropCategoryDLLabel)
-
-          **typeName:** PropertyCategory
+          ### **PropCategoryDL** (PropCategoryDLLabel) [!badge text="PropertyCategory" kind="info"]
 
           **description:** this is a description
 
@@ -3297,7 +3213,7 @@ describe("ecjson2md", () => {
               assert.equal(outputLines[i], line);
             });
           });
-
+          
           it("should properly generate markdown for AecUnits", () => {
             // Arrange
             const inputFileName = "AecUnits.ecschema";
@@ -3317,7 +3233,7 @@ describe("ecjson2md", () => {
               expect(outputLines[i]).eq(line);
             });
           });
-
+          
           it("should properly generate markdown for CoreCustomAttributes", () => {
             // Arrange
             const inputFileName = "CoreCustomAttributes.ecschema";

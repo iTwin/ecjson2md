@@ -9,7 +9,7 @@ import {
   EntityClass, Enumeration, KindOfQuantity, formatTraitsToArray, Format, formatTypeToString, FormatType,
   Mixin, OverrideFormat, primitiveTypeToString, PropertyCategory, PropertyType, RelationshipClass,
   RelationshipConstraint, Schema, SchemaContext, schemaItemTypeToString, SchemaJsonFileLocater,
-  scientificTypeToString, strengthDirectionToString, strengthToString, StructClass, Unit,
+  scientificTypeToString, strengthDirectionToString, strengthToString, StructClass, Unit, SchemaItemType,
 } from "@bentley/ecschema-metadata";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import { CustomAttributeSet } from "@bentley/ecschema-metadata/lib/Metadata/CustomAttribute";
@@ -278,7 +278,7 @@ export class ECJsonMarkdownGenerator {
    * @param modifier Modifier to write markdown for
    * @param customAttributes CustomAttrbuteSet to check if the item is deprecated
    */
-  public static writeSchemaItemHeader(outputFilePath: string, name: string|undefined, label?: string, modifier?: ECClassModifier, customAttributes?: CustomAttributeSet) {
+  public static writeSchemaItemHeader(outputFilePath: string, name: string|undefined, type: SchemaItemType, label?: string, modifier?: ECClassModifier, customAttributes?: CustomAttributeSet) {
     if (name === undefined) return;
 
     fs.appendFileSync(outputFilePath, `### **${name}**`);
@@ -290,6 +290,11 @@ export class ECJsonMarkdownGenerator {
       const modifierString = classModifierToString(modifier);
       if (modifierString !== "None")
         fs.appendFileSync(outputFilePath, ` *${modifierString}*`);
+    }
+
+    if (type !== undefined) {
+      const typeString = schemaItemTypeToString(type);
+      fs.appendFileSync(outputFilePath, ` ${formatBadge(typeString, "info")}`);
     }
 
     if (customAttributes !== undefined) {
@@ -327,17 +332,6 @@ export class ECJsonMarkdownGenerator {
     if (label === undefined) return;
 
     fs.appendFileSync(outputFilePath, "**displayLabel:** " + label + "\n\n");
-  }
-
-  /**
-   * Appends markdown for the type of a schema item to the specified file path
-   * @param outputFilePath Path of file to append markdown to
-   * @param type Type to write markdown for
-   */
-  public static writeSchemaItemType(outputFilePath: string, type: any) {
-    if (type === undefined) return;
-
-    fs.appendFileSync(outputFilePath, "**typeName:** " + schemaItemTypeToString(type) + "\n\n");
   }
 
   /**
@@ -431,10 +425,7 @@ export class ECJsonMarkdownGenerator {
     if (entityClass === undefined) return;
 
     // Write the name of the class
-    this.writeSchemaItemHeader(outputFilePath, entityClass.name, entityClass.label, entityClass.modifier, entityClass.customAttributes);
-
-    // Write the class type
-    ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, entityClass.schemaItemType);
+    this.writeSchemaItemHeader(outputFilePath, entityClass.name, entityClass.schemaItemType, entityClass.label, entityClass.modifier, entityClass.customAttributes);
 
     // Write the description of the entity class
     this.writeSchemaItemDescription(outputFilePath, entityClass.description);
@@ -477,10 +468,7 @@ export class ECJsonMarkdownGenerator {
     if (kindOfQuantity === undefined) return;
 
     // Write the name of the class
-    this.writeSchemaItemHeader(outputFilePath, kindOfQuantity.name, kindOfQuantity.label, undefined);
-
-    // Write the class type
-    ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, kindOfQuantity.schemaItemType);
+    this.writeSchemaItemHeader(outputFilePath, kindOfQuantity.name, kindOfQuantity.schemaItemType, kindOfQuantity.label, undefined, undefined);
 
     // Write the description of the entity class
     this.writeSchemaItemDescription(outputFilePath, kindOfQuantity.description);
@@ -622,10 +610,7 @@ export class ECJsonMarkdownGenerator {
     if (relationshipClass === undefined) return;
 
     // Write the name of the class
-    this.writeSchemaItemHeader(outputFilePath, relationshipClass.name, relationshipClass.label, relationshipClass.modifier, relationshipClass.customAttributes);
-
-    // Write the class type
-    ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, relationshipClass.schemaItemType);
+    this.writeSchemaItemHeader(outputFilePath, relationshipClass.name, relationshipClass.schemaItemType, relationshipClass.label, relationshipClass.modifier, relationshipClass.customAttributes);
 
     // Write the description of the entity class
     this.writeSchemaItemDescription(outputFilePath, relationshipClass.description);
@@ -705,10 +690,7 @@ export class ECJsonMarkdownGenerator {
     if (enumerationItem === undefined) return;
 
     // Write the name of the class
-    this.writeSchemaItemHeader(outputFilePath, enumerationItem.name, enumerationItem.label, undefined);
-
-    // Write the class type
-    ECJsonMarkdownGenerator.writeSchemaItemType(outputFilePath, enumerationItem.schemaItemType);
+    this.writeSchemaItemHeader(outputFilePath, enumerationItem.name, enumerationItem.schemaItemType, enumerationItem.label, undefined, undefined);
 
     // Write wether the enum is an int or string
     if (enumerationItem.isInt)
@@ -754,10 +736,7 @@ export class ECJsonMarkdownGenerator {
     if (mixin === undefined) return;
 
     // Write the name of the mixin
-    this.writeSchemaItemHeader(outputFilePath, mixin.name, mixin.label, mixin.modifier, mixin.customAttributes);
-
-    // Write the class type
-    this.writeSchemaItemType(outputFilePath, mixin.schemaItemType);
+    this.writeSchemaItemHeader(outputFilePath, mixin.name, mixin.schemaItemType, mixin.label, mixin.modifier, mixin.customAttributes);
 
     // Write the description of the mixin class
     this.writeSchemaItemDescription(outputFilePath, mixin.description);
@@ -827,10 +806,7 @@ export class ECJsonMarkdownGenerator {
     if (customAttributeClass === undefined) return;
 
     // Write the name
-    this.writeSchemaItemHeader(outputFilePath, customAttributeClass.name, customAttributeClass.label, customAttributeClass.modifier, customAttributeClass.customAttributes);
-
-    // Write the class type
-    this.writeSchemaItemType(outputFilePath, customAttributeClass.schemaItemType);
+    this.writeSchemaItemHeader(outputFilePath, customAttributeClass.name, customAttributeClass.schemaItemType, customAttributeClass.label, customAttributeClass.modifier, customAttributeClass.customAttributes);
 
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, customAttributeClass.description);
@@ -896,10 +872,7 @@ export class ECJsonMarkdownGenerator {
     if (undefined === structClass) return;
 
     // Write the name
-    this.writeSchemaItemHeader(outputFilePath, structClass.name, structClass.label, structClass.modifier, structClass.customAttributes);
-
-    // Write the class type
-    this.writeSchemaItemType(outputFilePath, structClass.schemaItemType);
+    this.writeSchemaItemHeader(outputFilePath, structClass.name, structClass.schemaItemType, structClass.label, structClass.modifier, structClass.customAttributes);
 
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, structClass.description);
@@ -958,10 +931,7 @@ export class ECJsonMarkdownGenerator {
     if (propertyCategory === undefined) return;
 
     // Write the name
-    this.writeSchemaItemHeader(outputFilePath, propertyCategory.name, propertyCategory.label, undefined);
-
-    // Write the class type
-    this.writeSchemaItemType(outputFilePath, propertyCategory.schemaItemType);
+    this.writeSchemaItemHeader(outputFilePath, propertyCategory.name, propertyCategory.schemaItemType, propertyCategory.label, undefined, undefined);
 
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, propertyCategory.description);
@@ -1010,13 +980,7 @@ export class ECJsonMarkdownGenerator {
     if (formatClass === undefined) return;
 
     // Write the name
-    this.writeSchemaItemHeader(outputFilePath, formatClass.name, formatClass.label, undefined);
-
-    // Write the class type
-    this.writeSchemaItemType(outputFilePath, formatClass.schemaItemType);
-
-    // Write the description
-    this.writeSchemaItemDescription(outputFilePath, formatClass.description);
+    this.writeSchemaItemHeader(outputFilePath, formatClass.name, formatClass.schemaItemType, formatClass.label, undefined, undefined);
 
     // Write the format type
     fs.appendFileSync(outputFilePath, "**type:** " + formatTypeToString(formatClass.type) + "\n\n");
@@ -1072,10 +1036,7 @@ export class ECJsonMarkdownGenerator {
     if (unitClass === undefined) return;
 
     // Write the name
-    this.writeSchemaItemHeader(outputFilePath, unitClass.name, unitClass.label, undefined);
-
-    // Write the class type
-    this.writeSchemaItemType(outputFilePath, unitClass.schemaItemType);
+    this.writeSchemaItemHeader(outputFilePath, unitClass.name, unitClass.schemaItemType, unitClass.label, undefined, undefined);
 
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, unitClass.description);
