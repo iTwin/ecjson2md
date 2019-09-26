@@ -16,17 +16,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ## Entity Classes
 
-### **AnnotationElement2d** (2D Annotation Element)
-
-**typeName:** EntityClass
+### **AnnotationElement2d** (2D Annotation Element) [!badge text="EntityClass" kind="info"]
 
 **description:** bis:AnnotationElement2d is a bis:GraphicalElement2d used to annotate drawings and sheets.
 
 **baseClass:** [BisCore:GraphicalElement2d](#graphicalelement2d)
 
-### **AnnotationFrameStyle** (Annotation Frame Style) *Sealed*
-
-**typeName:** EntityClass
+### **AnnotationFrameStyle** (Annotation Frame Style) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -39,9 +35,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
-### **AnnotationLeaderStyle** (Annotation Leader Style) *Sealed*
-
-**typeName:** EntityClass
+### **AnnotationLeaderStyle** (Annotation Leader Style) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -54,9 +48,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
-### **AnnotationTextStyle** (Annotation Text Style) *Sealed*
-
-**typeName:** EntityClass
+### **AnnotationTextStyle** (Annotation Text Style) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -69,9 +61,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
-### **AuxCoordSystem** (Auxiliary Coordinate System) *Abstract*
-
-**typeName:** EntityClass
+### **AuxCoordSystem** (Auxiliary Coordinate System) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -84,9 +74,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Type||int||
 |Description||string||
 
-### **AuxCoordSystem2d** (2D Auxiliary Coordinate System)
-
-**typeName:** EntityClass
+### **AuxCoordSystem2d** (2D Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"]
 
 **description:** A 2D coordinate system.
 
@@ -99,9 +87,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Origin||point2d||
 |Angle||double||
 
-### **AuxCoordSystem3d** (3D Auxiliary Coordinate System)
-
-**typeName:** EntityClass
+### **AuxCoordSystem3d** (3D Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"]
 
 **description:** A 3D coordinate system.
 
@@ -116,17 +102,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Pitch||double||
 |Roll||double||
 
-### **AuxCoordSystemSpatial** (Spatial Auxiliary Coordinate System)
-
-**typeName:** EntityClass
+### **AuxCoordSystemSpatial** (Spatial Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"]
 
 **description:** A spatial coordinate system.
 
 **baseClass:** [BisCore:AuxCoordSystem3d](#auxcoordsystem3d)
 
-### **Category** *Abstract*
-
-**typeName:** EntityClass
+### **Category** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:Category categorizes a bis:GeometricElement and its geometry. Every bis:GeometricElement is in one and only one bis:Category. The visibility (on/off) of a bis:Category may be controlled per-view. Categories are similar to levels in DGN, layers in DWG, and categories in RVT.
 
@@ -139,17 +121,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description||string||
 |Rank||int||
 
-### **CategorySelector** (Category Selector)
-
-**typeName:** EntityClass
+### **CategorySelector** (Category Selector) [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
-### **CodeSpec** (Code Specification) *Sealed*
-
-**typeName:** EntityClass
+### **CodeSpec** (Code Specification) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:CodeSpec (code specification) captures the rules for encoding and decoding significant business information into and from a Code (string). This specification is used to generate and validate Codes.
 
@@ -160,9 +138,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Name|The unique name of the bis:CodeSpec. A best practice is to incorporate the schema alias or domain name into the bis:CodeSpec name to ensure uniqueness.|string||
 |JsonProperties|A JSON string containing scope and fragment specifications used to generate and validate code values|string|Json|
 
-### **ColorBook** (Color Book) *Sealed*
-
-**typeName:** EntityClass
+### **ColorBook** (Color Book) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -174,9 +150,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description||string||
 
-### **DefinitionElement** (Definition Element) *Abstract*
-
-**typeName:** EntityClass
+### **DefinitionElement** (Definition Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:DefinitionElement holds configuration-related information that is meant to be referenced/shared.
 
@@ -188,139 +162,105 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
 
-### **DefinitionModel** (Definition Model)
-
-**typeName:** EntityClass
+### **DefinitionModel** (Definition Model) [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:DefinitionElement instances.
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
-### **DefinitionPartition** (Definition Partition) *Sealed*
-
-**typeName:** EntityClass
+### **DefinitionPartition** (Definition Partition) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:DefinitionPartition element indicates that there is a definition-related modeling perspective within the overall information hierarchy. A bis:DefinitionPartition is always parented to a bis:Subject and broken down by a bis:DefinitionModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### **DictionaryModel** (Dictionary Model) *Sealed*
-
-**typeName:** EntityClass
+### **DictionaryModel** (Dictionary Model) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** The singleton container for repository-specific bis:DefinitionElement instances.
 
 **baseClass:** [BisCore:DefinitionModel](#definitionmodel)
 
-### **DisplayStyle** (Display Style) *Abstract*
-
-**typeName:** EntityClass
+### **DisplayStyle** (Display Style) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:DisplayStyle defines the 'styling' parameters for rendering the contents of a view. It determines how graphics are rendered, not which elements are rendered. A bis:DisplayStyle can be shared by many Views.
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
-### **DisplayStyle2d** (2D Display Style)
-
-**typeName:** EntityClass
+### **DisplayStyle2d** (2D Display Style) [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:DisplayStyle2d defines the 'styling' parameters for rendering the contents of a 2D View.
 
 **baseClass:** [BisCore:DisplayStyle](#displaystyle)
 
-### **DisplayStyle3d** (3D Display Style)
-
-**typeName:** EntityClass
+### **DisplayStyle3d** (3D Display Style) [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:DisplayStyle3d defines the 'styling' parameters for rendering the contents of a 3D View.
 
 **baseClass:** [BisCore:DisplayStyle](#displaystyle)
 
-### **Document** (Document) *Abstract*
-
-**typeName:** EntityClass
+### **Document** (Document) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:Document is a social artifact designed with the distinct purpose to convey information in a manner that maximizes reach and lifespan and minimize dependency on other artifacts. Although there is often a one-to-one relationship between a bis:Document and an electronic file, this does not imply that a document is a file; instead, a document can be realized in many different media (such as paper) or have more than one file supporting it.
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
-### **DocumentCarrier** (Document Carrier) *Abstract* [!badge text="Deprecated" kind="warning"]
+### **DocumentCarrier** (Document Carrier) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
 
 [!alert text="BisCore will focus on the information itself and not how it is carried. Thus, the DocumentCarrier class was deprecated." kind="warning"]
-
-**typeName:** EntityClass
 
 **description:** DEPRECATED: A Document Carrier is an Information Carrier that carries a Document. An electronic file is a good example.
 
 **baseClass:** [BisCore:InformationCarrierElement](#informationcarrierelement)
 
-### **DocumentListModel** (Document List)
-
-**typeName:** EntityClass
+### **DocumentListModel** (Document List) [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:Document elements.
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
-### **DocumentPartition** (Document Partition) *Sealed*
-
-**typeName:** EntityClass
+### **DocumentPartition** (Document Partition) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:DocumentPartition element indicates that there is a document-related modeling perspective within the overall information hierarchy. A bis:DocumentPartition is always parented to a bis:Subject and broken down by a bis:DocumentListModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### **Drawing**
-
-**typeName:** EntityClass
+### **Drawing** [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:Drawing is a bis:Document of a 2D drawing.
 
 **baseClass:** [BisCore:Document](#document)
 
-### **DrawingCategory** (Drawing Category) *Sealed*
-
-**typeName:** EntityClass
+### **DrawingCategory** (Drawing Category) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:DrawingCategory is used for classifying bis:GeometricElement2d elements via the bis:GeometricElement2dIsInCategory (concrete and sealed) relationship.
 
 **baseClass:** [BisCore:Category](#category)
 
-### **DrawingGraphic** (Drawing Graphic)
-
-**typeName:** EntityClass
+### **DrawingGraphic** (Drawing Graphic) [!badge text="EntityClass" kind="info"]
 
 **description:** bis:DrawingGraphic is a bis:GraphicalElement2d used to persist graphics for use in drawings.
 
 **baseClass:** [BisCore:GraphicalElement2d](#graphicalelement2d)
 
-### **DrawingModel** (Drawing Model)
-
-**typeName:** EntityClass
+### **DrawingModel** (Drawing Model) [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:DrawingGraphic elements.
 
 **baseClass:** [BisCore:GraphicalModel2d](#graphicalmodel2d)
 
-### **DrawingViewDefinition** (Drawing View Definition)
-
-**typeName:** EntityClass
+### **DrawingViewDefinition** (Drawing View Definition) [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:DrawingViewDefinition specifies parameters for a view of a bis:DrawingModel.
 
 **baseClass:** [BisCore:ViewDefinition2d](#viewdefinition2d)
 
-### **DriverBundleElement** (Driver Bundle Element) *Abstract*
-
-**typeName:** EntityClass
+### **DriverBundleElement** (Driver Bundle Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:DriverBundleElement is used in conjunction with bis:ElementDrivesElement relationships to bundle multiple inputs before driving the output bis:Element.
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
-### **Element** *Abstract*
-
-**typeName:** EntityClass
+### **Element** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:Element is the smallest individually identifiable building block for modeling the real world. Each bis:Element represents an entity in the real world. Sets of bis:Elements (contained in bis:Models) are used to model other bis:Elements that represent larger scale real world entities. Using this recursive modeling strategy, bis:Elements can represent entities at any scale. Elements can represent physical things, abstract concepts or simply be information records.
 
@@ -338,15 +278,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 |FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
 |JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
 
-### **ElementAspect** (Element Aspect) *Abstract*
-
-**typeName:** EntityClass
+### **ElementAspect** (Element Aspect) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:ElementAspect is a class that defines a set of properties that are related to (and owned by) a single bis:Element. Semantically, a bis:ElementAspect can be considered part of the bis:Element. Thus, a bis:ElementAspect is deleted if its owning bis:Element is deleted.
 
-### **ElementMultiAspect** (Element Multi-Aspect) *Abstract*
-
-**typeName:** EntityClass
+### **ElementMultiAspect** (Element Multi-Aspect) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:ElementMultiAspect is a bis:ElementAspect where there can be N instances of the bis:ElementAspect class per bis:Element.
 
@@ -358,9 +294,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Element|The bis:Element that owns this bis:ElementMultiAspect.|[navigation](./biscore.ecschema.md#elementownsmultiaspects)||
 
-### **ElementUniqueAspect** (Element Unique Aspect) *Abstract*
-
-**typeName:** EntityClass
+### **ElementUniqueAspect** (Element Unique Aspect) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:ElementUniqueAspect is a bis:ElementAspect where there can be only zero or one instance of the bis:ElementAspect class per bis:Element.
 
@@ -372,9 +306,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Element|The bis:Element that owns this bis:ElementUniqueAspect|[navigation](./biscore.ecschema.md#elementownsuniqueaspect)||
 
-### **EmbeddedFileLink** (Embedded File Link)
-
-**typeName:** EntityClass
+### **EmbeddedFileLink** (Embedded File Link) [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:EmbeddedFileLink is a bis:LinkElement that links to a file embedded within the iModel.
 
@@ -387,9 +319,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Name||string||
 |Description||string||
 
-### **ExternalSourceAspect** (External Source Aspect)
-
-**typeName:** EntityClass
+### **ExternalSourceAspect** (External Source Aspect) [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:ElementMultiAspect that stores syncrhonization information for a bis:Element originating from an external source.
 
@@ -406,17 +336,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Checksum|The cryptographic hash (any algorithm) of the source object's content. It must be guaranteed to change when the source object's content changes.|string||
 |JsonProperties|A place where additional JSON properties can be stored. For example, provenance information or properties relating to the synchronization process.|string|Json|
 
-### **GeometricElement** (Geometric Element) *Abstract*
-
-**typeName:** EntityClass
+### **GeometricElement** (Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** bis:GeometricElement ia an abstract base class used to model real world entities that intrinsically have geometry.
 
 **baseClass:** [BisCore:Element](#element)
 
-### **GeometricElement2d** (2D Geometric Element) *Abstract*
-
-**typeName:** EntityClass
+### **GeometricElement2d** (2D Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** bis:GeometricElement2d is an abstract base class used to model information entities that intrinsicly have 2D geometry.
 
@@ -434,9 +360,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
 |TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement2dhastypedefinition)||
 
-### **GeometricElement3d** (3D Geometric Element) *Abstract*
-
-**typeName:** EntityClass
+### **GeometricElement3d** (3D Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** bis:GeometricElement3d is an abstract base class used to model real world entities that intrinsically have 3D geometry.
 
@@ -457,17 +381,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 |GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
 |TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
 
-### **GeometricModel** (Geometric Model) *Abstract*
-
-**typeName:** EntityClass
+### **GeometricModel** (Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:GeometricElement instances.
 
 **baseClass:** [BisCore:Model](#model)
 
-### **GeometricModel2d** (2D Geometric Model) *Abstract*
-
-**typeName:** EntityClass
+### **GeometricModel2d** (2D Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:GeometricElement2d instances.
 
@@ -479,17 +399,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |GlobalOrigin|The actual coordinates of (0,0) in modeling coordinates. An offest applied to all modeling coordinates.|point2d||
 
-### **GeometricModel3d** (3D Geometric Model) *Abstract*
-
-**typeName:** EntityClass
+### **GeometricModel3d** (3D Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:GeometricElement3d instances.
 
 **baseClass:** [BisCore:GeometricModel](#geometricmodel)
 
-### **GeometryPart** (Geometry Part)
-
-**typeName:** EntityClass
+### **GeometryPart** (Geometry Part) [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:DefinitionElement that specifies a collection of geometry that is meant to be reused across bis:GeometricElement instances. Leveraging bis:GeometryParts can help reduce file size and improve display performance.
 
@@ -503,91 +419,69 @@ The BIS core schema contains classes that all other domain schemas extend.
 |BBoxLow||point3d||
 |BBoxHigh||point3d||
 
-### **GraphicalElement2d** (2D Graphical Element) *Abstract*
-
-**typeName:** EntityClass
+### **GraphicalElement2d** (2D Graphical Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** bis:GraphicalElement2d is an abstract base class for 2D geometric elements that are used to convey information within graphical presentations (like drawings).
 
 **baseClass:** [BisCore:GeometricElement2d](#geometricelement2d)
 
-### **GraphicalElement3d** (3D Graphical Element) *Abstract*
-
-**typeName:** EntityClass
+### **GraphicalElement3d** (3D Graphical Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:GrapicalElement3d element conveys information within 3D graphical presentations.
 
 **baseClass:** [BisCore:GeometricElement3d](#geometricelement3d)
 
-### **GraphicalModel2d** (2D Graphical Model) *Abstract*
-
-**typeName:** EntityClass
+### **GraphicalModel2d** (2D Graphical Model) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:GraphicalElement2d instances.
 
 **baseClass:** [BisCore:GeometricModel2d](#geometricmodel2d)
 
-### **GraphicalType2d** (2D Graphical Type) *Abstract*
-
-**typeName:** EntityClass
+### **GraphicalType2d** (2D Graphical Type) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** Defines a shared set of properties (the 'type') that can be associated with a bis:GraphicalElement2d instance.
 
 **baseClass:** [BisCore:TypeDefinitionElement](#typedefinitionelement)
 
-### **GroupInformationElement** (Group Information) *Abstract*
-
-**typeName:** EntityClass
+### **GroupInformationElement** (Group Information) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** bis:GroupInformationElement is an abstract base class used for modeling entities whose main purpose is to group related elements.
 
 **baseClass:** [BisCore:InformationReferenceElement](#informationreferenceelement)
 
-### **GroupInformationModel** (Group Information Model) *Abstract*
-
-**typeName:** EntityClass
+### **GroupInformationModel** (Group Information Model) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:GroupInformationElement instances.
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
-### **GroupInformationPartition** (Group Information Partition) *Sealed*
-
-**typeName:** EntityClass
+### **GroupInformationPartition** (Group Information Partition) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:GroupInformationPartition element indicates that there is a group-information-related modeling perspective within the overall information hierarchy. A bis:GroupInformationPartition is always parented to a bis:Subject and broken down by a bis:GroupInformationModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### **InformationCarrierElement** (Information Carrier) *Abstract* [!badge text="Deprecated" kind="warning"]
+### **InformationCarrierElement** (Information Carrier) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
 
 [!alert text="BisCore will focus on the information itself and not how it is carried. Thus, the InformationCarrierElement class was deprecated." kind="warning"]
-
-**typeName:** EntityClass
 
 **description:** DEPRECATED: An Information Carrier carries information, but is not the information itself. For example, the arrangement of ink on paper or the sequence of electronic bits are information carriers.
 
 **baseClass:** [BisCore:Element](#element)
 
-### **InformationContentElement** (Information Content Element) *Abstract*
-
-**typeName:** EntityClass
+### **InformationContentElement** (Information Content Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** bis:InformationContentElement is an abstract base class for modeling pure information entities. Only the core framework should directly subclass from bis:InformationContentElement. Domain and application developers should start with the most appropriate subclass of bis:InformationContentElement.
 
 **baseClass:** [BisCore:Element](#element)
 
-### **InformationModel** (Information Model) *Abstract*
-
-**typeName:** EntityClass
+### **InformationModel** (Information Model) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:InformationContentElement instances.
 
 **baseClass:** [BisCore:Model](#model)
 
-### **InformationPartitionElement** (Information Partition) *Abstract*
-
-**typeName:** EntityClass
+### **InformationPartitionElement** (Information Partition) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** Instances of bis:InformationPartitionElement ared used to indicate that there is a new modeling perspective within the overall information hierarchy. A bis:InformationPartitionElement is always parented to a bis:Subject and broken down by a bis:Model.
 
@@ -599,41 +493,31 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description||string||
 
-### **InformationRecordElement** (Information Record Element) *Abstract*
-
-**typeName:** EntityClass
+### **InformationRecordElement** (Information Record Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** bis:InformationRecordElement is an abstract base class for modeling information records. The bis:InformationRecordElement class is the default choice if no other subclass of bis:InformationContentElement makes sense.
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
-### **InformationRecordModel** (Information Record Model)
-
-**typeName:** EntityClass
+### **InformationRecordModel** (Information Record Model) [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:InformationRecordElement instances
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
-### **InformationRecordPartition** (Information Record Partition) *Sealed*
-
-**typeName:** EntityClass
+### **InformationRecordPartition** (Information Record Partition) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:InformationRecordPartition element indicates that there is an information-record-related modeling perspective within the overall information hierarchy. A bis:InformationRecordPartition is always parented to a bis:Subject and broken down by a bis:InformationRecordModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### **InformationReferenceElement** (Information Reference) *Abstract*
-
-**typeName:** EntityClass
+### **InformationReferenceElement** (Information Reference) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** bis:InformationReferenceElement is an abstract base class used for modeling entities whose main purpose is to reference something else.
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
-### **LightLocation** (Light Location) *Sealed*
-
-**typeName:** EntityClass
+### **LightLocation** (Light Location) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** The spatial location of a light source
 
@@ -645,9 +529,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Enabled||boolean||
 
-### **LineStyle** (Line Style) *Sealed*
-
-**typeName:** EntityClass
+### **LineStyle** (Line Style) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -660,33 +542,25 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description|Description of the style|string||
 |Data|Encoded style properties|string|Json|
 
-### **LinkElement** (Link) *Abstract*
-
-**typeName:** EntityClass
+### **LinkElement** (Link) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:LinkElement is a bis:InformationReferenceElement that specifies a link.
 
 **baseClass:** [BisCore:InformationReferenceElement](#informationreferenceelement)
 
-### **LinkModel** (Link Model)
-
-**typeName:** EntityClass
+### **LinkModel** (Link Model) [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:LinkElement instances.
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
-### **LinkPartition** (Link Partition) *Sealed*
-
-**typeName:** EntityClass
+### **LinkPartition** (Link Partition) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:LinkPartition element indicates that there is a link-related modeling perspective within the overall information hierarchy. A bis:LinkPartition is always parented to a bis:Subject and broken down by a bis:LinkModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### **Model** *Abstract*
-
-**typeName:** EntityClass
+### **Model** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:Model is a container for persisting a collection of related elements.
 
@@ -700,83 +574,63 @@ The BIS core schema contains classes that all other domain schemas extend.
 |IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
 |JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
 
-### **ModelSelector** (Model Selector)
-
-**typeName:** EntityClass
+### **ModelSelector** (Model Selector) [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
-### **OrthographicViewDefinition** (Orthographic Spatial View)
-
-**typeName:** EntityClass
+### **OrthographicViewDefinition** (Orthographic Spatial View) [!badge text="EntityClass" kind="info"]
 
 **description:** A spatial view that always shows a parallel projection.
 
 **baseClass:** [BisCore:SpatialViewDefinition](#spatialviewdefinition)
 
-### **PhysicalElement** (Physical Element) *Abstract*
-
-**typeName:** EntityClass
+### **PhysicalElement** (Physical Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:PhysicalElement is spatially located, has mass, and can be 'touched'.
 
 **baseClass:** [BisCore:SpatialElement](#spatialelement)
 
-### **PhysicalMaterial** (Physical Material) *Abstract*
-
-**typeName:** EntityClass
+### **PhysicalMaterial** (Physical Material) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:PhysicalMaterial defines the matter of which physical objects are made. bis:PhysicalMaterials are not used to define rendering characteristics (see bis:RenderMaterial).
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
-### **PhysicalModel** (Physical Model)
-
-**typeName:** EntityClass
+### **PhysicalModel** (Physical Model) [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:PhysicalElement and bis:SpatialLocationElement instances used to model physical space.
 
 **baseClass:** [BisCore:SpatialModel](#spatialmodel)
 
-### **PhysicalPartition** (Physical Partition) *Sealed*
-
-**typeName:** EntityClass
+### **PhysicalPartition** (Physical Partition) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:PhysicalPartition element indicates that there is a physical modeling perspective within the overall information hierarchy. A bis:PhysicalPartition is always parented to a bis:Subject and broken down by a bis:PhysicalModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### **PhysicalPortion** (Physical Portion) *Abstract* [!badge text="Deprecated" kind="warning"]
+### **PhysicalPortion** (Physical Portion) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
 
 [!alert text="The best practice is now to inherit from a PhysicalElement subclass and mix in ISubModeledElement when a breakdown concept is needed." kind="warning"]
-
-**typeName:** EntityClass
 
 **description:** DEPRECATED: A Physical Portion represents an arbitrary portion of a larger Physical Element that will be broken down in more detail in a separate (sub) Physical Model.
 
 **baseClass:** [BisCore:PhysicalElement](#physicalelement)
 
-### **PhysicalType** (Physical Type) *Abstract*
-
-**typeName:** EntityClass
+### **PhysicalType** (Physical Type) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** Defines a shared set of properties (the 'type') that can be associated with a bis:PhysicalElement. A bis:PhysicalType has a strong correlation with something that can be ordered from a catalog since all instances share a common set of properties.
 
 **baseClass:** [BisCore:TypeDefinitionElement](#typedefinitionelement)
 
-### **RecipeDefinitionElement** (Recipe Definition) *Abstract*
-
-**typeName:** EntityClass
+### **RecipeDefinitionElement** (Recipe Definition) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** Defines a recipe for generating a type.
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
-### **RenderMaterial** (Render Material) *Sealed*
-
-**typeName:** EntityClass
+### **RenderMaterial** (Render Material) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:RenderMaterial defines the rendering properties of materials for display.
 
@@ -789,9 +643,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |PaletteName||string||
 |Description||string||
 
-### **RepositoryLink** (Repository Link) *Sealed*
-
-**typeName:** EntityClass
+### **RepositoryLink** (Repository Link) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:RepositoryLink is a bis:UrlLink element that links to a repository.
 
@@ -803,49 +655,37 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |RepositoryGuid||binary|BeGuid|
 
-### **RepositoryModel** (Repository Model) *Sealed*
-
-**typeName:** EntityClass
+### **RepositoryModel** (Repository Model) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** The singleton container of repository-related information elements.
 
 **baseClass:** [BisCore:DefinitionModel](#definitionmodel)
 
-### **RoleElement** (Role Element) *Abstract*
-
-**typeName:** EntityClass
+### **RoleElement** (Role Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A real world entity is modeled as a bis:RoleElement when a set of external circumstances define an important role (one that is worth tracking) that is not intrinsic to the entity playing the role. For example, a person can play the role of a teacher or a rock can play the role of a boundary marker.
 
 **baseClass:** [BisCore:Element](#element)
 
-### **RoleModel** (Role Model)
-
-**typeName:** EntityClass
+### **RoleModel** (Role Model) [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:RoleElement instances.
 
 **baseClass:** [BisCore:Model](#model)
 
-### **SectionDrawing** (Section Drawing)
-
-**typeName:** EntityClass
+### **SectionDrawing** (Section Drawing) [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:SectionDrawing is a bis:Document of a 2D section drawing.
 
 **baseClass:** [BisCore:Drawing](#drawing)
 
-### **SectionDrawingModel** (Section Drawing Model)
-
-**typeName:** EntityClass
+### **SectionDrawingModel** (Section Drawing Model) [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting section bis:DrawingGraphic elements.
 
 **baseClass:** [BisCore:DrawingModel](#drawingmodel)
 
-### **Sheet**
-
-**typeName:** EntityClass
+### **Sheet** [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:Sheet is a bis:Document of a 2D sheet.
 
@@ -860,9 +700,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Width||double||
 |SheetTemplate||[navigation](./biscore.ecschema.md#sheethassheettemplate)||
 
-### **SheetBorder** (Sheet Border)
-
-**typeName:** EntityClass
+### **SheetBorder** (Sheet Border) [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -874,9 +712,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |BorderTemplate||[navigation](./biscore.ecschema.md#sheetborderhassheetbordertemplate)||
 
-### **SheetBorderTemplate** (Sheet Border Template)
-
-**typeName:** EntityClass
+### **SheetBorderTemplate** (Sheet Border Template) [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -889,17 +725,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Height||double||
 |Width||double||
 
-### **SheetModel** (Sheet Model)
-
-**typeName:** EntityClass
+### **SheetModel** (Sheet Model) [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting sheet views and graphics.
 
 **baseClass:** [BisCore:GraphicalModel2d](#graphicalmodel2d)
 
-### **SheetTemplate** (Sheet Template)
-
-**typeName:** EntityClass
+### **SheetTemplate** (Sheet Template) [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -913,33 +745,25 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Width||double||
 |Border||[navigation](./biscore.ecschema.md#sheettemplatehassheetborder)||
 
-### **SheetViewDefinition** (Sheet View Definition)
-
-**typeName:** EntityClass
+### **SheetViewDefinition** (Sheet View Definition) [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:SheetViewDefinition specifies parameters for a view of a bis:SheetModel.
 
 **baseClass:** [BisCore:ViewDefinition2d](#viewdefinition2d)
 
-### **SpatialCategory** (Spatial Category) *Sealed*
-
-**typeName:** EntityClass
+### **SpatialCategory** (Spatial Category) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:SpatialCategory is used for classifying bis:GeometricElement3d elements via the bis:GeometricElement3dIsInCategory (concrete and sealed) relationship.
 
 **baseClass:** [BisCore:Category](#category)
 
-### **SpatialElement** (Spatial Element) *Abstract*
-
-**typeName:** EntityClass
+### **SpatialElement** (Spatial Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:SpatialElement is a bis:GeometricElement3d that occupies real world space.
 
 **baseClass:** [BisCore:GeometricElement3d](#geometricelement3d)
 
-### **SpatialIndex** (Spatial Index) *Sealed*
-
-**typeName:** EntityClass
+### **SpatialIndex** (Spatial Index) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** The Spatial Index contains information used to optimize spatial queries. Like other database indices, it is automatically maintained by the system.
 
@@ -954,59 +778,45 @@ The BIS core schema contains classes that all other domain schemas extend.
 |MinZ|Minimum Z value of the axis-aligned range box that encloses the spatial element|double||
 |MaxZ|Maximum Z value of the axis-aligned range box that encloses the spatial element|double||
 
-### **SpatialLocationElement** (Spatial Location Element) *Abstract*
-
-**typeName:** EntityClass
+### **SpatialLocationElement** (Spatial Location Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:SpatialLocationElement identifies a 'tracked' real world location but has no mass and cannot be 'touched'.
 
 **baseClass:** [BisCore:SpatialElement](#spatialelement)
 
-### **SpatialLocationModel** (Spatial Location Model)
-
-**typeName:** EntityClass
+### **SpatialLocationModel** (Spatial Location Model) [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:SpatialLocationElement instances.
 
 **baseClass:** [BisCore:SpatialModel](#spatialmodel)
 
-### **SpatialLocationPartition** (Spatial Location Partition) *Sealed*
-
-**typeName:** EntityClass
+### **SpatialLocationPartition** (Spatial Location Partition) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:SpatialLocationPartition element indicates that there is a spatial-location-related modeling perspective within the overall information hierarchy. A bis:SpatialLocationPartition is always parented to a bis:Subject and broken down by a bis:SpatialLocationModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
-### **SpatialLocationPortion** (Spatial Location Portion) *Abstract* [!badge text="Deprecated" kind="warning"]
+### **SpatialLocationPortion** (Spatial Location Portion) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
 
 [!alert text="The best practice is now to inherit from a SpatialLocationElement subclass and mix in ISubModeledElement when a breakdown concept is needed." kind="warning"]
-
-**typeName:** EntityClass
 
 **description:** DEPRECATED: A Spatial Location Portion represents an arbitrary portion of a larger Spatial Location Element that will be broken down in more detail in a separate (sub) Spatial Location Model.
 
 **baseClass:** [BisCore:SpatialLocationElement](#spatiallocationelement)
 
-### **SpatialLocationType** (Spatial Location Type) *Abstract*
-
-**typeName:** EntityClass
+### **SpatialLocationType** (Spatial Location Type) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** Defines a shared set of properties (the 'type') that can be associated with a bis:SpatialLocationElement instance.
 
 **baseClass:** [BisCore:TypeDefinitionElement](#typedefinitionelement)
 
-### **SpatialModel** (Spatial Model) *Abstract*
-
-**typeName:** EntityClass
+### **SpatialModel** (Spatial Model) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A container for persisting bis:GeometricElement3d instances that are spatially located.
 
 **baseClass:** [BisCore:GeometricModel3d](#geometricmodel3d)
 
-### **SpatialViewDefinition** (Spatial View Definition)
-
-**typeName:** EntityClass
+### **SpatialViewDefinition** (Spatial View Definition) [!badge text="EntityClass" kind="info"]
 
 **description:** A view of a spatially located volume.
 
@@ -1018,9 +828,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |ModelSelector||[navigation](./biscore.ecschema.md#spatialviewdefinitionusesmodelselector)||
 
-### **SubCategory** (Sub-Category) *Sealed*
-
-**typeName:** EntityClass
+### **SubCategory** (Sub-Category) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:SubCategory is a subdivision of a bis:Category. SubCategories allow GeometricElements to have multiple pieces of Geometry that can be independently visible and styled (color, linesStyle, transparency, etc.). It is important to understand that a bis:SubCategory is not a bis:Category (i.e. Categories do not nest). bis:GeometricElements are always related to a bis:Category, not a bis:SubCategory.
 
@@ -1033,9 +841,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description||string||
 |Properties||string|Json|
 
-### **Subject** *Sealed*
-
-**typeName:** EntityClass
+### **Subject** *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:Subject is an information element that describes what this repository (or part thereof) is about.
 
@@ -1047,57 +853,43 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description||string||
 
-### **TemplateRecipe2d** (2D Template Recipe)
-
-**typeName:** EntityClass
+### **TemplateRecipe2d** (2D Template Recipe) [!badge text="EntityClass" kind="info"]
 
 **description:** A recipe that uses a 2D template for creating new instances.
 
 **baseClass:** [BisCore:RecipeDefinitionElement](#recipedefinitionelement)
 
-### **TemplateRecipe3d** (3D Template Recipe)
-
-**typeName:** EntityClass
+### **TemplateRecipe3d** (3D Template Recipe) [!badge text="EntityClass" kind="info"]
 
 **description:** A recipe that uses a 3D template for creating new instances.
 
 **baseClass:** [BisCore:RecipeDefinitionElement](#recipedefinitionelement)
 
-### **TemplateViewDefinition2d** (2D Template View Definition)
-
-**typeName:** EntityClass
+### **TemplateViewDefinition2d** (2D Template View Definition) [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:ViewDefinition2d used to display a 2D template model.
 
 **baseClass:** [BisCore:ViewDefinition2d](#viewdefinition2d)
 
-### **TemplateViewDefinition3d** (3D Template View Definition)
-
-**typeName:** EntityClass
+### **TemplateViewDefinition3d** (3D Template View Definition) [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:ViewDefinition3d used to display a 3D template model.
 
 **baseClass:** [BisCore:ViewDefinition3d](#viewdefinition3d)
 
-### **TextAnnotation2d** (2D Text Annotation)
-
-**typeName:** EntityClass
+### **TextAnnotation2d** (2D Text Annotation) [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:AnnotationElement2d](#annotationelement2d)
 
-### **TextAnnotation3d** (3D Text Annotation)
-
-**typeName:** EntityClass
+### **TextAnnotation3d** (3D Text Annotation) [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:GraphicalElement3d](#graphicalelement3d)
 
-### **TextAnnotationData** (Text Annotation Data) *Sealed*
-
-**typeName:** EntityClass
+### **TextAnnotationData** (Text Annotation Data) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** The aspect used to store text annotation data for bis:TextAnnotation2d an bis:TextAnnotation3d elements.
 
@@ -1109,9 +901,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |TextAnnotation||binary||
 
-### **TextAnnotationSeed** (Text Annotation Seed) *Sealed*
-
-**typeName:** EntityClass
+### **TextAnnotationSeed** (Text Annotation Seed) *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1124,9 +914,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
-### **Texture** *Sealed*
-
-**typeName:** EntityClass
+### **Texture** *Sealed* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:Texture represents a named texture used for rendering purposes. The texture data is stored as a binary blob interpreted according to the specified texture format.
 
@@ -1143,9 +931,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Height||int||
 |Flags||int||
 
-### **TypeDefinitionElement** (Type Definition) *Abstract*
-
-**typeName:** EntityClass
+### **TypeDefinitionElement** (Type Definition) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** Defines a shared set of properties (the 'type') that can be associated with a bis:Element.
 
@@ -1157,9 +943,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Recipe||[navigation](./biscore.ecschema.md#typedefinitionhasrecipe)||
 
-### **UrlLink** (URL Link)
-
-**typeName:** EntityClass
+### **UrlLink** (URL Link) [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:UrlLink is a bis:LinkElement that specifies a URL link.
 
@@ -1172,9 +956,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Url||string||
 |Description||string||
 
-### **ViewAttachment** (View Attachment)
-
-**typeName:** EntityClass
+### **ViewAttachment** (View Attachment) [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1186,9 +968,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |View|The view that is to be attached|[navigation](./biscore.ecschema.md#viewisattached)||
 
-### **ViewDefinition** (View Definition) *Abstract*
-
-**typeName:** EntityClass
+### **ViewDefinition** (View Definition) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:ViewDefinition specifies the area/volume that is viewed, and refers to a bis:DisplayStyle and a bis:CategorySelector to be used. Subclasses of bis:ViewDefinition determine which model(s) are viewed.
 
@@ -1202,9 +982,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |CategorySelector||[navigation](./biscore.ecschema.md#viewdefinitionusescategoryselector)||
 |DisplayStyle||[navigation](./biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
 
-### **ViewDefinition2d** (2D View Definition) *Abstract*
-
-**typeName:** EntityClass
+### **ViewDefinition2d** (2D View Definition) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A view of a 2D model that has its own local coordinate system.
 
@@ -1219,9 +997,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Extents|Size of the view diagonal|point2d||
 |RotationAngle|Rotation angle in degrees of the viewed area.|double||
 
-### **ViewDefinition3d** (3D View Definition) *Abstract*
-
-**typeName:** EntityClass
+### **ViewDefinition3d** (3D View Definition) *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:ViewDefinition3d specifies the volume that is viewed on referenced 3D bis:Models. It refers to a bis:DisplayStyle3d and a bis:CategorySelector to be used.
 
@@ -1241,17 +1017,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 |LensAngle|Camera lens angle in degrees|double||
 |FocusDistance|Camera focus distance|double||
 
-### **VolumeElement** (Volume Element)
-
-**typeName:** EntityClass
+### **VolumeElement** (Volume Element) [!badge text="EntityClass" kind="info"]
 
 **description:** A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defining a volume.
 
 **baseClass:** [BisCore:SpatialLocationElement](#spatiallocationelement)
 
-### **WebMercatorModel** (Web Mercator Model)
-
-**typeName:** EntityClass
+### **WebMercatorModel** (Web Mercator Model) [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1259,9 +1031,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ## Relationship Classes
 
-### **BaseModelForView2d** *Sealed*
-
-**typeName:** RelationshipClass
+### **BaseModelForView2d** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1293,9 +1063,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [ViewDefinition2d](./biscore.ecschema.md#viewdefinition2d)
 
-### **CategoryOwnsSubCategories**
-
-**typeName:** RelationshipClass
+### **CategoryOwnsSubCategories** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1329,9 +1097,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [SubCategory](./biscore.ecschema.md#subcategory)
 
-### **CategorySelectorRefersToCategories** *Sealed*
-
-**typeName:** RelationshipClass
+### **CategorySelectorRefersToCategories** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1365,9 +1131,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Category](./biscore.ecschema.md#category)
 
-### **CodeSpecSpecifiesCode** *Sealed*
-
-**typeName:** RelationshipClass
+### **CodeSpecSpecifiesCode** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1399,9 +1163,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Element](./biscore.ecschema.md#element)
 
-### **DrawingGraphicRepresentsElement**
-
-**typeName:** RelationshipClass
+### **DrawingGraphicRepresentsElement** [!badge text="RelationshipClass" kind="info"]
 
 **description:** Relates a bis:DrawingGraphic to the bis:Element that it represents.
 
@@ -1435,9 +1197,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Element](./biscore.ecschema.md#element)
 
-### **DrawingModelBreaksDownDrawing**
-
-**typeName:** RelationshipClass
+### **DrawingModelBreaksDownDrawing** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1471,9 +1231,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Drawing](./biscore.ecschema.md#drawing)
 
-### **ElementDrivesElement**
-
-**typeName:** RelationshipClass
+### **ElementDrivesElement** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1505,9 +1263,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Element](./biscore.ecschema.md#element)
 
-### **ElementEncapsulatesElements**
-
-**typeName:** RelationshipClass
+### **ElementEncapsulatesElements** [!badge text="RelationshipClass" kind="info"]
 
 **description:** A relationship that indicates that child bis:Elements are meant to be hidden.
 
@@ -1541,9 +1297,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Element](./biscore.ecschema.md#element)
 
-### **ElementGroupsMembers**
-
-**typeName:** RelationshipClass
+### **ElementGroupsMembers** [!badge text="RelationshipClass" kind="info"]
 
 **description:** A generic relationship used to capture the members of a defined set of bis:Elements.
 
@@ -1577,9 +1331,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Element](./biscore.ecschema.md#element)
 
-### **ElementHasLinks**
-
-**typeName:** RelationshipClass
+### **ElementHasLinks** [!badge text="RelationshipClass" kind="info"]
 
 **description:** Associates bis:LinkElements to a bis:Element.
 
@@ -1613,9 +1365,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [LinkElement](./biscore.ecschema.md#linkelement)
 
-### **ElementOwnsChildElements**
-
-**typeName:** RelationshipClass
+### **ElementOwnsChildElements** [!badge text="RelationshipClass" kind="info"]
 
 **description:** Relates a bis:Element to child bis:Elements which represent parts of the entity modeled by the parent bis:Element.
 
@@ -1647,9 +1397,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Element](./biscore.ecschema.md#element)
 
-### **ElementOwnsExternalSourceAspects**
-
-**typeName:** RelationshipClass
+### **ElementOwnsExternalSourceAspects** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1683,9 +1431,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [ExternalSourceAspect](./biscore.ecschema.md#externalsourceaspect)
 
-### **ElementOwnsMultiAspects**
-
-**typeName:** RelationshipClass
+### **ElementOwnsMultiAspects** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1717,9 +1463,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [ElementMultiAspect](./biscore.ecschema.md#elementmultiaspect)
 
-### **ElementOwnsUniqueAspect**
-
-**typeName:** RelationshipClass
+### **ElementOwnsUniqueAspect** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1751,9 +1495,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [ElementUniqueAspect](./biscore.ecschema.md#elementuniqueaspect)
 
-### **ElementRefersToDocuments**
-
-**typeName:** RelationshipClass
+### **ElementRefersToDocuments** [!badge text="RelationshipClass" kind="info"]
 
 **description:** A general relationship between a bis:Element and a bis:Document. There is no implied owner in this relationship – so it is valid for relationship where the document existed before the referenced element (e.g. design specification) or after (e.g. operational results).
 
@@ -1787,9 +1529,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Document](./biscore.ecschema.md#document)
 
-### **ElementRefersToElements** *Abstract*
-
-**typeName:** RelationshipClass
+### **ElementRefersToElements** *Abstract* [!badge text="RelationshipClass" kind="info"]
 
 **description:** A general relationship between two bis:Elements. These are typically specialized by derived relationship to give more specific meaning.
 
@@ -1821,9 +1561,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Element](./biscore.ecschema.md#element)
 
-### **ElementScopesCode** *Sealed*
-
-**typeName:** RelationshipClass
+### **ElementScopesCode** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1855,9 +1593,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Element](./biscore.ecschema.md#element)
 
-### **ElementScopesExternalSourceIdentifier** *Sealed*
-
-**typeName:** RelationshipClass
+### **ElementScopesExternalSourceIdentifier** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1889,9 +1625,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [ExternalSourceAspect](./biscore.ecschema.md#externalsourceaspect)
 
-### **GeometricElement2dHasTypeDefinition** *Abstract*
-
-**typeName:** RelationshipClass
+### **GeometricElement2dHasTypeDefinition** *Abstract* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1923,9 +1657,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [TypeDefinitionElement](./biscore.ecschema.md#typedefinitionelement)
 
-### **GeometricElement2dIsInCategory** *Sealed*
-
-**typeName:** RelationshipClass
+### **GeometricElement2dIsInCategory** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** The relationship that determines the bis:DrawingCategory for a bis:GeometricElement2d.
 
@@ -1957,9 +1689,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [DrawingCategory](./biscore.ecschema.md#drawingcategory)
 
-### **GeometricElement3dHasTypeDefinition** *Abstract*
-
-**typeName:** RelationshipClass
+### **GeometricElement3dHasTypeDefinition** *Abstract* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -1991,9 +1721,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [TypeDefinitionElement](./biscore.ecschema.md#typedefinitionelement)
 
-### **GeometricElement3dIsInCategory** *Sealed*
-
-**typeName:** RelationshipClass
+### **GeometricElement3dIsInCategory** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** The relationship that determines the bis:SpatialCategory for a bis:GeometricElement3d.
 
@@ -2025,9 +1753,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [SpatialCategory](./biscore.ecschema.md#spatialcategory)
 
-### **GraphicalElement2dIsOfType**
-
-**typeName:** RelationshipClass
+### **GraphicalElement2dIsOfType** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2061,9 +1787,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [GraphicalType2d](./biscore.ecschema.md#graphicaltype2d)
 
-### **GraphicalElement3dRepresentsElement**
-
-**typeName:** RelationshipClass
+### **GraphicalElement3dRepresentsElement** [!badge text="RelationshipClass" kind="info"]
 
 **description:** Relates a bis:GraphicalElement3d to the bis:Element that it represents.
 
@@ -2097,9 +1821,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Element](./biscore.ecschema.md#element)
 
-### **GraphicalType2dHasTemplateRecipe**
-
-**typeName:** RelationshipClass
+### **GraphicalType2dHasTemplateRecipe** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2133,9 +1855,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [TemplateRecipe2d](./biscore.ecschema.md#templaterecipe2d)
 
-### **ModelContainsElements** *Sealed*
-
-**typeName:** RelationshipClass
+### **ModelContainsElements** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** The relationship that enforces that each bis:Element belongs to exactly one bis:Model.
 
@@ -2167,9 +1887,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Element](./biscore.ecschema.md#element)
 
-### **ModelModelsElement**
-
-**typeName:** RelationshipClass
+### **ModelModelsElement** [!badge text="RelationshipClass" kind="info"]
 
 **description:** Relates a bis:Model to the bis:Element that it describes or breaks down into more detail.
 
@@ -2201,9 +1919,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [ISubModeledElement](./biscore.ecschema.md#isubmodeledelement)
 
-### **ModelOwnsSubModel** *Sealed*
-
-**typeName:** RelationshipClass
+### **ModelOwnsSubModel** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** The relationship that is used to build a model hierarchy index. This is done for performance reasons, rather than data modeling reasons.
 
@@ -2235,9 +1951,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Model](./biscore.ecschema.md#model)
 
-### **ModelSelectorRefersToModels** *Sealed*
-
-**typeName:** RelationshipClass
+### **ModelSelectorRefersToModels** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2269,9 +1983,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Model](./biscore.ecschema.md#model)
 
-### **PartitionOriginatesFromRepository** *Sealed*
-
-**typeName:** RelationshipClass
+### **PartitionOriginatesFromRepository** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** DEPRECATED
 
@@ -2305,9 +2017,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [RepositoryLink](./biscore.ecschema.md#repositorylink)
 
-### **PhysicalElementAssemblesElements**
-
-**typeName:** RelationshipClass
+### **PhysicalElementAssemblesElements** [!badge text="RelationshipClass" kind="info"]
 
 **description:** A relationship that indicates a physical assembly of child bis:PhysicalElements.
 
@@ -2341,9 +2051,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [PhysicalElement](./biscore.ecschema.md#physicalelement)
 
-### **PhysicalElementIsOfType**
-
-**typeName:** RelationshipClass
+### **PhysicalElementIsOfType** [!badge text="RelationshipClass" kind="info"]
 
 **description:** A type-instance relation; one that indicates that the specific bis:PhysicalElement is an instance of the defined bis:PhysicalType. E.g. a pump with serial number #AR-23 is of type X-Model-Y.
 
@@ -2377,11 +2085,9 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [PhysicalType](./biscore.ecschema.md#physicaltype)
 
-### **PhysicalModelBreaksDownPhysicalPortion** [!badge text="Deprecated" kind="warning"]
+### **PhysicalModelBreaksDownPhysicalPortion** [!badge text="RelationshipClass" kind="info"] [!badge text="Deprecated" kind="warning"]
 
 [!alert text="The PhysicalPortion class has been deprecated, so this relationship class is also deprecated." kind="warning"]
-
-**typeName:** RelationshipClass
 
 **description:** DEPRECATED
 
@@ -2415,9 +2121,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [PhysicalPortion](./biscore.ecschema.md#physicalportion)
 
-### **PhysicalTypeHasTemplateRecipe**
-
-**typeName:** RelationshipClass
+### **PhysicalTypeHasTemplateRecipe** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2451,9 +2155,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [TemplateRecipe3d](./biscore.ecschema.md#templaterecipe3d)
 
-### **RenderMaterialOwnsRenderMaterials**
-
-**typeName:** RelationshipClass
+### **RenderMaterialOwnsRenderMaterials** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2487,9 +2189,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [RenderMaterial](./biscore.ecschema.md#rendermaterial)
 
-### **SheetBorderHasSheetBorderTemplate** *Sealed*
-
-**typeName:** RelationshipClass
+### **SheetBorderHasSheetBorderTemplate** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2521,9 +2221,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [SheetBorderTemplate](./biscore.ecschema.md#sheetbordertemplate)
 
-### **SheetHasSheetTemplate** *Sealed*
-
-**typeName:** RelationshipClass
+### **SheetHasSheetTemplate** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2555,9 +2253,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [SheetTemplate](./biscore.ecschema.md#sheettemplate)
 
-### **SheetModelBreaksDownSheet**
-
-**typeName:** RelationshipClass
+### **SheetModelBreaksDownSheet** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2591,9 +2287,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Sheet](./biscore.ecschema.md#sheet)
 
-### **SheetTemplateHasSheetBorder** *Sealed*
-
-**typeName:** RelationshipClass
+### **SheetTemplateHasSheetBorder** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2625,9 +2319,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [SheetBorder](./biscore.ecschema.md#sheetborder)
 
-### **SpatialLocationIsOfType**
-
-**typeName:** RelationshipClass
+### **SpatialLocationIsOfType** [!badge text="RelationshipClass" kind="info"]
 
 **description:** A type-instance relation; one that indicates that the specific bis:SpatialLocationElement is an instance of the defined bis:SpatialLocationType. E.g. AssemblyArea#5 if of type FloorSpace.
 
@@ -2661,9 +2353,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [SpatialLocationType](./biscore.ecschema.md#spatiallocationtype)
 
-### **SpatialViewDefinitionUsesModelSelector** *Sealed*
-
-**typeName:** RelationshipClass
+### **SpatialViewDefinitionUsesModelSelector** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2695,9 +2385,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [ModelSelector](./biscore.ecschema.md#modelselector)
 
-### **SubjectOwnsPartitionElements**
-
-**typeName:** RelationshipClass
+### **SubjectOwnsPartitionElements** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2731,9 +2419,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [InformationPartitionElement](./biscore.ecschema.md#informationpartitionelement)
 
-### **SubjectOwnsSubjects**
-
-**typeName:** RelationshipClass
+### **SubjectOwnsSubjects** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2767,9 +2453,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [Subject](./biscore.ecschema.md#subject)
 
-### **TextAnnotation2dOwnsTextAnnotationData**
-
-**typeName:** RelationshipClass
+### **TextAnnotation2dOwnsTextAnnotationData** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2803,9 +2487,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [TextAnnotationData](./biscore.ecschema.md#textannotationdata)
 
-### **TextAnnotation3dOwnsTextAnnotationData**
-
-**typeName:** RelationshipClass
+### **TextAnnotation3dOwnsTextAnnotationData** [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2839,9 +2521,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [TextAnnotationData](./biscore.ecschema.md#textannotationdata)
 
-### **TypeDefinitionHasRecipe** *Abstract*
-
-**typeName:** RelationshipClass
+### **TypeDefinitionHasRecipe** *Abstract* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2873,9 +2553,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [RecipeDefinitionElement](./biscore.ecschema.md#recipedefinitionelement)
 
-### **ViewDefinitionUsesCategorySelector** *Sealed*
-
-**typeName:** RelationshipClass
+### **ViewDefinitionUsesCategorySelector** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2907,9 +2585,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [CategorySelector](./biscore.ecschema.md#categoryselector)
 
-### **ViewDefinitionUsesDisplayStyle** *Sealed*
-
-**typeName:** RelationshipClass
+### **ViewDefinitionUsesDisplayStyle** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2941,9 +2617,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 - [DisplayStyle](./biscore.ecschema.md#displaystyle)
 
-### **ViewIsAttached** *Sealed*
-
-**typeName:** RelationshipClass
+### **ViewIsAttached** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -2977,9 +2651,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ## Enumerations
 
-### **AutoHandledPropertyStatementType**
-
-**typeName:** Enumeration
+### **AutoHandledPropertyStatementType** [!badge text="Enumeration" kind="info"]
 
 **Backing Type:** int
 
@@ -2992,9 +2664,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |ReadOnly = Select\|Insert|3|
 |All = Select \| Insert \| Update|7|
 
-### **CustomHandledPropertyStatementType**
-
-**typeName:** Enumeration
+### **CustomHandledPropertyStatementType** [!badge text="Enumeration" kind="info"]
 
 **Backing Type:** int
 
@@ -3014,17 +2684,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ## Mixin Classes
 
-### **IParentElement** (Parent Element) *Abstract*
-
-**typeName:** Mixin
+### **IParentElement** (Parent Element) *Abstract* [!badge text="Mixin" kind="info"]
 
 **description:** An interface that indicates that this class of bis:Element is capable of being a parent (owning child Elements). This interface is mutually exclusive with bis:ISubModeledElement.
 
 **appliesTo:** [Element](./biscore.ecschema.md#element)
 
-### **ISubModeledElement** (Sub-Modeled Element) *Abstract*
-
-**typeName:** Mixin
+### **ISubModeledElement** (Sub-Modeled Element) *Abstract* [!badge text="Mixin" kind="info"]
 
 **description:** An interface that indicates that a bis:Element can be broken down or described by a (sub) bis:Model. This interface is mutually exclusive with bis:IParentElement.
 
@@ -3032,9 +2698,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ## Custom Attribute Classes
 
-### **AutoHandledProperty**
-
-**typeName:** CustomAttributeClass
+### **AutoHandledProperty** [!badge text="CustomAttributeClass" kind="info"]
 
 **description:** Applied to an element's property to indicate that select, update, and insert of the property's value are handled automatically by the platform.
 
@@ -3046,9 +2710,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
 |StatementTypes||||false|0|
 
-### **ClassHasHandler**
-
-**typeName:** CustomAttributeClass
+### **ClassHasHandler** [!badge text="CustomAttributeClass" kind="info"]
 
 **description:** Applied to an ECClass to indicate that a C++ subclass of DgnDomain::Handler will supply behavior for it at run-time. This custom attribute may only be used by BisCore or other core schemas.
 
@@ -3060,9 +2722,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
 |Restrictions|List of actions that are not permitted when the associated handler is not available|||false|0|
 
-### **CustomHandledProperty**
-
-**typeName:** CustomAttributeClass
+### **CustomHandledProperty** [!badge text="CustomAttributeClass" kind="info"]
 
 **description:** Applied to an element's property to indicate that the property's value is handled specially by a C++ class.
 
@@ -3074,9 +2734,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
 |StatementTypes||||false|0|
 
-### **SchemaHasBehavior**
-
-**typeName:** CustomAttributeClass
+### **SchemaHasBehavior** [!badge text="CustomAttributeClass" kind="info"]
 
 **description:** Applied to an ECSchema to indicate that there is an associated JavaScript library that will provide run-time behavior.
 
