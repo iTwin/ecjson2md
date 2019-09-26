@@ -12,17 +12,13 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ## Entity Classes
 
-### **CircularAxis**
-
-**typeName:** EntityClass
+### **CircularAxis** [!badge text="EntityClass" kind="info"]
 
 **description:** an element which groups all PlanCircumferentialGridSurface in a RadialGrid together
 
 **baseClass:** [Grids:GridAxis](#gridaxis)
 
-### **ElevationGrid**
-
-**typeName:** EntityClass
+### **ElevationGrid** [!badge text="EntityClass" kind="info"]
 
 **description:** An ElevationGrid contains planar surfaces that are parallel to the local XY plane
 
@@ -35,9 +31,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 |DefaultElevationIncrement||double||
 |DefaultSurface2d||Bentley.Geometry.Common.IGeometry||
 
-### **ElevationGridSurface**
-
-**typeName:** EntityClass
+### **ElevationGridSurface** [!badge text="EntityClass" kind="info"]
 
 **description:** A PlanarGridSurface that is parallel with its Grid’s x-y plane (always contained in an ElevationGrid).
 
@@ -50,65 +44,49 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 |Elevation||double||
 |Surface2d||Bentley.Geometry.Common.IGeometry||
 
-### **FreeGrid**
-
-**typeName:** EntityClass
+### **FreeGrid** [!badge text="EntityClass" kind="info"]
 
 **description:** An FreeGrid contains surfaces that do not need to follow any rules
 
 **baseClass:** [Grids:Grid](#grid)
 
-### **FreeGridSurface**
-
-**typeName:** EntityClass
+### **FreeGridSurface** [!badge text="EntityClass" kind="info"]
 
 **description:** a grid surface of any geometry.
 
 **baseClass:** [Grids:GridSurface](#gridsurface)
 
-### **GeneralGridAxis**
-
-**typeName:** EntityClass
+### **GeneralGridAxis** [!badge text="EntityClass" kind="info"]
 
 **description:** an element which groups GridSurfaces together in other grids
 
 **baseClass:** [Grids:GridAxis](#gridaxis)
 
-### **GeneralGridCurve**
-
-**typeName:** EntityClass
+### **GeneralGridCurve** [!badge text="EntityClass" kind="info"]
 
 **description:** a gridcurve that is a result of 2 non-planar surfaces
 
 **baseClass:** [Grids:GridCurve](#gridcurve)
 
-### **Grid** *Abstract*
-
-**typeName:** EntityClass
+### **Grid** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A grid is a collection of gridsurfaces.
 
 **baseClass:** [BisCore:SpatialLocationElement](./biscore.ecschema.md#spatiallocationelement)
 
-### **GridArc**
-
-**typeName:** EntityClass
+### **GridArc** [!badge text="EntityClass" kind="info"]
 
 **description:** a gridcurve that is a result of a planar and arc surface
 
 **baseClass:** [Grids:GridCurve](#gridcurve)
 
-### **GridArcSurface** *Abstract*
-
-**typeName:** EntityClass
+### **GridArcSurface** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A grid surface that is parallel to extruded arc.
 
 **baseClass:** [Grids:GridSurface](#gridsurface)
 
-### **GridAxis** *Abstract*
-
-**typeName:** EntityClass
+### **GridAxis** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** an element which groups (typically parallel) GridSurfaces
 
@@ -121,17 +99,13 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 |Name||string||
 |Grid|Grid this axis belong to|[navigation](./grids.ecschema.md#gridhasaxes)||
 
-### **GridCurve** *Abstract*
-
-**typeName:** EntityClass
+### **GridCurve** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** an element representing a gridcurve - typically intersection of 2 surfaces
 
 **baseClass:** [BisCore:SpatialLocationElement](./biscore.ecschema.md#spatiallocationelement)
 
-### **GridCurveBundle** (GridCurve bundle)
-
-**typeName:** EntityClass
+### **GridCurveBundle** (GridCurve bundle) [!badge text="EntityClass" kind="info"]
 
 **description:** &lt;No description&gt;
 
@@ -143,49 +117,37 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 |:-----------|:------------------|:-----------|:-----------------------|
 |CurvesSet|Created GridCurves will be put into this GridCurvesSet|[navigation](./grids.ecschema.md#gridcurvebundlereferstogridcurvesset)||
 
-### **GridCurvesSet**
-
-**typeName:** EntityClass
+### **GridCurvesSet** [!badge text="EntityClass" kind="info"]
 
 **description:** a set which holds GridCurves
 
 **baseClass:** [BisCore:SpatialLocationElement](./biscore.ecschema.md#spatiallocationelement)
 
-### **GridLine**
-
-**typeName:** EntityClass
+### **GridLine** [!badge text="EntityClass" kind="info"]
 
 **description:** a gridcurve that is a result of 2 planar surfaces
 
 **baseClass:** [Grids:GridCurve](#gridcurve)
 
-### **GridPlanarSurface** *Abstract*
-
-**typeName:** EntityClass
+### **GridPlanarSurface** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A planar grid surface element.
 
 **baseClass:** [Grids:GridSurface](#gridsurface)
 
-### **GridSpline**
-
-**typeName:** EntityClass
+### **GridSpline** [!badge text="EntityClass" kind="info"]
 
 **description:** a gridcurve that is a result of a planar and a spline surface
 
 **baseClass:** [Grids:GridCurve](#gridcurve)
 
-### **GridSplineSurface** *Abstract*
-
-**typeName:** EntityClass
+### **GridSplineSurface** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A grid surface that is parallel to an extruded spline.
 
 **baseClass:** [Grids:GridSurface](#gridsurface)
 
-### **GridSurface** *Abstract*
-
-**typeName:** EntityClass
+### **GridSurface** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A grid surface element.
 
@@ -197,25 +159,19 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 |:-----------|:------------------|:-----------|:-----------------------|
 |Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
 
-### **OrthogonalAxisX**
-
-**typeName:** EntityClass
+### **OrthogonalAxisX** [!badge text="EntityClass" kind="info"]
 
 **description:** an element which groups all PlanCartesianGridSurface in the X direction
 
 **baseClass:** [Grids:GridAxis](#gridaxis)
 
-### **OrthogonalAxisY**
-
-**typeName:** EntityClass
+### **OrthogonalAxisY** [!badge text="EntityClass" kind="info"]
 
 **description:** an element which groups all PlanCartesianGridSurface in the Y direction
 
 **baseClass:** [Grids:GridAxis](#gridaxis)
 
-### **OrthogonalGrid**
-
-**typeName:** EntityClass
+### **OrthogonalGrid** [!badge text="EntityClass" kind="info"]
 
 **description:** And OrthogonalGrid has all of its' surfaces orthogonal in either X or Y direction
 
@@ -232,9 +188,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 |DefaultStartExtentY||double||
 |DefaultEndExtentY||double||
 
-### **PlanCartesianGridSurface**
-
-**typeName:** EntityClass
+### **PlanCartesianGridSurface** [!badge text="EntityClass" kind="info"]
 
 **description:** A planar plan grid surface that is perpendicular to the grid’s x-axis or y-axis.
 
@@ -248,9 +202,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 |StartExtent||double||
 |EndExtent||double||
 
-### **PlanCircumferentialGridSurface**
-
-**typeName:** EntityClass
+### **PlanCircumferentialGridSurface** [!badge text="EntityClass" kind="info"]
 
 **description:** An PlanGridArcSurface that is centered on the Grid’s origin.
 
@@ -264,9 +216,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 |StartAngle||double||
 |EndAngle||double||
 
-### **PlanGrid** *Abstract*
-
-**typeName:** EntityClass
+### **PlanGrid** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** a grid whose surfaces are curves parallel to the local x-y plane extruded along the local z-axis
 
@@ -279,33 +229,25 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 |DefaultStartElevation||double||
 |DefaultEndElevation||double||
 
-### **PlanGridArcSurface** *Abstract*
-
-**typeName:** EntityClass
+### **PlanGridArcSurface** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** An arc plangrid surface element.
 
 **baseClass:** [Grids:GridArcSurface](#gridarcsurface)
 
-### **PlanGridPlanarSurface** *Abstract*
-
-**typeName:** EntityClass
+### **PlanGridPlanarSurface** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A planar plangrid surface element.
 
 **baseClass:** [Grids:GridPlanarSurface](#gridplanarsurface)
 
-### **PlanGridSplineSurface** *Abstract*
-
-**typeName:** EntityClass
+### **PlanGridSplineSurface** *Abstract* [!badge text="EntityClass" kind="info"]
 
 **description:** A spline plangrid surface element.
 
 **baseClass:** [Grids:GridSplineSurface](#gridsplinesurface)
 
-### **PlanRadialGridSurface**
-
-**typeName:** EntityClass
+### **PlanRadialGridSurface** [!badge text="EntityClass" kind="info"]
 
 **description:** A PlanGridPlanarSurface whose infinite plane contains the PlanGrid’s origin.
 
@@ -319,17 +261,13 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 |StartRadius||double||
 |EndRadius||double||
 
-### **RadialAxis**
-
-**typeName:** EntityClass
+### **RadialAxis** [!badge text="EntityClass" kind="info"]
 
 **description:** an element which groups all PlanRadialGridSurface in a RadialGrid together
 
 **baseClass:** [Grids:GridAxis](#gridaxis)
 
-### **RadialGrid**
-
-**typeName:** EntityClass
+### **RadialGrid** [!badge text="EntityClass" kind="info"]
 
 **description:** A RadialGrid consists either of arcsurfaces in radial axis or planarsurfaces in circular axis
 
@@ -346,9 +284,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 |DefaultStartRadius||double||
 |DefaultEndRadius||double||
 
-### **SketchArcGridSurface**
-
-**typeName:** EntityClass
+### **SketchArcGridSurface** [!badge text="EntityClass" kind="info"]
 
 **description:** An extruded arc gridsurface element.
 
@@ -360,17 +296,13 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 |:-----------|:------------------|:-----------|:-----------------------|
 |Arc2d||Bentley.Geometry.Common.IGeometry||
 
-### **SketchGrid**
-
-**typeName:** EntityClass
+### **SketchGrid** [!badge text="EntityClass" kind="info"]
 
 **description:** A SketchGrid contains surfaces whose positions are not constrained (other than being swept to the grid normal)
 
 **baseClass:** [Grids:PlanGrid](#plangrid)
 
-### **SketchLineGridSurface**
-
-**typeName:** EntityClass
+### **SketchLineGridSurface** [!badge text="EntityClass" kind="info"]
 
 **description:** An extruded line gridsurface element.
 
@@ -382,9 +314,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 |:-----------|:------------------|:-----------|:-----------------------|
 |Line2d||Bentley.Geometry.Common.IGeometry||
 
-### **SketchSplineGridSurface**
-
-**typeName:** EntityClass
+### **SketchSplineGridSurface** [!badge text="EntityClass" kind="info"]
 
 **description:** An extruded spline gridsurface element.
 
@@ -398,9 +328,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ## Relationship Classes
 
-### **GridAxisContainsGridSurfaces**
-
-**typeName:** RelationshipClass
+### **GridAxisContainsGridSurfaces** [!badge text="RelationshipClass" kind="info"]
 
 **description:** maps axis to grouped surfaces
 
@@ -432,9 +360,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 - [GridSurface](./grids.ecschema.md#gridsurface)
 
-### **GridCurveBundleCreatesGridCurve**
-
-**typeName:** RelationshipClass
+### **GridCurveBundleCreatesGridCurve** [!badge text="RelationshipClass" kind="info"]
 
 **description:** a driving relationship which tells that gridcurve was created by the mapped GridCurveBundle
 
@@ -468,9 +394,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 - [GridCurve](./grids.ecschema.md#gridcurve)
 
-### **GridCurveBundleRefersToGridCurvesSet**
-
-**typeName:** RelationshipClass
+### **GridCurveBundleRefersToGridCurvesSet** [!badge text="RelationshipClass" kind="info"]
 
 **description:** Maps GridCurveBundle to a GridCurvesSet
 
@@ -502,9 +426,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 - [GridCurvesSet](./grids.ecschema.md#gridcurvesset)
 
-### **GridDrivesGridSurface**
-
-**typeName:** RelationshipClass
+### **GridDrivesGridSurface** [!badge text="RelationshipClass" kind="info"]
 
 **description:** a driving relationship which tells that a grid is driving a gridsurface.
 
@@ -538,9 +460,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 - [GridSurface](./grids.ecschema.md#gridsurface)
 
-### **GridHasAxes**
-
-**typeName:** RelationshipClass
+### **GridHasAxes** [!badge text="RelationshipClass" kind="info"]
 
 **description:** maps grid to its axes
 
@@ -572,9 +492,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 - [GridAxis](./grids.ecschema.md#gridaxis)
 
-### **GridSurfaceDrivesGridCurveBundle**
-
-**typeName:** RelationshipClass
+### **GridSurfaceDrivesGridCurveBundle** [!badge text="RelationshipClass" kind="info"]
 
 **description:** a driving relationship which tells that gridsurface influences the creation of GridCurve
 
@@ -610,9 +528,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ## Mixin Classes
 
-### **IPlanGridSurface** (PlanGrid Surface) *Abstract*
-
-**typeName:** Mixin
+### **IPlanGridSurface** (PlanGrid Surface) *Abstract* [!badge text="Mixin" kind="info"]
 
 **description:** An interface that indicates that this Surface is suitable to be placed in a PlanGrid
 
