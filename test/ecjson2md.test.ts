@@ -920,7 +920,7 @@ describe("ecjson2md", () => {
                   label: "KindOfQuantityA",
                   relativeError: 0.0,
                   persistenceUnit : "testSchema.A",
-                 presentationUnits : [ "testSchema.DefaultReal[testSchema.A]" ],
+                  presentationUnits : [ "testSchema.DefaultReal[testSchema.A]" ],
                 },
               },
             };
@@ -929,7 +929,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
+          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"), testSchema);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -942,11 +942,9 @@ describe("ecjson2md", () => {
 
           **Persistence Unit:** A
 
-          **Precision:** 6
+          **Presentation Formats**
 
-          **Presentation Units**
-
-          - [DefaultReal](./testschema.ecschema.md#defaultreal) [ [A](./testschema.ecschema.md#a) ]
+          - [DefaultReal](#defaultreal) [ [A](#a) ]
 
           `);
 
@@ -956,7 +954,7 @@ describe("ecjson2md", () => {
           });
         });
 
-        it("should properly write a kind of quantity without presentation units", () => {
+        it("should properly write a kind of quantity without presentation formats", () => {
           // Arrange
           const schemaJson = {
               $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
@@ -999,7 +997,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
+          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"), testSchema);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -1020,7 +1018,7 @@ describe("ecjson2md", () => {
           });
         });
 
-        it("should properly write a kind of quantity without a description or presentation units", () => {
+        it("should properly write a kind of quantity without a description or presentation formats", () => {
           // Arrange
           const schemaJson = {
               $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
@@ -1062,7 +1060,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
+          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"), testSchema);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -1083,7 +1081,7 @@ describe("ecjson2md", () => {
           });
         });
 
-        it("should properly write a kind of quantity with multiple presentation units", () => {
+        it("should properly write a kind of quantity with multiple presentation formats", () => {
           // Arrange
           const schemaJson = {
               $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
@@ -1157,8 +1155,8 @@ describe("ecjson2md", () => {
                   label: "KindOfQuantityA",
                   relativeError: 0.0,
                   persistenceUnit : "testSchema.A",
-                 presentationUnits : [
-                    "testSchema.DefaultReal[testSchema.A]",
+                  presentationUnits : [
+                    "testSchema.DefaultReal[testSchema.A|amp]",
                     "testSchema.DefaultReal[testSchema.KILOAMPERE]",
                     "testSchema.DefaultReal[testSchema.M_PER_SEC_SQ]",
                     "testSchema.DefaultReal[testSchema.CM_PER_SEC_SQ]",
@@ -1172,7 +1170,7 @@ describe("ecjson2md", () => {
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
           // Act
-          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"));
+          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"), testSchema);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -1185,15 +1183,13 @@ describe("ecjson2md", () => {
 
           **Persistence Unit:** A
 
-          **Precision:** 6
+          **Presentation Formats**
 
-          **Presentation Units**
-
-          - [DefaultReal](./testschema.ecschema.md#defaultreal) [ [A](./testschema.ecschema.md#a) ]
-          - [DefaultReal](./testschema.ecschema.md#defaultreal) [ [KILOAMPERE](./testschema.ecschema.md#kiloampere) ]
-          - [DefaultReal](./testschema.ecschema.md#defaultreal) [ [M_PER_SEC_SQ](./testschema.ecschema.md#m_per_sec_sq) ]
-          - [DefaultReal](./testschema.ecschema.md#defaultreal) [ [CM_PER_SEC_SQ](./testschema.ecschema.md#cm_per_sec_sq) ]
-          - [DefaultReal](./testschema.ecschema.md#defaultreal) [ [FT_PER_SEC_SQ](./testschema.ecschema.md#ft_per_sec_sq) ]
+          - [DefaultReal](#defaultreal) [ [A](#a)|amp ]
+          - [DefaultReal](#defaultreal) [ [KILOAMPERE](#kiloampere) ]
+          - [DefaultReal](#defaultreal) [ [M_PER_SEC_SQ](#m_per_sec_sq) ]
+          - [DefaultReal](#defaultreal) [ [CM_PER_SEC_SQ](#cm_per_sec_sq) ]
+          - [DefaultReal](#defaultreal) [ [FT_PER_SEC_SQ](#ft_per_sec_sq) ]
 
           `);
 

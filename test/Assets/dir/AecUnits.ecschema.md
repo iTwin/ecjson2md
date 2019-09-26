@@ -24,9 +24,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** M_PER_SEC_SQ
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [M_PER_SEC_SQ](./units.ecschema.md#m_per_sec_sq) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CM_PER_SEC_SQ](./units.ecschema.md#cm_per_sec_sq) ]
@@ -40,9 +38,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** RAD
 
-**Precision:** 2
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(2) [ [ARC_DEG](./units.ecschema.md#arc_deg) ]
 - [AngleDMS](./formats.ecschema.md#angledms)
@@ -55,9 +51,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** RAD_PER_SEC
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [RAD_PER_SEC](./units.ecschema.md#rad_per_sec) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [DEG_PER_SEC](./units.ecschema.md#deg_per_sec) ]
@@ -71,9 +65,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** SQ_M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_M](./units.ecschema.md#sq_m) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_FT](./units.ecschema.md#sq_ft) ]
@@ -86,9 +78,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** SQ_M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_KM](./units.ecschema.md#sq_km) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_MILE](./units.ecschema.md#sq_mile) ]
@@ -101,9 +91,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** SQ_M
 
-**Precision:** 2
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(2) [ [SQ_MM](./units.ecschema.md#sq_mm) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_IN](./units.ecschema.md#sq_in) ]
@@ -116,9 +104,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** A
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [A](./units.ecschema.md#a) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KILOAMPERE](./units.ecschema.md#kiloampere) ]
@@ -131,9 +117,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** KG_PER_CUB_M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KG_PER_CUB_M](./units.ecschema.md#kg_per_cub_m) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LBM_PER_CUB_FT](./units.ecschema.md#lbm_per_cub_ft) ]
@@ -149,9 +133,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** PA_S
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [PA_S](./units.ecschema.md#pa_s) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [POISE](./units.ecschema.md#poise) ]
@@ -166,9 +148,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** VOLT
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [VOLT](./units.ecschema.md#volt) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KILOVOLT](./units.ecschema.md#kilovolt) ]
@@ -182,9 +162,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** J
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [J](./units.ecschema.md#j) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KJ](./units.ecschema.md#kj) ]
@@ -199,9 +177,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** CUB_M_PER_SEC
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LITRE_PER_MIN](./units.ecschema.md#litre_per_min) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_FT_PER_MIN](./units.ecschema.md#cub_ft_per_min) ]
@@ -215,9 +191,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** N
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [N](./units.ecschema.md#n) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KN](./units.ecschema.md#kn) ]
@@ -232,9 +206,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** N_PER_CUB_M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [N_PER_CUB_M](./units.ecschema.md#n_per_cub_m) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KN_PER_CUB_M](./units.ecschema.md#kn_per_cub_m) ]
@@ -249,9 +221,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** HZ
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [HZ](./units.ecschema.md#hz) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KHZ](./units.ecschema.md#khz) ]
@@ -265,9 +235,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** W_PER_SQ_M_K
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [W_PER_SQ_M_K](./units.ecschema.md#w_per_sq_m_k) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [W_PER_SQ_M_CELSIUS](./units.ecschema.md#w_per_sq_m_celsius) ]
@@ -281,9 +249,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** LUX
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LUX](./units.ecschema.md#lux) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LUMEN_PER_SQ_FT](./units.ecschema.md#lumen_per_sq_ft) ]
@@ -296,13 +262,12 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [M](./units.ecschema.md#m) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [MM](./units.ecschema.md#mm) ]
 - [AmerFI](./formats.ecschema.md#amerfi)
+- [AmerFI](./formats.ecschema.md#amerfi)(16) 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT](./units.ecschema.md#ft) ]
 
 ### **LENGTH_LONG** (Long Length) [!badge text="KindOfQuantity" kind="info"]
@@ -313,13 +278,12 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KM](./units.ecschema.md#km) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [M](./units.ecschema.md#m) ]
 - [AmerFI](./formats.ecschema.md#amerfi)
+- [AmerFI](./formats.ecschema.md#amerfi)(16) 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT](./units.ecschema.md#ft) ]
 
 ### **LENGTH_SHORT** (Short Length) [!badge text="KindOfQuantity" kind="info"]
@@ -330,14 +294,13 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** M
 
-**Precision:** 2
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(2) [ [MM](./units.ecschema.md#mm) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CM](./units.ecschema.md#cm) ]
 - [AmerFI](./formats.ecschema.md#amerfi)
 - [AmerFI](./formats.ecschema.md#amerfi)
+- [AmerFI](./formats.ecschema.md#amerfi)(16) 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [IN](./units.ecschema.md#in) ]
 
 ### **LINEAR_DENSITY** (Linear Density) [!badge text="KindOfQuantity" kind="info"]
@@ -348,9 +311,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** KG_PER_M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KG_PER_M](./units.ecschema.md#kg_per_m) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KG_PER_MM](./units.ecschema.md#kg_per_mm) ]
@@ -364,9 +325,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** N_PER_M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [N_PER_M](./units.ecschema.md#n_per_m) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [N_PER_MM](./units.ecschema.md#n_per_mm) ]
@@ -380,9 +339,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** N_PER_RAD
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [N_PER_RAD](./units.ecschema.md#n_per_rad) ]
 
@@ -394,9 +351,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** CUB_M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LITRE](./units.ecschema.md#litre) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [GALLON](./units.ecschema.md#gallon) ]
@@ -409,9 +364,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** CUB_M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [THOUSAND_LITRE](./units.ecschema.md#thousand_litre) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [THOUSAND_GALLON](./units.ecschema.md#thousand_gallon) ]
@@ -424,9 +377,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** CUB_M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LITRE](./units.ecschema.md#litre) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [GALLON](./units.ecschema.md#gallon) ]
@@ -439,9 +390,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** LUMEN
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LUMEN](./units.ecschema.md#lumen) ]
 
@@ -453,9 +402,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** CD
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CD](./units.ecschema.md#cd) ]
 
@@ -467,9 +414,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** M_TO_THE_FOURTH
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [M_TO_THE_FOURTH](./units.ecschema.md#m_to_the_fourth) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [MM_TO_THE_FOURTH](./units.ecschema.md#mm_to_the_fourth) ]
@@ -485,9 +430,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** W
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [W](./units.ecschema.md#w) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KW](./units.ecschema.md#kw) ]
@@ -504,9 +447,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** PA
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [PA](./units.ecschema.md#pa) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [PSIG](./units.ecschema.md#psig) ]
@@ -520,9 +461,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** PA_PER_M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [PA_PER_M](./units.ecschema.md#pa_per_m) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [BAR_PER_KM](./units.ecschema.md#bar_per_km) ]
@@ -535,9 +474,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** CUB_M_PER_SEC
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LITRE_PER_MIN](./units.ecschema.md#litre_per_min) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_FT_PER_MIN](./units.ecschema.md#cub_ft_per_min) ]
@@ -551,9 +488,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** PA
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [PA](./units.ecschema.md#pa) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [PSIG](./units.ecschema.md#psig) ]
@@ -567,9 +502,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** K
 
-**Precision:** 2
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(2) [ [CELSIUS](./units.ecschema.md#celsius) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(2) [ [FAHRENHEIT](./units.ecschema.md#fahrenheit) ]
@@ -583,9 +516,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** J_PER_KG_K
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [J_PER_KG_K](./units.ecschema.md#j_per_kg_k) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [BTU_PER_LBM_RANKINE](./units.ecschema.md#btu_per_lbm_rankine) ]
@@ -598,9 +529,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** J_PER_KG
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [J_PER_KG](./units.ecschema.md#j_per_kg) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KJ_PER_KG](./units.ecschema.md#kj_per_kg) ]
@@ -614,9 +543,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** K
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CELSIUS](./units.ecschema.md#celsius) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FAHRENHEIT](./units.ecschema.md#fahrenheit) ]
@@ -630,9 +557,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** W_PER_M_K
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [W_PER_M_K](./units.ecschema.md#w_per_m_k) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [W_PER_M_C](./units.ecschema.md#w_per_m_c) ]
@@ -646,9 +571,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** STRAIN_PER_KELVIN
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [STRAIN_PER_KELVIN](./units.ecschema.md#strain_per_kelvin) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [STRAIN_PER_CELSIUS](./units.ecschema.md#strain_per_celsius) ]
@@ -662,9 +585,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** SQ_M_KELVIN_PER_WATT
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_M_KELVIN_PER_WATT](./units.ecschema.md#sq_m_kelvin_per_watt) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_M_CELSIUS_PER_WATT](./units.ecschema.md#sq_m_celsius_per_watt) ]
@@ -678,9 +599,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** S
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [S](./units.ecschema.md#s) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [MIN](./units.ecschema.md#min) ]
@@ -696,9 +615,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** M_PER_SEC
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [M_PER_SEC](./units.ecschema.md#m_per_sec) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT_PER_SEC](./units.ecschema.md#ft_per_sec) ]
@@ -713,9 +630,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** CUB_M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_M](./units.ecschema.md#cub_m) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_FT](./units.ecschema.md#cub_ft) ]
@@ -729,9 +644,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** CUB_M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_KM](./units.ecschema.md#cub_km) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_M](./units.ecschema.md#cub_m) ]
@@ -746,9 +659,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** CUB_M
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_MM](./units.ecschema.md#cub_mm) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_CM](./units.ecschema.md#cub_cm) ]
@@ -763,9 +674,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** M_TO_THE_SIXTH
 
-**Precision:** 4
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [M_TO_THE_SIXTH](./units.ecschema.md#m_to_the_sixth) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT_TO_THE_SIXTH](./units.ecschema.md#ft_to_the_sixth) ]
@@ -778,9 +687,7 @@ This contains the unit definitions that are use across AE Schemas
 
 **Persistence Unit:** KG
 
-**Precision:** 2
-
-**Presentation Units**
+**Presentation Formats**
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(2) [ [KG](./units.ecschema.md#kg) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(2) [ [LBM](./units.ecschema.md#lbm) ]
