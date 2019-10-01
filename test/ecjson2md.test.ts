@@ -3210,6 +3210,26 @@ describe("ecjson2md", () => {
             });
           });
           
+          it("should properly generate markdown for BisCore (XML verison)", () => {
+            // Arrange
+            const inputFileName = "BisCore.ecschema";
+            const inputFilePath = path.join(inputFileDir, inputFileName + ".xml");
+            const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
+
+            outputFilePath = path.join(outputDir, inputFileName + ".md");
+
+            // Act
+            testMDGenerator.generate(inputFilePath, outputFilePath);
+
+            // Assert
+            const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split(newlineRegex);
+            assert.equal(outputLines.length, correctLines.length);
+            correctLines.map((line, i) => {
+              assert.equal(outputLines[i], line);
+            });
+          });
+
           it("should properly generate markdown for AecUnits", () => {
             // Arrange
             const inputFileName = "AecUnits.ecschema";
@@ -3230,6 +3250,26 @@ describe("ecjson2md", () => {
             });
           });
           
+          it("should properly generate markdown for AecUnits (XML version)", () => {
+            // Arrange
+            const inputFileName = "AecUnits.ecschema";
+            const inputFilePath = path.join(inputFileDir, inputFileName + ".xml");
+            const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
+
+            outputFilePath = path.join(outputDir, inputFileName + ".md");
+
+            // Act
+            testMDGenerator.generate(inputFilePath, outputFilePath);
+
+            // Assert
+            const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split(newlineRegex);
+            assert.equal(outputLines.length, correctLines.length);
+            correctLines.map((line, i) => {
+              expect(outputLines[i]).eq(line);
+            });
+          });
+
           it("should properly generate markdown for CoreCustomAttributes", () => {
             // Arrange
             const inputFileName = "CoreCustomAttributes.ecschema";
