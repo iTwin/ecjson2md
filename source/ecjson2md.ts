@@ -10,9 +10,13 @@ import {
   Mixin, OverrideFormat, primitiveTypeToString, PropertyCategory, PropertyType, RelationshipClass,
   RelationshipConstraint, Schema, SchemaContext, schemaItemTypeToString, SchemaJsonFileLocater,
   scientificTypeToString, strengthDirectionToString, strengthToString, StructClass, Unit, SchemaItemType,
+  SchemaXmlFileLocater,
 } from "@bentley/ecschema-metadata";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import { CustomAttributeSet } from "@bentley/ecschema-metadata/lib/Metadata/CustomAttribute";
+import { DOMParser } from "xmldom";
+import { SchemaReadHelper } from "@bentley/ecschema-metadata/lib/Deserialization/Helper";
+import { XmlParser } from "@bentley/ecschema-metadata/lib/Deserialization/XmlParser";
 
 const PLACE_HOLDER = "";
 
@@ -168,13 +172,18 @@ export class ECJsonMarkdownGenerator {
     }
 
     // Add the provided directories to the locator as search paths
-    const locator = new SchemaJsonFileLocater();
-    locator.addSchemaSearchPaths(searchDirs);
+    const jsonlocator = new SchemaJsonFileLocater();
+    jsonlocator.addSchemaSearchPaths(searchDirs);
+    this.searchDirs = searchDirs;
+
+    const xmllocator = new SchemaXmlFileLocater();
+    xmllocator.addSchemaSearchPaths(searchDirs);
     this.searchDirs = searchDirs;
 
     // Add the locator to the context
     this._context = new SchemaContext();
-    this._context.addLocater(locator);
+    this._context.addLocater(jsonlocator);
+    this._context.addLocater(xmllocator);
   }
 
   /**
@@ -1038,6 +1047,15 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputFilePath, "**Unit System**: " + unitClass.unitSystem.name + "\n\n");
   }
 
+  public xmlToSchema (schemaString: string, context: SchemaContext): Schema {
+    const parser = new DOMParser();
+    const document = parser.parseFromString(schemaString);
+    const reader = new SchemaReadHelper(XmlParser, context);
+    let schema: Schema = new Schema(context);
+    schema = reader.readSchemaSync(schema, document);
+    return schema;
+  }
+
   /**
    * Loads a schema and its references into memory and drives the
    * markdown generation
@@ -1048,16 +1066,6 @@ export class ECJsonMarkdownGenerator {
     // If the schema file doesn't exist, throw an error
     if (!fs.existsSync(schemaPath)) throw new ECJsonFileNotFound(schemaPath);
 
-    const schemaString = fs.readFileSync(schemaPath, "utf8");
-
-    // If the file cannot be parsed, throw an error.
-    let schemaJson: any;
-    try {
-      schemaJson = JSON.parse(schemaString);
-    } catch (e) {
-      throw new ECJsonBadJson(schemaPath);
-    }
-
     // Get the path of the directory that will contain the output md file
     let outputDir: string[] | string = outputFilePath.split(/(\/){1}|(\\){2}|(\\){1}/g);
     outputDir.pop();
@@ -1066,7 +1074,24 @@ export class ECJsonMarkdownGenerator {
     // Check if the output directory exists
     if (!fs.existsSync(outputDir)) throw new ECJsonBadOutputPath(outputFilePath);
 
-    const schema = Schema.fromJsonSync(schemaJson, this._context);
+    const schemaString = fs.readFileSync(schemaPath, "utf8");
+    let schemaJson: any;
+    let schema;
+
+    if (schemaPath.endsWith("json")) {
+      try {
+        schemaJson = JSON.parse(schemaString);
+      } catch (e) {
+        throw new ECJsonBadJson(schemaPath);
+      }
+      schema = Schema.fromJsonSync(schemaJson, this._context);
+    } else if (schemaPath.endsWith("xml")) {
+      schema = this.xmlToSchema(schemaString, this._context);
+    }
+
+    if (schema === undefined) {
+      throw new ECJsonBadJson(schemaPath);
+    }
 
     // Create the output file
     fs.writeFileSync(outputFilePath, "");
