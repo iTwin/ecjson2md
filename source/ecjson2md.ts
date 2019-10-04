@@ -10,7 +10,7 @@ import {
   Mixin, OverrideFormat, primitiveTypeToString, PropertyCategory, PropertyType, RelationshipClass,
   RelationshipConstraint, Schema, SchemaContext, schemaItemTypeToString, SchemaJsonFileLocater,
   scientificTypeToString, strengthDirectionToString, strengthToString, StructClass, Unit, SchemaItemType,
-  SchemaXmlFileLocater,
+  SchemaXmlFileLocater, Phenomenon, UnitSystem, showSignOptionToString,
 } from "@bentley/ecschema-metadata";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import { CustomAttributeSet } from "@bentley/ecschema-metadata/lib/Metadata/CustomAttribute";
@@ -966,7 +966,7 @@ export class ECJsonMarkdownGenerator {
   }
 
   /**
-   * Writes markdown for a format class
+   * Writes markdown for a Format class
    * @param outputFilePath Path to file to write markdown into
    * @param formatClass Format class to generate markdown for
    */
@@ -979,15 +979,21 @@ export class ECJsonMarkdownGenerator {
     // Write the format type
     fs.appendFileSync(outputFilePath, "**type:** " + formatTypeToString(formatClass.type) + "\n\n");
 
-    if (formatClass.type === FormatType.Scientific && formatClass.scientificType !== undefined)
-        fs.appendFileSync(outputFilePath, "**Scientific Type:** " + scientificTypeToString(formatClass.scientificType) + "\n\n");
+    if (formatClass.type === FormatType.Scientific && formatClass.scientificType !== undefined) {
+      fs.appendFileSync(outputFilePath, "**Scientific Type:** " + scientificTypeToString(formatClass.scientificType) + "\n\n");
+    }
 
     if (formatClass.type === FormatType.Station && formatClass.stationOffsetSize !== undefined)
         fs.appendFileSync(outputFilePath, "**Station Offset Size:** " + formatClass.stationOffsetSize + "\n\n");
 
     // Write the precision
-    if (formatClass.precision !== undefined)
-        fs.appendFileSync(outputFilePath, "**Precision:** " + formatClass.precision + "\n\n");
+    if (formatClass.precision !== undefined) {
+      fs.appendFileSync(outputFilePath, "**Precision:** " + formatClass.precision + "\n\n");
+    }
+
+    // Write the showSignOption
+    if (formatClass.showSignOption !== undefined)
+        fs.appendFileSync(outputFilePath, "**Show Sign Option:** " + showSignOptionToString(formatClass.showSignOption) + "\n\n");
 
     // Write format traits
     if (formatClass.formatTraits !== undefined) {
@@ -999,8 +1005,13 @@ export class ECJsonMarkdownGenerator {
 
     // Write uomSeparator
     // UGLY FORMATTING. FIX.
-    if (formatClass.uomSeparator !== undefined)
-        fs.appendFileSync(outputFilePath, "**uomSeparator:** `\"" + formatClass.uomSeparator + "\"`\n\n");
+    if (formatClass.uomSeparator === "") {
+      fs.appendFileSync(outputFilePath, "**uomSeparator:** None\n\n");
+    } else if (formatClass.uomSeparator === " ") {
+      fs.appendFileSync(outputFilePath, "**uomSeparator:** <code> </code> (Space)\n\n");
+    } else {
+      fs.appendFileSync(outputFilePath, "**uomSeparator:** `" + formatClass.uomSeparator + "`\n\n");
+    }
   }
 
   /**
@@ -1017,12 +1028,13 @@ export class ECJsonMarkdownGenerator {
     // Write the h3 for the section
     fs.appendFileSync(outputFilePath, "## Units\n\n");
 
-    for (const unitClass of unitClasses)
+    for (const unitClass of unitClasses) {
       this.writeUnitClass(outputFilePath, unitClass);
+    }
   }
 
   /**
-   * Writes markdown for a unit class
+   * Writes markdown for a Unit class
    * @param outputFilePath Path to file to write markdown into
    * @param unitClass Unit class to generate markdown for
    */
@@ -1040,13 +1052,101 @@ export class ECJsonMarkdownGenerator {
 
     // Write the phenomenon name
     if (unitClass.phenomenon !== undefined)
-      fs.appendFileSync(outputFilePath, "**Phenomenon**: " + unitClass.phenomenon.name + "\n\n");
+        fs.appendFileSync(outputFilePath, "**Phenomenon:** " + unitClass.phenomenon.name + "\n\n");
 
     // Write the unit system
     if (unitClass.unitSystem !== undefined)
-      fs.appendFileSync(outputFilePath, "**Unit System**: " + unitClass.unitSystem.name + "\n\n");
+        fs.appendFileSync(outputFilePath, "**Unit System:** " + unitClass.unitSystem.name + "\n\n");
+
+    // Write the numerator and denominator
+    if (unitClass.numerator !== 1 && unitClass.denominator === 1) {
+        fs.appendFileSync(outputFilePath, "**Numerator:** " + unitClass.numerator.toString() + "\n\n");
+    } else if (unitClass.denominator !== 1) {
+        fs.appendFileSync(outputFilePath, "**Numerator:** " + unitClass.numerator.toString() + "\n\n");
+        fs.appendFileSync(outputFilePath, "**Denominator:** " + unitClass.denominator.toString() + "\n\n");
+    }
+
+    // Write the offset
+    if (unitClass.offset !== 0)
+        fs.appendFileSync(outputFilePath, "**Offset:** " + unitClass.offset.toString() + "\n\n");
+    }
+
+  /**
+   * Collects and writes markdown documentation for phenomenon classes
+   * @param outputFilePath Path to file to write the phenomenon classes to
+   * @param schema Schema to pull the format classes from
+   */
+  private static writePhenomenonClasses(outputFilePath: string, schema: Schema) {
+    const phenomenonClasses: Phenomenon[] = this.getSortedSchemaItems(schema, "Phenomenon");
+
+    // If the list is empty or undefined, return
+    if (!phenomenonClasses || phenomenonClasses.length === 0) return;
+
+    // Write the h3 for the section
+    fs.appendFileSync(outputFilePath, "## Phenomenon\n\n");
+
+    for (const phenomenonClass of phenomenonClasses) {
+      this.writePhenomenonClass(outputFilePath, phenomenonClass);
+    }
   }
 
+  /**
+   * Writes markdown for a Phenomenon class
+   * @param outputFilePath Path to file to write markdown into
+   * @param phenomenonClass Phenomenon class to generate markdown for
+   */
+  public static writePhenomenonClass(outputFilePath: string, phenomenonClass: Phenomenon | undefined) {
+    if (phenomenonClass === undefined) return;
+
+    // Write the name
+    this.writeSchemaItemHeader(outputFilePath, phenomenonClass.name, phenomenonClass.schemaItemType, undefined, undefined, undefined);
+
+    // Write the description
+    this.writeSchemaItemDescription(outputFilePath, undefined);
+
+    // Write the definition
+    fs.appendFileSync(outputFilePath, "**Definition:** " + phenomenonClass.definition + "\n\n");
+  }
+
+  /**
+   * Collects and writes markdown documentation for UnitSystem classes
+   * @param outputFilePath Path to file to write the UnitSystem classes to
+   * @param schema Schema to pull the unit classes from
+   */
+  private static writeUnitSystemClasses(outputFilePath: string, schema: Schema) {
+    const unitSystemClasses: UnitSystem[] = this.getSortedSchemaItems(schema, "UnitSystem");
+
+    // If the list is empty or undefined, return
+    if (!unitSystemClasses || unitSystemClasses.length === 0) return;
+
+    // Write the h3 for the section
+    fs.appendFileSync(outputFilePath, "## Unit Systems\n\n");
+
+    for (const unitSystemClass of unitSystemClasses) {
+      this.writeUnitSystemClass(outputFilePath, unitSystemClass);
+    }
+  }
+
+  /**
+   * Writes markdown for a UnitSystem class
+   * @param outputFilePath Path to file to write markdown into
+   * @param unitSystemClass UnitSystem class to generate markdown for
+   */
+  public static writeUnitSystemClass(outputFilePath: string, unitSystemClass: UnitSystem | undefined) {
+    if (unitSystemClass === undefined) return;
+
+    // Write the name
+    this.writeSchemaItemHeader(outputFilePath, unitSystemClass.name, unitSystemClass.schemaItemType, undefined, undefined, undefined);
+
+    // Write the description
+    this.writeSchemaItemDescription(outputFilePath, unitSystemClass.description);
+  }
+
+  /**
+   * Method to determine a schema from an XML file
+   * @param schemaString string version of schema to be parsed
+   * @param context schema context of currect schema
+   */
   public xmlToSchema (schemaString: string, context: SchemaContext): Schema {
     const parser = new DOMParser();
     const document = parser.parseFromString(schemaString);
@@ -1109,6 +1209,8 @@ export class ECJsonMarkdownGenerator {
     ECJsonMarkdownGenerator.writePropertyCategories(outputFilePath, schema);
     ECJsonMarkdownGenerator.writeFormatClasses(outputFilePath, schema);
     ECJsonMarkdownGenerator.writeUnitClasses(outputFilePath, schema);
+    ECJsonMarkdownGenerator.writeUnitSystemClasses(outputFilePath, schema);
+    ECJsonMarkdownGenerator.writePhenomenonClasses(outputFilePath, schema);
 
     // Remove the extra blank line
     removeExtraBlankLine(outputFilePath, outputFilePath);
