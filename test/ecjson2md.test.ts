@@ -2890,6 +2890,390 @@ describe("ecjson2md", () => {
         });
       });
 
+      describe("writeFormat", () => {
+        const outputFilePath = path.join(outputDir, "formatTest.md");
+
+        const schemaJson = {
+          $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+          alias: "testSchema",
+          name: "testSchema",
+          version: "02.00.00",
+          items: {
+            FormatA: {
+              schemaItemType: "Format",
+              type: "Fractional",
+            },
+            FormatB: {
+              schemaItemType: "Format",
+              type: "Decimal",
+              precision: 4,
+              showSignOption: "NoSign",
+              uomSeparator: "",
+            },
+            FormatC: {
+              schemaItemType: "Format",
+              type: "Fractional",
+              formatTraits: [ "keepSingleZero", "keepDecimalPoint", "showUnitLabel" ],
+              uomSeparator: "-",
+            },
+          },
+        };
+        const context = new SchemaContext();
+        const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("should properly write formats that has just a name and type (required)", () => {
+          // Act
+          ECJsonMarkdownGenerator.writeFormatClass(outputFilePath, testSchema.getItemSync("FormatA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **FormatA** [!badge text="Format" kind="info"]\n
+          **type:** Fractional\n
+          **Precision:** 6\n
+          **Show Sign Option:** OnlyNegative\n
+          **Format Traits**\n\n
+          **uomSeparator:** <code> </code> (Space)\n\n`);
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+
+        it("should properly write formats that have a name, type, precision, and showSignOption", () => {
+          // Act
+          ECJsonMarkdownGenerator.writeFormatClass(outputFilePath, testSchema.getItemSync("FormatB"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **FormatB** [!badge text="Format" kind="info"]\n
+          **type:** Decimal\n
+          **Precision:** 4\n
+          **Show Sign Option:** NoSign\n
+          **Format Traits**\n\n
+          **uomSeparator:** None\n\n`);
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+
+        it("should properly write formats that have a name, type, precision, and format traits", () => {
+          // Act
+          ECJsonMarkdownGenerator.writeFormatClass(outputFilePath, testSchema.getItemSync("FormatC"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **FormatC** [!badge text="Format" kind="info"]\n
+          **type:** Fractional\n
+          **Precision:** 6\n
+          **Show Sign Option:** OnlyNegative\n
+          **Format Traits**\n
+          - KeepSingleZero
+          - KeepDecimalPoint
+          - ShowUnitLabel\n
+          **uomSeparator:** \`-\`\n\n`);
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+      });
+
+      describe("writeUnit", () => {
+        const outputFilePath = path.join(outputDir, "UnitTest.md");
+
+        const schemaJson = {
+          $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+          alias: "testSchema",
+          name: "testSchema",
+          version: "02.00.00",
+          items: {
+            UnitA: {
+              schemaItemType: "Unit",
+              definition: "CM(2)",
+              label: "label",
+              phenomenon: "testSchema.LUMINOSITY",
+              unitSystem: "testSchema.SI",
+            },
+            LUMINOSITY: {
+              definition: "LUMINOSITY",
+              label: "Luminosity",
+              schemaItemType: "Phenomenon",
+            },
+            SI: {
+              schemaItemType: "UnitSystem",
+            },
+            UnitB: {
+              schemaItemType: "Unit",
+              definition: "CM(2)",
+              label: "label",
+              phenomenon: "testSchema.POWER",
+              unitSystem: "testSchema.SI",
+              numerator: 1,
+              denominator: 1,
+            },
+            POWER: {
+              definition: "WORK*TIME(-1)",
+              label: "Power",
+              schemaItemType: "Phenomenon",
+            },
+            STATISTICS: {
+              schemaItemType: "UnitSystem",
+            },
+            UnitC: {
+              schemaItemType: "Unit",
+              definition: "CM(2)",
+              label: "label",
+              phenomenon: "testSchema.POWER",
+              unitSystem: "testSchema.SI",
+              numerator: 123,
+              denominator: 1,
+            },
+            UnitD: {
+              schemaItemType: "Unit",
+              definition: "CM(2)",
+              label: "label",
+              phenomenon: "testSchema.POWER",
+              unitSystem: "testSchema.SI",
+              numerator: 123,
+              denominator: 456,
+            },
+            UnitE: {
+              schemaItemType: "Unit",
+              definition: "CM(2)",
+              label: "label",
+              phenomenon: "testSchema.POWER",
+              unitSystem: "testSchema.SI",
+              numerator: 1,
+              denominator: 4,
+            },
+          },
+        };
+        const context = new SchemaContext();
+        const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("should properly write units with a phenomenon and unitSystem", () => {
+          // Act
+          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync("UnitA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **UnitA** (label) [!badge text="Unit" kind="info"]\n
+          **description:** &lt;No description&gt;\n
+          **Definition:** CM(2)\n
+          **Phenomenon:** LUMINOSITY\n
+          **Unit System:** SI\n\n`);
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+
+        it("should properly write units with neither numerator or denominator displayed", () => {
+          // Act
+          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync("UnitB"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **UnitB** (label) [!badge text="Unit" kind="info"]\n
+          **description:** &lt;No description&gt;\n
+          **Definition:** CM(2)\n
+          **Phenomenon:** POWER\n
+          **Unit System:** SI\n\n`);
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+
+        it("should properly write units with numerator displayed", () => {
+          // Act
+          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync("UnitC"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **UnitC** (label) [!badge text="Unit" kind="info"]\n
+          **description:** &lt;No description&gt;\n
+          **Definition:** CM(2)\n
+          **Phenomenon:** POWER\n
+          **Unit System:** SI\n
+          **Numerator:** 123\n\n`);
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+
+        it("should properly write units with numerator and denominator displayed", () => {
+          // Act
+          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync("UnitD"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **UnitD** (label) [!badge text="Unit" kind="info"]\n
+          **description:** &lt;No description&gt;\n
+          **Definition:** CM(2)\n
+          **Phenomenon:** POWER\n
+          **Unit System:** SI\n
+          **Numerator:** 123\n
+          **Denominator:** 456\n\n`);
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+
+        it("should properly write units with numerator and denominator displayed, numerator is 1", () => {
+          // Act
+          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync("UnitE"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **UnitE** (label) [!badge text="Unit" kind="info"]\n
+          **description:** &lt;No description&gt;\n
+          **Definition:** CM(2)\n
+          **Phenomenon:** POWER\n
+          **Unit System:** SI\n
+          **Numerator:** 1\n
+          **Denominator:** 4\n\n`);
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+      });
+
+      describe("writePhenomenon", () => {
+        const outputFilePath = path.join(outputDir, "PhenomenonTest.md");
+
+        const schemaJson = {
+          $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+          alias: "testSchema",
+          name: "testSchema",
+          version: "02.00.00",
+          items: {
+            PhenomenonA: {
+              schemaItemType: "Phenomenon",
+              definition: "This is a phenomenon test case.",
+            },
+          },
+        }
+        const context = new SchemaContext();
+        const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("should properly write the phenomenon with name, type, and definition", () => {
+          //Act
+          ECJsonMarkdownGenerator.writePhenomenonClass(outputFilePath, testSchema.getItemSync("PhenomenonA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **PhenomenonA** [!badge text="Phenomenon" kind="info"]\n
+          **description:** &lt;No description&gt;\n
+          **Definition:** This is a phenomenon test case.\n\n`);
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+      });
+
+      describe("writeUnitSystem", () => {
+        const outputFilePath = path.join(outputDir, "UnitSystemTest.md");
+
+        const schemaJson = {
+          $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+          alias: "testSchema",
+          name: "testSchema",
+          version: "02.00.00",
+          items: {
+            UnitSystemA: {
+              schemaItemType: "UnitSystem",
+            },
+            UnitSystemB: {
+              schemaItemType: "UnitSystem",
+              description: "UnitSystem test with description.",
+            },
+          },
+        }
+        const context = new SchemaContext();
+        const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+        beforeEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        // Delete the output file after each test
+        afterEach(() => {
+          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+        });
+
+        it("schould properly write UnitSystem with the schemaItemType", () => {
+          // Act
+          ECJsonMarkdownGenerator.writeUnitSystemClass(outputFilePath, testSchema.getItemSync("UnitSystemA"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **UnitSystemA** [!badge text="UnitSystem" kind="info"]\n
+          **description:** &lt;No description&gt;\n\n`);
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+
+        it("schould properly write UnitSystem with schemaItemType and description", () => {
+          // Act
+          ECJsonMarkdownGenerator.writeUnitSystemClass(outputFilePath, testSchema.getItemSync("UnitSystemB"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **UnitSystemB** [!badge text="UnitSystem" kind="info"]\n
+          **description:** UnitSystem test with description.\n\n`);
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+      });
+
       describe("Misc", () => {
         describe("getSortedSchemaItems", () => {
           const schemaJson = {
@@ -3309,6 +3693,47 @@ describe("ecjson2md", () => {
               assert.equal(outputLines[i], line);
             });
           });
+
+          it("should properly generate markdown for Formats", () => {
+            // Arrange
+            const inputFileName = "Formats.ecschema";
+            const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
+            const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
+
+            outputFilePath = path.join(outputDir, inputFileName + ".md");
+
+            // Act
+            testMDGenerator.generate(inputFilePath, outputFilePath);
+
+            // Assert
+            const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split(newlineRegex);
+            assert.equal(outputLines.length, correctLines.length);
+            correctLines.map((line, i) => {
+              assert.equal(outputLines[i], line);
+            });
+          });
+
+          it("should properly generate markdown for Units", () => {
+            // Arrange
+            const inputFileName = "Units.ecschema";
+            const inputFilePath = path.join(inputFileDir, inputFileName + ".json");
+            const correctFilePath = path.join(inputFileDir, inputFileName + ".md");
+
+            outputFilePath = path.join(outputDir, inputFileName + ".md");
+
+            // Act
+            testMDGenerator.generate(inputFilePath, outputFilePath);
+
+            // Assert
+            const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split(newlineRegex);
+            assert.equal(outputLines.length, correctLines.length);
+            correctLines.map((line, i) => {
+              assert.equal(outputLines[i], line);
+            });
+          });
+
         });
       });
     });
