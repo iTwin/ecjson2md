@@ -279,6 +279,14 @@ export class ECJsonMarkdownGenerator {
     }
   }
 
+  public static indentStart(outputFilePath: string) {
+    fs.appendFileSync(outputFilePath, "[!IndentStart]\n\n");
+  }
+
+  public static indentStop(outputFilePath: string) {
+    fs.appendFileSync(outputFilePath, "[!IndentEnd]\n");
+  }
+
   /**
    * Appends markdown for the name of a schema item to the specified file path
    * @param outputFilePath Path of file to append markdown to
@@ -421,8 +429,10 @@ export class ECJsonMarkdownGenerator {
       "|:-----------|:------------------|:-----------|:-----------------------|\n");
 
     // Write each table row
-    for (const property of properties)
+    for (const property of properties) {
       this.writeEntityClassPropertiesRow(outputFilePath, property);
+    }
+    fs.appendFileSync(outputFilePath, "\n");
   }
 
   /**
@@ -436,6 +446,9 @@ export class ECJsonMarkdownGenerator {
     // Write the name of the class
     this.writeSchemaItemHeader(outputFilePath, entityClass.name, entityClass.schemaItemType, entityClass.label, entityClass.modifier, entityClass.customAttributes);
 
+    // Begin Indentation
+    this.indentStart(outputFilePath);
+
     // Write the description of the entity class
     this.writeSchemaItemDescription(outputFilePath, entityClass.description);
 
@@ -445,8 +458,10 @@ export class ECJsonMarkdownGenerator {
     // Write the properties
     if (entityClass.properties !== undefined) {
       this.writeEntityClassPropertiesTable(outputFilePath, entityClass);
-      fs.appendFileSync(outputFilePath, "\n");
     }
+
+    // Finish Indentation
+    this.indentStop(outputFilePath);
   }
 
   /**
@@ -478,6 +493,9 @@ export class ECJsonMarkdownGenerator {
 
     // Write the name of the class
     this.writeSchemaItemHeader(outputFilePath, kindOfQuantity.name, kindOfQuantity.schemaItemType, kindOfQuantity.label, undefined, undefined);
+
+    // Begin indentation
+    this.indentStart(outputFilePath);
 
     // Write the description of the entity class
     this.writeSchemaItemDescription(outputFilePath, kindOfQuantity.description);
@@ -519,6 +537,9 @@ export class ECJsonMarkdownGenerator {
         fs.appendFileSync(outputFilePath, "\n");
       }
     }
+
+    // Finish indentaion
+    this.indentStop(outputFilePath);
   }
 
   /**
@@ -573,14 +594,18 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputFilePath,
         "|" + type + "|" + desc  + "|" +  label +  "|" + persistUnit + "|" + precision + "|" +       presUnit       + "|" +   altPresUnit   + "|\n");
     }
+    fs.appendFileSync(outputFilePath, "\n");
   }
 
   private static writeRelationshipConstraintSection(outputFilePath: string, constraint: RelationshipConstraint) {
+    // Begin nested indentation
+    this.indentStart(outputFilePath);
+
     // Write the constraint information
     fs.appendFileSync(outputFilePath, "**isPolymorphic:** " + constraint.polymorphic + "\n\n");
     fs.appendFileSync(outputFilePath, "**roleLabel:** " + constraint.roleLabel + "\n\n");
     fs.appendFileSync(outputFilePath, "**multiplicity:** " + constraint.multiplicity + "\n\n");
-    fs.appendFileSync(outputFilePath, "##### Constraint Classes\n\n");
+    fs.appendFileSync(outputFilePath, "#### Constraint Classes:\n");
 
     // If the constraint classes are undefined or there are none, return
     if (!constraint.constraintClasses || constraint.constraintClasses.length === 0) return;
@@ -591,8 +616,8 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputFilePath, "- " + formatLink(constraintClassLink, constraintClass.name) + "\n");
     }
 
-    // Append another new line
-    fs.appendFileSync(outputFilePath, "\n");
+    // Finish nested indentation
+    this.indentStop(outputFilePath);
   }
 
   /**
@@ -605,6 +630,9 @@ export class ECJsonMarkdownGenerator {
 
     // Write the name of the class
     this.writeSchemaItemHeader(outputFilePath, relationshipClass.name, relationshipClass.schemaItemType, relationshipClass.label, relationshipClass.modifier, relationshipClass.customAttributes);
+
+    // Begin Indentation
+    this.indentStart(outputFilePath);
 
     // Write the description of the entity class
     this.writeSchemaItemDescription(outputFilePath, relationshipClass.description);
@@ -621,14 +649,17 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputFilePath, "**strengthDirection:** " + strengthDirectionToString(relationshipClass.strengthDirection) + "\n\n");
 
     // Write the source section
-    fs.appendFileSync(outputFilePath, "#### Source\n\n");
+    fs.appendFileSync(outputFilePath, "#### Source\n");
     // Write the relationship constraints info for the source section
     this.writeRelationshipConstraintSection(outputFilePath, relationshipClass.source);
 
     // Write the target section
-    fs.appendFileSync(outputFilePath, "#### Target\n\n");
+    fs.appendFileSync(outputFilePath, "#### Target\n");
     // Write the relationship constraints info for the target section
     this.writeRelationshipConstraintSection(outputFilePath, relationshipClass.target);
+
+    // Finish Indentation
+    this.indentStop(outputFilePath);
   }
 
   /**
@@ -659,6 +690,7 @@ export class ECJsonMarkdownGenerator {
     const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
 
     // Write the table header
+    fs.appendFileSync(outputFilePath, "\n");
     fs.appendFileSync(outputFilePath,
         "|    Label    |    Value    |\n" +
         "|:------------|:------------|\n");
@@ -671,7 +703,6 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputFilePath,
         "|" + label + "|" + value + "|\n");
     }
-
     fs.appendFileSync(outputFilePath, "\n");
   }
 
@@ -686,6 +717,9 @@ export class ECJsonMarkdownGenerator {
     // Write the name of the class
     this.writeSchemaItemHeader(outputFilePath, enumerationItem.name, enumerationItem.schemaItemType, enumerationItem.label, undefined, undefined);
 
+    // Begin Indentation
+    this.indentStart(outputFilePath);
+
     // Write wether the enum is an int or string
     if (enumerationItem.isInt)
       fs.appendFileSync(outputFilePath, "**Backing Type:** int\n\n");
@@ -697,10 +731,13 @@ export class ECJsonMarkdownGenerator {
 
     // Write wether or not the enum is strict
     if (enumerationItem.isStrict !== undefined)
-      fs.appendFileSync(outputFilePath, "**Strict:** " + enumerationItem.isStrict + "\n\n");
+      fs.appendFileSync(outputFilePath, "**Strict:** " + enumerationItem.isStrict + "\n");
 
     // Write the enumeration table
     this.writeEnumerationTable(outputFilePath, enumerationItem);
+
+    // Finish Indentation
+    this.indentStop(outputFilePath);
   }
 
   /**
@@ -732,6 +769,9 @@ export class ECJsonMarkdownGenerator {
     // Write the name of the mixin
     this.writeSchemaItemHeader(outputFilePath, mixin.name, mixin.schemaItemType, mixin.label, mixin.modifier, mixin.customAttributes);
 
+    // Begin Indentation
+    this.indentStart(outputFilePath);
+
     // Write the description of the mixin class
     this.writeSchemaItemDescription(outputFilePath, mixin.description);
 
@@ -747,7 +787,10 @@ export class ECJsonMarkdownGenerator {
     }
 
     // If the properties are undefined or empty, continue with next
-    if (!mixin.properties || mixin.properties.length === 0) return;
+    if (!mixin.properties || mixin.properties.length === 0) {
+      this.indentStop(outputFilePath);
+      return;
+    }
 
     // Write the properties header and table header
     fs.appendFileSync(outputFilePath,
@@ -766,11 +809,12 @@ export class ECJsonMarkdownGenerator {
       const priority = helper(property.priority);
       const description = helper(property.description);
 
-      fs.appendFileSync(outputFilePath,
-        "|" + name + "|" + description + "|" + label + "|" + category + "|" + isReadOnly + "|" + priority + "|\n");
+      fs.appendFileSync(outputFilePath, "|" + name + "|" + description + "|" + label + "|" + category + "|" + isReadOnly + "|" + priority + "|\n");
     }
-
     fs.appendFileSync(outputFilePath, "\n");
+
+    // Finish Indentation
+    this.indentStop(outputFilePath);
   }
 
   /**
@@ -802,6 +846,9 @@ export class ECJsonMarkdownGenerator {
     // Write the name
     this.writeSchemaItemHeader(outputFilePath, customAttributeClass.name, customAttributeClass.schemaItemType, customAttributeClass.label, customAttributeClass.modifier, customAttributeClass.customAttributes);
 
+    // Begin Indentation
+    this.indentStart(outputFilePath);
+
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, customAttributeClass.description);
 
@@ -814,7 +861,10 @@ export class ECJsonMarkdownGenerator {
 
     // Write the properties table
     // If the properties are undefined or have length 0, return
-    if (!customAttributeClass.properties || customAttributeClass.properties.length === 0) return;
+    if (!customAttributeClass.properties || customAttributeClass.properties.length === 0) {
+      this.indentStop(outputFilePath);
+      return;
+    }
 
     // Write the properties header and table header
     fs.appendFileSync(outputFilePath,
@@ -835,8 +885,10 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputFilePath,
         "|" + name + "|" + description + "|" + label + "|" + category + "|" + isReadOnly + "|" + priority + "|\n");
     }
-
     fs.appendFileSync(outputFilePath, "\n");
+
+    // Finish Indentation
+    this.indentStop(outputFilePath);
   }
 
   /**
@@ -868,6 +920,9 @@ export class ECJsonMarkdownGenerator {
     // Write the name
     this.writeSchemaItemHeader(outputFilePath, structClass.name, structClass.schemaItemType, structClass.label, structClass.modifier, structClass.customAttributes);
 
+    // Begin Indentation
+    this.indentStart(outputFilePath);
+
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, structClass.description);
 
@@ -876,7 +931,10 @@ export class ECJsonMarkdownGenerator {
 
     // Write the properties table
     // If the properties are undefined or have length 0, return
-    if (!structClass.properties || structClass.properties.length === 0) return;
+    if (!structClass.properties || structClass.properties.length === 0) {
+      this.indentStop(outputFilePath);
+      return;
+    }
 
     // Write the properties header and table header
     fs.appendFileSync(outputFilePath,
@@ -898,8 +956,10 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputFilePath,
         "|" + name + "|" + description + "|" + label + "|" + category + "|" + isReadOnly + "|" + priority + "|\n");
     }
-
     fs.appendFileSync(outputFilePath, "\n");
+
+    // Finish Indentation
+    this.indentStop(outputFilePath);
   }
 
   /**
@@ -927,11 +987,17 @@ export class ECJsonMarkdownGenerator {
     // Write the name
     this.writeSchemaItemHeader(outputFilePath, propertyCategory.name, propertyCategory.schemaItemType, propertyCategory.label, undefined, undefined);
 
+    // Begin Indentation
+    this.indentStart(outputFilePath);
+
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, propertyCategory.description);
 
     // Write the priority
     this.writeSchemaItemPriority(outputFilePath, propertyCategory.priority);
+
+    // Finish Indentataion
+    this.indentStop(outputFilePath);
   }
 
   /**
@@ -976,6 +1042,9 @@ export class ECJsonMarkdownGenerator {
     // Write the name
     this.writeSchemaItemHeader(outputFilePath, formatClass.name, formatClass.schemaItemType, formatClass.label, undefined, undefined);
 
+    // Begin Indentation
+    this.indentStart(outputFilePath);
+
     // Write the format type
     fs.appendFileSync(outputFilePath, "**type:** " + formatTypeToString(formatClass.type) + "\n\n");
 
@@ -997,11 +1066,11 @@ export class ECJsonMarkdownGenerator {
 
     // Write format traits
     if (formatClass.formatTraits !== undefined) {
-        fs.appendFileSync(outputFilePath, "**Format Traits**\n\n");
+        fs.appendFileSync(outputFilePath, "**Format Traits**\n");
         for (const trait of formatTraitsToArray(formatClass.formatTraits))
             fs.appendFileSync(outputFilePath, "- " + trait + "\n");
-        fs.appendFileSync(outputFilePath, "\n");
     }
+    fs.appendFileSync(outputFilePath, "\n");
 
     // Write uomSeparator
     // UGLY FORMATTING. FIX.
@@ -1012,6 +1081,9 @@ export class ECJsonMarkdownGenerator {
     } else {
       fs.appendFileSync(outputFilePath, "**uomSeparator:** `" + formatClass.uomSeparator + "`\n\n");
     }
+
+    // Finish Indenation
+    this.indentStop(outputFilePath);
   }
 
   /**
@@ -1044,6 +1116,9 @@ export class ECJsonMarkdownGenerator {
     // Write the name
     this.writeSchemaItemHeader(outputFilePath, unitClass.name, unitClass.schemaItemType, unitClass.label, undefined, undefined);
 
+    // Begin Indentation
+    this.indentStart(outputFilePath);
+
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, unitClass.description);
 
@@ -1069,7 +1144,9 @@ export class ECJsonMarkdownGenerator {
     // Write the offset
     if (unitClass.offset !== 0)
         fs.appendFileSync(outputFilePath, "**Offset:** " + unitClass.offset.toString() + "\n\n");
-    }
+    //  Finish Indentation
+    this.indentStop(outputFilePath);
+  }
 
   /**
    * Collects and writes markdown documentation for phenomenon classes
@@ -1101,11 +1178,17 @@ export class ECJsonMarkdownGenerator {
     // Write the name
     this.writeSchemaItemHeader(outputFilePath, phenomenonClass.name, phenomenonClass.schemaItemType, undefined, undefined, undefined);
 
+    // Begin Indentation
+    this.indentStart(outputFilePath);
+
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, undefined);
 
     // Write the definition
     fs.appendFileSync(outputFilePath, "**Definition:** " + phenomenonClass.definition + "\n\n");
+
+    // Finish Indentation
+    this.indentStop(outputFilePath);
   }
 
   /**
@@ -1138,8 +1221,14 @@ export class ECJsonMarkdownGenerator {
     // Write the name
     this.writeSchemaItemHeader(outputFilePath, unitSystemClass.name, unitSystemClass.schemaItemType, undefined, undefined, undefined);
 
+    // Begin Indentation
+    this.indentStart(outputFilePath);
+
     // Write the description
     this.writeSchemaItemDescription(outputFilePath, unitSystemClass.description);
+
+    // Finish Indentation
+    this.indentStop(outputFilePath);
   }
 
   /**

@@ -18,12 +18,17 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ### **AnnotationElement2d** (2D Annotation Element) [!badge text="EntityClass" kind="info"]
 
+[!IndentStart]
+
 **description:** bis:AnnotationElement2d is a bis:GraphicalElement2d used to annotate drawings and sheets.
 
 **baseClass:** [BisCore:GraphicalElement2d](#graphicalelement2d)
 
+[!IndentEnd]
 ### **AnnotationFrameStyle** (Annotation Frame Style) *Sealed* [!badge text="EntityClass" kind="info"]
 
+[!IndentStart]
+
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
@@ -35,8 +40,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
+[!IndentEnd]
 ### **AnnotationLeaderStyle** (Annotation Leader Style) *Sealed* [!badge text="EntityClass" kind="info"]
 
+[!IndentStart]
+
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
@@ -48,8 +56,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
+[!IndentEnd]
 ### **AnnotationTextStyle** (Annotation Text Style) *Sealed* [!badge text="EntityClass" kind="info"]
 
+[!IndentStart]
+
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
@@ -61,7 +72,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
+[!IndentEnd]
 ### **AuxCoordSystem** (Auxiliary Coordinate System) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -74,7 +88,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Type||int||
 |Description||string||
 
+[!IndentEnd]
 ### **AuxCoordSystem2d** (2D Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A 2D coordinate system.
 
@@ -87,7 +104,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Origin||point2d||
 |Angle||double||
 
+[!IndentEnd]
 ### **AuxCoordSystem3d** (3D Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A 3D coordinate system.
 
@@ -102,13 +122,19 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Pitch||double||
 |Roll||double||
 
+[!IndentEnd]
 ### **AuxCoordSystemSpatial** (Spatial Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A spatial coordinate system.
 
 **baseClass:** [BisCore:AuxCoordSystem3d](#auxcoordsystem3d)
 
+[!IndentEnd]
 ### **Category** *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:Category categorizes a bis:GeometricElement and its geometry. Every bis:GeometricElement is in one and only one bis:Category. The visibility (on/off) of a bis:Category may be controlled per-view. Categories are similar to levels in DGN, layers in DWG, and categories in RVT.
 
@@ -121,13 +147,19 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description||string||
 |Rank||int||
 
+[!IndentEnd]
 ### **CategorySelector** (Category Selector) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
+[!IndentEnd]
 ### **CodeSpec** (Code Specification) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:CodeSpec (code specification) captures the rules for encoding and decoding significant business information into and from a Code (string). This specification is used to generate and validate Codes.
 
@@ -138,7 +170,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Name|The unique name of the bis:CodeSpec. A best practice is to incorporate the schema alias or domain name into the bis:CodeSpec name to ensure uniqueness.|string||
 |JsonProperties|A JSON string containing scope and fragment specifications used to generate and validate code values|string|Json|
 
+[!IndentEnd]
 ### **ColorBook** (Color Book) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -150,7 +185,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description||string||
 
+[!IndentEnd]
 ### **DefinitionElement** (Definition Element) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:DefinitionElement holds configuration-related information that is meant to be referenced/shared.
 
@@ -162,105 +200,156 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
 
+[!IndentEnd]
 ### **DefinitionModel** (Definition Model) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:DefinitionElement instances.
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
+[!IndentEnd]
 ### **DefinitionPartition** (Definition Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:DefinitionPartition element indicates that there is a definition-related modeling perspective within the overall information hierarchy. A bis:DefinitionPartition is always parented to a bis:Subject and broken down by a bis:DefinitionModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
+[!IndentEnd]
 ### **DictionaryModel** (Dictionary Model) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** The singleton container for repository-specific bis:DefinitionElement instances.
 
 **baseClass:** [BisCore:DefinitionModel](#definitionmodel)
 
+[!IndentEnd]
 ### **DisplayStyle** (Display Style) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:DisplayStyle defines the 'styling' parameters for rendering the contents of a view. It determines how graphics are rendered, not which elements are rendered. A bis:DisplayStyle can be shared by many Views.
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
+[!IndentEnd]
 ### **DisplayStyle2d** (2D Display Style) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:DisplayStyle2d defines the 'styling' parameters for rendering the contents of a 2D View.
 
 **baseClass:** [BisCore:DisplayStyle](#displaystyle)
 
+[!IndentEnd]
 ### **DisplayStyle3d** (3D Display Style) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:DisplayStyle3d defines the 'styling' parameters for rendering the contents of a 3D View.
 
 **baseClass:** [BisCore:DisplayStyle](#displaystyle)
 
+[!IndentEnd]
 ### **Document** (Document) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:Document is a social artifact designed with the distinct purpose to convey information in a manner that maximizes reach and lifespan and minimize dependency on other artifacts. Although there is often a one-to-one relationship between a bis:Document and an electronic file, this does not imply that a document is a file; instead, a document can be realized in many different media (such as paper) or have more than one file supporting it.
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
+[!IndentEnd]
 ### **DocumentCarrier** (Document Carrier) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
 
 [!alert text="BisCore will focus on the information itself and not how it is carried. Thus, the DocumentCarrier class was deprecated." kind="warning"]
+
+[!IndentStart]
 
 **description:** DEPRECATED: A Document Carrier is an Information Carrier that carries a Document. An electronic file is a good example.
 
 **baseClass:** [BisCore:InformationCarrierElement](#informationcarrierelement)
 
+[!IndentEnd]
 ### **DocumentListModel** (Document List) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:Document elements.
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
+[!IndentEnd]
 ### **DocumentPartition** (Document Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:DocumentPartition element indicates that there is a document-related modeling perspective within the overall information hierarchy. A bis:DocumentPartition is always parented to a bis:Subject and broken down by a bis:DocumentListModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
+[!IndentEnd]
 ### **Drawing** [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:Drawing is a bis:Document of a 2D drawing.
 
 **baseClass:** [BisCore:Document](#document)
 
+[!IndentEnd]
 ### **DrawingCategory** (Drawing Category) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:DrawingCategory is used for classifying bis:GeometricElement2d elements via the bis:GeometricElement2dIsInCategory (concrete and sealed) relationship.
 
 **baseClass:** [BisCore:Category](#category)
 
+[!IndentEnd]
 ### **DrawingGraphic** (Drawing Graphic) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** bis:DrawingGraphic is a bis:GraphicalElement2d used to persist graphics for use in drawings.
 
 **baseClass:** [BisCore:GraphicalElement2d](#graphicalelement2d)
 
+[!IndentEnd]
 ### **DrawingModel** (Drawing Model) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:DrawingGraphic elements.
 
 **baseClass:** [BisCore:GraphicalModel2d](#graphicalmodel2d)
 
+[!IndentEnd]
 ### **DrawingViewDefinition** (Drawing View Definition) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:DrawingViewDefinition specifies parameters for a view of a bis:DrawingModel.
 
 **baseClass:** [BisCore:ViewDefinition2d](#viewdefinition2d)
 
+[!IndentEnd]
 ### **DriverBundleElement** (Driver Bundle Element) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:DriverBundleElement is used in conjunction with bis:ElementDrivesElement relationships to bundle multiple inputs before driving the output bis:Element.
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
+[!IndentEnd]
 ### **Element** *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:Element is the smallest individually identifiable building block for modeling the real world. Each bis:Element represents an entity in the real world. Sets of bis:Elements (contained in bis:Models) are used to model other bis:Elements that represent larger scale real world entities. Using this recursive modeling strategy, bis:Elements can represent entities at any scale. Elements can represent physical things, abstract concepts or simply be information records.
 
@@ -278,11 +367,17 @@ The BIS core schema contains classes that all other domain schemas extend.
 |FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
 |JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
 
+[!IndentEnd]
 ### **ElementAspect** (Element Aspect) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:ElementAspect is a class that defines a set of properties that are related to (and owned by) a single bis:Element. Semantically, a bis:ElementAspect can be considered part of the bis:Element. Thus, a bis:ElementAspect is deleted if its owning bis:Element is deleted.
 
+[!IndentEnd]
 ### **ElementMultiAspect** (Element Multi-Aspect) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:ElementMultiAspect is a bis:ElementAspect where there can be N instances of the bis:ElementAspect class per bis:Element.
 
@@ -294,7 +389,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Element|The bis:Element that owns this bis:ElementMultiAspect.|[navigation](./biscore.ecschema.md#elementownsmultiaspects)||
 
+[!IndentEnd]
 ### **ElementUniqueAspect** (Element Unique Aspect) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:ElementUniqueAspect is a bis:ElementAspect where there can be only zero or one instance of the bis:ElementAspect class per bis:Element.
 
@@ -306,7 +404,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Element|The bis:Element that owns this bis:ElementUniqueAspect|[navigation](./biscore.ecschema.md#elementownsuniqueaspect)||
 
+[!IndentEnd]
 ### **EmbeddedFileLink** (Embedded File Link) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:EmbeddedFileLink is a bis:LinkElement that links to a file embedded within the iModel.
 
@@ -319,7 +420,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Name||string||
 |Description||string||
 
+[!IndentEnd]
 ### **ExternalSourceAspect** (External Source Aspect) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:ElementMultiAspect that stores syncrhonization information for a bis:Element originating from an external source.
 
@@ -336,13 +440,19 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Checksum|The cryptographic hash (any algorithm) of the source object's content. It must be guaranteed to change when the source object's content changes.|string||
 |JsonProperties|A place where additional JSON properties can be stored. For example, provenance information or properties relating to the synchronization process.|string|Json|
 
+[!IndentEnd]
 ### **GeometricElement** (Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** bis:GeometricElement ia an abstract base class used to model real world entities that intrinsically have geometry.
 
 **baseClass:** [BisCore:Element](#element)
 
+[!IndentEnd]
 ### **GeometricElement2d** (2D Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** bis:GeometricElement2d is an abstract base class used to model information entities that intrinsicly have 2D geometry.
 
@@ -360,7 +470,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
 |TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement2dhastypedefinition)||
 
+[!IndentEnd]
 ### **GeometricElement3d** (3D Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** bis:GeometricElement3d is an abstract base class used to model real world entities that intrinsically have 3D geometry.
 
@@ -381,13 +494,19 @@ The BIS core schema contains classes that all other domain schemas extend.
 |GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
 |TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
 
+[!IndentEnd]
 ### **GeometricModel** (Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:GeometricElement instances.
 
 **baseClass:** [BisCore:Model](#model)
 
+[!IndentEnd]
 ### **GeometricModel2d** (2D Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:GeometricElement2d instances.
 
@@ -399,13 +518,19 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |GlobalOrigin|The actual coordinates of (0,0) in modeling coordinates. An offest applied to all modeling coordinates.|point2d||
 
+[!IndentEnd]
 ### **GeometricModel3d** (3D Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:GeometricElement3d instances.
 
 **baseClass:** [BisCore:GeometricModel](#geometricmodel)
 
+[!IndentEnd]
 ### **GeometryPart** (Geometry Part) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:DefinitionElement that specifies a collection of geometry that is meant to be reused across bis:GeometricElement instances. Leveraging bis:GeometryParts can help reduce file size and improve display performance.
 
@@ -419,69 +544,102 @@ The BIS core schema contains classes that all other domain schemas extend.
 |BBoxLow||point3d||
 |BBoxHigh||point3d||
 
+[!IndentEnd]
 ### **GraphicalElement2d** (2D Graphical Element) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** bis:GraphicalElement2d is an abstract base class for 2D geometric elements that are used to convey information within graphical presentations (like drawings).
 
 **baseClass:** [BisCore:GeometricElement2d](#geometricelement2d)
 
+[!IndentEnd]
 ### **GraphicalElement3d** (3D Graphical Element) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:GrapicalElement3d element conveys information within 3D graphical presentations.
 
 **baseClass:** [BisCore:GeometricElement3d](#geometricelement3d)
 
+[!IndentEnd]
 ### **GraphicalModel2d** (2D Graphical Model) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:GraphicalElement2d instances.
 
 **baseClass:** [BisCore:GeometricModel2d](#geometricmodel2d)
 
+[!IndentEnd]
 ### **GraphicalType2d** (2D Graphical Type) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Defines a shared set of properties (the 'type') that can be associated with a bis:GraphicalElement2d instance.
 
 **baseClass:** [BisCore:TypeDefinitionElement](#typedefinitionelement)
 
+[!IndentEnd]
 ### **GroupInformationElement** (Group Information) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** bis:GroupInformationElement is an abstract base class used for modeling entities whose main purpose is to group related elements.
 
 **baseClass:** [BisCore:InformationReferenceElement](#informationreferenceelement)
 
+[!IndentEnd]
 ### **GroupInformationModel** (Group Information Model) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:GroupInformationElement instances.
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
+[!IndentEnd]
 ### **GroupInformationPartition** (Group Information Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:GroupInformationPartition element indicates that there is a group-information-related modeling perspective within the overall information hierarchy. A bis:GroupInformationPartition is always parented to a bis:Subject and broken down by a bis:GroupInformationModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
+[!IndentEnd]
 ### **InformationCarrierElement** (Information Carrier) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
 
 [!alert text="BisCore will focus on the information itself and not how it is carried. Thus, the InformationCarrierElement class was deprecated." kind="warning"]
+
+[!IndentStart]
 
 **description:** DEPRECATED: An Information Carrier carries information, but is not the information itself. For example, the arrangement of ink on paper or the sequence of electronic bits are information carriers.
 
 **baseClass:** [BisCore:Element](#element)
 
+[!IndentEnd]
 ### **InformationContentElement** (Information Content Element) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** bis:InformationContentElement is an abstract base class for modeling pure information entities. Only the core framework should directly subclass from bis:InformationContentElement. Domain and application developers should start with the most appropriate subclass of bis:InformationContentElement.
 
 **baseClass:** [BisCore:Element](#element)
 
+[!IndentEnd]
 ### **InformationModel** (Information Model) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:InformationContentElement instances.
 
 **baseClass:** [BisCore:Model](#model)
 
+[!IndentEnd]
 ### **InformationPartitionElement** (Information Partition) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Instances of bis:InformationPartitionElement ared used to indicate that there is a new modeling perspective within the overall information hierarchy. A bis:InformationPartitionElement is always parented to a bis:Subject and broken down by a bis:Model.
 
@@ -493,31 +651,46 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description||string||
 
+[!IndentEnd]
 ### **InformationRecordElement** (Information Record Element) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** bis:InformationRecordElement is an abstract base class for modeling information records. The bis:InformationRecordElement class is the default choice if no other subclass of bis:InformationContentElement makes sense.
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
+[!IndentEnd]
 ### **InformationRecordModel** (Information Record Model) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:InformationRecordElement instances
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
+[!IndentEnd]
 ### **InformationRecordPartition** (Information Record Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:InformationRecordPartition element indicates that there is an information-record-related modeling perspective within the overall information hierarchy. A bis:InformationRecordPartition is always parented to a bis:Subject and broken down by a bis:InformationRecordModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
+[!IndentEnd]
 ### **InformationReferenceElement** (Information Reference) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** bis:InformationReferenceElement is an abstract base class used for modeling entities whose main purpose is to reference something else.
 
 **baseClass:** [BisCore:InformationContentElement](#informationcontentelement)
 
+[!IndentEnd]
 ### **LightLocation** (Light Location) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** The spatial location of a light source
 
@@ -529,7 +702,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Enabled||boolean||
 
+[!IndentEnd]
 ### **LineStyle** (Line Style) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -542,25 +718,37 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description|Description of the style|string||
 |Data|Encoded style properties|string|Json|
 
+[!IndentEnd]
 ### **LinkElement** (Link) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:LinkElement is a bis:InformationReferenceElement that specifies a link.
 
 **baseClass:** [BisCore:InformationReferenceElement](#informationreferenceelement)
 
+[!IndentEnd]
 ### **LinkModel** (Link Model) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:LinkElement instances.
 
 **baseClass:** [BisCore:InformationModel](#informationmodel)
 
+[!IndentEnd]
 ### **LinkPartition** (Link Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:LinkPartition element indicates that there is a link-related modeling perspective within the overall information hierarchy. A bis:LinkPartition is always parented to a bis:Subject and broken down by a bis:LinkModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
+[!IndentEnd]
 ### **Model** *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:Model is a container for persisting a collection of related elements.
 
@@ -574,63 +762,93 @@ The BIS core schema contains classes that all other domain schemas extend.
 |IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
 |JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
 
+[!IndentEnd]
 ### **ModelSelector** (Model Selector) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
+[!IndentEnd]
 ### **OrthographicViewDefinition** (Orthographic Spatial View) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A spatial view that always shows a parallel projection.
 
 **baseClass:** [BisCore:SpatialViewDefinition](#spatialviewdefinition)
 
+[!IndentEnd]
 ### **PhysicalElement** (Physical Element) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:PhysicalElement is spatially located, has mass, and can be 'touched'.
 
 **baseClass:** [BisCore:SpatialElement](#spatialelement)
 
+[!IndentEnd]
 ### **PhysicalMaterial** (Physical Material) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:PhysicalMaterial defines the matter of which physical objects are made. bis:PhysicalMaterials are not used to define rendering characteristics (see bis:RenderMaterial).
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
+[!IndentEnd]
 ### **PhysicalModel** (Physical Model) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:PhysicalElement and bis:SpatialLocationElement instances used to model physical space.
 
 **baseClass:** [BisCore:SpatialModel](#spatialmodel)
 
+[!IndentEnd]
 ### **PhysicalPartition** (Physical Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:PhysicalPartition element indicates that there is a physical modeling perspective within the overall information hierarchy. A bis:PhysicalPartition is always parented to a bis:Subject and broken down by a bis:PhysicalModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
+[!IndentEnd]
 ### **PhysicalPortion** (Physical Portion) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
 
 [!alert text="The best practice is now to inherit from a PhysicalElement subclass and mix in ISubModeledElement when a breakdown concept is needed." kind="warning"]
+
+[!IndentStart]
 
 **description:** DEPRECATED: A Physical Portion represents an arbitrary portion of a larger Physical Element that will be broken down in more detail in a separate (sub) Physical Model.
 
 **baseClass:** [BisCore:PhysicalElement](#physicalelement)
 
+[!IndentEnd]
 ### **PhysicalType** (Physical Type) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Defines a shared set of properties (the 'type') that can be associated with a bis:PhysicalElement. A bis:PhysicalType has a strong correlation with something that can be ordered from a catalog since all instances share a common set of properties.
 
 **baseClass:** [BisCore:TypeDefinitionElement](#typedefinitionelement)
 
+[!IndentEnd]
 ### **RecipeDefinitionElement** (Recipe Definition) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Defines a recipe for generating a type.
 
 **baseClass:** [BisCore:DefinitionElement](#definitionelement)
 
+[!IndentEnd]
 ### **RenderMaterial** (Render Material) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:RenderMaterial defines the rendering properties of materials for display.
 
@@ -643,7 +861,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |PaletteName||string||
 |Description||string||
 
+[!IndentEnd]
 ### **RepositoryLink** (Repository Link) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:RepositoryLink is a bis:UrlLink element that links to a repository.
 
@@ -655,37 +876,55 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |RepositoryGuid||binary|BeGuid|
 
+[!IndentEnd]
 ### **RepositoryModel** (Repository Model) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** The singleton container of repository-related information elements.
 
 **baseClass:** [BisCore:DefinitionModel](#definitionmodel)
 
+[!IndentEnd]
 ### **RoleElement** (Role Element) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A real world entity is modeled as a bis:RoleElement when a set of external circumstances define an important role (one that is worth tracking) that is not intrinsic to the entity playing the role. For example, a person can play the role of a teacher or a rock can play the role of a boundary marker.
 
 **baseClass:** [BisCore:Element](#element)
 
+[!IndentEnd]
 ### **RoleModel** (Role Model) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:RoleElement instances.
 
 **baseClass:** [BisCore:Model](#model)
 
+[!IndentEnd]
 ### **SectionDrawing** (Section Drawing) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:SectionDrawing is a bis:Document of a 2D section drawing.
 
 **baseClass:** [BisCore:Drawing](#drawing)
 
+[!IndentEnd]
 ### **SectionDrawingModel** (Section Drawing Model) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting section bis:DrawingGraphic elements.
 
 **baseClass:** [BisCore:DrawingModel](#drawingmodel)
 
+[!IndentEnd]
 ### **Sheet** [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:Sheet is a bis:Document of a 2D sheet.
 
@@ -700,7 +939,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Width||double||
 |SheetTemplate||[navigation](./biscore.ecschema.md#sheethassheettemplate)||
 
+[!IndentEnd]
 ### **SheetBorder** (Sheet Border) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -712,7 +954,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |BorderTemplate||[navigation](./biscore.ecschema.md#sheetborderhassheetbordertemplate)||
 
+[!IndentEnd]
 ### **SheetBorderTemplate** (Sheet Border Template) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -725,13 +970,19 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Height||double||
 |Width||double||
 
+[!IndentEnd]
 ### **SheetModel** (Sheet Model) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting sheet views and graphics.
 
 **baseClass:** [BisCore:GraphicalModel2d](#graphicalmodel2d)
 
+[!IndentEnd]
 ### **SheetTemplate** (Sheet Template) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -745,25 +996,37 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Width||double||
 |Border||[navigation](./biscore.ecschema.md#sheettemplatehassheetborder)||
 
+[!IndentEnd]
 ### **SheetViewDefinition** (Sheet View Definition) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:SheetViewDefinition specifies parameters for a view of a bis:SheetModel.
 
 **baseClass:** [BisCore:ViewDefinition2d](#viewdefinition2d)
 
+[!IndentEnd]
 ### **SpatialCategory** (Spatial Category) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:SpatialCategory is used for classifying bis:GeometricElement3d elements via the bis:GeometricElement3dIsInCategory (concrete and sealed) relationship.
 
 **baseClass:** [BisCore:Category](#category)
 
+[!IndentEnd]
 ### **SpatialElement** (Spatial Element) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:SpatialElement is a bis:GeometricElement3d that occupies real world space.
 
 **baseClass:** [BisCore:GeometricElement3d](#geometricelement3d)
 
+[!IndentEnd]
 ### **SpatialIndex** (Spatial Index) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** The Spatial Index contains information used to optimize spatial queries. Like other database indices, it is automatically maintained by the system.
 
@@ -778,45 +1041,66 @@ The BIS core schema contains classes that all other domain schemas extend.
 |MinZ|Minimum Z value of the axis-aligned range box that encloses the spatial element|double||
 |MaxZ|Maximum Z value of the axis-aligned range box that encloses the spatial element|double||
 
+[!IndentEnd]
 ### **SpatialLocationElement** (Spatial Location Element) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:SpatialLocationElement identifies a 'tracked' real world location but has no mass and cannot be 'touched'.
 
 **baseClass:** [BisCore:SpatialElement](#spatialelement)
 
+[!IndentEnd]
 ### **SpatialLocationModel** (Spatial Location Model) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:SpatialLocationElement instances.
 
 **baseClass:** [BisCore:SpatialModel](#spatialmodel)
 
+[!IndentEnd]
 ### **SpatialLocationPartition** (Spatial Location Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:SpatialLocationPartition element indicates that there is a spatial-location-related modeling perspective within the overall information hierarchy. A bis:SpatialLocationPartition is always parented to a bis:Subject and broken down by a bis:SpatialLocationModel.
 
 **baseClass:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
+[!IndentEnd]
 ### **SpatialLocationPortion** (Spatial Location Portion) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
 
 [!alert text="The best practice is now to inherit from a SpatialLocationElement subclass and mix in ISubModeledElement when a breakdown concept is needed." kind="warning"]
+
+[!IndentStart]
 
 **description:** DEPRECATED: A Spatial Location Portion represents an arbitrary portion of a larger Spatial Location Element that will be broken down in more detail in a separate (sub) Spatial Location Model.
 
 **baseClass:** [BisCore:SpatialLocationElement](#spatiallocationelement)
 
+[!IndentEnd]
 ### **SpatialLocationType** (Spatial Location Type) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Defines a shared set of properties (the 'type') that can be associated with a bis:SpatialLocationElement instance.
 
 **baseClass:** [BisCore:TypeDefinitionElement](#typedefinitionelement)
 
+[!IndentEnd]
 ### **SpatialModel** (Spatial Model) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A container for persisting bis:GeometricElement3d instances that are spatially located.
 
 **baseClass:** [BisCore:GeometricModel3d](#geometricmodel3d)
 
+[!IndentEnd]
 ### **SpatialViewDefinition** (Spatial View Definition) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A view of a spatially located volume.
 
@@ -828,7 +1112,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |ModelSelector||[navigation](./biscore.ecschema.md#spatialviewdefinitionusesmodelselector)||
 
+[!IndentEnd]
 ### **SubCategory** (Sub-Category) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:SubCategory is a subdivision of a bis:Category. SubCategories allow GeometricElements to have multiple pieces of Geometry that can be independently visible and styled (color, linesStyle, transparency, etc.). It is important to understand that a bis:SubCategory is not a bis:Category (i.e. Categories do not nest). bis:GeometricElements are always related to a bis:Category, not a bis:SubCategory.
 
@@ -841,7 +1128,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description||string||
 |Properties||string|Json|
 
+[!IndentEnd]
 ### **Subject** *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:Subject is an information element that describes what this repository (or part thereof) is about.
 
@@ -853,43 +1143,64 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description||string||
 
+[!IndentEnd]
 ### **TemplateRecipe2d** (2D Template Recipe) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A recipe that uses a 2D template for creating new instances.
 
 **baseClass:** [BisCore:RecipeDefinitionElement](#recipedefinitionelement)
 
+[!IndentEnd]
 ### **TemplateRecipe3d** (3D Template Recipe) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A recipe that uses a 3D template for creating new instances.
 
 **baseClass:** [BisCore:RecipeDefinitionElement](#recipedefinitionelement)
 
+[!IndentEnd]
 ### **TemplateViewDefinition2d** (2D Template View Definition) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:ViewDefinition2d used to display a 2D template model.
 
 **baseClass:** [BisCore:ViewDefinition2d](#viewdefinition2d)
 
+[!IndentEnd]
 ### **TemplateViewDefinition3d** (3D Template View Definition) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:ViewDefinition3d used to display a 3D template model.
 
 **baseClass:** [BisCore:ViewDefinition3d](#viewdefinition3d)
 
+[!IndentEnd]
 ### **TextAnnotation2d** (2D Text Annotation) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:AnnotationElement2d](#annotationelement2d)
 
+[!IndentEnd]
 ### **TextAnnotation3d** (3D Text Annotation) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:GraphicalElement3d](#graphicalelement3d)
 
+[!IndentEnd]
 ### **TextAnnotationData** (Text Annotation Data) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** The aspect used to store text annotation data for bis:TextAnnotation2d an bis:TextAnnotation3d elements.
 
@@ -901,7 +1212,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |TextAnnotation||binary||
 
+[!IndentEnd]
 ### **TextAnnotationSeed** (Text Annotation Seed) *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -914,7 +1228,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
+[!IndentEnd]
 ### **Texture** *Sealed* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:Texture represents a named texture used for rendering purposes. The texture data is stored as a binary blob interpreted according to the specified texture format.
 
@@ -931,7 +1248,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Height||int||
 |Flags||int||
 
+[!IndentEnd]
 ### **TypeDefinitionElement** (Type Definition) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Defines a shared set of properties (the 'type') that can be associated with a bis:Element.
 
@@ -943,7 +1263,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Recipe||[navigation](./biscore.ecschema.md#typedefinitionhasrecipe)||
 
+[!IndentEnd]
 ### **UrlLink** (URL Link) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:UrlLink is a bis:LinkElement that specifies a URL link.
 
@@ -956,7 +1279,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Url||string||
 |Description||string||
 
+[!IndentEnd]
 ### **ViewAttachment** (View Attachment) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -968,7 +1294,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------------|:-----------|:-----------------------|
 |View|The view that is to be attached|[navigation](./biscore.ecschema.md#viewisattached)||
 
+[!IndentEnd]
 ### **ViewDefinition** (View Definition) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:ViewDefinition specifies the area/volume that is viewed, and refers to a bis:DisplayStyle and a bis:CategorySelector to be used. Subclasses of bis:ViewDefinition determine which model(s) are viewed.
 
@@ -982,7 +1311,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |CategorySelector||[navigation](./biscore.ecschema.md#viewdefinitionusescategoryselector)||
 |DisplayStyle||[navigation](./biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
 
+[!IndentEnd]
 ### **ViewDefinition2d** (2D View Definition) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A view of a 2D model that has its own local coordinate system.
 
@@ -997,7 +1329,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |Extents|Size of the view diagonal|point2d||
 |RotationAngle|Rotation angle in degrees of the viewed area.|double||
 
+[!IndentEnd]
 ### **ViewDefinition3d** (3D View Definition) *Abstract* [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:ViewDefinition3d specifies the volume that is viewed on referenced 3D bis:Models. It refers to a bis:DisplayStyle3d and a bis:CategorySelector to be used.
 
@@ -1017,21 +1352,30 @@ The BIS core schema contains classes that all other domain schemas extend.
 |LensAngle|Camera lens angle in degrees|double||
 |FocusDistance|Camera focus distance|double||
 
+[!IndentEnd]
 ### **VolumeElement** (Volume Element) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defining a volume.
 
 **baseClass:** [BisCore:SpatialLocationElement](#spatiallocationelement)
 
+[!IndentEnd]
 ### **WebMercatorModel** (Web Mercator Model) [!badge text="EntityClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:SpatialModel](#spatialmodel)
 
+[!IndentEnd]
 ## Relationship Classes
 
 ### **BaseModelForView2d** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1040,6 +1384,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1047,11 +1392,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [GeometricModel2d](./biscore.ecschema.md#geometricmodel2d)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1059,11 +1404,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [ViewDefinition2d](./biscore.ecschema.md#viewdefinition2d)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **CategoryOwnsSubCategories** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1074,6 +1421,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1081,11 +1429,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Category](./biscore.ecschema.md#category)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** false
 
@@ -1093,11 +1441,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [SubCategory](./biscore.ecschema.md#subcategory)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **CategorySelectorRefersToCategories** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1108,6 +1458,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1115,11 +1466,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [CategorySelector](./biscore.ecschema.md#categoryselector)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1127,11 +1478,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Category](./biscore.ecschema.md#category)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **CodeSpecSpecifiesCode** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1140,6 +1493,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1147,11 +1501,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [CodeSpec](./biscore.ecschema.md#codespec)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1159,11 +1513,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **DrawingGraphicRepresentsElement** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Relates a bis:DrawingGraphic to the bis:Element that it represents.
 
@@ -1174,6 +1530,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1181,11 +1538,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [DrawingGraphic](./biscore.ecschema.md#drawinggraphic)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1193,11 +1550,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **DrawingModelBreaksDownDrawing** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1208,6 +1567,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Backward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1215,11 +1575,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [DrawingModel](./biscore.ecschema.md#drawingmodel)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1227,11 +1587,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Drawing](./biscore.ecschema.md#drawing)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ElementDrivesElement** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1240,6 +1602,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1247,11 +1610,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1259,11 +1622,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ElementEncapsulatesElements** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A relationship that indicates that child bis:Elements are meant to be hidden.
 
@@ -1274,6 +1639,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1281,11 +1647,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1293,11 +1659,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ElementGroupsMembers** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A generic relationship used to capture the members of a defined set of bis:Elements.
 
@@ -1308,6 +1676,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1315,11 +1684,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1327,11 +1696,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ElementHasLinks** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Associates bis:LinkElements to a bis:Element.
 
@@ -1342,6 +1713,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1349,11 +1721,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1361,11 +1733,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [LinkElement](./biscore.ecschema.md#linkelement)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ElementOwnsChildElements** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Relates a bis:Element to child bis:Elements which represent parts of the entity modeled by the parent bis:Element.
 
@@ -1374,6 +1748,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1381,11 +1756,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1393,11 +1768,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ElementOwnsExternalSourceAspects** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1408,6 +1785,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1415,11 +1793,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1427,12 +1805,14 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [ExternalSourceAspect](./biscore.ecschema.md#externalsourceaspect)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ElementOwnsMultiAspects** [!badge text="RelationshipClass" kind="info"]
 
+[!IndentStart]
+
 **description:** &lt;No description&gt;
 
 **Strength:** Embedding
@@ -1440,6 +1820,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1447,11 +1828,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1459,12 +1840,14 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [ElementMultiAspect](./biscore.ecschema.md#elementmultiaspect)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ElementOwnsUniqueAspect** [!badge text="RelationshipClass" kind="info"]
 
+[!IndentStart]
+
 **description:** &lt;No description&gt;
 
 **Strength:** Embedding
@@ -1472,6 +1855,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1479,11 +1863,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1491,11 +1875,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [ElementUniqueAspect](./biscore.ecschema.md#elementuniqueaspect)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ElementRefersToDocuments** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A general relationship between a bis:Element and a bis:Document. There is no implied owner in this relationship – so it is valid for relationship where the document existed before the referenced element (e.g. design specification) or after (e.g. operational results).
 
@@ -1506,6 +1892,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1513,11 +1900,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1525,11 +1912,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Document](./biscore.ecschema.md#document)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ElementRefersToElements** *Abstract* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A general relationship between two bis:Elements. These are typically specialized by derived relationship to give more specific meaning.
 
@@ -1538,6 +1927,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1545,11 +1935,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1557,11 +1947,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ElementScopesCode** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1570,6 +1962,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1577,11 +1970,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1589,11 +1982,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ElementScopesExternalSourceIdentifier** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1602,6 +1997,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Backward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1609,11 +2005,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1621,11 +2017,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [ExternalSourceAspect](./biscore.ecschema.md#externalsourceaspect)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **GeometricElement2dHasTypeDefinition** *Abstract* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1634,6 +2032,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1641,11 +2040,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [GeometricElement2d](./biscore.ecschema.md#geometricelement2d)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1653,11 +2052,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [TypeDefinitionElement](./biscore.ecschema.md#typedefinitionelement)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **GeometricElement2dIsInCategory** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** The relationship that determines the bis:DrawingCategory for a bis:GeometricElement2d.
 
@@ -1666,6 +2067,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Backward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1673,11 +2075,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [GeometricElement2d](./biscore.ecschema.md#geometricelement2d)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** false
 
@@ -1685,11 +2087,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [DrawingCategory](./biscore.ecschema.md#drawingcategory)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **GeometricElement3dHasTypeDefinition** *Abstract* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1698,6 +2102,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1705,11 +2110,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [GeometricElement3d](./biscore.ecschema.md#geometricelement3d)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1717,11 +2122,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [TypeDefinitionElement](./biscore.ecschema.md#typedefinitionelement)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **GeometricElement3dIsInCategory** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** The relationship that determines the bis:SpatialCategory for a bis:GeometricElement3d.
 
@@ -1730,6 +2137,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Backward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1737,11 +2145,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [GeometricElement3d](./biscore.ecschema.md#geometricelement3d)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** false
 
@@ -1749,11 +2157,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [SpatialCategory](./biscore.ecschema.md#spatialcategory)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **GraphicalElement2dIsOfType** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1764,6 +2174,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1771,11 +2182,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [GraphicalElement2d](./biscore.ecschema.md#graphicalelement2d)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1783,11 +2194,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [GraphicalType2d](./biscore.ecschema.md#graphicaltype2d)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **GraphicalElement3dRepresentsElement** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Relates a bis:GraphicalElement3d to the bis:Element that it represents.
 
@@ -1798,6 +2211,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1805,11 +2219,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [GraphicalElement3d](./biscore.ecschema.md#graphicalelement3d)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1817,11 +2231,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **GraphicalType2dHasTemplateRecipe** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1832,6 +2248,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1839,11 +2256,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [GraphicalType2d](./biscore.ecschema.md#graphicaltype2d)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1851,11 +2268,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [TemplateRecipe2d](./biscore.ecschema.md#templaterecipe2d)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ModelContainsElements** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** The relationship that enforces that each bis:Element belongs to exactly one bis:Model.
 
@@ -1864,6 +2283,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1871,11 +2291,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Model](./biscore.ecschema.md#model)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1883,11 +2303,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ModelModelsElement** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Relates a bis:Model to the bis:Element that it describes or breaks down into more detail.
 
@@ -1896,6 +2318,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Backward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1903,11 +2326,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Model](./biscore.ecschema.md#model)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1915,11 +2338,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [ISubModeledElement](./biscore.ecschema.md#isubmodeledelement)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ModelOwnsSubModel** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** The relationship that is used to build a model hierarchy index. This is done for performance reasons, rather than data modeling reasons.
 
@@ -1928,6 +2353,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1935,11 +2361,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Model](./biscore.ecschema.md#model)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1947,11 +2373,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Model](./biscore.ecschema.md#model)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ModelSelectorRefersToModels** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -1960,6 +2388,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1967,11 +2396,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [ModelSelector](./biscore.ecschema.md#modelselector)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -1979,11 +2408,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Model](./biscore.ecschema.md#model)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **PartitionOriginatesFromRepository** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** DEPRECATED
 
@@ -1994,6 +2425,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2001,11 +2433,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [InformationPartitionElement](./biscore.ecschema.md#informationpartitionelement)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2013,11 +2445,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [RepositoryLink](./biscore.ecschema.md#repositorylink)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **PhysicalElementAssemblesElements** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A relationship that indicates a physical assembly of child bis:PhysicalElements.
 
@@ -2028,6 +2462,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2035,11 +2470,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [PhysicalElement](./biscore.ecschema.md#physicalelement)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2047,11 +2482,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [PhysicalElement](./biscore.ecschema.md#physicalelement)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **PhysicalElementIsOfType** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A type-instance relation; one that indicates that the specific bis:PhysicalElement is an instance of the defined bis:PhysicalType. E.g. a pump with serial number #AR-23 is of type X-Model-Y.
 
@@ -2062,6 +2499,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2069,11 +2507,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [PhysicalElement](./biscore.ecschema.md#physicalelement)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2081,13 +2519,15 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [PhysicalType](./biscore.ecschema.md#physicaltype)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **PhysicalModelBreaksDownPhysicalPortion** [!badge text="RelationshipClass" kind="info"] [!badge text="Deprecated" kind="warning"]
 
 [!alert text="The PhysicalPortion class has been deprecated, so this relationship class is also deprecated." kind="warning"]
+
+[!IndentStart]
 
 **description:** DEPRECATED
 
@@ -2098,6 +2538,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Backward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2105,11 +2546,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [PhysicalModel](./biscore.ecschema.md#physicalmodel)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2117,11 +2558,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [PhysicalPortion](./biscore.ecschema.md#physicalportion)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **PhysicalTypeHasTemplateRecipe** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -2132,6 +2575,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2139,11 +2583,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [PhysicalType](./biscore.ecschema.md#physicaltype)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2151,11 +2595,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [TemplateRecipe3d](./biscore.ecschema.md#templaterecipe3d)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **RenderMaterialOwnsRenderMaterials** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -2166,6 +2612,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** false
 
@@ -2173,11 +2620,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [RenderMaterial](./biscore.ecschema.md#rendermaterial)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** false
 
@@ -2185,12 +2632,14 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [RenderMaterial](./biscore.ecschema.md#rendermaterial)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **SheetBorderHasSheetBorderTemplate** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
+[!IndentStart]
+
 **description:** &lt;No description&gt;
 
 **Strength:** Referencing
@@ -2198,6 +2647,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2205,11 +2655,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [SheetBorder](./biscore.ecschema.md#sheetborder)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2217,12 +2667,14 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [SheetBorderTemplate](./biscore.ecschema.md#sheetbordertemplate)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **SheetHasSheetTemplate** *Sealed* [!badge text="RelationshipClass" kind="info"]
 
+[!IndentStart]
+
 **description:** &lt;No description&gt;
 
 **Strength:** Referencing
@@ -2230,6 +2682,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2237,11 +2690,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Sheet](./biscore.ecschema.md#sheet)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2249,11 +2702,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [SheetTemplate](./biscore.ecschema.md#sheettemplate)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **SheetModelBreaksDownSheet** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -2264,6 +2719,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Backward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2271,11 +2727,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [SheetModel](./biscore.ecschema.md#sheetmodel)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2283,11 +2739,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Sheet](./biscore.ecschema.md#sheet)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **SheetTemplateHasSheetBorder** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -2296,6 +2754,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2303,11 +2762,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [SheetTemplate](./biscore.ecschema.md#sheettemplate)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2315,11 +2774,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [SheetBorder](./biscore.ecschema.md#sheetborder)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **SpatialLocationIsOfType** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** A type-instance relation; one that indicates that the specific bis:SpatialLocationElement is an instance of the defined bis:SpatialLocationType. E.g. AssemblyArea#5 if of type FloorSpace.
 
@@ -2330,6 +2791,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2337,11 +2799,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [SpatialLocationElement](./biscore.ecschema.md#spatiallocationelement)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2349,11 +2811,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [SpatialLocationType](./biscore.ecschema.md#spatiallocationtype)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **SpatialViewDefinitionUsesModelSelector** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -2362,6 +2826,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2369,11 +2834,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [SpatialViewDefinition](./biscore.ecschema.md#spatialviewdefinition)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2381,11 +2846,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [ModelSelector](./biscore.ecschema.md#modelselector)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **SubjectOwnsPartitionElements** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -2396,6 +2863,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** false
 
@@ -2403,11 +2871,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Subject](./biscore.ecschema.md#subject)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2415,11 +2883,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [InformationPartitionElement](./biscore.ecschema.md#informationpartitionelement)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **SubjectOwnsSubjects** [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -2430,6 +2900,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** false
 
@@ -2437,11 +2908,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Subject](./biscore.ecschema.md#subject)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** false
 
@@ -2449,12 +2920,14 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [Subject](./biscore.ecschema.md#subject)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **TextAnnotation2dOwnsTextAnnotationData** [!badge text="RelationshipClass" kind="info"]
 
+[!IndentStart]
+
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ElementOwnsUniqueAspect](#elementownsuniqueaspect)
@@ -2464,6 +2937,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2471,11 +2945,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [TextAnnotation2d](./biscore.ecschema.md#textannotation2d)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** false
 
@@ -2483,12 +2957,14 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [TextAnnotationData](./biscore.ecschema.md#textannotationdata)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **TextAnnotation3dOwnsTextAnnotationData** [!badge text="RelationshipClass" kind="info"]
 
+[!IndentStart]
+
 **description:** &lt;No description&gt;
 
 **baseClass:** [BisCore:ElementOwnsUniqueAspect](#elementownsuniqueaspect)
@@ -2498,6 +2974,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2505,11 +2982,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [TextAnnotation3d](./biscore.ecschema.md#textannotation3d)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** false
 
@@ -2517,11 +2994,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [TextAnnotationData](./biscore.ecschema.md#textannotationdata)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **TypeDefinitionHasRecipe** *Abstract* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -2530,6 +3009,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2537,11 +3017,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [TypeDefinitionElement](./biscore.ecschema.md#typedefinitionelement)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2549,11 +3029,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [RecipeDefinitionElement](./biscore.ecschema.md#recipedefinitionelement)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ViewDefinitionUsesCategorySelector** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -2562,6 +3044,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2569,11 +3052,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [ViewDefinition](./biscore.ecschema.md#viewdefinition)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** false
 
@@ -2581,11 +3064,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [CategorySelector](./biscore.ecschema.md#categoryselector)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ViewDefinitionUsesDisplayStyle** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -2594,6 +3079,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2601,11 +3087,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [ViewDefinition](./biscore.ecschema.md#viewdefinition)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2613,11 +3099,13 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [DisplayStyle](./biscore.ecschema.md#displaystyle)
-
+[!IndentEnd]
+[!IndentEnd]
 ### **ViewIsAttached** *Sealed* [!badge text="RelationshipClass" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -2626,6 +3114,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 **strengthDirection:** Forward
 
 #### Source
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2633,11 +3122,11 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (1..1)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [ViewDefinition](./biscore.ecschema.md#viewdefinition)
-
+[!IndentEnd]
 #### Target
+[!IndentStart]
 
 **isPolymorphic:** true
 
@@ -2645,13 +3134,15 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **multiplicity:** (0..*)
 
-##### Constraint Classes
-
+#### Constraint Classes:
 - [ViewAttachment](./biscore.ecschema.md#viewattachment)
-
+[!IndentEnd]
+[!IndentEnd]
 ## Enumerations
 
 ### **AutoHandledPropertyStatementType** [!badge text="Enumeration" kind="info"]
+
+[!IndentStart]
 
 **Backing Type:** int
 
@@ -2664,7 +3155,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |ReadOnly = Select\|Insert|3|
 |All = Select \| Insert \| Update|7|
 
+[!IndentEnd]
 ### **CustomHandledPropertyStatementType** [!badge text="Enumeration" kind="info"]
+
+[!IndentStart]
 
 **Backing Type:** int
 
@@ -2682,23 +3176,32 @@ The BIS core schema contains classes that all other domain schemas extend.
 |InsertUpdate = Insert \| Update|6|
 |All = Select \| Insert \| Update|7|
 
+[!IndentEnd]
 ## Mixin Classes
 
 ### **IParentElement** (Parent Element) *Abstract* [!badge text="Mixin" kind="info"]
+
+[!IndentStart]
 
 **description:** An interface that indicates that this class of bis:Element is capable of being a parent (owning child Elements). This interface is mutually exclusive with bis:ISubModeledElement.
 
 **appliesTo:** [Element](./biscore.ecschema.md#element)
 
+[!IndentEnd]
 ### **ISubModeledElement** (Sub-Modeled Element) *Abstract* [!badge text="Mixin" kind="info"]
+
+[!IndentStart]
 
 **description:** An interface that indicates that a bis:Element can be broken down or described by a (sub) bis:Model. This interface is mutually exclusive with bis:IParentElement.
 
 **appliesTo:** [Element](./biscore.ecschema.md#element)
 
+[!IndentEnd]
 ## Custom Attribute Classes
 
 ### **AutoHandledProperty** [!badge text="CustomAttributeClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Applied to an element's property to indicate that select, update, and insert of the property's value are handled automatically by the platform.
 
@@ -2710,7 +3213,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
 |StatementTypes||||false|0|
 
+[!IndentEnd]
 ### **ClassHasHandler** [!badge text="CustomAttributeClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Applied to an ECClass to indicate that a C++ subclass of DgnDomain::Handler will supply behavior for it at run-time. This custom attribute may only be used by BisCore or other core schemas.
 
@@ -2722,7 +3228,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
 |Restrictions|List of actions that are not permitted when the associated handler is not available|||false|0|
 
+[!IndentEnd]
 ### **CustomHandledProperty** [!badge text="CustomAttributeClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Applied to an element's property to indicate that the property's value is handled specially by a C++ class.
 
@@ -2734,7 +3243,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 |:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
 |StatementTypes||||false|0|
 
+[!IndentEnd]
 ### **SchemaHasBehavior** [!badge text="CustomAttributeClass" kind="info"]
+
+[!IndentStart]
 
 **description:** Applied to an ECSchema to indicate that there is an associated JavaScript library that will provide run-time behavior.
 
@@ -2745,3 +3257,5 @@ The BIS core schema contains classes that all other domain schemas extend.
 |    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
 |:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
 |Restrictions|List of actions that are not permitted when the associated JavaScript library is not available.|||false|0|
+
+[!IndentEnd]
