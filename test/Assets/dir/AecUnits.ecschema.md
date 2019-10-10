@@ -18,6 +18,8 @@ This contains the unit definitions that are use across AE Schemas
 
 ### **ACCELERATION** (Acceleration) [!badge text="KindOfQuantity" kind="info"]
 
+[!IndentStart]
+
 **description:** &lt;No description&gt;
 
 **Relative Error:** 0.001
@@ -30,7 +32,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CM_PER_SEC_SQ](./units.ecschema.md#cm_per_sec_sq) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT_PER_SEC_SQ](./units.ecschema.md#ft_per_sec_sq) ]
 
+[!IndentEnd]
 ### **ANGLE** (Angle) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -43,7 +48,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(2) [ [ARC_DEG](./units.ecschema.md#arc_deg) ]
 - [AngleDMS](./formats.ecschema.md#angledms)
 
+[!IndentEnd]
 ### **ANGULAR_VELOCITY** (Angular Velocity) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -57,7 +65,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [DEG_PER_SEC](./units.ecschema.md#deg_per_sec) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [RPM](./units.ecschema.md#rpm) ]
 
+[!IndentEnd]
 ### **AREA** (Area) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -70,7 +81,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_M](./units.ecschema.md#sq_m) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_FT](./units.ecschema.md#sq_ft) ]
 
+[!IndentEnd]
 ### **AREA_LARGE** (Large Area) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -83,7 +97,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_KM](./units.ecschema.md#sq_km) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_MILE](./units.ecschema.md#sq_mile) ]
 
+[!IndentEnd]
 ### **AREA_SMALL** (Small Area) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -96,7 +113,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(2) [ [SQ_MM](./units.ecschema.md#sq_mm) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_IN](./units.ecschema.md#sq_in) ]
 
+[!IndentEnd]
 ### **CURRENT** (Current) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -109,7 +129,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [A](./units.ecschema.md#a) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KILOAMPERE](./units.ecschema.md#kiloampere) ]
 
+[!IndentEnd]
 ### **DENSITY** (Density) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -125,7 +148,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LBM_PER_CUB_IN](./units.ecschema.md#lbm_per_cub_in) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KIP_PER_CUB_FT](./units.ecschema.md#kip_per_cub_ft) ]
 
+[!IndentEnd]
 ### **DYNAMIC_VISCOSITY** (Dynamic Viscosity) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -140,7 +166,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CENTIPOISE](./units.ecschema.md#centipoise) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LBM_PER_FT_S](./units.ecschema.md#lbm_per_ft_s) ]
 
+[!IndentEnd]
 ### **ELECTRIC_POTENTIAL** (Electric Potential) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -154,7 +183,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KILOVOLT](./units.ecschema.md#kilovolt) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [MEGAVOLT](./units.ecschema.md#megavolt) ]
 
+[!IndentEnd]
 ### **ENERGY** (Energy) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -169,7 +201,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [BTU](./units.ecschema.md#btu) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KWH](./units.ecschema.md#kwh) ]
 
+[!IndentEnd]
 ### **FLOW** (Flow Rate) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -183,7 +218,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_FT_PER_MIN](./units.ecschema.md#cub_ft_per_min) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [GALLON_PER_MIN](./units.ecschema.md#gallon_per_min) ]
 
+[!IndentEnd]
 ### **FORCE** (Force) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -198,7 +236,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LBF](./units.ecschema.md#lbf) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KPF](./units.ecschema.md#kpf) ]
 
+[!IndentEnd]
 ### **FORCE_DENSITY** (Force Density) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -213,7 +254,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [N_PER_CUB_FT](./units.ecschema.md#n_per_cub_ft) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KN_PER_CUB_FT](./units.ecschema.md#kn_per_cub_ft) ]
 
+[!IndentEnd]
 ### **FREQUENCY** (Frequency) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -227,7 +271,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KHZ](./units.ecschema.md#khz) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [MHZ](./units.ecschema.md#mhz) ]
 
+[!IndentEnd]
 ### **HEAT_TRANSFER** (Heat Transfer) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -241,7 +288,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [W_PER_SQ_M_CELSIUS](./units.ecschema.md#w_per_sq_m_celsius) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [BTU_PER_SQ_FT_HR_FAHRENHEIT](./units.ecschema.md#btu_per_sq_ft_hr_fahrenheit) ]
 
+[!IndentEnd]
 ### **ILLUMINANCE** (Illuminance) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -254,7 +304,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LUX](./units.ecschema.md#lux) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LUMEN_PER_SQ_FT](./units.ecschema.md#lumen_per_sq_ft) ]
 
+[!IndentEnd]
 ### **LENGTH** (Length) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -270,7 +323,10 @@ This contains the unit definitions that are use across AE Schemas
 - [AmerFI](./formats.ecschema.md#amerfi)(16) 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT](./units.ecschema.md#ft) ]
 
+[!IndentEnd]
 ### **LENGTH_LONG** (Long Length) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -286,7 +342,10 @@ This contains the unit definitions that are use across AE Schemas
 - [AmerFI](./formats.ecschema.md#amerfi)(16) 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT](./units.ecschema.md#ft) ]
 
+[!IndentEnd]
 ### **LENGTH_SHORT** (Short Length) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -303,7 +362,10 @@ This contains the unit definitions that are use across AE Schemas
 - [AmerFI](./formats.ecschema.md#amerfi)(16) 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [IN](./units.ecschema.md#in) ]
 
+[!IndentEnd]
 ### **LINEAR_DENSITY** (Linear Density) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -317,7 +379,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KG_PER_MM](./units.ecschema.md#kg_per_mm) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LBM_PER_FT](./units.ecschema.md#lbm_per_ft) ]
 
+[!IndentEnd]
 ### **LINEAR_FORCE** (Linear Force) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -331,7 +396,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [N_PER_MM](./units.ecschema.md#n_per_mm) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LBF_PER_IN](./units.ecschema.md#lbf_per_in) ]
 
+[!IndentEnd]
 ### **LINEAR_ROTATIONAL_SPRING_CONSTANT** (Linear Rotational Spring Constant) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -343,7 +411,10 @@ This contains the unit definitions that are use across AE Schemas
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [N_PER_RAD](./units.ecschema.md#n_per_rad) ]
 
+[!IndentEnd]
 ### **LIQUID_VOLUME** (Liquid Volume) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -356,7 +427,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LITRE](./units.ecschema.md#litre) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [GALLON](./units.ecschema.md#gallon) ]
 
+[!IndentEnd]
 ### **LIQUID_VOLUME_LARGE** (Liquid Large Volume) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -369,7 +443,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [THOUSAND_LITRE](./units.ecschema.md#thousand_litre) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [THOUSAND_GALLON](./units.ecschema.md#thousand_gallon) ]
 
+[!IndentEnd]
 ### **LIQUID_VOLUME_SMALL** (Liquid Small Volume) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -382,7 +459,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LITRE](./units.ecschema.md#litre) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [GALLON](./units.ecschema.md#gallon) ]
 
+[!IndentEnd]
 ### **LUMINOUS_FLUX** (Luminous Flux) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -394,7 +474,10 @@ This contains the unit definitions that are use across AE Schemas
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LUMEN](./units.ecschema.md#lumen) ]
 
+[!IndentEnd]
 ### **LUMINOUS_INTENSITY** (Luminous Intensity) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -406,7 +489,10 @@ This contains the unit definitions that are use across AE Schemas
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CD](./units.ecschema.md#cd) ]
 
+[!IndentEnd]
 ### **MOMENT_OF_INERTIA** (Moment Of Inertia) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -422,7 +508,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [IN_TO_THE_FOURTH](./units.ecschema.md#in_to_the_fourth) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT_TO_THE_FOURTH](./units.ecschema.md#ft_to_the_fourth) ]
 
+[!IndentEnd]
 ### **POWER** (Power) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -439,7 +528,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KILOBTU_PER_HR](./units.ecschema.md#kilobtu_per_hr) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [HP](./units.ecschema.md#hp) ]
 
+[!IndentEnd]
 ### **PRESSURE** (Pressure) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -453,7 +545,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [PSIG](./units.ecschema.md#psig) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [PSI](./units.ecschema.md#psi) ]
 
+[!IndentEnd]
 ### **PRESSURE_GRADIENT** (Pressure Gradient) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -466,7 +561,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [PA_PER_M](./units.ecschema.md#pa_per_m) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [BAR_PER_KM](./units.ecschema.md#bar_per_km) ]
 
+[!IndentEnd]
 ### **PROCESS_PIPING_FLOW** (Process Piping Flow Rate) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -480,7 +578,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_FT_PER_MIN](./units.ecschema.md#cub_ft_per_min) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [GALLON_PER_MIN](./units.ecschema.md#gallon_per_min) ]
 
+[!IndentEnd]
 ### **PROCESS_PIPING_PRESSURE** (Process Piping Pressure) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -494,7 +595,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [PSIG](./units.ecschema.md#psig) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [PSI](./units.ecschema.md#psi) ]
 
+[!IndentEnd]
 ### **PROCESS_PIPING_TEMPERATURE** (Process Piping Temperature) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -508,7 +612,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(2) [ [FAHRENHEIT](./units.ecschema.md#fahrenheit) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [K](./units.ecschema.md#k) ]
 
+[!IndentEnd]
 ### **SPECIFIC_HEAT_CAPACITY** (Specific Heat Capacity) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -521,7 +628,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [J_PER_KG_K](./units.ecschema.md#j_per_kg_k) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [BTU_PER_LBM_RANKINE](./units.ecschema.md#btu_per_lbm_rankine) ]
 
+[!IndentEnd]
 ### **SPECIFIC_HEAT_OF_VAPORIZATION** (Specific Heat Of Vaporization) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -535,7 +645,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KJ_PER_KG](./units.ecschema.md#kj_per_kg) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [BTU_PER_LBM](./units.ecschema.md#btu_per_lbm) ]
 
+[!IndentEnd]
 ### **TEMPERATURE** (Temperature) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -549,7 +662,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FAHRENHEIT](./units.ecschema.md#fahrenheit) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [K](./units.ecschema.md#k) ]
 
+[!IndentEnd]
 ### **THERMAL_CONDUCTIVITY** (Thermal Conductivity) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -563,7 +679,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [W_PER_M_C](./units.ecschema.md#w_per_m_c) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [BTU_IN_PER_SQ_FT_HR_FAHRENHEIT](./units.ecschema.md#btu_in_per_sq_ft_hr_fahrenheit) ]
 
+[!IndentEnd]
 ### **THERMAL_EXPANSION_COEFFICIENT** (Thermal Expansion Coefficient) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -577,7 +696,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [STRAIN_PER_CELSIUS](./units.ecschema.md#strain_per_celsius) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [STRAIN_PER_FAHRENHEIT](./units.ecschema.md#strain_per_fahrenheit) ]
 
+[!IndentEnd]
 ### **THERMAL_RESISTANCE** (Thermal Resistance) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -591,7 +713,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_M_CELSIUS_PER_WATT](./units.ecschema.md#sq_m_celsius_per_watt) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_FT_HR_FAHRENHEIT_PER_BTU](./units.ecschema.md#sq_ft_hr_fahrenheit_per_btu) ]
 
+[!IndentEnd]
 ### **TIME** (Time) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -607,7 +732,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [DAY](./units.ecschema.md#day) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [MS](./units.ecschema.md#ms) ]
 
+[!IndentEnd]
 ### **VELOCITY** (Velocity) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -622,7 +750,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [MPH](./units.ecschema.md#mph) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KM_PER_HR](./units.ecschema.md#km_per_hr) ]
 
+[!IndentEnd]
 ### **VOLUME** (Volume) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -636,7 +767,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_FT](./units.ecschema.md#cub_ft) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_YRD](./units.ecschema.md#cub_yrd) ]
 
+[!IndentEnd]
 ### **VOLUME_LARGE** (Large Volume) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -651,7 +785,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_YRD](./units.ecschema.md#cub_yrd) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_FT](./units.ecschema.md#cub_ft) ]
 
+[!IndentEnd]
 ### **VOLUME_SMALL** (Small Volume) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -666,7 +803,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_IN](./units.ecschema.md#cub_in) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_FT](./units.ecschema.md#cub_ft) ]
 
+[!IndentEnd]
 ### **WARPING_CONSTANT** (Warping Constant) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -679,7 +819,10 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [M_TO_THE_SIXTH](./units.ecschema.md#m_to_the_sixth) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT_TO_THE_SIXTH](./units.ecschema.md#ft_to_the_sixth) ]
 
+[!IndentEnd]
 ### **WEIGHT** (Weight) [!badge text="KindOfQuantity" kind="info"]
+
+[!IndentStart]
 
 **description:** &lt;No description&gt;
 
@@ -691,3 +834,5 @@ This contains the unit definitions that are use across AE Schemas
 
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(2) [ [KG](./units.ecschema.md#kg) ]
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(2) [ [LBM](./units.ecschema.md#lbm) ]
+
+[!IndentEnd]

@@ -16,6 +16,8 @@ Standard Set of Format definitions
 
 ### **AmerFI** (FeetInches) [!badge text="Format" kind="info"]
 
+[!IndentStart]
+
 **type:** Fractional
 
 **Precision:** 8
@@ -23,14 +25,16 @@ Standard Set of Format definitions
 **Show Sign Option:** OnlyNegative
 
 **Format Traits**
-
 - KeepSingleZero
 - KeepDecimalPoint
 - ShowUnitLabel
 
 **uomSeparator:** None
 
+[!IndentEnd]
 ### **AmerI** (Inches) [!badge text="Format" kind="info"]
+
+[!IndentStart]
 
 **type:** Fractional
 
@@ -39,13 +43,15 @@ Standard Set of Format definitions
 **Show Sign Option:** OnlyNegative
 
 **Format Traits**
-
 - KeepSingleZero
 - ShowUnitLabel
 
 **uomSeparator:** None
 
+[!IndentEnd]
 ### **AngleDMS** (DegreesMinutesSeconds) [!badge text="Format" kind="info"]
+
+[!IndentStart]
 
 **type:** Decimal
 
@@ -54,15 +60,17 @@ Standard Set of Format definitions
 **Show Sign Option:** OnlyNegative
 
 **Format Traits**
-
 - KeepSingleZero
 - KeepDecimalPoint
 - ShowUnitLabel
 
 **uomSeparator:** None
 
+[!IndentEnd]
 ### **DefaultReal** (real) [!badge text="Format" kind="info"]
 
+[!IndentStart]
+
 **type:** Decimal
 
 **Precision:** 6
@@ -70,13 +78,15 @@ Standard Set of Format definitions
 **Show Sign Option:** OnlyNegative
 
 **Format Traits**
-
 - KeepSingleZero
 - KeepDecimalPoint
 
 **uomSeparator:** <code> </code> (Space)
 
+[!IndentEnd]
 ### **DefaultRealU** (realu) [!badge text="Format" kind="info"]
+
+[!IndentStart]
 
 **type:** Decimal
 
@@ -85,14 +95,16 @@ Standard Set of Format definitions
 **Show Sign Option:** OnlyNegative
 
 **Format Traits**
-
 - KeepSingleZero
 - KeepDecimalPoint
 - ShowUnitLabel
 
 **uomSeparator:** <code> </code> (Space)
 
+[!IndentEnd]
 ### **DefaultRealUNS** [!badge text="Format" kind="info"]
+
+[!IndentStart]
 
 **type:** Decimal
 
@@ -101,14 +113,16 @@ Standard Set of Format definitions
 **Show Sign Option:** OnlyNegative
 
 **Format Traits**
-
 - KeepSingleZero
 - KeepDecimalPoint
 - ShowUnitLabel
 
 **uomSeparator:** None
 
+[!IndentEnd]
 ### **Fractional** (fract) [!badge text="Format" kind="info"]
+
+[!IndentStart]
 
 **type:** Fractional
 
@@ -117,13 +131,15 @@ Standard Set of Format definitions
 **Show Sign Option:** OnlyNegative
 
 **Format Traits**
-
 - KeepSingleZero
 - KeepDecimalPoint
 
 **uomSeparator:** <code> </code> (Space)
 
+[!IndentEnd]
 ### **HMS** (HoursMinutesSeconds) [!badge text="Format" kind="info"]
+
+[!IndentStart]
 
 **type:** Decimal
 
@@ -132,14 +148,16 @@ Standard Set of Format definitions
 **Show Sign Option:** OnlyNegative
 
 **Format Traits**
-
 - KeepSingleZero
 - KeepDecimalPoint
 - ShowUnitLabel
 
 **uomSeparator:** <code> </code> (Space)
 
+[!IndentEnd]
 ### **StationZ_1000_3** [!badge text="Format" kind="info"]
+
+[!IndentStart]
 
 **type:** Station
 
@@ -150,14 +168,16 @@ Standard Set of Format definitions
 **Show Sign Option:** OnlyNegative
 
 **Format Traits**
-
 - TrailZeroes
 - KeepSingleZero
 - KeepDecimalPoint
 
 **uomSeparator:** <code> </code> (Space)
 
+[!IndentEnd]
 ### **StationZ_100_2** [!badge text="Format" kind="info"]
+
+[!IndentStart]
 
 **type:** Station
 
@@ -168,9 +188,10 @@ Standard Set of Format definitions
 **Show Sign Option:** OnlyNegative
 
 **Format Traits**
-
 - TrailZeroes
 - KeepSingleZero
 - KeepDecimalPoint
 
 **uomSeparator:** <code> </code> (Space)
+
+[!IndentEnd]
