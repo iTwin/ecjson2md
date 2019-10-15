@@ -9,6 +9,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as rimraf from "rimraf";
 import { SchemaContext, Schema, PropertyType, classModifierToString, SchemaJsonFileLocater, SchemaItemType } from "@bentley/ecschema-metadata";
+// import { outputFile } from "fs-extra";
 
 describe("ecjson2md", () => {
   describe("ECJsonMarkdownGenerator", () => {
@@ -3672,6 +3673,64 @@ describe("ecjson2md", () => {
             assert.equal(propertyTypeNumberToString(PropertyType.String_Enumeration_Array), "string enum array");
             assert.equal(propertyTypeNumberToString(PropertyType.IGeometry), "IGeometry");
             assert.equal(propertyTypeNumberToString(PropertyType.IGeometry_Array), "IGeometry array");
+          });
+        });
+
+        describe("remarks.md generation", () => {
+          const inputFileDir = path.join(".", "test", "Assets", "dir");
+          let testRemarksGenerator: ECJsonMarkdownGenerator;
+          let outputFilePath: string;
+          const newlineRegex = /(?:\r\n|\r|\n)/g;
+
+          // Delete the output file before each test
+          beforeEach(() => {
+            if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+            testRemarksGenerator = new ECJsonMarkdownGenerator([inputFileDir]);
+          });
+
+          // Delete the output file after each test
+          afterEach(() => {
+            if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          });
+
+          it("should properly generate a remarks file for the BisCore schema", () => {
+            // Arrange
+            const inputFileName = "BisCore";
+            const inputFilePath = path.join(inputFileDir, inputFileName + ".ecschema.json");
+            const correctFilePath = path.join(inputFileDir, inputFileName + ".remarks.md");
+
+            outputFilePath = path.join(outputDir, inputFileName + ".remarks.md");
+
+            // Act
+            testRemarksGenerator.genRemarks(inputFilePath, outputFilePath);
+
+            // Assert
+            const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split(newlineRegex);
+            assert.equal(outputLines.length, correctLines.length);
+            correctLines.map((line, i) => {
+              assert.equal(outputLines[i], line);
+            });
+          });
+
+          it("should properly generate a remarks file for the Grids schema", () => {
+            // Arrange
+            const inputFileName = "Grids";
+            const inputFilePath = path.join(inputFileDir, inputFileName + ".ecschema.json");
+            const correctFilePath = path.join(inputFileDir, inputFileName + ".remarks.md");
+
+            outputFilePath = path.join(outputDir, inputFileName + ".remarks.md");
+
+            // Act
+            testRemarksGenerator.genRemarks(inputFilePath, outputFilePath);
+
+            // Assert
+            const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+            const correctLines = fs.readFileSync(correctFilePath).toString().split(newlineRegex);
+            assert.equal(outputLines.length, correctLines.length);
+            correctLines.map((line, i) => {
+              assert.equal(outputLines[i], line);
+            });
           });
         });
 

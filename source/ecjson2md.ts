@@ -158,6 +158,31 @@ export function prepOutputPath(rawOutputPath: string, inputPath: string): string
 }
 
 /**
+ * Returns a proper output path for a remarks file given the output directory path
+ * and input file path
+ *
+ * @param rawOutputPath User given path to directory for output
+ * @param {string} inputPath  User given path to input file (used for output file name)
+ * @returns {string} Proper output file path
+ */
+export function prepRemarksPath(rawOutputPath: string, inputPath: string): string {
+  // Replace common separators with os path separator
+  let outputDir: string = path.normalize(rawOutputPath);
+
+  // add a slash to the end of the user didn't provide one
+  if (!(outputDir[outputDir.length - 1] === path.sep)) outputDir += path.sep;
+
+  // Form the file name
+  const inputPathParts = inputPath.split(/(\/){1}|(\\){2}|(\\){1}/g);
+  let preppedOutputPath = outputDir + inputPathParts[inputPathParts.length - 1].slice(0, -14) + ".remarks.md";
+
+  // Resolve the absolute file path
+  preppedOutputPath = path.resolve(preppedOutputPath);
+
+  return preppedOutputPath;
+}
+
+/**
  * Class used to generate markdown for a whole schema or for specific schema items (using static methods)
  */
 export class ECJsonMarkdownGenerator {
@@ -1246,12 +1271,14 @@ export class ECJsonMarkdownGenerator {
   }
 
   /**
-   * Loads a schema and its references into memory and drives the
-   * markdown generation
+   * Loads a schema and its references into memory and prepares
+   * inputs for schema markdown generation
+   * Method checks for the existence of both the schema and
+   * output path
    * @param schemaPath path to SchemaJson to load
    * @param outputFilePath Path to the output file to write to
    */
-  public generate(schemaPath: string, outputFilePath: string, nonReleaseFlag = false) {
+  public genPrep(schemaPath: string, outputFilePath: string) {
     // If the schema file doesn't exist, throw an error
     if (!fs.existsSync(schemaPath)) throw new ECJsonFileNotFound(schemaPath);
 
@@ -1282,6 +1309,18 @@ export class ECJsonMarkdownGenerator {
       throw new ECJsonBadJson(schemaPath);
     }
 
+    return schema;
+  }
+
+  /**
+   * Loads a schema and its references into memory and drives the
+   * markdown generation
+   * @param schemaPath path to SchemaJson to load
+   * @param outputFilePath Path to the output file to write to
+   */
+  public generate(schemaPath: string, outputFilePath: string, nonReleaseFlag = false) {
+    const schema = this.genPrep(schemaPath, outputFilePath);
+
     // Create the output file
     fs.writeFileSync(outputFilePath, "");
 
@@ -1303,5 +1342,55 @@ export class ECJsonMarkdownGenerator {
 
     // Remove the extra blank line
     removeExtraBlankLine(outputFilePath, outputFilePath);
+  }
+
+  public static remarksHeader (outputFilePath: string, schema: Schema, nonReleaseFlag: boolean) {
+    fs.appendFileSync(outputFilePath, "---\n");
+    fs.appendFileSync(outputFilePath, "noEditThisPage: true\n");
+    fs.appendFileSync(outputFilePath, "remarksTarget: " + schema.name + ".ecschema.md\n");
+    fs.appendFileSync(outputFilePath, "---\n\n");
+    fs.appendFileSync(outputFilePath, "# " + schema.name + "\n\n");
+
+    if (nonReleaseFlag) {
+      fs.appendFileSync(outputFilePath, formatWarningAlert("This documentation represents a nonreleased version of this schema") + "\n\n");
+    }
+  }
+
+  public static remarksClasses(outputFilePath: string, schema: Schema, classType: string) {
+    const classItems = this.getSortedSchemaItems(schema, classType);
+
+    // If the list is empty or undefined, return
+    if (!classItems || classItems.length === 0) return;
+
+    // Write the h3 for the section
+    const h3 = classType.replace(/([A-Z])/g, " $1").trim();
+    fs.appendFileSync(outputFilePath, `## ${h3}\n\n`);
+
+    for (const item of classItems) {
+      fs.appendFileSync(outputFilePath, `### ${item.name}\n\n`);
+      if (classType === "RelationshipClass") {
+        fs.appendFileSync(outputFilePath, `#### Source\n\n`);
+        fs.appendFileSync(outputFilePath, `#### Target\n\n`);
+      }
+    }
+  }
+
+  /**
+   * Loads a schema and its references into memory and drives the
+   * remarks file generation
+   * @param schemaPath path to SchemaJson to load
+   * @param outputFilePath Path to the output file to write to
+   */
+  public genRemarks(schemaPath: string, outputFilePath: string, nonReleaseFlag = false) {
+    const schema = this.genPrep(schemaPath, outputFilePath);
+
+    // Create the output file
+    fs.writeFileSync(outputFilePath, "");
+    ECJsonMarkdownGenerator.remarksHeader(outputFilePath, schema, nonReleaseFlag);
+
+    const classTypes = ["EntityClass", "KindOfQuantity", "RelationshipClass", "Enumeration", "Mixin", "CustomAttributeClass", "StructClass", "PropertyCategory", "Format", "Unit", "UnitSystem", "Phenomenon"];
+    for (const type of classTypes) {
+      ECJsonMarkdownGenerator.remarksClasses(outputFilePath, schema, type);
+    }
   }
 }
