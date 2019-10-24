@@ -717,16 +717,17 @@ export class ECJsonMarkdownGenerator {
     // Write the table header
     fs.appendFileSync(outputFilePath, "\n");
     fs.appendFileSync(outputFilePath,
-        "|    Label    |    Value    |\n" +
-        "|:------------|:------------|\n");
+        "|    Label    |    Value    |    Description    |\n" +
+        "|:------------|:------------|:------------------|\n");
 
     for (const enumerator of enumerators) {
       const label = helper(enumerator.label).replace(/\|/g, "\\|");
       const value = helper(enumerator.value);
+      const description = helper(enumerator.description).replace(/\|/g, "\\|");
 
       // Write the table row
       fs.appendFileSync(outputFilePath,
-        "|" + label + "|" + value + "|\n");
+        "|" + label + "|" + value + "|" + description + "|\n");
     }
     fs.appendFileSync(outputFilePath, "\n");
   }
