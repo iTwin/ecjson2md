@@ -1913,6 +1913,33 @@ describe("ecjson2md", () => {
                 isStrict : true,
                 schemaItemType : "Enumeration",
               },
+              WithDescriptionEnum : {
+                type : "int",
+                enumerators : [
+                  {
+                    name : "Zero",
+                    value : 0,
+                    description : "Short Description",
+                  },
+                  {
+                    name : "One",
+                    value : 1,
+                    description : "Description with \"commas\" ",
+                  },
+                  {
+                    name : "Two",
+                    value : 2,
+                    description : "",
+                  },
+                  {
+                    name : "Three",
+                    value : 3,
+                    description : "Multi line description: Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text",
+                  },
+                ],
+                isStrict : true,
+                schemaItemType : "Enumeration"
+              }
             },
           };
 
@@ -1942,9 +1969,9 @@ describe("ecjson2md", () => {
 
           **Strict:** true
           
-          |    Label    |    Value    |
-          |:------------|:------------|
-          |IntThing|0|
+          |    Label    |    Value    |    Description    |
+          |:------------|:------------|:------------------|
+          |IntThing|0||
           
           [!IndentEnd]\n`);
 
@@ -1971,9 +1998,9 @@ describe("ecjson2md", () => {
 
           **Strict:** true
 
-          |    Label    |    Value    |
-          |:------------|:------------|
-          |StringThing|zero|
+          |    Label    |    Value    |    Description    |
+          |:------------|:------------|:------------------|
+          |StringThing|zero||
           
           [!IndentEnd]\n`);
 
@@ -2025,13 +2052,13 @@ describe("ecjson2md", () => {
 
           **Strict:** true
 
-          |    Label    |    Value    |
-          |:------------|:------------|
-          |Zero|0|
-          |One|1|
-          |Two|2|
-          |Three|3|
-          |Four|4|
+          |    Label    |    Value    |    Description    |
+          |:------------|:------------|:------------------|
+          |Zero|0||
+          |One|1||
+          |Two|2||
+          |Three|3||
+          |Four|4||
           
           [!IndentEnd]\n`);
 
@@ -2058,18 +2085,50 @@ describe("ecjson2md", () => {
 
           **Strict:** true
 
-          |    Label    |    Value    |
-          |:------------|:------------|
-          ||0|
-          ||1|
-          ||2|
-          ||3|
-          ||4|
+          |    Label    |    Value    |    Description    |
+          |:------------|:------------|:------------------|
+          ||0||
+          ||1||
+          ||2||
+          ||3||
+          ||4||
 
           [!IndentEnd]\n`);
 
           // Act
           ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("NoLabelEnumerators"));
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+
+        it("should properly write an enumeration with descriptions", () => {
+          // Arrange
+          const correctLines = outputLiteralToArray(`
+          ### **WithDescriptionEnum** [!badge text="Enumeration" kind="info"]
+  
+          [!IndentStart]
+  
+          **Backing Type:** int
+  
+          **description:** &lt;No description&gt;
+  
+          **Strict:** true
+  
+          |    Label    |    Value    |    Description    |
+          |:------------|:------------|:------------------|
+          ||0|Short Description|
+          ||1|Description with \"commas\" |
+          ||2||
+          ||3|Multi line description: Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text|
+  
+          [!IndentEnd]\n`);
+  
+          // Act
+          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("WithDescriptionEnum"));
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);

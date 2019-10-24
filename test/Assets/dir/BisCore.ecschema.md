@@ -3150,10 +3150,10 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **Strict:** true
 
-|    Label    |    Value    |
-|:------------|:------------|
-|ReadOnly = Select\|Insert|3|
-|All = Select \| Insert \| Update|7|
+|    Label    |    Value    |    Description    |
+|:------------|:------------|:------------------|
+|ReadOnly = Select\|Insert|3||
+|All = Select \| Insert \| Update|7||
 
 [!IndentEnd]
 ### **CustomHandledPropertyStatementType** [!badge text="Enumeration" kind="info"]
@@ -3166,15 +3166,15 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 **Strict:** true
 
-|    Label    |    Value    |
-|:------------|:------------|
-|None|0|
-|Select|1|
-|Insert|2|
-|ReadOnly = Select\|Insert|3|
-|Update|4|
-|InsertUpdate = Insert \| Update|6|
-|All = Select \| Insert \| Update|7|
+|    Label    |    Value    |    Description    |
+|:------------|:------------|:------------------|
+|None|0||
+|Select|1||
+|Insert|2||
+|ReadOnly = Select\|Insert|3||
+|Update|4||
+|InsertUpdate = Insert \| Update|6||
+|All = Select \| Insert \| Update|7||
 
 [!IndentEnd]
 ## Mixin Classes
