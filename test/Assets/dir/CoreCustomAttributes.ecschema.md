@@ -26,11 +26,11 @@ Custom attributes to indicate core EC concepts, may include struct classes inten
 
 **Strict:** true
 
-|    Label    |    Value    |
-|:------------|:------------|
-||DateTime|
-||Date|
-||TimeOfDay|
+|    Label    |    Value    |    Description    |
+|:------------|:------------|:------------------|
+||DateTime||
+||Date||
+||TimeOfDay||
 
 [!IndentEnd]
 ### **DateTimeKind** [!badge text="Enumeration" kind="info"]
@@ -43,11 +43,11 @@ Custom attributes to indicate core EC concepts, may include struct classes inten
 
 **Strict:** true
 
-|    Label    |    Value    |
-|:------------|:------------|
-||Unspecified|
-||Utc|
-||Local|
+|    Label    |    Value    |    Description    |
+|:------------|:------------|:------------------|
+||Unspecified||
+||Utc||
+||Local||
 
 [!IndentEnd]
 ## Custom Attribute Classes
