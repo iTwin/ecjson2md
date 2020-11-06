@@ -9,7 +9,6 @@ import * as fs from "fs";
 import * as path from "path";
 import * as rimraf from "rimraf";
 import { SchemaContext, Schema, PropertyType, classModifierToString, SchemaJsonFileLocater, SchemaItemType } from "@bentley/ecschema-metadata";
-// import { outputFile } from "fs-extra";
 
 describe("ecjson2md", () => {
   describe("ECJsonMarkdownGenerator", () => {
@@ -3183,6 +3182,11 @@ describe("ecjson2md", () => {
               label: "Power",
               schemaItemType: "Phenomenon",
             },
+            POWER_RATIO: {
+              definition: "POWER*POWER(1)",
+              label: "Power Ratio",
+              schemaItemType: "Phenomenon",
+            },
             STATISTICS: {
               schemaItemType: "UnitSystem",
             },
@@ -3213,6 +3217,19 @@ describe("ecjson2md", () => {
               numerator: 1,
               denominator: 4,
             },
+            UnitF: {
+              schemaItemType: "Unit",
+              definition: "UnitE*UnitE(-1)",
+              label: "unit f",
+              phenomenon: "testSchema.POWER_RATIO",
+              unitSystem: "testSchema.SI",
+            },
+            InvUnitF: {
+              schemaItemType: "InvertedUnit",
+              invertsUnit: "testSchema.UnitF",
+              label: "inverts unit f",
+              unitSystem: "testSchema.STATISTICS",
+            }
           },
         };
         const context = new SchemaContext();
@@ -3336,6 +3353,28 @@ describe("ecjson2md", () => {
             assert.equal(outputLines[i], line);
           });
         });
+
+        it("should properly write inverted Unit", () => {
+          // Act
+          ECJsonMarkdownGenerator.writeInvertedUnit(outputFilePath, testSchema.getItemSync("InvUnitF"));
+
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **InvUnitF** (inverts unit f) [!badge text="InvertedUnit" kind="info"]\n
+          [!IndentStart]
+
+          **description:** &lt;No description&gt;\n
+          **Inverts Unit:** UnitF\n
+          **Phenomenon:** POWER_RATIO\n
+          **Unit System:** STATISTICS\n
+          [!IndentEnd]\n`);
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+
       });
 
       describe("writePhenomenon", () => {

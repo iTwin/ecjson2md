@@ -5687,6 +5687,45 @@ Standard Set of Unit definitions for the system
 **Unit System:** USCUSTOM
 
 [!IndentEnd]
+### **FT_HORIZONTAL_PER_FT_VERTICAL** [!badge text="InvertedUnit" kind="info"]
+
+[!IndentStart]
+
+**description:** &lt;No description&gt;
+
+**Inverts Unit:** FT_PER_FT
+
+**Phenomenon:** SLOPE
+
+**Unit System:** USCUSTOM
+
+[!IndentEnd]
+### **HORIZONTAL_PER_VERTICAL** [!badge text="InvertedUnit" kind="info"]
+
+[!IndentStart]
+
+**description:** &lt;No description&gt;
+
+**Inverts Unit:** VERTICAL_PER_HORIZONTAL
+
+**Phenomenon:** SLOPE
+
+**Unit System:** INTERNATIONAL
+
+[!IndentEnd]
+### **M_HORIZONTAL_PER_M_VERTICAL** [!badge text="InvertedUnit" kind="info"]
+
+[!IndentStart]
+
+**description:** &lt;No description&gt;
+
+**Inverts Unit:** M_PER_M
+
+**Phenomenon:** SLOPE
+
+**Unit System:** SI
+
+[!IndentEnd]
 ## Unit Systems
 
 ### **CGS** [!badge text="UnitSystem" kind="info"]

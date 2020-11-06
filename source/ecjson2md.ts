@@ -10,7 +10,7 @@ import {
   Mixin, OverrideFormat, primitiveTypeToString, PropertyCategory, PropertyType, RelationshipClass,
   RelationshipConstraint, Schema, SchemaContext, schemaItemTypeToString, SchemaJsonFileLocater,
   scientificTypeToString, strengthDirectionToString, strengthToString, StructClass, Unit, SchemaItemType,
-  SchemaXmlFileLocater, Phenomenon, UnitSystem, showSignOptionToString,
+  SchemaXmlFileLocater, Phenomenon, UnitSystem, showSignOptionToString, InvertedUnit,
 } from "@bentley/ecschema-metadata";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import { CustomAttributeSet } from "@bentley/ecschema-metadata/lib/Metadata/CustomAttribute";
@@ -385,7 +385,7 @@ export class ECJsonMarkdownGenerator {
     if (baseClass === undefined) return;
 
     let baseClassLink = "#" + baseClass.name.toLowerCase();
-    if (!outputFilePath.toLowerCase().includes("\\" + baseClass.schemaName.toLowerCase() + ".ecschema.md"))
+    if (!outputFilePath.toLowerCase().includes(baseClass.schemaName.toLowerCase() + ".ecschema.md"))
       baseClassLink = createSchemaLink(baseClass.schemaName) + baseClassLink;
     const baseClassName = baseClass.schemaName + ":" + baseClass.name;
 
@@ -1129,6 +1129,29 @@ export class ECJsonMarkdownGenerator {
     for (const unitClass of unitClasses) {
       this.writeUnitClass(outputFilePath, unitClass);
     }
+
+    const invertedUnits: InvertedUnit[] = this.getSortedSchemaItems(schema, "InvertedUnit");
+    if (!invertedUnits || invertedUnits.length === 0) return;
+
+    for (const invertedUnit of invertedUnits)
+      this.writeInvertedUnit(outputFilePath, invertedUnit);
+  }
+
+ public static writeInvertedUnit(outputFilePath: string, invertedUnit: InvertedUnit | undefined) {
+    if (undefined === invertedUnit) return;
+
+    this.writeSchemaItemHeader(outputFilePath, invertedUnit.name, invertedUnit.schemaItemType, invertedUnit.label, undefined, undefined);
+    this.indentStart(outputFilePath);
+    this.writeSchemaItemDescription(outputFilePath, invertedUnit.description);
+    if (undefined !== invertedUnit.invertsUnit && undefined !== invertedUnit.invertsUnit.name) {
+      const invertsUnit = invertedUnit.schema.getItemSync(invertedUnit.invertsUnit.name) as Unit;
+      fs.appendFileSync(outputFilePath, `**Inverts Unit:** ${invertsUnit.name}\n\n`);
+      if (undefined !== invertsUnit.phenomenon)
+        fs.appendFileSync(outputFilePath, `**Phenomenon:** ${invertsUnit.phenomenon.name}\n\n`);
+    }
+    if (undefined !== invertedUnit.unitSystem)
+      fs.appendFileSync(outputFilePath, `**Unit System:** ${invertedUnit.unitSystem.name}\n\n`);
+    this.indentStop(outputFilePath);
   }
 
   /**
