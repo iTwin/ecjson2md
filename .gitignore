@@ -3,5 +3,5 @@
 /out
 /.nyc_output
 /public
-**.js
 /source/Assets
+*.tgz
