@@ -1,9 +1,7 @@
-source
+*
+!lib/**/*.d.ts
+!lib/**/*.d.ts.map
+!lib/**/*.js
+!lib/**/*.js.map
+!bin/**/*.js
 test
-lib/**/test
-lib/**/maps
-out
-.nyc_output
-.vscode
-**ecschema.json
-**ecschema.md
