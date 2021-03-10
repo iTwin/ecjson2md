@@ -155,7 +155,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          # testSchema
+          # testSchema [!badge text="Schema" kind="info"]
 
           **alias:** testSchema
 
@@ -185,7 +185,7 @@ describe("ecjson2md", () => {
             // Assert
             const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
             const correctLines = outputLiteralToArray(`
-            # testSchema
+            # testSchema [!badge text="Schema" kind="info"]
 
             **alias:** testSchema
 
@@ -218,15 +218,13 @@ describe("ecjson2md", () => {
             // Assert
             const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
             const correctLines = outputLiteralToArray(`
-            # testSchema
+            # testSchema (testSchemaLabel) [!badge text="Schema" kind="info"]
 
             **alias:** testSchema
 
             **version:** 2.0.0
 
             This is the description
-
-            **displayLabel:** testSchemaLabel
 
             `);
 
@@ -297,7 +295,7 @@ describe("ecjson2md", () => {
 
         it("should properly write an empty description for a schema item", () => {
           // Arrange
-          const description = "&lt;No description&gt;";
+          const description = "";
 
           // Act
           ECJsonMarkdownGenerator.writeSchemaItemDescription(outputFilePath, description);
@@ -305,7 +303,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-            **description:** ${description}
+             ${description}
 
             `);
 
@@ -325,7 +323,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          **description:** ${description}
+           ${description}
 
           `);
 
@@ -369,7 +367,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          **displayLabel:** ${label}
+          **Display Label:** ${label}
 
           `);
 
@@ -522,7 +520,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          **baseClass:** [testSchema:EntityClassB](./testschema.ecschema.md#entityclassb)
+          **Base Class:** [testSchema:EntityClassB](./testschema.ecschema.md#entityclassb)
 
           `);
 
@@ -535,15 +533,6 @@ describe("ecjson2md", () => {
 
       describe("writeEntityClass", () => {
         const outputFilePath = path.join(outputDir, "entityClassTest.md");
-
-        beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
-        });
-
-        // Delete the output file after each test
-        afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
-        });
 
         beforeEach(() => {
           if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
@@ -580,8 +569,6 @@ describe("ecjson2md", () => {
           ### **EntityClassA** [!badge text="EntityClass" kind="info"]
 
           [!IndentStart]
-
-          **description:** &lt;No description&gt;
 
           [!IndentEnd]\n`);
 
@@ -620,7 +607,7 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
           
           [!IndentEnd]\n`);
 
@@ -663,9 +650,7 @@ describe("ecjson2md", () => {
           
           [!IndentStart]
 
-          **description:** &lt;No description&gt;
-
-          **baseClass:** [testSchema:EntityClassB](./testschema.ecschema.md#entityclassb)
+          **Base Class:** [testSchema:EntityClassB](./testschema.ecschema.md#entityclassb)
           
           [!IndentEnd]\n`);
 
@@ -703,8 +688,6 @@ describe("ecjson2md", () => {
           ### **EntityClassA** (entityLabel) [!badge text="EntityClass" kind="info"]
 
           [!IndentStart]
-
-          **description:** &lt;No description&gt;
           
           [!IndentEnd]\n`);
 
@@ -749,9 +732,9 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
 
-          **baseClass:** [testSchema:EntityClassB](./testschema.ecschema.md#entityclassb)
+          **Base Class:** [testSchema:EntityClassB](./testschema.ecschema.md#entityclassb)
           
           [!IndentEnd]\n`);
 
@@ -816,8 +799,6 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** &lt;No description&gt;
-
           #### Properties
 
           |    Name    |    Description    |    Type    |      Extended Type     |
@@ -875,8 +856,6 @@ describe("ecjson2md", () => {
           [!alert text="EntityClassA has been deprecated in favor of EntityClassB." kind="warning"]
 
           [!IndentStart]
-
-          **description:** &lt;No description&gt;
           
           [!IndentEnd]\n`);
 
@@ -952,8 +931,6 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** &lt;No description&gt;
-
           **Relative Error:** 0
 
           **Persistence Unit:** A
@@ -1022,7 +999,7 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** A Kind of Quantity
+           A Kind of Quantity
 
           **Relative Error:** 0
 
@@ -1086,8 +1063,6 @@ describe("ecjson2md", () => {
           ### **KindOfQuantityA** (KindOfQuantityA) [!badge text="KindOfQuantity" kind="info"]
 
           [!IndentStart]
-
-          **description:** &lt;No description&gt;
 
           **Relative Error:** 0
 
@@ -1199,7 +1174,7 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** A Kind of Quantity
+           A Kind of Quantity
 
           **Relative Error:** 0
 
@@ -1287,20 +1262,18 @@ describe("ecjson2md", () => {
           const correctLines = outputLiteralToArray(`
           ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"]
 
-          [!IndentStart]
-
-          **description:** &lt;No description&gt;
+          [!IndentStart]   
 
           **Strength:** Referencing
 
-          **strengthDirection:** Forward
+          **Strength Direction:** Forward
 
           #### Source
           [!IndentStart]
 
-          **isPolymorphic:** false
+          **Is Polymorphic:** false
 
-          **roleLabel:** relates to
+          **Role Label:** relates to
 
           **multiplicity:** (0..*)
 
@@ -1310,9 +1283,9 @@ describe("ecjson2md", () => {
           #### Target
           [!IndentStart]
 
-          **isPolymorphic:** true
+          **Is Polymorphic:** true
 
-          **roleLabel:** is related by
+          **Role Label:** is related by
 
           **multiplicity:** (1..1)
 
@@ -1382,18 +1355,18 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
 
           **Strength:** Referencing
 
-          **strengthDirection:** Forward
+          **Strength Direction:** Forward
 
           #### Source
           [!IndentStart]
 
-          **isPolymorphic:** false
+          **Is Polymorphic:** false
 
-          **roleLabel:** relates to
+          **Role Label:** relates to
 
           **multiplicity:** (0..*)
 
@@ -1403,9 +1376,9 @@ describe("ecjson2md", () => {
           #### Target
           [!IndentStart]
 
-          **isPolymorphic:** true
+          **Is Polymorphic:** true
 
-          **roleLabel:** is related by
+          **Role Label:** is related by
 
           **multiplicity:** (1..1)
 
@@ -1475,20 +1448,18 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** &lt;No description&gt;
-
-          **baseClass:** [testSchema:EntityClassD](./testschema.ecschema.md#entityclassd)
+          **Base Class:** [testSchema:EntityClassD](./testschema.ecschema.md#entityclassd)
 
           **Strength:** Referencing
 
-          **strengthDirection:** Forward
+          **Strength Direction:** Forward
 
           #### Source
           [!IndentStart]
 
-          **isPolymorphic:** false
+          **Is Polymorphic:** false
 
-          **roleLabel:** relates to
+          **Role Label:** relates to
 
           **multiplicity:** (0..*)
 
@@ -1498,9 +1469,9 @@ describe("ecjson2md", () => {
           #### Target
           [!IndentStart]
 
-          **isPolymorphic:** true
+          **Is Polymorphic:** true
 
-          **roleLabel:** is related by
+          **Role Label:** is related by
 
           **multiplicity:** (1..1)
 
@@ -1570,20 +1541,18 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** &lt;No description&gt;
-
-          **baseClass:** [testSchema:EntityClassD](./testschema.ecschema.md#entityclassd)
+          **Base Class:** [testSchema:EntityClassD](./testschema.ecschema.md#entityclassd)
 
           **Strength:** Referencing
 
-          **strengthDirection:** Forward
+          **Strength Direction:** Forward
 
           #### Source
           [!IndentStart]
 
-          **isPolymorphic:** false
+          **Is Polymorphic:** false
 
-          **roleLabel:** relates to
+          **Role Label:** relates to
 
           **multiplicity:** (0..*)
 
@@ -1593,9 +1562,9 @@ describe("ecjson2md", () => {
           #### Target
           [!IndentStart]
 
-          **isPolymorphic:** true
+          **Is Polymorphic:** true
 
-          **roleLabel:** is related by
+          **Role Label:** is related by
 
           **multiplicity:** (1..1)
 
@@ -1665,18 +1634,16 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** &lt;No description&gt;
-
           **Strength:** Referencing
 
-          **strengthDirection:** Forward
+          **Strength Direction:** Forward
 
           #### Source
           [!IndentStart]
 
-          **isPolymorphic:** false
+          **Is Polymorphic:** false
 
-          **roleLabel:** relates to
+          **Role Label:** relates to
 
           **multiplicity:** (0..*)
 
@@ -1686,9 +1653,9 @@ describe("ecjson2md", () => {
           #### Target
           [!IndentStart]
 
-          **isPolymorphic:** true
+          **Is Polymorphic:** true
 
-          **roleLabel:** is related by
+          **Role Label:** is related by
 
           **multiplicity:** (1..1)
 
@@ -1772,18 +1739,16 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** &lt;No description&gt;
-
           **Strength:** Referencing
 
-          **strengthDirection:** Forward
+          **Strength Direction:** Forward
 
           #### Source
           [!IndentStart]
 
-          **isPolymorphic:** false
+          **Is Polymorphic:** false
 
-          **roleLabel:** relates to
+          **Role Label:** relates to
 
           **multiplicity:** (0..*)
 
@@ -1795,9 +1760,9 @@ describe("ecjson2md", () => {
           #### Target
           [!IndentStart]
 
-          **isPolymorphic:** true
+          **Is Polymorphic:** true
 
-          **roleLabel:** is related by
+          **Role Label:** is related by
 
           **multiplicity:** (1..1)
 
@@ -1964,8 +1929,6 @@ describe("ecjson2md", () => {
 
           **Backing Type:** int
 
-          **description:** &lt;No description&gt;
-
           **Strict:** true
           
           |    Label    |    Value    |    Description    |
@@ -1991,9 +1954,7 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **Backing Type:** string
-
-          **description:** &lt;No description&gt;
+          **Backing Type:** string    
 
           **Strict:** true
 
@@ -2022,8 +1983,6 @@ describe("ecjson2md", () => {
 
           **Backing Type:** string
 
-          **description:** &lt;No description&gt;
-
           **Strict:** true
           [!IndentEnd]\n`);
 
@@ -2046,8 +2005,6 @@ describe("ecjson2md", () => {
           [!IndentStart]
 
           **Backing Type:** int
-
-          **description:** &lt;No description&gt;
 
           **Strict:** true
 
@@ -2080,8 +2037,6 @@ describe("ecjson2md", () => {
 
           **Backing Type:** int
 
-          **description:** &lt;No description&gt;
-
           **Strict:** true
 
           |    Label    |    Value    |    Description    |
@@ -2112,8 +2067,6 @@ describe("ecjson2md", () => {
           [!IndentStart]
   
           **Backing Type:** int
-  
-          **description:** &lt;No description&gt;
   
           **Strict:** true
   
@@ -2308,9 +2261,7 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** &lt;No description&gt;
-
-          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
+          **Applies To:** [EntityA](./testschema.ecschema.md#entitya)
           
           [!IndentEnd]\n`);
 
@@ -2331,9 +2282,9 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
 
-          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
+          **Applies To:** [EntityA](./testschema.ecschema.md#entitya)
           
           [!IndentEnd]\n`);
 
@@ -2354,11 +2305,9 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** &lt;No description&gt;
+          **Base Class:** [testSchema:EntityB](./testschema.ecschema.md#entityb)
 
-          **baseClass:** [testSchema:EntityB](./testschema.ecschema.md#entityb)
-
-          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
+          **Applies To:** [EntityA](./testschema.ecschema.md#entitya)
           
           [!IndentEnd]\n`);
 
@@ -2379,9 +2328,7 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** &lt;No description&gt;
-
-          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
+          **Applies To:** [EntityA](./testschema.ecschema.md#entitya)
           
           [!IndentEnd]\n`);
 
@@ -2402,11 +2349,11 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
 
-          **baseClass:** [testSchema:EntityB](./testschema.ecschema.md#entityb)
+          **Base Class:** [testSchema:EntityB](./testschema.ecschema.md#entityb)
 
-          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
+          **Applies To:** [EntityA](./testschema.ecschema.md#entitya)
           
           [!IndentEnd]\n`);
 
@@ -2427,9 +2374,7 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** &lt;No description&gt;
-
-          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
+          **Applies To:** [EntityA](./testschema.ecschema.md#entitya)
 
           #### Properties
 
@@ -2459,11 +2404,11 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
 
-          **baseClass:** [testSchema:EntityB](./testschema.ecschema.md#entityb)
+          **Base Class:** [testSchema:EntityB](./testschema.ecschema.md#entityb)
 
-          **appliesTo:** [EntityA](./testschema.ecschema.md#entitya)
+          **Applies To:** [EntityA](./testschema.ecschema.md#entitya)
 
           #### Properties
 
@@ -2576,8 +2521,6 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** &lt;No description&gt;
-
           **Applies to:** AnyProperty
 
           [!IndentEnd]\n`);
@@ -2599,7 +2542,7 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
 
           **Applies to:** AnyProperty
           
@@ -2622,9 +2565,9 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
 
-          **baseClass:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
+          **Base Class:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
 
           **Applies to:** AnyProperty
           
@@ -2647,9 +2590,9 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
 
-          **baseClass:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
+          **Base Class:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
 
           **Applies to:** AnyProperty
 
@@ -2676,9 +2619,7 @@ describe("ecjson2md", () => {
           const correctLines = outputLiteralToArray(`
           ### **CACWithMultipleProperties** [!badge text="CustomAttributeClass" kind="info"]
 
-          [!IndentStart]
-
-          **description:** &lt;No description&gt;
+          [!IndentStart] 
 
           **Applies to:** AnyProperty
 
@@ -2795,8 +2736,6 @@ describe("ecjson2md", () => {
           ### **PlainStruct** *Sealed* [!badge text="StructClass" kind="info"]
 
           [!IndentStart]
-
-          **description:** &lt;No description&gt;
           
           [!IndentEnd]\n`);
 
@@ -2817,7 +2756,7 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
           
           [!IndentEnd]\n`);
 
@@ -2838,7 +2777,7 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
           
           [!IndentEnd]\n`);
 
@@ -2859,9 +2798,9 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
 
-          **baseClass:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
+          **Base Class:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
           
           [!IndentEnd]\n`);
 
@@ -2882,9 +2821,9 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
 
-          **baseClass:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
+          **Base Class:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
 
           #### Properties
 
@@ -2910,8 +2849,6 @@ describe("ecjson2md", () => {
           ### **StructProperties** *Sealed* [!badge text="StructClass" kind="info"]
 
           [!IndentStart]
-
-          **description:** &lt;No description&gt;
 
           #### Properties
 
@@ -2977,8 +2914,6 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** &lt;No description&gt;
-          
           [!IndentEnd]\n`);
 
           // Act
@@ -2998,7 +2933,7 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
           
           [!IndentEnd]\n`);
 
@@ -3019,7 +2954,7 @@ describe("ecjson2md", () => {
 
           [!IndentStart]
 
-          **description:** this is a description
+           this is a description
           
           [!IndentEnd]\n`);
 
@@ -3088,7 +3023,7 @@ describe("ecjson2md", () => {
           **Precision:** 6\n
           **Show Sign Option:** OnlyNegative\n
           **Format Traits**\n
-          **uomSeparator:** <code> </code> (Space)\n
+          **Uom Separator:** <code> </code> (Space)\n
           [!IndentEnd]\n`);
           assert.equal(outputLines.length, correctLines.length);
           correctLines.map((line, i) => {
@@ -3110,7 +3045,7 @@ describe("ecjson2md", () => {
           **Precision:** 4\n
           **Show Sign Option:** NoSign\n
           **Format Traits**\n
-          **uomSeparator:** None\n
+          **Uom Separator:** None\n
           [!IndentEnd]\n`);
           assert.equal(outputLines.length, correctLines.length);
           correctLines.map((line, i) => {
@@ -3135,7 +3070,7 @@ describe("ecjson2md", () => {
           - KeepSingleZero
           - KeepDecimalPoint
           - ShowUnitLabel\n
-          **uomSeparator:** \`-\`\n
+          **Uom Separator:** \`-\`\n
           [!IndentEnd]\n`);
           assert.equal(outputLines.length, correctLines.length);
           correctLines.map((line, i) => {
@@ -3254,7 +3189,6 @@ describe("ecjson2md", () => {
           ### **UnitA** (label) [!badge text="Unit" kind="info"]\n
           [!IndentStart]
 
-          **description:** &lt;No description&gt;\n
           **Definition:** CM(2)\n
           **Phenomenon:** LUMINOSITY\n
           **Unit System:** SI\n
@@ -3275,7 +3209,6 @@ describe("ecjson2md", () => {
           ### **UnitB** (label) [!badge text="Unit" kind="info"]\n
           [!IndentStart]
 
-          **description:** &lt;No description&gt;\n
           **Definition:** CM(2)\n
           **Phenomenon:** POWER\n
           **Unit System:** SI\n
@@ -3296,7 +3229,6 @@ describe("ecjson2md", () => {
           ### **UnitC** (label) [!badge text="Unit" kind="info"]\n
           [!IndentStart]
 
-          **description:** &lt;No description&gt;\n
           **Definition:** CM(2)\n
           **Phenomenon:** POWER\n
           **Unit System:** SI\n
@@ -3318,7 +3250,6 @@ describe("ecjson2md", () => {
           ### **UnitD** (label) [!badge text="Unit" kind="info"]\n
           [!IndentStart]
 
-          **description:** &lt;No description&gt;\n
           **Definition:** CM(2)\n
           **Phenomenon:** POWER\n
           **Unit System:** SI\n
@@ -3341,7 +3272,6 @@ describe("ecjson2md", () => {
           ### **UnitE** (label) [!badge text="Unit" kind="info"]\n
           [!IndentStart]
 
-          **description:** &lt;No description&gt;\n
           **Definition:** CM(2)\n
           **Phenomenon:** POWER\n
           **Unit System:** SI\n
@@ -3364,7 +3294,6 @@ describe("ecjson2md", () => {
           ### **InvUnitF** (inverts unit f) [!badge text="InvertedUnit" kind="info"]\n
           [!IndentStart]
 
-          **description:** &lt;No description&gt;\n
           **Inverts Unit:** UnitF\n
           **Phenomenon:** POWER_RATIO\n
           **Unit System:** STATISTICS\n
@@ -3414,7 +3343,6 @@ describe("ecjson2md", () => {
           ### **PhenomenonA** [!badge text="Phenomenon" kind="info"]\n
           [!IndentStart]
 
-          **description:** &lt;No description&gt;\n
           **Definition:** This is a phenomenon test case.\n
           [!IndentEnd]\n`);
           assert.equal(outputLines.length, correctLines.length);
@@ -3464,7 +3392,6 @@ describe("ecjson2md", () => {
           ### **UnitSystemA** [!badge text="UnitSystem" kind="info"]\n
           [!IndentStart]
 
-          **description:** &lt;No description&gt;\n
           [!IndentEnd]\n`);
           assert.equal(outputLines.length, correctLines.length);
           correctLines.map((line, i) => {
@@ -3482,7 +3409,7 @@ describe("ecjson2md", () => {
           ### **UnitSystemB** [!badge text="UnitSystem" kind="info"]\n
           [!IndentStart]
 
-          **description:** UnitSystem test with description.\n
+           UnitSystem test with description.\n
           [!IndentEnd]\n`);
           assert.equal(outputLines.length, correctLines.length);
           correctLines.map((line, i) => {
@@ -4033,7 +3960,7 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputBuffer = fs.readFileSync(outputFilePath).toString();
-          const correctBuffer = "test\n";
+          const correctBuffer = "test\r\n";
           assert.equal(outputBuffer, correctBuffer);
         });
 
@@ -4046,7 +3973,7 @@ describe("ecjson2md", () => {
 
           // Assert
           const outputBuffer = fs.readFileSync(outputFilePath).toString();
-          const correctBuffer = "test\n";
+          const correctBuffer = "test\r\n";
           assert.equal(outputBuffer, correctBuffer);
         });
 
