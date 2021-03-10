@@ -29,8 +29,8 @@ export function removeExtraBlankLine(inputFilePath: string, outputFilePath: stri
   const fileBuffer = fs.readFileSync(inputFilePath).toString();
 
   // If there are two new lines at the end of the file, remove one
-  if (fileBuffer[fileBuffer.length - 1] === "\n" && fileBuffer[fileBuffer.length - 2] === "\n")
-    fs.writeFileSync(outputFilePath, fileBuffer.slice(0, -1));
+  if (fileBuffer[fileBuffer.length - 1] === "\n" && fileBuffer[fileBuffer.length - 3] === "\n")
+    fs.writeFileSync(outputFilePath, fileBuffer.slice(0, -2));
   // If there are no blank lines to remove and the input file is not the same as the output file, write the new file
   else if (inputFilePath !== outputFilePath)
     fs.writeFileSync(outputFilePath, fileBuffer);
@@ -225,7 +225,14 @@ export class ECJsonMarkdownGenerator {
    */
   public static writeSchema(outputMDFile: any, schema: Schema) {
     // Write the name of the schema as an <h1>
-    fs.appendFileSync(outputMDFile, "# " + schema.name + "\n\n");
+    fs.appendFileSync(outputMDFile, "# " + schema.name);
+
+    // Write the label
+    if (schema.label !== undefined)
+      fs.appendFileSync(outputMDFile, ` (${schema.label})`);
+
+    // Write Schema badge
+    fs.appendFileSync(outputMDFile, ` ${formatBadge("Schema", "info")}\n\n`); // REMOVE ONE EXCESIVE EMPTY LINE
 
     // Write the alias of the schema
     if (schema.alias !== undefined)
@@ -236,10 +243,8 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputMDFile, "**version:** " + schema.readVersion + "." + schema.writeVersion + "." + schema.minorVersion + "\n\n");
 
     // Write the description of the schema as a <p>
-    if (schema.description !== undefined) fs.appendFileSync(outputMDFile, schema.description + "\n\n");
-
-    // Write the label
-    this.writeSchemaItemLabel(outputMDFile, schema.label);
+    if (schema.description !== undefined)
+      fs.appendFileSync(outputMDFile, schema.description + "\n\n");
   }
 
   /**
@@ -358,11 +363,10 @@ export class ECJsonMarkdownGenerator {
    */
   public static writeSchemaItemDescription(outputFilePath: string, description: string|undefined) {
     if (description === undefined) {
-      fs.appendFileSync(outputFilePath, "**description:** &lt;No description&gt;\n\n");
       return;
     }
 
-    fs.appendFileSync(outputFilePath, `**description:** ${description}\n\n`);
+    fs.appendFileSync(outputFilePath, `${description}\n\n`);
   }
 
   /**
@@ -373,7 +377,7 @@ export class ECJsonMarkdownGenerator {
   public static writeSchemaItemLabel(outputFilePath: string, label: string|undefined) {
     if (label === undefined) return;
 
-    fs.appendFileSync(outputFilePath, "**displayLabel:** " + label + "\n\n");
+    fs.appendFileSync(outputFilePath, "**Display Label:** " + label + "\n\n");
   }
 
   /**
@@ -389,7 +393,7 @@ export class ECJsonMarkdownGenerator {
       baseClassLink = createSchemaLink(baseClass.schemaName) + baseClassLink;
     const baseClassName = baseClass.schemaName + ":" + baseClass.name;
 
-    fs.appendFileSync(outputFilePath, "**baseClass:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
+    fs.appendFileSync(outputFilePath, "**Base Class:** " + formatLink(baseClassLink, baseClassName) + "\n\n");
   }
 
   /**
@@ -627,8 +631,8 @@ export class ECJsonMarkdownGenerator {
     this.indentStart(outputFilePath);
 
     // Write the constraint information
-    fs.appendFileSync(outputFilePath, "**isPolymorphic:** " + constraint.polymorphic + "\n\n");
-    fs.appendFileSync(outputFilePath, "**roleLabel:** " + constraint.roleLabel + "\n\n");
+    fs.appendFileSync(outputFilePath, "**Is Polymorphic:** " + constraint.polymorphic + "\n\n");
+    fs.appendFileSync(outputFilePath, "**Role Label:** " + constraint.roleLabel + "\n\n");
     fs.appendFileSync(outputFilePath, "**multiplicity:** " + constraint.multiplicity + "\n\n");
     fs.appendFileSync(outputFilePath, "#### Constraint Classes:\n");
 
@@ -671,7 +675,7 @@ export class ECJsonMarkdownGenerator {
 
     // Write the strength direction
     if (relationshipClass.strengthDirection !== undefined)
-      fs.appendFileSync(outputFilePath, "**strengthDirection:** " + strengthDirectionToString(relationshipClass.strengthDirection) + "\n\n");
+      fs.appendFileSync(outputFilePath, "**Strength Direction:** " + strengthDirectionToString(relationshipClass.strengthDirection) + "\n\n");
 
     // Write the source section
     fs.appendFileSync(outputFilePath, "#### Source\n");
@@ -809,7 +813,7 @@ export class ECJsonMarkdownGenerator {
       const appliesToLink = createSchemaLink(mixin.appliesTo.schemaName) + "#" + mixin.appliesTo.name.toLowerCase();
 
       // Write a link to what the mixin applies to
-      fs.appendFileSync(outputFilePath, "**appliesTo:** " + formatLink(appliesToLink, mixin.appliesTo.name) + "\n\n");
+      fs.appendFileSync(outputFilePath, "**Applies To:** " + formatLink(appliesToLink, mixin.appliesTo.name) + "\n\n");
     }
 
     // If the properties are undefined or empty, continue with next
@@ -1101,11 +1105,11 @@ export class ECJsonMarkdownGenerator {
     // Write uomSeparator
     // UGLY FORMATTING. FIX.
     if (formatClass.uomSeparator === "") {
-      fs.appendFileSync(outputFilePath, "**uomSeparator:** None\n\n");
+      fs.appendFileSync(outputFilePath, "**Uom Separator:** None\n\n");
     } else if (formatClass.uomSeparator === " ") {
-      fs.appendFileSync(outputFilePath, "**uomSeparator:** <code> </code> (Space)\n\n");
+      fs.appendFileSync(outputFilePath, "**Uom Separator:** <code> </code> (Space)\n\n");
     } else {
-      fs.appendFileSync(outputFilePath, "**uomSeparator:** `" + formatClass.uomSeparator + "`\n\n");
+      fs.appendFileSync(outputFilePath, "**Uom Separator:** `" + formatClass.uomSeparator + "`\n\n");
     }
 
     // Finish Indenation
