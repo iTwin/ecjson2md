@@ -231,12 +231,9 @@ export class ECJsonMarkdownGenerator {
     if (schema.label !== undefined)
       fs.appendFileSync(outputMDFile, ` (${schema.label})`);
 
-    // Write Schema badge
-    fs.appendFileSync(outputMDFile, ` ${formatBadge("Schema", "info")}\n\n`); // REMOVE ONE EXCESIVE EMPTY LINE
-
     // Write the alias of the schema
     if (schema.alias !== undefined)
-      fs.appendFileSync(outputMDFile, "**alias:** " + schema.alias + "\n\n");
+      fs.appendFileSync(outputMDFile, "\n\n**alias:** " + schema.alias + "\n\n");
 
     // Write the version of the schema
     if (schema.readVersion !== undefined && schema.writeVersion !== undefined && schema.minorVersion !== undefined)
