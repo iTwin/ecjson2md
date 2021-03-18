@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2019 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 
-import { ECJsonMarkdownGenerator, formatLink, formatWarningAlert, propertyTypeNumberToString, removeExtraBlankLine, prepSearchDirs } from "../source/ecjson2md";
+import { ECJsonMarkdownGenerator, formatLink, formatWarningAlert, propertyTypeNumberToString, removeExtraBlankLine, prepSearchDirs, schemaItemToGroupName } from "../source/ecjson2md";
 import { assert, expect } from "chai";
 import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
@@ -46,6 +46,86 @@ describe("ecjson2md", () => {
         assert.equal(ECJsonBadSearchPath.name, err.name);
       });
     });
+
+    describe("Schema table of contents generation", () => {
+      const outputDir = path.join(".", "test", "temp");
+
+      // Make the temp dir to store the output
+      before(() => {
+        if (!fs.existsSync(outputDir))
+          fs.mkdirSync(outputDir);
+      });
+
+      // Delete the temp dir
+      after(() => {
+        rimraf.sync(outputDir);
+      });
+
+      it ("should successfully generate table of contents for provided schema", () => {
+        const outputPath = path.join(outputDir, "contentTest.md");
+        // Arrange
+        const schemaJson = {
+          $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+          alias: "testSchema",
+          name: "testSchema",
+          version: "02.00.00",
+          items: {
+            UnitA : {
+                definition : "UnitA",
+                phenomenon : "testSchema.CURRENT",
+                schemaItemType : "Unit",
+                unitSystem : "testSchema.SI",
+            },
+            CURRENT : {
+                definition : "CURRENT",
+                label : "Current",
+                schemaItemType : "Phenomenon",
+            },
+            SI : {
+                schemaItemType : "UnitSystem",
+             },
+            DefaultReal : {
+                formatTraits : [ "keepSingleZero", "keepDecimalPoint" ],
+                label : "real",
+                precision : 6,
+                schemaItemType : "Format",
+                type : "Decimal",
+            },
+            KindOfQuantityA: {
+              schemaItemType: "KindOfQuantity",
+              label: "KindOfQuantityA",
+              relativeError: 0.0,
+              persistenceUnit : "testSchema.UnitA",
+              presentationUnits : [ "testSchema.DefaultReal[testSchema.UnitA]" ],
+            },
+          },
+        };
+
+      const context = new SchemaContext();
+      const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+      ECJsonMarkdownGenerator.generateTableOfContents(outputPath, testSchema);
+      const generatedTable = fs.readFileSync(outputPath).toString().split("\n");
+      const expectedTable = outputLiteralToArray(`
+      ## Table of contents
+      - [Kind Of Quantity Items](#kind-of-quantity-items)
+	      - [KindOfQuantityA](#kindofquantitya)
+      - [Units](#units)
+	      - [UnitA](#unita)
+      - [Phenomenon Classes](#phenomenon-classes)
+	      - [CURRENT](#current)
+      - [Unit Systems](#unit-systems)
+	      - [SI](#si)
+      - [Formats](#formats)
+        - [DefaultReal](#defaultreal)
+
+      `);
+      assert.equal(generatedTable.length, expectedTable.length);
+      expectedTable.map((line, i) => {
+        assert.equal(generatedTable[i].trim(), line);
+      });
+    });  
+  });
 
     describe("Schema markdown generation", () => {
       const outputDir = path.join(".", "test", "temp");
@@ -157,9 +237,9 @@ describe("ecjson2md", () => {
           const correctLines = outputLiteralToArray(`
           # testSchema
 
-          **alias:** testSchema
+          **Alias:** testSchema
 
-          **version:** 2.0.0
+          **Version:** 2.0.0
 
           `);
 
@@ -187,9 +267,9 @@ describe("ecjson2md", () => {
             const correctLines = outputLiteralToArray(`
             # testSchema
 
-            **alias:** testSchema
+            **Alias:** testSchema
 
-            **version:** 2.0.0
+            **Version:** 2.0.0
 
             This is the description
 
@@ -220,9 +300,9 @@ describe("ecjson2md", () => {
             const correctLines = outputLiteralToArray(`
             # testSchema (testSchemaLabel)
 
-            **alias:** testSchema
+            **Alias:** testSchema
 
-            **version:** 2.0.0
+            **Version:** 2.0.0
 
             This is the description
 
@@ -411,7 +491,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          **priority:** ${priority}
+          **Priority:** ${priority}
 
           `);
 
@@ -455,7 +535,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          **modifier:** ${classModifierToString(modifier)}
+          **Modifier:** ${classModifierToString(modifier)}
 
           `);
 
@@ -512,7 +592,7 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
-          const testBaseClass = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "EntityClass")[0].baseClass;
+          const testBaseClass = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, SchemaItemType.EntityClass)[0].baseClass;
 
           // Act
           ECJsonMarkdownGenerator.writeSchemaItemBaseClass(outputFilePath, testBaseClass);
@@ -1275,7 +1355,7 @@ describe("ecjson2md", () => {
 
           **Role Label:** relates to
 
-          **multiplicity:** (0..*)
+          **Multiplicity:** (0..*)
 
           #### Constraint Classes:
           - [EntityClassA](./testschema.ecschema.md#entityclassa)
@@ -1287,7 +1367,7 @@ describe("ecjson2md", () => {
 
           **Role Label:** is related by
 
-          **multiplicity:** (1..1)
+          **Multiplicity:** (1..1)
 
           #### Constraint Classes:
           - [EntityClassB](./testschema.ecschema.md#entityclassb)
@@ -1368,7 +1448,7 @@ describe("ecjson2md", () => {
 
           **Role Label:** relates to
 
-          **multiplicity:** (0..*)
+          **Multiplicity:** (0..*)
 
           #### Constraint Classes:
           - [EntityClassA](./testschema.ecschema.md#entityclassa)
@@ -1380,7 +1460,7 @@ describe("ecjson2md", () => {
 
           **Role Label:** is related by
 
-          **multiplicity:** (1..1)
+          **Multiplicity:** (1..1)
 
           #### Constraint Classes:
           - [EntityClassB](./testschema.ecschema.md#entityclassb)
@@ -1461,7 +1541,7 @@ describe("ecjson2md", () => {
 
           **Role Label:** relates to
 
-          **multiplicity:** (0..*)
+          **Multiplicity:** (0..*)
 
           #### Constraint Classes:
           - [EntityClassA](./testschema.ecschema.md#entityclassa)
@@ -1473,7 +1553,7 @@ describe("ecjson2md", () => {
 
           **Role Label:** is related by
 
-          **multiplicity:** (1..1)
+          **Multiplicity:** (1..1)
 
           #### Constraint Classes:
           - [EntityClassB](./testschema.ecschema.md#entityclassb)
@@ -1554,7 +1634,7 @@ describe("ecjson2md", () => {
 
           **Role Label:** relates to
 
-          **multiplicity:** (0..*)
+          **Multiplicity:** (0..*)
 
           #### Constraint Classes:
           - [EntityClassA](./testschema.ecschema.md#entityclassa)
@@ -1566,7 +1646,7 @@ describe("ecjson2md", () => {
 
           **Role Label:** is related by
 
-          **multiplicity:** (1..1)
+          **Multiplicity:** (1..1)
 
           #### Constraint Classes:
           - [EntityClassB](./testschema.ecschema.md#entityclassb)
@@ -1645,7 +1725,7 @@ describe("ecjson2md", () => {
 
           **Role Label:** relates to
 
-          **multiplicity:** (0..*)
+          **Multiplicity:** (0..*)
 
           #### Constraint Classes:
           - [EntityClassA](./testschema.ecschema.md#entityclassa)
@@ -1657,7 +1737,7 @@ describe("ecjson2md", () => {
 
           **Role Label:** is related by
 
-          **multiplicity:** (1..1)
+          **Multiplicity:** (1..1)
 
           #### Constraint Classes:
           - [EntityClassB](./testschema.ecschema.md#entityclassb)
@@ -1750,7 +1830,7 @@ describe("ecjson2md", () => {
 
           **Role Label:** relates to
 
-          **multiplicity:** (0..*)
+          **Multiplicity:** (0..*)
 
           #### Constraint Classes:
           - [EntityClassA](./testschema.ecschema.md#entityclassa)
@@ -1764,7 +1844,7 @@ describe("ecjson2md", () => {
 
           **Role Label:** is related by
 
-          **multiplicity:** (1..1)
+          **Multiplicity:** (1..1)
 
           #### Constraint Classes:
           - [EntityClassE](./testschema.ecschema.md#entityclasse)
@@ -2415,6 +2495,13 @@ describe("ecjson2md", () => {
           |    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
           |:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
           |propertyD||propertyDLabel||true|1|
+
+          <details> 
+          <summary>Inherited properties</summary>
+
+          |    Name    |    Description    |    Type    |      Extended Type     |
+          |:-----------|:------------------|:-----------|:-----------------------|
+          </details>
           
           [!IndentEnd]\n`);
 
@@ -2595,12 +2682,18 @@ describe("ecjson2md", () => {
           **Base Class:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
 
           **Applies to:** AnyProperty
-
           #### Properties
 
           |    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
           |:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
           |PropertyA||PropertyALabel||false|0|
+
+          <details>
+          <summary>Inherited properties</summary>
+
+          |    Name    |    Description    |    Type    |      Extended Type     |
+          |:-----------|:------------------|:-----------|:-----------------------|
+          </details>
           
           [!IndentEnd]\n`);
 
@@ -2622,7 +2715,6 @@ describe("ecjson2md", () => {
           [!IndentStart] 
 
           **Applies to:** AnyProperty
-
           #### Properties
 
           |    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
@@ -2830,7 +2922,14 @@ describe("ecjson2md", () => {
           |    Name    |  Description  |    Label    |  Category  |    Read Only     |    Priority    |
           |:-----------|:--------------|:------------|:-----------|:-----------------|:---------------|
           |propertyA||||false|0|
-          
+
+          <details>
+          <summary>Inherited properties</summary>
+
+          |    Name    |    Description    |    Type    |      Extended Type     |
+          |:-----------|:------------------|:-----------|:-----------------------|
+          </details>
+
           [!IndentEnd]\n`);
 
           // Act
@@ -3418,6 +3517,288 @@ describe("ecjson2md", () => {
         });
       });
 
+      describe("Inherited properties", () => {
+        const outputDir = path.join(".", "test", "temp");
+        const schemaJson = {
+          $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+          alias: "testSchema",
+          name: "testSchema",
+          version: "02.00.00",
+          items: {
+            UnitSystemA: {
+              schemaItemType: "UnitSystem",
+            },
+            UnitSystemB: {
+              schemaItemType: "UnitSystem",
+              description: "UnitSystem test with description.",
+            },
+            EntityA : {
+              schemaItemType : "EntityClass",
+             },
+            EntityB : {
+              schemaItemType : "EntityClass",
+             },
+            EntityC : {
+              baseClass : "testSchema.EntityWithProps",
+              schemaItemType : "EntityClass",
+            },
+            EntityWithProps : {
+              schemaItemType : "EntityClass",
+              properties :
+              [
+                {
+                  description: "description one",
+                  name: "NameOne",
+                  type: "PrimitiveProperty",
+                  typeName: "string",
+                },
+                {
+                  extendedTypeName: "Json",
+                  name: "NameTwo",
+                  type: "PrimitiveProperty",
+                  typeName: "string",
+                },
+              ],
+            },
+            StructItem : {
+              modifier : "sealed",
+              description  : "this is a description",
+              label : "StructLabel",
+              baseClass : "testSchema.EntityWithProps",
+              schemaItemType : "StructClass",
+              properties :
+              [
+                {
+                  description: "struct prop one",
+                  name: "structPropOne",
+                  type: "PrimitiveProperty",
+                  typeName: "string",
+                },
+              ]
+            },
+            PlainMixin : {
+              appliesTo : "testSchema.EntityA",
+              baseClass : "testSchema.StructItem",
+              schemaItemType : "Mixin",
+            },
+            MixinWithBaseclass : {
+              appliesTo : "testSchema.EntityA",
+              baseClass : "testSchema.EntityB",
+              schemaItemType : "Mixin",
+            },
+            CACWithBaseClass : {
+              appliesTo : "AnyProperty",
+              description : "this is a description",
+              baseClass : "testSchema.PlainMixin",
+              modifier : "sealed",
+              schemaItemType : "CustomAttributeClass",
+            },
+          },
+        }
+
+        describe("correctly write classes with inherited properties", () => {
+          it("should correctly write struct class with inherited properties", () => {
+            const outputPath = path.join(outputDir, "structClassTest.md");
+  
+            const context = new SchemaContext();
+            const testSchema = Schema.fromJsonSync(schemaJson, context);
+             
+            ECJsonMarkdownGenerator.writeStructClass(outputPath, testSchema.getItemSync("StructItem"));
+  
+            const outputLines = fs.readFileSync(outputPath).toString().split("\n");
+            const correctLines = outputLiteralToArray(`
+            ### **StructItem** (StructLabel) *Sealed* [!badge text="StructClass" kind="info"]
+  
+            [!IndentStart]
+
+            this is a description
+
+            **Base Class:** [testSchema:EntityWithProps](./testschema.ecschema.md#entitywithprops)
+
+            #### Properties
+
+            |      Name    |  Description  |    Label    |  Category  |    Read Only     |    Priority    |
+            |:-----------|:--------------|:------------|:-----------|:-----------------|:---------------|
+            |structPropOne|struct prop one|||false|0|
+
+            <details>
+            <summary>Inherited properties</summary>
+
+            |    Name    |    Description    |    Type    |      Extended Type     |
+            |:-----------|:------------------|:-----------|:-----------------------|
+            |NameOne|description one|string||
+            |NameTwo||string|Json|
+            </details>
+
+            [!IndentEnd]\n`);
+  
+            assert.equal(outputLines.length, correctLines.length);
+            outputLines.map((line, i) => {
+              assert.equal(outputLines[i], line);
+            });
+          });
+
+          it("should correctly write entityClass with inherited properties", () => {
+            const outputPath = path.join(outputDir, "entityClassInheritedTest.md");
+  
+            const context = new SchemaContext();
+            const testSchema = Schema.fromJsonSync(schemaJson, context);
+             
+            ECJsonMarkdownGenerator.writeEntityClass(outputPath, testSchema.getItemSync("EntityC"));
+  
+            const outputLines = fs.readFileSync(outputPath).toString().split("\n");
+            const correctLines = outputLiteralToArray(`
+              ### **EntityC** [!badge text="EntityClass" kind="info"]
+
+              [!IndentStart]
+
+              **Base Class:** [testSchema:EntityWithProps](./testschema.ecschema.md#entitywithprops)
+
+              <details>
+              <summary>Inherited properties</summary>
+
+              |    Name    |    Description    |    Type    |      Extended Type     |
+              |:-----------|:------------------|:-----------|:-----------------------|
+              |NameOne|description one|string||
+              |NameTwo||string|Json|
+              </details>
+
+              [!IndentEnd]
+              `);
+
+            assert.equal(outputLines.length, correctLines.length);
+            outputLines.map((line, i) => {
+              assert.equal(outputLines[i], line);
+            });
+          });
+
+          it("should correctly write mixin with inherited properties", () => {
+            const outputPath = path.join(outputDir, "mixinClassTest.md");
+  
+            const context = new SchemaContext();
+            const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+            ECJsonMarkdownGenerator.writeMixinClass(outputPath, testSchema.getItemSync("PlainMixin"));
+  
+            const outputLines = fs.readFileSync(outputPath).toString().split("\n");
+            const correctLines = outputLiteralToArray(`    
+            ### **PlainMixin** *Abstract* [!badge text="Mixin" kind="info"]
+
+            [!IndentStart]
+
+            **Base Class:** [testSchema:StructItem](./testschema.ecschema.md#structitem)
+
+            **Applies To:** [EntityA](./testschema.ecschema.md#entitya)
+
+            <details>
+            <summary>Inherited properties</summary>
+
+            |    Name    |    Description    |    Type    |      Extended Type     |
+            |:-----------|:------------------|:-----------|:-----------------------|
+            |NameOne|description one|string||
+            |NameTwo||string|Json|
+            |structPropOne|struct prop one|string||
+            </details>
+
+            [!IndentEnd]
+            `);
+
+            assert.equal(outputLines.length, correctLines.length);
+            outputLines.map((line, i) => {
+              assert.equal(outputLines[i], line);
+            });
+          });
+
+          it("should correctly write customAttribute class with inherited properties", () => {
+            const outputPath = path.join(outputDir, "customAttributeInheritTest.md");
+  
+            const context = new SchemaContext();
+            const testSchema = Schema.fromJsonSync(schemaJson, context);
+
+            ECJsonMarkdownGenerator.writeCustomAttributeClass(outputPath, testSchema.getItemSync("CACWithBaseClass"));
+  
+            const outputLines = fs.readFileSync(outputPath).toString().split("\n");
+            const correctLines = outputLiteralToArray(`
+             ### **CACWithBaseClass** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+
+             [!IndentStart]
+
+             this is a description
+
+             **Base Class:** [testSchema:PlainMixin](./testschema.ecschema.md#plainmixin)
+
+             **Applies to:** AnyProperty
+
+             <details>
+             <summary>Inherited properties</summary>
+
+             |    Name    |    Description    |    Type    |      Extended Type     |
+             |:-----------|:------------------|:-----------|:-----------------------|
+             |NameOne|description one|string||
+             |NameTwo||string|Json|
+             |structPropOne|struct prop one|string||
+             </details>
+
+             [!IndentEnd]
+            `);
+
+            assert.equal(outputLines.length, correctLines.length);
+            outputLines.map((line, i) => {
+              assert.equal(outputLines[i], line);
+            });
+          });
+        });
+
+        it("should not write inherited properties table when there is no baseClass", () => {
+          const outputPath = path.join(outputDir, "nobaseTest.md");
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+           
+          ECJsonMarkdownGenerator.writeEntityClass(outputPath, testSchema.getItemSync("EntityA"));
+
+          const outputLines = fs.readFileSync(outputPath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **EntityA** [!badge text="EntityClass" kind="info"]
+
+          [!IndentStart]
+
+          [!IndentEnd]
+          `);
+
+          assert.equal(outputLines.length, correctLines.length);
+          outputLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+
+        it("should not write inherited properties table when baseClass does not have any properties", () => {
+          const outputPath = path.join(outputDir, "noPropertiesBaseTest.md");
+
+          const context = new SchemaContext();
+          const testSchema = Schema.fromJsonSync(schemaJson, context);
+           
+          ECJsonMarkdownGenerator.writeMixinClass(outputPath, testSchema.getItemSync("MixinWithBaseclass"));
+
+          const outputLines = fs.readFileSync(outputPath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          ### **MixinWithBaseclass** *Abstract* [!badge text="Mixin" kind="info"]
+
+          [!IndentStart]
+
+          **Base Class:** [testSchema:EntityB](./testschema.ecschema.md#entityb)
+
+          **Applies To:** [testSchema:EntityA](./testschema.ecschema.md#entitya)
+
+          [!IndentEnd]\n`);
+
+          assert.equal(outputLines.length, correctLines.length);
+          outputLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
+        });
+      });
+
       describe("Misc", () => {
         describe("getSortedSchemaItems", () => {
           const schemaJson = {
@@ -3585,7 +3966,7 @@ describe("ecjson2md", () => {
           });
 
           it("should return the sorted EntityClasses", () => {
-            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "EntityClass");
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, SchemaItemType.EntityClass);
             const expectedItems = ["EntityClassA", "EntityClassB", "EntityClassC"];
 
             assert.equal(sortedItems.length, expectedItems.length);
@@ -3595,7 +3976,7 @@ describe("ecjson2md", () => {
           });
 
           it("should return the sorted CustomAttributeClasses", () => {
-            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "CustomAttributeClass");
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, SchemaItemType.CustomAttributeClass);
             const expectedItems = ["CustomAttributeClassA", "CustomAttributeClassB", "CustomAttributeClassC"];
 
             assert.equal(sortedItems.length, expectedItems.length);
@@ -3605,7 +3986,7 @@ describe("ecjson2md", () => {
           });
 
           it("should return the sorted Enumerations", () => {
-            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "Enumeration");
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, SchemaItemType.Enumeration);
             const expectedItems = ["EnumerationA", "EnumerationB", "EnumerationC"];
 
             assert.equal(sortedItems.length, expectedItems.length);
@@ -3615,7 +3996,7 @@ describe("ecjson2md", () => {
           });
 
           it("should return the sorted KindOfQuantities", () => {
-            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "KindOfQuantity");
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, SchemaItemType.KindOfQuantity);
             const expectedItems = ["KindOfQuantityA", "KindOfQuantityB", "KindOfQuantityC"];
 
             assert.equal(sortedItems.length, expectedItems.length);
@@ -3625,7 +4006,7 @@ describe("ecjson2md", () => {
           });
 
           it("should return the sorted RelationshipClasses", () => {
-            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "RelationshipClass");
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, SchemaItemType.RelationshipClass);
             const expectedItems = ["RelationshipClassA", "RelationshipClassB", "RelationshipClassC"];
 
             assert.equal(sortedItems.length, expectedItems.length);
@@ -3635,7 +4016,7 @@ describe("ecjson2md", () => {
           });
 
           it("should return the sorted Mixins", () => {
-            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "Mixin");
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, SchemaItemType.Mixin);
             const expectedItems = ["MixinA", "MixinB", "MixinC"];
 
             assert.equal(sortedItems.length, expectedItems.length);
@@ -3645,7 +4026,7 @@ describe("ecjson2md", () => {
           });
 
           it("should return the sorted list of property categories", () => {
-            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, "PropertyCategory");
+            const sortedItems = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, SchemaItemType.PropertyCategory);
             const expectedItems = ["PropertyCategoryA", "PropertyCategoryB", "PropertyCategoryC"];
 
             assert.equal(sortedItems.length, expectedItems.length);
@@ -3698,6 +4079,23 @@ describe("ecjson2md", () => {
             assert.equal(propertyTypeNumberToString(PropertyType.String_Enumeration_Array), "string enum array");
             assert.equal(propertyTypeNumberToString(PropertyType.IGeometry), "IGeometry");
             assert.equal(propertyTypeNumberToString(PropertyType.IGeometry_Array), "IGeometry array");
+          });
+
+          it ("should correctly convert schemaItemType to group name", () => {
+            assert.equal(schemaItemToGroupName(SchemaItemType.EntityClass), "Entity Classes");
+            assert.equal(schemaItemToGroupName(SchemaItemType.Constant), "Constants");
+            assert.equal(schemaItemToGroupName(SchemaItemType.CustomAttributeClass), "Custom Attribute Classes");
+            assert.equal(schemaItemToGroupName(SchemaItemType.Enumeration), "Enumerations");
+            assert.equal(schemaItemToGroupName(SchemaItemType.Format), "Formats");
+            assert.equal(schemaItemToGroupName(SchemaItemType.InvertedUnit), "Inverted Units");
+            assert.equal(schemaItemToGroupName(SchemaItemType.KindOfQuantity), "Kind Of Quantity Items");
+            assert.equal(schemaItemToGroupName(SchemaItemType.Mixin), "Mixins");
+            assert.equal(schemaItemToGroupName(SchemaItemType.Phenomenon), "Phenomenon Classes");
+            assert.equal(schemaItemToGroupName(SchemaItemType.PropertyCategory), "Property Categories");
+            assert.equal(schemaItemToGroupName(SchemaItemType.RelationshipClass), "Relationship Classes");
+            assert.equal(schemaItemToGroupName(SchemaItemType.StructClass), "Struct Classes");
+            assert.equal(schemaItemToGroupName(SchemaItemType.Unit), "Units");
+            assert.equal(schemaItemToGroupName(SchemaItemType.UnitSystem), "Unit Systems");
           });
         });
 
