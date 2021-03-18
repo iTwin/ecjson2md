@@ -21,19 +21,16 @@ import { XmlParser } from "@bentley/ecschema-metadata/lib/Deserialization/XmlPar
 const PLACE_HOLDER = "";
 
 /**
- * Removes a consecutive blank line at the end of a file if there is one
+ * Removes blank lines at the end of a file if there are some
  * @param inputFilePath File that may have consecutive lines
  * @param outputFilePath File to create without consecutive lines
  */
-export function removeExtraBlankLine(inputFilePath: string, outputFilePath: string) {
+export function removeExtraBlankLines(inputFilePath: string, outputFilePath: string) {
   const fileBuffer = fs.readFileSync(inputFilePath).toString();
 
-  // If there are two new lines at the end of the file, remove one
-  if (fileBuffer[fileBuffer.length - 1] === "\n" && fileBuffer[fileBuffer.length - 3] === "\n")
-    fs.writeFileSync(outputFilePath, fileBuffer.slice(0, -2));
-  // If there are no blank lines to remove and the input file is not the same as the output file, write the new file
-  else if (inputFilePath !== outputFilePath)
-    fs.writeFileSync(outputFilePath, fileBuffer);
+  const trimedFile = fileBuffer.replace(/^\s+|\s+$/g, "");
+  if (inputFilePath !== outputFilePath)
+    fs.writeFileSync(outputFilePath, trimedFile);
 }
 
 /**
@@ -1481,7 +1478,7 @@ export class ECJsonMarkdownGenerator {
     ECJsonMarkdownGenerator.writeFormatClasses(outputFilePath, schema);
 
     // Remove the extra blank line
-    removeExtraBlankLine(outputFilePath, outputFilePath);
+    removeExtraBlankLines(outputFilePath, outputFilePath);
   }
 
   public static remarksHeader (outputFilePath: string, schema: Schema, nonReleaseFlag: boolean) {
