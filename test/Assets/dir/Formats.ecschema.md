@@ -6,11 +6,24 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 # Formats
 
-**alias:** f
+**Alias:** f
 
-**version:** 1.0.0
+**Version:** 1.0.0
 
 Standard Set of Format definitions
+
+## Table of contents
+- [Formats](#formats)
+ - [AmerFI](#amerfi)
+ - [AmerI](#ameri)
+ - [AngleDMS](#angledms)
+ - [DefaultReal](#defaultreal)
+ - [DefaultRealU](#defaultrealu)
+ - [DefaultRealUNS](#defaultrealuns)
+ - [Fractional](#fractional)
+ - [HMS](#hms)
+ - [StationZ_1000_3](#stationz_1000_3)
+ - [StationZ_100_2](#stationz_100_2)
 
 ## Formats
 
