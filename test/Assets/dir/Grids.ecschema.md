@@ -6,9 +6,56 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 # Grids
 
-**alias:** grids
+**Alias:** grids
 
-**version:** 1.0.0
+**Version:** 1.0.0
+
+## Table of contents
+- [Entity Classes](#entity-classes)
+ - [CircularAxis](#circularaxis)
+ - [ElevationGrid](#elevationgrid)
+ - [ElevationGridSurface](#elevationgridsurface)
+ - [FreeGrid](#freegrid)
+ - [FreeGridSurface](#freegridsurface)
+ - [GeneralGridAxis](#generalgridaxis)
+ - [GeneralGridCurve](#generalgridcurve)
+ - [Grid](#grid)
+ - [GridArc](#gridarc)
+ - [GridArcSurface](#gridarcsurface)
+ - [GridAxis](#gridaxis)
+ - [GridCurve](#gridcurve)
+ - [GridCurveBundle](#gridcurvebundle)
+ - [GridCurvesSet](#gridcurvesset)
+ - [GridLine](#gridline)
+ - [GridPlanarSurface](#gridplanarsurface)
+ - [GridSpline](#gridspline)
+ - [GridSplineSurface](#gridsplinesurface)
+ - [GridSurface](#gridsurface)
+ - [OrthogonalAxisX](#orthogonalaxisx)
+ - [OrthogonalAxisY](#orthogonalaxisy)
+ - [OrthogonalGrid](#orthogonalgrid)
+ - [PlanCartesianGridSurface](#plancartesiangridsurface)
+ - [PlanCircumferentialGridSurface](#plancircumferentialgridsurface)
+ - [PlanGrid](#plangrid)
+ - [PlanGridArcSurface](#plangridarcsurface)
+ - [PlanGridPlanarSurface](#plangridplanarsurface)
+ - [PlanGridSplineSurface](#plangridsplinesurface)
+ - [PlanRadialGridSurface](#planradialgridsurface)
+ - [RadialAxis](#radialaxis)
+ - [RadialGrid](#radialgrid)
+ - [SketchArcGridSurface](#sketcharcgridsurface)
+ - [SketchGrid](#sketchgrid)
+ - [SketchLineGridSurface](#sketchlinegridsurface)
+ - [SketchSplineGridSurface](#sketchsplinegridsurface)
+- [Mixins](#mixins)
+ - [IPlanGridSurface](#iplangridsurface)
+- [Relationship Classes](#relationship-classes)
+ - [GridAxisContainsGridSurfaces](#gridaxiscontainsgridsurfaces)
+ - [GridCurveBundleCreatesGridCurve](#gridcurvebundlecreatesgridcurve)
+ - [GridCurveBundleRefersToGridCurvesSet](#gridcurvebundlereferstogridcurvesset)
+ - [GridDrivesGridSurface](#griddrivesgridsurface)
+ - [GridHasAxes](#gridhasaxes)
+ - [GridSurfaceDrivesGridCurveBundle](#gridsurfacedrivesgridcurvebundle)
 
 ## Entity Classes
 
@@ -19,6 +66,24 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 an element which groups all PlanCircumferentialGridSurface in a RadialGrid together
 
 **Base Class:** [Grids:GridAxis](#gridaxis)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Name||string||
+|Grid|Grid this axis belong to|[navigation](./grids.ecschema.md#gridhasaxes)||
+</details>
 
 [!IndentEnd]
 ### **ElevationGrid** [!badge text="EntityClass" kind="info"]
@@ -36,6 +101,32 @@ An ElevationGrid contains planar surfaces that are parallel to the local XY plan
 |DefaultElevationIncrement||double||
 |DefaultSurface2d||Bentley.Geometry.Common.IGeometry||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **ElevationGridSurface** [!badge text="EntityClass" kind="info"]
 
@@ -52,6 +143,33 @@ A PlanarGridSurface that is parallel with its Grid’s x-y plane (always contain
 |Elevation||double||
 |Surface2d||Bentley.Geometry.Common.IGeometry||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+</details>
+
 [!IndentEnd]
 ### **FreeGrid** [!badge text="EntityClass" kind="info"]
 
@@ -60,6 +178,32 @@ A PlanarGridSurface that is parallel with its Grid’s x-y plane (always contain
 An FreeGrid contains surfaces that do not need to follow any rules
 
 **Base Class:** [Grids:Grid](#grid)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
 
 [!IndentEnd]
 ### **FreeGridSurface** [!badge text="EntityClass" kind="info"]
@@ -70,6 +214,33 @@ a grid surface of any geometry.
 
 **Base Class:** [Grids:GridSurface](#gridsurface)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+</details>
+
 [!IndentEnd]
 ### **GeneralGridAxis** [!badge text="EntityClass" kind="info"]
 
@@ -78,6 +249,24 @@ a grid surface of any geometry.
 an element which groups GridSurfaces together in other grids
 
 **Base Class:** [Grids:GridAxis](#gridaxis)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Name||string||
+|Grid|Grid this axis belong to|[navigation](./grids.ecschema.md#gridhasaxes)||
+</details>
 
 [!IndentEnd]
 ### **GeneralGridCurve** [!badge text="EntityClass" kind="info"]
@@ -88,6 +277,32 @@ a gridcurve that is a result of 2 non-planar surfaces
 
 **Base Class:** [Grids:GridCurve](#gridcurve)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **Grid** *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -96,6 +311,32 @@ a gridcurve that is a result of 2 non-planar surfaces
 A grid is a collection of gridsurfaces.
 
 **Base Class:** [BisCore:SpatialLocationElement](./biscore.ecschema.md#spatiallocationelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
 
 [!IndentEnd]
 ### **GridArc** [!badge text="EntityClass" kind="info"]
@@ -106,6 +347,32 @@ a gridcurve that is a result of a planar and arc surface
 
 **Base Class:** [Grids:GridCurve](#gridcurve)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **GridArcSurface** *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -114,6 +381,33 @@ a gridcurve that is a result of a planar and arc surface
 A grid surface that is parallel to extruded arc.
 
 **Base Class:** [Grids:GridSurface](#gridsurface)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+</details>
 
 [!IndentEnd]
 ### **GridAxis** *Abstract* [!badge text="EntityClass" kind="info"]
@@ -131,6 +425,22 @@ an element which groups (typically parallel) GridSurfaces
 |Name||string||
 |Grid|Grid this axis belong to|[navigation](./grids.ecschema.md#gridhasaxes)||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **GridCurve** *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -139,6 +449,32 @@ an element which groups (typically parallel) GridSurfaces
 an element representing a gridcurve - typically intersection of 2 surfaces
 
 **Base Class:** [BisCore:SpatialLocationElement](./biscore.ecschema.md#spatiallocationelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
 
 [!IndentEnd]
 ### **GridCurveBundle** (GridCurve bundle) [!badge text="EntityClass" kind="info"]
@@ -153,6 +489,22 @@ an element representing a gridcurve - typically intersection of 2 surfaces
 |:-----------|:------------------|:-----------|:-----------------------|
 |CurvesSet|Created GridCurves will be put into this GridCurvesSet|[navigation](./grids.ecschema.md#gridcurvebundlereferstogridcurvesset)||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **GridCurvesSet** [!badge text="EntityClass" kind="info"]
 
@@ -161,6 +513,32 @@ an element representing a gridcurve - typically intersection of 2 surfaces
 a set which holds GridCurves
 
 **Base Class:** [BisCore:SpatialLocationElement](./biscore.ecschema.md#spatiallocationelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
 
 [!IndentEnd]
 ### **GridLine** [!badge text="EntityClass" kind="info"]
@@ -171,6 +549,32 @@ a gridcurve that is a result of 2 planar surfaces
 
 **Base Class:** [Grids:GridCurve](#gridcurve)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **GridPlanarSurface** *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -179,6 +583,33 @@ a gridcurve that is a result of 2 planar surfaces
 A planar grid surface element.
 
 **Base Class:** [Grids:GridSurface](#gridsurface)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+</details>
 
 [!IndentEnd]
 ### **GridSpline** [!badge text="EntityClass" kind="info"]
@@ -189,6 +620,32 @@ a gridcurve that is a result of a planar and a spline surface
 
 **Base Class:** [Grids:GridCurve](#gridcurve)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **GridSplineSurface** *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -197,6 +654,33 @@ a gridcurve that is a result of a planar and a spline surface
 A grid surface that is parallel to an extruded spline.
 
 **Base Class:** [Grids:GridSurface](#gridsurface)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+</details>
 
 [!IndentEnd]
 ### **GridSurface** *Abstract* [!badge text="EntityClass" kind="info"]
@@ -213,6 +697,32 @@ A grid surface element.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **OrthogonalAxisX** [!badge text="EntityClass" kind="info"]
 
@@ -222,6 +732,24 @@ an element which groups all PlanCartesianGridSurface in the X direction
 
 **Base Class:** [Grids:GridAxis](#gridaxis)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Name||string||
+|Grid|Grid this axis belong to|[navigation](./grids.ecschema.md#gridhasaxes)||
+</details>
+
 [!IndentEnd]
 ### **OrthogonalAxisY** [!badge text="EntityClass" kind="info"]
 
@@ -230,6 +758,24 @@ an element which groups all PlanCartesianGridSurface in the X direction
 an element which groups all PlanCartesianGridSurface in the Y direction
 
 **Base Class:** [Grids:GridAxis](#gridaxis)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Name||string||
+|Grid|Grid this axis belong to|[navigation](./grids.ecschema.md#gridhasaxes)||
+</details>
 
 [!IndentEnd]
 ### **OrthogonalGrid** [!badge text="EntityClass" kind="info"]
@@ -251,6 +797,34 @@ And OrthogonalGrid has all of its' surfaces orthogonal in either X or Y directio
 |DefaultStartExtentY||double||
 |DefaultEndExtentY||double||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|DefaultStartElevation||double||
+|DefaultEndElevation||double||
+</details>
+
 [!IndentEnd]
 ### **PlanCartesianGridSurface** [!badge text="EntityClass" kind="info"]
 
@@ -267,6 +841,35 @@ A planar plan grid surface that is perpendicular to the grid’s x-axis or y-axi
 |Coordinate|Origin of the surface|double||
 |StartExtent||double||
 |EndExtent||double||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+|StartElevation||double||
+|EndElevation||double||
+</details>
 
 [!IndentEnd]
 ### **PlanCircumferentialGridSurface** [!badge text="EntityClass" kind="info"]
@@ -285,6 +888,35 @@ An PlanGridArcSurface that is centered on the Grid’s origin.
 |StartAngle||double||
 |EndAngle||double||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+|StartElevation||double||
+|EndElevation||double||
+</details>
+
 [!IndentEnd]
 ### **PlanGrid** *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -301,6 +933,32 @@ a grid whose surfaces are curves parallel to the local x-y plane extruded along 
 |DefaultStartElevation||double||
 |DefaultEndElevation||double||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **PlanGridArcSurface** *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -309,6 +967,35 @@ a grid whose surfaces are curves parallel to the local x-y plane extruded along 
 An arc plangrid surface element.
 
 **Base Class:** [Grids:GridArcSurface](#gridarcsurface)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+|StartElevation||double||
+|EndElevation||double||
+</details>
 
 [!IndentEnd]
 ### **PlanGridPlanarSurface** *Abstract* [!badge text="EntityClass" kind="info"]
@@ -319,6 +1006,35 @@ A planar plangrid surface element.
 
 **Base Class:** [Grids:GridPlanarSurface](#gridplanarsurface)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+|StartElevation||double||
+|EndElevation||double||
+</details>
+
 [!IndentEnd]
 ### **PlanGridSplineSurface** *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -327,6 +1043,35 @@ A planar plangrid surface element.
 A spline plangrid surface element.
 
 **Base Class:** [Grids:GridSplineSurface](#gridsplinesurface)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+|StartElevation||double||
+|EndElevation||double||
+</details>
 
 [!IndentEnd]
 ### **PlanRadialGridSurface** [!badge text="EntityClass" kind="info"]
@@ -345,6 +1090,35 @@ A PlanGridPlanarSurface whose infinite plane contains the PlanGrid’s origin.
 |StartRadius||double||
 |EndRadius||double||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+|StartElevation||double||
+|EndElevation||double||
+</details>
+
 [!IndentEnd]
 ### **RadialAxis** [!badge text="EntityClass" kind="info"]
 
@@ -353,6 +1127,24 @@ A PlanGridPlanarSurface whose infinite plane contains the PlanGrid’s origin.
 an element which groups all PlanRadialGridSurface in a RadialGrid together
 
 **Base Class:** [Grids:GridAxis](#gridaxis)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Name||string||
+|Grid|Grid this axis belong to|[navigation](./grids.ecschema.md#gridhasaxes)||
+</details>
 
 [!IndentEnd]
 ### **RadialGrid** [!badge text="EntityClass" kind="info"]
@@ -374,6 +1166,34 @@ A RadialGrid consists either of arcsurfaces in radial axis or planarsurfaces in 
 |DefaultStartRadius||double||
 |DefaultEndRadius||double||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|DefaultStartElevation||double||
+|DefaultEndElevation||double||
+</details>
+
 [!IndentEnd]
 ### **SketchArcGridSurface** [!badge text="EntityClass" kind="info"]
 
@@ -389,6 +1209,35 @@ An extruded arc gridsurface element.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Arc2d||Bentley.Geometry.Common.IGeometry||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+|StartElevation||double||
+|EndElevation||double||
+</details>
+
 [!IndentEnd]
 ### **SketchGrid** [!badge text="EntityClass" kind="info"]
 
@@ -397,6 +1246,34 @@ An extruded arc gridsurface element.
 A SketchGrid contains surfaces whose positions are not constrained (other than being swept to the grid normal)
 
 **Base Class:** [Grids:PlanGrid](#plangrid)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|DefaultStartElevation||double||
+|DefaultEndElevation||double||
+</details>
 
 [!IndentEnd]
 ### **SketchLineGridSurface** [!badge text="EntityClass" kind="info"]
@@ -413,6 +1290,35 @@ An extruded line gridsurface element.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Line2d||Bentley.Geometry.Common.IGeometry||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+|StartElevation||double||
+|EndElevation||double||
+</details>
+
 [!IndentEnd]
 ### **SketchSplineGridSurface** [!badge text="EntityClass" kind="info"]
 
@@ -427,6 +1333,53 @@ An extruded spline gridsurface element.
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
 |Spline2d||Bentley.Geometry.Common.IGeometry||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+|Axis|Axis this gridSurface belong to|[navigation](./grids.ecschema.md#gridaxiscontainsgridsurfaces)||
+|StartElevation||double||
+|EndElevation||double||
+</details>
+
+[!IndentEnd]
+## Mixins
+
+### **IPlanGridSurface** (PlanGrid Surface) *Abstract* [!badge text="Mixin" kind="info"]
+
+[!IndentStart]
+
+An interface that indicates that this Surface is suitable to be placed in a PlanGrid
+
+**Applies To:** [GridSurface](./grids.ecschema.md#gridsurface)
+
+#### Properties
+
+|    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
+|:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
+|StartElevation||StartElevation||false|0|
+|EndElevation||EndElevation||false|0|
 
 [!IndentEnd]
 ## Relationship Classes
@@ -448,7 +1401,7 @@ maps axis to grouped surfaces
 
 **Role Label:** contains
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [GridAxis](./grids.ecschema.md#gridaxis)
@@ -460,7 +1413,7 @@ maps axis to grouped surfaces
 
 **Role Label:** is contained in
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [GridSurface](./grids.ecschema.md#gridsurface)
@@ -485,7 +1438,7 @@ a driving relationship which tells that gridcurve was created by the mapped Grid
 
 **Role Label:** creates
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [GridCurveBundle](./grids.ecschema.md#gridcurvebundle)
@@ -497,7 +1450,7 @@ a driving relationship which tells that gridcurve was created by the mapped Grid
 
 **Role Label:** is created by
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [GridCurve](./grids.ecschema.md#gridcurve)
@@ -520,7 +1473,7 @@ Maps GridCurveBundle to a GridCurvesSet
 
 **Role Label:** puts GridCurves into
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [GridCurveBundle](./grids.ecschema.md#gridcurvebundle)
@@ -532,7 +1485,7 @@ Maps GridCurveBundle to a GridCurvesSet
 
 **Role Label:** contains GridCurves created by
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [GridCurvesSet](./grids.ecschema.md#gridcurvesset)
@@ -557,7 +1510,7 @@ a driving relationship which tells that a grid is driving a gridsurface.
 
 **Role Label:** drives
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [Grid](./grids.ecschema.md#grid)
@@ -569,7 +1522,7 @@ a driving relationship which tells that a grid is driving a gridsurface.
 
 **Role Label:** is driven by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [GridSurface](./grids.ecschema.md#gridsurface)
@@ -592,7 +1545,7 @@ maps grid to its axes
 
 **Role Label:** Has Axis
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [Grid](./grids.ecschema.md#grid)
@@ -604,7 +1557,7 @@ maps grid to its axes
 
 **Role Label:** is axis of
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [GridAxis](./grids.ecschema.md#gridaxis)
@@ -629,7 +1582,7 @@ a driving relationship which tells that gridsurface influences the creation of G
 
 **Role Label:** influences
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [GridSurface](./grids.ecschema.md#gridsurface)
@@ -641,27 +1594,9 @@ a driving relationship which tells that gridsurface influences the creation of G
 
 **Role Label:** is influenced by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [GridCurveBundle](./grids.ecschema.md#gridcurvebundle)
 [!IndentEnd]
-[!IndentEnd]
-## Mixin Classes
-
-### **IPlanGridSurface** (PlanGrid Surface) *Abstract* [!badge text="Mixin" kind="info"]
-
-[!IndentStart]
-
-An interface that indicates that this Surface is suitable to be placed in a PlanGrid
-
-**Applies To:** [GridSurface](./grids.ecschema.md#gridsurface)
-
-#### Properties
-
-|    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
-|:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
-|StartElevation||StartElevation||false|0|
-|EndElevation||EndElevation||false|0|
-
 [!IndentEnd]

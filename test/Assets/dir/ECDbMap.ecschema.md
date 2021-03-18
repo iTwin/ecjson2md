@@ -6,12 +6,41 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 # ECDbMap (ECDb DB Mapping)
 
-**alias:** ecdbmap
+**Alias:** ecdbmap
 
-**version:** 2.0.0
+**Version:** 2.0.0
 
 Custom attributes that customize ECDb's ECSchema to database mapping.
 
+## Table of contents
+- [Struct Classes](#struct-classes)
+ - [DbIndex](#dbindex)
+- [Custom Attribute Classes](#custom-attribute-classes)
+ - [ClassMap](#classmap)
+ - [DbIndexList](#dbindexlist)
+ - [ForeignKeyConstraint](#foreignkeyconstraint)
+ - [JoinedTablePerDirectSubclass](#joinedtableperdirectsubclass)
+ - [LinkTableRelationshipMap](#linktablerelationshipmap)
+ - [PropertyMap](#propertymap)
+ - [SchemaMap](#schemamap)
+ - [ShareColumns](#sharecolumns)
+
+### **DbIndex** *Sealed* [!badge text="StructClass" kind="info"]
+
+[!IndentStart]
+
+Specify a database index for an ECClass.
+
+#### Properties
+
+|    Name    |  Description  |    Label    |  Category  |    Read Only     |    Priority    |
+|:-----------|:--------------|:------------|:-----------|:-----------------|:---------------|
+|Name|Name of the index. Must follow EC identifier rules. It needs to be globally unique in the database.|||false|0|
+|IsUnique|Default: false. If true, all values in the indexed properties must be unique.|||false|0|
+|Properties|List of properties that make up the index. Only properties of primitive type are supported.|||false|0|
+|Where|Where constraint for index|||false|0|
+
+[!IndentEnd]
 ## Custom Attribute Classes
 
 ### **ClassMap** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
@@ -19,7 +48,6 @@ Custom attributes that customize ECDb's ECSchema to database mapping.
 [!IndentStart]
 
 **Applies to:** EntityClass, RelationshipClass
-
 #### Properties
 
 |    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
@@ -34,7 +62,6 @@ Custom attributes that customize ECDb's ECSchema to database mapping.
 [!IndentStart]
 
 **Applies to:** EntityClass, RelationshipClass
-
 #### Properties
 
 |    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
@@ -49,7 +76,6 @@ Custom attributes that customize ECDb's ECSchema to database mapping.
 Creates a foreign key for this navigation property.
 
 **Applies to:** NavigationProperty
-
 #### Properties
 
 |    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
@@ -72,7 +98,6 @@ Maps subclasses and their children to a joined table. Can only be applied to cla
 [!IndentStart]
 
 **Applies to:** RelationshipClass
-
 #### Properties
 
 |    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
@@ -88,7 +113,6 @@ Maps subclasses and their children to a joined table. Can only be applied to cla
 [!IndentStart]
 
 **Applies to:** PrimitiveProperty
-
 #### Properties
 
 |    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
@@ -104,7 +128,6 @@ Maps subclasses and their children to a joined table. Can only be applied to cla
 [!IndentStart]
 
 **Applies to:** Schema
-
 #### Properties
 
 |    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
@@ -119,28 +142,11 @@ Maps subclasses and their children to a joined table. Can only be applied to cla
 Allows to share columns amongst ECProperties. Can only be applied to MapStrategy TablePerHierarchy
 
 **Applies to:** EntityClass, RelationshipClass
-
 #### Properties
 
 |    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
 |:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
 |ApplyToSubclassesOnly|False (Default):Columns are shared for the properties of the ECClass to which this CA is applied and all its subclasses. True: Columns are not shared for this ECClass but for all of its subclasses.|||false|0|
 |MaxSharedColumnsBeforeOverflow|Maximum number of shared columns to use before using an overflow table (optional). If not specified, ECDb will create as many shared columns until the table has 63 columns.|||false|0|
-
-[!IndentEnd]
-### **DbIndex** *Sealed* [!badge text="StructClass" kind="info"]
-
-[!IndentStart]
-
-Specify a database index for an ECClass.
-
-#### Properties
-
-|    Name    |  Description  |    Label    |  Category  |    Read Only     |    Priority    |
-|:-----------|:--------------|:------------|:-----------|:-----------------|:---------------|
-|Name|Name of the index. Must follow EC identifier rules. It needs to be globally unique in the database.|||false|0|
-|IsUnique|Default: false. If true, all values in the indexed properties must be unique.|||false|0|
-|Properties|List of properties that make up the index. Only properties of primitive type are supported.|||false|0|
-|Where|Where constraint for index|||false|0|
 
 [!IndentEnd]

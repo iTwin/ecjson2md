@@ -6,11 +6,189 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 # BisCore (BIS Core)
 
-**alias:** bis
+**Alias:** bis
 
-**version:** 1.0.4
+**Version:** 1.0.4
 
 The BIS core schema contains classes that all other domain schemas extend.
+
+## Table of contents
+- [Entity Classes](#entity-classes)
+ - [AnnotationElement2d](#annotationelement2d)
+ - [AnnotationFrameStyle](#annotationframestyle)
+ - [AnnotationLeaderStyle](#annotationleaderstyle)
+ - [AnnotationTextStyle](#annotationtextstyle)
+ - [AuxCoordSystem](#auxcoordsystem)
+ - [AuxCoordSystem2d](#auxcoordsystem2d)
+ - [AuxCoordSystem3d](#auxcoordsystem3d)
+ - [AuxCoordSystemSpatial](#auxcoordsystemspatial)
+ - [Category](#category)
+ - [CategorySelector](#categoryselector)
+ - [CodeSpec](#codespec)
+ - [ColorBook](#colorbook)
+ - [DefinitionElement](#definitionelement)
+ - [DefinitionModel](#definitionmodel)
+ - [DefinitionPartition](#definitionpartition)
+ - [DictionaryModel](#dictionarymodel)
+ - [DisplayStyle](#displaystyle)
+ - [DisplayStyle2d](#displaystyle2d)
+ - [DisplayStyle3d](#displaystyle3d)
+ - [Document](#document)
+ - [DocumentCarrier](#documentcarrier)
+ - [DocumentListModel](#documentlistmodel)
+ - [DocumentPartition](#documentpartition)
+ - [Drawing](#drawing)
+ - [DrawingCategory](#drawingcategory)
+ - [DrawingGraphic](#drawinggraphic)
+ - [DrawingModel](#drawingmodel)
+ - [DrawingViewDefinition](#drawingviewdefinition)
+ - [DriverBundleElement](#driverbundleelement)
+ - [Element](#element)
+ - [ElementAspect](#elementaspect)
+ - [ElementMultiAspect](#elementmultiaspect)
+ - [ElementUniqueAspect](#elementuniqueaspect)
+ - [EmbeddedFileLink](#embeddedfilelink)
+ - [ExternalSourceAspect](#externalsourceaspect)
+ - [GeometricElement](#geometricelement)
+ - [GeometricElement2d](#geometricelement2d)
+ - [GeometricElement3d](#geometricelement3d)
+ - [GeometricModel](#geometricmodel)
+ - [GeometricModel2d](#geometricmodel2d)
+ - [GeometricModel3d](#geometricmodel3d)
+ - [GeometryPart](#geometrypart)
+ - [GraphicalElement2d](#graphicalelement2d)
+ - [GraphicalElement3d](#graphicalelement3d)
+ - [GraphicalModel2d](#graphicalmodel2d)
+ - [GraphicalType2d](#graphicaltype2d)
+ - [GroupInformationElement](#groupinformationelement)
+ - [GroupInformationModel](#groupinformationmodel)
+ - [GroupInformationPartition](#groupinformationpartition)
+ - [InformationCarrierElement](#informationcarrierelement)
+ - [InformationContentElement](#informationcontentelement)
+ - [InformationModel](#informationmodel)
+ - [InformationPartitionElement](#informationpartitionelement)
+ - [InformationRecordElement](#informationrecordelement)
+ - [InformationRecordModel](#informationrecordmodel)
+ - [InformationRecordPartition](#informationrecordpartition)
+ - [InformationReferenceElement](#informationreferenceelement)
+ - [LightLocation](#lightlocation)
+ - [LineStyle](#linestyle)
+ - [LinkElement](#linkelement)
+ - [LinkModel](#linkmodel)
+ - [LinkPartition](#linkpartition)
+ - [Model](#model)
+ - [ModelSelector](#modelselector)
+ - [OrthographicViewDefinition](#orthographicviewdefinition)
+ - [PhysicalElement](#physicalelement)
+ - [PhysicalMaterial](#physicalmaterial)
+ - [PhysicalModel](#physicalmodel)
+ - [PhysicalPartition](#physicalpartition)
+ - [PhysicalPortion](#physicalportion)
+ - [PhysicalType](#physicaltype)
+ - [RecipeDefinitionElement](#recipedefinitionelement)
+ - [RenderMaterial](#rendermaterial)
+ - [RepositoryLink](#repositorylink)
+ - [RepositoryModel](#repositorymodel)
+ - [RoleElement](#roleelement)
+ - [RoleModel](#rolemodel)
+ - [SectionDrawing](#sectiondrawing)
+ - [SectionDrawingModel](#sectiondrawingmodel)
+ - [Sheet](#sheet)
+ - [SheetBorder](#sheetborder)
+ - [SheetBorderTemplate](#sheetbordertemplate)
+ - [SheetModel](#sheetmodel)
+ - [SheetTemplate](#sheettemplate)
+ - [SheetViewDefinition](#sheetviewdefinition)
+ - [SpatialCategory](#spatialcategory)
+ - [SpatialElement](#spatialelement)
+ - [SpatialIndex](#spatialindex)
+ - [SpatialLocationElement](#spatiallocationelement)
+ - [SpatialLocationModel](#spatiallocationmodel)
+ - [SpatialLocationPartition](#spatiallocationpartition)
+ - [SpatialLocationPortion](#spatiallocationportion)
+ - [SpatialLocationType](#spatiallocationtype)
+ - [SpatialModel](#spatialmodel)
+ - [SpatialViewDefinition](#spatialviewdefinition)
+ - [SubCategory](#subcategory)
+ - [Subject](#subject)
+ - [TemplateRecipe2d](#templaterecipe2d)
+ - [TemplateRecipe3d](#templaterecipe3d)
+ - [TemplateViewDefinition2d](#templateviewdefinition2d)
+ - [TemplateViewDefinition3d](#templateviewdefinition3d)
+ - [TextAnnotation2d](#textannotation2d)
+ - [TextAnnotation3d](#textannotation3d)
+ - [TextAnnotationData](#textannotationdata)
+ - [TextAnnotationSeed](#textannotationseed)
+ - [Texture](#texture)
+ - [TypeDefinitionElement](#typedefinitionelement)
+ - [UrlLink](#urllink)
+ - [ViewAttachment](#viewattachment)
+ - [ViewDefinition](#viewdefinition)
+ - [ViewDefinition2d](#viewdefinition2d)
+ - [ViewDefinition3d](#viewdefinition3d)
+ - [VolumeElement](#volumeelement)
+ - [WebMercatorModel](#webmercatormodel)
+- [Mixins](#mixins)
+ - [IParentElement](#iparentelement)
+ - [ISubModeledElement](#isubmodeledelement)
+- [Custom Attribute Classes](#custom-attribute-classes)
+ - [AutoHandledProperty](#autohandledproperty)
+ - [ClassHasHandler](#classhashandler)
+ - [CustomHandledProperty](#customhandledproperty)
+ - [SchemaHasBehavior](#schemahasbehavior)
+- [Relationship Classes](#relationship-classes)
+ - [BaseModelForView2d](#basemodelforview2d)
+ - [CategoryOwnsSubCategories](#categoryownssubcategories)
+ - [CategorySelectorRefersToCategories](#categoryselectorreferstocategories)
+ - [CodeSpecSpecifiesCode](#codespecspecifiescode)
+ - [DrawingGraphicRepresentsElement](#drawinggraphicrepresentselement)
+ - [DrawingModelBreaksDownDrawing](#drawingmodelbreaksdowndrawing)
+ - [ElementDrivesElement](#elementdriveselement)
+ - [ElementEncapsulatesElements](#elementencapsulateselements)
+ - [ElementGroupsMembers](#elementgroupsmembers)
+ - [ElementHasLinks](#elementhaslinks)
+ - [ElementOwnsChildElements](#elementownschildelements)
+ - [ElementOwnsExternalSourceAspects](#elementownsexternalsourceaspects)
+ - [ElementOwnsMultiAspects](#elementownsmultiaspects)
+ - [ElementOwnsUniqueAspect](#elementownsuniqueaspect)
+ - [ElementRefersToDocuments](#elementreferstodocuments)
+ - [ElementRefersToElements](#elementreferstoelements)
+ - [ElementScopesCode](#elementscopescode)
+ - [ElementScopesExternalSourceIdentifier](#elementscopesexternalsourceidentifier)
+ - [GeometricElement2dHasTypeDefinition](#geometricelement2dhastypedefinition)
+ - [GeometricElement2dIsInCategory](#geometricelement2disincategory)
+ - [GeometricElement3dHasTypeDefinition](#geometricelement3dhastypedefinition)
+ - [GeometricElement3dIsInCategory](#geometricelement3disincategory)
+ - [GraphicalElement2dIsOfType](#graphicalelement2disoftype)
+ - [GraphicalElement3dRepresentsElement](#graphicalelement3drepresentselement)
+ - [GraphicalType2dHasTemplateRecipe](#graphicaltype2dhastemplaterecipe)
+ - [ModelContainsElements](#modelcontainselements)
+ - [ModelModelsElement](#modelmodelselement)
+ - [ModelOwnsSubModel](#modelownssubmodel)
+ - [ModelSelectorRefersToModels](#modelselectorreferstomodels)
+ - [PartitionOriginatesFromRepository](#partitionoriginatesfromrepository)
+ - [PhysicalElementAssemblesElements](#physicalelementassembleselements)
+ - [PhysicalElementIsOfType](#physicalelementisoftype)
+ - [PhysicalModelBreaksDownPhysicalPortion](#physicalmodelbreaksdownphysicalportion)
+ - [PhysicalTypeHasTemplateRecipe](#physicaltypehastemplaterecipe)
+ - [RenderMaterialOwnsRenderMaterials](#rendermaterialownsrendermaterials)
+ - [SheetBorderHasSheetBorderTemplate](#sheetborderhassheetbordertemplate)
+ - [SheetHasSheetTemplate](#sheethassheettemplate)
+ - [SheetModelBreaksDownSheet](#sheetmodelbreaksdownsheet)
+ - [SheetTemplateHasSheetBorder](#sheettemplatehassheetborder)
+ - [SpatialLocationIsOfType](#spatiallocationisoftype)
+ - [SpatialViewDefinitionUsesModelSelector](#spatialviewdefinitionusesmodelselector)
+ - [SubjectOwnsPartitionElements](#subjectownspartitionelements)
+ - [SubjectOwnsSubjects](#subjectownssubjects)
+ - [TextAnnotation2dOwnsTextAnnotationData](#textannotation2downstextannotationdata)
+ - [TextAnnotation3dOwnsTextAnnotationData](#textannotation3downstextannotationdata)
+ - [TypeDefinitionHasRecipe](#typedefinitionhasrecipe)
+ - [ViewDefinitionUsesCategorySelector](#viewdefinitionusescategoryselector)
+ - [ViewDefinitionUsesDisplayStyle](#viewdefinitionusesdisplaystyle)
+ - [ViewIsAttached](#viewisattached)
+- [Enumerations](#enumerations)
+ - [AutoHandledPropertyStatementType](#autohandledpropertystatementtype)
+ - [CustomHandledPropertyStatementType](#customhandledpropertystatementtype)
 
 ## Entity Classes
 
@@ -21,6 +199,29 @@ The BIS core schema contains classes that all other domain schemas extend.
 bis:AnnotationElement2d is a bis:GraphicalElement2d used to annotate drawings and sheets.
 
 **Base Class:** [BisCore:GraphicalElement2d](#graphicalelement2d)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:DrawingCategory used to categorize this bis:GeometricElement2d instance.|[navigation](./biscore.ecschema.md#geometricelement2disincategory)||
+|Origin|The placement origin of this bis:Element.|point2d||
+|Rotation|The placement rotation (in degrees) of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point2d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point2d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement2dhastypedefinition)||
+</details>
 
 [!IndentEnd]
 ### **AnnotationFrameStyle** (Annotation Frame Style) *Sealed* [!badge text="EntityClass" kind="info"]
@@ -36,6 +237,23 @@ bis:AnnotationElement2d is a bis:GraphicalElement2d used to annotate drawings an
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **AnnotationLeaderStyle** (Annotation Leader Style) *Sealed* [!badge text="EntityClass" kind="info"]
 
@@ -49,6 +267,23 @@ bis:AnnotationElement2d is a bis:GraphicalElement2d used to annotate drawings an
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
 
 [!IndentEnd]
 ### **AnnotationTextStyle** (Annotation Text Style) *Sealed* [!badge text="EntityClass" kind="info"]
@@ -64,6 +299,23 @@ bis:AnnotationElement2d is a bis:GraphicalElement2d used to annotate drawings an
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **AuxCoordSystem** (Auxiliary Coordinate System) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -77,6 +329,23 @@ bis:AnnotationElement2d is a bis:GraphicalElement2d used to annotate drawings an
 |:-----------|:------------------|:-----------|:-----------------------|
 |Type||int||
 |Description||string||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
 
 [!IndentEnd]
 ### **AuxCoordSystem2d** (2D Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"]
@@ -93,6 +362,25 @@ A 2D coordinate system.
 |:-----------|:------------------|:-----------|:-----------------------|
 |Origin||point2d||
 |Angle||double||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Type||int||
+|Description||string||
+</details>
 
 [!IndentEnd]
 ### **AuxCoordSystem3d** (3D Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"]
@@ -112,6 +400,25 @@ A 3D coordinate system.
 |Pitch||double||
 |Roll||double||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Type||int||
+|Description||string||
+</details>
+
 [!IndentEnd]
 ### **AuxCoordSystemSpatial** (Spatial Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"]
 
@@ -120,6 +427,29 @@ A 3D coordinate system.
 A spatial coordinate system.
 
 **Base Class:** [BisCore:AuxCoordSystem3d](#auxcoordsystem3d)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Type||int||
+|Description||string||
+|Origin||point3d||
+|Yaw||double||
+|Pitch||double||
+|Roll||double||
+</details>
 
 [!IndentEnd]
 ### **Category** *Abstract* [!badge text="EntityClass" kind="info"]
@@ -137,12 +467,46 @@ A bis:Category categorizes a bis:GeometricElement and its geometry. Every bis:Ge
 |Description||string||
 |Rank||int||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **CategorySelector** (Category Selector) [!badge text="EntityClass" kind="info"]
 
 [!IndentStart]
 
 **Base Class:** [BisCore:DefinitionElement](#definitionelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
 
 [!IndentEnd]
 ### **CodeSpec** (Code Specification) *Sealed* [!badge text="EntityClass" kind="info"]
@@ -171,6 +535,23 @@ A bis:CodeSpec (code specification) captures the rules for encoding and decoding
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description||string||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **DefinitionElement** (Definition Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -186,6 +567,22 @@ A bis:DefinitionElement holds configuration-related information that is meant to
 |:-----------|:------------------|:-----------|:-----------------------|
 |IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **DefinitionModel** (Definition Model) [!badge text="EntityClass" kind="info"]
 
@@ -194,6 +591,18 @@ A bis:DefinitionElement holds configuration-related information that is meant to
 A container for persisting bis:DefinitionElement instances.
 
 **Base Class:** [BisCore:InformationModel](#informationmodel)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **DefinitionPartition** (Definition Partition) *Sealed* [!badge text="EntityClass" kind="info"]
@@ -204,6 +613,23 @@ A bis:DefinitionPartition element indicates that there is a definition-related m
 
 **Base Class:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Description||string||
+</details>
+
 [!IndentEnd]
 ### **DictionaryModel** (Dictionary Model) *Sealed* [!badge text="EntityClass" kind="info"]
 
@@ -212,6 +638,18 @@ A bis:DefinitionPartition element indicates that there is a definition-related m
 The singleton container for repository-specific bis:DefinitionElement instances.
 
 **Base Class:** [BisCore:DefinitionModel](#definitionmodel)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **DisplayStyle** (Display Style) *Abstract* [!badge text="EntityClass" kind="info"]
@@ -222,6 +660,23 @@ A bis:DisplayStyle defines the 'styling' parameters for rendering the contents o
 
 **Base Class:** [BisCore:DefinitionElement](#definitionelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **DisplayStyle2d** (2D Display Style) [!badge text="EntityClass" kind="info"]
 
@@ -230,6 +685,23 @@ A bis:DisplayStyle defines the 'styling' parameters for rendering the contents o
 A bis:DisplayStyle2d defines the 'styling' parameters for rendering the contents of a 2D View.
 
 **Base Class:** [BisCore:DisplayStyle](#displaystyle)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
 
 [!IndentEnd]
 ### **DisplayStyle3d** (3D Display Style) [!badge text="EntityClass" kind="info"]
@@ -240,6 +712,23 @@ A bis:DisplayStyle3d defines the 'styling' parameters for rendering the contents
 
 **Base Class:** [BisCore:DisplayStyle](#displaystyle)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **Document** (Document) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -248,6 +737,22 @@ A bis:DisplayStyle3d defines the 'styling' parameters for rendering the contents
 A bis:Document is a social artifact designed with the distinct purpose to convey information in a manner that maximizes reach and lifespan and minimize dependency on other artifacts. Although there is often a one-to-one relationship between a bis:Document and an electronic file, this does not imply that a document is a file; instead, a document can be realized in many different media (such as paper) or have more than one file supporting it.
 
 **Base Class:** [BisCore:InformationContentElement](#informationcontentelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **DocumentCarrier** (Document Carrier) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
@@ -260,6 +765,22 @@ DEPRECATED: A Document Carrier is an Information Carrier that carries a Document
 
 **Base Class:** [BisCore:InformationCarrierElement](#informationcarrierelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **DocumentListModel** (Document List) [!badge text="EntityClass" kind="info"]
 
@@ -268,6 +789,18 @@ DEPRECATED: A Document Carrier is an Information Carrier that carries a Document
 A container for persisting bis:Document elements.
 
 **Base Class:** [BisCore:InformationModel](#informationmodel)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **DocumentPartition** (Document Partition) *Sealed* [!badge text="EntityClass" kind="info"]
@@ -278,6 +811,23 @@ A bis:DocumentPartition element indicates that there is a document-related model
 
 **Base Class:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Description||string||
+</details>
+
 [!IndentEnd]
 ### **Drawing** [!badge text="EntityClass" kind="info"]
 
@@ -286,6 +836,22 @@ A bis:DocumentPartition element indicates that there is a document-related model
 A bis:Drawing is a bis:Document of a 2D drawing.
 
 **Base Class:** [BisCore:Document](#document)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **DrawingCategory** (Drawing Category) *Sealed* [!badge text="EntityClass" kind="info"]
@@ -296,6 +862,25 @@ A bis:DrawingCategory is used for classifying bis:GeometricElement2d elements vi
 
 **Base Class:** [BisCore:Category](#category)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Description||string||
+|Rank||int||
+</details>
+
 [!IndentEnd]
 ### **DrawingGraphic** (Drawing Graphic) [!badge text="EntityClass" kind="info"]
 
@@ -304,6 +889,29 @@ A bis:DrawingCategory is used for classifying bis:GeometricElement2d elements vi
 bis:DrawingGraphic is a bis:GraphicalElement2d used to persist graphics for use in drawings.
 
 **Base Class:** [BisCore:GraphicalElement2d](#graphicalelement2d)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:DrawingCategory used to categorize this bis:GeometricElement2d instance.|[navigation](./biscore.ecschema.md#geometricelement2disincategory)||
+|Origin|The placement origin of this bis:Element.|point2d||
+|Rotation|The placement rotation (in degrees) of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point2d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point2d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement2dhastypedefinition)||
+</details>
 
 [!IndentEnd]
 ### **DrawingModel** (Drawing Model) [!badge text="EntityClass" kind="info"]
@@ -314,6 +922,19 @@ A container for persisting bis:DrawingGraphic elements.
 
 **Base Class:** [BisCore:GraphicalModel2d](#graphicalmodel2d)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|GlobalOrigin|The actual coordinates of (0,0) in modeling coordinates. An offest applied to all modeling coordinates.|point2d||
+</details>
+
 [!IndentEnd]
 ### **DrawingViewDefinition** (Drawing View Definition) [!badge text="EntityClass" kind="info"]
 
@@ -323,6 +944,30 @@ A bis:DrawingViewDefinition specifies parameters for a view of a bis:DrawingMode
 
 **Base Class:** [BisCore:ViewDefinition2d](#viewdefinition2d)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Description||string||
+|CategorySelector||[navigation](./biscore.ecschema.md#viewdefinitionusescategoryselector)||
+|DisplayStyle||[navigation](./biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
+|BaseModel||[navigation](./biscore.ecschema.md#basemodelforview2d)||
+|Origin|Lower left corner of the viewed area.|point2d||
+|Extents|Size of the view diagonal|point2d||
+|RotationAngle|Rotation angle in degrees of the viewed area.|double||
+</details>
+
 [!IndentEnd]
 ### **DriverBundleElement** (Driver Bundle Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -331,6 +976,22 @@ A bis:DrawingViewDefinition specifies parameters for a view of a bis:DrawingMode
 A bis:DriverBundleElement is used in conjunction with bis:ElementDrivesElement relationships to bundle multiple inputs before driving the output bis:Element.
 
 **Base Class:** [BisCore:InformationContentElement](#informationcontentelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **Element** *Abstract* [!badge text="EntityClass" kind="info"]
@@ -375,6 +1036,13 @@ A bis:ElementMultiAspect is a bis:ElementAspect where there can be N instances o
 |:-----------|:------------------|:-----------|:-----------------------|
 |Element|The bis:Element that owns this bis:ElementMultiAspect.|[navigation](./biscore.ecschema.md#elementownsmultiaspects)||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+</details>
+
 [!IndentEnd]
 ### **ElementUniqueAspect** (Element Unique Aspect) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -389,6 +1057,13 @@ A bis:ElementUniqueAspect is a bis:ElementAspect where there can be only zero or
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
 |Element|The bis:Element that owns this bis:ElementUniqueAspect|[navigation](./biscore.ecschema.md#elementownsuniqueaspect)||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+</details>
 
 [!IndentEnd]
 ### **EmbeddedFileLink** (Embedded File Link) [!badge text="EntityClass" kind="info"]
@@ -405,6 +1080,22 @@ A bis:EmbeddedFileLink is a bis:LinkElement that links to a file embedded within
 |:-----------|:------------------|:-----------|:-----------------------|
 |Name||string||
 |Description||string||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **ExternalSourceAspect** (External Source Aspect) [!badge text="EntityClass" kind="info"]
@@ -426,6 +1117,14 @@ A bis:ElementMultiAspect that stores syncrhonization information for a bis:Eleme
 |Checksum|The cryptographic hash (any algorithm) of the source object's content. It must be guaranteed to change when the source object's content changes.|string||
 |JsonProperties|A place where additional JSON properties can be stored. For example, provenance information or properties relating to the synchronization process.|string|Json|
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Element|The bis:Element that owns this bis:ElementMultiAspect.|[navigation](./biscore.ecschema.md#elementownsmultiaspects)||
+</details>
+
 [!IndentEnd]
 ### **GeometricElement** (Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -434,6 +1133,22 @@ A bis:ElementMultiAspect that stores syncrhonization information for a bis:Eleme
 bis:GeometricElement ia an abstract base class used to model real world entities that intrinsically have geometry.
 
 **Base Class:** [BisCore:Element](#element)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **GeometricElement2d** (2D Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"]
@@ -455,6 +1170,22 @@ bis:GeometricElement2d is an abstract base class used to model information entit
 |BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point2d||
 |GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
 |TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement2dhastypedefinition)||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **GeometricElement3d** (3D Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"]
@@ -480,6 +1211,22 @@ bis:GeometricElement3d is an abstract base class used to model real world entiti
 |GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
 |TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **GeometricModel** (Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -488,6 +1235,18 @@ bis:GeometricElement3d is an abstract base class used to model real world entiti
 A container for persisting bis:GeometricElement instances.
 
 **Base Class:** [BisCore:Model](#model)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **GeometricModel2d** (2D Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"]
@@ -504,6 +1263,18 @@ A container for persisting bis:GeometricElement2d instances.
 |:-----------|:------------------|:-----------|:-----------------------|
 |GlobalOrigin|The actual coordinates of (0,0) in modeling coordinates. An offest applied to all modeling coordinates.|point2d||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **GeometricModel3d** (3D Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -512,6 +1283,18 @@ A container for persisting bis:GeometricElement2d instances.
 A container for persisting bis:GeometricElement3d instances.
 
 **Base Class:** [BisCore:GeometricModel](#geometricmodel)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **GeometryPart** (Geometry Part) [!badge text="EntityClass" kind="info"]
@@ -530,6 +1313,23 @@ A bis:DefinitionElement that specifies a collection of geometry that is meant to
 |BBoxLow||point3d||
 |BBoxHigh||point3d||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **GraphicalElement2d** (2D Graphical Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -538,6 +1338,29 @@ A bis:DefinitionElement that specifies a collection of geometry that is meant to
 bis:GraphicalElement2d is an abstract base class for 2D geometric elements that are used to convey information within graphical presentations (like drawings).
 
 **Base Class:** [BisCore:GeometricElement2d](#geometricelement2d)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:DrawingCategory used to categorize this bis:GeometricElement2d instance.|[navigation](./biscore.ecschema.md#geometricelement2disincategory)||
+|Origin|The placement origin of this bis:Element.|point2d||
+|Rotation|The placement rotation (in degrees) of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point2d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point2d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement2dhastypedefinition)||
+</details>
 
 [!IndentEnd]
 ### **GraphicalElement3d** (3D Graphical Element) *Abstract* [!badge text="EntityClass" kind="info"]
@@ -548,6 +1371,32 @@ A bis:GrapicalElement3d element conveys information within 3D graphical presenta
 
 **Base Class:** [BisCore:GeometricElement3d](#geometricelement3d)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **GraphicalModel2d** (2D Graphical Model) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -556,6 +1405,19 @@ A bis:GrapicalElement3d element conveys information within 3D graphical presenta
 A container for persisting bis:GraphicalElement2d instances.
 
 **Base Class:** [BisCore:GeometricModel2d](#geometricmodel2d)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|GlobalOrigin|The actual coordinates of (0,0) in modeling coordinates. An offest applied to all modeling coordinates.|point2d||
+</details>
 
 [!IndentEnd]
 ### **GraphicalType2d** (2D Graphical Type) *Abstract* [!badge text="EntityClass" kind="info"]
@@ -566,6 +1428,24 @@ Defines a shared set of properties (the 'type') that can be associated with a bi
 
 **Base Class:** [BisCore:TypeDefinitionElement](#typedefinitionelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Recipe||[navigation](./biscore.ecschema.md#typedefinitionhasrecipe)||
+</details>
+
 [!IndentEnd]
 ### **GroupInformationElement** (Group Information) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -574,6 +1454,22 @@ Defines a shared set of properties (the 'type') that can be associated with a bi
 bis:GroupInformationElement is an abstract base class used for modeling entities whose main purpose is to group related elements.
 
 **Base Class:** [BisCore:InformationReferenceElement](#informationreferenceelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **GroupInformationModel** (Group Information Model) *Abstract* [!badge text="EntityClass" kind="info"]
@@ -584,6 +1480,18 @@ A container for persisting bis:GroupInformationElement instances.
 
 **Base Class:** [BisCore:InformationModel](#informationmodel)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **GroupInformationPartition** (Group Information Partition) *Sealed* [!badge text="EntityClass" kind="info"]
 
@@ -592,6 +1500,23 @@ A container for persisting bis:GroupInformationElement instances.
 A bis:GroupInformationPartition element indicates that there is a group-information-related modeling perspective within the overall information hierarchy. A bis:GroupInformationPartition is always parented to a bis:Subject and broken down by a bis:GroupInformationModel.
 
 **Base Class:** [BisCore:InformationPartitionElement](#informationpartitionelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Description||string||
+</details>
 
 [!IndentEnd]
 ### **InformationCarrierElement** (Information Carrier) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
@@ -604,6 +1529,22 @@ DEPRECATED: An Information Carrier carries information, but is not the informati
 
 **Base Class:** [BisCore:Element](#element)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **InformationContentElement** (Information Content Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -613,6 +1554,22 @@ bis:InformationContentElement is an abstract base class for modeling pure inform
 
 **Base Class:** [BisCore:Element](#element)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **InformationModel** (Information Model) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -621,6 +1578,18 @@ bis:InformationContentElement is an abstract base class for modeling pure inform
 A container for persisting bis:InformationContentElement instances.
 
 **Base Class:** [BisCore:Model](#model)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **InformationPartitionElement** (Information Partition) *Abstract* [!badge text="EntityClass" kind="info"]
@@ -637,6 +1606,22 @@ Instances of bis:InformationPartitionElement ared used to indicate that there is
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description||string||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **InformationRecordElement** (Information Record Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -645,6 +1630,22 @@ Instances of bis:InformationPartitionElement ared used to indicate that there is
 bis:InformationRecordElement is an abstract base class for modeling information records. The bis:InformationRecordElement class is the default choice if no other subclass of bis:InformationContentElement makes sense.
 
 **Base Class:** [BisCore:InformationContentElement](#informationcontentelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **InformationRecordModel** (Information Record Model) [!badge text="EntityClass" kind="info"]
@@ -655,6 +1656,18 @@ A container for persisting bis:InformationRecordElement instances
 
 **Base Class:** [BisCore:InformationModel](#informationmodel)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **InformationRecordPartition** (Information Record Partition) *Sealed* [!badge text="EntityClass" kind="info"]
 
@@ -664,6 +1677,23 @@ A bis:InformationRecordPartition element indicates that there is an information-
 
 **Base Class:** [BisCore:InformationPartitionElement](#informationpartitionelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Description||string||
+</details>
+
 [!IndentEnd]
 ### **InformationReferenceElement** (Information Reference) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -672,6 +1702,22 @@ A bis:InformationRecordPartition element indicates that there is an information-
 bis:InformationReferenceElement is an abstract base class used for modeling entities whose main purpose is to reference something else.
 
 **Base Class:** [BisCore:InformationContentElement](#informationcontentelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **LightLocation** (Light Location) *Sealed* [!badge text="EntityClass" kind="info"]
@@ -688,6 +1734,32 @@ The spatial location of a light source
 |:-----------|:------------------|:-----------|:-----------------------|
 |Enabled||boolean||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **LineStyle** (Line Style) *Sealed* [!badge text="EntityClass" kind="info"]
 
@@ -702,6 +1774,23 @@ The spatial location of a light source
 |Description|Description of the style|string||
 |Data|Encoded style properties|string|Json|
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **LinkElement** (Link) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -710,6 +1799,22 @@ The spatial location of a light source
 A bis:LinkElement is a bis:InformationReferenceElement that specifies a link.
 
 **Base Class:** [BisCore:InformationReferenceElement](#informationreferenceelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **LinkModel** (Link Model) [!badge text="EntityClass" kind="info"]
@@ -720,6 +1825,18 @@ A container for persisting bis:LinkElement instances.
 
 **Base Class:** [BisCore:InformationModel](#informationmodel)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **LinkPartition** (Link Partition) *Sealed* [!badge text="EntityClass" kind="info"]
 
@@ -728,6 +1845,23 @@ A container for persisting bis:LinkElement instances.
 A bis:LinkPartition element indicates that there is a link-related modeling perspective within the overall information hierarchy. A bis:LinkPartition is always parented to a bis:Subject and broken down by a bis:LinkModel.
 
 **Base Class:** [BisCore:InformationPartitionElement](#informationpartitionelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Description||string||
+</details>
 
 [!IndentEnd]
 ### **Model** *Abstract* [!badge text="EntityClass" kind="info"]
@@ -753,6 +1887,23 @@ A bis:Model is a container for persisting a collection of related elements.
 
 **Base Class:** [BisCore:DefinitionElement](#definitionelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **OrthographicViewDefinition** (Orthographic Spatial View) [!badge text="EntityClass" kind="info"]
 
@@ -761,6 +1912,36 @@ A bis:Model is a container for persisting a collection of related elements.
 A spatial view that always shows a parallel projection.
 
 **Base Class:** [BisCore:SpatialViewDefinition](#spatialviewdefinition)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Description||string||
+|CategorySelector||[navigation](./biscore.ecschema.md#viewdefinitionusescategoryselector)||
+|DisplayStyle||[navigation](./biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
+|Origin|Origin of the viewed volume on the lower, back, rear|point3d||
+|Extents|Size of the view diagonal|point3d||
+|Yaw|Yaw component of the view direction in degrees|double||
+|Pitch|Pitch component of the view direction in degrees|double||
+|Roll|Roll component of the view direction in degrees|double||
+|IsCameraOn|Is the camera actually turned on?|boolean||
+|EyePoint|Camera eye point|point3d||
+|LensAngle|Camera lens angle in degrees|double||
+|FocusDistance|Camera focus distance|double||
+|ModelSelector||[navigation](./biscore.ecschema.md#spatialviewdefinitionusesmodelselector)||
+</details>
 
 [!IndentEnd]
 ### **PhysicalElement** (Physical Element) *Abstract* [!badge text="EntityClass" kind="info"]
@@ -771,6 +1952,32 @@ A bis:PhysicalElement is spatially located, has mass, and can be 'touched'.
 
 **Base Class:** [BisCore:SpatialElement](#spatialelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **PhysicalMaterial** (Physical Material) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -779,6 +1986,23 @@ A bis:PhysicalElement is spatially located, has mass, and can be 'touched'.
 A bis:PhysicalMaterial defines the matter of which physical objects are made. bis:PhysicalMaterials are not used to define rendering characteristics (see bis:RenderMaterial).
 
 **Base Class:** [BisCore:DefinitionElement](#definitionelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
 
 [!IndentEnd]
 ### **PhysicalModel** (Physical Model) [!badge text="EntityClass" kind="info"]
@@ -789,6 +2013,18 @@ A container for persisting bis:PhysicalElement and bis:SpatialLocationElement in
 
 **Base Class:** [BisCore:SpatialModel](#spatialmodel)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **PhysicalPartition** (Physical Partition) *Sealed* [!badge text="EntityClass" kind="info"]
 
@@ -797,6 +2033,23 @@ A container for persisting bis:PhysicalElement and bis:SpatialLocationElement in
 A bis:PhysicalPartition element indicates that there is a physical modeling perspective within the overall information hierarchy. A bis:PhysicalPartition is always parented to a bis:Subject and broken down by a bis:PhysicalModel.
 
 **Base Class:** [BisCore:InformationPartitionElement](#informationpartitionelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Description||string||
+</details>
 
 [!IndentEnd]
 ### **PhysicalPortion** (Physical Portion) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
@@ -809,6 +2062,32 @@ DEPRECATED: A Physical Portion represents an arbitrary portion of a larger Physi
 
 **Base Class:** [BisCore:PhysicalElement](#physicalelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **PhysicalType** (Physical Type) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -818,6 +2097,24 @@ Defines a shared set of properties (the 'type') that can be associated with a bi
 
 **Base Class:** [BisCore:TypeDefinitionElement](#typedefinitionelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Recipe||[navigation](./biscore.ecschema.md#typedefinitionhasrecipe)||
+</details>
+
 [!IndentEnd]
 ### **RecipeDefinitionElement** (Recipe Definition) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -826,6 +2123,23 @@ Defines a shared set of properties (the 'type') that can be associated with a bi
 Defines a recipe for generating a type.
 
 **Base Class:** [BisCore:DefinitionElement](#definitionelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
 
 [!IndentEnd]
 ### **RenderMaterial** (Render Material) *Sealed* [!badge text="EntityClass" kind="info"]
@@ -843,6 +2157,23 @@ A bis:RenderMaterial defines the rendering properties of materials for display.
 |PaletteName||string||
 |Description||string||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **RepositoryLink** (Repository Link) *Sealed* [!badge text="EntityClass" kind="info"]
 
@@ -858,6 +2189,24 @@ A bis:RepositoryLink is a bis:UrlLink element that links to a repository.
 |:-----------|:------------------|:-----------|:-----------------------|
 |RepositoryGuid||binary|BeGuid|
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Url||string||
+|Description||string||
+</details>
+
 [!IndentEnd]
 ### **RepositoryModel** (Repository Model) *Sealed* [!badge text="EntityClass" kind="info"]
 
@@ -866,6 +2215,18 @@ A bis:RepositoryLink is a bis:UrlLink element that links to a repository.
 The singleton container of repository-related information elements.
 
 **Base Class:** [BisCore:DefinitionModel](#definitionmodel)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **RoleElement** (Role Element) *Abstract* [!badge text="EntityClass" kind="info"]
@@ -876,6 +2237,22 @@ A real world entity is modeled as a bis:RoleElement when a set of external circu
 
 **Base Class:** [BisCore:Element](#element)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **RoleModel** (Role Model) [!badge text="EntityClass" kind="info"]
 
@@ -884,6 +2261,18 @@ A real world entity is modeled as a bis:RoleElement when a set of external circu
 A container for persisting bis:RoleElement instances.
 
 **Base Class:** [BisCore:Model](#model)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **SectionDrawing** (Section Drawing) [!badge text="EntityClass" kind="info"]
@@ -894,6 +2283,22 @@ A bis:SectionDrawing is a bis:Document of a 2D section drawing.
 
 **Base Class:** [BisCore:Drawing](#drawing)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **SectionDrawingModel** (Section Drawing Model) [!badge text="EntityClass" kind="info"]
 
@@ -902,6 +2307,19 @@ A bis:SectionDrawing is a bis:Document of a 2D section drawing.
 A container for persisting section bis:DrawingGraphic elements.
 
 **Base Class:** [BisCore:DrawingModel](#drawingmodel)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|GlobalOrigin|The actual coordinates of (0,0) in modeling coordinates. An offest applied to all modeling coordinates.|point2d||
+</details>
 
 [!IndentEnd]
 ### **Sheet** [!badge text="EntityClass" kind="info"]
@@ -921,6 +2339,22 @@ A bis:Sheet is a bis:Document of a 2D sheet.
 |Width||double||
 |SheetTemplate||[navigation](./biscore.ecschema.md#sheethassheettemplate)||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **SheetBorder** (Sheet Border) [!badge text="EntityClass" kind="info"]
 
@@ -933,6 +2367,29 @@ A bis:Sheet is a bis:Document of a 2D sheet.
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
 |BorderTemplate||[navigation](./biscore.ecschema.md#sheetborderhassheetbordertemplate)||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:DrawingCategory used to categorize this bis:GeometricElement2d instance.|[navigation](./biscore.ecschema.md#geometricelement2disincategory)||
+|Origin|The placement origin of this bis:Element.|point2d||
+|Rotation|The placement rotation (in degrees) of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point2d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point2d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement2dhastypedefinition)||
+</details>
 
 [!IndentEnd]
 ### **SheetBorderTemplate** (Sheet Border Template) [!badge text="EntityClass" kind="info"]
@@ -948,6 +2405,22 @@ A bis:Sheet is a bis:Document of a 2D sheet.
 |Height||double||
 |Width||double||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **SheetModel** (Sheet Model) [!badge text="EntityClass" kind="info"]
 
@@ -956,6 +2429,19 @@ A bis:Sheet is a bis:Document of a 2D sheet.
 A container for persisting sheet views and graphics.
 
 **Base Class:** [BisCore:GraphicalModel2d](#graphicalmodel2d)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|GlobalOrigin|The actual coordinates of (0,0) in modeling coordinates. An offest applied to all modeling coordinates.|point2d||
+</details>
 
 [!IndentEnd]
 ### **SheetTemplate** (Sheet Template) [!badge text="EntityClass" kind="info"]
@@ -972,6 +2458,22 @@ A container for persisting sheet views and graphics.
 |Width||double||
 |Border||[navigation](./biscore.ecschema.md#sheettemplatehassheetborder)||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **SheetViewDefinition** (Sheet View Definition) [!badge text="EntityClass" kind="info"]
 
@@ -980,6 +2482,30 @@ A container for persisting sheet views and graphics.
 A bis:SheetViewDefinition specifies parameters for a view of a bis:SheetModel.
 
 **Base Class:** [BisCore:ViewDefinition2d](#viewdefinition2d)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Description||string||
+|CategorySelector||[navigation](./biscore.ecschema.md#viewdefinitionusescategoryselector)||
+|DisplayStyle||[navigation](./biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
+|BaseModel||[navigation](./biscore.ecschema.md#basemodelforview2d)||
+|Origin|Lower left corner of the viewed area.|point2d||
+|Extents|Size of the view diagonal|point2d||
+|RotationAngle|Rotation angle in degrees of the viewed area.|double||
+</details>
 
 [!IndentEnd]
 ### **SpatialCategory** (Spatial Category) *Sealed* [!badge text="EntityClass" kind="info"]
@@ -990,6 +2516,25 @@ A bis:SpatialCategory is used for classifying bis:GeometricElement3d elements vi
 
 **Base Class:** [BisCore:Category](#category)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Description||string||
+|Rank||int||
+</details>
+
 [!IndentEnd]
 ### **SpatialElement** (Spatial Element) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -998,6 +2543,32 @@ A bis:SpatialCategory is used for classifying bis:GeometricElement3d elements vi
 A bis:SpatialElement is a bis:GeometricElement3d that occupies real world space.
 
 **Base Class:** [BisCore:GeometricElement3d](#geometricelement3d)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
 
 [!IndentEnd]
 ### **SpatialIndex** (Spatial Index) *Sealed* [!badge text="EntityClass" kind="info"]
@@ -1026,6 +2597,32 @@ A bis:SpatialLocationElement identifies a 'tracked' real world location but has 
 
 **Base Class:** [BisCore:SpatialElement](#spatialelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **SpatialLocationModel** (Spatial Location Model) [!badge text="EntityClass" kind="info"]
 
@@ -1035,6 +2632,18 @@ A container for persisting bis:SpatialLocationElement instances.
 
 **Base Class:** [BisCore:SpatialModel](#spatialmodel)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **SpatialLocationPartition** (Spatial Location Partition) *Sealed* [!badge text="EntityClass" kind="info"]
 
@@ -1043,6 +2652,23 @@ A container for persisting bis:SpatialLocationElement instances.
 A bis:SpatialLocationPartition element indicates that there is a spatial-location-related modeling perspective within the overall information hierarchy. A bis:SpatialLocationPartition is always parented to a bis:Subject and broken down by a bis:SpatialLocationModel.
 
 **Base Class:** [BisCore:InformationPartitionElement](#informationpartitionelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Description||string||
+</details>
 
 [!IndentEnd]
 ### **SpatialLocationPortion** (Spatial Location Portion) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
@@ -1055,6 +2681,32 @@ DEPRECATED: A Spatial Location Portion represents an arbitrary portion of a larg
 
 **Base Class:** [BisCore:SpatialLocationElement](#spatiallocationelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **SpatialLocationType** (Spatial Location Type) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -1064,6 +2716,24 @@ Defines a shared set of properties (the 'type') that can be associated with a bi
 
 **Base Class:** [BisCore:TypeDefinitionElement](#typedefinitionelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Recipe||[navigation](./biscore.ecschema.md#typedefinitionhasrecipe)||
+</details>
+
 [!IndentEnd]
 ### **SpatialModel** (Spatial Model) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -1072,6 +2742,18 @@ Defines a shared set of properties (the 'type') that can be associated with a bi
 A container for persisting bis:GeometricElement3d instances that are spatially located.
 
 **Base Class:** [BisCore:GeometricModel3d](#geometricmodel3d)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
 
 [!IndentEnd]
 ### **SpatialViewDefinition** (Spatial View Definition) [!badge text="EntityClass" kind="info"]
@@ -1087,6 +2769,35 @@ A view of a spatially located volume.
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
 |ModelSelector||[navigation](./biscore.ecschema.md#spatialviewdefinitionusesmodelselector)||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Description||string||
+|CategorySelector||[navigation](./biscore.ecschema.md#viewdefinitionusescategoryselector)||
+|DisplayStyle||[navigation](./biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
+|Origin|Origin of the viewed volume on the lower, back, rear|point3d||
+|Extents|Size of the view diagonal|point3d||
+|Yaw|Yaw component of the view direction in degrees|double||
+|Pitch|Pitch component of the view direction in degrees|double||
+|Roll|Roll component of the view direction in degrees|double||
+|IsCameraOn|Is the camera actually turned on?|boolean||
+|EyePoint|Camera eye point|point3d||
+|LensAngle|Camera lens angle in degrees|double||
+|FocusDistance|Camera focus distance|double||
+</details>
 
 [!IndentEnd]
 ### **SubCategory** (Sub-Category) *Sealed* [!badge text="EntityClass" kind="info"]
@@ -1104,6 +2815,23 @@ A bis:SubCategory is a subdivision of a bis:Category. SubCategories allow Geomet
 |Description||string||
 |Properties||string|Json|
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **Subject** *Sealed* [!badge text="EntityClass" kind="info"]
 
@@ -1119,6 +2847,22 @@ A bis:Subject is an information element that describes what this repository (or 
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description||string||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **TemplateRecipe2d** (2D Template Recipe) [!badge text="EntityClass" kind="info"]
 
@@ -1127,6 +2871,23 @@ A bis:Subject is an information element that describes what this repository (or 
 A recipe that uses a 2D template for creating new instances.
 
 **Base Class:** [BisCore:RecipeDefinitionElement](#recipedefinitionelement)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
 
 [!IndentEnd]
 ### **TemplateRecipe3d** (3D Template Recipe) [!badge text="EntityClass" kind="info"]
@@ -1137,6 +2898,23 @@ A recipe that uses a 3D template for creating new instances.
 
 **Base Class:** [BisCore:RecipeDefinitionElement](#recipedefinitionelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **TemplateViewDefinition2d** (2D Template View Definition) [!badge text="EntityClass" kind="info"]
 
@@ -1145,6 +2923,30 @@ A recipe that uses a 3D template for creating new instances.
 A bis:ViewDefinition2d used to display a 2D template model.
 
 **Base Class:** [BisCore:ViewDefinition2d](#viewdefinition2d)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Description||string||
+|CategorySelector||[navigation](./biscore.ecschema.md#viewdefinitionusescategoryselector)||
+|DisplayStyle||[navigation](./biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
+|BaseModel||[navigation](./biscore.ecschema.md#basemodelforview2d)||
+|Origin|Lower left corner of the viewed area.|point2d||
+|Extents|Size of the view diagonal|point2d||
+|RotationAngle|Rotation angle in degrees of the viewed area.|double||
+</details>
 
 [!IndentEnd]
 ### **TemplateViewDefinition3d** (3D Template View Definition) [!badge text="EntityClass" kind="info"]
@@ -1155,6 +2957,35 @@ A bis:ViewDefinition3d used to display a 3D template model.
 
 **Base Class:** [BisCore:ViewDefinition3d](#viewdefinition3d)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Description||string||
+|CategorySelector||[navigation](./biscore.ecschema.md#viewdefinitionusescategoryselector)||
+|DisplayStyle||[navigation](./biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
+|Origin|Origin of the viewed volume on the lower, back, rear|point3d||
+|Extents|Size of the view diagonal|point3d||
+|Yaw|Yaw component of the view direction in degrees|double||
+|Pitch|Pitch component of the view direction in degrees|double||
+|Roll|Roll component of the view direction in degrees|double||
+|IsCameraOn|Is the camera actually turned on?|boolean||
+|EyePoint|Camera eye point|point3d||
+|LensAngle|Camera lens angle in degrees|double||
+|FocusDistance|Camera focus distance|double||
+</details>
+
 [!IndentEnd]
 ### **TextAnnotation2d** (2D Text Annotation) [!badge text="EntityClass" kind="info"]
 
@@ -1162,12 +2993,61 @@ A bis:ViewDefinition3d used to display a 3D template model.
 
 **Base Class:** [BisCore:AnnotationElement2d](#annotationelement2d)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:DrawingCategory used to categorize this bis:GeometricElement2d instance.|[navigation](./biscore.ecschema.md#geometricelement2disincategory)||
+|Origin|The placement origin of this bis:Element.|point2d||
+|Rotation|The placement rotation (in degrees) of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point2d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point2d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement2dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **TextAnnotation3d** (3D Text Annotation) [!badge text="EntityClass" kind="info"]
 
 [!IndentStart]
 
 **Base Class:** [BisCore:GraphicalElement3d](#graphicalelement3d)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
 
 [!IndentEnd]
 ### **TextAnnotationData** (Text Annotation Data) *Sealed* [!badge text="EntityClass" kind="info"]
@@ -1184,6 +3064,14 @@ The aspect used to store text annotation data for bis:TextAnnotation2d an bis:Te
 |:-----------|:------------------|:-----------|:-----------------------|
 |TextAnnotation||binary||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Element|The bis:Element that owns this bis:ElementUniqueAspect|[navigation](./biscore.ecschema.md#elementownsuniqueaspect)||
+</details>
+
 [!IndentEnd]
 ### **TextAnnotationSeed** (Text Annotation Seed) *Sealed* [!badge text="EntityClass" kind="info"]
 
@@ -1197,6 +3085,23 @@ The aspect used to store text annotation data for bis:TextAnnotation2d an bis:Te
 |:-----------|:------------------|:-----------|:-----------------------|
 |Description|Description of the style|string||
 |Data|Encoded style properties|binary||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
 
 [!IndentEnd]
 ### **Texture** *Sealed* [!badge text="EntityClass" kind="info"]
@@ -1218,6 +3123,23 @@ A bis:Texture represents a named texture used for rendering purposes. The textur
 |Height||int||
 |Flags||int||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **TypeDefinitionElement** (Type Definition) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -1232,6 +3154,23 @@ Defines a shared set of properties (the 'type') that can be associated with a bi
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
 |Recipe||[navigation](./biscore.ecschema.md#typedefinitionhasrecipe)||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
 
 [!IndentEnd]
 ### **UrlLink** (URL Link) [!badge text="EntityClass" kind="info"]
@@ -1249,6 +3188,22 @@ A bis:UrlLink is a bis:LinkElement that specifies a URL link.
 |Url||string||
 |Description||string||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
 [!IndentEnd]
 ### **ViewAttachment** (View Attachment) [!badge text="EntityClass" kind="info"]
 
@@ -1261,6 +3216,29 @@ A bis:UrlLink is a bis:LinkElement that specifies a URL link.
 |    Name    |    Description    |    Type    |      Extended Type     |
 |:-----------|:------------------|:-----------|:-----------------------|
 |View|The view that is to be attached|[navigation](./biscore.ecschema.md#viewisattached)||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:DrawingCategory used to categorize this bis:GeometricElement2d instance.|[navigation](./biscore.ecschema.md#geometricelement2disincategory)||
+|Origin|The placement origin of this bis:Element.|point2d||
+|Rotation|The placement rotation (in degrees) of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point2d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point2d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement2dhastypedefinition)||
+</details>
 
 [!IndentEnd]
 ### **ViewDefinition** (View Definition) *Abstract* [!badge text="EntityClass" kind="info"]
@@ -1279,6 +3257,23 @@ A bis:ViewDefinition specifies the area/volume that is viewed, and refers to a b
 |CategorySelector||[navigation](./biscore.ecschema.md#viewdefinitionusescategoryselector)||
 |DisplayStyle||[navigation](./biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+</details>
+
 [!IndentEnd]
 ### **ViewDefinition2d** (2D View Definition) *Abstract* [!badge text="EntityClass" kind="info"]
 
@@ -1296,6 +3291,26 @@ A view of a 2D model that has its own local coordinate system.
 |Origin|Lower left corner of the viewed area.|point2d||
 |Extents|Size of the view diagonal|point2d||
 |RotationAngle|Rotation angle in degrees of the viewed area.|double||
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Description||string||
+|CategorySelector||[navigation](./biscore.ecschema.md#viewdefinitionusescategoryselector)||
+|DisplayStyle||[navigation](./biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
+</details>
 
 [!IndentEnd]
 ### **ViewDefinition3d** (3D View Definition) *Abstract* [!badge text="EntityClass" kind="info"]
@@ -1320,6 +3335,26 @@ A bis:ViewDefinition3d specifies the volume that is viewed on referenced 3D bis:
 |LensAngle|Camera lens angle in degrees|double||
 |FocusDistance|Camera focus distance|double||
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|IsPrivate|If true, this bis:DefinitionElement should not be displayed in the GUI.|boolean||
+|Description||string||
+|CategorySelector||[navigation](./biscore.ecschema.md#viewdefinitionusescategoryselector)||
+|DisplayStyle||[navigation](./biscore.ecschema.md#viewdefinitionusesdisplaystyle)||
+</details>
+
 [!IndentEnd]
 ### **VolumeElement** (Volume Element) [!badge text="EntityClass" kind="info"]
 
@@ -1329,12 +3364,128 @@ A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defini
 
 **Base Class:** [BisCore:SpatialLocationElement](#spatiallocationelement)
 
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|Model|The bis:Model that contains this bis:Element.|[navigation](./biscore.ecschema.md#modelcontainselements)||
+|LastMod|The last modified time of the bis:Element. This is maintained by the core framework and should not be set directly by applications.|dateTime||
+|CodeSpec|The CodeSpec property identifies the bis:CodeSpec used to generate and validate the code for this bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#codespecspecifiescode)||
+|CodeScope|The CodeScope property identifies the bis:Element that provides the uniqueness scope for the code value. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|[navigation](./biscore.ecschema.md#elementscopescode)||
+|CodeValue|The CodeValue property stores the formal name (business key) for a bis:Element. The combination of CodeSpec, CodeScope, and CodeValue properties must be unique for each bis:Element instance.|string||
+|UserLabel|An optional friendly name given by the user (as opposed to the formal name stored in the CodeValue property).|string||
+|Parent|The parent bis:Element that owns this bis:Element.|[navigation](./biscore.ecschema.md#elementownschildelements)||
+|FederationGuid|The GUID used to federate this bis:Element across repositories.|binary|BeGuid|
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+|Category|The bis:SpatialCategory used to categorize this bis:GeometricElement3d|[navigation](./biscore.ecschema.md#geometricelement3disincategory)||
+|InSpatialIndex|If true, this element will have an entry in the Spatial Index.|boolean||
+|Origin|The placement origin of this bis:Element.|point3d||
+|Yaw|The Yaw angle (in degrees) of the orientation of this bis:Element.|double||
+|Pitch|The Pitch angle (in degrees) of the orientation of this bis:Element.|double||
+|Roll|The Roll angle (in degrees) of the orientation of this bis:Element.|double||
+|BBoxLow|The 'low' point of the element-aligned bounding box of this bis:Element.|point3d||
+|BBoxHigh|The 'high' point of the element-aligned bounding box of this bis:Element.|point3d||
+|GeometryStream|Binary stream used to persist the geometry of this bis:Element.|binary|GeometryStream|
+|TypeDefinition||[navigation](./biscore.ecschema.md#geometricelement3dhastypedefinition)||
+</details>
+
 [!IndentEnd]
 ### **WebMercatorModel** (Web Mercator Model) [!badge text="EntityClass" kind="info"]
 
 [!IndentStart]
 
 **Base Class:** [BisCore:SpatialModel](#spatialmodel)
+
+<details>
+<summary>Inherited properties</summary>
+
+|    Name    |    Description    |    Type    |      Extended Type     |
+|:-----------|:------------------|:-----------|:-----------------------|
+|ParentModel|The parent bis:Model contains the modeled bis:Element which is above this bis:Model in the information hierarchy.|[navigation](./biscore.ecschema.md#modelownssubmodel)||
+|ModeledElement|The bis:Model that is modeling (describing or breaking down) a bis:Element which is at a higher level of the information hierarchy.|[navigation](./biscore.ecschema.md#modelmodelselement)||
+|IsPrivate|If IsPrivate is true then this bis:Model should not appear in lists shown to the user.|boolean||
+|IsTemplate|If IsTemplate is true then this bis:Model is used as a template for creating new instances.|boolean||
+|JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
+</details>
+
+[!IndentEnd]
+## Mixins
+
+### **IParentElement** (Parent Element) *Abstract* [!badge text="Mixin" kind="info"]
+
+[!IndentStart]
+
+An interface that indicates that this class of bis:Element is capable of being a parent (owning child Elements). This interface is mutually exclusive with bis:ISubModeledElement.
+
+**Applies To:** [Element](./biscore.ecschema.md#element)
+
+[!IndentEnd]
+### **ISubModeledElement** (Sub-Modeled Element) *Abstract* [!badge text="Mixin" kind="info"]
+
+[!IndentStart]
+
+An interface that indicates that a bis:Element can be broken down or described by a (sub) bis:Model. This interface is mutually exclusive with bis:IParentElement.
+
+**Applies To:** [Element](./biscore.ecschema.md#element)
+
+[!IndentEnd]
+## Custom Attribute Classes
+
+### **AutoHandledProperty** [!badge text="CustomAttributeClass" kind="info"]
+
+[!IndentStart]
+
+Applied to an element's property to indicate that select, update, and insert of the property's value are handled automatically by the platform.
+
+**Applies to:** AnyProperty
+#### Properties
+
+|    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
+|:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
+|StatementTypes||||false|0|
+
+[!IndentEnd]
+### **ClassHasHandler** [!badge text="CustomAttributeClass" kind="info"]
+
+[!IndentStart]
+
+Applied to an ECClass to indicate that a C++ subclass of DgnDomain::Handler will supply behavior for it at run-time. This custom attribute may only be used by BisCore or other core schemas.
+
+**Applies to:** Any
+#### Properties
+
+|    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
+|:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
+|Restrictions|List of actions that are not permitted when the associated handler is not available|||false|0|
+
+[!IndentEnd]
+### **CustomHandledProperty** [!badge text="CustomAttributeClass" kind="info"]
+
+[!IndentStart]
+
+Applied to an element's property to indicate that the property's value is handled specially by a C++ class.
+
+**Applies to:** AnyProperty
+#### Properties
+
+|    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
+|:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
+|StatementTypes||||false|0|
+
+[!IndentEnd]
+### **SchemaHasBehavior** [!badge text="CustomAttributeClass" kind="info"]
+
+[!IndentStart]
+
+Applied to an ECSchema to indicate that there is an associated JavaScript library that will provide run-time behavior.
+
+**Applies to:** Schema
+#### Properties
+
+|    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
+|:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
+|Restrictions|List of actions that are not permitted when the associated JavaScript library is not available.|||false|0|
 
 [!IndentEnd]
 ## Relationship Classes
@@ -1354,7 +3505,7 @@ A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defini
 
 **Role Label:** is base model for
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [GeometricModel2d](./biscore.ecschema.md#geometricmodel2d)
@@ -1366,7 +3517,7 @@ A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defini
 
 **Role Label:** has base
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [ViewDefinition2d](./biscore.ecschema.md#viewdefinition2d)
@@ -1389,7 +3540,7 @@ A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defini
 
 **Role Label:** owns
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [Category](./biscore.ecschema.md#category)
@@ -1401,7 +3552,7 @@ A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defini
 
 **Role Label:** is owned by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [SubCategory](./biscore.ecschema.md#subcategory)
@@ -1424,7 +3575,7 @@ A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defini
 
 **Role Label:** refers to
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [CategorySelector](./biscore.ecschema.md#categoryselector)
@@ -1436,7 +3587,7 @@ A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defini
 
 **Role Label:** is referenced by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Category](./biscore.ecschema.md#category)
@@ -1457,7 +3608,7 @@ A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defini
 
 **Role Label:** specified code for
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [CodeSpec](./biscore.ecschema.md#codespec)
@@ -1469,7 +3620,7 @@ A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defini
 
 **Role Label:** code is specified by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1494,7 +3645,7 @@ Relates a bis:DrawingGraphic to the bis:Element that it represents.
 
 **Role Label:** represents
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [DrawingGraphic](./biscore.ecschema.md#drawinggraphic)
@@ -1506,7 +3657,7 @@ Relates a bis:DrawingGraphic to the bis:Element that it represents.
 
 **Role Label:** is represented by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1529,7 +3680,7 @@ Relates a bis:DrawingGraphic to the bis:Element that it represents.
 
 **Role Label:** breaks down
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [DrawingModel](./biscore.ecschema.md#drawingmodel)
@@ -1541,7 +3692,7 @@ Relates a bis:DrawingGraphic to the bis:Element that it represents.
 
 **Role Label:** is broken down by
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [Drawing](./biscore.ecschema.md#drawing)
@@ -1562,7 +3713,7 @@ Relates a bis:DrawingGraphic to the bis:Element that it represents.
 
 **Role Label:** drives
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1574,7 +3725,7 @@ Relates a bis:DrawingGraphic to the bis:Element that it represents.
 
 **Role Label:** is driven by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1599,7 +3750,7 @@ A relationship that indicates that child bis:Elements are meant to be hidden.
 
 **Role Label:** encapsulates
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1611,7 +3762,7 @@ A relationship that indicates that child bis:Elements are meant to be hidden.
 
 **Role Label:** is encapsulated by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1636,7 +3787,7 @@ A generic relationship used to capture the members of a defined set of bis:Eleme
 
 **Role Label:** groups
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1648,7 +3799,7 @@ A generic relationship used to capture the members of a defined set of bis:Eleme
 
 **Role Label:** is grouped by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1673,7 +3824,7 @@ Associates bis:LinkElements to a bis:Element.
 
 **Role Label:** has
 
-**multiplicity:** (1..*)
+**Multiplicity:** (1..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1685,7 +3836,7 @@ Associates bis:LinkElements to a bis:Element.
 
 **Role Label:** is referenced by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [LinkElement](./biscore.ecschema.md#linkelement)
@@ -1708,7 +3859,7 @@ Relates a bis:Element to child bis:Elements which represent parts of the entity 
 
 **Role Label:** owns child
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1720,7 +3871,7 @@ Relates a bis:Element to child bis:Elements which represent parts of the entity 
 
 **Role Label:** is owned by parent
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1743,7 +3894,7 @@ Relates a bis:Element to child bis:Elements which represent parts of the entity 
 
 **Role Label:** owns
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1755,7 +3906,7 @@ Relates a bis:Element to child bis:Elements which represent parts of the entity 
 
 **Role Label:** is owned by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [ExternalSourceAspect](./biscore.ecschema.md#externalsourceaspect)
@@ -1776,7 +3927,7 @@ Relates a bis:Element to child bis:Elements which represent parts of the entity 
 
 **Role Label:** owns
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1788,7 +3939,7 @@ Relates a bis:Element to child bis:Elements which represent parts of the entity 
 
 **Role Label:** is owned by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [ElementMultiAspect](./biscore.ecschema.md#elementmultiaspect)
@@ -1809,7 +3960,7 @@ Relates a bis:Element to child bis:Elements which represent parts of the entity 
 
 **Role Label:** owns
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1821,7 +3972,7 @@ Relates a bis:Element to child bis:Elements which represent parts of the entity 
 
 **Role Label:** is owned by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [ElementUniqueAspect](./biscore.ecschema.md#elementuniqueaspect)
@@ -1846,7 +3997,7 @@ A general relationship between a bis:Element and a bis:Document. There is no imp
 
 **Role Label:** refers to
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1858,7 +4009,7 @@ A general relationship between a bis:Element and a bis:Document. There is no imp
 
 **Role Label:** is referenced by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Document](./biscore.ecschema.md#document)
@@ -1881,7 +4032,7 @@ A general relationship between two bis:Elements. These are typically specialized
 
 **Role Label:** refers to
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1893,7 +4044,7 @@ A general relationship between two bis:Elements. These are typically specialized
 
 **Role Label:** is referenced by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1914,7 +4065,7 @@ A general relationship between two bis:Elements. These are typically specialized
 
 **Role Label:** scopes code for
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1926,7 +4077,7 @@ A general relationship between two bis:Elements. These are typically specialized
 
 **Role Label:** code is scoped by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1947,7 +4098,7 @@ A general relationship between two bis:Elements. These are typically specialized
 
 **Role Label:** scopes
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -1959,7 +4110,7 @@ A general relationship between two bis:Elements. These are typically specialized
 
 **Role Label:** is scoped by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [ExternalSourceAspect](./biscore.ecschema.md#externalsourceaspect)
@@ -1980,7 +4131,7 @@ A general relationship between two bis:Elements. These are typically specialized
 
 **Role Label:** has
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [GeometricElement2d](./biscore.ecschema.md#geometricelement2d)
@@ -1992,7 +4143,7 @@ A general relationship between two bis:Elements. These are typically specialized
 
 **Role Label:** classifies
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [TypeDefinitionElement](./biscore.ecschema.md#typedefinitionelement)
@@ -2015,7 +4166,7 @@ The relationship that determines the bis:DrawingCategory for a bis:GeometricElem
 
 **Role Label:** is in
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [GeometricElement2d](./biscore.ecschema.md#geometricelement2d)
@@ -2027,7 +4178,7 @@ The relationship that determines the bis:DrawingCategory for a bis:GeometricElem
 
 **Role Label:** categorizes
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [DrawingCategory](./biscore.ecschema.md#drawingcategory)
@@ -2048,7 +4199,7 @@ The relationship that determines the bis:DrawingCategory for a bis:GeometricElem
 
 **Role Label:** has
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [GeometricElement3d](./biscore.ecschema.md#geometricelement3d)
@@ -2060,7 +4211,7 @@ The relationship that determines the bis:DrawingCategory for a bis:GeometricElem
 
 **Role Label:** classifies
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [TypeDefinitionElement](./biscore.ecschema.md#typedefinitionelement)
@@ -2083,7 +4234,7 @@ The relationship that determines the bis:SpatialCategory for a bis:GeometricElem
 
 **Role Label:** is in
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [GeometricElement3d](./biscore.ecschema.md#geometricelement3d)
@@ -2095,7 +4246,7 @@ The relationship that determines the bis:SpatialCategory for a bis:GeometricElem
 
 **Role Label:** categorizes
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [SpatialCategory](./biscore.ecschema.md#spatialcategory)
@@ -2118,7 +4269,7 @@ The relationship that determines the bis:SpatialCategory for a bis:GeometricElem
 
 **Role Label:** is of
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [GraphicalElement2d](./biscore.ecschema.md#graphicalelement2d)
@@ -2130,7 +4281,7 @@ The relationship that determines the bis:SpatialCategory for a bis:GeometricElem
 
 **Role Label:** defines
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [GraphicalType2d](./biscore.ecschema.md#graphicaltype2d)
@@ -2155,7 +4306,7 @@ Relates a bis:GraphicalElement3d to the bis:Element that it represents.
 
 **Role Label:** represents
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [GraphicalElement3d](./biscore.ecschema.md#graphicalelement3d)
@@ -2167,7 +4318,7 @@ Relates a bis:GraphicalElement3d to the bis:Element that it represents.
 
 **Role Label:** is represented by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -2190,7 +4341,7 @@ Relates a bis:GraphicalElement3d to the bis:Element that it represents.
 
 **Role Label:** has
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [GraphicalType2d](./biscore.ecschema.md#graphicaltype2d)
@@ -2202,7 +4353,7 @@ Relates a bis:GraphicalElement3d to the bis:Element that it represents.
 
 **Role Label:** is referenced by
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [TemplateRecipe2d](./biscore.ecschema.md#templaterecipe2d)
@@ -2225,7 +4376,7 @@ The relationship that enforces that each bis:Element belongs to exactly one bis:
 
 **Role Label:** contains
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [Model](./biscore.ecschema.md#model)
@@ -2237,7 +4388,7 @@ The relationship that enforces that each bis:Element belongs to exactly one bis:
 
 **Role Label:** is contained by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Element](./biscore.ecschema.md#element)
@@ -2260,7 +4411,7 @@ Relates a bis:Model to the bis:Element that it describes or breaks down into mor
 
 **Role Label:** models
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [Model](./biscore.ecschema.md#model)
@@ -2272,7 +4423,7 @@ Relates a bis:Model to the bis:Element that it describes or breaks down into mor
 
 **Role Label:** is modeled by
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [ISubModeledElement](./biscore.ecschema.md#isubmodeledelement)
@@ -2295,7 +4446,7 @@ The relationship that is used to build a model hierarchy index. This is done for
 
 **Role Label:** owns sub
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [Model](./biscore.ecschema.md#model)
@@ -2307,7 +4458,7 @@ The relationship that is used to build a model hierarchy index. This is done for
 
 **Role Label:** is owned by parent
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Model](./biscore.ecschema.md#model)
@@ -2328,7 +4479,7 @@ The relationship that is used to build a model hierarchy index. This is done for
 
 **Role Label:** refers to
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [ModelSelector](./biscore.ecschema.md#modelselector)
@@ -2340,7 +4491,7 @@ The relationship that is used to build a model hierarchy index. This is done for
 
 **Role Label:** is referenced by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Model](./biscore.ecschema.md#model)
@@ -2365,7 +4516,7 @@ DEPRECATED
 
 **Role Label:** originates from
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [InformationPartitionElement](./biscore.ecschema.md#informationpartitionelement)
@@ -2377,7 +4528,7 @@ DEPRECATED
 
 **Role Label:** is origin of
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [RepositoryLink](./biscore.ecschema.md#repositorylink)
@@ -2402,7 +4553,7 @@ A relationship that indicates a physical assembly of child bis:PhysicalElements.
 
 **Role Label:** assembles
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [PhysicalElement](./biscore.ecschema.md#physicalelement)
@@ -2414,7 +4565,7 @@ A relationship that indicates a physical assembly of child bis:PhysicalElements.
 
 **Role Label:** is assembled by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [PhysicalElement](./biscore.ecschema.md#physicalelement)
@@ -2439,7 +4590,7 @@ A type-instance relation; one that indicates that the specific bis:PhysicalEleme
 
 **Role Label:** is of
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [PhysicalElement](./biscore.ecschema.md#physicalelement)
@@ -2451,7 +4602,7 @@ A type-instance relation; one that indicates that the specific bis:PhysicalEleme
 
 **Role Label:** classifies
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [PhysicalType](./biscore.ecschema.md#physicaltype)
@@ -2478,7 +4629,7 @@ DEPRECATED
 
 **Role Label:** breaks down
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [PhysicalModel](./biscore.ecschema.md#physicalmodel)
@@ -2490,7 +4641,7 @@ DEPRECATED
 
 **Role Label:** is broken down by
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [PhysicalPortion](./biscore.ecschema.md#physicalportion)
@@ -2513,7 +4664,7 @@ DEPRECATED
 
 **Role Label:** has
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [PhysicalType](./biscore.ecschema.md#physicaltype)
@@ -2525,7 +4676,7 @@ DEPRECATED
 
 **Role Label:** is referenced by
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [TemplateRecipe3d](./biscore.ecschema.md#templaterecipe3d)
@@ -2548,7 +4699,7 @@ DEPRECATED
 
 **Role Label:** owns child
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [RenderMaterial](./biscore.ecschema.md#rendermaterial)
@@ -2560,7 +4711,7 @@ DEPRECATED
 
 **Role Label:** is owned by parent
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [RenderMaterial](./biscore.ecschema.md#rendermaterial)
@@ -2581,7 +4732,7 @@ DEPRECATED
 
 **Role Label:** has
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [SheetBorder](./biscore.ecschema.md#sheetborder)
@@ -2593,7 +4744,7 @@ DEPRECATED
 
 **Role Label:** defines
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [SheetBorderTemplate](./biscore.ecschema.md#sheetbordertemplate)
@@ -2614,7 +4765,7 @@ DEPRECATED
 
 **Role Label:** has
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Sheet](./biscore.ecschema.md#sheet)
@@ -2626,7 +4777,7 @@ DEPRECATED
 
 **Role Label:** defines
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [SheetTemplate](./biscore.ecschema.md#sheettemplate)
@@ -2649,7 +4800,7 @@ DEPRECATED
 
 **Role Label:** breaks down
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [SheetModel](./biscore.ecschema.md#sheetmodel)
@@ -2661,7 +4812,7 @@ DEPRECATED
 
 **Role Label:** is broken down by
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [Sheet](./biscore.ecschema.md#sheet)
@@ -2682,7 +4833,7 @@ DEPRECATED
 
 **Role Label:** has
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [SheetTemplate](./biscore.ecschema.md#sheettemplate)
@@ -2694,7 +4845,7 @@ DEPRECATED
 
 **Role Label:** is referenced by
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [SheetBorder](./biscore.ecschema.md#sheetborder)
@@ -2719,7 +4870,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** is of
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [SpatialLocationElement](./biscore.ecschema.md#spatiallocationelement)
@@ -2731,7 +4882,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** classifies
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [SpatialLocationType](./biscore.ecschema.md#spatiallocationtype)
@@ -2752,7 +4903,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** uses
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [SpatialViewDefinition](./biscore.ecschema.md#spatialviewdefinition)
@@ -2764,7 +4915,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** is used by
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [ModelSelector](./biscore.ecschema.md#modelselector)
@@ -2787,7 +4938,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** owns
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [Subject](./biscore.ecschema.md#subject)
@@ -2799,7 +4950,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** is owned by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [InformationPartitionElement](./biscore.ecschema.md#informationpartitionelement)
@@ -2822,7 +4973,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** owns child
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [Subject](./biscore.ecschema.md#subject)
@@ -2834,7 +4985,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** is owned by parent
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [Subject](./biscore.ecschema.md#subject)
@@ -2857,7 +5008,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** owns
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [TextAnnotation2d](./biscore.ecschema.md#textannotation2d)
@@ -2869,7 +5020,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** is owned by
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [TextAnnotationData](./biscore.ecschema.md#textannotationdata)
@@ -2892,7 +5043,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** owns
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [TextAnnotation3d](./biscore.ecschema.md#textannotation3d)
@@ -2904,7 +5055,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** is owned by
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [TextAnnotationData](./biscore.ecschema.md#textannotationdata)
@@ -2925,7 +5076,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** has
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [TypeDefinitionElement](./biscore.ecschema.md#typedefinitionelement)
@@ -2937,7 +5088,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** is referenced by
 
-**multiplicity:** (0..1)
+**Multiplicity:** (0..1)
 
 #### Constraint Classes:
 - [RecipeDefinitionElement](./biscore.ecschema.md#recipedefinitionelement)
@@ -2958,7 +5109,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** uses
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [ViewDefinition](./biscore.ecschema.md#viewdefinition)
@@ -2970,7 +5121,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** is used by
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [CategorySelector](./biscore.ecschema.md#categoryselector)
@@ -2991,7 +5142,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** uses
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [ViewDefinition](./biscore.ecschema.md#viewdefinition)
@@ -3003,7 +5154,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** is used by
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [DisplayStyle](./biscore.ecschema.md#displaystyle)
@@ -3024,7 +5175,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** owns
 
-**multiplicity:** (1..1)
+**Multiplicity:** (1..1)
 
 #### Constraint Classes:
 - [ViewDefinition](./biscore.ecschema.md#viewdefinition)
@@ -3036,7 +5187,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 
 **Role Label:** is owned by
 
-**multiplicity:** (0..*)
+**Multiplicity:** (0..*)
 
 #### Constraint Classes:
 - [ViewAttachment](./biscore.ecschema.md#viewattachment)
@@ -3075,87 +5226,5 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 |Update|4||
 |InsertUpdate = Insert \| Update|6||
 |All = Select \| Insert \| Update|7||
-
-[!IndentEnd]
-## Mixin Classes
-
-### **IParentElement** (Parent Element) *Abstract* [!badge text="Mixin" kind="info"]
-
-[!IndentStart]
-
-An interface that indicates that this class of bis:Element is capable of being a parent (owning child Elements). This interface is mutually exclusive with bis:ISubModeledElement.
-
-**Applies To:** [Element](./biscore.ecschema.md#element)
-
-[!IndentEnd]
-### **ISubModeledElement** (Sub-Modeled Element) *Abstract* [!badge text="Mixin" kind="info"]
-
-[!IndentStart]
-
-An interface that indicates that a bis:Element can be broken down or described by a (sub) bis:Model. This interface is mutually exclusive with bis:IParentElement.
-
-**Applies To:** [Element](./biscore.ecschema.md#element)
-
-[!IndentEnd]
-## Custom Attribute Classes
-
-### **AutoHandledProperty** [!badge text="CustomAttributeClass" kind="info"]
-
-[!IndentStart]
-
-Applied to an element's property to indicate that select, update, and insert of the property's value are handled automatically by the platform.
-
-**Applies to:** AnyProperty
-
-#### Properties
-
-|    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
-|:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
-|StatementTypes||||false|0|
-
-[!IndentEnd]
-### **ClassHasHandler** [!badge text="CustomAttributeClass" kind="info"]
-
-[!IndentStart]
-
-Applied to an ECClass to indicate that a C++ subclass of DgnDomain::Handler will supply behavior for it at run-time. This custom attribute may only be used by BisCore or other core schemas.
-
-**Applies to:** Any
-
-#### Properties
-
-|    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
-|:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
-|Restrictions|List of actions that are not permitted when the associated handler is not available|||false|0|
-
-[!IndentEnd]
-### **CustomHandledProperty** [!badge text="CustomAttributeClass" kind="info"]
-
-[!IndentStart]
-
-Applied to an element's property to indicate that the property's value is handled specially by a C++ class.
-
-**Applies to:** AnyProperty
-
-#### Properties
-
-|    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
-|:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
-|StatementTypes||||false|0|
-
-[!IndentEnd]
-### **SchemaHasBehavior** [!badge text="CustomAttributeClass" kind="info"]
-
-[!IndentStart]
-
-Applied to an ECSchema to indicate that there is an associated JavaScript library that will provide run-time behavior.
-
-**Applies to:** Schema
-
-#### Properties
-
-|    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |
-|:-----------|:------------|:------------|:-----------|:-----------------|:---------------|
-|Restrictions|List of actions that are not permitted when the associated JavaScript library is not available.|||false|0|
 
 [!IndentEnd]
