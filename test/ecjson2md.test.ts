@@ -2,7 +2,7 @@
 |  $Copyright: (c) 2019 Bentley Systems, Incorporated. All rights reserved. $
 *--------------------------------------------------------------------------------------------*/
 
-import { ECJsonMarkdownGenerator, formatLink, formatWarningAlert, propertyTypeNumberToString, removeExtraBlankLine, prepSearchDirs, schemaItemToGroupName } from "../source/ecjson2md";
+import { ECJsonMarkdownGenerator, formatLink, formatWarningAlert, propertyTypeNumberToString, removeExtraBlankLines, prepSearchDirs, schemaItemToGroupName } from "../source/ecjson2md";
 import { assert, expect } from "chai";
 import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
@@ -4338,7 +4338,7 @@ describe("ecjson2md", () => {
     });
 
     describe("others", () => {
-      describe("removeExtraBlankLine", () => {
+      describe("removeBlankLines", () => {
         const outputFilePath = path.join(".", "test", "_temp_remove_line_.txt");
 
         beforeEach(() => {
@@ -4349,29 +4349,16 @@ describe("ecjson2md", () => {
           if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
         });
 
-        it("should remove extra blank line at the end of file", () => {
+        it("should remove blank lines at the end of file", () => {
           // Arrange
           const inputFilePath = path.join(".", "test", "Assets", "file_with_blank_lines.txt");
 
           // Act
-          removeExtraBlankLine(inputFilePath, outputFilePath);
+          removeExtraBlankLines(inputFilePath, outputFilePath);
 
           // Assert
           const outputBuffer = fs.readFileSync(outputFilePath).toString();
-          const correctBuffer = "test\r\n";
-          assert.equal(outputBuffer, correctBuffer);
-        });
-
-        it("shouldn't remove an extra blank line if there isn't one there", () => {
-          // Arrange
-          const inputFilePath = path.join(".", "test", "Assets", "file_with_blank_line.txt");
-
-          // Act
-          removeExtraBlankLine(inputFilePath, outputFilePath);
-
-          // Assert
-          const outputBuffer = fs.readFileSync(outputFilePath).toString();
-          const correctBuffer = "test\r\n";
+          const correctBuffer = "test";
           assert.equal(outputBuffer, correctBuffer);
         });
 
@@ -4380,7 +4367,7 @@ describe("ecjson2md", () => {
           const inputFilePath = path.join(".", "test", "Assets", "file_with_no_blank_line.txt");
 
           // Act
-          removeExtraBlankLine(inputFilePath, outputFilePath);
+          removeExtraBlankLines(inputFilePath, outputFilePath);
 
           // Assert
           const outputBuffer = fs.readFileSync(outputFilePath).toString();
