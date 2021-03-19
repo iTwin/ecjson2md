@@ -14,16 +14,16 @@ Custom attributes that customize ECDb's ECSchema to database mapping.
 
 ## Table of contents
 - [Struct Classes](#struct-classes)
- - [DbIndex](#dbindex)
+	- [DbIndex](#dbindex)
 - [Custom Attribute Classes](#custom-attribute-classes)
- - [ClassMap](#classmap)
- - [DbIndexList](#dbindexlist)
- - [ForeignKeyConstraint](#foreignkeyconstraint)
- - [JoinedTablePerDirectSubclass](#joinedtableperdirectsubclass)
- - [LinkTableRelationshipMap](#linktablerelationshipmap)
- - [PropertyMap](#propertymap)
- - [SchemaMap](#schemamap)
- - [ShareColumns](#sharecolumns)
+	- [ClassMap](#classmap)
+	- [DbIndexList](#dbindexlist)
+	- [ForeignKeyConstraint](#foreignkeyconstraint)
+	- [JoinedTablePerDirectSubclass](#joinedtableperdirectsubclass)
+	- [LinkTableRelationshipMap](#linktablerelationshipmap)
+	- [PropertyMap](#propertymap)
+	- [SchemaMap](#schemamap)
+	- [ShareColumns](#sharecolumns)
 
 ### **DbIndex** *Sealed* [!badge text="StructClass" kind="info"]
 

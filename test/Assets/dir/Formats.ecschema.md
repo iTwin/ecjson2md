@@ -14,16 +14,16 @@ Standard Set of Format definitions
 
 ## Table of contents
 - [Formats](#formats)
- - [AmerFI](#amerfi)
- - [AmerI](#ameri)
- - [AngleDMS](#angledms)
- - [DefaultReal](#defaultreal)
- - [DefaultRealU](#defaultrealu)
- - [DefaultRealUNS](#defaultrealuns)
- - [Fractional](#fractional)
- - [HMS](#hms)
- - [StationZ_1000_3](#stationz_1000_3)
- - [StationZ_100_2](#stationz_100_2)
+	- [AmerFI](#amerfi)
+	- [AmerI](#ameri)
+	- [AngleDMS](#angledms)
+	- [DefaultReal](#defaultreal)
+	- [DefaultRealU](#defaultrealu)
+	- [DefaultRealUNS](#defaultrealuns)
+	- [Fractional](#fractional)
+	- [HMS](#hms)
+	- [StationZ_1000_3](#stationz_1000_3)
+	- [StationZ_100_2](#stationz_100_2)
 
 ## Formats
 
@@ -31,7 +31,7 @@ Standard Set of Format definitions
 
 [!IndentStart]
 
-**type:** Fractional
+**Type:** Fractional
 
 **Precision:** 8
 
@@ -42,14 +42,14 @@ Standard Set of Format definitions
 - KeepDecimalPoint
 - ShowUnitLabel
 
-**Uom Separator:** None
+**Separator:** None
 
 [!IndentEnd]
 ### **AmerI** (Inches) [!badge text="Format" kind="info"]
 
 [!IndentStart]
 
-**type:** Fractional
+**Type:** Fractional
 
 **Precision:** 8
 
@@ -59,14 +59,14 @@ Standard Set of Format definitions
 - KeepSingleZero
 - ShowUnitLabel
 
-**Uom Separator:** None
+**Separator:** None
 
 [!IndentEnd]
 ### **AngleDMS** (DegreesMinutesSeconds) [!badge text="Format" kind="info"]
 
 [!IndentStart]
 
-**type:** Decimal
+**Type:** Decimal
 
 **Precision:** 4
 
@@ -77,14 +77,14 @@ Standard Set of Format definitions
 - KeepDecimalPoint
 - ShowUnitLabel
 
-**Uom Separator:** None
+**Separator:** None
 
 [!IndentEnd]
 ### **DefaultReal** (real) [!badge text="Format" kind="info"]
 
 [!IndentStart]
 
-**type:** Decimal
+**Type:** Decimal
 
 **Precision:** 6
 
@@ -94,14 +94,14 @@ Standard Set of Format definitions
 - KeepSingleZero
 - KeepDecimalPoint
 
-**Uom Separator:** <code> </code> (Space)
+**Separator:** <code> </code> (Space)
 
 [!IndentEnd]
 ### **DefaultRealU** (realu) [!badge text="Format" kind="info"]
 
 [!IndentStart]
 
-**type:** Decimal
+**Type:** Decimal
 
 **Precision:** 6
 
@@ -112,14 +112,14 @@ Standard Set of Format definitions
 - KeepDecimalPoint
 - ShowUnitLabel
 
-**Uom Separator:** <code> </code> (Space)
+**Separator:** <code> </code> (Space)
 
 [!IndentEnd]
 ### **DefaultRealUNS** [!badge text="Format" kind="info"]
 
 [!IndentStart]
 
-**type:** Decimal
+**Type:** Decimal
 
 **Precision:** 6
 
@@ -130,14 +130,14 @@ Standard Set of Format definitions
 - KeepDecimalPoint
 - ShowUnitLabel
 
-**Uom Separator:** None
+**Separator:** None
 
 [!IndentEnd]
 ### **Fractional** (fract) [!badge text="Format" kind="info"]
 
 [!IndentStart]
 
-**type:** Fractional
+**Type:** Fractional
 
 **Precision:** 64
 
@@ -147,14 +147,14 @@ Standard Set of Format definitions
 - KeepSingleZero
 - KeepDecimalPoint
 
-**Uom Separator:** <code> </code> (Space)
+**Separator:** <code> </code> (Space)
 
 [!IndentEnd]
 ### **HMS** (HoursMinutesSeconds) [!badge text="Format" kind="info"]
 
 [!IndentStart]
 
-**type:** Decimal
+**Type:** Decimal
 
 **Precision:** 2
 
@@ -165,14 +165,14 @@ Standard Set of Format definitions
 - KeepDecimalPoint
 - ShowUnitLabel
 
-**Uom Separator:** <code> </code> (Space)
+**Separator:** <code> </code> (Space)
 
 [!IndentEnd]
 ### **StationZ_1000_3** [!badge text="Format" kind="info"]
 
 [!IndentStart]
 
-**type:** Station
+**Type:** Station
 
 **Station Offset Size:** 3
 
@@ -185,14 +185,14 @@ Standard Set of Format definitions
 - KeepSingleZero
 - KeepDecimalPoint
 
-**Uom Separator:** <code> </code> (Space)
+**Separator:** <code> </code> (Space)
 
 [!IndentEnd]
 ### **StationZ_100_2** [!badge text="Format" kind="info"]
 
 [!IndentStart]
 
-**type:** Station
+**Type:** Station
 
 **Station Offset Size:** 2
 
@@ -205,6 +205,6 @@ Standard Set of Format definitions
 - KeepSingleZero
 - KeepDecimalPoint
 
-**Uom Separator:** <code> </code> (Space)
+**Separator:** <code> </code> (Space)
 
 [!IndentEnd]
