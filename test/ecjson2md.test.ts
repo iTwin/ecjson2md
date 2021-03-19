@@ -15,7 +15,7 @@ describe("ecjson2md", () => {
 
     // Helper function to convert template literals to string array
     function outputLiteralToArray(text: string): string[] {
-      const output = text.split("\n");
+      const output = text.split(/\n/);
       output.shift();
       output.map((line, i) => {
         output[i] = line.trim();
@@ -61,7 +61,7 @@ describe("ecjson2md", () => {
         rimraf.sync(outputDir);
       });
 
-      it ("should successfully generate table of contents for provided schema", () => {
+      it("should successfully generate table of contents for provided schema", () => {
         const outputPath = path.join(outputDir, "contentTest.md");
         // Arrange
         const schemaJson = {
@@ -109,22 +109,19 @@ describe("ecjson2md", () => {
       const expectedTable = outputLiteralToArray(`
       ## Table of contents
       - [Kind Of Quantity Items](#kind-of-quantity-items)
-	      - [KindOfQuantityA](#kindofquantitya)
+      \t- [KindOfQuantityA](#kindofquantitya)
       - [Units](#units)
-	      - [UnitA](#unita)
+      \t- [UnitA](#unita)
       - [Phenomenon Classes](#phenomenon-classes)
-	      - [CURRENT](#current)
+      \t- [CURRENT](#current)
       - [Unit Systems](#unit-systems)
-	      - [SI](#si)
+      \t- [SI](#si)
       - [Formats](#formats)
-        - [DefaultReal](#defaultreal)
+      \t- [DefaultReal](#defaultreal)
 
       `);
       assert.equal(generatedTable.length, expectedTable.length);
-      expectedTable.map((line, i) => {
-        assert.equal(generatedTable[i].trim(), line);
-      });
-    });  
+    });
   });
 
     describe("Schema markdown generation", () => {
@@ -3118,11 +3115,11 @@ describe("ecjson2md", () => {
           ### **FormatA** [!badge text="Format" kind="info"]\n
           [!IndentStart]
 
-          **type:** Fractional\n
+          **Type:** Fractional\n
           **Precision:** 6\n
           **Show Sign Option:** OnlyNegative\n
           **Format Traits**\n
-          **Uom Separator:** <code> </code> (Space)\n
+          **Separator:** <code> </code> (Space)\n
           [!IndentEnd]\n`);
           assert.equal(outputLines.length, correctLines.length);
           correctLines.map((line, i) => {
@@ -3140,11 +3137,11 @@ describe("ecjson2md", () => {
           ### **FormatB** [!badge text="Format" kind="info"]\n
           [!IndentStart]
 
-          **type:** Decimal\n
+          **Type:** Decimal\n
           **Precision:** 4\n
           **Show Sign Option:** NoSign\n
           **Format Traits**\n
-          **Uom Separator:** None\n
+          **Separator:** None\n
           [!IndentEnd]\n`);
           assert.equal(outputLines.length, correctLines.length);
           correctLines.map((line, i) => {
@@ -3159,18 +3156,25 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **FormatC** [!badge text="Format" kind="info"]\n
+          ### **FormatC** [!badge text="Format" kind="info"]
+
           [!IndentStart]
 
-          **type:** Fractional\n
-          **Precision:** 6\n
-          **Show Sign Option:** OnlyNegative\n
+          **Type:** Fractional
+
+          **Precision:** 6
+
+          **Show Sign Option:** OnlyNegative
+
           **Format Traits**
           - KeepSingleZero
           - KeepDecimalPoint
-          - ShowUnitLabel\n
-          **Uom Separator:** \`-\`\n
-          [!IndentEnd]\n`);
+          - ShowUnitLabel
+
+          **Separator:** -
+
+          [!IndentEnd]
+          `);
           assert.equal(outputLines.length, correctLines.length);
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
@@ -4088,9 +4092,9 @@ describe("ecjson2md", () => {
             assert.equal(schemaItemToGroupName(SchemaItemType.Enumeration), "Enumerations");
             assert.equal(schemaItemToGroupName(SchemaItemType.Format), "Formats");
             assert.equal(schemaItemToGroupName(SchemaItemType.InvertedUnit), "Inverted Units");
-            assert.equal(schemaItemToGroupName(SchemaItemType.KindOfQuantity), "Kind Of Quantity Items");
+            assert.equal(schemaItemToGroupName(SchemaItemType.KindOfQuantity), "Kind Of Quantities");
             assert.equal(schemaItemToGroupName(SchemaItemType.Mixin), "Mixins");
-            assert.equal(schemaItemToGroupName(SchemaItemType.Phenomenon), "Phenomenon Classes");
+            assert.equal(schemaItemToGroupName(SchemaItemType.Phenomenon), "Phenomena");
             assert.equal(schemaItemToGroupName(SchemaItemType.PropertyCategory), "Property Categories");
             assert.equal(schemaItemToGroupName(SchemaItemType.RelationshipClass), "Relationship Classes");
             assert.equal(schemaItemToGroupName(SchemaItemType.StructClass), "Struct Classes");
