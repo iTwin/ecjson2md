@@ -1,0 +1,122 @@
+trigger:
+  - master
+
+workspace:
+  clean: all
+pool:
+  vmImage: windows-latest
+  demands:
+  - agent.os -equals windows_nt
+  - npm
+
+steps:
+- checkout: self
+  clean: true
+
+- script: npm ci
+  displayName: Install
+
+- script: npm run build
+  displayName: Build
+
+- script: npm run test
+  displayName: Test
+
+- script: npm run cover
+  displayName: Cover
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish Code Coverage'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(Build.SourcesDirectory)\lib\test\coverage\cobertura-coverage.xml'
+    reportDirectory: '$(Build.Repository.LocalPath)\lib\test\coverage\lcov-report'
+    failIfCoverageEmpty: true
+  continueOnError: true
+
+# The two tasks from Task Group: npm: Get local and server versions
+
+- powershell: |
+    $packageName = node -p "require('./package.json').name"
+    $ver = npm view $packageName version
+    
+    if (!$ver) {
+      $ver = 0.0.0
+    }
+    
+    Write-Host "##vso[task.setvariable variable=serverVersion]$ver"
+    Write-Host "Server version found: $ver"
+  ignoreLASTEXITCODE: true
+  displayName: 'Get package server version'
+
+- powershell: |
+    $locVersion= node -p "require('./package.json').version"
+    Write-Host "##vso[task.setvariable variable=localVersion]$locVersion"
+    Write-Host "Local version found: $locVersion"
+  displayName: 'Get package local version'
+
+- task: NuGetCommand@2
+  displayName: 'Install BdfGenerator'
+  inputs:
+    command: custom
+    arguments: 'install  -Source https://registry.npmjs.org/'
+    
+- powershell: |
+   dir $(System.DefaultWorkingDirectory)
+   
+   $toolName = ""
+   
+   $dir = Get-ChildItem $(System.DefaultWorkingDirectory) | Where-Object {$_.name -like "$toolName*"}
+   Write-Host "dir=$dir"
+   $BdfToolPath = "$(System.DefaultWorkingDirectory)\$dir\tools\.exe"
+   
+   Write-Host "BdfToolPath=$BdfToolPath"
+   Write-Host "##vso[task.setvariable variable=BdfToolPath]$BdfToolPath"
+  failOnStderr: true
+  displayName: 'Get BdfGenerator Path'
+
+- powershell: |
+   $pName = node -p "require('./package.json').name"
+   
+   Write-Host "##vso[task.setvariable variable=packageName]$pName"
+   Write-Host "Package name found: $pName"
+   
+   $split = $pName.split("/")
+   $pPath = $pName
+   If (2 -eq $split.Length) {
+     $pPath = $split[0] + "-" + $split[1]
+   }
+   
+   Write-Host "##vso[task.setvariable variable=packagePath]$pPath"
+   Write-Host "Package path set: $pPath"
+  failOnStderr: true
+  displayName: 'Get and set package name and path'
+
+- powershell: |
+   $locVersion= node -p "require('./package.json').version"
+   $version= $locVersion + ".0"
+   
+   Write-Host "##vso[task.setvariable variable=packageVersion]$version"
+   Write-Host "Package version found: $version"
+  failOnStderr: true
+  displayName: 'Get and set package version'
+
+- script: '$(BdfToolPath) --source $(Build.SourcesDirectory) --name $(packageName) --version $(packageVersion) --productid $(productId) --branch $(Build.SourceBranchName) --sourceurl $(Build.Repository.Uri) --changeset $(Build.SourceVersion) --usePackageJson --buildtype npm --bdfout $(build.artifactstagingdirectory)\$(packagePath).bdf'
+  displayName: 'Run BdfGenerator'
+
+- task: colinsalmcorner.colinsalmcorner-buildtasks.tag-build-task.tagBuildOrRelease@0
+  displayName: 'Tag Build'
+  inputs:
+    tags: release
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), gt(variables['localVersion'], variables['serverVersion']))
+
+- script: npm pack
+  displayName: npm pack
+  condition: and(succeeded(), ne(variables['localVersion'], variables['serverVersion']), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: Packages'
+  inputs:
+    PathtoPublish: 'bentley-ecjson2md-$(localVersion).tgz'
+    ArtifactName: Packages
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), gt(variables['localVersion'], variables['serverVersion']))
