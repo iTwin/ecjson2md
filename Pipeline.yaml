@@ -55,26 +55,6 @@ steps:
     Write-Host "Local version found: $locVersion"
   displayName: 'Get package local version'
 
-- task: NuGetCommand@2
-  displayName: 'Install BdfGenerator'
-  inputs:
-    command: 'custom'
-    arguments: 'install -ExcludeVersion -Source https://pkgs.dev.azure.com//_packaging/Packages/nuget/v3/index.json '
-    
-- powershell: |
-   dir $(System.DefaultWorkingDirectory)
-   
-   $toolName = ""
-   
-   $dir = Get-ChildItem $(System.DefaultWorkingDirectory) | Where-Object {$_.name -like "$toolName*"}
-   Write-Host "dir=$dir"
-   $BdfToolPath = "$(System.DefaultWorkingDirectory)\$dir\tools\.exe"
-   
-   Write-Host "BdfToolPath=$BdfToolPath"
-   Write-Host "##vso[task.setvariable variable=BdfToolPath]$BdfToolPath"
-  failOnStderr: true
-  displayName: 'Get BdfGenerator Path'
-
 - powershell: |
    $pName = node -p "require('./package.json').name"
    
@@ -100,9 +80,6 @@ steps:
    Write-Host "Package version found: $version"
   failOnStderr: true
   displayName: 'Get and set package version'
-
-- script: '$(BdfToolPath) --source $(Build.SourcesDirectory) --name $(packageName) --version $(packageVersion) --productid $(productId) --branch $(Build.SourceBranchName) --sourceurl $(Build.Repository.Uri) --changeset $(Build.SourceVersion) --usePackageJson --buildtype npm --bdfout $(build.artifactstagingdirectory)\$(packagePath).bdf'
-  displayName: 'Run BdfGenerator'
 
 - task: colinsalmcorner.colinsalmcorner-buildtasks.tag-build-task.tagBuildOrRelease@0
   displayName: 'Tag Build'
