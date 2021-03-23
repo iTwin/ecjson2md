@@ -55,15 +55,11 @@ steps:
     Write-Host "Local version found: $locVersion"
   displayName: 'Get package local version'
 
-- task: DownloadPackage@1
+- task: NuGetCommand@2
   displayName: 'Install BdfGenerator'
   inputs:
-    packageType: 'nuget'
-    feed: 'https://pkgs.dev.azure.com//_packaging/Packages/nuget/v3/index.json'
-    definition: 'Bentley.BDF.Generator'
-    version: '2020.10.1.1'
-    extract: true
-    downloadPath: '$(System.DefaultWorkingDirectory)'
+    command: 'custom'
+    arguments: 'install -ExcludeVersion -Source https://pkgs.dev.azure.com//_packaging/Packages/nuget/v3/index.json Bentley.BDF.Generator'
     
 - powershell: |
    dir $(System.DefaultWorkingDirectory)
