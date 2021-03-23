@@ -253,9 +253,12 @@ export class ECJsonMarkdownGenerator {
     if (schema.label !== undefined)
       fs.appendFileSync(outputMDFile, ` (${schema.label})`);
 
+    // Write the Schema badge
+    fs.appendFileSync(outputMDFile, ` ${formatBadge("Schema", "Info")}\n\n`);
+
     // Write the alias of the schema
     if (schema.alias !== undefined)
-      fs.appendFileSync(outputMDFile, `\n\n**Alias:** ${schema.alias}\n\n`);
+      fs.appendFileSync(outputMDFile, `**Alias:** ${schema.alias}\n\n`);
 
     // Write the version of the schema
     if (schema.readVersion !== undefined && schema.writeVersion !== undefined && schema.minorVersion !== undefined)
