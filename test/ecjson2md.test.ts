@@ -232,7 +232,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          # testSchema
+          # testSchema [!badge text="Schema" kind="Info"]
 
           **Alias:** testSchema
 
@@ -262,7 +262,7 @@ describe("ecjson2md", () => {
             // Assert
             const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
             const correctLines = outputLiteralToArray(`
-            # testSchema
+            # testSchema [!badge text="Schema" kind="Info"]
 
             **Alias:** testSchema
 
@@ -295,7 +295,7 @@ describe("ecjson2md", () => {
             // Assert
             const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
             const correctLines = outputLiteralToArray(`
-            # testSchema (testSchemaLabel)
+            # testSchema (testSchemaLabel) [!badge text="Schema" kind="Info"]
 
             **Alias:** testSchema
 
