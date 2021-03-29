@@ -55,32 +55,6 @@ steps:
     Write-Host "Local version found: $locVersion"
   displayName: 'Get package local version'
 
-- powershell: |
-   $pName = node -p "require('./package.json').name"
-   
-   Write-Host "##vso[task.setvariable variable=packageName]$pName"
-   Write-Host "Package name found: $pName"
-   
-   $split = $pName.split("/")
-   $pPath = $pName
-   If (2 -eq $split.Length) {
-     $pPath = $split[0] + "-" + $split[1]
-   }
-   
-   Write-Host "##vso[task.setvariable variable=packagePath]$pPath"
-   Write-Host "Package path set: $pPath"
-  failOnStderr: true
-  displayName: 'Get and set package name and path'
-
-- powershell: |
-   $locVersion= node -p "require('./package.json').version"
-   $version= $locVersion + ".0"
-   
-   Write-Host "##vso[task.setvariable variable=packageVersion]$version"
-   Write-Host "Package version found: $version"
-  failOnStderr: true
-  displayName: 'Get and set package version'
-
 - task: colinsalmcorner.colinsalmcorner-buildtasks.tag-build-task.tagBuildOrRelease@0
   displayName: 'Tag Build'
   inputs:
