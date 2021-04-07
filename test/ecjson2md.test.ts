@@ -8,7 +8,7 @@ import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
 import * as path from "path";
 import * as rimraf from "rimraf";
-import { SchemaContext, Schema, PropertyType, classModifierToString, SchemaJsonFileLocater, SchemaItemType } from "@bentley/ecschema-metadata";
+import { SchemaContext, Schema, PropertyType, classModifierToString, SchemaJsonFileLocater, SchemaItemType, EntityClass } from "@bentley/ecschema-metadata";
 
 describe("ecjson2md", () => {
   describe("ECJsonMarkdownGenerator", () => {
@@ -466,18 +466,6 @@ describe("ecjson2md", () => {
         afterEach(() => {
           if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
         });
-
-        it("shouldn't write anything for an undefined priority", () => {
-          // Arrange
-          const priority = undefined;
-
-          // Act
-          ECJsonMarkdownGenerator.writeSchemaItemPriority(outputFilePath, priority);
-
-          // Assert
-          assert.isFalse(fs.existsSync(outputFilePath));
-        });
-
         it("should properly write the priority of a schema item", () => {
           // Arrange
           const priority = 0;
@@ -589,7 +577,7 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
-          const testBaseClass = ECJsonMarkdownGenerator.getSortedSchemaItems(testSchema, SchemaItemType.EntityClass)[0].baseClass;
+          const testBaseClass = ECJsonMarkdownGenerator.getSortedSchemaItems<EntityClass>(testSchema, SchemaItemType.EntityClass)[0].baseClass;
 
           // Act
           ECJsonMarkdownGenerator.writeSchemaItemBaseClass(outputFilePath, testBaseClass);
