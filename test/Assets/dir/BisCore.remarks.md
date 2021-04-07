@@ -5,7 +5,7 @@ remarksTarget: BisCore.ecschema.md
 
 # BisCore
 
-## Entity Class
+## Entity  Classes
 
 ### AnnotationElement2d
 
@@ -235,7 +235,23 @@ remarksTarget: BisCore.ecschema.md
 
 ### WebMercatorModel
 
-## Relationship Class
+## Mixins
+
+### IParentElement
+
+### ISubModeledElement
+
+## Custom  Attribute  Classes
+
+### AutoHandledProperty
+
+### ClassHasHandler
+
+### CustomHandledProperty
+
+### SchemaHasBehavior
+
+## Relationship  Classes
 
 ### BaseModelForView2d
 
@@ -531,25 +547,9 @@ remarksTarget: BisCore.ecschema.md
 
 #### Target
 
-## Enumeration
+## Enumerations
 
 ### AutoHandledPropertyStatementType
 
 ### CustomHandledPropertyStatementType
-
-## Mixin
-
-### IParentElement
-
-### ISubModeledElement
-
-## Custom Attribute Class
-
-### AutoHandledProperty
-
-### ClassHasHandler
-
-### CustomHandledProperty
-
-### SchemaHasBehavior
 
