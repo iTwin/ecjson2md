@@ -5,7 +5,7 @@ remarksTarget: Grids.ecschema.md
 
 # Grids
 
-## Entity Class
+## Entity  Classes
 
 ### CircularAxis
 
@@ -77,7 +77,11 @@ remarksTarget: Grids.ecschema.md
 
 ### SketchSplineGridSurface
 
-## Relationship Class
+## Mixins
+
+### IPlanGridSurface
+
+## Relationship  Classes
 
 ### GridAxisContainsGridSurfaces
 
@@ -114,8 +118,4 @@ remarksTarget: Grids.ecschema.md
 #### Source
 
 #### Target
-
-## Mixin
-
-### IPlanGridSurface
 
