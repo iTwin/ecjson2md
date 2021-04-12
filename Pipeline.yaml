@@ -1,0 +1,73 @@
+trigger:
+  - master
+
+workspace:
+  clean: all
+pool:
+  vmImage: windows-latest
+  demands:
+  - agent.os -equals windows_nt
+  - npm
+
+steps:
+- checkout: self
+  clean: true
+
+- script: npm ci
+  displayName: Install
+
+- script: npm run build
+  displayName: Build
+
+- script: npm run test
+  displayName: Test
+
+- script: npm run cover
+  displayName: Cover
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish Code Coverage'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(Build.SourcesDirectory)\lib\test\coverage\cobertura-coverage.xml'
+    reportDirectory: '$(Build.Repository.LocalPath)\lib\test\coverage\lcov-report'
+    failIfCoverageEmpty: true
+  continueOnError: true
+
+# The two tasks from Task Group: npm: Get local and server versions
+
+- powershell: |
+    $packageName = node -p "require('./package.json').name"
+    $ver = npm view $packageName version
+    
+    if (!$ver) {
+      $ver = 0.0.0
+    }
+    
+    Write-Host "##vso[task.setvariable variable=serverVersion]$ver"
+    Write-Host "Server version found: $ver"
+  ignoreLASTEXITCODE: true
+  displayName: 'Get package server version'
+
+- powershell: |
+    $locVersion= node -p "require('./package.json').version"
+    Write-Host "##vso[task.setvariable variable=localVersion]$locVersion"
+    Write-Host "Local version found: $locVersion"
+  displayName: 'Get package local version'
+
+- task: colinsalmcorner.colinsalmcorner-buildtasks.tag-build-task.tagBuildOrRelease@0
+  displayName: 'Tag Build'
+  inputs:
+    tags: release
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), gt(variables['localVersion'], variables['serverVersion']))
+
+- script: npm pack
+  displayName: npm pack
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), gt(variables['localVersion'], variables['serverVersion']))
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: Packages'
+  inputs:
+    PathtoPublish: 'bentley-ecjson2md-$(localVersion).tgz'
+    ArtifactName: Packages
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), gt(variables['localVersion'], variables['serverVersion']))
