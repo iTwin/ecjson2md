@@ -5,7 +5,11 @@ remarksTarget: ECDbMap.ecschema.md
 
 # ECDbMap
 
-## Custom Attribute Class
+## Struct  Classes
+
+### DbIndex
+
+## Custom  Attribute  Classes
 
 ### ClassMap
 
@@ -22,8 +26,4 @@ remarksTarget: ECDbMap.ecschema.md
 ### SchemaMap
 
 ### ShareColumns
-
-## Struct Class
-
-### DbIndex
 
