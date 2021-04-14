@@ -10,7 +10,7 @@ import {
   Mixin, OverrideFormat, primitiveTypeToString, PropertyCategory, PropertyType, RelationshipClass,
   RelationshipConstraint, Schema, SchemaContext, schemaItemTypeToString, SchemaJsonFileLocater,
   scientificTypeToString, strengthDirectionToString, strengthToString, StructClass, Unit, SchemaItemType,
-  SchemaXmlFileLocater, Phenomenon, UnitSystem, showSignOptionToString, InvertedUnit, ECObjectsStatus, ECObjectsError, AnySchemaItem, AnyClass, LazyLoadedECClass,
+  SchemaXmlFileLocater, Phenomenon, UnitSystem, showSignOptionToString, InvertedUnit, ECObjectsStatus, ECObjectsError, AnySchemaItem, AnyClass, LazyLoadedECClass, Property,
 } from "@bentley/ecschema-metadata";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import { CustomAttributeSet } from "@bentley/ecschema-metadata/lib/Metadata/CustomAttribute";
@@ -483,26 +483,28 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath File to write the markdown to
    * @param property Property to pull the information from
    */
-   private static writePropertiesRow(outputFilePath: string, property: any): void {
+   private static writePropertiesRow(outputFilePath: string, property: Property): void {
     // If the attribute is not there, return the place holder
-    const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
+    const helper = (( value: string|undefined ) => value !== undefined ? value : PLACE_HOLDER);
 
+    // property type in string
     let type = ECJsonMarkdownGenerator.propertyTypeToString(property);
 
     // If the property type is navigation, create a link to the class that it points to
-    if (type === "navigation") {
-      const targetSchema = property._relationshipClass.schemaName;
-      const targetClass = property._relationshipClass.name;
+    if (property.isNavigation()) {
+      const targetSchema = property.relationshipClass.schemaName;
+      const targetClass = property.relationshipClass.name;
 
       type = formatLink(`${createSchemaLink(targetSchema)}#${targetClass.toLowerCase()}`, type);
     }
 
-    const name = helper(property._name._name);
+    const name = helper(property.name);
+    const description = helper(property.description);
+    let extendedType = "";
+    if (property.isEnumeration() || property.isPrimitive())
+      extendedType = helper(property.extendedTypeName);
 
-    const description = helper(property._description);
-    const extendedTypeName = helper(property.extendedTypeName);
-
-    fs.appendFileSync(outputFilePath, `|${name}|${description}|${type}|${extendedTypeName}|\n`);
+    fs.appendFileSync(outputFilePath, `|${name}|${description}|${type}|${extendedType}|\n`);
   }
 
   private static writeEntityClassPropertiesTable(outputFilePath: string, entityClass: EntityClass): void {
