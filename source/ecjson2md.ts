@@ -10,7 +10,7 @@ import {
   Mixin, OverrideFormat, primitiveTypeToString, PropertyCategory, PropertyType, RelationshipClass,
   RelationshipConstraint, Schema, SchemaContext, schemaItemTypeToString, SchemaJsonFileLocater,
   scientificTypeToString, strengthDirectionToString, strengthToString, StructClass, Unit, SchemaItemType,
-  SchemaXmlFileLocater, Phenomenon, UnitSystem, showSignOptionToString, InvertedUnit, ECObjectsStatus, ECObjectsError, AnySchemaItem, AnyClass, Property, LazyLoadedECClass,
+  SchemaXmlFileLocater, Phenomenon, UnitSystem, showSignOptionToString, InvertedUnit, ECObjectsStatus, ECObjectsError, AnySchemaItem, AnyClass, LazyLoadedECClass,
 } from "@bentley/ecschema-metadata";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
 import { CustomAttributeSet } from "@bentley/ecschema-metadata/lib/Metadata/CustomAttribute";
@@ -353,13 +353,20 @@ export class ECJsonMarkdownGenerator {
    * @returns A string of the property type
    * @param property The resolved property
    */
-  public static propertyTypeToString(property: Property): string {
-      if (property.isPrimitive())
-        return primitiveTypeToString(property.primitiveType);
-      if (property.isEnumeration() && property.enumeration !== undefined)
-        return property.enumeration.name;
-
-      return propertyTypeNumberToString(property.propertyType);
+   public static propertyTypeToString(property: any): string {
+    try {
+      return primitiveTypeToString(property._type);
+    } catch (err) {
+      try {
+        return property.enumeration._name._name;
+      } catch (err) {
+        try {
+          return propertyTypeNumberToString(property._type);
+        } catch (err) {
+          return PLACE_HOLDER;
+        }
+      }
+    }
   }
 
   public static indentStart(outputFilePath: string) {
@@ -476,28 +483,26 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath File to write the markdown to
    * @param property Property to pull the information from
    */
-  private static writePropertiesRow(outputFilePath: string, property: Property): void {
+   private static writePropertiesRow(outputFilePath: string, property: any): void {
     // If the attribute is not there, return the place holder
-    const helper = (( value: string|undefined ) => value !== undefined ? value : PLACE_HOLDER);
+    const helper = (( value: any ) => value !== undefined ? value : PLACE_HOLDER);
 
-    // property type in string
     let type = ECJsonMarkdownGenerator.propertyTypeToString(property);
 
     // If the property type is navigation, create a link to the class that it points to
-    if (property.isNavigation()) {
-      const targetSchema = property.relationshipClass.schemaName;
-      const targetClass = property.relationshipClass.name;
+    if (type === "navigation") {
+      const targetSchema = property._relationshipClass.schemaName;
+      const targetClass = property._relationshipClass.name;
 
       type = formatLink(`${createSchemaLink(targetSchema)}#${targetClass.toLowerCase()}`, type);
     }
 
-    const name = helper(property.name);
-    const description = helper(property.description);
-    let extendedType = "";
-    if (property.isEnumeration() || property.isPrimitive())
-      extendedType = helper(property.extendedTypeName);
+    const name = helper(property._name._name);
 
-    fs.appendFileSync(outputFilePath, `|${name}|${description}|${type}|${extendedType}|\n`);
+    const description = helper(property._description);
+    const extendedTypeName = helper(property.extendedTypeName);
+
+    fs.appendFileSync(outputFilePath, `|${name}|${description}|${type}|${extendedTypeName}|\n`);
   }
 
   private static writeEntityClassPropertiesTable(outputFilePath: string, entityClass: EntityClass): void {
