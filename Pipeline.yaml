@@ -1,6 +1,12 @@
 trigger:
   - master
 
+pr:
+  drafts: false
+  branches:
+    include:
+      - master
+
 workspace:
   clean: all
 pool:
