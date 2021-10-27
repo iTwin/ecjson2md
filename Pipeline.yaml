@@ -5,13 +5,15 @@ workspace:
   clean: all
 pool:
   vmImage: windows-latest
-  demands:
-  - agent.os -equals windows_nt
-  - npm
 
 steps:
 - checkout: self
   clean: true
+
+- task: NodeTool@0
+  displayName: 'Use Node 12.18.0'
+  inputs:
+    versionSpec: 12.18.0
 
 - script: npm ci
   displayName: Install
