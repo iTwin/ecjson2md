@@ -1,6 +1,8 @@
 /*---------------------------------------------------------------------------------------------
-|  $Copyright: (c) 2019 Bentley Systems, Incorporated. All rights reserved. $
+* Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+* Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
+
 export class ECJsonFileNotFound extends Error {
   public constructor(filePath?: string) {
     super("Cannot find file " + filePath);

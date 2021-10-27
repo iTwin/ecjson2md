@@ -19,24 +19,18 @@ After installing, get started with the following steps on a command line:
 1. Clone the repository
 
     ```bash
-    git clone https://github.com/iTwin/ecjson2md
+    git clone https://github.com/iTwin/ecjson2md/
     ```
 
-2. In the repository folder, configure npm to detect Bentley packages
+2. Run either `npm install` or `npm ci`
 
-    ```bash
-    npm config set @bentley:registry https://registry.npmjs.org/
-    ```
-
-3. Run either `npm install` or `npm ci`
-
-4. Build ecjson2md
+3. Build ecjson2md
 
     ```bash
     npm run build
     ```
 
-5. Run the tests and ensure they all pass
+4. Run the tests and ensure they all pass
 
     ```bash
     npm run test
@@ -70,4 +64,4 @@ Note that these command line steps can be done in a few mouse clicks with [Githu
 
 4. Publish the branch using `git push -u origin <branch>`
 
-5. Browse to the [GitHub repo](https://github.com/iTwin/ecjson2md/pullrequests?_a=mine) and create a new pull request, using your newly created branch as the source as `master` as the destination
+5. Browse to the [GitHub repo](https://github.com/iTwin/ecjson2md/pulls) and create a new pull request, using your newly created branch as the source as `master` as the destination
