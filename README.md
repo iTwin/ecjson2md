@@ -1,5 +1,7 @@
 # ecjson2md
 
+Copyright © Bentley Systems, Incorporated. All rights reserved. See LICENSE.md for license terms and full copyright notice.
+
 ecjson2md is a CLI tool that takes an ECSchema JSON and path to referenced schemas and generates a Markdown file based on it at a specified location.
 
 [Change Log](https://github.com/iTwin/ecjson2md/tree/master/CHANGELOG.md)
