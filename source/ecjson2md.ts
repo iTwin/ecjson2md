@@ -380,6 +380,20 @@ export class ECJsonMarkdownGenerator {
   }
 
   /**
+   * Appends markdown to access the related information in iModel schema editor
+   * @param schemaName Name of the schema
+   * @param schemaItem Name of schema item
+   * @param itemType Type of schema item
+   * @param outputFilePath Path of output file
+   */
+  public static linkIModelSchemaEditorInfo(schemaName: string, schemaItem: string, itemType: string | undefined, outputFilePath: string) {
+    if (schemaName && schemaItem && itemType && outputFilePath) {
+      const linkSchemaEditor = `[<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=${itemType}&id=${schemaName}.${schemaItem})`;
+      fs.appendFileSync(outputFilePath, ` ${linkSchemaEditor}`);
+    }
+  }
+
+  /**
    * Appends markdown for the name of a schema item to the specified file path
    * @param outputFilePath Path of file to append markdown to
    * @param name Name to write markdown for
@@ -387,7 +401,10 @@ export class ECJsonMarkdownGenerator {
    * @param modifier Modifier to write markdown for
    * @param customAttributes CustomAttrbuteSet to check if the item is deprecated
    */
-  public static writeSchemaItemHeader(outputFilePath: string, name: string|undefined, type: SchemaItemType, label?: string, modifier?: ECClassModifier, customAttributes?: CustomAttributeSet) {
+  public static writeSchemaItemHeader(outputFilePath: string, name: string|undefined, type: SchemaItemType, schemaName: string, label?: string, modifier?: ECClassModifier, customAttributes?: CustomAttributeSet) {
+
+    let addSchemaEditorInfo = true;
+
     if (name === undefined) return;
 
     fs.appendFileSync(outputFilePath, `### **${name}**`);
@@ -401,8 +418,9 @@ export class ECJsonMarkdownGenerator {
         fs.appendFileSync(outputFilePath, ` *${modifierString}*`);
     }
 
+    let typeString;
     if (type !== undefined) {
-      const typeString = schemaItemTypeToString(type);
+      typeString = schemaItemTypeToString(type);
       fs.appendFileSync(outputFilePath, ` ${formatBadge(typeString, "info")}`);
     }
 
@@ -410,10 +428,15 @@ export class ECJsonMarkdownGenerator {
       const customAttribute = customAttributes.get("CoreCustomAttributes.Deprecated");
       if (customAttribute !== undefined) {
         fs.appendFileSync(outputFilePath, ` ${formatBadge("Deprecated", "warning")}`);
+        addSchemaEditorInfo = false;
+        this.linkIModelSchemaEditorInfo(schemaName, name, typeString, outputFilePath);
         if (customAttribute.Description)
           fs.appendFileSync(outputFilePath, `\n\n${formatWarningAlert(customAttribute.Description)}`);
       }
     }
+
+    if (addSchemaEditorInfo)
+      this.linkIModelSchemaEditorInfo(schemaName, name, typeString, outputFilePath);
 
     fs.appendFileSync(outputFilePath, "\n\n");
   }
@@ -536,11 +559,11 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to append markdown to
    * @param entityClass Entity class to generate markdown for
    */
-  public static writeEntityClass(outputFilePath: string, entityClass: EntityClass | undefined) {
+  public static writeEntityClass(outputFilePath: string, entityClass: EntityClass | undefined, schemaName: string) {
     if (entityClass === undefined) return;
 
     // Write the name of the class
-    this.writeSchemaItemHeader(outputFilePath, entityClass.name, entityClass.schemaItemType, entityClass.label, entityClass.modifier, entityClass.customAttributes);
+    this.writeSchemaItemHeader(outputFilePath, entityClass.name, entityClass.schemaItemType, schemaName, entityClass.label, entityClass.modifier, entityClass.customAttributes);
 
     // Begin Indentation
     this.indentStart(outputFilePath);
@@ -574,7 +597,7 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, `## ${schemaItemToGroupName(SchemaItemType.EntityClass)}\n\n`);
 
     for (const entityClass of entityClasses)
-      this.writeEntityClass(outputFilePath, entityClass);
+      this.writeEntityClass(outputFilePath, entityClass, schema.name);
   }
 
   /**
@@ -586,7 +609,7 @@ export class ECJsonMarkdownGenerator {
     if (kindOfQuantity === undefined) return;
 
     // Write the name of the class
-    this.writeSchemaItemHeader(outputFilePath, kindOfQuantity.name, kindOfQuantity.schemaItemType, kindOfQuantity.label, undefined, undefined);
+    this.writeSchemaItemHeader(outputFilePath, kindOfQuantity.name, kindOfQuantity.schemaItemType, schema.name, kindOfQuantity.label, undefined, undefined);
 
     // Begin indentation
     this.indentStart(outputFilePath);
@@ -684,11 +707,11 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to append markdown to
    * @param relationshipClass Class to generate markdown for
    */
-  public static writeRelationshipClass(outputFilePath: string, relationshipClass: RelationshipClass|undefined) {
+  public static writeRelationshipClass(outputFilePath: string, relationshipClass: RelationshipClass|undefined, schemaName: string) {
     if (relationshipClass === undefined) return;
 
     // Write the name of the class
-    this.writeSchemaItemHeader(outputFilePath, relationshipClass.name, relationshipClass.schemaItemType, relationshipClass.label, relationshipClass.modifier, relationshipClass.customAttributes);
+    this.writeSchemaItemHeader(outputFilePath, relationshipClass.name, relationshipClass.schemaItemType, schemaName, relationshipClass.label, relationshipClass.modifier, relationshipClass.customAttributes);
 
     // Begin Indentation
     this.indentStart(outputFilePath);
@@ -736,7 +759,7 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, `## ${schemaItemToGroupName(SchemaItemType.RelationshipClass)}\n\n`);
 
     for (const relationshipClass of relationshipClasses)
-      this.writeRelationshipClass(outputFilePath, relationshipClass);
+      this.writeRelationshipClass(outputFilePath, relationshipClass, schema.name);
   }
 
   private static writeEnumerationTable(outputFilePath: string, enumeration: Enumeration) {
@@ -770,11 +793,11 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath File path to append markdown documentation to
    * @param enumerationItem Enumeration to generate markdown for
    */
-  public static writeEnumerationItem(outputFilePath: string, enumerationItem: Enumeration|undefined) {
+  public static writeEnumerationItem(outputFilePath: string, enumerationItem: Enumeration|undefined, schemaName: string) {
     if (enumerationItem === undefined) return;
 
     // Write the name of the class
-    this.writeSchemaItemHeader(outputFilePath, enumerationItem.name, enumerationItem.schemaItemType, enumerationItem.label, undefined, undefined);
+    this.writeSchemaItemHeader(outputFilePath, enumerationItem.name, enumerationItem.schemaItemType, schemaName, enumerationItem.label, undefined, undefined);
 
     // Begin Indentation
     this.indentStart(outputFilePath);
@@ -814,7 +837,7 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, `## ${schemaItemToGroupName(SchemaItemType.Enumeration)}\n\n`);
 
     for (const enumerationItem of enumerationItems)
-      this.writeEnumerationItem(outputFilePath, enumerationItem);
+      this.writeEnumerationItem(outputFilePath, enumerationItem, schema.name);
   }
 
   /**
@@ -822,11 +845,11 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to append the markdown to
    * @param mixin Mixin class to generate markdown for
    */
-  public static writeMixinClass(outputFilePath: string, mixin: Mixin|undefined) {
+  public static writeMixinClass(outputFilePath: string, mixin: Mixin|undefined, schemaName: string) {
     if (mixin === undefined) return;
 
     // Write the name of the mixin
-    this.writeSchemaItemHeader(outputFilePath, mixin.name, mixin.schemaItemType, mixin.label, mixin.modifier, mixin.customAttributes);
+    this.writeSchemaItemHeader(outputFilePath, mixin.name, mixin.schemaItemType, schemaName, mixin.label, mixin.modifier, mixin.customAttributes);
 
     // Begin Indentation
     this.indentStart(outputFilePath);
@@ -893,7 +916,7 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, `## ${schemaItemToGroupName(SchemaItemType.Mixin)}\n\n`);
 
     for (const mixin of mixinClasses)
-      this.writeMixinClass(outputFilePath, mixin);
+      this.writeMixinClass(outputFilePath, mixin, schema.name);
   }
 
   /**
@@ -901,11 +924,11 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to append markdown to
    * @param customAttributeClass custom attribute class to generate markdown for
    */
-  public static writeCustomAttributeClass(outputFilePath: string, customAttributeClass: CustomAttributeClass|undefined) {
+  public static writeCustomAttributeClass(outputFilePath: string, customAttributeClass: CustomAttributeClass|undefined, schemaName: string) {
     if (customAttributeClass === undefined) return;
 
     // Write the name
-    this.writeSchemaItemHeader(outputFilePath, customAttributeClass.name, customAttributeClass.schemaItemType, customAttributeClass.label, customAttributeClass.modifier, customAttributeClass.customAttributes);
+    this.writeSchemaItemHeader(outputFilePath, customAttributeClass.name, customAttributeClass.schemaItemType, schemaName, customAttributeClass.label, customAttributeClass.modifier, customAttributeClass.customAttributes);
 
     // Begin Indentation
     this.indentStart(outputFilePath);
@@ -1003,7 +1026,7 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, `## ${schemaItemToGroupName(SchemaItemType.CustomAttributeClass)}\n\n`);
 
     for (const customAttributeClass of customAttributeClasses)
-      this.writeCustomAttributeClass(outputFilePath, customAttributeClass);
+      this.writeCustomAttributeClass(outputFilePath, customAttributeClass, schema.name);
   }
 
   /**
@@ -1011,11 +1034,11 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to write markdown into
    * @param structClass Struct class to generate markdown for
    */
-  public static writeStructClass(outputFilePath: string, structClass: StructClass | undefined) {
+  public static writeStructClass(outputFilePath: string, structClass: StructClass | undefined, schemaName: string) {
     if (structClass === undefined)
       return;
     // Write the name
-    this.writeSchemaItemHeader(outputFilePath, structClass.name, structClass.schemaItemType, structClass.label, structClass.modifier, structClass.customAttributes);
+    this.writeSchemaItemHeader(outputFilePath, structClass.name, structClass.schemaItemType, schemaName, structClass.label, structClass.modifier, structClass.customAttributes);
 
     // Begin Indentation
     this.indentStart(outputFilePath);
@@ -1075,7 +1098,7 @@ export class ECJsonMarkdownGenerator {
     if (!structClasses || structClasses.length === 0) return;
 
     for (const structClass of structClasses)
-      this.writeStructClass(outputFilePath, structClass);
+      this.writeStructClass(outputFilePath, structClass, schema.name);
   }
 
   /**
@@ -1083,11 +1106,11 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to write markdown into
    * @param propertyCategory Property category to generate markdown for
    */
-  public static writePropertyCategory(outputFilePath: string, propertyCategory: PropertyCategory | undefined) {
+  public static writePropertyCategory(outputFilePath: string, propertyCategory: PropertyCategory | undefined, schemaName: string) {
     if (propertyCategory === undefined)
       return;
     // Write the name
-    this.writeSchemaItemHeader(outputFilePath, propertyCategory.name, propertyCategory.schemaItemType, propertyCategory.label, undefined, undefined);
+    this.writeSchemaItemHeader(outputFilePath, propertyCategory.name, propertyCategory.schemaItemType, schemaName, propertyCategory.label, undefined, undefined);
 
     // Begin Indentation
     this.indentStart(outputFilePath);
@@ -1111,7 +1134,7 @@ export class ECJsonMarkdownGenerator {
     const propertyCategories: PropertyCategory[] = this.getSortedSchemaItems(schema, SchemaItemType.PropertyCategory);
 
     for (const propertyCategory of propertyCategories)
-      this.writePropertyCategory(outputFilePath, propertyCategory);
+      this.writePropertyCategory(outputFilePath, propertyCategory, schema.name);
   }
 
   /**
@@ -1129,7 +1152,7 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputFilePath, `## ${schemaItemToGroupName(SchemaItemType.Format)}\n\n`);
 
       for (const formatClass of formatClasses) {
-          this.writeFormatClass(outputFilePath, formatClass);
+          this.writeFormatClass(outputFilePath, formatClass, schema.name);
       }
   }
 
@@ -1138,11 +1161,11 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to write markdown into
    * @param formatClass Format class to generate markdown for
    */
-  public static writeFormatClass(outputFilePath: string, formatClass: Format | undefined) {
+  public static writeFormatClass(outputFilePath: string, formatClass: Format | undefined, schemaName: string) {
     if (formatClass === undefined) return;
 
     // Write the name
-    this.writeSchemaItemHeader(outputFilePath, formatClass.name, formatClass.schemaItemType, formatClass.label, undefined, undefined);
+    this.writeSchemaItemHeader(outputFilePath, formatClass.name, formatClass.schemaItemType, schemaName, formatClass.label, undefined, undefined);
 
     // Begin Indentation
     this.indentStart(outputFilePath);
@@ -1203,20 +1226,20 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, `## ${schemaItemToGroupName(SchemaItemType.Unit)}\n\n`);
 
     for (const unitClass of unitClasses) {
-      this.writeUnitClass(outputFilePath, unitClass);
+      this.writeUnitClass(outputFilePath, unitClass, schema.name);
     }
 
     const invertedUnits: InvertedUnit[] = this.getSortedSchemaItems(schema, SchemaItemType.InvertedUnit);
     if (!invertedUnits || invertedUnits.length === 0) return;
 
     for (const invertedUnit of invertedUnits)
-      this.writeInvertedUnit(outputFilePath, invertedUnit);
+      this.writeInvertedUnit(outputFilePath, invertedUnit, schema.name);
   }
 
- public static writeInvertedUnit(outputFilePath: string, invertedUnit: InvertedUnit | undefined) {
+ public static writeInvertedUnit(outputFilePath: string, invertedUnit: InvertedUnit | undefined, schemaName: string) {
     if (undefined === invertedUnit) return;
 
-    this.writeSchemaItemHeader(outputFilePath, invertedUnit.name, invertedUnit.schemaItemType, invertedUnit.label, undefined, undefined);
+    this.writeSchemaItemHeader(outputFilePath, invertedUnit.name, invertedUnit.schemaItemType, schemaName, invertedUnit.label, undefined, undefined);
     this.indentStart(outputFilePath);
     this.writeSchemaItemDescription(outputFilePath, invertedUnit.description);
     if (undefined !== invertedUnit.invertsUnit && undefined !== invertedUnit.invertsUnit.name) {
@@ -1235,11 +1258,11 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to write markdown into
    * @param unitClass Unit class to generate markdown for
    */
-  public static writeUnitClass(outputFilePath: string, unitClass: Unit | undefined) {
+  public static writeUnitClass(outputFilePath: string, unitClass: Unit | undefined, schemaName: string) {
     if (unitClass === undefined) return;
 
     // Write the name
-    this.writeSchemaItemHeader(outputFilePath, unitClass.name, unitClass.schemaItemType, unitClass.label, undefined, undefined);
+    this.writeSchemaItemHeader(outputFilePath, unitClass.name, unitClass.schemaItemType, schemaName, unitClass.label, undefined, undefined);
 
     // Begin Indentation
     this.indentStart(outputFilePath);
@@ -1288,7 +1311,7 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, `## ${schemaItemToGroupName(SchemaItemType.Phenomenon)}\n\n`);
 
     for (const phenomenonClass of phenomenonClasses) {
-      this.writePhenomenonClass(outputFilePath, phenomenonClass);
+      this.writePhenomenonClass(outputFilePath, phenomenonClass, schema.name);
     }
   }
 
@@ -1297,11 +1320,11 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to write markdown into
    * @param phenomenonClass Phenomenon class to generate markdown for
    */
-  public static writePhenomenonClass(outputFilePath: string, phenomenonClass: Phenomenon | undefined) {
+  public static writePhenomenonClass(outputFilePath: string, phenomenonClass: Phenomenon | undefined, schemaName: string) {
     if (phenomenonClass === undefined) return;
 
     // Write the name
-    this.writeSchemaItemHeader(outputFilePath, phenomenonClass.name, phenomenonClass.schemaItemType, undefined, undefined, undefined);
+    this.writeSchemaItemHeader(outputFilePath, phenomenonClass.name, phenomenonClass.schemaItemType, schemaName, undefined, undefined, undefined);
 
     // Begin Indentation
     this.indentStart(outputFilePath);
@@ -1331,7 +1354,7 @@ export class ECJsonMarkdownGenerator {
     fs.appendFileSync(outputFilePath, `## ${schemaItemToGroupName(SchemaItemType.UnitSystem)}\n\n`);
 
     for (const unitSystemClass of unitSystemClasses) {
-      this.writeUnitSystemClass(outputFilePath, unitSystemClass);
+      this.writeUnitSystemClass(outputFilePath, unitSystemClass, schema.name);
     }
   }
 
@@ -1340,11 +1363,11 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path to file to write markdown into
    * @param unitSystemClass UnitSystem class to generate markdown for
    */
-  public static writeUnitSystemClass(outputFilePath: string, unitSystemClass: UnitSystem | undefined) {
+  public static writeUnitSystemClass(outputFilePath: string, unitSystemClass: UnitSystem | undefined, schemaName: string) {
     if (unitSystemClass === undefined) return;
 
     // Write the name
-    this.writeSchemaItemHeader(outputFilePath, unitSystemClass.name, unitSystemClass.schemaItemType, undefined, undefined, undefined);
+    this.writeSchemaItemHeader(outputFilePath, unitSystemClass.name, unitSystemClass.schemaItemType, schemaName, undefined, undefined, undefined);
 
     // Begin Indentation
     this.indentStart(outputFilePath);
