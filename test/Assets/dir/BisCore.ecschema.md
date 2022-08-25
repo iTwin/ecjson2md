@@ -192,7 +192,7 @@ The BIS core schema contains classes that all other domain schemas extend.
 
 ## Entity Classes
 
-### **AnnotationElement2d** (2D Annotation Element) [!badge text="EntityClass" kind="info"]
+### **AnnotationElement2d** (2D Annotation Element) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.AnnotationElement2d)
 
 [!IndentStart]
 
@@ -224,7 +224,7 @@ bis:AnnotationElement2d is a bis:GraphicalElement2d used to annotate drawings an
 </details>
 
 [!IndentEnd]
-### **AnnotationFrameStyle** (Annotation Frame Style) *Sealed* [!badge text="EntityClass" kind="info"]
+### **AnnotationFrameStyle** (Annotation Frame Style) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.AnnotationFrameStyle)
 
 [!IndentStart]
 
@@ -255,7 +255,7 @@ bis:AnnotationElement2d is a bis:GraphicalElement2d used to annotate drawings an
 </details>
 
 [!IndentEnd]
-### **AnnotationLeaderStyle** (Annotation Leader Style) *Sealed* [!badge text="EntityClass" kind="info"]
+### **AnnotationLeaderStyle** (Annotation Leader Style) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.AnnotationLeaderStyle)
 
 [!IndentStart]
 
@@ -286,7 +286,7 @@ bis:AnnotationElement2d is a bis:GraphicalElement2d used to annotate drawings an
 </details>
 
 [!IndentEnd]
-### **AnnotationTextStyle** (Annotation Text Style) *Sealed* [!badge text="EntityClass" kind="info"]
+### **AnnotationTextStyle** (Annotation Text Style) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.AnnotationTextStyle)
 
 [!IndentStart]
 
@@ -317,7 +317,7 @@ bis:AnnotationElement2d is a bis:GraphicalElement2d used to annotate drawings an
 </details>
 
 [!IndentEnd]
-### **AuxCoordSystem** (Auxiliary Coordinate System) *Abstract* [!badge text="EntityClass" kind="info"]
+### **AuxCoordSystem** (Auxiliary Coordinate System) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.AuxCoordSystem)
 
 [!IndentStart]
 
@@ -348,7 +348,7 @@ bis:AnnotationElement2d is a bis:GraphicalElement2d used to annotate drawings an
 </details>
 
 [!IndentEnd]
-### **AuxCoordSystem2d** (2D Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"]
+### **AuxCoordSystem2d** (2D Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.AuxCoordSystem2d)
 
 [!IndentStart]
 
@@ -383,7 +383,7 @@ A 2D coordinate system.
 </details>
 
 [!IndentEnd]
-### **AuxCoordSystem3d** (3D Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"]
+### **AuxCoordSystem3d** (3D Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.AuxCoordSystem3d)
 
 [!IndentStart]
 
@@ -420,7 +420,7 @@ A 3D coordinate system.
 </details>
 
 [!IndentEnd]
-### **AuxCoordSystemSpatial** (Spatial Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"]
+### **AuxCoordSystemSpatial** (Spatial Auxiliary Coordinate System) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.AuxCoordSystemSpatial)
 
 [!IndentStart]
 
@@ -452,7 +452,7 @@ A spatial coordinate system.
 </details>
 
 [!IndentEnd]
-### **Category** *Abstract* [!badge text="EntityClass" kind="info"]
+### **Category** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.Category)
 
 [!IndentStart]
 
@@ -485,7 +485,7 @@ A bis:Category categorizes a bis:GeometricElement and its geometry. Every bis:Ge
 </details>
 
 [!IndentEnd]
-### **CategorySelector** (Category Selector) [!badge text="EntityClass" kind="info"]
+### **CategorySelector** (Category Selector) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.CategorySelector)
 
 [!IndentStart]
 
@@ -509,7 +509,7 @@ A bis:Category categorizes a bis:GeometricElement and its geometry. Every bis:Ge
 </details>
 
 [!IndentEnd]
-### **CodeSpec** (Code Specification) *Sealed* [!badge text="EntityClass" kind="info"]
+### **CodeSpec** (Code Specification) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.CodeSpec)
 
 [!IndentStart]
 
@@ -523,7 +523,7 @@ A bis:CodeSpec (code specification) captures the rules for encoding and decoding
 |JsonProperties|A JSON string containing scope and fragment specifications used to generate and validate code values|string|Json|
 
 [!IndentEnd]
-### **ColorBook** (Color Book) *Sealed* [!badge text="EntityClass" kind="info"]
+### **ColorBook** (Color Book) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.ColorBook)
 
 [!IndentStart]
 
@@ -553,7 +553,7 @@ A bis:CodeSpec (code specification) captures the rules for encoding and decoding
 </details>
 
 [!IndentEnd]
-### **DefinitionElement** (Definition Element) *Abstract* [!badge text="EntityClass" kind="info"]
+### **DefinitionElement** (Definition Element) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DefinitionElement)
 
 [!IndentStart]
 
@@ -584,7 +584,7 @@ A bis:DefinitionElement holds configuration-related information that is meant to
 </details>
 
 [!IndentEnd]
-### **DefinitionModel** (Definition Model) [!badge text="EntityClass" kind="info"]
+### **DefinitionModel** (Definition Model) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DefinitionModel)
 
 [!IndentStart]
 
@@ -605,7 +605,7 @@ A container for persisting bis:DefinitionElement instances.
 </details>
 
 [!IndentEnd]
-### **DefinitionPartition** (Definition Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+### **DefinitionPartition** (Definition Partition) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DefinitionPartition)
 
 [!IndentStart]
 
@@ -631,7 +631,7 @@ A bis:DefinitionPartition element indicates that there is a definition-related m
 </details>
 
 [!IndentEnd]
-### **DictionaryModel** (Dictionary Model) *Sealed* [!badge text="EntityClass" kind="info"]
+### **DictionaryModel** (Dictionary Model) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DictionaryModel)
 
 [!IndentStart]
 
@@ -652,7 +652,7 @@ The singleton container for repository-specific bis:DefinitionElement instances.
 </details>
 
 [!IndentEnd]
-### **DisplayStyle** (Display Style) *Abstract* [!badge text="EntityClass" kind="info"]
+### **DisplayStyle** (Display Style) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DisplayStyle)
 
 [!IndentStart]
 
@@ -678,7 +678,7 @@ A bis:DisplayStyle defines the 'styling' parameters for rendering the contents o
 </details>
 
 [!IndentEnd]
-### **DisplayStyle2d** (2D Display Style) [!badge text="EntityClass" kind="info"]
+### **DisplayStyle2d** (2D Display Style) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DisplayStyle2d)
 
 [!IndentStart]
 
@@ -704,7 +704,7 @@ A bis:DisplayStyle2d defines the 'styling' parameters for rendering the contents
 </details>
 
 [!IndentEnd]
-### **DisplayStyle3d** (3D Display Style) [!badge text="EntityClass" kind="info"]
+### **DisplayStyle3d** (3D Display Style) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DisplayStyle3d)
 
 [!IndentStart]
 
@@ -730,7 +730,7 @@ A bis:DisplayStyle3d defines the 'styling' parameters for rendering the contents
 </details>
 
 [!IndentEnd]
-### **Document** (Document) *Abstract* [!badge text="EntityClass" kind="info"]
+### **Document** (Document) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.Document)
 
 [!IndentStart]
 
@@ -755,7 +755,7 @@ A bis:Document is a social artifact designed with the distinct purpose to convey
 </details>
 
 [!IndentEnd]
-### **DocumentCarrier** (Document Carrier) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
+### **DocumentCarrier** (Document Carrier) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DocumentCarrier)
 
 [!alert text="BisCore will focus on the information itself and not how it is carried. Thus, the DocumentCarrier class was deprecated." kind="warning"]
 
@@ -782,7 +782,7 @@ DEPRECATED: A Document Carrier is an Information Carrier that carries a Document
 </details>
 
 [!IndentEnd]
-### **DocumentListModel** (Document List) [!badge text="EntityClass" kind="info"]
+### **DocumentListModel** (Document List) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DocumentListModel)
 
 [!IndentStart]
 
@@ -803,7 +803,7 @@ A container for persisting bis:Document elements.
 </details>
 
 [!IndentEnd]
-### **DocumentPartition** (Document Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+### **DocumentPartition** (Document Partition) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DocumentPartition)
 
 [!IndentStart]
 
@@ -829,7 +829,7 @@ A bis:DocumentPartition element indicates that there is a document-related model
 </details>
 
 [!IndentEnd]
-### **Drawing** [!badge text="EntityClass" kind="info"]
+### **Drawing** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.Drawing)
 
 [!IndentStart]
 
@@ -854,7 +854,7 @@ A bis:Drawing is a bis:Document of a 2D drawing.
 </details>
 
 [!IndentEnd]
-### **DrawingCategory** (Drawing Category) *Sealed* [!badge text="EntityClass" kind="info"]
+### **DrawingCategory** (Drawing Category) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DrawingCategory)
 
 [!IndentStart]
 
@@ -882,7 +882,7 @@ A bis:DrawingCategory is used for classifying bis:GeometricElement2d elements vi
 </details>
 
 [!IndentEnd]
-### **DrawingGraphic** (Drawing Graphic) [!badge text="EntityClass" kind="info"]
+### **DrawingGraphic** (Drawing Graphic) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DrawingGraphic)
 
 [!IndentStart]
 
@@ -914,7 +914,7 @@ bis:DrawingGraphic is a bis:GraphicalElement2d used to persist graphics for use 
 </details>
 
 [!IndentEnd]
-### **DrawingModel** (Drawing Model) [!badge text="EntityClass" kind="info"]
+### **DrawingModel** (Drawing Model) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DrawingModel)
 
 [!IndentStart]
 
@@ -936,7 +936,7 @@ A container for persisting bis:DrawingGraphic elements.
 </details>
 
 [!IndentEnd]
-### **DrawingViewDefinition** (Drawing View Definition) [!badge text="EntityClass" kind="info"]
+### **DrawingViewDefinition** (Drawing View Definition) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DrawingViewDefinition)
 
 [!IndentStart]
 
@@ -969,7 +969,7 @@ A bis:DrawingViewDefinition specifies parameters for a view of a bis:DrawingMode
 </details>
 
 [!IndentEnd]
-### **DriverBundleElement** (Driver Bundle Element) *Abstract* [!badge text="EntityClass" kind="info"]
+### **DriverBundleElement** (Driver Bundle Element) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.DriverBundleElement)
 
 [!IndentStart]
 
@@ -994,7 +994,7 @@ A bis:DriverBundleElement is used in conjunction with bis:ElementDrivesElement r
 </details>
 
 [!IndentEnd]
-### **Element** *Abstract* [!badge text="EntityClass" kind="info"]
+### **Element** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.Element)
 
 [!IndentStart]
 
@@ -1015,14 +1015,14 @@ A bis:Element is the smallest individually identifiable building block for model
 |JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
 
 [!IndentEnd]
-### **ElementAspect** (Element Aspect) *Abstract* [!badge text="EntityClass" kind="info"]
+### **ElementAspect** (Element Aspect) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.ElementAspect)
 
 [!IndentStart]
 
 A bis:ElementAspect is a class that defines a set of properties that are related to (and owned by) a single bis:Element. Semantically, a bis:ElementAspect can be considered part of the bis:Element. Thus, a bis:ElementAspect is deleted if its owning bis:Element is deleted.
 
 [!IndentEnd]
-### **ElementMultiAspect** (Element Multi-Aspect) *Abstract* [!badge text="EntityClass" kind="info"]
+### **ElementMultiAspect** (Element Multi-Aspect) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.ElementMultiAspect)
 
 [!IndentStart]
 
@@ -1044,7 +1044,7 @@ A bis:ElementMultiAspect is a bis:ElementAspect where there can be N instances o
 </details>
 
 [!IndentEnd]
-### **ElementUniqueAspect** (Element Unique Aspect) *Abstract* [!badge text="EntityClass" kind="info"]
+### **ElementUniqueAspect** (Element Unique Aspect) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.ElementUniqueAspect)
 
 [!IndentStart]
 
@@ -1066,7 +1066,7 @@ A bis:ElementUniqueAspect is a bis:ElementAspect where there can be only zero or
 </details>
 
 [!IndentEnd]
-### **EmbeddedFileLink** (Embedded File Link) [!badge text="EntityClass" kind="info"]
+### **EmbeddedFileLink** (Embedded File Link) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.EmbeddedFileLink)
 
 [!IndentStart]
 
@@ -1098,7 +1098,7 @@ A bis:EmbeddedFileLink is a bis:LinkElement that links to a file embedded within
 </details>
 
 [!IndentEnd]
-### **ExternalSourceAspect** (External Source Aspect) [!badge text="EntityClass" kind="info"]
+### **ExternalSourceAspect** (External Source Aspect) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.ExternalSourceAspect)
 
 [!IndentStart]
 
@@ -1126,7 +1126,7 @@ A bis:ElementMultiAspect that stores syncrhonization information for a bis:Eleme
 </details>
 
 [!IndentEnd]
-### **GeometricElement** (Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"]
+### **GeometricElement** (Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GeometricElement)
 
 [!IndentStart]
 
@@ -1151,7 +1151,7 @@ bis:GeometricElement ia an abstract base class used to model real world entities
 </details>
 
 [!IndentEnd]
-### **GeometricElement2d** (2D Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"]
+### **GeometricElement2d** (2D Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GeometricElement2d)
 
 [!IndentStart]
 
@@ -1188,7 +1188,7 @@ bis:GeometricElement2d is an abstract base class used to model information entit
 </details>
 
 [!IndentEnd]
-### **GeometricElement3d** (3D Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"]
+### **GeometricElement3d** (3D Geometric Element) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GeometricElement3d)
 
 [!IndentStart]
 
@@ -1228,7 +1228,7 @@ bis:GeometricElement3d is an abstract base class used to model real world entiti
 </details>
 
 [!IndentEnd]
-### **GeometricModel** (Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"]
+### **GeometricModel** (Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GeometricModel)
 
 [!IndentStart]
 
@@ -1249,7 +1249,7 @@ A container for persisting bis:GeometricElement instances.
 </details>
 
 [!IndentEnd]
-### **GeometricModel2d** (2D Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"]
+### **GeometricModel2d** (2D Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GeometricModel2d)
 
 [!IndentStart]
 
@@ -1276,7 +1276,7 @@ A container for persisting bis:GeometricElement2d instances.
 </details>
 
 [!IndentEnd]
-### **GeometricModel3d** (3D Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"]
+### **GeometricModel3d** (3D Geometric Model) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GeometricModel3d)
 
 [!IndentStart]
 
@@ -1297,7 +1297,7 @@ A container for persisting bis:GeometricElement3d instances.
 </details>
 
 [!IndentEnd]
-### **GeometryPart** (Geometry Part) [!badge text="EntityClass" kind="info"]
+### **GeometryPart** (Geometry Part) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GeometryPart)
 
 [!IndentStart]
 
@@ -1331,7 +1331,7 @@ A bis:DefinitionElement that specifies a collection of geometry that is meant to
 </details>
 
 [!IndentEnd]
-### **GraphicalElement2d** (2D Graphical Element) *Abstract* [!badge text="EntityClass" kind="info"]
+### **GraphicalElement2d** (2D Graphical Element) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GraphicalElement2d)
 
 [!IndentStart]
 
@@ -1363,7 +1363,7 @@ bis:GraphicalElement2d is an abstract base class for 2D geometric elements that 
 </details>
 
 [!IndentEnd]
-### **GraphicalElement3d** (3D Graphical Element) *Abstract* [!badge text="EntityClass" kind="info"]
+### **GraphicalElement3d** (3D Graphical Element) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GraphicalElement3d)
 
 [!IndentStart]
 
@@ -1398,7 +1398,7 @@ A bis:GrapicalElement3d element conveys information within 3D graphical presenta
 </details>
 
 [!IndentEnd]
-### **GraphicalModel2d** (2D Graphical Model) *Abstract* [!badge text="EntityClass" kind="info"]
+### **GraphicalModel2d** (2D Graphical Model) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GraphicalModel2d)
 
 [!IndentStart]
 
@@ -1420,7 +1420,7 @@ A container for persisting bis:GraphicalElement2d instances.
 </details>
 
 [!IndentEnd]
-### **GraphicalType2d** (2D Graphical Type) *Abstract* [!badge text="EntityClass" kind="info"]
+### **GraphicalType2d** (2D Graphical Type) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GraphicalType2d)
 
 [!IndentStart]
 
@@ -1447,7 +1447,7 @@ Defines a shared set of properties (the 'type') that can be associated with a bi
 </details>
 
 [!IndentEnd]
-### **GroupInformationElement** (Group Information) *Abstract* [!badge text="EntityClass" kind="info"]
+### **GroupInformationElement** (Group Information) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GroupInformationElement)
 
 [!IndentStart]
 
@@ -1472,7 +1472,7 @@ bis:GroupInformationElement is an abstract base class used for modeling entities
 </details>
 
 [!IndentEnd]
-### **GroupInformationModel** (Group Information Model) *Abstract* [!badge text="EntityClass" kind="info"]
+### **GroupInformationModel** (Group Information Model) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GroupInformationModel)
 
 [!IndentStart]
 
@@ -1493,7 +1493,7 @@ A container for persisting bis:GroupInformationElement instances.
 </details>
 
 [!IndentEnd]
-### **GroupInformationPartition** (Group Information Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+### **GroupInformationPartition** (Group Information Partition) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.GroupInformationPartition)
 
 [!IndentStart]
 
@@ -1519,7 +1519,7 @@ A bis:GroupInformationPartition element indicates that there is a group-informat
 </details>
 
 [!IndentEnd]
-### **InformationCarrierElement** (Information Carrier) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
+### **InformationCarrierElement** (Information Carrier) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.InformationCarrierElement)
 
 [!alert text="BisCore will focus on the information itself and not how it is carried. Thus, the InformationCarrierElement class was deprecated." kind="warning"]
 
@@ -1546,7 +1546,7 @@ DEPRECATED: An Information Carrier carries information, but is not the informati
 </details>
 
 [!IndentEnd]
-### **InformationContentElement** (Information Content Element) *Abstract* [!badge text="EntityClass" kind="info"]
+### **InformationContentElement** (Information Content Element) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.InformationContentElement)
 
 [!IndentStart]
 
@@ -1571,7 +1571,7 @@ bis:InformationContentElement is an abstract base class for modeling pure inform
 </details>
 
 [!IndentEnd]
-### **InformationModel** (Information Model) *Abstract* [!badge text="EntityClass" kind="info"]
+### **InformationModel** (Information Model) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.InformationModel)
 
 [!IndentStart]
 
@@ -1592,7 +1592,7 @@ A container for persisting bis:InformationContentElement instances.
 </details>
 
 [!IndentEnd]
-### **InformationPartitionElement** (Information Partition) *Abstract* [!badge text="EntityClass" kind="info"]
+### **InformationPartitionElement** (Information Partition) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.InformationPartitionElement)
 
 [!IndentStart]
 
@@ -1623,7 +1623,7 @@ Instances of bis:InformationPartitionElement ared used to indicate that there is
 </details>
 
 [!IndentEnd]
-### **InformationRecordElement** (Information Record Element) *Abstract* [!badge text="EntityClass" kind="info"]
+### **InformationRecordElement** (Information Record Element) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.InformationRecordElement)
 
 [!IndentStart]
 
@@ -1648,7 +1648,7 @@ bis:InformationRecordElement is an abstract base class for modeling information 
 </details>
 
 [!IndentEnd]
-### **InformationRecordModel** (Information Record Model) [!badge text="EntityClass" kind="info"]
+### **InformationRecordModel** (Information Record Model) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.InformationRecordModel)
 
 [!IndentStart]
 
@@ -1669,7 +1669,7 @@ A container for persisting bis:InformationRecordElement instances
 </details>
 
 [!IndentEnd]
-### **InformationRecordPartition** (Information Record Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+### **InformationRecordPartition** (Information Record Partition) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.InformationRecordPartition)
 
 [!IndentStart]
 
@@ -1695,7 +1695,7 @@ A bis:InformationRecordPartition element indicates that there is an information-
 </details>
 
 [!IndentEnd]
-### **InformationReferenceElement** (Information Reference) *Abstract* [!badge text="EntityClass" kind="info"]
+### **InformationReferenceElement** (Information Reference) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.InformationReferenceElement)
 
 [!IndentStart]
 
@@ -1720,7 +1720,7 @@ bis:InformationReferenceElement is an abstract base class used for modeling enti
 </details>
 
 [!IndentEnd]
-### **LightLocation** (Light Location) *Sealed* [!badge text="EntityClass" kind="info"]
+### **LightLocation** (Light Location) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.LightLocation)
 
 [!IndentStart]
 
@@ -1761,7 +1761,7 @@ The spatial location of a light source
 </details>
 
 [!IndentEnd]
-### **LineStyle** (Line Style) *Sealed* [!badge text="EntityClass" kind="info"]
+### **LineStyle** (Line Style) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.LineStyle)
 
 [!IndentStart]
 
@@ -1792,7 +1792,7 @@ The spatial location of a light source
 </details>
 
 [!IndentEnd]
-### **LinkElement** (Link) *Abstract* [!badge text="EntityClass" kind="info"]
+### **LinkElement** (Link) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.LinkElement)
 
 [!IndentStart]
 
@@ -1817,7 +1817,7 @@ A bis:LinkElement is a bis:InformationReferenceElement that specifies a link.
 </details>
 
 [!IndentEnd]
-### **LinkModel** (Link Model) [!badge text="EntityClass" kind="info"]
+### **LinkModel** (Link Model) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.LinkModel)
 
 [!IndentStart]
 
@@ -1838,7 +1838,7 @@ A container for persisting bis:LinkElement instances.
 </details>
 
 [!IndentEnd]
-### **LinkPartition** (Link Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+### **LinkPartition** (Link Partition) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.LinkPartition)
 
 [!IndentStart]
 
@@ -1864,7 +1864,7 @@ A bis:LinkPartition element indicates that there is a link-related modeling pers
 </details>
 
 [!IndentEnd]
-### **Model** *Abstract* [!badge text="EntityClass" kind="info"]
+### **Model** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.Model)
 
 [!IndentStart]
 
@@ -1881,7 +1881,7 @@ A bis:Model is a container for persisting a collection of related elements.
 |JsonProperties|A string property that users and/or applications can use to persist ad hoc JSON values.|string|Json|
 
 [!IndentEnd]
-### **ModelSelector** (Model Selector) [!badge text="EntityClass" kind="info"]
+### **ModelSelector** (Model Selector) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.ModelSelector)
 
 [!IndentStart]
 
@@ -1905,7 +1905,7 @@ A bis:Model is a container for persisting a collection of related elements.
 </details>
 
 [!IndentEnd]
-### **OrthographicViewDefinition** (Orthographic Spatial View) [!badge text="EntityClass" kind="info"]
+### **OrthographicViewDefinition** (Orthographic Spatial View) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.OrthographicViewDefinition)
 
 [!IndentStart]
 
@@ -1944,7 +1944,7 @@ A spatial view that always shows a parallel projection.
 </details>
 
 [!IndentEnd]
-### **PhysicalElement** (Physical Element) *Abstract* [!badge text="EntityClass" kind="info"]
+### **PhysicalElement** (Physical Element) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.PhysicalElement)
 
 [!IndentStart]
 
@@ -1979,7 +1979,7 @@ A bis:PhysicalElement is spatially located, has mass, and can be 'touched'.
 </details>
 
 [!IndentEnd]
-### **PhysicalMaterial** (Physical Material) *Abstract* [!badge text="EntityClass" kind="info"]
+### **PhysicalMaterial** (Physical Material) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.PhysicalMaterial)
 
 [!IndentStart]
 
@@ -2005,7 +2005,7 @@ A bis:PhysicalMaterial defines the matter of which physical objects are made. bi
 </details>
 
 [!IndentEnd]
-### **PhysicalModel** (Physical Model) [!badge text="EntityClass" kind="info"]
+### **PhysicalModel** (Physical Model) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.PhysicalModel)
 
 [!IndentStart]
 
@@ -2026,7 +2026,7 @@ A container for persisting bis:PhysicalElement and bis:SpatialLocationElement in
 </details>
 
 [!IndentEnd]
-### **PhysicalPartition** (Physical Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+### **PhysicalPartition** (Physical Partition) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.PhysicalPartition)
 
 [!IndentStart]
 
@@ -2052,7 +2052,7 @@ A bis:PhysicalPartition element indicates that there is a physical modeling pers
 </details>
 
 [!IndentEnd]
-### **PhysicalPortion** (Physical Portion) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
+### **PhysicalPortion** (Physical Portion) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.PhysicalPortion)
 
 [!alert text="The best practice is now to inherit from a PhysicalElement subclass and mix in ISubModeledElement when a breakdown concept is needed." kind="warning"]
 
@@ -2089,7 +2089,7 @@ DEPRECATED: A Physical Portion represents an arbitrary portion of a larger Physi
 </details>
 
 [!IndentEnd]
-### **PhysicalType** (Physical Type) *Abstract* [!badge text="EntityClass" kind="info"]
+### **PhysicalType** (Physical Type) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.PhysicalType)
 
 [!IndentStart]
 
@@ -2116,7 +2116,7 @@ Defines a shared set of properties (the 'type') that can be associated with a bi
 </details>
 
 [!IndentEnd]
-### **RecipeDefinitionElement** (Recipe Definition) *Abstract* [!badge text="EntityClass" kind="info"]
+### **RecipeDefinitionElement** (Recipe Definition) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.RecipeDefinitionElement)
 
 [!IndentStart]
 
@@ -2142,7 +2142,7 @@ Defines a recipe for generating a type.
 </details>
 
 [!IndentEnd]
-### **RenderMaterial** (Render Material) *Sealed* [!badge text="EntityClass" kind="info"]
+### **RenderMaterial** (Render Material) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.RenderMaterial)
 
 [!IndentStart]
 
@@ -2175,7 +2175,7 @@ A bis:RenderMaterial defines the rendering properties of materials for display.
 </details>
 
 [!IndentEnd]
-### **RepositoryLink** (Repository Link) *Sealed* [!badge text="EntityClass" kind="info"]
+### **RepositoryLink** (Repository Link) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.RepositoryLink)
 
 [!IndentStart]
 
@@ -2208,7 +2208,7 @@ A bis:RepositoryLink is a bis:UrlLink element that links to a repository.
 </details>
 
 [!IndentEnd]
-### **RepositoryModel** (Repository Model) *Sealed* [!badge text="EntityClass" kind="info"]
+### **RepositoryModel** (Repository Model) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.RepositoryModel)
 
 [!IndentStart]
 
@@ -2229,7 +2229,7 @@ The singleton container of repository-related information elements.
 </details>
 
 [!IndentEnd]
-### **RoleElement** (Role Element) *Abstract* [!badge text="EntityClass" kind="info"]
+### **RoleElement** (Role Element) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.RoleElement)
 
 [!IndentStart]
 
@@ -2254,7 +2254,7 @@ A real world entity is modeled as a bis:RoleElement when a set of external circu
 </details>
 
 [!IndentEnd]
-### **RoleModel** (Role Model) [!badge text="EntityClass" kind="info"]
+### **RoleModel** (Role Model) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.RoleModel)
 
 [!IndentStart]
 
@@ -2275,7 +2275,7 @@ A container for persisting bis:RoleElement instances.
 </details>
 
 [!IndentEnd]
-### **SectionDrawing** (Section Drawing) [!badge text="EntityClass" kind="info"]
+### **SectionDrawing** (Section Drawing) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SectionDrawing)
 
 [!IndentStart]
 
@@ -2300,7 +2300,7 @@ A bis:SectionDrawing is a bis:Document of a 2D section drawing.
 </details>
 
 [!IndentEnd]
-### **SectionDrawingModel** (Section Drawing Model) [!badge text="EntityClass" kind="info"]
+### **SectionDrawingModel** (Section Drawing Model) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SectionDrawingModel)
 
 [!IndentStart]
 
@@ -2322,7 +2322,7 @@ A container for persisting section bis:DrawingGraphic elements.
 </details>
 
 [!IndentEnd]
-### **Sheet** [!badge text="EntityClass" kind="info"]
+### **Sheet** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.Sheet)
 
 [!IndentStart]
 
@@ -2356,7 +2356,7 @@ A bis:Sheet is a bis:Document of a 2D sheet.
 </details>
 
 [!IndentEnd]
-### **SheetBorder** (Sheet Border) [!badge text="EntityClass" kind="info"]
+### **SheetBorder** (Sheet Border) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SheetBorder)
 
 [!IndentStart]
 
@@ -2392,7 +2392,7 @@ A bis:Sheet is a bis:Document of a 2D sheet.
 </details>
 
 [!IndentEnd]
-### **SheetBorderTemplate** (Sheet Border Template) [!badge text="EntityClass" kind="info"]
+### **SheetBorderTemplate** (Sheet Border Template) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SheetBorderTemplate)
 
 [!IndentStart]
 
@@ -2422,7 +2422,7 @@ A bis:Sheet is a bis:Document of a 2D sheet.
 </details>
 
 [!IndentEnd]
-### **SheetModel** (Sheet Model) [!badge text="EntityClass" kind="info"]
+### **SheetModel** (Sheet Model) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SheetModel)
 
 [!IndentStart]
 
@@ -2444,7 +2444,7 @@ A container for persisting sheet views and graphics.
 </details>
 
 [!IndentEnd]
-### **SheetTemplate** (Sheet Template) [!badge text="EntityClass" kind="info"]
+### **SheetTemplate** (Sheet Template) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SheetTemplate)
 
 [!IndentStart]
 
@@ -2475,7 +2475,7 @@ A container for persisting sheet views and graphics.
 </details>
 
 [!IndentEnd]
-### **SheetViewDefinition** (Sheet View Definition) [!badge text="EntityClass" kind="info"]
+### **SheetViewDefinition** (Sheet View Definition) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SheetViewDefinition)
 
 [!IndentStart]
 
@@ -2508,7 +2508,7 @@ A bis:SheetViewDefinition specifies parameters for a view of a bis:SheetModel.
 </details>
 
 [!IndentEnd]
-### **SpatialCategory** (Spatial Category) *Sealed* [!badge text="EntityClass" kind="info"]
+### **SpatialCategory** (Spatial Category) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SpatialCategory)
 
 [!IndentStart]
 
@@ -2536,7 +2536,7 @@ A bis:SpatialCategory is used for classifying bis:GeometricElement3d elements vi
 </details>
 
 [!IndentEnd]
-### **SpatialElement** (Spatial Element) *Abstract* [!badge text="EntityClass" kind="info"]
+### **SpatialElement** (Spatial Element) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SpatialElement)
 
 [!IndentStart]
 
@@ -2571,7 +2571,7 @@ A bis:SpatialElement is a bis:GeometricElement3d that occupies real world space.
 </details>
 
 [!IndentEnd]
-### **SpatialIndex** (Spatial Index) *Sealed* [!badge text="EntityClass" kind="info"]
+### **SpatialIndex** (Spatial Index) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SpatialIndex)
 
 [!IndentStart]
 
@@ -2589,7 +2589,7 @@ The Spatial Index contains information used to optimize spatial queries. Like ot
 |MaxZ|Maximum Z value of the axis-aligned range box that encloses the spatial element|double||
 
 [!IndentEnd]
-### **SpatialLocationElement** (Spatial Location Element) *Abstract* [!badge text="EntityClass" kind="info"]
+### **SpatialLocationElement** (Spatial Location Element) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SpatialLocationElement)
 
 [!IndentStart]
 
@@ -2624,7 +2624,7 @@ A bis:SpatialLocationElement identifies a 'tracked' real world location but has 
 </details>
 
 [!IndentEnd]
-### **SpatialLocationModel** (Spatial Location Model) [!badge text="EntityClass" kind="info"]
+### **SpatialLocationModel** (Spatial Location Model) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SpatialLocationModel)
 
 [!IndentStart]
 
@@ -2645,7 +2645,7 @@ A container for persisting bis:SpatialLocationElement instances.
 </details>
 
 [!IndentEnd]
-### **SpatialLocationPartition** (Spatial Location Partition) *Sealed* [!badge text="EntityClass" kind="info"]
+### **SpatialLocationPartition** (Spatial Location Partition) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SpatialLocationPartition)
 
 [!IndentStart]
 
@@ -2671,7 +2671,7 @@ A bis:SpatialLocationPartition element indicates that there is a spatial-locatio
 </details>
 
 [!IndentEnd]
-### **SpatialLocationPortion** (Spatial Location Portion) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
+### **SpatialLocationPortion** (Spatial Location Portion) *Abstract* [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SpatialLocationPortion)
 
 [!alert text="The best practice is now to inherit from a SpatialLocationElement subclass and mix in ISubModeledElement when a breakdown concept is needed." kind="warning"]
 
@@ -2708,7 +2708,7 @@ DEPRECATED: A Spatial Location Portion represents an arbitrary portion of a larg
 </details>
 
 [!IndentEnd]
-### **SpatialLocationType** (Spatial Location Type) *Abstract* [!badge text="EntityClass" kind="info"]
+### **SpatialLocationType** (Spatial Location Type) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SpatialLocationType)
 
 [!IndentStart]
 
@@ -2735,7 +2735,7 @@ Defines a shared set of properties (the 'type') that can be associated with a bi
 </details>
 
 [!IndentEnd]
-### **SpatialModel** (Spatial Model) *Abstract* [!badge text="EntityClass" kind="info"]
+### **SpatialModel** (Spatial Model) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SpatialModel)
 
 [!IndentStart]
 
@@ -2756,7 +2756,7 @@ A container for persisting bis:GeometricElement3d instances that are spatially l
 </details>
 
 [!IndentEnd]
-### **SpatialViewDefinition** (Spatial View Definition) [!badge text="EntityClass" kind="info"]
+### **SpatialViewDefinition** (Spatial View Definition) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SpatialViewDefinition)
 
 [!IndentStart]
 
@@ -2800,7 +2800,7 @@ A view of a spatially located volume.
 </details>
 
 [!IndentEnd]
-### **SubCategory** (Sub-Category) *Sealed* [!badge text="EntityClass" kind="info"]
+### **SubCategory** (Sub-Category) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.SubCategory)
 
 [!IndentStart]
 
@@ -2833,7 +2833,7 @@ A bis:SubCategory is a subdivision of a bis:Category. SubCategories allow Geomet
 </details>
 
 [!IndentEnd]
-### **Subject** *Sealed* [!badge text="EntityClass" kind="info"]
+### **Subject** *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.Subject)
 
 [!IndentStart]
 
@@ -2864,7 +2864,7 @@ A bis:Subject is an information element that describes what this repository (or 
 </details>
 
 [!IndentEnd]
-### **TemplateRecipe2d** (2D Template Recipe) [!badge text="EntityClass" kind="info"]
+### **TemplateRecipe2d** (2D Template Recipe) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.TemplateRecipe2d)
 
 [!IndentStart]
 
@@ -2890,7 +2890,7 @@ A recipe that uses a 2D template for creating new instances.
 </details>
 
 [!IndentEnd]
-### **TemplateRecipe3d** (3D Template Recipe) [!badge text="EntityClass" kind="info"]
+### **TemplateRecipe3d** (3D Template Recipe) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.TemplateRecipe3d)
 
 [!IndentStart]
 
@@ -2916,7 +2916,7 @@ A recipe that uses a 3D template for creating new instances.
 </details>
 
 [!IndentEnd]
-### **TemplateViewDefinition2d** (2D Template View Definition) [!badge text="EntityClass" kind="info"]
+### **TemplateViewDefinition2d** (2D Template View Definition) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.TemplateViewDefinition2d)
 
 [!IndentStart]
 
@@ -2949,7 +2949,7 @@ A bis:ViewDefinition2d used to display a 2D template model.
 </details>
 
 [!IndentEnd]
-### **TemplateViewDefinition3d** (3D Template View Definition) [!badge text="EntityClass" kind="info"]
+### **TemplateViewDefinition3d** (3D Template View Definition) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.TemplateViewDefinition3d)
 
 [!IndentStart]
 
@@ -2987,7 +2987,7 @@ A bis:ViewDefinition3d used to display a 3D template model.
 </details>
 
 [!IndentEnd]
-### **TextAnnotation2d** (2D Text Annotation) [!badge text="EntityClass" kind="info"]
+### **TextAnnotation2d** (2D Text Annotation) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.TextAnnotation2d)
 
 [!IndentStart]
 
@@ -3017,7 +3017,7 @@ A bis:ViewDefinition3d used to display a 3D template model.
 </details>
 
 [!IndentEnd]
-### **TextAnnotation3d** (3D Text Annotation) [!badge text="EntityClass" kind="info"]
+### **TextAnnotation3d** (3D Text Annotation) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.TextAnnotation3d)
 
 [!IndentStart]
 
@@ -3050,7 +3050,7 @@ A bis:ViewDefinition3d used to display a 3D template model.
 </details>
 
 [!IndentEnd]
-### **TextAnnotationData** (Text Annotation Data) *Sealed* [!badge text="EntityClass" kind="info"]
+### **TextAnnotationData** (Text Annotation Data) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.TextAnnotationData)
 
 [!IndentStart]
 
@@ -3073,7 +3073,7 @@ The aspect used to store text annotation data for bis:TextAnnotation2d an bis:Te
 </details>
 
 [!IndentEnd]
-### **TextAnnotationSeed** (Text Annotation Seed) *Sealed* [!badge text="EntityClass" kind="info"]
+### **TextAnnotationSeed** (Text Annotation Seed) *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.TextAnnotationSeed)
 
 [!IndentStart]
 
@@ -3104,7 +3104,7 @@ The aspect used to store text annotation data for bis:TextAnnotation2d an bis:Te
 </details>
 
 [!IndentEnd]
-### **Texture** *Sealed* [!badge text="EntityClass" kind="info"]
+### **Texture** *Sealed* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.Texture)
 
 [!IndentStart]
 
@@ -3141,7 +3141,7 @@ A bis:Texture represents a named texture used for rendering purposes. The textur
 </details>
 
 [!IndentEnd]
-### **TypeDefinitionElement** (Type Definition) *Abstract* [!badge text="EntityClass" kind="info"]
+### **TypeDefinitionElement** (Type Definition) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.TypeDefinitionElement)
 
 [!IndentStart]
 
@@ -3173,7 +3173,7 @@ Defines a shared set of properties (the 'type') that can be associated with a bi
 </details>
 
 [!IndentEnd]
-### **UrlLink** (URL Link) [!badge text="EntityClass" kind="info"]
+### **UrlLink** (URL Link) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.UrlLink)
 
 [!IndentStart]
 
@@ -3205,7 +3205,7 @@ A bis:UrlLink is a bis:LinkElement that specifies a URL link.
 </details>
 
 [!IndentEnd]
-### **ViewAttachment** (View Attachment) [!badge text="EntityClass" kind="info"]
+### **ViewAttachment** (View Attachment) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.ViewAttachment)
 
 [!IndentStart]
 
@@ -3241,7 +3241,7 @@ A bis:UrlLink is a bis:LinkElement that specifies a URL link.
 </details>
 
 [!IndentEnd]
-### **ViewDefinition** (View Definition) *Abstract* [!badge text="EntityClass" kind="info"]
+### **ViewDefinition** (View Definition) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.ViewDefinition)
 
 [!IndentStart]
 
@@ -3275,7 +3275,7 @@ A bis:ViewDefinition specifies the area/volume that is viewed, and refers to a b
 </details>
 
 [!IndentEnd]
-### **ViewDefinition2d** (2D View Definition) *Abstract* [!badge text="EntityClass" kind="info"]
+### **ViewDefinition2d** (2D View Definition) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.ViewDefinition2d)
 
 [!IndentStart]
 
@@ -3313,7 +3313,7 @@ A view of a 2D model that has its own local coordinate system.
 </details>
 
 [!IndentEnd]
-### **ViewDefinition3d** (3D View Definition) *Abstract* [!badge text="EntityClass" kind="info"]
+### **ViewDefinition3d** (3D View Definition) *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.ViewDefinition3d)
 
 [!IndentStart]
 
@@ -3356,7 +3356,7 @@ A bis:ViewDefinition3d specifies the volume that is viewed on referenced 3D bis:
 </details>
 
 [!IndentEnd]
-### **VolumeElement** (Volume Element) [!badge text="EntityClass" kind="info"]
+### **VolumeElement** (Volume Element) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.VolumeElement)
 
 [!IndentStart]
 
@@ -3391,7 +3391,7 @@ A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defini
 </details>
 
 [!IndentEnd]
-### **WebMercatorModel** (Web Mercator Model) [!badge text="EntityClass" kind="info"]
+### **WebMercatorModel** (Web Mercator Model) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=BisCore.WebMercatorModel)
 
 [!IndentStart]
 
@@ -3412,7 +3412,7 @@ A bis:VolumeElement is a bis:SpatialLocationElement that is restricted to defini
 [!IndentEnd]
 ## Mixins
 
-### **IParentElement** (Parent Element) *Abstract* [!badge text="Mixin" kind="info"]
+### **IParentElement** (Parent Element) *Abstract* [!badge text="Mixin" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Mixin&id=BisCore.IParentElement)
 
 [!IndentStart]
 
@@ -3421,7 +3421,7 @@ An interface that indicates that this class of bis:Element is capable of being a
 **Applies To:** [Element](./biscore.ecschema.md#element)
 
 [!IndentEnd]
-### **ISubModeledElement** (Sub-Modeled Element) *Abstract* [!badge text="Mixin" kind="info"]
+### **ISubModeledElement** (Sub-Modeled Element) *Abstract* [!badge text="Mixin" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Mixin&id=BisCore.ISubModeledElement)
 
 [!IndentStart]
 
@@ -3432,7 +3432,7 @@ An interface that indicates that a bis:Element can be broken down or described b
 [!IndentEnd]
 ## Custom Attribute Classes
 
-### **AutoHandledProperty** [!badge text="CustomAttributeClass" kind="info"]
+### **AutoHandledProperty** [!badge text="CustomAttributeClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=CustomAttributeClass&id=BisCore.AutoHandledProperty)
 
 [!IndentStart]
 
@@ -3446,7 +3446,7 @@ Applied to an element's property to indicate that select, update, and insert of 
 |StatementTypes||||false|0|
 
 [!IndentEnd]
-### **ClassHasHandler** [!badge text="CustomAttributeClass" kind="info"]
+### **ClassHasHandler** [!badge text="CustomAttributeClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=CustomAttributeClass&id=BisCore.ClassHasHandler)
 
 [!IndentStart]
 
@@ -3460,7 +3460,7 @@ Applied to an ECClass to indicate that a C++ subclass of DgnDomain::Handler will
 |Restrictions|List of actions that are not permitted when the associated handler is not available|||false|0|
 
 [!IndentEnd]
-### **CustomHandledProperty** [!badge text="CustomAttributeClass" kind="info"]
+### **CustomHandledProperty** [!badge text="CustomAttributeClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=CustomAttributeClass&id=BisCore.CustomHandledProperty)
 
 [!IndentStart]
 
@@ -3474,7 +3474,7 @@ Applied to an element's property to indicate that the property's value is handle
 |StatementTypes||||false|0|
 
 [!IndentEnd]
-### **SchemaHasBehavior** [!badge text="CustomAttributeClass" kind="info"]
+### **SchemaHasBehavior** [!badge text="CustomAttributeClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=CustomAttributeClass&id=BisCore.SchemaHasBehavior)
 
 [!IndentStart]
 
@@ -3490,7 +3490,7 @@ Applied to an ECSchema to indicate that there is an associated JavaScript librar
 [!IndentEnd]
 ## Relationship Classes
 
-### **BaseModelForView2d** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **BaseModelForView2d** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.BaseModelForView2d)
 
 [!IndentStart]
 
@@ -3523,7 +3523,7 @@ Applied to an ECSchema to indicate that there is an associated JavaScript librar
 - [ViewDefinition2d](./biscore.ecschema.md#viewdefinition2d)
 [!IndentEnd]
 [!IndentEnd]
-### **CategoryOwnsSubCategories** [!badge text="RelationshipClass" kind="info"]
+### **CategoryOwnsSubCategories** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.CategoryOwnsSubCategories)
 
 [!IndentStart]
 
@@ -3558,7 +3558,7 @@ Applied to an ECSchema to indicate that there is an associated JavaScript librar
 - [SubCategory](./biscore.ecschema.md#subcategory)
 [!IndentEnd]
 [!IndentEnd]
-### **CategorySelectorRefersToCategories** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **CategorySelectorRefersToCategories** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.CategorySelectorRefersToCategories)
 
 [!IndentStart]
 
@@ -3593,7 +3593,7 @@ Applied to an ECSchema to indicate that there is an associated JavaScript librar
 - [Category](./biscore.ecschema.md#category)
 [!IndentEnd]
 [!IndentEnd]
-### **CodeSpecSpecifiesCode** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **CodeSpecSpecifiesCode** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.CodeSpecSpecifiesCode)
 
 [!IndentStart]
 
@@ -3626,7 +3626,7 @@ Applied to an ECSchema to indicate that there is an associated JavaScript librar
 - [Element](./biscore.ecschema.md#element)
 [!IndentEnd]
 [!IndentEnd]
-### **DrawingGraphicRepresentsElement** [!badge text="RelationshipClass" kind="info"]
+### **DrawingGraphicRepresentsElement** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.DrawingGraphicRepresentsElement)
 
 [!IndentStart]
 
@@ -3663,7 +3663,7 @@ Relates a bis:DrawingGraphic to the bis:Element that it represents.
 - [Element](./biscore.ecschema.md#element)
 [!IndentEnd]
 [!IndentEnd]
-### **DrawingModelBreaksDownDrawing** [!badge text="RelationshipClass" kind="info"]
+### **DrawingModelBreaksDownDrawing** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.DrawingModelBreaksDownDrawing)
 
 [!IndentStart]
 
@@ -3698,7 +3698,7 @@ Relates a bis:DrawingGraphic to the bis:Element that it represents.
 - [Drawing](./biscore.ecschema.md#drawing)
 [!IndentEnd]
 [!IndentEnd]
-### **ElementDrivesElement** [!badge text="RelationshipClass" kind="info"]
+### **ElementDrivesElement** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ElementDrivesElement)
 
 [!IndentStart]
 
@@ -3731,7 +3731,7 @@ Relates a bis:DrawingGraphic to the bis:Element that it represents.
 - [Element](./biscore.ecschema.md#element)
 [!IndentEnd]
 [!IndentEnd]
-### **ElementEncapsulatesElements** [!badge text="RelationshipClass" kind="info"]
+### **ElementEncapsulatesElements** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ElementEncapsulatesElements)
 
 [!IndentStart]
 
@@ -3768,7 +3768,7 @@ A relationship that indicates that child bis:Elements are meant to be hidden.
 - [Element](./biscore.ecschema.md#element)
 [!IndentEnd]
 [!IndentEnd]
-### **ElementGroupsMembers** [!badge text="RelationshipClass" kind="info"]
+### **ElementGroupsMembers** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ElementGroupsMembers)
 
 [!IndentStart]
 
@@ -3805,7 +3805,7 @@ A generic relationship used to capture the members of a defined set of bis:Eleme
 - [Element](./biscore.ecschema.md#element)
 [!IndentEnd]
 [!IndentEnd]
-### **ElementHasLinks** [!badge text="RelationshipClass" kind="info"]
+### **ElementHasLinks** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ElementHasLinks)
 
 [!IndentStart]
 
@@ -3842,7 +3842,7 @@ Associates bis:LinkElements to a bis:Element.
 - [LinkElement](./biscore.ecschema.md#linkelement)
 [!IndentEnd]
 [!IndentEnd]
-### **ElementOwnsChildElements** [!badge text="RelationshipClass" kind="info"]
+### **ElementOwnsChildElements** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ElementOwnsChildElements)
 
 [!IndentStart]
 
@@ -3877,7 +3877,7 @@ Relates a bis:Element to child bis:Elements which represent parts of the entity 
 - [Element](./biscore.ecschema.md#element)
 [!IndentEnd]
 [!IndentEnd]
-### **ElementOwnsExternalSourceAspects** [!badge text="RelationshipClass" kind="info"]
+### **ElementOwnsExternalSourceAspects** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ElementOwnsExternalSourceAspects)
 
 [!IndentStart]
 
@@ -3912,7 +3912,7 @@ Relates a bis:Element to child bis:Elements which represent parts of the entity 
 - [ExternalSourceAspect](./biscore.ecschema.md#externalsourceaspect)
 [!IndentEnd]
 [!IndentEnd]
-### **ElementOwnsMultiAspects** [!badge text="RelationshipClass" kind="info"]
+### **ElementOwnsMultiAspects** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ElementOwnsMultiAspects)
 
 [!IndentStart]
 
@@ -3945,7 +3945,7 @@ Relates a bis:Element to child bis:Elements which represent parts of the entity 
 - [ElementMultiAspect](./biscore.ecschema.md#elementmultiaspect)
 [!IndentEnd]
 [!IndentEnd]
-### **ElementOwnsUniqueAspect** [!badge text="RelationshipClass" kind="info"]
+### **ElementOwnsUniqueAspect** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ElementOwnsUniqueAspect)
 
 [!IndentStart]
 
@@ -3978,7 +3978,7 @@ Relates a bis:Element to child bis:Elements which represent parts of the entity 
 - [ElementUniqueAspect](./biscore.ecschema.md#elementuniqueaspect)
 [!IndentEnd]
 [!IndentEnd]
-### **ElementRefersToDocuments** [!badge text="RelationshipClass" kind="info"]
+### **ElementRefersToDocuments** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ElementRefersToDocuments)
 
 [!IndentStart]
 
@@ -4015,7 +4015,7 @@ A general relationship between a bis:Element and a bis:Document. There is no imp
 - [Document](./biscore.ecschema.md#document)
 [!IndentEnd]
 [!IndentEnd]
-### **ElementRefersToElements** *Abstract* [!badge text="RelationshipClass" kind="info"]
+### **ElementRefersToElements** *Abstract* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ElementRefersToElements)
 
 [!IndentStart]
 
@@ -4050,7 +4050,7 @@ A general relationship between two bis:Elements. These are typically specialized
 - [Element](./biscore.ecschema.md#element)
 [!IndentEnd]
 [!IndentEnd]
-### **ElementScopesCode** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **ElementScopesCode** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ElementScopesCode)
 
 [!IndentStart]
 
@@ -4083,7 +4083,7 @@ A general relationship between two bis:Elements. These are typically specialized
 - [Element](./biscore.ecschema.md#element)
 [!IndentEnd]
 [!IndentEnd]
-### **ElementScopesExternalSourceIdentifier** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **ElementScopesExternalSourceIdentifier** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ElementScopesExternalSourceIdentifier)
 
 [!IndentStart]
 
@@ -4116,7 +4116,7 @@ A general relationship between two bis:Elements. These are typically specialized
 - [ExternalSourceAspect](./biscore.ecschema.md#externalsourceaspect)
 [!IndentEnd]
 [!IndentEnd]
-### **GeometricElement2dHasTypeDefinition** *Abstract* [!badge text="RelationshipClass" kind="info"]
+### **GeometricElement2dHasTypeDefinition** *Abstract* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.GeometricElement2dHasTypeDefinition)
 
 [!IndentStart]
 
@@ -4149,7 +4149,7 @@ A general relationship between two bis:Elements. These are typically specialized
 - [TypeDefinitionElement](./biscore.ecschema.md#typedefinitionelement)
 [!IndentEnd]
 [!IndentEnd]
-### **GeometricElement2dIsInCategory** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **GeometricElement2dIsInCategory** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.GeometricElement2dIsInCategory)
 
 [!IndentStart]
 
@@ -4184,7 +4184,7 @@ The relationship that determines the bis:DrawingCategory for a bis:GeometricElem
 - [DrawingCategory](./biscore.ecschema.md#drawingcategory)
 [!IndentEnd]
 [!IndentEnd]
-### **GeometricElement3dHasTypeDefinition** *Abstract* [!badge text="RelationshipClass" kind="info"]
+### **GeometricElement3dHasTypeDefinition** *Abstract* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.GeometricElement3dHasTypeDefinition)
 
 [!IndentStart]
 
@@ -4217,7 +4217,7 @@ The relationship that determines the bis:DrawingCategory for a bis:GeometricElem
 - [TypeDefinitionElement](./biscore.ecschema.md#typedefinitionelement)
 [!IndentEnd]
 [!IndentEnd]
-### **GeometricElement3dIsInCategory** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **GeometricElement3dIsInCategory** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.GeometricElement3dIsInCategory)
 
 [!IndentStart]
 
@@ -4252,7 +4252,7 @@ The relationship that determines the bis:SpatialCategory for a bis:GeometricElem
 - [SpatialCategory](./biscore.ecschema.md#spatialcategory)
 [!IndentEnd]
 [!IndentEnd]
-### **GraphicalElement2dIsOfType** [!badge text="RelationshipClass" kind="info"]
+### **GraphicalElement2dIsOfType** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.GraphicalElement2dIsOfType)
 
 [!IndentStart]
 
@@ -4287,7 +4287,7 @@ The relationship that determines the bis:SpatialCategory for a bis:GeometricElem
 - [GraphicalType2d](./biscore.ecschema.md#graphicaltype2d)
 [!IndentEnd]
 [!IndentEnd]
-### **GraphicalElement3dRepresentsElement** [!badge text="RelationshipClass" kind="info"]
+### **GraphicalElement3dRepresentsElement** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.GraphicalElement3dRepresentsElement)
 
 [!IndentStart]
 
@@ -4324,7 +4324,7 @@ Relates a bis:GraphicalElement3d to the bis:Element that it represents.
 - [Element](./biscore.ecschema.md#element)
 [!IndentEnd]
 [!IndentEnd]
-### **GraphicalType2dHasTemplateRecipe** [!badge text="RelationshipClass" kind="info"]
+### **GraphicalType2dHasTemplateRecipe** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.GraphicalType2dHasTemplateRecipe)
 
 [!IndentStart]
 
@@ -4359,7 +4359,7 @@ Relates a bis:GraphicalElement3d to the bis:Element that it represents.
 - [TemplateRecipe2d](./biscore.ecschema.md#templaterecipe2d)
 [!IndentEnd]
 [!IndentEnd]
-### **ModelContainsElements** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **ModelContainsElements** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ModelContainsElements)
 
 [!IndentStart]
 
@@ -4394,7 +4394,7 @@ The relationship that enforces that each bis:Element belongs to exactly one bis:
 - [Element](./biscore.ecschema.md#element)
 [!IndentEnd]
 [!IndentEnd]
-### **ModelModelsElement** [!badge text="RelationshipClass" kind="info"]
+### **ModelModelsElement** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ModelModelsElement)
 
 [!IndentStart]
 
@@ -4429,7 +4429,7 @@ Relates a bis:Model to the bis:Element that it describes or breaks down into mor
 - [ISubModeledElement](./biscore.ecschema.md#isubmodeledelement)
 [!IndentEnd]
 [!IndentEnd]
-### **ModelOwnsSubModel** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **ModelOwnsSubModel** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ModelOwnsSubModel)
 
 [!IndentStart]
 
@@ -4464,7 +4464,7 @@ The relationship that is used to build a model hierarchy index. This is done for
 - [Model](./biscore.ecschema.md#model)
 [!IndentEnd]
 [!IndentEnd]
-### **ModelSelectorRefersToModels** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **ModelSelectorRefersToModels** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ModelSelectorRefersToModels)
 
 [!IndentStart]
 
@@ -4497,7 +4497,7 @@ The relationship that is used to build a model hierarchy index. This is done for
 - [Model](./biscore.ecschema.md#model)
 [!IndentEnd]
 [!IndentEnd]
-### **PartitionOriginatesFromRepository** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **PartitionOriginatesFromRepository** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.PartitionOriginatesFromRepository)
 
 [!IndentStart]
 
@@ -4534,7 +4534,7 @@ DEPRECATED
 - [RepositoryLink](./biscore.ecschema.md#repositorylink)
 [!IndentEnd]
 [!IndentEnd]
-### **PhysicalElementAssemblesElements** [!badge text="RelationshipClass" kind="info"]
+### **PhysicalElementAssemblesElements** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.PhysicalElementAssemblesElements)
 
 [!IndentStart]
 
@@ -4571,7 +4571,7 @@ A relationship that indicates a physical assembly of child bis:PhysicalElements.
 - [PhysicalElement](./biscore.ecschema.md#physicalelement)
 [!IndentEnd]
 [!IndentEnd]
-### **PhysicalElementIsOfType** [!badge text="RelationshipClass" kind="info"]
+### **PhysicalElementIsOfType** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.PhysicalElementIsOfType)
 
 [!IndentStart]
 
@@ -4608,7 +4608,7 @@ A type-instance relation; one that indicates that the specific bis:PhysicalEleme
 - [PhysicalType](./biscore.ecschema.md#physicaltype)
 [!IndentEnd]
 [!IndentEnd]
-### **PhysicalModelBreaksDownPhysicalPortion** [!badge text="RelationshipClass" kind="info"] [!badge text="Deprecated" kind="warning"]
+### **PhysicalModelBreaksDownPhysicalPortion** [!badge text="RelationshipClass" kind="info"] [!badge text="Deprecated" kind="warning"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.PhysicalModelBreaksDownPhysicalPortion)
 
 [!alert text="The PhysicalPortion class has been deprecated, so this relationship class is also deprecated." kind="warning"]
 
@@ -4647,7 +4647,7 @@ DEPRECATED
 - [PhysicalPortion](./biscore.ecschema.md#physicalportion)
 [!IndentEnd]
 [!IndentEnd]
-### **PhysicalTypeHasTemplateRecipe** [!badge text="RelationshipClass" kind="info"]
+### **PhysicalTypeHasTemplateRecipe** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.PhysicalTypeHasTemplateRecipe)
 
 [!IndentStart]
 
@@ -4682,7 +4682,7 @@ DEPRECATED
 - [TemplateRecipe3d](./biscore.ecschema.md#templaterecipe3d)
 [!IndentEnd]
 [!IndentEnd]
-### **RenderMaterialOwnsRenderMaterials** [!badge text="RelationshipClass" kind="info"]
+### **RenderMaterialOwnsRenderMaterials** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.RenderMaterialOwnsRenderMaterials)
 
 [!IndentStart]
 
@@ -4717,7 +4717,7 @@ DEPRECATED
 - [RenderMaterial](./biscore.ecschema.md#rendermaterial)
 [!IndentEnd]
 [!IndentEnd]
-### **SheetBorderHasSheetBorderTemplate** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **SheetBorderHasSheetBorderTemplate** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.SheetBorderHasSheetBorderTemplate)
 
 [!IndentStart]
 
@@ -4750,7 +4750,7 @@ DEPRECATED
 - [SheetBorderTemplate](./biscore.ecschema.md#sheetbordertemplate)
 [!IndentEnd]
 [!IndentEnd]
-### **SheetHasSheetTemplate** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **SheetHasSheetTemplate** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.SheetHasSheetTemplate)
 
 [!IndentStart]
 
@@ -4783,7 +4783,7 @@ DEPRECATED
 - [SheetTemplate](./biscore.ecschema.md#sheettemplate)
 [!IndentEnd]
 [!IndentEnd]
-### **SheetModelBreaksDownSheet** [!badge text="RelationshipClass" kind="info"]
+### **SheetModelBreaksDownSheet** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.SheetModelBreaksDownSheet)
 
 [!IndentStart]
 
@@ -4818,7 +4818,7 @@ DEPRECATED
 - [Sheet](./biscore.ecschema.md#sheet)
 [!IndentEnd]
 [!IndentEnd]
-### **SheetTemplateHasSheetBorder** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **SheetTemplateHasSheetBorder** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.SheetTemplateHasSheetBorder)
 
 [!IndentStart]
 
@@ -4851,7 +4851,7 @@ DEPRECATED
 - [SheetBorder](./biscore.ecschema.md#sheetborder)
 [!IndentEnd]
 [!IndentEnd]
-### **SpatialLocationIsOfType** [!badge text="RelationshipClass" kind="info"]
+### **SpatialLocationIsOfType** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.SpatialLocationIsOfType)
 
 [!IndentStart]
 
@@ -4888,7 +4888,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 - [SpatialLocationType](./biscore.ecschema.md#spatiallocationtype)
 [!IndentEnd]
 [!IndentEnd]
-### **SpatialViewDefinitionUsesModelSelector** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **SpatialViewDefinitionUsesModelSelector** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.SpatialViewDefinitionUsesModelSelector)
 
 [!IndentStart]
 
@@ -4921,7 +4921,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 - [ModelSelector](./biscore.ecschema.md#modelselector)
 [!IndentEnd]
 [!IndentEnd]
-### **SubjectOwnsPartitionElements** [!badge text="RelationshipClass" kind="info"]
+### **SubjectOwnsPartitionElements** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.SubjectOwnsPartitionElements)
 
 [!IndentStart]
 
@@ -4956,7 +4956,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 - [InformationPartitionElement](./biscore.ecschema.md#informationpartitionelement)
 [!IndentEnd]
 [!IndentEnd]
-### **SubjectOwnsSubjects** [!badge text="RelationshipClass" kind="info"]
+### **SubjectOwnsSubjects** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.SubjectOwnsSubjects)
 
 [!IndentStart]
 
@@ -4991,7 +4991,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 - [Subject](./biscore.ecschema.md#subject)
 [!IndentEnd]
 [!IndentEnd]
-### **TextAnnotation2dOwnsTextAnnotationData** [!badge text="RelationshipClass" kind="info"]
+### **TextAnnotation2dOwnsTextAnnotationData** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.TextAnnotation2dOwnsTextAnnotationData)
 
 [!IndentStart]
 
@@ -5026,7 +5026,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 - [TextAnnotationData](./biscore.ecschema.md#textannotationdata)
 [!IndentEnd]
 [!IndentEnd]
-### **TextAnnotation3dOwnsTextAnnotationData** [!badge text="RelationshipClass" kind="info"]
+### **TextAnnotation3dOwnsTextAnnotationData** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.TextAnnotation3dOwnsTextAnnotationData)
 
 [!IndentStart]
 
@@ -5061,7 +5061,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 - [TextAnnotationData](./biscore.ecschema.md#textannotationdata)
 [!IndentEnd]
 [!IndentEnd]
-### **TypeDefinitionHasRecipe** *Abstract* [!badge text="RelationshipClass" kind="info"]
+### **TypeDefinitionHasRecipe** *Abstract* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.TypeDefinitionHasRecipe)
 
 [!IndentStart]
 
@@ -5094,7 +5094,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 - [RecipeDefinitionElement](./biscore.ecschema.md#recipedefinitionelement)
 [!IndentEnd]
 [!IndentEnd]
-### **ViewDefinitionUsesCategorySelector** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **ViewDefinitionUsesCategorySelector** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ViewDefinitionUsesCategorySelector)
 
 [!IndentStart]
 
@@ -5127,7 +5127,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 - [CategorySelector](./biscore.ecschema.md#categoryselector)
 [!IndentEnd]
 [!IndentEnd]
-### **ViewDefinitionUsesDisplayStyle** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **ViewDefinitionUsesDisplayStyle** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ViewDefinitionUsesDisplayStyle)
 
 [!IndentStart]
 
@@ -5160,7 +5160,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 - [DisplayStyle](./biscore.ecschema.md#displaystyle)
 [!IndentEnd]
 [!IndentEnd]
-### **ViewIsAttached** *Sealed* [!badge text="RelationshipClass" kind="info"]
+### **ViewIsAttached** *Sealed* [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=BisCore.ViewIsAttached)
 
 [!IndentStart]
 
@@ -5195,7 +5195,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 [!IndentEnd]
 ## Enumerations
 
-### **AutoHandledPropertyStatementType** [!badge text="Enumeration" kind="info"]
+### **AutoHandledPropertyStatementType** [!badge text="Enumeration" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Enumeration&id=BisCore.AutoHandledPropertyStatementType)
 
 [!IndentStart]
 
@@ -5209,7 +5209,7 @@ A type-instance relation; one that indicates that the specific bis:SpatialLocati
 |All = Select \| Insert \| Update|7||
 
 [!IndentEnd]
-### **CustomHandledPropertyStatementType** [!badge text="Enumeration" kind="info"]
+### **CustomHandledPropertyStatementType** [!badge text="Enumeration" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Enumeration&id=BisCore.CustomHandledPropertyStatementType)
 
 [!IndentStart]
 
