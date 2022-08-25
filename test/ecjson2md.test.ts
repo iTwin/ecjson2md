@@ -9,10 +9,13 @@ import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
 import * as path from "path";
 import * as rimraf from "rimraf";
-import { SchemaContext, Schema, PropertyType, classModifierToString, SchemaJsonFileLocater, SchemaItemType, EntityClass } from "@bentley/ecschema-metadata";
+import { SchemaContext, Schema, PropertyType, classModifierToString, SchemaJsonFileLocater, SchemaItemType, EntityClass, schemaItemTypeToString } from "@bentley/ecschema-metadata";
 
 describe("ecjson2md", () => {
   describe("ECJsonMarkdownGenerator", () => {
+
+    const baseUrl = "https://imodelschemaeditor.bentley.com/?stage=browse&";
+    const iconPath = ".././media/imodel-schema-editor-icon.png";
 
     // Helper function to convert template literals to string array
     function outputLiteralToArray(text: string): string[] {
@@ -331,7 +334,7 @@ describe("ecjson2md", () => {
           const type = SchemaItemType.EntityClass;
 
           // Act
-          ECJsonMarkdownGenerator.writeSchemaItemHeader(outputFilePath, name, type);
+          ECJsonMarkdownGenerator.writeSchemaItemHeader(outputFilePath, name, type, "");
 
           // Assert
           assert.isFalse(fs.existsSync(outputFilePath));
@@ -341,14 +344,15 @@ describe("ecjson2md", () => {
           // Arrange
           const name = "NameOfTheSchemaItem";
           const type = SchemaItemType.EntityClass;
+          const typeString = schemaItemTypeToString(type);
 
           // Act
-          ECJsonMarkdownGenerator.writeSchemaItemHeader(outputFilePath, name, type);
+          ECJsonMarkdownGenerator.writeSchemaItemHeader(outputFilePath, name, type, "schemaName");
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-            ### **${name}** [!badge text="EntityClass" kind="info"]
+            ### **${name}** [!badge text="EntityClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=${typeString}&id=schemaName.${name})
 
             `);
 
@@ -625,14 +629,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "EntityClassA";
 
           // Act
-          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA** [!badge text="EntityClass" kind="info"]
+          ### **EntityClassA** [!badge text="EntityClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=EntityClass&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -662,14 +667,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "EntityClassA";
 
           // Act
-          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA** [!badge text="EntityClass" kind="info"]
+          ### **EntityClassA** [!badge text="EntityClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=EntityClass&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -705,14 +711,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "EntityClassA";
 
           // Act
-          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA** [!badge text="EntityClass" kind="info"]
+          ### **EntityClassA** [!badge text="EntityClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=EntityClass&id=${testSchema.name}.${schemaItem})
           
           [!IndentStart]
 
@@ -744,14 +751,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "EntityClassA";
 
           // Act
-          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA** (entityLabel) [!badge text="EntityClass" kind="info"]
+          ### **EntityClassA** (entityLabel) [!badge text="EntityClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=EntityClass&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
           
@@ -787,14 +795,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "EntityClassA";
 
           // Act
-          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA** (entityLabel) [!badge text="EntityClass" kind="info"]
+          ### **EntityClassA** (entityLabel) [!badge text="EntityClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=EntityClass&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -854,14 +863,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "EntityClassA";
 
           // Act
-          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA** [!badge text="EntityClass" kind="info"]
+          ### **EntityClassA** [!badge text="EntityClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=EntityClass&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -910,14 +920,15 @@ describe("ecjson2md", () => {
           const context = new SchemaContext();
           context.addLocater(locator);
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "EntityClassA";
 
           // Act
-          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync("EntityClassA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **EntityClassA** [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"]
+          ### **EntityClassA** [!badge text="EntityClass" kind="info"] [!badge text="Deprecated" kind="warning"] [<img src="${iconPath}">](${baseUrl}elementtype=EntityClass&id=${testSchema.name}.${schemaItem})
 
           [!alert text="EntityClassA has been deprecated in favor of EntityClassB." kind="warning"]
 
@@ -986,14 +997,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "KindOfQuantityA";
 
           // Act
-          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"), testSchema);
+          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **KindOfQuantityA** (KindOfQuantityA) [!badge text="KindOfQuantity" kind="info"]
+          ### **KindOfQuantityA** (KindOfQuantityA) [!badge text="KindOfQuantity" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=KindOfQuantity&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -1054,14 +1066,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "KindOfQuantityA";
 
           // Act
-          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"), testSchema);
+          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **KindOfQuantityA** (KindOfQuantityA) [!badge text="KindOfQuantity" kind="info"]
+          ### **KindOfQuantityA** (KindOfQuantityA) [!badge text="KindOfQuantity" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=KindOfQuantity&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -1119,14 +1132,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "KindOfQuantityA";
 
           // Act
-          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"), testSchema);
+          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **KindOfQuantityA** (KindOfQuantityA) [!badge text="KindOfQuantity" kind="info"]
+          ### **KindOfQuantityA** (KindOfQuantityA) [!badge text="KindOfQuantity" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=KindOfQuantity&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -1229,14 +1243,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "KindOfQuantityA";
 
           // Act
-          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync("KindOfQuantityA"), testSchema);
+          ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **KindOfQuantityA** (KindOfQuantityA) [!badge text="KindOfQuantity" kind="info"]
+          ### **KindOfQuantityA** (KindOfQuantityA) [!badge text="KindOfQuantity" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=KindOfQuantity&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -1319,14 +1334,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "RelationshipClassA";
 
           // Act
-          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"]
+          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=RelationshipClass&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]   
 
@@ -1410,14 +1426,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "RelationshipClassA";
 
           // Act
-          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"]
+          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=RelationshipClass&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -1503,14 +1520,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "RelationshipClassA";
 
           // Act
-          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"]
+          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=RelationshipClass&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -1596,14 +1614,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "RelationshipClassA";
 
           // Act
-          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"]
+          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=RelationshipClass&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -1689,14 +1708,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "RelationshipClassA";
 
           // Act
-          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **RelationshipClassA** (relationshipClassALabel) [!badge text="RelationshipClass" kind="info"]
+          ### **RelationshipClassA** (relationshipClassALabel) [!badge text="RelationshipClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=RelationshipClass&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -1794,14 +1814,15 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
+          const schemaItem = "RelationshipClassA";
 
           // Act
-          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync("RelationshipClassA"));
+          ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"]
+          ### **RelationshipClassA** [!badge text="RelationshipClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=RelationshipClass&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -1989,7 +2010,7 @@ describe("ecjson2md", () => {
         it("should properly write an enumeration backed by int", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **IntBackedEnum** [!badge text="Enumeration" kind="info"]
+          ### **IntBackedEnum** [!badge text="Enumeration" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Enumeration&id=${testSchema.name}.IntBackedEnum)
 
           [!IndentStart]
 
@@ -2004,7 +2025,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("IntBackedEnum"));
+          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("IntBackedEnum"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2016,7 +2037,7 @@ describe("ecjson2md", () => {
         it("should properly write an enumeration backed by a string", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **StringBackedEnum** [!badge text="Enumeration" kind="info"]
+          ### **StringBackedEnum** [!badge text="Enumeration" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Enumeration&id=${testSchema.name}.StringBackedEnum)
 
           [!IndentStart]
 
@@ -2031,7 +2052,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("StringBackedEnum"));
+          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("StringBackedEnum"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2043,7 +2064,7 @@ describe("ecjson2md", () => {
         it("should properly write an enumeration with no enumerators", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **NoEnumEnum** [!badge text="Enumeration" kind="info"]
+          ### **NoEnumEnum** [!badge text="Enumeration" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Enumeration&id=${testSchema.name}.NoEnumEnum)
 
           [!IndentStart]
 
@@ -2053,7 +2074,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("NoEnumEnum"));
+          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("NoEnumEnum"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2066,7 +2087,7 @@ describe("ecjson2md", () => {
           // Arrange
 
           const correctLines = outputLiteralToArray(`
-          ### **LotsOfEnumEnum** [!badge text="Enumeration" kind="info"]
+          ### **LotsOfEnumEnum** [!badge text="Enumeration" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Enumeration&id=${testSchema.name}.LotsOfEnumEnum)
 
           [!IndentStart]
 
@@ -2085,7 +2106,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("LotsOfEnumEnum"));
+          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("LotsOfEnumEnum"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2097,7 +2118,7 @@ describe("ecjson2md", () => {
         it("should properly write an enumeration with no enumerator labels", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **NoLabelEnumerators** [!badge text="Enumeration" kind="info"]
+          ### **NoLabelEnumerators** [!badge text="Enumeration" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Enumeration&id=${testSchema.name}.NoLabelEnumerators)
 
           [!IndentStart]
 
@@ -2116,7 +2137,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("NoLabelEnumerators"));
+          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("NoLabelEnumerators"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2128,7 +2149,7 @@ describe("ecjson2md", () => {
         it("should properly write an enumeration with descriptions", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **WithDescriptionEnum** [!badge text="Enumeration" kind="info"]
+          ### **WithDescriptionEnum** [!badge text="Enumeration" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Enumeration&id=${testSchema.name}.WithDescriptionEnum)
   
           [!IndentStart]
   
@@ -2146,7 +2167,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
   
           // Act
-          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("WithDescriptionEnum"));
+          ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("WithDescriptionEnum"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2323,7 +2344,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has no description, base class, label, or properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **PlainMixin** *Abstract* [!badge text="Mixin" kind="info"]
+          ### **PlainMixin** *Abstract* [!badge text="Mixin" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Mixin&id=${testSchema.name}.PlainMixin)
 
           [!IndentStart]
 
@@ -2332,7 +2353,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("PlainMixin"));
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("PlainMixin"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2344,7 +2365,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has a description", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **MixinWithDescription** *Abstract* [!badge text="Mixin" kind="info"]
+          ### **MixinWithDescription** *Abstract* [!badge text="Mixin" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Mixin&id=${testSchema.name}.MixinWithDescription)
 
           [!IndentStart]
 
@@ -2355,7 +2376,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithDescription"));
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithDescription"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2367,7 +2388,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has a base class", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **MixinWithBaseclass** *Abstract* [!badge text="Mixin" kind="info"]
+          ### **MixinWithBaseclass** *Abstract* [!badge text="Mixin" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Mixin&id=${testSchema.name}.MixinWithBaseclass)
 
           [!IndentStart]
 
@@ -2378,7 +2399,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithBaseclass"));
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithBaseclass"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2390,7 +2411,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has a label", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **MixinWithLabel** (MixinLabel) *Abstract* [!badge text="Mixin" kind="info"]
+          ### **MixinWithLabel** (MixinLabel) *Abstract* [!badge text="Mixin" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Mixin&id=${testSchema.name}.MixinWithLabel)
 
           [!IndentStart]
 
@@ -2399,7 +2420,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithLabel"));
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithLabel"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2411,7 +2432,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has a base class, label, and description", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **MixinWithDBL** (MixinLabel) *Abstract* [!badge text="Mixin" kind="info"]
+          ### **MixinWithDBL** (MixinLabel) *Abstract* [!badge text="Mixin" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Mixin&id=${testSchema.name}.MixinWithDBL)
 
           [!IndentStart]
 
@@ -2424,7 +2445,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithDBL"));
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithDBL"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2436,7 +2457,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has several properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **MixinWithProperties** *Abstract* [!badge text="Mixin" kind="info"]
+          ### **MixinWithProperties** *Abstract* [!badge text="Mixin" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Mixin&id=${testSchema.name}.MixinWithProperties)
 
           [!IndentStart]
 
@@ -2454,7 +2475,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithProperties"));
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithProperties"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2466,7 +2487,7 @@ describe("ecjson2md", () => {
         it("it should properly write a mixin that has all attributes", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **MixinWithAll** (MixinLabel) *Abstract* [!badge text="Mixin" kind="info"]
+          ### **MixinWithAll** (MixinLabel) *Abstract* [!badge text="Mixin" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Mixin&id=${testSchema.name}.MixinWithAll)
 
           [!IndentStart]
 
@@ -2492,7 +2513,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithAll"));
+          ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, testSchema.getItemSync("MixinWithAll"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2590,7 +2611,7 @@ describe("ecjson2md", () => {
         it("should write a class without description, base class, or properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **PlainCAC** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+          ### **PlainCAC** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=CustomAttributeClass&id=${testSchema.name}.PlainCAC)
 
           [!IndentStart]
 
@@ -2599,7 +2620,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("PlainCAC"));
+          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("PlainCAC"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2611,7 +2632,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has a description", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **CACWithDescription** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+          ### **CACWithDescription** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=CustomAttributeClass&id=${testSchema.name}.CACWithDescription)
 
           [!IndentStart]
 
@@ -2622,7 +2643,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("CACWithDescription"));
+          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("CACWithDescription"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2634,7 +2655,7 @@ describe("ecjson2md", () => {
         it("should properly write a class with a description and a base class", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **CACWithBaseClass** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+          ### **CACWithBaseClass** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=CustomAttributeClass&id=${testSchema.name}.CACWithBaseClass)
 
           [!IndentStart]
 
@@ -2647,7 +2668,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("CACWithBaseClass"));
+          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("CACWithBaseClass"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2659,7 +2680,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has a description, base class, and properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **CACWithProperties** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+          ### **CACWithProperties** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=CustomAttributeClass&id=${testSchema.name}.CACWithProperties)
 
           [!IndentStart]
 
@@ -2684,7 +2705,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("CACWithProperties"));
+          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("CACWithProperties"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2696,7 +2717,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has several properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **CACWithMultipleProperties** [!badge text="CustomAttributeClass" kind="info"]
+          ### **CACWithMultipleProperties** [!badge text="CustomAttributeClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=CustomAttributeClass&id=${testSchema.name}.CACWithMultipleProperties)
 
           [!IndentStart] 
 
@@ -2712,7 +2733,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("CACWithMultipleProperties"));
+          ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, testSchema.getItemSync("CACWithMultipleProperties"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2811,14 +2832,14 @@ describe("ecjson2md", () => {
         it("should properly write a class without a description, label, base class, or properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **PlainStruct** *Sealed* [!badge text="StructClass" kind="info"]
+          ### **PlainStruct** *Sealed* [!badge text="StructClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=StructClass&id=${testSchema.name}.PlainStruct)
 
           [!IndentStart]
           
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("PlainStruct"));
+          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("PlainStruct"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2830,7 +2851,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has a description", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **StructD** *Sealed* [!badge text="StructClass" kind="info"]
+          ### **StructD** *Sealed* [!badge text="StructClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=StructClass&id=${testSchema.name}.StructD)
 
           [!IndentStart]
 
@@ -2839,7 +2860,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructD"));
+          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructD"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2851,7 +2872,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has a description and label", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **StructDL** (StructDLLabel) *Sealed* [!badge text="StructClass" kind="info"]
+          ### **StructDL** (StructDLLabel) *Sealed* [!badge text="StructClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=StructClass&id=${testSchema.name}.StructDL)
 
           [!IndentStart]
 
@@ -2860,7 +2881,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructDL"));
+          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructDL"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2872,7 +2893,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has a description, label, and base class", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **StructDLB** (StructDLBLabel) *Sealed* [!badge text="StructClass" kind="info"]
+          ### **StructDLB** (StructDLBLabel) *Sealed* [!badge text="StructClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=StructClass&id=${testSchema.name}.StructDLB)
 
           [!IndentStart]
 
@@ -2883,7 +2904,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructDLB"));
+          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructDLB"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2895,7 +2916,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that a description, label, base class, and properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **StructDLBP** (StructDLBPLabel) *Sealed* [!badge text="StructClass" kind="info"]
+          ### **StructDLBP** (StructDLBPLabel) *Sealed* [!badge text="StructClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=StructClass&id=${testSchema.name}.StructDLBP)
 
           [!IndentStart]
 
@@ -2919,7 +2940,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructDLBP"));
+          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructDLBP"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2931,7 +2952,7 @@ describe("ecjson2md", () => {
         it("should properly write a class that has several properties", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **StructProperties** *Sealed* [!badge text="StructClass" kind="info"]
+          ### **StructProperties** *Sealed* [!badge text="StructClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=StructClass&id=${testSchema.name}.StructProperties)
 
           [!IndentStart]
 
@@ -2946,7 +2967,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructProperties"));
+          ECJsonMarkdownGenerator.writeStructClass(outputFilePath, testSchema.getItemSync("StructProperties"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -2995,14 +3016,14 @@ describe("ecjson2md", () => {
         it("should properly write property category with no description or label", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **PlainPropCategory** [!badge text="PropertyCategory" kind="info"]
+          ### **PlainPropCategory** [!badge text="PropertyCategory" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=PropertyCategory&id=${testSchema.name}.PlainPropCategory)
 
           [!IndentStart]
 
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writePropertyCategory(outputFilePath, testSchema.getItemSync("PlainPropCategory"));
+          ECJsonMarkdownGenerator.writePropertyCategory(outputFilePath, testSchema.getItemSync("PlainPropCategory"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -3014,7 +3035,7 @@ describe("ecjson2md", () => {
         it("should properly write property category with a description", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **PropCategoryD** [!badge text="PropertyCategory" kind="info"]
+          ### **PropCategoryD** [!badge text="PropertyCategory" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=PropertyCategory&id=${testSchema.name}.PropCategoryD)
 
           [!IndentStart]
 
@@ -3023,7 +3044,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writePropertyCategory(outputFilePath, testSchema.getItemSync("PropCategoryD"));
+          ECJsonMarkdownGenerator.writePropertyCategory(outputFilePath, testSchema.getItemSync("PropCategoryD"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -3035,7 +3056,7 @@ describe("ecjson2md", () => {
         it("should properly write property category with a description and label", () => {
           // Arrange
           const correctLines = outputLiteralToArray(`
-          ### **PropCategoryDL** (PropCategoryDLLabel) [!badge text="PropertyCategory" kind="info"]
+          ### **PropCategoryDL** (PropCategoryDLLabel) [!badge text="PropertyCategory" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=PropertyCategory&id=${testSchema.name}.PropCategoryDL)
 
           [!IndentStart]
 
@@ -3044,7 +3065,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          ECJsonMarkdownGenerator.writePropertyCategory(outputFilePath, testSchema.getItemSync("PropCategoryDL"));
+          ECJsonMarkdownGenerator.writePropertyCategory(outputFilePath, testSchema.getItemSync("PropCategoryDL"), testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           assert.equal(outputLines.length, correctLines.length);
@@ -3096,12 +3117,13 @@ describe("ecjson2md", () => {
 
         it("should properly write formats that has just a name and type (required)", () => {
           // Act
-          ECJsonMarkdownGenerator.writeFormatClass(outputFilePath, testSchema.getItemSync("FormatA"));
+          const schemaItem = "FormatA";
+          ECJsonMarkdownGenerator.writeFormatClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **FormatA** [!badge text="Format" kind="info"]\n
+          ### **FormatA** [!badge text="Format" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Format&id=${testSchema.name}.${schemaItem})\n
           [!IndentStart]
 
           **Type:** Fractional\n
@@ -3118,12 +3140,13 @@ describe("ecjson2md", () => {
 
         it("should properly write formats that have a name, type, precision, and showSignOption", () => {
           // Act
-          ECJsonMarkdownGenerator.writeFormatClass(outputFilePath, testSchema.getItemSync("FormatB"));
+          const schemaItem = "FormatB";
+          ECJsonMarkdownGenerator.writeFormatClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **FormatB** [!badge text="Format" kind="info"]\n
+          ### **FormatB** [!badge text="Format" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Format&id=${testSchema.name}.${schemaItem})\n
           [!IndentStart]
 
           **Type:** Decimal\n
@@ -3140,12 +3163,13 @@ describe("ecjson2md", () => {
 
         it("should properly write formats that have a name, type, precision, and format traits", () => {
           // Act
-          ECJsonMarkdownGenerator.writeFormatClass(outputFilePath, testSchema.getItemSync("FormatC"));
+          const schemaItem = "FormatC";
+          ECJsonMarkdownGenerator.writeFormatClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **FormatC** [!badge text="Format" kind="info"]
+          ### **FormatC** [!badge text="Format" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Format&id=${testSchema.name}.${schemaItem})
 
           [!IndentStart]
 
@@ -3273,12 +3297,13 @@ describe("ecjson2md", () => {
 
         it("should properly write units with a phenomenon and unitSystem", () => {
           // Act
-          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync("UnitA"));
+          const schemaItem = "UnitA";
+          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **UnitA** (label) [!badge text="Unit" kind="info"]\n
+          ### **UnitA** (label) [!badge text="Unit" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Unit&id=${testSchema.name}.${schemaItem})\n
           [!IndentStart]
 
           **Definition:** CM(2)\n
@@ -3293,12 +3318,13 @@ describe("ecjson2md", () => {
 
         it("should properly write units with neither numerator or denominator displayed", () => {
           // Act
-          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync("UnitB"));
+          const schemaItem = "UnitB";
+          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **UnitB** (label) [!badge text="Unit" kind="info"]\n
+          ### **UnitB** (label) [!badge text="Unit" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Unit&id=${testSchema.name}.${schemaItem})\n
           [!IndentStart]
 
           **Definition:** CM(2)\n
@@ -3313,12 +3339,13 @@ describe("ecjson2md", () => {
 
         it("should properly write units with numerator displayed", () => {
           // Act
-          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync("UnitC"));
+          const schemaItem = "UnitC";
+          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **UnitC** (label) [!badge text="Unit" kind="info"]\n
+          ### **UnitC** (label) [!badge text="Unit" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Unit&id=${testSchema.name}.${schemaItem})\n
           [!IndentStart]
 
           **Definition:** CM(2)\n
@@ -3334,12 +3361,13 @@ describe("ecjson2md", () => {
 
         it("should properly write units with numerator and denominator displayed", () => {
           // Act
-          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync("UnitD"));
+          const schemaItem = "UnitD";
+          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **UnitD** (label) [!badge text="Unit" kind="info"]\n
+          ### **UnitD** (label) [!badge text="Unit" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Unit&id=${testSchema.name}.${schemaItem})\n
           [!IndentStart]
 
           **Definition:** CM(2)\n
@@ -3356,12 +3384,13 @@ describe("ecjson2md", () => {
 
         it("should properly write units with numerator and denominator displayed, numerator is 1", () => {
           // Act
-          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync("UnitE"));
+          const schemaItem = "UnitE";
+          ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **UnitE** (label) [!badge text="Unit" kind="info"]\n
+          ### **UnitE** (label) [!badge text="Unit" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Unit&id=${testSchema.name}.${schemaItem})\n
           [!IndentStart]
 
           **Definition:** CM(2)\n
@@ -3378,12 +3407,13 @@ describe("ecjson2md", () => {
 
         it("should properly write inverted Unit", () => {
           // Act
-          ECJsonMarkdownGenerator.writeInvertedUnit(outputFilePath, testSchema.getItemSync("InvUnitF"));
+          const schemaItem = "InvUnitF";
+          ECJsonMarkdownGenerator.writeInvertedUnit(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **InvUnitF** (inverts unit f) [!badge text="InvertedUnit" kind="info"]\n
+          ### **InvUnitF** (inverts unit f) [!badge text="InvertedUnit" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=InvertedUnit&id=${testSchema.name}.${schemaItem})\n
           [!IndentStart]
 
           **Inverts Unit:** UnitF\n
@@ -3427,12 +3457,13 @@ describe("ecjson2md", () => {
 
         it("should properly write the phenomenon with name, type, and definition", () => {
           //Act
-          ECJsonMarkdownGenerator.writePhenomenonClass(outputFilePath, testSchema.getItemSync("PhenomenonA"));
+          const schemaItem = "PhenomenonA";
+          ECJsonMarkdownGenerator.writePhenomenonClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **PhenomenonA** [!badge text="Phenomenon" kind="info"]\n
+          ### **PhenomenonA** [!badge text="Phenomenon" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Phenomenon&id=${testSchema.name}.${schemaItem})\n
           [!IndentStart]
 
           **Definition:** This is a phenomenon test case.\n
@@ -3476,12 +3507,13 @@ describe("ecjson2md", () => {
 
         it("schould properly write UnitSystem with the schemaItemType", () => {
           // Act
-          ECJsonMarkdownGenerator.writeUnitSystemClass(outputFilePath, testSchema.getItemSync("UnitSystemA"));
+          const schemaItem = "UnitSystemA";
+          ECJsonMarkdownGenerator.writeUnitSystemClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **UnitSystemA** [!badge text="UnitSystem" kind="info"]\n
+          ### **UnitSystemA** [!badge text="UnitSystem" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=UnitSystem&id=${testSchema.name}.${schemaItem})\n
           [!IndentStart]
 
           [!IndentEnd]\n`);
@@ -3493,12 +3525,13 @@ describe("ecjson2md", () => {
 
         it("schould properly write UnitSystem with schemaItemType and description", () => {
           // Act
-          ECJsonMarkdownGenerator.writeUnitSystemClass(outputFilePath, testSchema.getItemSync("UnitSystemB"));
+          const schemaItem = "UnitSystemB";
+          ECJsonMarkdownGenerator.writeUnitSystemClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-          ### **UnitSystemB** [!badge text="UnitSystem" kind="info"]\n
+          ### **UnitSystemB** [!badge text="UnitSystem" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=UnitSystem&id=${testSchema.name}.${schemaItem})\n
           [!IndentStart]
 
            UnitSystem test with description.\n
@@ -3595,12 +3628,13 @@ describe("ecjson2md", () => {
   
             const context = new SchemaContext();
             const testSchema = Schema.fromJsonSync(schemaJson, context);
+            const schemaItem = "StructItem";
              
-            ECJsonMarkdownGenerator.writeStructClass(outputPath, testSchema.getItemSync("StructItem"));
+            ECJsonMarkdownGenerator.writeStructClass(outputPath, testSchema.getItemSync(schemaItem), testSchema.name);
   
             const outputLines = fs.readFileSync(outputPath).toString().split("\n");
             const correctLines = outputLiteralToArray(`
-            ### **StructItem** (StructLabel) *Sealed* [!badge text="StructClass" kind="info"]
+            ### **StructItem** (StructLabel) *Sealed* [!badge text="StructClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=StructClass&id=${testSchema.name}.${schemaItem})
   
             [!IndentStart]
 
@@ -3636,12 +3670,13 @@ describe("ecjson2md", () => {
   
             const context = new SchemaContext();
             const testSchema = Schema.fromJsonSync(schemaJson, context);
+            const schemaItem = "EntityC";
              
-            ECJsonMarkdownGenerator.writeEntityClass(outputPath, testSchema.getItemSync("EntityC"));
+            ECJsonMarkdownGenerator.writeEntityClass(outputPath, testSchema.getItemSync(schemaItem), testSchema.name);
   
             const outputLines = fs.readFileSync(outputPath).toString().split("\n");
             const correctLines = outputLiteralToArray(`
-              ### **EntityC** [!badge text="EntityClass" kind="info"]
+              ### **EntityC** [!badge text="EntityClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=EntityClass&id=${testSchema.name}.${schemaItem})
 
               [!IndentStart]
 
@@ -3671,11 +3706,11 @@ describe("ecjson2md", () => {
             const context = new SchemaContext();
             const testSchema = Schema.fromJsonSync(schemaJson, context);
 
-            ECJsonMarkdownGenerator.writeMixinClass(outputPath, testSchema.getItemSync("PlainMixin"));
+            ECJsonMarkdownGenerator.writeMixinClass(outputPath, testSchema.getItemSync("PlainMixin"), testSchema.name);
   
             const outputLines = fs.readFileSync(outputPath).toString().split("\n");
             const correctLines = outputLiteralToArray(`    
-            ### **PlainMixin** *Abstract* [!badge text="Mixin" kind="info"]
+            ### **PlainMixin** *Abstract* [!badge text="Mixin" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Mixin&id=${testSchema.name}.PlainMixin)
 
             [!IndentStart]
 
@@ -3707,12 +3742,13 @@ describe("ecjson2md", () => {
   
             const context = new SchemaContext();
             const testSchema = Schema.fromJsonSync(schemaJson, context);
+            const schemaItem = "CACWithBaseClass";
 
-            ECJsonMarkdownGenerator.writeCustomAttributeClass(outputPath, testSchema.getItemSync("CACWithBaseClass"));
+            ECJsonMarkdownGenerator.writeCustomAttributeClass(outputPath, testSchema.getItemSync(schemaItem), testSchema.name);
   
             const outputLines = fs.readFileSync(outputPath).toString().split("\n");
             const correctLines = outputLiteralToArray(`
-             ### **CACWithBaseClass** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+             ### **CACWithBaseClass** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Mixin&id=${testSchema.name}.${schemaItem})
 
              [!IndentStart]
 
@@ -3748,7 +3784,7 @@ describe("ecjson2md", () => {
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
            
-          ECJsonMarkdownGenerator.writeEntityClass(outputPath, testSchema.getItemSync("EntityA"));
+          ECJsonMarkdownGenerator.writeEntityClass(outputPath, testSchema.getItemSync("EntityA"), testSchema.name);
 
           const outputLines = fs.readFileSync(outputPath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
@@ -3771,7 +3807,7 @@ describe("ecjson2md", () => {
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
            
-          ECJsonMarkdownGenerator.writeMixinClass(outputPath, testSchema.getItemSync("MixinWithBaseclass"));
+          ECJsonMarkdownGenerator.writeMixinClass(outputPath, testSchema.getItemSync("MixinWithBaseclass"), testSchema.name);
 
           const outputLines = fs.readFileSync(outputPath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
