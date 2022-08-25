@@ -387,8 +387,9 @@ export class ECJsonMarkdownGenerator {
    * @param outputFilePath Path of output file
    */
   public static linkIModelSchemaEditorInfo(schemaName: string, schemaItem: string, itemType: string | undefined, outputFilePath: string) {
+    const baseUrl = "https://imodelschemaeditor.bentley.com/?stage=browse&";
     if (schemaName && schemaItem && itemType && outputFilePath) {
-      const linkSchemaEditor = `[<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=${itemType}&id=${schemaName}.${schemaItem})`;
+      const linkSchemaEditor = `[<img src=".././media/imodel-schema-editor-icon.png">](${baseUrl}elementtype=${itemType}&id=${schemaName}.${schemaItem})`;
       fs.appendFileSync(outputFilePath, ` ${linkSchemaEditor}`);
     }
   }
