@@ -429,8 +429,8 @@ export class ECJsonMarkdownGenerator {
       const customAttribute = customAttributes.get("CoreCustomAttributes.Deprecated");
       if (customAttribute !== undefined) {
         fs.appendFileSync(outputFilePath, ` ${formatBadge("Deprecated", "warning")}`);
-        addSchemaEditorInfo = false;
         this.linkIModelSchemaEditorInfo(schemaName, name, typeString, outputFilePath);
+        addSchemaEditorInfo = false;
         if (customAttribute.Description)
           fs.appendFileSync(outputFilePath, `\n\n${formatWarningAlert(customAttribute.Description)}`);
       }
