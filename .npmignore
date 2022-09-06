@@ -5,3 +5,4 @@
 !lib/**/*.js.map
 !bin/**/*.js
 test
+!lib/media/*.png
