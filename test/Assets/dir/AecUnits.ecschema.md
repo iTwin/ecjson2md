@@ -65,7 +65,7 @@ This contains the unit definitions that are use across AE Schemas
 
 ## Kind Of Quantities
 
-### **ACCELERATION** (Acceleration) [!badge text="KindOfQuantity" kind="info"]
+### **ACCELERATION** (Acceleration) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.ACCELERATION)
 
 [!IndentStart]
 
@@ -80,7 +80,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT_PER_SEC_SQ](./units.ecschema.md#ft_per_sec_sq) ]
 
 [!IndentEnd]
-### **ANGLE** (Angle) [!badge text="KindOfQuantity" kind="info"]
+### **ANGLE** (Angle) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.ANGLE)
 
 [!IndentStart]
 
@@ -94,7 +94,7 @@ This contains the unit definitions that are use across AE Schemas
 - [AngleDMS](./formats.ecschema.md#angledms)
 
 [!IndentEnd]
-### **ANGULAR_VELOCITY** (Angular Velocity) [!badge text="KindOfQuantity" kind="info"]
+### **ANGULAR_VELOCITY** (Angular Velocity) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.ANGULAR_VELOCITY)
 
 [!IndentStart]
 
@@ -109,7 +109,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [RPM](./units.ecschema.md#rpm) ]
 
 [!IndentEnd]
-### **AREA** (Area) [!badge text="KindOfQuantity" kind="info"]
+### **AREA** (Area) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.AREA)
 
 [!IndentStart]
 
@@ -123,7 +123,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_FT](./units.ecschema.md#sq_ft) ]
 
 [!IndentEnd]
-### **AREA_LARGE** (Large Area) [!badge text="KindOfQuantity" kind="info"]
+### **AREA_LARGE** (Large Area) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.AREA_LARGE)
 
 [!IndentStart]
 
@@ -137,7 +137,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_MILE](./units.ecschema.md#sq_mile) ]
 
 [!IndentEnd]
-### **AREA_SMALL** (Small Area) [!badge text="KindOfQuantity" kind="info"]
+### **AREA_SMALL** (Small Area) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.AREA_SMALL)
 
 [!IndentStart]
 
@@ -151,7 +151,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_IN](./units.ecschema.md#sq_in) ]
 
 [!IndentEnd]
-### **CURRENT** (Current) [!badge text="KindOfQuantity" kind="info"]
+### **CURRENT** (Current) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.CURRENT)
 
 [!IndentStart]
 
@@ -165,7 +165,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KILOAMPERE](./units.ecschema.md#kiloampere) ]
 
 [!IndentEnd]
-### **DENSITY** (Density) [!badge text="KindOfQuantity" kind="info"]
+### **DENSITY** (Density) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.DENSITY)
 
 [!IndentStart]
 
@@ -182,7 +182,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KIP_PER_CUB_FT](./units.ecschema.md#kip_per_cub_ft) ]
 
 [!IndentEnd]
-### **DYNAMIC_VISCOSITY** (Dynamic Viscosity) [!badge text="KindOfQuantity" kind="info"]
+### **DYNAMIC_VISCOSITY** (Dynamic Viscosity) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.DYNAMIC_VISCOSITY)
 
 [!IndentStart]
 
@@ -198,7 +198,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LBM_PER_FT_S](./units.ecschema.md#lbm_per_ft_s) ]
 
 [!IndentEnd]
-### **ELECTRIC_POTENTIAL** (Electric Potential) [!badge text="KindOfQuantity" kind="info"]
+### **ELECTRIC_POTENTIAL** (Electric Potential) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.ELECTRIC_POTENTIAL)
 
 [!IndentStart]
 
@@ -213,7 +213,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [MEGAVOLT](./units.ecschema.md#megavolt) ]
 
 [!IndentEnd]
-### **ENERGY** (Energy) [!badge text="KindOfQuantity" kind="info"]
+### **ENERGY** (Energy) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.ENERGY)
 
 [!IndentStart]
 
@@ -229,7 +229,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KWH](./units.ecschema.md#kwh) ]
 
 [!IndentEnd]
-### **FLOW** (Flow Rate) [!badge text="KindOfQuantity" kind="info"]
+### **FLOW** (Flow Rate) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.FLOW)
 
 [!IndentStart]
 
@@ -244,7 +244,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [GALLON_PER_MIN](./units.ecschema.md#gallon_per_min) ]
 
 [!IndentEnd]
-### **FORCE** (Force) [!badge text="KindOfQuantity" kind="info"]
+### **FORCE** (Force) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.FORCE)
 
 [!IndentStart]
 
@@ -260,7 +260,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KPF](./units.ecschema.md#kpf) ]
 
 [!IndentEnd]
-### **FORCE_DENSITY** (Force Density) [!badge text="KindOfQuantity" kind="info"]
+### **FORCE_DENSITY** (Force Density) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.FORCE_DENSITY)
 
 [!IndentStart]
 
@@ -276,7 +276,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KN_PER_CUB_FT](./units.ecschema.md#kn_per_cub_ft) ]
 
 [!IndentEnd]
-### **FREQUENCY** (Frequency) [!badge text="KindOfQuantity" kind="info"]
+### **FREQUENCY** (Frequency) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.FREQUENCY)
 
 [!IndentStart]
 
@@ -291,7 +291,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [MHZ](./units.ecschema.md#mhz) ]
 
 [!IndentEnd]
-### **HEAT_TRANSFER** (Heat Transfer) [!badge text="KindOfQuantity" kind="info"]
+### **HEAT_TRANSFER** (Heat Transfer) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.HEAT_TRANSFER)
 
 [!IndentStart]
 
@@ -306,7 +306,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [BTU_PER_SQ_FT_HR_FAHRENHEIT](./units.ecschema.md#btu_per_sq_ft_hr_fahrenheit) ]
 
 [!IndentEnd]
-### **ILLUMINANCE** (Illuminance) [!badge text="KindOfQuantity" kind="info"]
+### **ILLUMINANCE** (Illuminance) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.ILLUMINANCE)
 
 [!IndentStart]
 
@@ -320,7 +320,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LUMEN_PER_SQ_FT](./units.ecschema.md#lumen_per_sq_ft) ]
 
 [!IndentEnd]
-### **LENGTH** (Length) [!badge text="KindOfQuantity" kind="info"]
+### **LENGTH** (Length) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.LENGTH)
 
 [!IndentStart]
 
@@ -337,7 +337,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT](./units.ecschema.md#ft) ]
 
 [!IndentEnd]
-### **LENGTH_LONG** (Long Length) [!badge text="KindOfQuantity" kind="info"]
+### **LENGTH_LONG** (Long Length) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.LENGTH_LONG)
 
 [!IndentStart]
 
@@ -354,7 +354,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT](./units.ecschema.md#ft) ]
 
 [!IndentEnd]
-### **LENGTH_SHORT** (Short Length) [!badge text="KindOfQuantity" kind="info"]
+### **LENGTH_SHORT** (Short Length) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.LENGTH_SHORT)
 
 [!IndentStart]
 
@@ -372,7 +372,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [IN](./units.ecschema.md#in) ]
 
 [!IndentEnd]
-### **LINEAR_DENSITY** (Linear Density) [!badge text="KindOfQuantity" kind="info"]
+### **LINEAR_DENSITY** (Linear Density) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.LINEAR_DENSITY)
 
 [!IndentStart]
 
@@ -387,7 +387,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LBM_PER_FT](./units.ecschema.md#lbm_per_ft) ]
 
 [!IndentEnd]
-### **LINEAR_FORCE** (Linear Force) [!badge text="KindOfQuantity" kind="info"]
+### **LINEAR_FORCE** (Linear Force) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.LINEAR_FORCE)
 
 [!IndentStart]
 
@@ -402,7 +402,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LBF_PER_IN](./units.ecschema.md#lbf_per_in) ]
 
 [!IndentEnd]
-### **LINEAR_ROTATIONAL_SPRING_CONSTANT** (Linear Rotational Spring Constant) [!badge text="KindOfQuantity" kind="info"]
+### **LINEAR_ROTATIONAL_SPRING_CONSTANT** (Linear Rotational Spring Constant) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.LINEAR_ROTATIONAL_SPRING_CONSTANT)
 
 [!IndentStart]
 
@@ -415,7 +415,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [N_PER_RAD](./units.ecschema.md#n_per_rad) ]
 
 [!IndentEnd]
-### **LIQUID_VOLUME** (Liquid Volume) [!badge text="KindOfQuantity" kind="info"]
+### **LIQUID_VOLUME** (Liquid Volume) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.LIQUID_VOLUME)
 
 [!IndentStart]
 
@@ -429,7 +429,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [GALLON](./units.ecschema.md#gallon) ]
 
 [!IndentEnd]
-### **LIQUID_VOLUME_LARGE** (Liquid Large Volume) [!badge text="KindOfQuantity" kind="info"]
+### **LIQUID_VOLUME_LARGE** (Liquid Large Volume) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.LIQUID_VOLUME_LARGE)
 
 [!IndentStart]
 
@@ -443,7 +443,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [THOUSAND_GALLON](./units.ecschema.md#thousand_gallon) ]
 
 [!IndentEnd]
-### **LIQUID_VOLUME_SMALL** (Liquid Small Volume) [!badge text="KindOfQuantity" kind="info"]
+### **LIQUID_VOLUME_SMALL** (Liquid Small Volume) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.LIQUID_VOLUME_SMALL)
 
 [!IndentStart]
 
@@ -457,7 +457,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [GALLON](./units.ecschema.md#gallon) ]
 
 [!IndentEnd]
-### **LUMINOUS_FLUX** (Luminous Flux) [!badge text="KindOfQuantity" kind="info"]
+### **LUMINOUS_FLUX** (Luminous Flux) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.LUMINOUS_FLUX)
 
 [!IndentStart]
 
@@ -470,7 +470,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [LUMEN](./units.ecschema.md#lumen) ]
 
 [!IndentEnd]
-### **LUMINOUS_INTENSITY** (Luminous Intensity) [!badge text="KindOfQuantity" kind="info"]
+### **LUMINOUS_INTENSITY** (Luminous Intensity) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.LUMINOUS_INTENSITY)
 
 [!IndentStart]
 
@@ -483,7 +483,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CD](./units.ecschema.md#cd) ]
 
 [!IndentEnd]
-### **MOMENT_OF_INERTIA** (Moment Of Inertia) [!badge text="KindOfQuantity" kind="info"]
+### **MOMENT_OF_INERTIA** (Moment Of Inertia) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.MOMENT_OF_INERTIA)
 
 [!IndentStart]
 
@@ -500,7 +500,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT_TO_THE_FOURTH](./units.ecschema.md#ft_to_the_fourth) ]
 
 [!IndentEnd]
-### **POWER** (Power) [!badge text="KindOfQuantity" kind="info"]
+### **POWER** (Power) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.POWER)
 
 [!IndentStart]
 
@@ -518,7 +518,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [HP](./units.ecschema.md#hp) ]
 
 [!IndentEnd]
-### **PRESSURE** (Pressure) [!badge text="KindOfQuantity" kind="info"]
+### **PRESSURE** (Pressure) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.PRESSURE)
 
 [!IndentStart]
 
@@ -533,7 +533,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [PSI](./units.ecschema.md#psi) ]
 
 [!IndentEnd]
-### **PRESSURE_GRADIENT** (Pressure Gradient) [!badge text="KindOfQuantity" kind="info"]
+### **PRESSURE_GRADIENT** (Pressure Gradient) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.PRESSURE_GRADIENT)
 
 [!IndentStart]
 
@@ -547,7 +547,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [BAR_PER_KM](./units.ecschema.md#bar_per_km) ]
 
 [!IndentEnd]
-### **PROCESS_PIPING_FLOW** (Process Piping Flow Rate) [!badge text="KindOfQuantity" kind="info"]
+### **PROCESS_PIPING_FLOW** (Process Piping Flow Rate) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.PROCESS_PIPING_FLOW)
 
 [!IndentStart]
 
@@ -562,7 +562,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [GALLON_PER_MIN](./units.ecschema.md#gallon_per_min) ]
 
 [!IndentEnd]
-### **PROCESS_PIPING_PRESSURE** (Process Piping Pressure) [!badge text="KindOfQuantity" kind="info"]
+### **PROCESS_PIPING_PRESSURE** (Process Piping Pressure) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.PROCESS_PIPING_PRESSURE)
 
 [!IndentStart]
 
@@ -577,7 +577,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [PSI](./units.ecschema.md#psi) ]
 
 [!IndentEnd]
-### **PROCESS_PIPING_TEMPERATURE** (Process Piping Temperature) [!badge text="KindOfQuantity" kind="info"]
+### **PROCESS_PIPING_TEMPERATURE** (Process Piping Temperature) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.PROCESS_PIPING_TEMPERATURE)
 
 [!IndentStart]
 
@@ -592,7 +592,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [K](./units.ecschema.md#k) ]
 
 [!IndentEnd]
-### **SPECIFIC_HEAT_CAPACITY** (Specific Heat Capacity) [!badge text="KindOfQuantity" kind="info"]
+### **SPECIFIC_HEAT_CAPACITY** (Specific Heat Capacity) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.SPECIFIC_HEAT_CAPACITY)
 
 [!IndentStart]
 
@@ -606,7 +606,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [BTU_PER_LBM_RANKINE](./units.ecschema.md#btu_per_lbm_rankine) ]
 
 [!IndentEnd]
-### **SPECIFIC_HEAT_OF_VAPORIZATION** (Specific Heat Of Vaporization) [!badge text="KindOfQuantity" kind="info"]
+### **SPECIFIC_HEAT_OF_VAPORIZATION** (Specific Heat Of Vaporization) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.SPECIFIC_HEAT_OF_VAPORIZATION)
 
 [!IndentStart]
 
@@ -621,7 +621,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [BTU_PER_LBM](./units.ecschema.md#btu_per_lbm) ]
 
 [!IndentEnd]
-### **TEMPERATURE** (Temperature) [!badge text="KindOfQuantity" kind="info"]
+### **TEMPERATURE** (Temperature) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.TEMPERATURE)
 
 [!IndentStart]
 
@@ -636,7 +636,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [K](./units.ecschema.md#k) ]
 
 [!IndentEnd]
-### **THERMAL_CONDUCTIVITY** (Thermal Conductivity) [!badge text="KindOfQuantity" kind="info"]
+### **THERMAL_CONDUCTIVITY** (Thermal Conductivity) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.THERMAL_CONDUCTIVITY)
 
 [!IndentStart]
 
@@ -651,7 +651,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [BTU_IN_PER_SQ_FT_HR_FAHRENHEIT](./units.ecschema.md#btu_in_per_sq_ft_hr_fahrenheit) ]
 
 [!IndentEnd]
-### **THERMAL_EXPANSION_COEFFICIENT** (Thermal Expansion Coefficient) [!badge text="KindOfQuantity" kind="info"]
+### **THERMAL_EXPANSION_COEFFICIENT** (Thermal Expansion Coefficient) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.THERMAL_EXPANSION_COEFFICIENT)
 
 [!IndentStart]
 
@@ -666,7 +666,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [STRAIN_PER_FAHRENHEIT](./units.ecschema.md#strain_per_fahrenheit) ]
 
 [!IndentEnd]
-### **THERMAL_RESISTANCE** (Thermal Resistance) [!badge text="KindOfQuantity" kind="info"]
+### **THERMAL_RESISTANCE** (Thermal Resistance) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.THERMAL_RESISTANCE)
 
 [!IndentStart]
 
@@ -681,7 +681,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [SQ_FT_HR_FAHRENHEIT_PER_BTU](./units.ecschema.md#sq_ft_hr_fahrenheit_per_btu) ]
 
 [!IndentEnd]
-### **TIME** (Time) [!badge text="KindOfQuantity" kind="info"]
+### **TIME** (Time) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.TIME)
 
 [!IndentStart]
 
@@ -698,7 +698,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [MS](./units.ecschema.md#ms) ]
 
 [!IndentEnd]
-### **VELOCITY** (Velocity) [!badge text="KindOfQuantity" kind="info"]
+### **VELOCITY** (Velocity) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.VELOCITY)
 
 [!IndentStart]
 
@@ -714,7 +714,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [KM_PER_HR](./units.ecschema.md#km_per_hr) ]
 
 [!IndentEnd]
-### **VOLUME** (Volume) [!badge text="KindOfQuantity" kind="info"]
+### **VOLUME** (Volume) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.VOLUME)
 
 [!IndentStart]
 
@@ -729,7 +729,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_YRD](./units.ecschema.md#cub_yrd) ]
 
 [!IndentEnd]
-### **VOLUME_LARGE** (Large Volume) [!badge text="KindOfQuantity" kind="info"]
+### **VOLUME_LARGE** (Large Volume) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.VOLUME_LARGE)
 
 [!IndentStart]
 
@@ -745,7 +745,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_FT](./units.ecschema.md#cub_ft) ]
 
 [!IndentEnd]
-### **VOLUME_SMALL** (Small Volume) [!badge text="KindOfQuantity" kind="info"]
+### **VOLUME_SMALL** (Small Volume) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.VOLUME_SMALL)
 
 [!IndentStart]
 
@@ -761,7 +761,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [CUB_FT](./units.ecschema.md#cub_ft) ]
 
 [!IndentEnd]
-### **WARPING_CONSTANT** (Warping Constant) [!badge text="KindOfQuantity" kind="info"]
+### **WARPING_CONSTANT** (Warping Constant) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.WARPING_CONSTANT)
 
 [!IndentStart]
 
@@ -775,7 +775,7 @@ This contains the unit definitions that are use across AE Schemas
 - [DefaultRealU](./formats.ecschema.md#defaultrealu)(4) [ [FT_TO_THE_SIXTH](./units.ecschema.md#ft_to_the_sixth) ]
 
 [!IndentEnd]
-### **WEIGHT** (Weight) [!badge text="KindOfQuantity" kind="info"]
+### **WEIGHT** (Weight) [!badge text="KindOfQuantity" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=KindOfQuantity&id=AecUnits.WEIGHT)
 
 [!IndentStart]
 

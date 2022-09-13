@@ -25,7 +25,7 @@ Custom attributes that customize ECDb's ECSchema to database mapping.
 	- [SchemaMap](#schemamap)
 	- [ShareColumns](#sharecolumns)
 
-### **DbIndex** *Sealed* [!badge text="StructClass" kind="info"]
+### **DbIndex** *Sealed* [!badge text="StructClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=StructClass&id=ECDbMap.DbIndex)
 
 [!IndentStart]
 
@@ -43,7 +43,7 @@ Specify a database index for an ECClass.
 [!IndentEnd]
 ## Custom Attribute Classes
 
-### **ClassMap** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+### **ClassMap** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=CustomAttributeClass&id=ECDbMap.ClassMap)
 
 [!IndentStart]
 
@@ -57,7 +57,7 @@ Specify a database index for an ECClass.
 |ECInstanceIdColumn|Optionally specify the name of custom 'primary key' column which must be of type Int64.|||false|0|
 
 [!IndentEnd]
-### **DbIndexList** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+### **DbIndexList** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=CustomAttributeClass&id=ECDbMap.DbIndexList)
 
 [!IndentStart]
 
@@ -69,7 +69,7 @@ Specify a database index for an ECClass.
 |Indexes|List of indexes on properties of this class. It can be use to improve query performance or to add unique constraint.|||false|0|
 
 [!IndentEnd]
-### **ForeignKeyConstraint** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+### **ForeignKeyConstraint** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=CustomAttributeClass&id=ECDbMap.ForeignKeyConstraint)
 
 [!IndentStart]
 
@@ -84,7 +84,7 @@ Creates a foreign key for this navigation property.
 |OnUpdateAction|Possible values: NoAction (default), Cascade (which updates child foreign key when parent primary key is updated).|||false|0|
 
 [!IndentEnd]
-### **JoinedTablePerDirectSubclass** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+### **JoinedTablePerDirectSubclass** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=CustomAttributeClass&id=ECDbMap.JoinedTablePerDirectSubclass)
 
 [!IndentStart]
 
@@ -93,7 +93,7 @@ Maps subclasses and their children to a joined table. Can only be applied to cla
 **Applies to:** EntityClass
 
 [!IndentEnd]
-### **LinkTableRelationshipMap** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+### **LinkTableRelationshipMap** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=CustomAttributeClass&id=ECDbMap.LinkTableRelationshipMap)
 
 [!IndentStart]
 
@@ -108,7 +108,7 @@ Maps subclasses and their children to a joined table. Can only be applied to cla
 |AllowDuplicateRelationships|Default: false. If set to true duplicate relationships are allowed.|||false|0|
 
 [!IndentEnd]
-### **PropertyMap** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+### **PropertyMap** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=CustomAttributeClass&id=ECDbMap.PropertyMap)
 
 [!IndentStart]
 
@@ -123,7 +123,7 @@ Maps subclasses and their children to a joined table. Can only be applied to cla
 |Collation|Specifies how string comparisons should work for this property. Possible values: Binary (default): bit to bit matching. NoCase: The same as binary, except that the 26 upper case characters of ASCII are folded to their lower case equivalents before comparing. Note that it only folds ASCII characters. RTrim: The same as binary, except that trailing space characters are ignored.|||false|0|
 
 [!IndentEnd]
-### **SchemaMap** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+### **SchemaMap** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=CustomAttributeClass&id=ECDbMap.SchemaMap)
 
 [!IndentStart]
 
@@ -135,7 +135,7 @@ Maps subclasses and their children to a joined table. Can only be applied to cla
 |TablePrefix|Specifies a prefix for generated tables. If not specified, the alias of the ECSchema is used|||false|0|
 
 [!IndentEnd]
-### **ShareColumns** *Sealed* [!badge text="CustomAttributeClass" kind="info"]
+### **ShareColumns** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=CustomAttributeClass&id=ECDbMap.ShareColumns)
 
 [!IndentStart]
 

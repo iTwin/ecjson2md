@@ -1,6 +1,6 @@
 {
   "name": "@bentley/ecjson2md",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Markdown generation from ECSchema JSON",
   "license": "MIT",
   "bin": {
@@ -13,7 +13,7 @@
   },
   "scripts": {
     "clean": "rimraf lib .nyc_output",
-    "copy:assets": "cpx ./source/index.js ./lib",
+    "copy:assets": "cpx ./source/index.js ./lib && cpx \"./source/media/*\" ./lib/media",
     "lint": "tslint --project . 1>&2",
     "prebuild": "npm run lint & npm run clean & npm run copy:assets",
     "build": "tsc",

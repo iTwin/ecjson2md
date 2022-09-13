@@ -59,7 +59,7 @@ Warning: This file was automatically generated via ecjson2md. Do not edit this f
 
 ## Entity Classes
 
-### **CircularAxis** [!badge text="EntityClass" kind="info"]
+### **CircularAxis** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.CircularAxis)
 
 [!IndentStart]
 
@@ -86,7 +86,7 @@ an element which groups all PlanCircumferentialGridSurface in a RadialGrid toget
 </details>
 
 [!IndentEnd]
-### **ElevationGrid** [!badge text="EntityClass" kind="info"]
+### **ElevationGrid** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.ElevationGrid)
 
 [!IndentStart]
 
@@ -128,7 +128,7 @@ An ElevationGrid contains planar surfaces that are parallel to the local XY plan
 </details>
 
 [!IndentEnd]
-### **ElevationGridSurface** [!badge text="EntityClass" kind="info"]
+### **ElevationGridSurface** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.ElevationGridSurface)
 
 [!IndentStart]
 
@@ -171,7 +171,7 @@ A PlanarGridSurface that is parallel with its Grid’s x-y plane (always contain
 </details>
 
 [!IndentEnd]
-### **FreeGrid** [!badge text="EntityClass" kind="info"]
+### **FreeGrid** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.FreeGrid)
 
 [!IndentStart]
 
@@ -206,7 +206,7 @@ An FreeGrid contains surfaces that do not need to follow any rules
 </details>
 
 [!IndentEnd]
-### **FreeGridSurface** [!badge text="EntityClass" kind="info"]
+### **FreeGridSurface** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.FreeGridSurface)
 
 [!IndentStart]
 
@@ -242,7 +242,7 @@ a grid surface of any geometry.
 </details>
 
 [!IndentEnd]
-### **GeneralGridAxis** [!badge text="EntityClass" kind="info"]
+### **GeneralGridAxis** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.GeneralGridAxis)
 
 [!IndentStart]
 
@@ -269,7 +269,7 @@ an element which groups GridSurfaces together in other grids
 </details>
 
 [!IndentEnd]
-### **GeneralGridCurve** [!badge text="EntityClass" kind="info"]
+### **GeneralGridCurve** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.GeneralGridCurve)
 
 [!IndentStart]
 
@@ -304,7 +304,7 @@ a gridcurve that is a result of 2 non-planar surfaces
 </details>
 
 [!IndentEnd]
-### **Grid** *Abstract* [!badge text="EntityClass" kind="info"]
+### **Grid** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.Grid)
 
 [!IndentStart]
 
@@ -339,7 +339,7 @@ A grid is a collection of gridsurfaces.
 </details>
 
 [!IndentEnd]
-### **GridArc** [!badge text="EntityClass" kind="info"]
+### **GridArc** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.GridArc)
 
 [!IndentStart]
 
@@ -374,7 +374,7 @@ a gridcurve that is a result of a planar and arc surface
 </details>
 
 [!IndentEnd]
-### **GridArcSurface** *Abstract* [!badge text="EntityClass" kind="info"]
+### **GridArcSurface** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.GridArcSurface)
 
 [!IndentStart]
 
@@ -410,7 +410,7 @@ A grid surface that is parallel to extruded arc.
 </details>
 
 [!IndentEnd]
-### **GridAxis** *Abstract* [!badge text="EntityClass" kind="info"]
+### **GridAxis** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.GridAxis)
 
 [!IndentStart]
 
@@ -442,7 +442,7 @@ an element which groups (typically parallel) GridSurfaces
 </details>
 
 [!IndentEnd]
-### **GridCurve** *Abstract* [!badge text="EntityClass" kind="info"]
+### **GridCurve** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.GridCurve)
 
 [!IndentStart]
 
@@ -477,7 +477,7 @@ an element representing a gridcurve - typically intersection of 2 surfaces
 </details>
 
 [!IndentEnd]
-### **GridCurveBundle** (GridCurve bundle) [!badge text="EntityClass" kind="info"]
+### **GridCurveBundle** (GridCurve bundle) [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.GridCurveBundle)
 
 [!IndentStart]
 
@@ -506,7 +506,7 @@ an element representing a gridcurve - typically intersection of 2 surfaces
 </details>
 
 [!IndentEnd]
-### **GridCurvesSet** [!badge text="EntityClass" kind="info"]
+### **GridCurvesSet** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.GridCurvesSet)
 
 [!IndentStart]
 
@@ -541,7 +541,7 @@ a set which holds GridCurves
 </details>
 
 [!IndentEnd]
-### **GridLine** [!badge text="EntityClass" kind="info"]
+### **GridLine** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.GridLine)
 
 [!IndentStart]
 
@@ -576,7 +576,7 @@ a gridcurve that is a result of 2 planar surfaces
 </details>
 
 [!IndentEnd]
-### **GridPlanarSurface** *Abstract* [!badge text="EntityClass" kind="info"]
+### **GridPlanarSurface** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.GridPlanarSurface)
 
 [!IndentStart]
 
@@ -612,7 +612,7 @@ A planar grid surface element.
 </details>
 
 [!IndentEnd]
-### **GridSpline** [!badge text="EntityClass" kind="info"]
+### **GridSpline** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.GridSpline)
 
 [!IndentStart]
 
@@ -647,7 +647,7 @@ a gridcurve that is a result of a planar and a spline surface
 </details>
 
 [!IndentEnd]
-### **GridSplineSurface** *Abstract* [!badge text="EntityClass" kind="info"]
+### **GridSplineSurface** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.GridSplineSurface)
 
 [!IndentStart]
 
@@ -683,7 +683,7 @@ A grid surface that is parallel to an extruded spline.
 </details>
 
 [!IndentEnd]
-### **GridSurface** *Abstract* [!badge text="EntityClass" kind="info"]
+### **GridSurface** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.GridSurface)
 
 [!IndentStart]
 
@@ -724,7 +724,7 @@ A grid surface element.
 </details>
 
 [!IndentEnd]
-### **OrthogonalAxisX** [!badge text="EntityClass" kind="info"]
+### **OrthogonalAxisX** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.OrthogonalAxisX)
 
 [!IndentStart]
 
@@ -751,7 +751,7 @@ an element which groups all PlanCartesianGridSurface in the X direction
 </details>
 
 [!IndentEnd]
-### **OrthogonalAxisY** [!badge text="EntityClass" kind="info"]
+### **OrthogonalAxisY** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.OrthogonalAxisY)
 
 [!IndentStart]
 
@@ -778,7 +778,7 @@ an element which groups all PlanCartesianGridSurface in the Y direction
 </details>
 
 [!IndentEnd]
-### **OrthogonalGrid** [!badge text="EntityClass" kind="info"]
+### **OrthogonalGrid** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.OrthogonalGrid)
 
 [!IndentStart]
 
@@ -826,7 +826,7 @@ And OrthogonalGrid has all of its' surfaces orthogonal in either X or Y directio
 </details>
 
 [!IndentEnd]
-### **PlanCartesianGridSurface** [!badge text="EntityClass" kind="info"]
+### **PlanCartesianGridSurface** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.PlanCartesianGridSurface)
 
 [!IndentStart]
 
@@ -872,7 +872,7 @@ A planar plan grid surface that is perpendicular to the grid’s x-axis or y-axi
 </details>
 
 [!IndentEnd]
-### **PlanCircumferentialGridSurface** [!badge text="EntityClass" kind="info"]
+### **PlanCircumferentialGridSurface** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.PlanCircumferentialGridSurface)
 
 [!IndentStart]
 
@@ -918,7 +918,7 @@ An PlanGridArcSurface that is centered on the Grid’s origin.
 </details>
 
 [!IndentEnd]
-### **PlanGrid** *Abstract* [!badge text="EntityClass" kind="info"]
+### **PlanGrid** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.PlanGrid)
 
 [!IndentStart]
 
@@ -960,7 +960,7 @@ a grid whose surfaces are curves parallel to the local x-y plane extruded along 
 </details>
 
 [!IndentEnd]
-### **PlanGridArcSurface** *Abstract* [!badge text="EntityClass" kind="info"]
+### **PlanGridArcSurface** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.PlanGridArcSurface)
 
 [!IndentStart]
 
@@ -998,7 +998,7 @@ An arc plangrid surface element.
 </details>
 
 [!IndentEnd]
-### **PlanGridPlanarSurface** *Abstract* [!badge text="EntityClass" kind="info"]
+### **PlanGridPlanarSurface** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.PlanGridPlanarSurface)
 
 [!IndentStart]
 
@@ -1036,7 +1036,7 @@ A planar plangrid surface element.
 </details>
 
 [!IndentEnd]
-### **PlanGridSplineSurface** *Abstract* [!badge text="EntityClass" kind="info"]
+### **PlanGridSplineSurface** *Abstract* [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.PlanGridSplineSurface)
 
 [!IndentStart]
 
@@ -1074,7 +1074,7 @@ A spline plangrid surface element.
 </details>
 
 [!IndentEnd]
-### **PlanRadialGridSurface** [!badge text="EntityClass" kind="info"]
+### **PlanRadialGridSurface** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.PlanRadialGridSurface)
 
 [!IndentStart]
 
@@ -1120,7 +1120,7 @@ A PlanGridPlanarSurface whose infinite plane contains the PlanGrid’s origin.
 </details>
 
 [!IndentEnd]
-### **RadialAxis** [!badge text="EntityClass" kind="info"]
+### **RadialAxis** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.RadialAxis)
 
 [!IndentStart]
 
@@ -1147,7 +1147,7 @@ an element which groups all PlanRadialGridSurface in a RadialGrid together
 </details>
 
 [!IndentEnd]
-### **RadialGrid** [!badge text="EntityClass" kind="info"]
+### **RadialGrid** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.RadialGrid)
 
 [!IndentStart]
 
@@ -1195,7 +1195,7 @@ A RadialGrid consists either of arcsurfaces in radial axis or planarsurfaces in 
 </details>
 
 [!IndentEnd]
-### **SketchArcGridSurface** [!badge text="EntityClass" kind="info"]
+### **SketchArcGridSurface** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.SketchArcGridSurface)
 
 [!IndentStart]
 
@@ -1239,7 +1239,7 @@ An extruded arc gridsurface element.
 </details>
 
 [!IndentEnd]
-### **SketchGrid** [!badge text="EntityClass" kind="info"]
+### **SketchGrid** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.SketchGrid)
 
 [!IndentStart]
 
@@ -1276,7 +1276,7 @@ A SketchGrid contains surfaces whose positions are not constrained (other than b
 </details>
 
 [!IndentEnd]
-### **SketchLineGridSurface** [!badge text="EntityClass" kind="info"]
+### **SketchLineGridSurface** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.SketchLineGridSurface)
 
 [!IndentStart]
 
@@ -1320,7 +1320,7 @@ An extruded line gridsurface element.
 </details>
 
 [!IndentEnd]
-### **SketchSplineGridSurface** [!badge text="EntityClass" kind="info"]
+### **SketchSplineGridSurface** [!badge text="EntityClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=EntityClass&id=Grids.SketchSplineGridSurface)
 
 [!IndentStart]
 
@@ -1366,7 +1366,7 @@ An extruded spline gridsurface element.
 [!IndentEnd]
 ## Mixins
 
-### **IPlanGridSurface** (PlanGrid Surface) *Abstract* [!badge text="Mixin" kind="info"]
+### **IPlanGridSurface** (PlanGrid Surface) *Abstract* [!badge text="Mixin" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Mixin&id=Grids.IPlanGridSurface)
 
 [!IndentStart]
 
@@ -1384,7 +1384,7 @@ An interface that indicates that this Surface is suitable to be placed in a Plan
 [!IndentEnd]
 ## Relationship Classes
 
-### **GridAxisContainsGridSurfaces** [!badge text="RelationshipClass" kind="info"]
+### **GridAxisContainsGridSurfaces** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=Grids.GridAxisContainsGridSurfaces)
 
 [!IndentStart]
 
@@ -1419,7 +1419,7 @@ maps axis to grouped surfaces
 - [GridSurface](./grids.ecschema.md#gridsurface)
 [!IndentEnd]
 [!IndentEnd]
-### **GridCurveBundleCreatesGridCurve** [!badge text="RelationshipClass" kind="info"]
+### **GridCurveBundleCreatesGridCurve** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=Grids.GridCurveBundleCreatesGridCurve)
 
 [!IndentStart]
 
@@ -1456,7 +1456,7 @@ a driving relationship which tells that gridcurve was created by the mapped Grid
 - [GridCurve](./grids.ecschema.md#gridcurve)
 [!IndentEnd]
 [!IndentEnd]
-### **GridCurveBundleRefersToGridCurvesSet** [!badge text="RelationshipClass" kind="info"]
+### **GridCurveBundleRefersToGridCurvesSet** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=Grids.GridCurveBundleRefersToGridCurvesSet)
 
 [!IndentStart]
 
@@ -1491,7 +1491,7 @@ Maps GridCurveBundle to a GridCurvesSet
 - [GridCurvesSet](./grids.ecschema.md#gridcurvesset)
 [!IndentEnd]
 [!IndentEnd]
-### **GridDrivesGridSurface** [!badge text="RelationshipClass" kind="info"]
+### **GridDrivesGridSurface** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=Grids.GridDrivesGridSurface)
 
 [!IndentStart]
 
@@ -1528,7 +1528,7 @@ a driving relationship which tells that a grid is driving a gridsurface.
 - [GridSurface](./grids.ecschema.md#gridsurface)
 [!IndentEnd]
 [!IndentEnd]
-### **GridHasAxes** [!badge text="RelationshipClass" kind="info"]
+### **GridHasAxes** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=Grids.GridHasAxes)
 
 [!IndentStart]
 
@@ -1563,7 +1563,7 @@ maps grid to its axes
 - [GridAxis](./grids.ecschema.md#gridaxis)
 [!IndentEnd]
 [!IndentEnd]
-### **GridSurfaceDrivesGridCurveBundle** [!badge text="RelationshipClass" kind="info"]
+### **GridSurfaceDrivesGridCurveBundle** [!badge text="RelationshipClass" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=RelationshipClass&id=Grids.GridSurfaceDrivesGridCurveBundle)
 
 [!IndentStart]
 

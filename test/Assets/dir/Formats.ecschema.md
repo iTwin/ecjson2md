@@ -27,7 +27,7 @@ Standard Set of Format definitions
 
 ## Formats
 
-### **AmerFI** (FeetInches) [!badge text="Format" kind="info"]
+### **AmerFI** (FeetInches) [!badge text="Format" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Format&id=Formats.AmerFI)
 
 [!IndentStart]
 
@@ -45,7 +45,7 @@ Standard Set of Format definitions
 **Separator:** None
 
 [!IndentEnd]
-### **AmerI** (Inches) [!badge text="Format" kind="info"]
+### **AmerI** (Inches) [!badge text="Format" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Format&id=Formats.AmerI)
 
 [!IndentStart]
 
@@ -62,7 +62,7 @@ Standard Set of Format definitions
 **Separator:** None
 
 [!IndentEnd]
-### **AngleDMS** (DegreesMinutesSeconds) [!badge text="Format" kind="info"]
+### **AngleDMS** (DegreesMinutesSeconds) [!badge text="Format" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Format&id=Formats.AngleDMS)
 
 [!IndentStart]
 
@@ -80,7 +80,7 @@ Standard Set of Format definitions
 **Separator:** None
 
 [!IndentEnd]
-### **DefaultReal** (real) [!badge text="Format" kind="info"]
+### **DefaultReal** (real) [!badge text="Format" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Format&id=Formats.DefaultReal)
 
 [!IndentStart]
 
@@ -97,7 +97,7 @@ Standard Set of Format definitions
 **Separator:** <code> </code> (Space)
 
 [!IndentEnd]
-### **DefaultRealU** (realu) [!badge text="Format" kind="info"]
+### **DefaultRealU** (realu) [!badge text="Format" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Format&id=Formats.DefaultRealU)
 
 [!IndentStart]
 
@@ -115,7 +115,7 @@ Standard Set of Format definitions
 **Separator:** <code> </code> (Space)
 
 [!IndentEnd]
-### **DefaultRealUNS** [!badge text="Format" kind="info"]
+### **DefaultRealUNS** [!badge text="Format" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Format&id=Formats.DefaultRealUNS)
 
 [!IndentStart]
 
@@ -133,7 +133,7 @@ Standard Set of Format definitions
 **Separator:** None
 
 [!IndentEnd]
-### **Fractional** (fract) [!badge text="Format" kind="info"]
+### **Fractional** (fract) [!badge text="Format" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Format&id=Formats.Fractional)
 
 [!IndentStart]
 
@@ -150,7 +150,7 @@ Standard Set of Format definitions
 **Separator:** <code> </code> (Space)
 
 [!IndentEnd]
-### **HMS** (HoursMinutesSeconds) [!badge text="Format" kind="info"]
+### **HMS** (HoursMinutesSeconds) [!badge text="Format" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Format&id=Formats.HMS)
 
 [!IndentStart]
 
@@ -168,7 +168,7 @@ Standard Set of Format definitions
 **Separator:** <code> </code> (Space)
 
 [!IndentEnd]
-### **StationZ_1000_3** [!badge text="Format" kind="info"]
+### **StationZ_1000_3** [!badge text="Format" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Format&id=Formats.StationZ_1000_3)
 
 [!IndentStart]
 
@@ -188,7 +188,7 @@ Standard Set of Format definitions
 **Separator:** <code> </code> (Space)
 
 [!IndentEnd]
-### **StationZ_100_2** [!badge text="Format" kind="info"]
+### **StationZ_100_2** [!badge text="Format" kind="info"] [<img src=".././media/imodel-schema-editor-icon.png">](https://imodelschemaeditor.bentley.com/?stage=browse&elementtype=Format&id=Formats.StationZ_100_2)
 
 [!IndentStart]
 
