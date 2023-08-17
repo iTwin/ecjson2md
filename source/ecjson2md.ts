@@ -7,18 +7,19 @@ import * as fs from "fs";
 import * as path from "path";
 
 import {
-  classModifierToString, containerTypeToString, CustomAttributeClass, ECClassModifier,
-  EntityClass, Enumeration, KindOfQuantity, formatTraitsToArray, Format, formatTypeToString, FormatType,
-  Mixin, OverrideFormat, primitiveTypeToString, PropertyCategory, PropertyType, RelationshipClass,
-  RelationshipConstraint, Schema, SchemaContext, schemaItemTypeToString, SchemaJsonFileLocater,
-  scientificTypeToString, strengthDirectionToString, strengthToString, StructClass, Unit, SchemaItemType,
-  SchemaXmlFileLocater, Phenomenon, UnitSystem, showSignOptionToString, InvertedUnit, ECObjectsStatus, ECObjectsError, AnySchemaItem, AnyClass, LazyLoadedECClass, Property,
-} from "@bentley/ecschema-metadata";
+  classModifierToString, containerTypeToString, CustomAttributeClass, ECClassModifier, EntityClass, Enumeration,
+  KindOfQuantity, Format, Mixin, OverrideFormat, primitiveTypeToString, PropertyCategory, PropertyType,
+  RelationshipClass, RelationshipConstraint, Schema, SchemaContext, schemaItemTypeToString, strengthDirectionToString,
+  strengthToString, StructClass, Unit, SchemaItemType, Phenomenon, UnitSystem, InvertedUnit, ECObjectsStatus,
+  ECObjectsError, AnySchemaItem, AnyClass, LazyLoadedECClass, Property,
+} from "@itwin/ecschema-metadata";
+import { formatTraitsToArray, formatTypeToString, FormatType, scientificTypeToString, showSignOptionToString } from "@itwin/core-quantity";
+import { SchemaJsonFileLocater, SchemaXmlFileLocater } from "@itwin/ecschema-locaters";
 import { ECJsonFileNotFound, ECJsonBadJson, ECJsonBadSearchPath, ECJsonBadOutputPath, BadPropertyType } from "./Exception";
-import { CustomAttributeSet } from "@bentley/ecschema-metadata/lib/Metadata/CustomAttribute";
-import { DOMParser } from "xmldom";
-import { SchemaReadHelper } from "@bentley/ecschema-metadata/lib/Deserialization/Helper";
-import { XmlParser } from "@bentley/ecschema-metadata/lib/Deserialization/XmlParser";
+import { CustomAttributeSet } from "@itwin/ecschema-metadata/lib/cjs/Metadata/CustomAttribute";
+import { DOMParser } from "@xmldom/xmldom";
+import { SchemaReadHelper } from "@itwin/ecschema-metadata/lib/cjs/Deserialization/Helper";
+import { XmlParser } from "@itwin/ecschema-metadata/lib/cjs/Deserialization/XmlParser";
 
 const PLACE_HOLDER = "";
 
@@ -534,10 +535,11 @@ export class ECJsonMarkdownGenerator {
   }
 
   private static writeEntityClassPropertiesTable(outputFilePath: string, entityClass: EntityClass): void {
-    const properties = entityClass.properties !== undefined ? entityClass.properties : [];
+    const props_iterable = entityClass.properties !== undefined ? entityClass.properties : [];
     const entityHeader = "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
                          "|:-----------|:------------------|:-----------|:-----------------------|\n";
 
+    const properties = [...props_iterable];
     // Print class properties
     if (properties.length !== 0) {
       fs.appendFileSync(outputFilePath, "#### Properties\n\n");
@@ -869,8 +871,10 @@ export class ECJsonMarkdownGenerator {
       fs.appendFileSync(outputFilePath, `**Applies To:** ${formatLink(appliesToLink, mixin.appliesTo.name)}\n\n`);
     }
 
+    const props_iterable = mixin.properties !== undefined ? mixin.properties : [];
+    const properties = [...props_iterable];
     // If the properties are undefined or empty, continue with next
-    if (mixin.properties !== undefined && mixin.properties.length !== 0) {
+    if (properties !== undefined && properties.length !== 0) {
       // Write the properties header and table header
       fs.appendFileSync(outputFilePath,
       "#### Properties\n\n" +
@@ -880,7 +884,7 @@ export class ECJsonMarkdownGenerator {
       // If the attribute is not there, return the place holder
       const helper = (( value: string|undefined ) => value !== undefined ? value : PLACE_HOLDER);
 
-      for (const property of mixin.properties) {
+      for (const property of properties) {
         const name = helper(property.name);
         const label = helper(property.label);
         // tslint:disable-next-line
@@ -961,9 +965,16 @@ export class ECJsonMarkdownGenerator {
    * @param schemaClass schema class to write inherited properties for
    */
   private static writeInheritedProperties(outputFilePath: string, schemaClass: AnyClass) {
+    let properties: any;
+    let props_iterable;
     const header = "|    Name    |    Description    |    Type    |      Extended Type     |\n" +
                    "|:-----------|:------------------|:-----------|:-----------------------|\n";
-    let properties = schemaClass.properties;
+
+    if (schemaClass.properties !== undefined) {
+      props_iterable = schemaClass.properties;
+      properties = [...props_iterable];
+    }
+    
     if (properties === undefined || properties.length === 0) {
       properties = [];
     }
@@ -987,10 +998,11 @@ export class ECJsonMarkdownGenerator {
   }
 
   private static writeCustomAttributeTable(outputFilePath: string, customAttributeClass: CustomAttributeClass) {
-    const properties = customAttributeClass.properties;
+    const props_iterable = customAttributeClass.properties !== undefined ? customAttributeClass.properties : [];
     const tableHeader = `|    Name    | Description |    Label    |  Category  |    Read Only     |    Priority    |\n` +
                         `|:-----------|:------------|:------------|:-----------|:-----------------|:---------------|\n`;
 
+    const properties = [...props_iterable];
     if (properties !== undefined && properties.length !== 0) {
       // Write the properties header and table header
       fs.appendFileSync(outputFilePath, "#### Properties\n\n");
@@ -1050,9 +1062,11 @@ export class ECJsonMarkdownGenerator {
     // Write the base class
     this.writeSchemaItemBaseClass(outputFilePath, structClass.baseClass);
 
+    const props_iterable = structClass.properties !== undefined ? structClass.properties : [];
+    const properties = [...props_iterable];
     // Write the properties table
     // If the properties are undefined or have length 0, return
-    if (!structClass.properties || structClass.properties.length === 0) {
+    if (!properties|| properties.length === 0) {
       this.indentStop(outputFilePath);
       return;
     }
@@ -1066,7 +1080,7 @@ export class ECJsonMarkdownGenerator {
     // If the attribute is not there, return the place holder
     const helper = (( value: string|undefined ) => value !== undefined ? value : PLACE_HOLDER);
 
-    for (const property of structClass.properties) {
+    for (const property of properties) {
       const name = helper(property.name);
       const label = helper(property.label);
       const category = property.category !== undefined ? property.category : PLACE_HOLDER;

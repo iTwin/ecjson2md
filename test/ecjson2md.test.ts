@@ -9,7 +9,8 @@ import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
 import * as path from "path";
 import * as rimraf from "rimraf";
-import { SchemaContext, Schema, PropertyType, classModifierToString, SchemaJsonFileLocater, SchemaItemType, EntityClass, schemaItemTypeToString } from "@bentley/ecschema-metadata";
+import { SchemaContext, Schema, PropertyType, classModifierToString, SchemaItemType, EntityClass, schemaItemTypeToString } from "@itwin/ecschema-metadata";
+import { SchemaJsonFileLocater } from "@itwin/ecschema-locaters";
 
 describe("ecjson2md", () => {
   describe("ECJsonMarkdownGenerator", () => {
