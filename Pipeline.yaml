@@ -16,9 +16,10 @@ steps:
   clean: true
 
 - task: NodeTool@0
-  displayName: 'Use Node 12.18.0'
+  displayName: 'Install Node 18.x'
   inputs:
-    versionSpec: 12.18.0
+    versionSpec: 18.x
+    checkLatest: true
 
 - script: npm ci
   displayName: Install
