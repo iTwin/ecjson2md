@@ -19,7 +19,7 @@
     "build": "tsc",
     "test": "mocha -r ts-node/register test/**.test.ts --timeout 120000",
     "test:watch": "betools test-tsnode --testDir=./test/ --watch",
-    "cover": "nyc node ./node_modules/@bentley/build-tools/scripts/test-tsnode.js --testDir=./test/ --tscPaths",
+    "cover": "nyc npm -s test",
     "start": "npm run build && npm run test",
     "cli:dev": "npm run clean & npm run build & npm link"
   },
@@ -57,21 +57,32 @@
     "typescript": "~4.3.0"
   },
   "nyc": {
+    "require": [
+      "source-map-support/register",
+      "ts-node/register"
+    ],
     "include": [
-      "source/**/*.ts"
+      "source/**/*.ts",
+      "lib/cjs/**/*"
+    ],
+    "exclude": [
+      "test/**/*",
+      "lib/cjs/test/**/*",
+      "**/*.d.ts",
+      "**/*.d.tsx"
     ],
     "extension": [
       ".ts"
     ],
-    "require": [
-      "ts-node/register"
-    ],
+    "temp-dir": "./lib/cjs/test/coverage/.nyc_output",
+    "report-dir": "./lib/cjs/test/coverage",
     "reporter": [
       "text-summary",
       "lcov",
       "cobertura"
     ],
-    "report-dir": "./lib/test/coverage"
+    "cache": false,
+    "useSpawnWrap": true
   },
   "eslintConfig": {
     "plugins": [
