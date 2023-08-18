@@ -40,8 +40,8 @@ steps:
   displayName: 'Publish Code Coverage'
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: '$(Build.SourcesDirectory)\lib\test\coverage\cobertura-coverage.xml'
-    reportDirectory: '$(Build.Repository.LocalPath)\lib\test\coverage\lcov-report'
+    summaryFileLocation: '$(Build.SourcesDirectory)\lib\cjs\test\coverage\cobertura-coverage.xml'
+    reportDirectory: '$(Build.Repository.LocalPath)\lib\cjs\test\coverage\lcov-report'
     failIfCoverageEmpty: true
   continueOnError: true
 
