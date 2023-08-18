@@ -27,6 +27,9 @@ steps:
 - script: npm run build
   displayName: Build
 
+- script: npm run lint
+  displayName: Lint
+
 - script: npm run test
   displayName: Test
 
