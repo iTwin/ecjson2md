@@ -3,13 +3,13 @@
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 
-import { ECJsonMarkdownGenerator, formatLink, formatWarningAlert, propertyTypeNumberToString, removeExtraBlankLines, prepSearchDirs, schemaItemToGroupName } from "../source/ecjson2md";
+import { ECJsonMarkdownGenerator, formatLink, formatWarningAlert, prepSearchDirs, propertyTypeNumberToString, removeExtraBlankLines, schemaItemToGroupName } from "../source/ecjson2md";
 import { assert, expect } from "chai";
 import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
 import * as path from "path";
 import * as rimraf from "rimraf";
-import { SchemaContext, Schema, PropertyType, classModifierToString, SchemaItemType, EntityClass, schemaItemTypeToString } from "@itwin/ecschema-metadata";
+import { classModifierToString, EntityClass, PropertyType, Schema, SchemaContext, SchemaItemType, schemaItemTypeToString } from "@itwin/ecschema-metadata";
 import { SchemaJsonFileLocater } from "@itwin/ecschema-locaters";
 
 describe("ecjson2md", () => {
@@ -28,6 +28,7 @@ describe("ecjson2md", () => {
 
       return output;
     }
+
     describe("Instantiate", () => {
       it("should successfully instantiate with no search dirs", () => {
         const testMDGenerator = new ECJsonMarkdownGenerator([]);
@@ -76,25 +77,25 @@ describe("ecjson2md", () => {
           version: "02.00.00",
           items: {
             UnitA : {
-                definition : "UnitA",
-                phenomenon : "testSchema.CURRENT",
-                schemaItemType : "Unit",
-                unitSystem : "testSchema.SI",
+              definition : "UnitA",
+              phenomenon : "testSchema.CURRENT",
+              schemaItemType : "Unit",
+              unitSystem : "testSchema.SI",
             },
             CURRENT : {
-                definition : "CURRENT",
-                label : "Current",
-                schemaItemType : "Phenomenon",
+              definition : "CURRENT",
+              label : "Current",
+              schemaItemType : "Phenomenon",
             },
             SI : {
-                schemaItemType : "UnitSystem",
-             },
+              schemaItemType : "UnitSystem",
+            },
             DefaultReal : {
-                formatTraits : [ "keepSingleZero", "keepDecimalPoint" ],
-                label : "real",
-                precision : 6,
-                schemaItemType : "Format",
-                type : "Decimal",
+              formatTraits : [ "keepSingleZero", "keepDecimalPoint" ],
+              label : "real",
+              precision : 6,
+              schemaItemType : "Format",
+              type : "Decimal",
             },
             KindOfQuantityA: {
               schemaItemType: "KindOfQuantity",
@@ -106,28 +107,28 @@ describe("ecjson2md", () => {
           },
         };
 
-      const context = new SchemaContext();
-      const testSchema = Schema.fromJsonSync(schemaJson, context);
+        const context = new SchemaContext();
+        const testSchema = Schema.fromJsonSync(schemaJson, context);
 
-      ECJsonMarkdownGenerator.generateTableOfContents(outputPath, testSchema);
-      const generatedTable = fs.readFileSync(outputPath).toString().split("\n");
-      const expectedTable = outputLiteralToArray(`
-      ## Table of contents
-      - [Kind Of Quantity Items](#kind-of-quantity-items)
-      \t- [KindOfQuantityA](#kindofquantitya)
-      - [Units](#units)
-      \t- [UnitA](#unita)
-      - [Phenomenon Classes](#phenomenon-classes)
-      \t- [CURRENT](#current)
-      - [Unit Systems](#unit-systems)
-      \t- [SI](#si)
-      - [Formats](#formats)
-      \t- [DefaultReal](#defaultreal)
+        ECJsonMarkdownGenerator.generateTableOfContents(outputPath, testSchema);
+        const generatedTable = fs.readFileSync(outputPath).toString().split("\n");
+        const expectedTable = outputLiteralToArray(`
+        ## Table of contents
+        - [Kind Of Quantity Items](#kind-of-quantity-items)
+        \t- [KindOfQuantityA](#kindofquantitya)
+        - [Units](#units)
+        \t- [UnitA](#unita)
+        - [Phenomenon Classes](#phenomenon-classes)
+        \t- [CURRENT](#current)
+        - [Unit Systems](#unit-systems)
+        \t- [SI](#si)
+        - [Formats](#formats)
+        \t- [DefaultReal](#defaultreal)
 
-      `);
-      assert.equal(generatedTable.length, expectedTable.length);
+        `);
+        assert.equal(generatedTable.length, expectedTable.length);
+      });
     });
-  });
 
     describe("Schema markdown generation", () => {
       const outputDir = path.join(".", "test", "temp");
@@ -149,19 +150,21 @@ describe("ecjson2md", () => {
 
         before(() => {
           testSchema = Schema.fromJsonSync({
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-            }, new SchemaContext());
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+          }, new SchemaContext());
         });
 
         beforeEach(() => {
-          if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
+          if (fs.existsSync(outputPath))
+            fs.unlinkSync(outputPath);
         });
 
         afterEach(() => {
-          if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
+          if (fs.existsSync(outputPath))
+            fs.unlinkSync(outputPath);
         });
 
         it("should correctly write the front matter without an alert", () => {
@@ -214,22 +217,24 @@ describe("ecjson2md", () => {
         const outputFilePath = path.join(outputDir, "titleTest.md");
 
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("should write the markdown properly for a schema with no description or label", () => {
           // Arrange
           const testSchema = Schema.fromJsonSync({
-                $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-                alias: "testSchema",
-                name: "testSchema",
-                version: "02.00.00",
-              }, new SchemaContext());
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+          }, new SchemaContext());
 
           // Act
           ECJsonMarkdownGenerator.writeSchema(outputFilePath, testSchema);
@@ -253,80 +258,82 @@ describe("ecjson2md", () => {
 
         it("should write the markdown properly for a schema with a description", () => {
           // Arrange
-            const testSchema = Schema.fromJsonSync({
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              description: "This is the description",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-            }, new SchemaContext());
+          const testSchema = Schema.fromJsonSync({
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            description: "This is the description",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+          }, new SchemaContext());
 
           // Act
-            ECJsonMarkdownGenerator.writeSchema(outputFilePath, testSchema);
+          ECJsonMarkdownGenerator.writeSchema(outputFilePath, testSchema);
 
-            // Assert
-            const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-            const correctLines = outputLiteralToArray(`
-            # testSchema [!badge text="Schema" kind="Info"]
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          # testSchema [!badge text="Schema" kind="Info"]
 
-            **Alias:** testSchema
+          **Alias:** testSchema
 
-            **Version:** 2.0.0
+          **Version:** 2.0.0
 
-            This is the description
+          This is the description
 
-            `);
+          `);
 
-            assert.equal(outputLines.length, correctLines.length);
-            correctLines.map((line, i) => {
-              assert.equal(outputLines[i], line);
-            });
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
         });
 
         it("should write the markdown properly for a schema with a description and label", () => {
           // Arrange
-            const testSchema = Schema.fromJsonSync({
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              description: "This is the description",
-              alias: "testSchema",
-              name: "testSchema",
-              label: "testSchemaLabel",
-              version: "02.00.00",
-            }, new SchemaContext());
+          const testSchema = Schema.fromJsonSync({
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            description: "This is the description",
+            alias: "testSchema",
+            name: "testSchema",
+            label: "testSchemaLabel",
+            version: "02.00.00",
+          }, new SchemaContext());
 
-            // Act
-            ECJsonMarkdownGenerator.writeSchema(outputFilePath, testSchema);
+          // Act
+          ECJsonMarkdownGenerator.writeSchema(outputFilePath, testSchema);
 
-            // Assert
-            const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
-            const correctLines = outputLiteralToArray(`
-            # testSchema (testSchemaLabel) [!badge text="Schema" kind="Info"]
+          // Assert
+          const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
+          const correctLines = outputLiteralToArray(`
+          # testSchema (testSchemaLabel) [!badge text="Schema" kind="Info"]
 
-            **Alias:** testSchema
+          **Alias:** testSchema
 
-            **Version:** 2.0.0
+          **Version:** 2.0.0
 
-            This is the description
+          This is the description
 
-            `);
+          `);
 
-            assert.equal(outputLines.length, correctLines.length);
-            correctLines.map((line, i) => {
-              assert.equal(outputLines[i], line);
-            });
+          assert.equal(outputLines.length, correctLines.length);
+          correctLines.map((line, i) => {
+            assert.equal(outputLines[i], line);
+          });
         });
       });
 
       describe("writeSchemaItemHeader", () => {
         const outputFilePath = path.join(outputDir, "nameTest.md");
-        
+
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("shouldn't write anything for an undefined name", () => {
@@ -368,12 +375,14 @@ describe("ecjson2md", () => {
         const outputFilePath = path.join(outputDir, "descriptionTest.md");
 
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("should properly write an empty description for a schema item", () => {
@@ -421,12 +430,14 @@ describe("ecjson2md", () => {
         const outputFilePath = path.join(outputDir, "labelTest.md");
 
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("shouldn't write anything for an undefined label", () => {
@@ -465,13 +476,16 @@ describe("ecjson2md", () => {
         const outputFilePath = path.join(outputDir, "priorityTest.md");
 
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
+
         it("should properly write the priority of a schema item", () => {
           // Arrange
           const priority = 0;
@@ -497,12 +511,14 @@ describe("ecjson2md", () => {
         const outputFilePath = path.join(outputDir, "modifierTest.md");
 
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("shouldn't write anything for an undefined modifier", () => {
@@ -541,12 +557,14 @@ describe("ecjson2md", () => {
         const outputFilePath = path.join(outputDir, "baseClassTest.md");
 
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("shouldn't write anything an undefined base class", () => {
@@ -563,23 +581,23 @@ describe("ecjson2md", () => {
         it("should write the base class properly", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              description: "This is the description",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                EntityClassA: {
-                  description: "this is a description",
-                  schemaItemType: "EntityClass",
-                  baseClass : "testSchema.EntityClassB",
-                },
-                EntityClassB: {
-                  description: "this is a description",
-                  schemaItemType: "EntityClass",
-                },
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            description: "This is the description",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              EntityClassA: {
+                description: "this is a description",
+                schemaItemType: "EntityClass",
+                baseClass : "testSchema.EntityClassB",
               },
-            };
+              EntityClassB: {
+                description: "this is a description",
+                schemaItemType: "EntityClass",
+              },
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -606,27 +624,29 @@ describe("ecjson2md", () => {
         const outputFilePath = path.join(outputDir, "entityClassTest.md");
 
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("should properly write an entity class that has just a name and type", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                EntityClassA: {
-                  schemaItemType: "EntityClass",
-                },
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              EntityClassA: {
+                schemaItemType: "EntityClass",
               },
-            };
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -653,18 +673,18 @@ describe("ecjson2md", () => {
         it("should properly write an entity class that has just a name, type, and description", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              description: "This is the description",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                EntityClassA: {
-                  description: "this is a description",
-                  schemaItemType: "EntityClass",
-                },
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            description: "This is the description",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              EntityClassA: {
+                description: "this is a description",
+                schemaItemType: "EntityClass",
               },
-            };
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -688,7 +708,7 @@ describe("ecjson2md", () => {
           correctLines.map((line, i) => {
             assert.equal(outputLines[i], line);
           });
-         });
+        });
 
         it("should properly write an entity class that has just a name, type, and base class", () => {
           // Arrange
@@ -737,18 +757,18 @@ describe("ecjson2md", () => {
         it("should properly write an entity class that has just a name, type, and label", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              description: "This is the description",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                EntityClassA: {
-                  schemaItemType: "EntityClass",
-                  label : "entityLabel",
-                },
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            description: "This is the description",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              EntityClassA: {
+                schemaItemType: "EntityClass",
+                label : "entityLabel",
               },
-            };
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -906,8 +926,8 @@ describe("ecjson2md", () => {
                 schemaItemType: "EntityClass",
                 customAttributes: [
                   {
-                     Description: "EntityClassA has been deprecated in favor of EntityClassB.",
-                     className: "CoreCustomAttributes.Deprecated",
+                    Description: "EntityClassA has been deprecated in favor of EntityClassB.",
+                    className: "CoreCustomAttributes.Deprecated",
                   },
                 ],
               },
@@ -949,52 +969,54 @@ describe("ecjson2md", () => {
 
         // Delete the output file before each test
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("should properly write a kind of quantity without a description", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                A : {
-                    definition : "A",
-                    phenomenon : "testSchema.CURRENT",
-                    schemaItemType : "Unit",
-                    unitSystem : "testSchema.SI",
-                },
-                CURRENT : {
-                    definition : "CURRENT",
-                    label : "Current",
-                    schemaItemType : "Phenomenon",
-                },
-                SI : {
-                    schemaItemType : "UnitSystem",
-                 },
-                DefaultReal : {
-                    formatTraits : [ "keepSingleZero", "keepDecimalPoint" ],
-                    label : "real",
-                    precision : 6,
-                    schemaItemType : "Format",
-                    type : "Decimal",
-                },
-                KindOfQuantityA: {
-                  schemaItemType: "KindOfQuantity",
-                  label: "KindOfQuantityA",
-                  relativeError: 0.0,
-                  persistenceUnit : "testSchema.A",
-                  presentationUnits : [ "testSchema.DefaultReal[testSchema.A]" ],
-                },
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              A : {
+                definition : "A",
+                phenomenon : "testSchema.CURRENT",
+                schemaItemType : "Unit",
+                unitSystem : "testSchema.SI",
               },
-            };
+              CURRENT : {
+                definition : "CURRENT",
+                label : "Current",
+                schemaItemType : "Phenomenon",
+              },
+              SI : {
+                schemaItemType : "UnitSystem",
+              },
+              DefaultReal : {
+                formatTraits : [ "keepSingleZero", "keepDecimalPoint" ],
+                label : "real",
+                precision : 6,
+                schemaItemType : "Format",
+                type : "Decimal",
+              },
+              KindOfQuantityA: {
+                schemaItemType: "KindOfQuantity",
+                label: "KindOfQuantityA",
+                relativeError: 0.0,
+                persistenceUnit : "testSchema.A",
+                presentationUnits : [ "testSchema.DefaultReal[testSchema.A]" ],
+              },
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -1029,41 +1051,41 @@ describe("ecjson2md", () => {
         it("should properly write a kind of quantity without presentation formats", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                A : {
-                    definition : "A",
-                    phenomenon : "testSchema.CURRENT",
-                    schemaItemType : "Unit",
-                    unitSystem : "testSchema.SI",
-                },
-                CURRENT : {
-                    definition : "CURRENT",
-                    label : "Current",
-                    schemaItemType : "Phenomenon",
-                },
-                SI : {
-                    schemaItemType : "UnitSystem",
-                 },
-                DefaultReal : {
-                    formatTraits : [ "keepSingleZero", "keepDecimalPoint" ],
-                    label : "real",
-                    precision : 6,
-                    schemaItemType : "Format",
-                    type : "Decimal",
-                },
-                KindOfQuantityA: {
-                  schemaItemType: "KindOfQuantity",
-                  description: "A Kind of Quantity",
-                  label: "KindOfQuantityA",
-                  relativeError: 0.0,
-                  persistenceUnit : "testSchema.A",
-                },
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              A : {
+                definition : "A",
+                phenomenon : "testSchema.CURRENT",
+                schemaItemType : "Unit",
+                unitSystem : "testSchema.SI",
               },
-            };
+              CURRENT : {
+                definition : "CURRENT",
+                label : "Current",
+                schemaItemType : "Phenomenon",
+              },
+              SI : {
+                schemaItemType : "UnitSystem",
+              },
+              DefaultReal : {
+                formatTraits : [ "keepSingleZero", "keepDecimalPoint" ],
+                label : "real",
+                precision : 6,
+                schemaItemType : "Format",
+                type : "Decimal",
+              },
+              KindOfQuantityA: {
+                schemaItemType: "KindOfQuantity",
+                description: "A Kind of Quantity",
+                label: "KindOfQuantityA",
+                relativeError: 0.0,
+                persistenceUnit : "testSchema.A",
+              },
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -1096,40 +1118,40 @@ describe("ecjson2md", () => {
         it("should properly write a kind of quantity without a description or presentation formats", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                A : {
-                    definition : "A",
-                    phenomenon : "testSchema.CURRENT",
-                    schemaItemType : "Unit",
-                    unitSystem : "testSchema.SI",
-                },
-                CURRENT : {
-                    definition : "CURRENT",
-                    label : "Current",
-                    schemaItemType : "Phenomenon",
-                },
-                SI : {
-                    schemaItemType : "UnitSystem",
-                 },
-                DefaultReal : {
-                    formatTraits : [ "keepSingleZero", "keepDecimalPoint" ],
-                    label : "real",
-                    precision : 6,
-                    schemaItemType : "Format",
-                    type : "Decimal",
-                },
-                KindOfQuantityA: {
-                  schemaItemType: "KindOfQuantity",
-                  label: "KindOfQuantityA",
-                  relativeError: 0.0,
-                  persistenceUnit : "testSchema.A",
-                },
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              A : {
+                definition : "A",
+                phenomenon : "testSchema.CURRENT",
+                schemaItemType : "Unit",
+                unitSystem : "testSchema.SI",
               },
-            };
+              CURRENT : {
+                definition : "CURRENT",
+                label : "Current",
+                schemaItemType : "Phenomenon",
+              },
+              SI : {
+                schemaItemType : "UnitSystem",
+              },
+              DefaultReal : {
+                formatTraits : [ "keepSingleZero", "keepDecimalPoint" ],
+                label : "real",
+                precision : 6,
+                schemaItemType : "Format",
+                type : "Decimal",
+              },
+              KindOfQuantityA: {
+                schemaItemType: "KindOfQuantity",
+                label: "KindOfQuantityA",
+                relativeError: 0.0,
+                persistenceUnit : "testSchema.A",
+              },
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -1160,87 +1182,87 @@ describe("ecjson2md", () => {
         it("should properly write a kind of quantity with multiple presentation formats", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                A : {
-                    definition : "A",
-                    phenomenon : "testSchema.CURRENT",
-                    schemaItemType : "Unit",
-                    unitSystem : "testSchema.SI",
-                },
-                CURRENT : {
-                    definition : "CURRENT",
-                    label : "Current",
-                    schemaItemType : "Phenomenon",
-                },
-                SI : {
-                    schemaItemType : "UnitSystem",
-                 },
-                KILOAMPERE : {
-                    definition : "[KILO]*A",
-                    label : "KA",
-                    phenomenon : "testSchema.CURRENT",
-                    schemaItemType : "Unit",
-                    unitSystem : "testSchema.METRIC",
-                },
-                ACCELERATION : {
-                    definition : "LENGTH*TIME(-2)",
-                    label : "Acceleration",
-                    schemaItemType : "Phenomenon",
-                },
-                CM_PER_SEC_SQ : {
-                    definition : "CM*S(-2)",
-                    label : "cm/sec�",
-                    phenomenon : "testSchema.ACCELERATION",
-                    schemaItemType : "Unit",
-                    unitSystem : "testSchema.METRIC",
-                },
-                METRIC : {
-                    schemaItemType : "UnitSystem",
-                 },
-                FT_PER_SEC_SQ : {
-                    definition : "FT*S(-2)",
-                    label : "ft/sec�",
-                    phenomenon : "testSchema.ACCELERATION",
-                    schemaItemType : "Unit",
-                    unitSystem : "testSchema.USCUSTOM",
-                },
-                USCUSTOM : {
-                    schemaItemType : "UnitSystem",
-                },
-                M_PER_SEC_SQ : {
-                    definition : "M*S(-2)",
-                    label : "m/sec�",
-                    phenomenon : "testSchema.ACCELERATION",
-                    schemaItemType : "Unit",
-                    unitSystem : "testSchema.SI",
-                },
-                DefaultReal : {
-                    formatTraits : [ "keepSingleZero", "keepDecimalPoint" ],
-                    label : "real",
-                    precision : 6,
-                    schemaItemType : "Format",
-                    type : "Decimal",
-                },
-                KindOfQuantityA: {
-                  schemaItemType: "KindOfQuantity",
-                  description: "A Kind of Quantity",
-                  label: "KindOfQuantityA",
-                  relativeError: 0.0,
-                  persistenceUnit : "testSchema.A",
-                  presentationUnits : [
-                    "testSchema.DefaultReal[testSchema.A|amp]",
-                    "testSchema.DefaultReal[testSchema.KILOAMPERE]",
-                    "testSchema.DefaultReal[testSchema.M_PER_SEC_SQ]",
-                    "testSchema.DefaultReal[testSchema.CM_PER_SEC_SQ]",
-                    "testSchema.DefaultReal[testSchema.FT_PER_SEC_SQ]",
-                  ],
-                },
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              A : {
+                definition : "A",
+                phenomenon : "testSchema.CURRENT",
+                schemaItemType : "Unit",
+                unitSystem : "testSchema.SI",
               },
-            };
+              CURRENT : {
+                definition : "CURRENT",
+                label : "Current",
+                schemaItemType : "Phenomenon",
+              },
+              SI : {
+                schemaItemType : "UnitSystem",
+              },
+              KILOAMPERE : {
+                definition : "[KILO]*A",
+                label : "KA",
+                phenomenon : "testSchema.CURRENT",
+                schemaItemType : "Unit",
+                unitSystem : "testSchema.METRIC",
+              },
+              ACCELERATION : {
+                definition : "LENGTH*TIME(-2)",
+                label : "Acceleration",
+                schemaItemType : "Phenomenon",
+              },
+              CM_PER_SEC_SQ : {
+                definition : "CM*S(-2)",
+                label : "cm/sec�",
+                phenomenon : "testSchema.ACCELERATION",
+                schemaItemType : "Unit",
+                unitSystem : "testSchema.METRIC",
+              },
+              METRIC : {
+                schemaItemType : "UnitSystem",
+              },
+              FT_PER_SEC_SQ : {
+                definition : "FT*S(-2)",
+                label : "ft/sec�",
+                phenomenon : "testSchema.ACCELERATION",
+                schemaItemType : "Unit",
+                unitSystem : "testSchema.USCUSTOM",
+              },
+              USCUSTOM : {
+                schemaItemType : "UnitSystem",
+              },
+              M_PER_SEC_SQ : {
+                definition : "M*S(-2)",
+                label : "m/sec�",
+                phenomenon : "testSchema.ACCELERATION",
+                schemaItemType : "Unit",
+                unitSystem : "testSchema.SI",
+              },
+              DefaultReal : {
+                formatTraits : [ "keepSingleZero", "keepDecimalPoint" ],
+                label : "real",
+                precision : 6,
+                schemaItemType : "Format",
+                type : "Decimal",
+              },
+              KindOfQuantityA: {
+                schemaItemType: "KindOfQuantity",
+                description: "A Kind of Quantity",
+                label: "KindOfQuantityA",
+                relativeError: 0.0,
+                persistenceUnit : "testSchema.A",
+                presentationUnits : [
+                  "testSchema.DefaultReal[testSchema.A|amp]",
+                  "testSchema.DefaultReal[testSchema.KILOAMPERE]",
+                  "testSchema.DefaultReal[testSchema.M_PER_SEC_SQ]",
+                  "testSchema.DefaultReal[testSchema.CM_PER_SEC_SQ]",
+                  "testSchema.DefaultReal[testSchema.FT_PER_SEC_SQ]",
+                ],
+              },
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -1284,54 +1306,56 @@ describe("ecjson2md", () => {
 
         // Delete the output file before each test
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("should properly write a class without a description, base class, or label", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                EntityClassA: {
-                  schemaItemType: "EntityClass",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              EntityClassA: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassB: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassC: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassD: {
+                schemaItemType: "EntityClass",
+              },
+              RelationshipClassA: {
+                modifier: "none",
+                schemaItemType: "RelationshipClass",
+                strength : "referencing",
+                strengthDirection : "forward",
+                source : {
+                  constraintClasses: [ "testSchema.EntityClassA" ],
+                  multiplicity : "(0..*)",
+                  polymorphic : false,
+                  roleLabel: "relates to",
                 },
-                EntityClassB: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassC: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassD: {
-                  schemaItemType: "EntityClass",
-                },
-                RelationshipClassA: {
-                  modifier: "none",
-                  schemaItemType: "RelationshipClass",
-                  strength : "referencing",
-                  strengthDirection : "forward",
-                  source : {
-                    constraintClasses: [ "testSchema.EntityClassA" ],
-                    multiplicity : "(0..*)",
-                    polymorphic : false,
-                    roleLabel: "relates to",
-                  },
-                  target : {
-                    constraintClasses : [ "testSchema.EntityClassB" ],
-                    multiplicity : "(1..1)",
-                    polymorphic: true,
-                    roleLabel: "is related by",
-                  },
+                target : {
+                  constraintClasses : [ "testSchema.EntityClassB" ],
+                  multiplicity : "(1..1)",
+                  polymorphic: true,
+                  roleLabel: "is related by",
                 },
               },
-            };
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -1386,44 +1410,44 @@ describe("ecjson2md", () => {
         it("should properly write a class with a description", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                EntityClassA: {
-                  schemaItemType: "EntityClass",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              EntityClassA: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassB: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassC: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassD: {
+                schemaItemType: "EntityClass",
+              },
+              RelationshipClassA: {
+                description : "this is a description",
+                modifier: "none",
+                schemaItemType: "RelationshipClass",
+                strength : "referencing",
+                strengthDirection : "forward",
+                source : {
+                  constraintClasses: [ "testSchema.EntityClassA" ],
+                  multiplicity : "(0..*)",
+                  polymorphic : false,
+                  roleLabel: "relates to",
                 },
-                EntityClassB: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassC: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassD: {
-                  schemaItemType: "EntityClass",
-                },
-                RelationshipClassA: {
-                  description : "this is a description",
-                  modifier: "none",
-                  schemaItemType: "RelationshipClass",
-                  strength : "referencing",
-                  strengthDirection : "forward",
-                  source : {
-                    constraintClasses: [ "testSchema.EntityClassA" ],
-                    multiplicity : "(0..*)",
-                    polymorphic : false,
-                    roleLabel: "relates to",
-                  },
-                  target : {
-                    constraintClasses : [ "testSchema.EntityClassB" ],
-                    multiplicity : "(1..1)",
-                    polymorphic: true,
-                    roleLabel: "is related by",
-                  },
+                target : {
+                  constraintClasses : [ "testSchema.EntityClassB" ],
+                  multiplicity : "(1..1)",
+                  polymorphic: true,
+                  roleLabel: "is related by",
                 },
               },
-            };
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -1480,44 +1504,44 @@ describe("ecjson2md", () => {
         it("should properly write a class with a base class", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                EntityClassA: {
-                  schemaItemType: "EntityClass",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              EntityClassA: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassB: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassC: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassD: {
+                schemaItemType: "EntityClass",
+              },
+              RelationshipClassA: {
+                baseClass : "testSchema.EntityClassD",
+                modifier: "none",
+                schemaItemType: "RelationshipClass",
+                strength : "referencing",
+                strengthDirection : "forward",
+                source : {
+                  constraintClasses: [ "testSchema.EntityClassA" ],
+                  multiplicity : "(0..*)",
+                  polymorphic : false,
+                  roleLabel: "relates to",
                 },
-                EntityClassB: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassC: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassD: {
-                  schemaItemType: "EntityClass",
-                },
-                RelationshipClassA: {
-                  baseClass : "testSchema.EntityClassD",
-                  modifier: "none",
-                  schemaItemType: "RelationshipClass",
-                  strength : "referencing",
-                  strengthDirection : "forward",
-                  source : {
-                    constraintClasses: [ "testSchema.EntityClassA" ],
-                    multiplicity : "(0..*)",
-                    polymorphic : false,
-                    roleLabel: "relates to",
-                  },
-                  target : {
-                    constraintClasses : [ "testSchema.EntityClassB" ],
-                    multiplicity : "(1..1)",
-                    polymorphic: true,
-                    roleLabel: "is related by",
-                  },
+                target : {
+                  constraintClasses : [ "testSchema.EntityClassB" ],
+                  multiplicity : "(1..1)",
+                  polymorphic: true,
+                  roleLabel: "is related by",
                 },
               },
-            };
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -1574,44 +1598,44 @@ describe("ecjson2md", () => {
         it("should properly write a class with a label", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                EntityClassA: {
-                  schemaItemType: "EntityClass",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              EntityClassA: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassB: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassC: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassD: {
+                schemaItemType: "EntityClass",
+              },
+              RelationshipClassA: {
+                baseClass : "testSchema.EntityClassD",
+                modifier: "none",
+                schemaItemType: "RelationshipClass",
+                strength : "referencing",
+                strengthDirection : "forward",
+                source : {
+                  constraintClasses: [ "testSchema.EntityClassA" ],
+                  multiplicity : "(0..*)",
+                  polymorphic : false,
+                  roleLabel: "relates to",
                 },
-                EntityClassB: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassC: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassD: {
-                  schemaItemType: "EntityClass",
-                },
-                RelationshipClassA: {
-                  baseClass : "testSchema.EntityClassD",
-                  modifier: "none",
-                  schemaItemType: "RelationshipClass",
-                  strength : "referencing",
-                  strengthDirection : "forward",
-                  source : {
-                    constraintClasses: [ "testSchema.EntityClassA" ],
-                    multiplicity : "(0..*)",
-                    polymorphic : false,
-                    roleLabel: "relates to",
-                  },
-                  target : {
-                    constraintClasses : [ "testSchema.EntityClassB" ],
-                    multiplicity : "(1..1)",
-                    polymorphic: true,
-                    roleLabel: "is related by",
-                  },
+                target : {
+                  constraintClasses : [ "testSchema.EntityClassB" ],
+                  multiplicity : "(1..1)",
+                  polymorphic: true,
+                  roleLabel: "is related by",
                 },
               },
-            };
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -1668,44 +1692,44 @@ describe("ecjson2md", () => {
         it("should properly write a base class with description, base class, and label", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                EntityClassA: {
-                  schemaItemType: "EntityClass",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              EntityClassA: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassB: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassC: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassD: {
+                schemaItemType: "EntityClass",
+              },
+              RelationshipClassA: {
+                label : "relationshipClassALabel",
+                modifier: "none",
+                schemaItemType: "RelationshipClass",
+                strength : "referencing",
+                strengthDirection : "forward",
+                source : {
+                  constraintClasses: [ "testSchema.EntityClassA" ],
+                  multiplicity : "(0..*)",
+                  polymorphic : false,
+                  roleLabel: "relates to",
                 },
-                EntityClassB: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassC: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassD: {
-                  schemaItemType: "EntityClass",
-                },
-                RelationshipClassA: {
-                  label : "relationshipClassALabel",
-                  modifier: "none",
-                  schemaItemType: "RelationshipClass",
-                  strength : "referencing",
-                  strengthDirection : "forward",
-                  source : {
-                    constraintClasses: [ "testSchema.EntityClassA" ],
-                    multiplicity : "(0..*)",
-                    polymorphic : false,
-                    roleLabel: "relates to",
-                  },
-                  target : {
-                    constraintClasses : [ "testSchema.EntityClassB" ],
-                    multiplicity : "(1..1)",
-                    polymorphic: true,
-                    roleLabel: "is related by",
-                  },
+                target : {
+                  constraintClasses : [ "testSchema.EntityClassB" ],
+                  multiplicity : "(1..1)",
+                  polymorphic: true,
+                  roleLabel: "is related by",
                 },
               },
-            };
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -1760,58 +1784,58 @@ describe("ecjson2md", () => {
         it("should properly write a class that has multiple constraint classes in target and source", () => {
           // Arrange
           const schemaJson = {
-              $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-              alias: "testSchema",
-              name: "testSchema",
-              version: "02.00.00",
-              items: {
-                EntityClassA: {
-                  schemaItemType: "EntityClass",
+            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+            alias: "testSchema",
+            name: "testSchema",
+            version: "02.00.00",
+            items: {
+              EntityClassA: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassB: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassC: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassD: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassE: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassF: {
+                schemaItemType: "EntityClass",
+              },
+              EntityClassG: {
+                schemaItemType: "EntityClass",
+              },
+              RelationshipClassA: {
+                modifier: "none",
+                schemaItemType: "RelationshipClass",
+                strength : "referencing",
+                strengthDirection : "forward",
+                source : {
+                  constraintClasses: [
+                    "testSchema.EntityClassA",
+                    "testSchema.EntityClassB",
+                    "testSchema.EntityClassC" ],
+                  multiplicity : "(0..*)",
+                  polymorphic : false,
+                  roleLabel: "relates to",
                 },
-                EntityClassB: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassC: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassD: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassE: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassF: {
-                  schemaItemType: "EntityClass",
-                },
-                EntityClassG: {
-                  schemaItemType: "EntityClass",
-                },
-                RelationshipClassA: {
-                  modifier: "none",
-                  schemaItemType: "RelationshipClass",
-                  strength : "referencing",
-                  strengthDirection : "forward",
-                  source : {
-                    constraintClasses: [
-                      "testSchema.EntityClassA",
-                      "testSchema.EntityClassB",
-                      "testSchema.EntityClassC" ],
-                    multiplicity : "(0..*)",
-                    polymorphic : false,
-                    roleLabel: "relates to",
-                  },
-                  target : {
-                    constraintClasses : [
-                      "testSchema.EntityClassE",
-                      "testSchema.EntityClassF",
-                      "testSchema.EntityClassG" ],
-                    multiplicity : "(1..1)",
-                    polymorphic: true,
-                    roleLabel: "is related by",
-                  },
+                target : {
+                  constraintClasses : [
+                    "testSchema.EntityClassE",
+                    "testSchema.EntityClassF",
+                    "testSchema.EntityClassG" ],
+                  multiplicity : "(1..1)",
+                  polymorphic: true,
+                  roleLabel: "is related by",
                 },
               },
-            };
+            },
+          };
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
@@ -1871,141 +1895,143 @@ describe("ecjson2md", () => {
       describe("writeEnumerationItem", () => {
         const outputFilePath = path.join(outputDir, "relationshipClassTest.md");
         const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-            alias: "testSchema",
-            name: "testSchema",
-            version: "02.00.00",
-            items: {
-              IntBackedEnum : {
-                type : "int",
-                enumerators : [
-                  {
-                    name : "IntThing",
-                    label : "IntThing",
-                    value : 0,
-                  },
-                ],
-                isStrict : true,
-                schemaItemType : "Enumeration",
-              },
-              StringBackedEnum : {
-                type : "string",
-                enumerators : [
-                  {
-                    name : "StringThing",
-                    label : "StringThing",
-                    value : "zero",
-                  },
-                ],
-                isStrict : true,
-                schemaItemType : "Enumeration",
-              },
-              NoEnumEnum : {
-                type : "string",
-                enumerators : [ ],
-                isStrict : true,
-                schemaItemType : "Enumeration",
-              },
-              LotsOfEnumEnum : {
-                type : "int",
-                enumerators : [
-                  {
-                    name : "Zero",
-                    label : "Zero",
-                    value : 0,
-                  },
-                  {
-                    name : "One",
-                    label : "One",
-                    value : 1,
-                  },
-                  {
-                    name : "Two",
-                    label : "Two",
-                    value : 2,
-                  },
-                  {
-                    name : "Three",
-                    label : "Three",
-                    value : 3,
-                  },
-                  {
-                    name : "Four",
-                    label : "Four",
-                    value : 4,
-                  },
-                ],
-                isStrict : true,
-                schemaItemType : "Enumeration",
-              },
-              NoLabelEnumerators : {
-                type : "int",
-                enumerators : [
-                  {
-                    name : "Zero",
-                    value : 0,
-                  },
-                  {
-                    name : "One",
-                    value : 1,
-                  },
-                  {
-                    name : "Two",
-                    value : 2,
-                  },
-                  {
-                    name : "Three",
-                    value : 3,
-                  },
-                  {
-                    name : "Four",
-                    value : 4,
-                  },
-                ],
-                isStrict : true,
-                schemaItemType : "Enumeration",
-              },
-              WithDescriptionEnum : {
-                type : "int",
-                enumerators : [
-                  {
-                    name : "Zero",
-                    value : 0,
-                    description : "Short Description",
-                  },
-                  {
-                    name : "One",
-                    value : 1,
-                    description : "Description with \"commas\" ",
-                  },
-                  {
-                    name : "Two",
-                    value : 2,
-                    description : "",
-                  },
-                  {
-                    name : "Three",
-                    value : 3,
-                    description : "Multi line description: Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text",
-                  },
-                ],
-                isStrict : true,
-                schemaItemType : "Enumeration"
-              }
+          $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+          alias: "testSchema",
+          name: "testSchema",
+          version: "02.00.00",
+          items: {
+            IntBackedEnum : {
+              type : "int",
+              enumerators : [
+                {
+                  name : "IntThing",
+                  label : "IntThing",
+                  value : 0,
+                },
+              ],
+              isStrict : true,
+              schemaItemType : "Enumeration",
             },
-          };
+            StringBackedEnum : {
+              type : "string",
+              enumerators : [
+                {
+                  name : "StringThing",
+                  label : "StringThing",
+                  value : "zero",
+                },
+              ],
+              isStrict : true,
+              schemaItemType : "Enumeration",
+            },
+            NoEnumEnum : {
+              type : "string",
+              enumerators : [ ],
+              isStrict : true,
+              schemaItemType : "Enumeration",
+            },
+            LotsOfEnumEnum : {
+              type : "int",
+              enumerators : [
+                {
+                  name : "Zero",
+                  label : "Zero",
+                  value : 0,
+                },
+                {
+                  name : "One",
+                  label : "One",
+                  value : 1,
+                },
+                {
+                  name : "Two",
+                  label : "Two",
+                  value : 2,
+                },
+                {
+                  name : "Three",
+                  label : "Three",
+                  value : 3,
+                },
+                {
+                  name : "Four",
+                  label : "Four",
+                  value : 4,
+                },
+              ],
+              isStrict : true,
+              schemaItemType : "Enumeration",
+            },
+            NoLabelEnumerators : {
+              type : "int",
+              enumerators : [
+                {
+                  name : "Zero",
+                  value : 0,
+                },
+                {
+                  name : "One",
+                  value : 1,
+                },
+                {
+                  name : "Two",
+                  value : 2,
+                },
+                {
+                  name : "Three",
+                  value : 3,
+                },
+                {
+                  name : "Four",
+                  value : 4,
+                },
+              ],
+              isStrict : true,
+              schemaItemType : "Enumeration",
+            },
+            WithDescriptionEnum : {
+              type : "int",
+              enumerators : [
+                {
+                  name : "Zero",
+                  value : 0,
+                  description : "Short Description",
+                },
+                {
+                  name : "One",
+                  value : 1,
+                  description : "Description with \"commas\" ",
+                },
+                {
+                  name : "Two",
+                  value : 2,
+                  description : "",
+                },
+                {
+                  name : "Three",
+                  value : 3,
+                  description : "Multi line description: Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text",
+                },
+              ],
+              isStrict : true,
+              schemaItemType : "Enumeration",
+            },
+          },
+        };
 
         const context = new SchemaContext();
         const testSchema = Schema.fromJsonSync(schemaJson, context);
 
         // Delete the output file before each test
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("should properly write an enumeration backed by int", () => {
@@ -2166,7 +2192,7 @@ describe("ecjson2md", () => {
           ||3|Multi line description: Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text, Text|
   
           [!IndentEnd]\n`);
-  
+
           // Act
           ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, testSchema.getItemSync("WithDescriptionEnum"), testSchema.name);
           // Assert
@@ -2181,165 +2207,167 @@ describe("ecjson2md", () => {
       describe("writeMixinClass", () => {
         const outputFilePath = path.join(outputDir, "mixinClassTest.md");
         const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-            alias: "testSchema",
-            name: "testSchema",
-            version: "02.00.00",
-            items: {
-              UnitA: {
-                schemaItemType: "Unit",
-                name: "A",
-                phenomenon: "testSchema.Phenomenon",
-                unitSystem: "testSchema.UnitSys",
-                definition: "",
-              },
-              Phenomenon: {
-                schemaItemType: "Phenomenon",
-                name: "Phenom",
-                label: "Phenomenon",
-                definition: "",
-              },
-              UnitSys: {
-                schemaItemType: "UnitSystem",
-                name: "UnitSys",
-                label: "Test Unit System",
-                description: "Test Unit System",
-              },
-              DefaultReal : {
-                formatTraits : [ "keepSingleZero", "keepDecimalPoint" ],
-                label : "real",
-                precision : 6,
-                schemaItemType : "Format",
-                type : "Decimal",
-              },
-              KOQA: {
-                schemaItemType: "KindOfQuantity",
-                relativeError : 0.0,
-                persistenceUnit : "testSchema.UnitA",
-               precision : 0.0010,
-               presentationUnits : [ "testSchema.DefaultReal[testSchema.UnitA]" ],
-              },
-              KOQB: {
-                schemaItemType: "KindOfQuantity",
-                relativeError : 0.0,
-                persistenceUnit : "testSchema.UnitA",
-               precision : 0.0010,
-               presentationUnits : [ "testSchema.DefaultReal[testSchema.UnitA]" ],
-              },
-              KOQC: {
-                schemaItemType: "KindOfQuantity",
-                relativeError : 0.0,
-                persistenceUnit : "testSchema.UnitA",
-               precision : 0.0010,
-               presentationUnits : [ "testSchema.DefaultReal[testSchema.UnitA]" ],
-              },
-              KOQD: {
-                schemaItemType: "KindOfQuantity",
-                relativeError : 0.0,
-                persistenceUnit : "testSchema.UnitA",
-               precision : 0.0010,
-               presentationUnits : [ "testSchema.DefaultReal[testSchema.UnitA]" ],
-              },
-              EntityA : {
-                schemaItemType : "EntityClass",
-               },
-               EntityB : {
-                schemaItemType : "EntityClass",
-               },
-              PlainMixin : {
-                appliesTo : "testSchema.EntityA",
-                schemaItemType : "Mixin",
-              },
-              MixinWithDescription : {
-                appliesTo : "testSchema.EntityA",
-                description : "this is a description",
-                schemaItemType : "Mixin",
-              },
-              MixinWithBaseclass : {
-                appliesTo : "testSchema.EntityA",
-                baseClass : "testSchema.EntityB",
-                schemaItemType : "Mixin",
-              },
-              MixinWithLabel : {
-                appliesTo : "testSchema.EntityA",
-                schemaItemType : "Mixin",
-                label : "MixinLabel",
-              },
-              MixinWithDBL : {
-                appliesTo : "testSchema.EntityA",
-                schemaItemType : "Mixin",
-                description : "this is a description",
-                baseClass : "testSchema.EntityB",
-                label : "MixinLabel",
-              },
-              MixinWithProperties : {
-                appliesTo : "testSchema.EntityA",
-                schemaItemType : "Mixin",
-                properties : [
-                  {
-                    kindOfQuantity : "testSchema.KOQA",
-                    name : "propertyA",
-                    type : "PrimitiveProperty",
-                    typeName : "double",
-                  },
-                  {
-                    kindOfQuantity : "testSchema.KOQB",
-                    label : "propertyBLabel",
-                    name : "propertyB",
-                    type : "PrimitiveProperty",
-                    typeName : "double",
-                  },
-                  {
-                    kindOfQuantity : "testSchema.KOQC",
-                    label : "propertyCLabel",
-                    name : "propertyC",
-                    type : "PrimitiveProperty",
-                    typeName : "double",
-                    isReadOnly : false,
-                  },
-                  {
-                    kindOfQuantity : "testSchema.KOQD",
-                    label : "propertyDLabel",
-                    name : "propertyD",
-                    type : "PrimitiveProperty",
-                    typeName : "double",
-                    isReadOnly : true,
-                    priority : 1,
-                  },
-                ],
-              },
-              MixinWithAll : {
-                description : "this is a description",
-                baseClass : "testSchema.EntityB",
-                label : "MixinLabel",
-                appliesTo : "testSchema.EntityA",
-                schemaItemType : "Mixin",
-                properties : [
-                  {
-                    kindOfQuantity : "testSchema.KOQD",
-                    label : "propertyDLabel",
-                    name : "propertyD",
-                    type : "PrimitiveProperty",
-                    typeName : "double",
-                    isReadOnly : true,
-                    priority : 1,
-                   },
-                ],
-              },
+          $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+          alias: "testSchema",
+          name: "testSchema",
+          version: "02.00.00",
+          items: {
+            UnitA: {
+              schemaItemType: "Unit",
+              name: "A",
+              phenomenon: "testSchema.Phenomenon",
+              unitSystem: "testSchema.UnitSys",
+              definition: "",
             },
-          };
+            Phenomenon: {
+              schemaItemType: "Phenomenon",
+              name: "Phenom",
+              label: "Phenomenon",
+              definition: "",
+            },
+            UnitSys: {
+              schemaItemType: "UnitSystem",
+              name: "UnitSys",
+              label: "Test Unit System",
+              description: "Test Unit System",
+            },
+            DefaultReal : {
+              formatTraits : [ "keepSingleZero", "keepDecimalPoint" ],
+              label : "real",
+              precision : 6,
+              schemaItemType : "Format",
+              type : "Decimal",
+            },
+            KOQA: {
+              schemaItemType: "KindOfQuantity",
+              relativeError : 0.0,
+              persistenceUnit : "testSchema.UnitA",
+              precision : 0.0010,
+              presentationUnits : [ "testSchema.DefaultReal[testSchema.UnitA]" ],
+            },
+            KOQB: {
+              schemaItemType: "KindOfQuantity",
+              relativeError : 0.0,
+              persistenceUnit : "testSchema.UnitA",
+              precision : 0.0010,
+              presentationUnits : [ "testSchema.DefaultReal[testSchema.UnitA]" ],
+            },
+            KOQC: {
+              schemaItemType: "KindOfQuantity",
+              relativeError : 0.0,
+              persistenceUnit : "testSchema.UnitA",
+              precision : 0.0010,
+              presentationUnits : [ "testSchema.DefaultReal[testSchema.UnitA]" ],
+            },
+            KOQD: {
+              schemaItemType: "KindOfQuantity",
+              relativeError : 0.0,
+              persistenceUnit : "testSchema.UnitA",
+              precision : 0.0010,
+              presentationUnits : [ "testSchema.DefaultReal[testSchema.UnitA]" ],
+            },
+            EntityA : {
+              schemaItemType : "EntityClass",
+            },
+            EntityB : {
+              schemaItemType : "EntityClass",
+            },
+            PlainMixin : {
+              appliesTo : "testSchema.EntityA",
+              schemaItemType : "Mixin",
+            },
+            MixinWithDescription : {
+              appliesTo : "testSchema.EntityA",
+              description : "this is a description",
+              schemaItemType : "Mixin",
+            },
+            MixinWithBaseclass : {
+              appliesTo : "testSchema.EntityA",
+              baseClass : "testSchema.EntityB",
+              schemaItemType : "Mixin",
+            },
+            MixinWithLabel : {
+              appliesTo : "testSchema.EntityA",
+              schemaItemType : "Mixin",
+              label : "MixinLabel",
+            },
+            MixinWithDBL : {
+              appliesTo : "testSchema.EntityA",
+              schemaItemType : "Mixin",
+              description : "this is a description",
+              baseClass : "testSchema.EntityB",
+              label : "MixinLabel",
+            },
+            MixinWithProperties : {
+              appliesTo : "testSchema.EntityA",
+              schemaItemType : "Mixin",
+              properties : [
+                {
+                  kindOfQuantity : "testSchema.KOQA",
+                  name : "propertyA",
+                  type : "PrimitiveProperty",
+                  typeName : "double",
+                },
+                {
+                  kindOfQuantity : "testSchema.KOQB",
+                  label : "propertyBLabel",
+                  name : "propertyB",
+                  type : "PrimitiveProperty",
+                  typeName : "double",
+                },
+                {
+                  kindOfQuantity : "testSchema.KOQC",
+                  label : "propertyCLabel",
+                  name : "propertyC",
+                  type : "PrimitiveProperty",
+                  typeName : "double",
+                  isReadOnly : false,
+                },
+                {
+                  kindOfQuantity : "testSchema.KOQD",
+                  label : "propertyDLabel",
+                  name : "propertyD",
+                  type : "PrimitiveProperty",
+                  typeName : "double",
+                  isReadOnly : true,
+                  priority : 1,
+                },
+              ],
+            },
+            MixinWithAll : {
+              description : "this is a description",
+              baseClass : "testSchema.EntityB",
+              label : "MixinLabel",
+              appliesTo : "testSchema.EntityA",
+              schemaItemType : "Mixin",
+              properties : [
+                {
+                  kindOfQuantity : "testSchema.KOQD",
+                  label : "propertyDLabel",
+                  name : "propertyD",
+                  type : "PrimitiveProperty",
+                  typeName : "double",
+                  isReadOnly : true,
+                  priority : 1,
+                },
+              ],
+            },
+          },
+        };
 
         const context = new SchemaContext();
         const testSchema = Schema.fromJsonSync(schemaJson, context);
 
         // Delete the output file before each test
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("it should properly write a mixin that has no description, base class, label, or properties", () => {
@@ -2528,85 +2556,87 @@ describe("ecjson2md", () => {
 
         const outputFilePath = path.join(outputDir, "customAttributeClassTest.md");
         const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-            alias: "testSchema",
-            name: "testSchema",
-            version: "02.00.00",
-            items: {
-              EntityA : { schemaItemType : "EntityClass" },
-              PlainCAC : {
-                appliesTo : "AnyProperty",
-                modifier : "sealed",
-                schemaItemType : "CustomAttributeClass",
-              },
-              CACWithDescription : {
-                appliesTo : "AnyProperty",
-                description : "this is a description",
-                modifier : "sealed",
-                schemaItemType : "CustomAttributeClass",
-              },
-              CACWithBaseClass : {
-                appliesTo : "AnyProperty",
-                description : "this is a description",
-                baseClass : "testSchema.EntityA",
-                modifier : "sealed",
-                schemaItemType : "CustomAttributeClass",
-              },
-              CACWithProperties : {
-                appliesTo : "AnyProperty",
-                description : "this is a description",
-                baseClass : "testSchema.EntityA",
-                modifier : "sealed",
-                schemaItemType : "CustomAttributeClass",
-                properties : [
-                  {
-                    name : "PropertyA",
-                    label : "PropertyALabel",
-                    type : "PrimitiveProperty",
-                    typeName : "boolean",
-                  },
-                ],
-              },
-              CACWithMultipleProperties : {
-                appliesTo : "AnyProperty",
-                schemaItemType : "CustomAttributeClass",
-                properties : [
-                  {
-                    name : "PropertyA",
-                    type : "PrimitiveProperty",
-                    typeName : "boolean",
-                  },
-                  {
-                    name : "PropertyB",
-                    label : "PropertyBLabel",
-                    type : "PrimitiveProperty",
-                    typeName : "boolean",
-                    isReadOnly : true,
-                  },
-                  {
-                    name : "PropertyC",
-                    label : "PropertyCLabel",
-                    type : "PrimitiveProperty",
-                    typeName : "boolean",
-                    isReadOnly : true,
-                    priority : 1,
-                  },
-                ],
-              },
+          $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+          alias: "testSchema",
+          name: "testSchema",
+          version: "02.00.00",
+          items: {
+            EntityA : { schemaItemType : "EntityClass" },
+            PlainCAC : {
+              appliesTo : "AnyProperty",
+              modifier : "sealed",
+              schemaItemType : "CustomAttributeClass",
             },
-          };
+            CACWithDescription : {
+              appliesTo : "AnyProperty",
+              description : "this is a description",
+              modifier : "sealed",
+              schemaItemType : "CustomAttributeClass",
+            },
+            CACWithBaseClass : {
+              appliesTo : "AnyProperty",
+              description : "this is a description",
+              baseClass : "testSchema.EntityA",
+              modifier : "sealed",
+              schemaItemType : "CustomAttributeClass",
+            },
+            CACWithProperties : {
+              appliesTo : "AnyProperty",
+              description : "this is a description",
+              baseClass : "testSchema.EntityA",
+              modifier : "sealed",
+              schemaItemType : "CustomAttributeClass",
+              properties : [
+                {
+                  name : "PropertyA",
+                  label : "PropertyALabel",
+                  type : "PrimitiveProperty",
+                  typeName : "boolean",
+                },
+              ],
+            },
+            CACWithMultipleProperties : {
+              appliesTo : "AnyProperty",
+              schemaItemType : "CustomAttributeClass",
+              properties : [
+                {
+                  name : "PropertyA",
+                  type : "PrimitiveProperty",
+                  typeName : "boolean",
+                },
+                {
+                  name : "PropertyB",
+                  label : "PropertyBLabel",
+                  type : "PrimitiveProperty",
+                  typeName : "boolean",
+                  isReadOnly : true,
+                },
+                {
+                  name : "PropertyC",
+                  label : "PropertyCLabel",
+                  type : "PrimitiveProperty",
+                  typeName : "boolean",
+                  isReadOnly : true,
+                  priority : 1,
+                },
+              ],
+            },
+          },
+        };
 
         const context = new SchemaContext();
         const testSchema = Schema.fromJsonSync(schemaJson, context);
 
         // Delete the output file before each test
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("should write a class without description, base class, or properties", () => {
@@ -2747,87 +2777,89 @@ describe("ecjson2md", () => {
       describe("writeStructClass", () => {
         const outputFilePath = path.join(outputDir, "structClassTest.md");
         const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-            alias: "testSchema",
-            name: "testSchema",
-            version: "02.00.00",
-            items: {
-              EntityA : {
-                schemaItemType : "EntityClass",
-              },
-              PlainStruct : {
-                modifier : "sealed",
-                schemaItemType : "StructClass",
-              },
-              StructD : {
-                modifier : "sealed",
-                description : "this is a description",
-                schemaItemType : "StructClass",
-              },
-              StructDL : {
-                modifier : "sealed",
-                description : "this is a description",
-                label : "StructDLLabel",
-                schemaItemType : "StructClass",
-              },
-              StructDLB : {
-                modifier : "sealed",
-                description  : "this is a description",
-                label : "StructDLBLabel",
-                baseClass : "testSchema.EntityA",
-                schemaItemType : "StructClass",
-              },
-              StructDLBP : {
-                modifier : "sealed",
-                description : "this is a description",
-                label : "StructDLBPLabel",
-                baseClass : "testSchema.EntityA",
-                schemaItemType : "StructClass",
-                properties : [
-                  {
-                    name : "propertyA",
-                    type : "PrimitiveProperty",
-                    typeName : "string",
-                  },
-                ],
-              },
-              StructProperties : {
-                modifier : "sealed",
-                schemaItemType : "StructClass",
-                properties : [
-                  {
-                    name : "propertyA",
-                    type : "PrimitiveProperty",
-                    typeName : "string",
-                  },
-                  {
-                    name : "propertyB",
-                    type : "PrimitiveProperty",
-                    typeName : "string",
-                    isReadOnly : true,
-                  },
-                  {
-                    name : "propertyV",
-                    type : "PrimitiveProperty",
-                    typeName : "string",
-                    priority : 1,
-                  },
-                ],
-              },
+          $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+          alias: "testSchema",
+          name: "testSchema",
+          version: "02.00.00",
+          items: {
+            EntityA : {
+              schemaItemType : "EntityClass",
             },
-          };
+            PlainStruct : {
+              modifier : "sealed",
+              schemaItemType : "StructClass",
+            },
+            StructD : {
+              modifier : "sealed",
+              description : "this is a description",
+              schemaItemType : "StructClass",
+            },
+            StructDL : {
+              modifier : "sealed",
+              description : "this is a description",
+              label : "StructDLLabel",
+              schemaItemType : "StructClass",
+            },
+            StructDLB : {
+              modifier : "sealed",
+              description  : "this is a description",
+              label : "StructDLBLabel",
+              baseClass : "testSchema.EntityA",
+              schemaItemType : "StructClass",
+            },
+            StructDLBP : {
+              modifier : "sealed",
+              description : "this is a description",
+              label : "StructDLBPLabel",
+              baseClass : "testSchema.EntityA",
+              schemaItemType : "StructClass",
+              properties : [
+                {
+                  name : "propertyA",
+                  type : "PrimitiveProperty",
+                  typeName : "string",
+                },
+              ],
+            },
+            StructProperties : {
+              modifier : "sealed",
+              schemaItemType : "StructClass",
+              properties : [
+                {
+                  name : "propertyA",
+                  type : "PrimitiveProperty",
+                  typeName : "string",
+                },
+                {
+                  name : "propertyB",
+                  type : "PrimitiveProperty",
+                  typeName : "string",
+                  isReadOnly : true,
+                },
+                {
+                  name : "propertyV",
+                  type : "PrimitiveProperty",
+                  typeName : "string",
+                  priority : 1,
+                },
+              ],
+            },
+          },
+        };
 
         const context = new SchemaContext();
         const testSchema = Schema.fromJsonSync(schemaJson, context);
 
         // Delete the output file before each test
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("should properly write a class without a description, label, base class, or properties", () => {
@@ -2981,37 +3013,39 @@ describe("ecjson2md", () => {
       describe("writePropertyCategory", () => {
         const outputFilePath = path.join(outputDir, "structClassTest.md");
         const schemaJson = {
-            $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
-            alias: "testSchema",
-            name: "testSchema",
-            version: "02.00.00",
-            items: {
-              PlainPropCategory : {
-                schemaItemType : "PropertyCategory",
-              },
-              PropCategoryD : {
-                schemaItemType : "PropertyCategory",
-                description : "this is a description",
-              },
-              PropCategoryDL : {
-                schemaItemType : "PropertyCategory",
-                description : "this is a description",
-                label : "PropCategoryDLLabel",
-              },
+          $schema: "https://dev.bentley.com/json_schemas/ec/32/ecschema",
+          alias: "testSchema",
+          name: "testSchema",
+          version: "02.00.00",
+          items: {
+            PlainPropCategory : {
+              schemaItemType : "PropertyCategory",
             },
-          };
+            PropCategoryD : {
+              schemaItemType : "PropertyCategory",
+              description : "this is a description",
+            },
+            PropCategoryDL : {
+              schemaItemType : "PropertyCategory",
+              description : "this is a description",
+              label : "PropCategoryDLLabel",
+            },
+          },
+        };
 
         const context = new SchemaContext();
         const testSchema = Schema.fromJsonSync(schemaJson, context);
 
         // Delete the output file before each test
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("should properly write property category with no description or label", () => {
@@ -3108,12 +3142,14 @@ describe("ecjson2md", () => {
         const testSchema = Schema.fromJsonSync(schemaJson, context);
 
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("should properly write formats that has just a name and type (required)", () => {
@@ -3281,19 +3317,21 @@ describe("ecjson2md", () => {
               invertsUnit: "testSchema.UnitF",
               label: "inverts unit f",
               unitSystem: "testSchema.STATISTICS",
-            }
+            },
           },
         };
         const context = new SchemaContext();
         const testSchema = Schema.fromJsonSync(schemaJson, context);
 
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("should properly write units with a phenomenon and unitSystem", () => {
@@ -3426,7 +3464,6 @@ describe("ecjson2md", () => {
             assert.equal(outputLines[i], line);
           });
         });
-
       });
 
       describe("writePhenomenon", () => {
@@ -3443,21 +3480,23 @@ describe("ecjson2md", () => {
               definition: "This is a phenomenon test case.",
             },
           },
-        }
+        };
         const context = new SchemaContext();
         const testSchema = Schema.fromJsonSync(schemaJson, context);
 
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("should properly write the phenomenon with name, type, and definition", () => {
-          //Act
+          // Act
           const schemaItem = "PhenomenonA";
           ECJsonMarkdownGenerator.writePhenomenonClass(outputFilePath, testSchema.getItemSync(schemaItem), testSchema.name);
 
@@ -3493,17 +3532,19 @@ describe("ecjson2md", () => {
               description: "UnitSystem test with description.",
             },
           },
-        }
+        };
         const context = new SchemaContext();
         const testSchema = Schema.fromJsonSync(schemaJson, context);
 
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         // Delete the output file after each test
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("schould properly write UnitSystem with the schemaItemType", () => {
@@ -3561,10 +3602,10 @@ describe("ecjson2md", () => {
             },
             EntityA : {
               schemaItemType : "EntityClass",
-             },
+            },
             EntityB : {
               schemaItemType : "EntityClass",
-             },
+            },
             EntityC : {
               baseClass : "testSchema.EntityWithProps",
               schemaItemType : "EntityClass",
@@ -3601,7 +3642,7 @@ describe("ecjson2md", () => {
                   type: "PrimitiveProperty",
                   typeName: "string",
                 },
-              ]
+              ],
             },
             PlainMixin : {
               appliesTo : "testSchema.EntityA",
@@ -3621,18 +3662,18 @@ describe("ecjson2md", () => {
               schemaItemType : "CustomAttributeClass",
             },
           },
-        }
+        };
 
         describe("correctly write classes with inherited properties", () => {
           it("should correctly write struct class with inherited properties", () => {
             const outputPath = path.join(outputDir, "structClassTest.md");
-  
+
             const context = new SchemaContext();
             const testSchema = Schema.fromJsonSync(schemaJson, context);
             const schemaItem = "StructItem";
-             
+
             ECJsonMarkdownGenerator.writeStructClass(outputPath, testSchema.getItemSync(schemaItem), testSchema.name);
-  
+
             const outputLines = fs.readFileSync(outputPath).toString().split("\n");
             const correctLines = outputLiteralToArray(`
             ### **StructItem** (StructLabel) *Sealed* [!badge text="StructClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=StructClass&id=${testSchema.name}.${schemaItem})
@@ -3659,7 +3700,7 @@ describe("ecjson2md", () => {
             </details>
 
             [!IndentEnd]\n`);
-  
+
             assert.equal(outputLines.length, correctLines.length);
             outputLines.map((line, i) => {
               assert.equal(outputLines[i], line);
@@ -3668,13 +3709,13 @@ describe("ecjson2md", () => {
 
           it("should correctly write entityClass with inherited properties", () => {
             const outputPath = path.join(outputDir, "entityClassInheritedTest.md");
-  
+
             const context = new SchemaContext();
             const testSchema = Schema.fromJsonSync(schemaJson, context);
             const schemaItem = "EntityC";
-             
+
             ECJsonMarkdownGenerator.writeEntityClass(outputPath, testSchema.getItemSync(schemaItem), testSchema.name);
-  
+
             const outputLines = fs.readFileSync(outputPath).toString().split("\n");
             const correctLines = outputLiteralToArray(`
               ### **EntityC** [!badge text="EntityClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=EntityClass&id=${testSchema.name}.${schemaItem})
@@ -3703,12 +3744,12 @@ describe("ecjson2md", () => {
 
           it("should correctly write mixin with inherited properties", () => {
             const outputPath = path.join(outputDir, "mixinClassTest.md");
-  
+
             const context = new SchemaContext();
             const testSchema = Schema.fromJsonSync(schemaJson, context);
 
             ECJsonMarkdownGenerator.writeMixinClass(outputPath, testSchema.getItemSync("PlainMixin"), testSchema.name);
-  
+
             const outputLines = fs.readFileSync(outputPath).toString().split("\n");
             const correctLines = outputLiteralToArray(`    
             ### **PlainMixin** *Abstract* [!badge text="Mixin" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Mixin&id=${testSchema.name}.PlainMixin)
@@ -3740,13 +3781,13 @@ describe("ecjson2md", () => {
 
           it("should correctly write customAttribute class with inherited properties", () => {
             const outputPath = path.join(outputDir, "customAttributeInheritTest.md");
-  
+
             const context = new SchemaContext();
             const testSchema = Schema.fromJsonSync(schemaJson, context);
             const schemaItem = "CACWithBaseClass";
 
             ECJsonMarkdownGenerator.writeCustomAttributeClass(outputPath, testSchema.getItemSync(schemaItem), testSchema.name);
-  
+
             const outputLines = fs.readFileSync(outputPath).toString().split("\n");
             const correctLines = outputLiteralToArray(`
              ### **CACWithBaseClass** *Sealed* [!badge text="CustomAttributeClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=Mixin&id=${testSchema.name}.${schemaItem})
@@ -3784,7 +3825,7 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
-           
+
           ECJsonMarkdownGenerator.writeEntityClass(outputPath, testSchema.getItemSync("EntityA"), testSchema.name);
 
           const outputLines = fs.readFileSync(outputPath).toString().split("\n");
@@ -3807,7 +3848,7 @@ describe("ecjson2md", () => {
 
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
-           
+
           ECJsonMarkdownGenerator.writeMixinClass(outputPath, testSchema.getItemSync("MixinWithBaseclass"), testSchema.name);
 
           const outputLines = fs.readFileSync(outputPath).toString().split("\n");
@@ -4137,13 +4178,15 @@ describe("ecjson2md", () => {
 
           // Delete the output file before each test
           beforeEach(() => {
-            if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+            if (fs.existsSync(outputFilePath))
+              fs.unlinkSync(outputFilePath);
             testRemarksGenerator = new ECJsonMarkdownGenerator([inputFileDir]);
           });
 
           // Delete the output file after each test
           afterEach(() => {
-            if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+            if (fs.existsSync(outputFilePath))
+              fs.unlinkSync(outputFilePath);
           });
 
           it("should properly generate a remarks file for the BisCore schema", () => {
@@ -4195,13 +4238,15 @@ describe("ecjson2md", () => {
 
           // Delete the output file before each test
           beforeEach(() => {
-            if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+            if (fs.existsSync(outputFilePath))
+              fs.unlinkSync(outputFilePath);
             testMDGenerator = new ECJsonMarkdownGenerator([inputFileDir]);
           });
 
           // Delete the output file after each test
           afterEach(() => {
-            if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+            if (fs.existsSync(outputFilePath))
+              fs.unlinkSync(outputFilePath);
           });
 
           it("should properly generate markdown for BisCore", () => {
@@ -4223,7 +4268,7 @@ describe("ecjson2md", () => {
               assert.equal(outputLines[i], line);
             });
           });
-          
+
           it("should properly generate markdown for BisCore (XML verison)", () => {
             // Arrange
             const inputFileName = "BisCore.ecschema";
@@ -4263,7 +4308,7 @@ describe("ecjson2md", () => {
               expect(outputLines[i]).eq(line);
             });
           });
-          
+
           it("should properly generate markdown for AecUnits (XML version)", () => {
             // Arrange
             const inputFileName = "AecUnits.ecschema";
@@ -4372,11 +4417,13 @@ describe("ecjson2md", () => {
         const outputFilePath = path.join(".", "test", "_temp_remove_line_.txt");
 
         beforeEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         afterEach(() => {
-          if (fs.existsSync(outputFilePath)) fs.unlinkSync(outputFilePath);
+          if (fs.existsSync(outputFilePath))
+            fs.unlinkSync(outputFilePath);
         });
 
         it("should remove blank lines at the end of file", () => {

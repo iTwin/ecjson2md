@@ -4,7 +4,7 @@
 *--------------------------------------------------------------------------------------------*/
 
 import * as chalk from "chalk";
-import { ECJsonMarkdownGenerator, prepOutputPath, prepSearchDirs, prepRemarksPath } from "./ecjson2md";
+import { ECJsonMarkdownGenerator, prepOutputPath, prepRemarksPath, prepSearchDirs } from "./ecjson2md";
 import * as commander from "commander";
 import * as path from "path";
 
@@ -20,7 +20,7 @@ function main() {
 
   // Prompt to use the help flag if an input was missing
   if (!program.input || !program.output) {
-    // tslint:disable-next-line:no-console
+    /* eslint-disable no-debugger, no-console */
     console.log(chalk.default.red("Invalid input. For help use '-h'"));
     process.exit();
   }
@@ -31,7 +31,7 @@ function main() {
   if (program.dirs !== undefined)
     searchDirs = prepSearchDirs(program.dirs);
 
-  // tslint:disable-next-line:no-console
+  /* eslint-disable no-debugger, no-console */
   console.log(chalk.default.gray("Adding the search directories..."));
 
   if (program.generateEmpty) {
@@ -41,16 +41,16 @@ function main() {
       // Try to add the search paths
       const remarks = new ECJsonMarkdownGenerator(searchDirs);
 
-      // tslint:disable-next-line:no-console
+      /* eslint-disable no-debugger, no-console */
       console.log(chalk.default.gray("Generating remarks file at " + path.resolve(path.normalize(outputRemarksPath) + "...")));
       // Try to generate remarks file
       remarks.genRemarks(program.input, outputRemarksPath, program.nonrelease);
 
-      // tslint:disable-next-line:no-console
+      /* eslint-disable no-debugger, no-console */
       console.log(chalk.default.blue("Remarks file successfully generated at " + path.resolve(path.normalize(outputRemarksPath))));
 
     } catch (e) {
-      // tslint:disable-next-line:no-console
+      /* eslint-disable no-debugger, no-console */
       console.log(chalk.default.red(e, "\nQuitting..."));
     }
   }
@@ -63,17 +63,17 @@ function main() {
     // Try to add the search paths
     const mdGenerator = new ECJsonMarkdownGenerator(searchDirs);
 
-    // tslint:disable-next-line:no-console
+    /* eslint-disable no-debugger, no-console */
     console.log(chalk.default.gray("Generating markdown at " + path.resolve(path.normalize(outputFilePath) + "...")));
 
     // Try to generate the markdown
     mdGenerator.generate(program.input, outputFilePath, program.nonrelease);
 
-    // tslint:disable-next-line:no-console
+    /* eslint-disable no-debugger, no-console */
     console.log(chalk.default.blue("Markdown successfully generated at " + path.resolve(path.normalize(outputFilePath))));
 
   } catch (e) {
-    // tslint:disable-next-line:no-console
+    /* eslint-disable no-debugger, no-console */
     console.log(chalk.default.red(e, "\nQuitting..."));
   }
 }

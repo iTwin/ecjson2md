@@ -3,7 +3,7 @@
 * Licensed under the MIT License. See LICENSE.md in the project root for license terms.
 *--------------------------------------------------------------------------------------------*/
 
-import { prepOutputPath, prepSearchDirs, prepRemarksPath, ECJsonMarkdownGenerator } from "../source/ecjson2md";
+import { ECJsonMarkdownGenerator, prepOutputPath, prepRemarksPath, prepSearchDirs  } from "../source/ecjson2md";
 import { assert } from "chai";
 import * as path from "path";
 import * as fs from "fs";
@@ -81,8 +81,8 @@ describe("ecjson2md_cli", () => {
       const searchDirs = prepSearchDirs(testDir);
 
       const testRemarks = new ECJsonMarkdownGenerator(searchDirs);
-      
-      const output = testDir
+
+      const output = testDir;
       const input = path.join(testDir, "ECDbMap.ecschema.json");
       const preppedRemarksPath = prepRemarksPath(output, input);
 
@@ -103,8 +103,8 @@ describe("ecjson2md_cli", () => {
       const searchDirs = prepSearchDirs(testDir);
 
       const testRemarks = new ECJsonMarkdownGenerator(searchDirs);
-      
-      const output = testDir
+
+      const output = testDir;
       const input = path.join(testDir, "BisCore.ecschema.json");
       const preppedRemarksPath = prepRemarksPath(output, input);
 
