@@ -1,4 +1,4 @@
-name: "CodeQL"
+name: "ECJson2md-CodeQL"
 
 on:
   push:
