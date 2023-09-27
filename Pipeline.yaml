@@ -16,15 +16,19 @@ steps:
   clean: true
 
 - task: NodeTool@0
-  displayName: 'Use Node 12.18.0'
+  displayName: 'Install Node 18.x'
   inputs:
-    versionSpec: 12.18.0
+    versionSpec: 18.x
+    checkLatest: true
 
 - script: npm ci
   displayName: Install
 
 - script: npm run build
   displayName: Build
+
+- script: npm run lint
+  displayName: Lint
 
 - script: npm run test
   displayName: Test
@@ -36,8 +40,8 @@ steps:
   displayName: 'Publish Code Coverage'
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: '$(Build.SourcesDirectory)\lib\test\coverage\cobertura-coverage.xml'
-    reportDirectory: '$(Build.Repository.LocalPath)\lib\test\coverage\lcov-report'
+    summaryFileLocation: '$(Build.SourcesDirectory)\lib\cjs\test\coverage\cobertura-coverage.xml'
+    reportDirectory: '$(Build.Repository.LocalPath)\lib\cjs\test\coverage\lcov-report'
     failIfCoverageEmpty: true
   continueOnError: true
 

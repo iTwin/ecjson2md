@@ -1,6 +1,6 @@
 {
   "name": "@bentley/ecjson2md",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "Markdown generation from ECSchema JSON",
   "license": "MIT",
   "bin": {
@@ -14,12 +14,12 @@
   "scripts": {
     "clean": "rimraf lib .nyc_output",
     "copy:assets": "cpx ./source/index.js ./lib && cpx \"./source/media/*\" ./lib/media",
-    "lint": "tslint --project . 1>&2",
-    "prebuild": "npm run lint & npm run clean & npm run copy:assets",
+    "lint": "eslint -f visualstudio \"./source/**/*.ts\" 1>&2",
+    "prebuild": "npm run clean & npm run copy:assets",
     "build": "tsc",
-    "test": "betools test-tsnode --testDir=./test/ --tscPaths",
+    "test": "mocha -r ts-node/register test/**.test.ts --timeout 120000",
     "test:watch": "betools test-tsnode --testDir=./test/ --watch",
-    "cover": "nyc node ./node_modules/@bentley/build-tools/scripts/test-tsnode.js --testDir=./test/ --tscPaths",
+    "cover": "nyc npm -s test",
     "start": "npm run build && npm run test",
     "cli:dev": "npm run clean & npm run build & npm link"
   },
@@ -34,38 +34,65 @@
     "EC"
   ],
   "dependencies": {
-    "@bentley/bentleyjs-core": "^1.4.0",
-    "@bentley/ecschema-metadata": "^1.4.0",
+    "@itwin/core-bentley": "^4.1.0",
+    "@itwin/core-quantity": "^4.1.0",
+    "@itwin/ecschema-metadata": "^4.1.0",
+    "@itwin/ecschema-locaters": "^4.1.0",
     "chalk": "^2.4.2",
     "commander": "^2.19.0",
     "glob": "^7.1.3",
-    "xmldom": "^0.5.0"
+    "@xmldom/xmldom": "~0.8.5"
   },
   "devDependencies": {
-    "@bentley/build-tools": "^1.4.0",
-    "@types/chai": "^4.1.7",
+    "@itwin/eslint-plugin": "^3.7.8",
+    "@itwin/build-tools": "^4.1.0",
+    "@types/chai": "4.3.1",
     "@types/glob": "^7.1.1",
-    "@types/mocha": "^5.2.5",
+    "@types/mocha": "^8.2.2",
     "@types/rimraf": "^2.0.2",
-    "@types/xmldom": "^0.1.3",
-    "nyc": "^13.1.0",
-    "typescript": "^3.5.0"
+    "nyc": "^15.1.0",
+    "chai": "^4.1.2",
+    "mocha": "^10.0.0",
+    "ts-node": "^10.8.2",
+    "typescript": "~4.3.0",
+    "source-map-support": "^0.5.6"
   },
   "nyc": {
+    "require": [
+      "source-map-support/register",
+      "ts-node/register"
+    ],
     "include": [
-      "source/**/*.ts"
+      "source/**/*.ts",
+      "lib/cjs/**/*"
+    ],
+    "exclude": [
+      "test/**/*",
+      "lib/cjs/test/**/*",
+      "**/*.d.ts",
+      "**/*.d.tsx"
     ],
     "extension": [
       ".ts"
     ],
-    "require": [
-      "ts-node/register"
-    ],
+    "temp-dir": "./lib/cjs/test/coverage/.nyc_output",
+    "report-dir": "./lib/cjs/test/coverage",
     "reporter": [
       "text-summary",
       "lcov",
       "cobertura"
     ],
-    "report-dir": "./lib/test/coverage"
+    "cache": false,
+    "useSpawnWrap": true
+  },
+  "eslintConfig": {
+    "plugins": [
+      "@itwin"
+    ],
+    "extends": "plugin:@itwin/itwinjs-recommended",
+    "rules": {
+      "prefer-template": "off",
+      "@typescript-eslint/no-unnecessary-type-assertion": "off"
+    }
   }
 }
