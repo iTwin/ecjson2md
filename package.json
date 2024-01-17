@@ -84,15 +84,5 @@
     ],
     "cache": false,
     "useSpawnWrap": true
-  },
-  "eslintConfig": {
-    "plugins": [
-      "@itwin"
-    ],
-    "extends": "plugin:@itwin/itwinjs-recommended",
-    "rules": {
-      "prefer-template": "off",
-      "@typescript-eslint/no-unnecessary-type-assertion": "off"
-    }
   }
 }
