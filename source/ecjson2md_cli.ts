@@ -49,7 +49,7 @@ function main() {
       /* eslint-disable no-debugger, no-console */
       console.log(chalk.default.blue("Remarks file successfully generated at " + path.resolve(path.normalize(outputRemarksPath))));
 
-    } catch (e) {
+    } catch (e: any) {
       /* eslint-disable no-debugger, no-console */
       console.log(chalk.default.red(e, "\nQuitting..."));
     }
@@ -72,7 +72,7 @@ function main() {
     /* eslint-disable no-debugger, no-console */
     console.log(chalk.default.blue("Markdown successfully generated at " + path.resolve(path.normalize(outputFilePath))));
 
-  } catch (e) {
+  } catch (e: any) {
     /* eslint-disable no-debugger, no-console */
     console.log(chalk.default.red(e, "\nQuitting..."));
   }

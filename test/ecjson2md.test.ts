@@ -45,7 +45,7 @@ describe("ecjson2md", () => {
 
         try {
           new ECJsonMarkdownGenerator([".", "..", "./badPath"]);
-        } catch (exc) {
+        } catch (exc: any) {
           err = exc;
         }
 
