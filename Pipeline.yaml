@@ -1,3 +1,5 @@
+name: ecjson2md-$(Date:yyyy.MM.dd)$(Rev:.r)
+
 trigger: none
 
 pr:
