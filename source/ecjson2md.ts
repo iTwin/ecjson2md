@@ -10,9 +10,9 @@ import {
   AnyClass, AnySchemaItem, classModifierToString, containerTypeToString, CustomAttributeClass, ECClassModifier, ECObjectsError,
   ECObjectsStatus, EntityClass, Enumeration, Format, InvertedUnit, KindOfQuantity, LazyLoadedECClass, Mixin, OverrideFormat, Phenomenon,
   primitiveTypeToString, Property, PropertyCategory, PropertyType, RelationshipClass, RelationshipConstraint, Schema, SchemaContext,
-  SchemaItemType, schemaItemTypeToString, strengthDirectionToString, strengthToString, StructClass, Unit,  UnitSystem,
+  SchemaItemType, strengthDirectionToString, strengthToString, StructClass, Unit, UnitSystem,
 } from "@itwin/ecschema-metadata";
-import { formatTraitsToArray, FormatType, formatTypeToString, scientificTypeToString, showSignOptionToString } from "@itwin/core-quantity";
+import { formatTraitsToArray, FormatType } from "@itwin/core-quantity";
 import { SchemaJsonFileLocater, SchemaXmlFileLocater } from "@itwin/ecschema-locaters";
 import { BadPropertyType, ECJsonBadJson, ECJsonBadOutputPath, ECJsonBadSearchPath, ECJsonFileNotFound } from "./Exception";
 import { CustomAttributeSet } from "@itwin/ecschema-metadata/lib/cjs/Metadata/CustomAttribute";
@@ -78,7 +78,7 @@ export function propertyTypeNumberToString(propertyTypeNumber: number): string {
  * @param schemaItemType The SchemaItemType to stringify.
  * @return A string label for the provided SchemaItemType. If the type is not valid, an empty string is returned.
  */
-export function schemaItemToGroupName(schemaItemType: number): string {
+export function schemaItemToGroupName(schemaItemType: string): string {
   switch (schemaItemType) {
     case SchemaItemType.EntityClass: return "Entity Classes";
     case SchemaItemType.Constant: return "Constants";
@@ -312,7 +312,7 @@ export class ECJsonMarkdownGenerator {
   public static generateTableOfContents(outputMDFile: string, schema: Schema) {
     fs.appendFileSync(outputMDFile, "## Table of contents\n");
     for (const value of Object.values(SchemaItemType)) {
-      if (!isNaN(Number(value))) {
+      if (value) {
         const schemaItemType = value as SchemaItemType;
         const schemaItemGroupName = schemaItemToGroupName(schemaItemType);
 
@@ -426,17 +426,15 @@ export class ECJsonMarkdownGenerator {
         fs.appendFileSync(outputFilePath, ` *${modifierString}*`);
     }
 
-    let typeString;
     if (type !== undefined) {
-      typeString = schemaItemTypeToString(type);
-      fs.appendFileSync(outputFilePath, ` ${formatBadge(typeString, "info")}`);
+      fs.appendFileSync(outputFilePath, ` ${formatBadge(type, "info")}`);
     }
 
     if (customAttributes !== undefined) {
       const customAttribute = customAttributes.get("CoreCustomAttributes.Deprecated");
       if (customAttribute !== undefined) {
         fs.appendFileSync(outputFilePath, ` ${formatBadge("Deprecated", "warning")}`);
-        this.linkIModelSchemaEditorInfo(schemaName, name, typeString, outputFilePath);
+        this.linkIModelSchemaEditorInfo(schemaName, name, type, outputFilePath);
         addSchemaEditorInfo = false;
         if (customAttribute.Description)
           fs.appendFileSync(outputFilePath, `\n\n${formatWarningAlert(customAttribute.Description)}`);
@@ -444,7 +442,7 @@ export class ECJsonMarkdownGenerator {
     }
 
     if (addSchemaEditorInfo)
-      this.linkIModelSchemaEditorInfo(schemaName, name, typeString, outputFilePath);
+      this.linkIModelSchemaEditorInfo(schemaName, name, type, outputFilePath);
 
     fs.appendFileSync(outputFilePath, "\n\n");
   }
@@ -1213,10 +1211,10 @@ export class ECJsonMarkdownGenerator {
     this.indentStart(outputFilePath);
 
     // Write the format type
-    fs.appendFileSync(outputFilePath, `**Type:** ${formatTypeToString(formatClass.type)}\n\n`);
+    fs.appendFileSync(outputFilePath, `**Type:** ${formatClass.type}\n\n`);
 
     if (formatClass.type === FormatType.Scientific && formatClass.scientificType !== undefined) {
-      fs.appendFileSync(outputFilePath, `**Scientific Type:** ${scientificTypeToString(formatClass.scientificType)}\n\n`);
+      fs.appendFileSync(outputFilePath, `**Scientific Type:** ${formatClass.scientificType}\n\n`);
     }
 
     if (formatClass.type === FormatType.Station && formatClass.stationOffsetSize !== undefined)
@@ -1229,7 +1227,7 @@ export class ECJsonMarkdownGenerator {
 
     // Write the showSignOption
     if (formatClass.showSignOption !== undefined)
-      fs.appendFileSync(outputFilePath, `**Show Sign Option:** ${showSignOptionToString(formatClass.showSignOption)}\n\n`);
+      fs.appendFileSync(outputFilePath, `**Show Sign Option:** ${formatClass.showSignOption}\n\n`);
 
     // Write format traits
     if (formatClass.formatTraits !== undefined) {
@@ -1566,7 +1564,7 @@ export class ECJsonMarkdownGenerator {
     ECJsonMarkdownGenerator.remarksHeader(outputFilePath, schema, nonReleaseFlag);
 
     for (const value of Object.values(SchemaItemType)) {
-      if (!isNaN(Number(value))) {
+      if (value) {
         const schemaItemType = value as SchemaItemType;
         ECJsonMarkdownGenerator.remarksClasses(outputFilePath, schema, schemaItemType);
       }
