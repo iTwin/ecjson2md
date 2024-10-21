@@ -967,7 +967,7 @@ export class ECJsonMarkdownGenerator {
 
     // Write what it appliesTo
     if (containerTypeToString !== undefined)
-      fs.appendFileSync(outputFilePath, `**Applies to:** ${containerTypeToString(customAttributeClass.containerType)}\n`);
+      fs.appendFileSync(outputFilePath, `**Applies to:** ${containerTypeToString(customAttributeClass.appliesTo)}\n`);
 
     // Write the properties table
     this.writeCustomAttributeTable(outputFilePath, customAttributeClass);
