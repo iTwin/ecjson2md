@@ -9,7 +9,7 @@ import { ECJsonBadSearchPath } from "../source/Exception";
 import * as fs from "fs";
 import * as path from "path";
 import * as rimraf from "rimraf";
-import { classModifierToString, EntityClass, PropertyType, Schema, SchemaContext, SchemaItemType, schemaItemTypeToString } from "@itwin/ecschema-metadata";
+import { classModifierToString, EntityClass, PropertyType, Schema, SchemaContext, SchemaItemType } from "@itwin/ecschema-metadata";
 import { SchemaJsonFileLocater } from "@itwin/ecschema-locaters";
 
 describe("ecjson2md", () => {
@@ -352,7 +352,6 @@ describe("ecjson2md", () => {
           // Arrange
           const name = "NameOfTheSchemaItem";
           const type = SchemaItemType.EntityClass;
-          const typeString = schemaItemTypeToString(type);
 
           // Act
           ECJsonMarkdownGenerator.writeSchemaItemHeader(outputFilePath, name, type, "schemaName");
@@ -360,7 +359,7 @@ describe("ecjson2md", () => {
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
           const correctLines = outputLiteralToArray(`
-            ### **${name}** [!badge text="EntityClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=${typeString}&id=schemaName.${name})
+            ### **${name}** [!badge text="EntityClass" kind="info"] [<img src="${iconPath}">](${baseUrl}elementtype=${type}&id=schemaName.${name})
 
             `);
 

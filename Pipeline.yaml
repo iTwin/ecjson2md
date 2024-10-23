@@ -1,3 +1,5 @@
+name: ecjson2md-$(Date:yyyy.MM.dd)$(Rev:.r)
+
 trigger: none
 
 pr:
@@ -16,9 +18,9 @@ steps:
   clean: true
 
 - task: NodeTool@0
-  displayName: 'Install Node 18.x'
+  displayName: 'Install Node 20.x'
   inputs:
-    versionSpec: 18.x
+    versionSpec: 20.x
     checkLatest: true
 
 - script: npm ci
