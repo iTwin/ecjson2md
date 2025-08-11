@@ -8,7 +8,7 @@ import { ECJsonMarkdownGenerator, prepOutputPath, prepRemarksPath, prepSearchDir
 import * as commander from "commander";
 import * as path from "path";
 
-function main() {
+async function main() {
   // Get cli arguments
   const program = new commander.Command("ECJson2MD");
   program.option("-i, --input <required>", "path to ECSchemaJson file");
@@ -21,7 +21,7 @@ function main() {
   // Prompt to use the help flag if an input was missing
   if (!program.input || !program.output) {
     /* eslint-disable no-debugger, no-console */
-    console.log(chalk.default.red("Invalid input. For help use '-h'"));
+    console.log(chalk.red("Invalid input. For help use '-h'"));
     process.exit();
   }
 
@@ -32,7 +32,7 @@ function main() {
     searchDirs = prepSearchDirs(program.dirs);
 
   /* eslint-disable no-debugger, no-console */
-  console.log(chalk.default.gray("Adding the search directories..."));
+  console.log(chalk.gray("Adding the search directories..."));
 
   if (program.generateEmpty) {
     // Construct the remarks file path
@@ -42,16 +42,16 @@ function main() {
       const remarks = new ECJsonMarkdownGenerator(searchDirs);
 
       /* eslint-disable no-debugger, no-console */
-      console.log(chalk.default.gray("Generating remarks file at " + path.resolve(path.normalize(outputRemarksPath) + "...")));
+      console.log(chalk.gray("Generating remarks file at " + path.resolve(path.normalize(outputRemarksPath) + "...")));
       // Try to generate remarks file
       remarks.genRemarks(program.input, outputRemarksPath, program.nonrelease);
 
       /* eslint-disable no-debugger, no-console */
-      console.log(chalk.default.blue("Remarks file successfully generated at " + path.resolve(path.normalize(outputRemarksPath))));
+      console.log(chalk.blue("Remarks file successfully generated at " + path.resolve(path.normalize(outputRemarksPath))));
 
     } catch (e: any) {
       /* eslint-disable no-debugger, no-console */
-      console.log(chalk.default.red(e, "\nQuitting..."));
+      console.log(chalk.red(e, "\nQuitting..."));
     }
   }
 
@@ -64,18 +64,22 @@ function main() {
     const mdGenerator = new ECJsonMarkdownGenerator(searchDirs);
 
     /* eslint-disable no-debugger, no-console */
-    console.log(chalk.default.gray("Generating markdown at " + path.resolve(path.normalize(outputFilePath) + "...")));
+    console.log(chalk.gray("Generating markdown at " + path.resolve(path.normalize(outputFilePath) + "...")));
 
     // Try to generate the markdown
-    mdGenerator.generate(program.input, outputFilePath, program.nonrelease);
+    await mdGenerator.generate(program.input, outputFilePath, program.nonrelease);
 
     /* eslint-disable no-debugger, no-console */
-    console.log(chalk.default.blue("Markdown successfully generated at " + path.resolve(path.normalize(outputFilePath))));
+    console.log(chalk.blue("Markdown successfully generated at " + path.resolve(path.normalize(outputFilePath))));
 
   } catch (e: any) {
     /* eslint-disable no-debugger, no-console */
-    console.log(chalk.default.red(e, "\nQuitting..."));
+    console.log(chalk.red(e, "\nQuitting..."));
   }
 }
 
-main();
+main().then()
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
