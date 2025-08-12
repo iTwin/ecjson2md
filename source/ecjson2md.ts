@@ -662,7 +662,7 @@ export class ECJsonMarkdownGenerator {
 
             fs.appendFileSync(outputFilePath, `- ${formatLink(formatClassLink, formatClassName)}${formatAdditional}${unitOverrides}\n`);
           } else {
-            schemaName = pFormat.schemaKey.name;
+            schemaName = (await pFormat).schema.name;
             const formatClassLink = (schemaName !== schema.name ? createSchemaLink(schemaName.toLowerCase()) : "") + "#" + pFormat.name.toLowerCase();
             fs.appendFileSync(outputFilePath, `- ${formatLink(formatClassLink, pFormat.name)}\n`);
           }
