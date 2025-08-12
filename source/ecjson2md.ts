@@ -656,7 +656,7 @@ export class ECJsonMarkdownGenerator {
             if (pFormat.units !== pFormat.parent.units && undefined !== pFormat.units)
               for (const pfUnit of pFormat.units) {
                 const loadedUnit = await pfUnit[0];
-                const unitLink = formatLink((loadedUnit.schema.name !== schema.name ? createSchemaLink(loadedUnit.schema.name) : "") + "#" + pfUnit[0].name.toLowerCase(), pfUnit[0].name);
+                const unitLink = formatLink((loadedUnit.schema.name !== schema.name ? createSchemaLink(loadedUnit.schema.name) : "") + "#" + loadedUnit.name.toLowerCase(), loadedUnit.name);
                 unitOverrides += `[ ${unitLink + (undefined === pfUnit[1] ? "" : "|" + pfUnit[1])} ]`;
               }
 
