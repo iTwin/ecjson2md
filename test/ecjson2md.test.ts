@@ -4016,13 +4016,13 @@ describe("ecjson2md", () => {
                 strength : "embedding",
                 strengthDirection : "forward",
                 source : {
-                  constraintClasses : [ "testSchema.KindOfQuantityA" ],
+                  constraintClasses : [ "testSchema.EntityClassA" ],
                   multiplicity : "(0..1)",
                   polymorphic : true,
                   roleLabel : "owns",
                 },
                 target : {
-                  constraintClasses : [ "testSchema.KindOfQuantityB" ],
+                  constraintClasses : [ "testSchema.EntityClassB" ],
                   multiplicity : "(0..*)",
                   polymorphic : false,
                   roleLabel : "is owned by",
@@ -4033,13 +4033,13 @@ describe("ecjson2md", () => {
                 strength : "embedding",
                 strengthDirection : "forward",
                 source : {
-                  constraintClasses : [ "testSchema.KindOfQuantityA" ],
+                  constraintClasses : [ "testSchema.EntityClassA" ],
                   multiplicity : "(0..1)",
                   polymorphic : true,
                   roleLabel : "owns",
                 },
                 target : {
-                  constraintClasses : [ "testSchema.KindOfQuantityB" ],
+                  constraintClasses : [ "testSchema.EntityClassB" ],
                   multiplicity : "(0..*)",
                   polymorphic : false,
                   roleLabel : "is owned by",
@@ -4050,13 +4050,13 @@ describe("ecjson2md", () => {
                 strength : "embedding",
                 strengthDirection : "forward",
                 source : {
-                  constraintClasses : [ "testSchema.KindOfQuantityA" ],
+                  constraintClasses : [ "testSchema.EntityClassA" ],
                   multiplicity : "(0..1)",
                   polymorphic : true,
                   roleLabel : "owns",
                 },
                 target : {
-                  constraintClasses : [ "testSchema.KindOfQuantityB" ],
+                  constraintClasses : [ "testSchema.EntityClassB" ],
                   multiplicity : "(0..*)",
                   polymorphic : false,
                   roleLabel : "is owned by",
