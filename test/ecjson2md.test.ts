@@ -652,7 +652,7 @@ describe("ecjson2md", () => {
           const schemaItem = "EntityClassA";
 
           // Act
-          const entity = testSchema.getItemSync(schemaItem) as EntityClass
+          const entity = testSchema.getItemSync(schemaItem, EntityClass);
           ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, entity, testSchema.name);
 
           // Assert
@@ -691,7 +691,7 @@ describe("ecjson2md", () => {
           const schemaItem = "EntityClassA";
 
           // Act
-          const entity = testSchema.getItemSync(schemaItem) as EntityClass;
+          const entity = testSchema.getItemSync(schemaItem, EntityClass);
           ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, entity, testSchema.name);
 
           // Assert
@@ -736,7 +736,7 @@ describe("ecjson2md", () => {
           const schemaItem = "EntityClassA";
 
           // Act
-          const entity = testSchema.getItemSync(schemaItem) as EntityClass;
+          const entity = testSchema.getItemSync(schemaItem, EntityClass);
           ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, entity, testSchema.name);
 
           // Assert
@@ -777,7 +777,7 @@ describe("ecjson2md", () => {
           const schemaItem = "EntityClassA";
 
           // Act
-          const entity = testSchema.getItemSync(schemaItem) as EntityClass;
+          const entity = testSchema.getItemSync(schemaItem, EntityClass);
           ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, entity, testSchema.name);
 
           // Assert
@@ -822,7 +822,7 @@ describe("ecjson2md", () => {
           const schemaItem = "EntityClassA";
 
           // Act
-          const entity = testSchema.getItemSync(schemaItem) as EntityClass;
+          const entity = testSchema.getItemSync(schemaItem, EntityClass);
           ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, entity, testSchema.name);
 
           // Assert
@@ -891,7 +891,7 @@ describe("ecjson2md", () => {
           const schemaItem = "EntityClassA";
 
           // Act
-          const entity = testSchema.getItemSync(schemaItem) as EntityClass;
+          const entity = testSchema.getItemSync(schemaItem, EntityClass);
           ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, entity, testSchema.name);
 
           // Assert
@@ -949,7 +949,7 @@ describe("ecjson2md", () => {
           const schemaItem = "EntityClassA";
 
           // Act
-          const entity = testSchema.getItemSync(schemaItem) as EntityClass;
+          const entity = testSchema.getItemSync(schemaItem, EntityClass);
           ECJsonMarkdownGenerator.writeEntityClass(outputFilePath, entity, testSchema.name);
 
           // Assert
@@ -1029,7 +1029,7 @@ describe("ecjson2md", () => {
           const schemaItem = "KindOfQuantityA";
 
           // Act
-          const kindOfQuantity = testSchema.getItemSync(schemaItem) as KindOfQuantity;
+          const kindOfQuantity = testSchema.getItemSync(schemaItem, KindOfQuantity);
           await ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, kindOfQuantity, testSchema);
 
           // Assert
@@ -1099,7 +1099,7 @@ describe("ecjson2md", () => {
           const schemaItem = "KindOfQuantityA";
 
           // Act
-          const kindOfQuantity = testSchema.getItemSync(schemaItem) as KindOfQuantity;
+          const kindOfQuantity = testSchema.getItemSync(schemaItem, KindOfQuantity);
           await ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, kindOfQuantity, testSchema);
 
           // Assert
@@ -1166,7 +1166,7 @@ describe("ecjson2md", () => {
           const schemaItem = "KindOfQuantityA";
 
           // Act
-          const kindOfQuantity = testSchema.getItemSync(schemaItem) as KindOfQuantity;
+          const kindOfQuantity = testSchema.getItemSync(schemaItem, KindOfQuantity);
           await ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, kindOfQuantity, testSchema);
 
           // Assert
@@ -1278,7 +1278,7 @@ describe("ecjson2md", () => {
           const schemaItem = "KindOfQuantityA";
 
           // Act
-          const kindOfQuantity = testSchema.getItemSync(schemaItem) as KindOfQuantity;
+          const kindOfQuantity = testSchema.getItemSync(schemaItem, KindOfQuantity);
           await ECJsonMarkdownGenerator.writeKindOfQuantityClass(outputFilePath, kindOfQuantity, testSchema);
 
           // Assert
@@ -1372,7 +1372,7 @@ describe("ecjson2md", () => {
           const schemaItem = "RelationshipClassA";
 
           // Act
-          const relationshipClass = testSchema.getItemSync(schemaItem) as RelationshipClass;
+          const relationshipClass = testSchema.getItemSync(schemaItem, RelationshipClass);
           ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, relationshipClass, testSchema.name);
 
           // Assert
@@ -1465,7 +1465,7 @@ describe("ecjson2md", () => {
           const schemaItem = "RelationshipClassA";
 
           // Act
-          const relationshipClass = testSchema.getItemSync(schemaItem) as RelationshipClass;
+          const relationshipClass = testSchema.getItemSync(schemaItem, RelationshipClass);
           ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, relationshipClass, testSchema.name);
 
           // Assert
@@ -1560,7 +1560,7 @@ describe("ecjson2md", () => {
           const schemaItem = "RelationshipClassA";
 
           // Act
-          const relationshipClass = testSchema.getItemSync(schemaItem) as RelationshipClass;
+          const relationshipClass = testSchema.getItemSync(schemaItem, RelationshipClass);
           ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, relationshipClass, testSchema.name);
 
           // Assert
@@ -1655,7 +1655,7 @@ describe("ecjson2md", () => {
           const schemaItem = "RelationshipClassA";
 
           // Act
-          const relationshipClass = testSchema.getItemSync(schemaItem) as RelationshipClass;
+          const relationshipClass = testSchema.getItemSync(schemaItem, RelationshipClass);
           ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, relationshipClass, testSchema.name);
 
           // Assert
@@ -1750,7 +1750,7 @@ describe("ecjson2md", () => {
           const schemaItem = "RelationshipClassA";
 
           // Act
-          const relationshipClass = testSchema.getItemSync(schemaItem) as RelationshipClass;
+          const relationshipClass = testSchema.getItemSync(schemaItem, RelationshipClass);
           ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, relationshipClass, testSchema.name);
 
           // Assert
@@ -1857,7 +1857,7 @@ describe("ecjson2md", () => {
           const schemaItem = "RelationshipClassA";
 
           // Act
-          const relationshipClass = testSchema.getItemSync(schemaItem) as RelationshipClass;
+          const relationshipClass = testSchema.getItemSync(schemaItem, RelationshipClass);
           ECJsonMarkdownGenerator.writeRelationshipClass(outputFilePath, relationshipClass, testSchema.name);
 
           // Assert
@@ -2068,7 +2068,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const enumeration = testSchema.getItemSync("IntBackedEnum") as Enumeration;
+          const enumeration = testSchema.getItemSync("IntBackedEnum", Enumeration);
           ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, enumeration, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2096,7 +2096,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const enumeration = testSchema.getItemSync("StringBackedEnum") as Enumeration;
+          const enumeration = testSchema.getItemSync("StringBackedEnum", Enumeration);
           ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, enumeration, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2119,7 +2119,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const enumeration = testSchema.getItemSync("NoEnumEnum") as Enumeration;
+          const enumeration = testSchema.getItemSync("NoEnumEnum", Enumeration);
           ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, enumeration, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2152,7 +2152,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const enumeration = testSchema.getItemSync("LotsOfEnumEnum") as Enumeration;
+          const enumeration = testSchema.getItemSync("LotsOfEnumEnum", Enumeration);
           ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, enumeration, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2184,7 +2184,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const enumeration = testSchema.getItemSync("NoLabelEnumerators") as Enumeration;
+          const enumeration = testSchema.getItemSync("NoLabelEnumerators", Enumeration);
           ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, enumeration, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2215,7 +2215,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const enumeration = testSchema.getItemSync("WithDescriptionEnum") as Enumeration;
+          const enumeration = testSchema.getItemSync("WithDescriptionEnum", Enumeration);
           ECJsonMarkdownGenerator.writeEnumerationItem(outputFilePath, enumeration, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2404,7 +2404,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const mixin = testSchema.getItemSync("PlainMixin") as Mixin;
+          const mixin = testSchema.getItemSync("PlainMixin", Mixin);
           ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, mixin, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2428,7 +2428,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const mixin = testSchema.getItemSync("MixinWithDescription") as Mixin;
+          const mixin = testSchema.getItemSync("MixinWithDescription", Mixin);
           ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, mixin, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2452,7 +2452,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const mixin = testSchema.getItemSync("MixinWithBaseclass") as Mixin;
+          const mixin = testSchema.getItemSync("MixinWithBaseclass", Mixin);
           ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, mixin, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2474,7 +2474,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const mixin = testSchema.getItemSync("MixinWithLabel") as Mixin;
+          const mixin = testSchema.getItemSync("MixinWithLabel", Mixin);
           ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, mixin, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2500,7 +2500,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const mixin = testSchema.getItemSync("MixinWithDBL") as Mixin;
+          const mixin = testSchema.getItemSync("MixinWithDBL", Mixin);
           ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, mixin, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2531,7 +2531,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const mixin = testSchema.getItemSync("MixinWithProperties") as Mixin;
+          const mixin = testSchema.getItemSync("MixinWithProperties", Mixin);
           ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, mixin, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2570,7 +2570,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const mixin = testSchema.getItemSync("MixinWithAll") as Mixin;
+          const mixin = testSchema.getItemSync("MixinWithAll", Mixin);
           ECJsonMarkdownGenerator.writeMixinClass(outputFilePath, mixin, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2680,7 +2680,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const customAttribute = testSchema.getItemSync("PlainCAC") as CustomAttributeClass;
+          const customAttribute = testSchema.getItemSync("PlainCAC", CustomAttributeClass);
           ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, customAttribute, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2704,7 +2704,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const customAttribute = testSchema.getItemSync("CACWithDescription") as CustomAttributeClass;
+          const customAttribute = testSchema.getItemSync("CACWithDescription", CustomAttributeClass);
           ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, customAttribute, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2730,7 +2730,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const customAttribute = testSchema.getItemSync("CACWithBaseClass") as CustomAttributeClass;
+          const customAttribute = testSchema.getItemSync("CACWithBaseClass", CustomAttributeClass);
           ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, customAttribute, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2768,7 +2768,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const customAttribute = testSchema.getItemSync("CACWithProperties") as CustomAttributeClass;
+          const customAttribute = testSchema.getItemSync("CACWithProperties", CustomAttributeClass);
           ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, customAttribute, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2797,7 +2797,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const customAttribute = testSchema.getItemSync("CACWithMultipleProperties") as CustomAttributeClass;
+          const customAttribute = testSchema.getItemSync("CACWithMultipleProperties", CustomAttributeClass);
           ECJsonMarkdownGenerator.writeCustomAttributeClass(outputFilePath, customAttribute, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2906,7 +2906,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const struct = testSchema.getItemSync("PlainStruct") as StructClass;
+          const struct = testSchema.getItemSync("PlainStruct", StructClass);
           ECJsonMarkdownGenerator.writeStructClass(outputFilePath, struct, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2928,7 +2928,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const struct = testSchema.getItemSync("StructD") as StructClass;
+          const struct = testSchema.getItemSync("StructD", StructClass);
           ECJsonMarkdownGenerator.writeStructClass(outputFilePath, struct, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2950,7 +2950,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const struct = testSchema.getItemSync("StructDL") as StructClass;
+          const struct = testSchema.getItemSync("StructDL", StructClass);
           ECJsonMarkdownGenerator.writeStructClass(outputFilePath, struct, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -2974,7 +2974,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const struct = testSchema.getItemSync("StructDLB") as StructClass;
+          const struct = testSchema.getItemSync("StructDLB", StructClass);
           ECJsonMarkdownGenerator.writeStructClass(outputFilePath, struct, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -3011,7 +3011,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const struct = testSchema.getItemSync("StructDLBP") as StructClass;
+          const struct = testSchema.getItemSync("StructDLBP", StructClass);
           ECJsonMarkdownGenerator.writeStructClass(outputFilePath, struct, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -3039,7 +3039,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const struct = testSchema.getItemSync("StructProperties") as StructClass;
+          const struct = testSchema.getItemSync("StructProperties", StructClass);
           ECJsonMarkdownGenerator.writeStructClass(outputFilePath, struct, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -3098,7 +3098,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const propertyCategory = testSchema.getItemSync("PlainPropCategory") as PropertyCategory;
+          const propertyCategory = testSchema.getItemSync("PlainPropCategory", PropertyCategory);
           ECJsonMarkdownGenerator.writePropertyCategory(outputFilePath, propertyCategory, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -3120,7 +3120,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const propertyCategory = testSchema.getItemSync("PropCategoryD") as PropertyCategory;
+          const propertyCategory = testSchema.getItemSync("PropCategoryD", PropertyCategory);
           ECJsonMarkdownGenerator.writePropertyCategory(outputFilePath, propertyCategory, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -3142,7 +3142,7 @@ describe("ecjson2md", () => {
           [!IndentEnd]\n`);
 
           // Act
-          const propertyCategory = testSchema.getItemSync("PropCategoryDL") as PropertyCategory;
+          const propertyCategory = testSchema.getItemSync("PropCategoryDL", PropertyCategory);
           ECJsonMarkdownGenerator.writePropertyCategory(outputFilePath, propertyCategory, testSchema.name);
           // Assert
           const outputLines = fs.readFileSync(outputFilePath).toString().split("\n");
@@ -3198,7 +3198,7 @@ describe("ecjson2md", () => {
         it("should properly write formats that has just a name and type (required)", () => {
           // Act
           const schemaItem = "FormatA";
-          const format = testSchema.getItemSync(schemaItem) as Format;
+          const format = testSchema.getItemSync(schemaItem, Format);
           ECJsonMarkdownGenerator.writeFormatClass(outputFilePath, format, testSchema.name);
 
           // Assert
@@ -3222,7 +3222,7 @@ describe("ecjson2md", () => {
         it("should properly write formats that have a name, type, precision, and showSignOption", () => {
           // Act
           const schemaItem = "FormatB";
-          const format = testSchema.getItemSync(schemaItem) as Format;
+          const format = testSchema.getItemSync(schemaItem, Format);
           ECJsonMarkdownGenerator.writeFormatClass(outputFilePath, format, testSchema.name);
 
           // Assert
@@ -3246,7 +3246,7 @@ describe("ecjson2md", () => {
         it("should properly write formats that have a name, type, precision, and format traits", () => {
           // Act
           const schemaItem = "FormatC";
-          const format = testSchema.getItemSync(schemaItem) as Format;
+          const format = testSchema.getItemSync(schemaItem, Format);
           ECJsonMarkdownGenerator.writeFormatClass(outputFilePath, format, testSchema.name);
 
           // Assert
@@ -3383,7 +3383,7 @@ describe("ecjson2md", () => {
         it("should properly write units with a phenomenon and unitSystem", () => {
           // Act
           const schemaItem = "UnitA";
-          const unit = testSchema.getItemSync(schemaItem) as Unit;
+          const unit = testSchema.getItemSync(schemaItem, Unit);
           ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, unit, testSchema.name);
 
           // Assert
@@ -3405,7 +3405,7 @@ describe("ecjson2md", () => {
         it("should properly write units with neither numerator or denominator displayed", () => {
           // Act
           const schemaItem = "UnitB";
-          const unit = testSchema.getItemSync(schemaItem) as Unit;
+          const unit = testSchema.getItemSync(schemaItem, Unit);
           ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, unit, testSchema.name);
 
           // Assert
@@ -3427,7 +3427,7 @@ describe("ecjson2md", () => {
         it("should properly write units with numerator displayed", () => {
           // Act
           const schemaItem = "UnitC";
-          const unit = testSchema.getItemSync(schemaItem) as Unit;
+          const unit = testSchema.getItemSync(schemaItem, Unit);
           ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, unit, testSchema.name);
 
           // Assert
@@ -3450,7 +3450,7 @@ describe("ecjson2md", () => {
         it("should properly write units with numerator and denominator displayed", () => {
           // Act
           const schemaItem = "UnitD";
-          const unit = testSchema.getItemSync(schemaItem) as Unit;
+          const unit = testSchema.getItemSync(schemaItem, Unit);
           ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, unit, testSchema.name);
 
           // Assert
@@ -3474,7 +3474,7 @@ describe("ecjson2md", () => {
         it("should properly write units with numerator and denominator displayed, numerator is 1", () => {
           // Act
           const schemaItem = "UnitE";
-          const unit = testSchema.getItemSync(schemaItem) as Unit;
+          const unit = testSchema.getItemSync(schemaItem, Unit);
           ECJsonMarkdownGenerator.writeUnitClass(outputFilePath, unit, testSchema.name);
 
           // Assert
@@ -3498,7 +3498,7 @@ describe("ecjson2md", () => {
         it("should properly write inverted Unit", () => {
           // Act
           const schemaItem = "InvUnitF";
-          const invertedUnit = testSchema.getItemSync(schemaItem) as InvertedUnit;
+          const invertedUnit = testSchema.getItemSync(schemaItem, InvertedUnit);
           ECJsonMarkdownGenerator.writeInvertedUnit(outputFilePath, invertedUnit, testSchema.name);
 
           // Assert
@@ -3550,7 +3550,7 @@ describe("ecjson2md", () => {
         it("should properly write the phenomenon with name, type, and definition", () => {
           // Act
           const schemaItem = "PhenomenonA";
-          const phenomenon = testSchema.getItemSync(schemaItem) as Phenomenon;
+          const phenomenon = testSchema.getItemSync(schemaItem, Phenomenon);
           ECJsonMarkdownGenerator.writePhenomenonClass(outputFilePath, phenomenon, testSchema.name);
 
           // Assert
@@ -3725,7 +3725,7 @@ describe("ecjson2md", () => {
             const testSchema = Schema.fromJsonSync(schemaJson, context);
             const schemaItem = "StructItem";
 
-            const struct = testSchema.getItemSync(schemaItem) as StructClass;
+            const struct = testSchema.getItemSync(schemaItem, StructClass);
             ECJsonMarkdownGenerator.writeStructClass(outputPath, struct, testSchema.name);
 
             const outputLines = fs.readFileSync(outputPath).toString().split("\n");
@@ -3768,7 +3768,7 @@ describe("ecjson2md", () => {
             const testSchema = Schema.fromJsonSync(schemaJson, context);
             const schemaItem = "EntityC";
 
-            const entity = testSchema.getItemSync(schemaItem) as EntityClass;
+            const entity = testSchema.getItemSync(schemaItem, EntityClass);
             ECJsonMarkdownGenerator.writeEntityClass(outputPath, entity, testSchema.name);
 
             const outputLines = fs.readFileSync(outputPath).toString().split("\n");
@@ -3803,7 +3803,7 @@ describe("ecjson2md", () => {
             const context = new SchemaContext();
             const testSchema = Schema.fromJsonSync(schemaJson, context);
 
-            const mixin = testSchema.getItemSync("PlainMixin") as Mixin;
+            const mixin = testSchema.getItemSync("PlainMixin", Mixin);
             ECJsonMarkdownGenerator.writeMixinClass(outputPath, mixin, testSchema.name);
 
             const outputLines = fs.readFileSync(outputPath).toString().split("\n");
@@ -3842,7 +3842,7 @@ describe("ecjson2md", () => {
             const testSchema = Schema.fromJsonSync(schemaJson, context);
             const schemaItem = "CACWithBaseClass";
 
-            const customAttribute = testSchema.getItemSync(schemaItem) as CustomAttributeClass;
+            const customAttribute = testSchema.getItemSync(schemaItem, CustomAttributeClass);
             ECJsonMarkdownGenerator.writeCustomAttributeClass(outputPath, customAttribute, testSchema.name);
 
             const outputLines = fs.readFileSync(outputPath).toString().split("\n");
@@ -3883,7 +3883,7 @@ describe("ecjson2md", () => {
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
-          const entity = testSchema.getItemSync("EntityA") as EntityClass;
+          const entity = testSchema.getItemSync("EntityA", EntityClass);
           ECJsonMarkdownGenerator.writeEntityClass(outputPath, entity, testSchema.name);
 
           const outputLines = fs.readFileSync(outputPath).toString().split("\n");
@@ -3907,7 +3907,7 @@ describe("ecjson2md", () => {
           const context = new SchemaContext();
           const testSchema = Schema.fromJsonSync(schemaJson, context);
 
-          const mixin = testSchema.getItemSync("MixinWithBaseclass") as Mixin;
+          const mixin = testSchema.getItemSync("MixinWithBaseclass", Mixin);
           ECJsonMarkdownGenerator.writeMixinClass(outputPath, mixin, testSchema.name);
 
           const outputLines = fs.readFileSync(outputPath).toString().split("\n");
