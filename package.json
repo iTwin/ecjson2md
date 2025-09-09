@@ -1,6 +1,6 @@
 {
   "name": "@bentley/ecjson2md",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "Markdown generation from ECSchema JSON",
   "license": "MIT",
   "bin": {
@@ -34,28 +34,28 @@
     "EC"
   ],
   "dependencies": {
-    "@itwin/core-bentley": "4.10.0-dev.29",
-    "@itwin/core-quantity": "4.10.0-dev.29",
-    "@itwin/ecschema-metadata": "4.10.0-dev.29",
-    "@itwin/ecschema-locaters": "4.10.0-dev.29",
-    "chalk": "^2.4.2",
+    "@itwin/core-bentley": "5.2.0-dev.19",
+    "@itwin/core-quantity": "5.2.0-dev.19",
+    "@itwin/ecschema-metadata": "5.2.0-dev.19",
+    "@itwin/ecschema-locaters": "5.2.0-dev.19",
+    "chalk": "^3.0.0",
     "commander": "^2.19.0",
     "glob": "^10.3.12",
-    "@xmldom/xmldom": "~0.8.5",
-    "rimraf": "^3.0.2"
+    "@xmldom/xmldom": "~0.8.10",
+    "rimraf": "^6.0.1"
   },
   "devDependencies": {
     "@itwin/eslint-plugin": "^4.0.2",
-    "@itwin/build-tools": "4.10.0-dev.29",
+    "@itwin/build-tools": "5.2.0-dev.19",
     "@types/chai": "4.3.1",
     "@types/glob": "^5.0.35",
     "@types/mocha": "^10.0.6",
     "@types/rimraf": "^2.0.2",
-    "nyc": "^15.1.0",
+    "nyc": "^17.1.0",
     "chai": "^4.3.10",
-    "mocha": "^10.2.0",
+    "mocha": "^11.1.0",
     "ts-node": "^10.8.2",
-    "typescript": "~5.3.3",
+    "typescript": "~5.6.2",
     "source-map-support": "^0.5.9"
   },
   "nyc": {
