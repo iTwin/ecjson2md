@@ -364,13 +364,13 @@ export class ECJsonMarkdownGenerator {
   public static propertyTypeToString(property: any): string {
     try {
       return primitiveTypeToString(property._type);
-    } catch (err) {
+    } catch {
       try {
         return property.enumeration._name._name;
-      } catch (error) {
+      } catch {
         try {
           return propertyTypeNumberToString(property._type);
-        } catch (er) {
+        } catch {
           return PLACE_HOLDER;
         }
       }
@@ -703,7 +703,7 @@ export class ECJsonMarkdownGenerator {
     // Write the constraint information
     fs.appendFileSync(outputFilePath, `**Is Polymorphic:** ${constraint.polymorphic}\n\n`);
     fs.appendFileSync(outputFilePath, `**Role Label:** ${constraint.roleLabel}\n\n`);
-    fs.appendFileSync(outputFilePath, `**Multiplicity:** ${constraint.multiplicity}\n\n`);
+    fs.appendFileSync(outputFilePath, `**Multiplicity:** ${String(constraint.multiplicity)}\n\n`);
     fs.appendFileSync(outputFilePath, "#### Constraint Classes:\n");
 
     // If the constraint classes are undefined or there are none, return
@@ -915,7 +915,7 @@ export class ECJsonMarkdownGenerator {
         const priority = property.priority;
         const description = helper(property.description);
 
-        fs.appendFileSync(outputFilePath, `|${name}|${description}|${label}|${category}|${isReadOnly}|${priority}|\n`);
+        fs.appendFileSync(outputFilePath, `|${name}|${description}|${label}|${String(category)}|${isReadOnly}|${priority}|\n`);
       }
       fs.appendFileSync(outputFilePath, "\n");
     }
@@ -1044,7 +1044,7 @@ export class ECJsonMarkdownGenerator {
         const isReadOnly = property.isReadOnly;
         const priority = property.priority;
         const description = helper(property.description);
-        fs.appendFileSync(outputFilePath, `|${name}|${description}|${label}|${category}|${isReadOnly}|${priority}|\n`);
+        fs.appendFileSync(outputFilePath, `|${name}|${description}|${label}|${String(category)}|${isReadOnly}|${priority}|\n`);
       }
     }
     fs.appendFileSync(outputFilePath, "\n");
@@ -1116,7 +1116,7 @@ export class ECJsonMarkdownGenerator {
       const priority = property.priority;
       const description = helper(property.description);
 
-      fs.appendFileSync(outputFilePath, `|${name}|${description}|${label}|${category}|${isReadOnly}|${priority}|\n`);
+      fs.appendFileSync(outputFilePath, `|${name}|${description}|${label}|${String(category)}|${isReadOnly}|${priority}|\n`);
     }
     fs.appendFileSync(outputFilePath, "\n");
 
@@ -1476,7 +1476,7 @@ export class ECJsonMarkdownGenerator {
     if (schemaPath.endsWith("json")) {
       try {
         schemaJson = JSON.parse(schemaString);
-      } catch (e) {
+      } catch {
         throw new ECJsonBadJson(schemaPath);
       }
       schema = Schema.fromJsonSync(schemaJson, this._context);

@@ -22,7 +22,7 @@ async function main() {
 
   // Prompt to use the help flag if an input was missing
   if (!options.input || !options.output) {
-    /* eslint-disable no-debugger, no-console */
+    /* eslint-disable-next-line no-console */
     console.log(chalk.red("Invalid input. For help use '-h'"));
     process.exit();
   }
@@ -33,7 +33,7 @@ async function main() {
   if (options.dirs !== undefined)
     searchDirs = prepSearchDirs(options.dirs);
 
-  /* eslint-disable no-debugger, no-console */
+  /* eslint-disable-next-line no-console */
   console.log(chalk.gray("Adding the search directories..."));
 
   if (options.generateEmpty) {
@@ -43,16 +43,16 @@ async function main() {
       // Try to add the search paths
       const remarks = new ECJsonMarkdownGenerator(searchDirs);
 
-      /* eslint-disable no-debugger, no-console */
+      /* eslint-disable-next-line no-console */
       console.log(chalk.gray("Generating remarks file at " + path.resolve(path.normalize(outputRemarksPath) + "...")));
       // Try to generate remarks file
       remarks.genRemarks(options.input, outputRemarksPath, options.nonrelease);
 
-      /* eslint-disable no-debugger, no-console */
+      /* eslint-disable-next-line no-console */
       console.log(chalk.blue("Remarks file successfully generated at " + path.resolve(path.normalize(outputRemarksPath))));
 
     } catch (e: any) {
-      /* eslint-disable no-debugger, no-console */
+      /* eslint-disable-next-line no-console */
       console.log(chalk.red(e, "\nQuitting..."));
     }
   }
@@ -65,23 +65,24 @@ async function main() {
     // Try to add the search paths
     const mdGenerator = new ECJsonMarkdownGenerator(searchDirs);
 
-    /* eslint-disable no-debugger, no-console */
+    /* eslint-disable-next-line no-console */
     console.log(chalk.gray("Generating markdown at " + path.resolve(path.normalize(outputFilePath) + "...")));
 
     // Try to generate the markdown
     await mdGenerator.generate(options.input, outputFilePath, options.nonrelease);
 
-    /* eslint-disable no-debugger, no-console */
+    /* eslint-disable-next-line no-console */
     console.log(chalk.blue("Markdown successfully generated at " + path.resolve(path.normalize(outputFilePath))));
 
   } catch (e: any) {
-    /* eslint-disable no-debugger, no-console */
+    /* eslint-disable-next-line no-console */
     console.log(chalk.red(e, "\nQuitting..."));
   }
 }
 
 main().then()
   .catch((error) => {
+    /* eslint-disable-next-line no-console */
     console.error(error);
     process.exit(1);
   });
